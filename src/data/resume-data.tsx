@@ -18,7 +18,7 @@ export const RESUME_DATA: ResumeData = {
       early feedback.
     </>
   ),
-  avatarUrl: "/images/avatar.jpg",
+  avatarUrl: "/cuongcv/images/avatar.jpg",
   personalWebsiteUrl: "https://pmlecuong.com/",
   contact: {
     email: "nlcuong85@gmail.com",
