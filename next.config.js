@@ -73,6 +73,8 @@ const nextConfig = {
   // GitHub Pages static export configuration
   output: 'export',
   trailingSlash: true,
+  basePath: '/cuongcv',
+  assetPrefix: '/cuongcv',
 
   // Reduce bundle size by excluding source maps in production
   productionBrowserSourceMaps: false,
