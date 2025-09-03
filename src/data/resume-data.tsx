@@ -61,7 +61,7 @@ export const RESUME_DATA: ResumeData = {
     {
       company: "Kyanon Digital – IT Services and Consulting",
       link: "https://kyanon.digital/",
-      badges: [],
+      badges: ["Onsite"],
       title: "Senior Product Owner",
       start: "Aug 2024",
       end: null,
@@ -86,7 +86,7 @@ export const RESUME_DATA: ResumeData = {
     {
       company: "SCCK.vn – Ecommerce Platform for Mechanical Market",
       link: "https://scck.vn/",
-      badges: [],
+      badges: ["Remote"],
       title: "Product Development Manager",
       start: "Jul 2020",
       end: "Jul 2024",
@@ -110,7 +110,7 @@ export const RESUME_DATA: ResumeData = {
     {
       company: "Anduin Transaction – Onboarding App for Private Markets",
       link: "https://www.anduintransact.com/",
-      badges: [],
+      badges: ["Onsite"],
       title: "Associate Product Manager",
       start: "Feb 2021",
       end: "May 2023",
@@ -138,7 +138,7 @@ export const RESUME_DATA: ResumeData = {
     {
       company: "Talosix LLC – Healthcare App Product",
       link: "https://www.talosix.com/",
-      badges: [],
+      badges: ["Onsite"],
       title: "Product Owner",
       start: "Jun 2019",
       end: "Feb 2021",
@@ -166,7 +166,7 @@ export const RESUME_DATA: ResumeData = {
     {
       company: "NashTech",
       link: "https://www.nashtechglobal.com/",
-      badges: [],
+      badges: ["Onsite"],
       title: "Business Analyst",
       start: "Mar 2018",
       end: "Jun 2019",
