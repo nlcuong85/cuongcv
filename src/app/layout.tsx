@@ -13,7 +13,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://cv.jarocki.me"),
+  // Use your deployed domain as the base for absolute URLs
+  metadataBase: new URL("https://nlcuong85.github.io/cuongcv"),
   title: {
     default: `${RESUME_DATA.name} - ${RESUME_DATA.about}`,
     template: `%s | ${RESUME_DATA.name}`,
@@ -61,7 +62,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${RESUME_DATA.name} - ${RESUME_DATA.about}`,
     description: RESUME_DATA.about,
-    creator: "@BartoszJarocki",
+    // Optionally set your own handle here or leave undefined
+    creator: undefined,
   },
   alternates: {
     canonical: RESUME_DATA.personalWebsiteUrl,
