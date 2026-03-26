@@ -36,10 +36,10 @@ export const RESUME_DATA: ResumeData = {
   },
   education: [
     {
-      school: "Vietnamese-German University (VGU)",
-      degree: "MA in Business Information Systems (BIS)",
-      start: "2024",
-      end: "Present",
+      school: "Heilbronn University",
+      degree: "Master in Software Engineering",
+      start: "Summer 2026",
+      end: "Expected",
     },
     {
       school: "Troy University, Alabama, USA (HCMC campus)",
