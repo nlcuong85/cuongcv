@@ -12,10 +12,8 @@ export const RESUME_DATA: ResumeData = {
       Product leader with experience owning end-to-end delivery—from discovery
       and roadmapping to launch and iteration. Comfortable driving
       cross-functional collaboration, establishing processes (Jira, Confluence,
-      OKRs), and shipping AI-powered experiences.
-      {" "}
-      Currently testing three private apps on GitHub with close friends for
-      early feedback.
+      OKRs), and shipping AI-powered experiences. Currently testing three
+      private apps on GitHub with close friends for early feedback.
     </>
   ),
   avatarUrl: "/cuongcv/images/avatar.jpg",
@@ -64,12 +62,12 @@ export const RESUME_DATA: ResumeData = {
       badges: ["Onsite"],
       title: "Senior Product Owner",
       start: "Aug 2024",
-      end: null,
+      end: "Jan 2026",
       description: (
         <>
           Managed end-to-end delivery for assigned projects from kickoff to
           launch; led backlog and roadmap for AEON’s iAEON super-app and shipped
-          gamification bundle (Lucky Wheel, daily check-in, progress bar).
+          a gamification bundle (Lucky Wheel, daily check-in, progress bar).
           <ul className="list-inside list-disc">
             <li>
               Coordinated design, engineering, and QC stakeholders to deliver
@@ -253,10 +251,10 @@ export const RESUME_DATA: ResumeData = {
         "Stealth-mode to-do app that surfaces insights and suggests next steps using AI.",
     },
     {
-      title: "Tarot Fortune (Fun/Experimental)",
-      techStack: ["Next.js", "Gemini", "DeepSeek (exploring)"],
+      title: "RouteOps",
+      techStack: ["React", "TypeScript", "Fastify", "SQLite"],
       description:
-        "Fun tarot app testing context engineering and spec-driven development; primarily Gemini, exploring DeepSeek.",
+        "Browser-based travel-planning decision-support prototype with a local Fastify backend, deterministic best-balance/cheapest/most-comfort outputs, and saved trip history.",
     },
   ],
 } as const;
