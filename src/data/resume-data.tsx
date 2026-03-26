@@ -19,7 +19,7 @@ export const RESUME_DATA: ResumeData = {
   avatarUrl: "/cuongcv/images/avatar.jpg",
   personalWebsiteUrl: "https://pmlecuong.com/",
   contact: {
-    email: "nlcuong85@gmail.com",
+    email: "nlcuong999@gmail.com",
     tel: "+84945687768",
     social: [
       {
