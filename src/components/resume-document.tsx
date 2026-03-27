@@ -65,6 +65,12 @@ export function ResumeDocument({
             </Suspense>
           </SectionErrorBoundary>
 
+          <SectionErrorBoundary sectionName="Skills">
+            <Suspense fallback={<SectionSkeleton lines={2} />}>
+              <Skills skills={data.skills} />
+            </Suspense>
+          </SectionErrorBoundary>
+
           <SectionErrorBoundary sectionName="Work Experience">
             <Suspense fallback={<SectionSkeleton lines={6} />}>
               <WorkExperience work={data.work} />
@@ -74,12 +80,6 @@ export function ResumeDocument({
           <SectionErrorBoundary sectionName="Education">
             <Suspense fallback={<SectionSkeleton lines={3} />}>
               <Education education={data.education} />
-            </Suspense>
-          </SectionErrorBoundary>
-
-          <SectionErrorBoundary sectionName="Skills">
-            <Suspense fallback={<SectionSkeleton lines={2} />}>
-              <Skills skills={data.skills} />
             </Suspense>
           </SectionErrorBoundary>
 

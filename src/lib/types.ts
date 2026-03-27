@@ -29,6 +29,7 @@ export interface ResumeData {
     degree: string;
     start: string;
     end: string;
+    location?: string;
   }>;
   work: Array<{
     company: string;
@@ -37,7 +38,9 @@ export interface ResumeData {
     title: string;
     start: string;
     end: string | null;
-    description: string | React.ReactNode;
+    description?: string | React.ReactNode;
+    overview?: string;
+    bullets?: string[];
   }>;
   skills: string[];
   awards?: string[];
@@ -69,6 +72,7 @@ export interface GraphQLEducation {
   degree: string;
   start: string;
   end: string;
+  location?: string;
 }
 
 export interface GraphQLWork {
@@ -146,7 +150,11 @@ export function resumeDataToGraphQL(data: ResumeData): GraphQLMe {
       title: job.title,
       start: job.start,
       end: job.end || "Present",
-      description: reactToString(job.description),
+      description:
+        reactToString(job.description) ||
+        job.overview ||
+        job.bullets?.join(" ") ||
+        "",
     })),
     skills: data.skills,
     projects: data.projects.map((project) => ({

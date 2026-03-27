@@ -31,7 +31,7 @@ interface EducationItemProps {
  * Individual education card component
  */
 function EducationItem({ education }: EducationItemProps) {
-  const { school, start, end, degree } = education;
+  const { school, start, end, degree, location } = education;
 
   return (
     <Card>
@@ -47,12 +47,17 @@ function EducationItem({ education }: EducationItemProps) {
         </div>
       </CardHeader>
       <CardContent
-        className="mt-2 text-foreground/80 print:text-[12px]"
+        className="mt-2 text-foreground/80 print:text-[11px]"
         aria-labelledby={`education-${school
           .toLowerCase()
           .replace(/\s+/g, "-")}`}
       >
-        {degree}
+        <div>{degree}</div>
+        {location ? (
+          <div className="font-mono text-xs text-muted-foreground print:text-[10px]">
+            {location}
+          </div>
+        ) : null}
       </CardContent>
     </Card>
   );

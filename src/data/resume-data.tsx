@@ -37,16 +37,18 @@ export const RESUME_DATA: ResumeData = {
   },
   education: [
     {
+      school: "Heilbronn University",
+      degree: "Master in Software Engineering",
+      start: "Summer 2026",
+      end: "Present",
+      location: "Heilbronn, Germany",
+    },
+    {
       school: "Vietnamese-German University (VGU)",
       degree: "MA in Business Information Systems (BIS)",
       start: "2024",
       end: "Present",
-    },
-    {
-      school: "Heilbronn University",
-      degree: "Master in Software Engineering",
-      start: "Summer 2026",
-      end: "Expected",
+      location: "Binh Duong, Vietnam",
     },
     {
       school: "Troy University, Alabama, USA (HCMC campus)",
@@ -54,12 +56,14 @@ export const RESUME_DATA: ResumeData = {
         "BA in Business Administration and General Management; GPA: 3.3/4.0",
       start: "2010",
       end: "2015",
+      location: "Ho Chi Minh City, Vietnam",
     },
     {
       school: "Newlands College (High School), New Zealand",
       degree: "Grade 12th & 13th",
       start: "2009",
       end: "2010",
+      location: "Wellington, New Zealand",
     },
   ],
   work: [
