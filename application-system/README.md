@@ -36,6 +36,13 @@ The public CV source at `src/data/resume-data.tsx` remains the canonical fact la
 - employer names
 - work-history dates
 
+For generated CVs, this means:
+
+- `About` / summary may change
+- skills may rotate to fit the JD
+- work-bullet wording may change to emphasize role fit
+- company names and dates must stay unchanged
+
 ## Supported outputs
 
 - `cover-letter/cover_letter.tex`
@@ -56,6 +63,13 @@ The generator creates only the requested role variant unless the intake explicit
 4. `ai_product_ops`
 
 These variants only change emphasis, summary, selected achievements, and skill ordering. They do not rewrite Cuong's career history.
+
+For generated CVs, the skills section is tailored with a fixed structure:
+
+- target 14 visible skills
+- keep 7 fixed core skills that represent Cuong's stable strengths
+- rotate 7 adaptive skills based on the target role and the job description
+- keep the public online CV skills unchanged unless the user explicitly asks to edit them
 
 ## Usage
 

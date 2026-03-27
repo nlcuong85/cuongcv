@@ -180,6 +180,16 @@ def evidence_map(evidence_library: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {item["id"]: item for item in evidence_library["evidence"]}
 
 
+def unique_preserve_order(values: list[str]) -> list[str]:
+    seen: set[str] = set()
+    result: list[str] = []
+    for value in values:
+        if value not in seen:
+            seen.add(value)
+            result.append(value)
+    return result
+
+
 def select_evidence(
     intake: dict[str, Any],
     role: dict[str, Any],
@@ -214,6 +224,69 @@ def select_evidence(
             ordered_ids.append(evidence_id)
 
     return [evidence_by_id[item] for item in ordered_ids[:4]]
+
+
+def jd_skill_candidates(intake: dict[str, Any]) -> list[str]:
+    blob = requirements_blob(intake)
+    keyword_skill_map = {
+        "business analysis": "Business Analysis",
+        "requirements": "Requirements Engineering",
+        "acceptance criteria": "Acceptance Criteria",
+        "documentation": "Documentation",
+        "workflow": "Process Mapping",
+        "process": "Operational Analysis",
+        "stakeholder": "Stakeholder Interviews",
+        "interviews": "Stakeholder Interviews",
+        "ecommerce": "Product Roadmapping",
+        "e-commerce": "Product Roadmapping",
+        "digital commerce": "Product Roadmapping",
+        "operations": "Operations-heavy Product Delivery",
+        "delivery": "Cross-functional Delivery",
+        "rollout": "Cross-functional Delivery",
+        "launch": "Cross-functional Delivery",
+        "backlog": "Requirement Prioritization",
+        "jira": "Jira",
+        "confluence": "Confluence",
+        "sql": "SQL",
+        "ai": "AI-assisted Product Workflows",
+        "automation": "n8n Automation",
+    }
+    candidates: list[str] = []
+    for keyword, skill in keyword_skill_map.items():
+        if keyword in blob:
+            candidates.append(skill)
+    return candidates
+
+
+def build_role_skills(
+    profile: dict[str, Any],
+    role: dict[str, Any],
+    intake: dict[str, Any],
+    total_skills: int = 14,
+) -> list[str]:
+    core_target = total_skills // 2
+    adaptive_target = total_skills - core_target
+
+    core_skills = unique_preserve_order(
+        profile.get("core_skills", []) + profile.get("skills", [])
+    )[:core_target]
+
+    adaptive_candidates = unique_preserve_order(
+        role.get("top_skills", []) + jd_skill_candidates(intake) + profile.get("skills", [])
+    )
+    adaptive_skills = [
+        skill for skill in adaptive_candidates if skill not in core_skills
+    ][:adaptive_target]
+
+    if len(adaptive_skills) < adaptive_target:
+        fallback = [
+            skill
+            for skill in unique_preserve_order(profile.get("skills", []) + role.get("top_skills", []))
+            if skill not in core_skills and skill not in adaptive_skills
+        ]
+        adaptive_skills.extend(fallback[: adaptive_target - len(adaptive_skills)])
+
+    return core_skills + adaptive_skills
 
 
 def sender_lines(profile: dict[str, Any]) -> list[str]:
@@ -359,6 +432,7 @@ def compile_tex(tex_path: Path) -> None:
 def build_generated_resume_data(
     profile: dict[str, Any],
     role: dict[str, Any],
+    intake: dict[str, Any],
     selected_evidence: list[dict[str, Any]],
     summary_text: str,
 ) -> dict[str, Any]:
@@ -394,9 +468,7 @@ def build_generated_resume_data(
         for project in profile["projects"]
     ]
 
-    role_skills = role["top_skills"] + [
-        skill for skill in profile["skills"] if skill not in role["top_skills"]
-    ][:8]
+    role_skills = build_role_skills(profile, role, intake)
 
     return {
         "name": profile["name"],
@@ -596,6 +668,7 @@ def main() -> None:
         role_payload = build_generated_resume_data(
             profile,
             role,
+            intake,
             selected_for_cv,
             selected_summary["text"],
         )
@@ -622,6 +695,7 @@ def main() -> None:
                 "role_label": role["label"],
                 "summary_version": selected_summary["id"],
                 "evidence": [item["id"] for item in selected_for_cv],
+                "skills": role_payload["skills"],
                 "json_path": str(json_path.relative_to(ROOT)),
                 "public_json_path": str(public_json_path.relative_to(ROOT)),
                 "render_url": render_url,
