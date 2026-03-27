@@ -27,6 +27,15 @@ The public CV site in this repository is still the canonical profile surface, bu
 - Portfolio voice and case-study digest: `data/portfolio_digest.json`
 - Company/job intake: `intakes/*.json`
 
+The public CV source at `src/data/resume-data.tsx` remains the canonical fact layer for fixed CV data. The application generator may vary summary positioning, skills emphasis, and work-bullet wording, but it should stay aligned with the online CV for:
+
+- contact information
+- education entries and grades
+- awards/certifications
+- side-project identity
+- employer names
+- work-history dates
+
 ## Supported outputs
 
 - `cover-letter/cover_letter.tex`

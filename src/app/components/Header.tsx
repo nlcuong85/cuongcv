@@ -185,7 +185,7 @@ export function Header({ data }: { data: ResumeData }) {
       </div>
 
       <Avatar
-        className="size-28 print:size-20"
+        className="size-36 print:size-28"
         src={data.avatarUrl}
         alt={`${data.name}'s profile picture`}
         fallback={data.initials}
