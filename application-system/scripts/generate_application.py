@@ -20,6 +20,7 @@ DATA_DIR = APP_ROOT / "data"
 TEMPLATES_DIR = APP_ROOT / "templates"
 DEFAULT_OUTPUTS_DIR = APP_ROOT / "outputs"
 PUBLIC_CV_DATA_DIR = ROOT / "public" / "generated-cv-data"
+CURRENT_PUBLIC_CV_PATH = PUBLIC_CV_DATA_DIR / "current.json"
 DEFAULT_RENDER_BASE_URL = "http://127.0.0.1:3000/cuongcv"
 CHROME_PATH = Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 
@@ -98,6 +99,83 @@ def get_role(role_profiles: dict[str, Any], role_id: str) -> dict[str, Any]:
     raise KeyError(f"Unknown role preset: {role_id}")
 
 
+def get_summary_versions(summary_versions: dict[str, Any]) -> dict[str, dict[str, str]]:
+    return {item["id"]: item for item in summary_versions["versions"]}
+
+
+def requirements_blob(intake: dict[str, Any]) -> str:
+    return (" ".join(intake.get("requirements", [])) + " " + intake.get("job_description", "")).lower()
+
+
+def detect_summary_recommendations(intake: dict[str, Any], summary_versions: dict[str, Any]) -> list[str]:
+    blob = requirements_blob(intake)
+    scores = {
+        "strongest_balanced": 0,
+        "product_delivery": 0,
+        "business_analysis": 0,
+        "german_market_conservative": 0,
+        "senior_confident": 0,
+    }
+    keyword_map = {
+        "product_delivery": [
+            "rollout",
+            "launch",
+            "delivery",
+            "implementation",
+            "lifecycle",
+            "go-live",
+            "release",
+        ],
+        "business_analysis": [
+            "requirements",
+            "workflow",
+            "process",
+            "documentation",
+            "stakeholder interviews",
+            "business analysis",
+            "acceptance criteria",
+        ],
+        "german_market_conservative": [
+            "structured",
+            "reliable",
+            "formal",
+            "compliance",
+            "regulated",
+            "process discipline",
+        ],
+        "senior_confident": [
+            "lead",
+            "ownership",
+            "strategy",
+            "drive",
+            "scale",
+            "senior",
+            "manager",
+        ],
+    }
+
+    for summary_id, keywords in keyword_map.items():
+        for keyword in keywords:
+            if keyword in blob:
+                scores[summary_id] += 1
+
+    highest_non_default = max(
+        (score for key, score in scores.items() if key != "strongest_balanced"),
+        default=0,
+    )
+    if highest_non_default < 3:
+        return []
+
+    winners = [
+        summary_id
+        for summary_id, score in scores.items()
+        if summary_id != "strongest_balanced" and score == highest_non_default
+    ]
+    if len(winners) > 2:
+        return []
+    return winners
+
+
 def evidence_map(evidence_library: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {item["id"]: item for item in evidence_library["evidence"]}
 
@@ -108,8 +186,7 @@ def select_evidence(
     evidence_library: dict[str, Any],
 ) -> list[dict[str, Any]]:
     evidence_by_id = evidence_map(evidence_library)
-    requirements_blob = " ".join(intake.get("requirements", [])) + " " + intake.get("job_description", "")
-    requirements_blob = requirements_blob.lower()
+    requirements_blob_text = requirements_blob(intake)
 
     keyword_boosts = {
         "ocr": "talosix_ocr_workflow",
@@ -129,7 +206,7 @@ def select_evidence(
 
     ordered_ids: list[str] = []
     for keyword, evidence_id in keyword_boosts.items():
-        if keyword in requirements_blob and evidence_id not in ordered_ids:
+        if keyword in requirements_blob_text and evidence_id not in ordered_ids:
             ordered_ids.append(evidence_id)
 
     for evidence_id in role["evidence_priority"]:
@@ -283,6 +360,7 @@ def build_generated_resume_data(
     profile: dict[str, Any],
     role: dict[str, Any],
     selected_evidence: list[dict[str, Any]],
+    summary_text: str,
 ) -> dict[str, Any]:
     work_items = []
     company_links = {
@@ -290,19 +368,20 @@ def build_generated_resume_data(
         "SCCK.vn": "https://scck.vn/",
         "Anduin Transaction": "https://www.anduintransact.com/",
         "Talosix": "https://www.talosix.com/",
-        "NashTech": "https://www.nashtechglobal.com/",
+        "NashTech Global": "https://www.nashtechglobal.com/",
     }
 
     for job in profile["work_history"]:
         work_items.append(
             {
-                "company": job["company"],
+                "company": job.get("company_label", job["company"]),
                 "link": company_links.get(job["company"], profile["website"]),
-                "badges": job.get("industry_tags", [])[:2],
+                "badges": job.get("badges", []),
                 "title": job["title"],
                 "start": job["start"],
                 "end": job["end"],
-                "description": " ".join(sentence(item) for item in job["highlights"][:3]),
+                "overview": job.get("overview"),
+                "bullets": job.get("bullets", []),
             }
         )
 
@@ -315,11 +394,6 @@ def build_generated_resume_data(
         for project in profile["projects"]
     ]
 
-    summary = paragraph(
-        role["summary"],
-        f"Most relevant evidence for this version includes {', '.join(item['title'] for item in selected_evidence[:2])}",
-    )
-
     role_skills = role["top_skills"] + [
         skill for skill in profile["skills"] if skill not in role["top_skills"]
     ][:8]
@@ -329,8 +403,8 @@ def build_generated_resume_data(
         "initials": profile["initials"],
         "location": profile["location"],
         "locationLink": profile["location_link"],
-        "about": profile["headline"],
-        "summary": summary,
+        "about": role.get("about", profile["headline"]),
+        "summary": summary_text,
         "avatarUrl": profile["avatar_url"],
         "personalWebsiteUrl": profile["website"],
         "contact": {
@@ -388,6 +462,7 @@ def print_cv_pdf(render_url: str, pdf_path: Path) -> None:
             "--disable-gpu",
             "--no-first-run",
             "--virtual-time-budget=8000",
+            "--no-pdf-header-footer",
             f"--print-to-pdf={pdf_path}",
             render_url,
         ],
@@ -447,6 +522,25 @@ def main() -> None:
     profile = load_json(DATA_DIR / "master_profile.json")
     role_profiles = load_json(DATA_DIR / "role_profiles.json")
     evidence_library = load_json(DATA_DIR / "evidence_library.json")
+    summary_versions = load_json(DATA_DIR / "summary_versions.json")
+    summary_version_map = get_summary_versions(summary_versions)
+
+    recommended_summary_versions = detect_summary_recommendations(intake, summary_versions)
+    selected_summary_version = intake.get("summary_version") or summary_versions["default"]
+    if recommended_summary_versions and "summary_version" not in intake:
+        options = ", ".join(recommended_summary_versions)
+        raise SystemExit(
+            "This JD suggests a non-default CV summary style. "
+            f"Please choose one of: {options}. "
+            f"Available options: {', '.join(summary_version_map.keys())}. "
+            "Add it as `summary_version` in the intake JSON and rerun."
+        )
+    if selected_summary_version not in summary_version_map:
+        raise SystemExit(
+            f"Unknown summary_version `{selected_summary_version}`. "
+            f"Valid options: {', '.join(summary_version_map.keys())}."
+        )
+    selected_summary = summary_version_map[selected_summary_version]
 
     primary_role = get_role(role_profiles, intake["primary_role"])
     target_role_ids = intake.get("target_roles") or [intake["primary_role"]]
@@ -474,6 +568,7 @@ def main() -> None:
         "company_name": intake["company_name"],
         "job_title": intake["job_title"],
         "primary_role": primary_role["id"],
+        "summary_version": selected_summary["id"],
         "cover_letter_evidence": [item["id"] for item in selected_for_cover_letter],
         "cv_variants": [],
     }
@@ -484,13 +579,19 @@ def main() -> None:
 
     for role in target_roles:
         selected_for_cv = select_evidence(intake, role, evidence_library)
-        role_payload = build_generated_resume_data(profile, role, selected_for_cv)
+        role_payload = build_generated_resume_data(
+            profile,
+            role,
+            selected_for_cv,
+            selected_summary["text"],
+        )
         json_path = cv_dir / f"{role['id']}.json"
         public_json_path = PUBLIC_CV_DATA_DIR / company_slug / f"{role['id']}.json"
         write_json(json_path, role_payload)
         write_json(public_json_path, role_payload)
+        write_json(CURRENT_PUBLIC_CV_PATH, role_payload)
 
-        render_url = f"{args.render_base_url}/generated-cv/?company={company_slug}&role={role['id']}"
+        render_url = f"{args.render_base_url}/generated-cv/"
         pdf_path = cv_dir / f"{role['id']}.pdf"
         if args.compile_pdf:
             print_cv_pdf(render_url, pdf_path)
@@ -499,6 +600,7 @@ def main() -> None:
             {
                 "role_id": role["id"],
                 "role_label": role["label"],
+                "summary_version": selected_summary["id"],
                 "evidence": [item["id"] for item in selected_for_cv],
                 "json_path": str(json_path.relative_to(ROOT)),
                 "public_json_path": str(public_json_path.relative_to(ROOT)),

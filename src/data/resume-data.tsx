@@ -10,11 +10,11 @@ export const RESUME_DATA: ResumeData = {
     "Product Owner/Manager building AI-enabled and B2B products across eCommerce, LegalTech, and Ai-enable Apps.",
   summary: (
     <>
-      Product leader with experience owning end-to-end delivery—from discovery
-      and roadmapping to launch and iteration. Comfortable driving
-      cross-functional collaboration, establishing processes (Jira, Confluence,
-      OKRs), and shipping AI-powered experiences. Currently testing three
-      private apps on GitHub with close friends for early feedback.
+      Experienced product professional with a strong foundation in research,
+      requirements, stakeholder alignment, rollout, and continuous improvement.
+      I have worked across eCommerce, LegalTech, healthcare, and digital
+      operations, with a focus on structured execution and measurable business
+      impact.
     </>
   ),
   avatarUrl: "/cuongcv/images/avatar.jpg",
@@ -76,17 +76,23 @@ export const RESUME_DATA: ResumeData = {
       end: "Jan 2026",
       description: (
         <>
-          Managed end-to-end delivery for assigned projects from kickoff to
-          launch; led backlog and roadmap for AEON’s iAEON super-app and shipped
-          a gamification bundle (Lucky Wheel, daily check-in, progress bar).
+          Led product delivery and rollout planning for AEON Vietnam digital
+          products, including AEON Kids Version 2 and the iAEON super-app
+          initiative.
           <ul className="list-inside list-disc">
             <li>
-              Coordinated design, engineering, and QC stakeholders to deliver
-              business outcomes
+              Owned backlog, delivery coordination, and cross-functional
+              alignment across design, engineering, QC, and business
+              stakeholders
             </li>
             <li>
-              Mentored 3 junior BAs and formalized Jira/Confluence/OKR templates
-              to improve visibility and alignment
+              Contributed to the presentation and solution framing that helped
+              win the AEON super-app engagement for the AEON group in Vietnam
+            </li>
+            <li>
+              Supported AEON Kids Version 2 rollout and formalized
+              Jira/Confluence/OKR working templates to improve visibility and
+              execution discipline
             </li>
           </ul>
         </>
@@ -101,12 +107,19 @@ export const RESUME_DATA: ResumeData = {
       end: "Jul 2024",
       description: (
         <>
-          Built platform features and customer experience to establish SCCK.vn
-          as a comprehensive mechanical industry marketplace.
+          Built product workflows, supplier onboarding, and buyer experience for
+          a B2B marketplace serving Vietnam’s mechanical and industrial sourcing
+          sector.
           <ul className="list-inside list-disc">
             <li>
               Led cross-functional delivery across operations, engineering, and
-              product design from initiation through monitoring
+              product design to improve marketplace trust, onboarding, and
+              real-world purchasing workflows
+            </li>
+            <li>
+              Shaped marketplace features around supplier credibility, category
+              complexity, COD expectations, and operational constraints rather
+              than a consumer-style storefront model
             </li>
             <li>
               Developed and deployed “Ní Cơ Khí,” an AI chatbot using Botpress
@@ -173,7 +186,7 @@ export const RESUME_DATA: ResumeData = {
       ),
     },
     {
-      company: "NashTech",
+      company: "NashTech Global",
       link: "https://www.nashtechglobal.com/",
       badges: ["Onsite"],
       title: "Business Analyst",
@@ -184,8 +197,8 @@ export const RESUME_DATA: ResumeData = {
           Delivered requirements and documentation for multi-industry projects.
           <ul className="list-inside list-disc">
             <li>
-              Launched self-service app suite for gym members, replacing legacy
-              workflows and saving clients $500k/year
+              Delivered the Fitness First self-service app suite, replacing
+              legacy member workflows and saving the client $500k/year
             </li>
             <li>
               Authored user stories, acceptance criteria, process diagrams, and

@@ -9,7 +9,7 @@
       "problem": "Industrial buyers and sellers needed a marketplace that could handle trust, category complexity, seller enablement, and practical purchase workflows rather than a superficial consumer-style storefront.",
       "actions": [
         "Led cross-functional product delivery across operations, engineering, and product design",
-        "Helped shape features around marketplace trust, seller onboarding, and real buyer behavior",
+        "Helped shape features around marketplace trust, seller onboarding, category complexity, COD expectations, and real buyer behavior",
         "Built AI-assisted support through a Botpress and OpenAI chatbot for FAQs and price lookup"
       ],
       "results": [
@@ -80,9 +80,9 @@
       "tags": ["product_manager", "product_owner", "consumer", "enterprise_client", "delivery", "gamification"],
       "problem": "The client needed a backlog owner who could move from kickoff to launch while keeping multiple stakeholders aligned around user-visible outcomes.",
       "actions": [
-        "Led backlog and roadmap work for the iAEON super-app",
-        "Coordinated design, engineering, and QC stakeholders through delivery",
-        "Mentored junior Business Analysts and standardized Jira, Confluence, and OKR templates"
+        "Led delivery planning for AEON Vietnam digital products including AEON Kids Version 2 and the iAEON super-app initiative",
+        "Coordinated design, engineering, QC, and business stakeholders through rollout and delivery",
+        "Contributed to the presentation and solution framing that helped win the AEON super-app engagement and standardized Jira, Confluence, and OKR templates"
       ],
       "results": [
         "Delivered user-facing gamification features including Lucky Wheel, daily check-in, and progress bar flows",
@@ -105,7 +105,7 @@
       "problem": "Multi-industry clients needed clear requirements, workflows, and alignment artifacts before development could move with confidence.",
       "actions": [
         "Authored user stories, acceptance criteria, process diagrams, and workflow documents",
-        "Supported the launch of a self-service app suite for gym members",
+        "Supported delivery of the Fitness First self-service app suite",
         "Worked through requirement detail that replaced legacy operational flows"
       ],
       "results": [

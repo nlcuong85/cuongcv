@@ -1,0 +1,35 @@
+{
+  "default": "strongest_balanced",
+  "versions": [
+    {
+      "id": "strongest_balanced",
+      "label": "Strongest Balanced",
+      "usage": "Default for generated CVs when no special emphasis is requested.",
+      "text": "Product professional with experience across business analysis, product operations, and end-to-end delivery. Strong in product research, requirement definition, stakeholder communication, rollout coordination, and feedback-driven refinement. I work best in operations-heavy environments where product decisions need to translate into clear execution, measurable outcomes, and continuous improvement."
+    },
+    {
+      "id": "product_delivery",
+      "label": "Product Delivery Focus",
+      "usage": "Best when the JD emphasizes rollout, launch ownership, lifecycle execution, or delivery coordination.",
+      "text": "Product delivery professional experienced in taking digital products from research and planning through rollout, user feedback, and iterative improvement. My strengths are cross-functional communication, operational coordination, requirement clarity, and turning business needs into practical product execution."
+    },
+    {
+      "id": "business_analysis",
+      "label": "Business Analysis Focus",
+      "usage": "Best when the JD emphasizes workflows, requirements, process mapping, documentation, or stakeholder interviews.",
+      "text": "Business-analysis-minded product professional with experience in workflow mapping, requirement gathering, rollout support, and post-launch refinement. Strong at connecting user pain points, business needs, and operational realities to help teams deliver clear, usable, and measurable product outcomes."
+    },
+    {
+      "id": "german_market_conservative",
+      "label": "German Market Conservative",
+      "usage": "Best for formal, conservative CV positioning where structure and credibility matter more than breadth.",
+      "text": "Experienced product professional with a strong foundation in research, requirements, stakeholder alignment, rollout, and continuous improvement. I have worked across eCommerce, LegalTech, healthcare, and digital operations, with a focus on structured execution and measurable business impact."
+    },
+    {
+      "id": "senior_confident",
+      "label": "Senior Confident",
+      "usage": "Best when the JD rewards stronger ownership language, leadership, and strategic execution.",
+      "text": "Product professional with experience leading research, operational rollout, and cross-functional execution across digital products. Strong in communication, product planning, process improvement, and feedback-based refinement throughout the product lifecycle, from discovery to post-launch optimization."
+    }
+  ]
+}

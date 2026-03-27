@@ -13,7 +13,7 @@
   "cv_site": "https://nlcuong85.github.io/cuongcv/",
   "avatar_url": "/cuongcv/images/avatar.jpg",
   "headline": "Product leader building AI-enabled and B2B products across eCommerce, LegalTech, healthcare workflows, and digital operations.",
-  "core_pitch": "Product leader with experience owning end-to-end delivery from discovery and requirement definition to launch, iteration, and cross-functional alignment. Strongest in operations-heavy product environments where process clarity, user pain points, and measurable outcomes matter more than product theater.",
+  "core_pitch": "Product professional with experience across research, requirements, stakeholder alignment, rollout, and continuous improvement. Strongest in operations-heavy environments where product decisions need to translate into clear execution, measurable outcomes, and practical business impact.",
   "tone_profile": {
     "voice_traits": [
       "practical before theoretical",
@@ -37,59 +37,94 @@
   ],
   "education": [
     {
-      "school": "Vietnamese-German University",
-      "degree": "MA in Business Information Systems",
-      "start": "2024",
-      "end": "Present"
-    },
-    {
       "school": "Heilbronn University",
       "degree": "Master in Software Engineering",
       "start": "Summer 2026",
-      "end": "Expected"
+      "end": "Present",
+      "location": "Heilbronn, Germany"
+    },
+    {
+      "school": "Vietnamese-German University (VGU)",
+      "degree": "MA in Business Information Systems (BIS)",
+      "start": "2024",
+      "end": "Present",
+      "location": "Binh Duong, Vietnam"
     },
     {
       "school": "Troy University, Alabama, USA (HCMC campus)",
-      "degree": "BA in Business Administration and General Management",
+      "degree": "BA in Business Administration and General Management; GPA: 3.3/4.0",
       "start": "2010",
-      "end": "2015"
+      "end": "2015",
+      "location": "Ho Chi Minh City, Vietnam"
+    },
+    {
+      "school": "Newlands College (High School), New Zealand",
+      "degree": "Grade 12th & 13th",
+      "start": "2009",
+      "end": "2010",
+      "location": "Wellington, New Zealand"
     }
   ],
   "work_history": [
     {
       "id": "kyanon",
+      "company_label": "Kyanon Digital – IT Services and Consulting",
       "company": "Kyanon Digital",
       "title": "Senior Product Owner",
       "start": "Aug 2024",
       "end": "Jan 2026",
+      "badges": ["Onsite"],
       "industry_tags": ["digital product delivery", "consumer app", "enterprise client"],
+      "overview": "Led product delivery and rollout planning for AEON Vietnam digital products, including AEON Kids Version 2 and the iAEON super-app initiative.",
+      "bullets": [
+        "Owned backlog, delivery coordination, and cross-functional alignment across design, engineering, QC, and business stakeholders",
+        "Contributed to the presentation and solution framing that helped win the AEON super-app engagement for the AEON group in Vietnam",
+        "Supported AEON Kids Version 2 rollout and formalized Jira/Confluence/OKR working templates to improve visibility and execution discipline"
+      ],
       "highlights": [
-        "Managed end-to-end delivery for assigned projects from kickoff to launch",
-        "Led backlog and roadmap for AEON's iAEON super-app",
-        "Shipped gamification initiatives including Lucky Wheel, daily check-in, and progress-bar experiences",
-        "Mentored three junior Business Analysts and formalized Jira, Confluence, and OKR templates"
+        "Led product delivery and rollout planning for AEON Vietnam digital products",
+        "Supported AEON Kids Version 2 rollout and the iAEON super-app initiative",
+        "Contributed to the presentation and solution framing that helped win the AEON super-app engagement",
+        "Formalized Jira, Confluence, and OKR templates to improve execution discipline"
       ]
     },
     {
       "id": "scck",
+      "company_label": "SCCK.vn – Ecommerce Platform for Mechanical Market",
       "company": "SCCK.vn",
       "title": "Product Development Manager",
       "start": "Jul 2020",
       "end": "Jul 2024",
+      "badges": ["Remote"],
       "industry_tags": ["B2B marketplace", "industrial commerce", "operations"],
+      "overview": "Built product workflows, supplier onboarding, and buyer experience for a B2B marketplace serving Vietnam's mechanical and industrial sourcing sector.",
+      "bullets": [
+        "Led cross-functional delivery across operations, engineering, and product design to improve marketplace trust, onboarding, and real-world purchasing workflows",
+        "Shaped marketplace features around supplier credibility, category complexity, COD expectations, and operational constraints rather than a consumer-style storefront model",
+        "Developed and deployed “Ní Cơ Khí,” an AI chatbot using Botpress and OpenAI for FAQs and real-time price lookups"
+      ],
       "highlights": [
-        "Built platform features and customer experience for a Vietnamese mechanical marketplace",
+        "Built product workflows, supplier onboarding, and buyer experience for a Vietnamese industrial marketplace",
         "Led cross-functional delivery across operations, engineering, and product design",
+        "Shaped marketplace features around trust, onboarding, and practical purchase workflows",
         "Developed and deployed an AI chatbot using Botpress and OpenAI for FAQ and price lookup support"
       ]
     },
     {
       "id": "anduin",
+      "company_label": "Anduin Transaction – Onboarding App for Private Markets",
       "company": "Anduin Transaction",
       "title": "Associate Product Manager",
       "start": "Feb 2021",
       "end": "May 2023",
+      "badges": ["Onsite"],
       "industry_tags": ["private markets", "onboarding", "regulated workflows"],
+      "overview": "Drove onboarding experience improvements for private capital firms and digital signing adoption.",
+      "bullets": [
+        "Coordinated with legal and vendors (GlobalSign, DocuSign) to meet EU AES/QES standards -> 40% increase in secure signing adoption",
+        "Migrated project management from Airtable to Jira enabling the company to track and prioritize 3x more requests",
+        "Partnered with CS/Data to address drivers of low NPS and maintain an average score of 75 in 2022"
+      ],
       "highlights": [
         "Improved onboarding experiences for private capital firms",
         "Coordinated with legal and vendors to support EU AES and QES signing requirements",
@@ -99,11 +134,19 @@
     },
     {
       "id": "talosix",
+      "company_label": "Talosix LLC – Healthcare App Product",
       "company": "Talosix",
       "title": "Product Owner",
       "start": "Jun 2019",
       "end": "Feb 2021",
+      "badges": ["Onsite"],
       "industry_tags": ["healthcare", "workflow digitization", "OCR"],
+      "overview": "Improved patient care and clinical workflows with compliance and UX initiatives.",
+      "bullets": [
+        "Co-developed HIPAA and GDPR roadmaps -> reduced compliance incidents by 30%",
+        "Evaluated and remedied poor UX in core flows with stakeholders and engineering",
+        "Shipped OCR note-reading feature improving doctor productivity by 20% and helping secure a $2M UK project"
+      ],
       "highlights": [
         "Improved patient-care and clinical workflows with compliance-aware initiatives",
         "Co-developed HIPAA and GDPR roadmaps",
@@ -112,28 +155,39 @@
     },
     {
       "id": "nashtech",
-      "company": "NashTech",
+      "company": "NashTech Global",
       "title": "Business Analyst",
       "start": "Mar 2018",
       "end": "Jun 2019",
+      "badges": ["Onsite"],
       "industry_tags": ["business analysis", "requirements", "workflow design"],
+      "overview": "Delivered requirements and documentation for multi-industry projects.",
+      "bullets": [
+        "Delivered the Fitness First self-service app suite, replacing legacy member workflows and saving the client $500k/year",
+        "Authored user stories, acceptance criteria, process diagrams, and workflows to ensure clarity and alignment"
+      ],
       "highlights": [
         "Delivered requirements and documentation for multi-industry projects",
-        "Launched a self-service app suite for gym members that replaced legacy workflows",
+        "Delivered the Fitness First self-service app suite that replaced legacy member workflows",
         "Authored user stories, acceptance criteria, process diagrams, and workflows"
       ]
     }
   ],
   "projects": [
     {
-      "name": "RouteOps",
-      "description": "Travel-planning decision-support prototype with a local Fastify backend, deterministic planning outputs, and saved trip history.",
-      "tech_stack": ["React", "TypeScript", "Fastify", "SQLite"]
+      "name": "AI-Powered WordPress CMS Portal",
+      "description": "Private portal that connects user WordPress sites to a CMS; uses AI agents to draft, revise, and publish posts with change tracking.",
+      "tech_stack": ["TypeScript", "Next.js", "WordPress API", "OpenAI", "Gemini", "Claude"]
     },
     {
-      "name": "AI-Powered WordPress CMS Portal",
-      "description": "Private portal that connects WordPress sites to an AI-assisted content workflow with review and change tracking.",
-      "tech_stack": ["TypeScript", "Next.js", "WordPress API", "OpenAI"]
+      "name": "AI To-Do Insights (Stealth)",
+      "description": "Stealth-mode to-do app that surfaces insights and suggests next steps using AI.",
+      "tech_stack": ["TypeScript", "Next.js", "AI", "React Native", "iOS", "Android", "Local-first"]
+    },
+    {
+      "name": "RouteOps",
+      "description": "Browser-based travel-planning decision-support prototype with a local Fastify backend, deterministic best-balance/cheapest/most-comfort outputs, and saved trip history.",
+      "tech_stack": ["React", "TypeScript", "Fastify", "SQLite"]
     }
   ],
   "skills": [

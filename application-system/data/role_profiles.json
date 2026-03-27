@@ -3,6 +3,7 @@
     {
       "id": "product_manager",
       "label": "Product Manager",
+      "about": "Product Manager building AI-enabled and B2B products across eCommerce, LegalTech, healthcare workflows, and digital operations.",
       "summary": "Product manager with experience across B2B marketplaces, regulated onboarding, healthcare workflow digitization, and AI-enabled product operations. Strongest in roles that need structured discovery, stakeholder alignment, and measurable delivery rather than abstract feature ownership.",
       "top_skills": [
         "Product Strategy",
@@ -23,6 +24,7 @@
     {
       "id": "product_owner",
       "label": "Product Owner",
+      "about": "Product Owner focused on backlog definition, stakeholder alignment, and delivery in operations-heavy digital products.",
       "summary": "Product owner with hands-on delivery experience from backlog definition to launch, especially in environments where requirements need to stay connected to real operations, compliance, and user pain points.",
       "top_skills": [
         "Backlog Management",
@@ -43,6 +45,7 @@
     {
       "id": "business_analyst",
       "label": "Business Analyst",
+      "about": "Business Analyst focused on requirement discovery, workflow mapping, and operations-heavy digital products across eCommerce, LegalTech, and healthcare.",
       "summary": "Business analyst with a product-delivery mindset, experienced in requirement discovery, workflow mapping, documentation quality, and translating operational pain points into implementable delivery plans.",
       "top_skills": [
         "Requirements Engineering",
@@ -63,6 +66,7 @@
     {
       "id": "ai_product_ops",
       "label": "AI Product Operations",
+      "about": "AI product and operations builder using automation and context design to improve real workflows, not just demos.",
       "summary": "Product and operations professional using AI as a workflow multiplier rather than a branding layer. Strong fit for roles that combine process clarity, experimentation, lightweight technical depth, and practical automation.",
       "top_skills": [
         "AI-assisted Workflow Design",
