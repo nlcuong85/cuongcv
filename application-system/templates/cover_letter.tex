@@ -1,5 +1,5 @@
-\documentclass[11pt,a4paper]{article}
-\usepackage[a4paper,left=25mm,right=20mm,top=45mm,bottom=25mm]{geometry}
+\documentclass[9pt,a4paper]{article}
+\usepackage[a4paper,left=25mm,right=20mm,top=36mm,bottom=18mm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -7,65 +7,78 @@
 \usepackage{parskip}
 \usepackage{graphicx}
 \usepackage[hidelinks]{hyperref}
-\setstretch{1.05}
+\setstretch{1.0}
 \pagestyle{empty}
 
 \begin{document}
 
-\noindent
-\begin{minipage}[t]{0.48\textwidth}
-@@RECIPIENT_BLOCK@@
-\end{minipage}
-\hfill
+\begin{flushright}
 \begin{minipage}[t]{0.34\textwidth}
 \raggedleft
 @@SENDER_BLOCK@@
 \end{minipage}
+\end{flushright}
 
-\vspace{1.2em}
+\vspace{1.4em}
+
+\noindent
+\begin{minipage}[t]{0.42\textwidth}
+@@RECIPIENT_BLOCK@@
+\end{minipage}
+
+\vspace{0.5em}
 
 \begin{flushright}
 @@DATE_LINE@@
 \end{flushright}
 
-\vspace{0.8em}
+\vspace{0.3em}
 
 \textbf{@@SUBJECT_LINE@@}
 
-\vspace{1.0em}
+\vspace{0.6em}
 
 @@SALUTATION@@
 
-\vspace{0.8em}
+\vspace{0.45em}
 
 @@OPENING_PARAGRAPH@@
 
-\vspace{0.8em}
+\vspace{0.45em}
 
 @@BODY_PARAGRAPH_ONE@@
 
-\vspace{0.8em}
+\vspace{0.45em}
 
 @@BODY_PARAGRAPH_TWO@@
 
-\vspace{0.8em}
+\vspace{0.45em}
 
 @@MOTIVATION_PARAGRAPH@@
 
-\vspace{0.8em}
+\vspace{0.45em}
 
 @@CLOSING_PARAGRAPH@@
 
-\vspace{1.0em}
+\vspace{0.55em}
 
 Best regards,\\
-\vspace{0.6em}
-\includegraphics[width=3.6cm]{@@SIGNATURE_PATH@@}\\
+\vspace{0.4em}
+\includegraphics[width=9cm]{@@SIGNATURE_PATH@@}\\
 \vspace{0.2em}
 @@SIGNATURE_NAME@@
 
-\vspace{1.0em}
+\vspace{0.8em}
 \textbf{Enclosure:}\\
-@@ENCLOSURES@@
+\begin{itemize}
+\setlength{\itemsep}{0em}
+\setlength{\parskip}{0em}
+\setlength{\parsep}{0em}
+\setlength{\topsep}{0.1em}
+\setlength{\leftmargin}{1.4em}
+\item Curriculum Vitae
+\item Bachelor Degree Diploma
+\item Reference letter from previous employers
+\end{itemize}
 
 \end{document}

@@ -351,8 +351,21 @@ def signature_path() -> str:
     return str((APP_ROOT / "signature.png").resolve())
 
 
+def start_date_sentence(intake: dict[str, Any]) -> str:
+    value = (intake.get("start_date") or "").strip()
+    if not value:
+        return ""
+    if value.lower() in {"by mutual agreement", "mutual agreement", "negotiable"}:
+        return ""
+    return f"I am available to start {value}"
+
+
 def enclosure_lines(intake: dict[str, Any]) -> list[str]:
-    values = intake.get("enclosures") or ["Curriculum Vitae"]
+    values = intake.get("enclosures") or [
+        "Curriculum Vitae",
+        "Bachelor Degree Diploma",
+        "Reference letter from previous employers",
+    ]
     return [str(item).strip() for item in values if str(item).strip()]
 
 
@@ -360,15 +373,10 @@ def summarize_evidence_for_cover_letter(selected: list[dict[str, Any]]) -> tuple
     first = selected[0]
     second = selected[1] if len(selected) > 1 else selected[0]
     return (
-        paragraph(
-            f"In recent roles, I worked on products where {first['problem'].lower()}",
-            first["actions"][0],
-            first["actions"][1],
-        ),
+        paragraph(f"In recent roles, I worked on products where {first['problem'].lower()}", first["actions"][0]),
         paragraph(
             second["actions"][0],
-            second["actions"][-1],
-            second["results"][0],
+            "This strengthened my ability to translate business needs into clear requirements and practical delivery decisions",
         ),
     )
 
@@ -383,17 +391,17 @@ def build_cover_letter_context(
     opening = paragraph(
         f"I am applying for the {intake['job_title']} position at {intake['company_name']}",
         source_line,
-        "I am confident that I can contribute with structured business analysis, clear requirement definition, and strong operational follow-through",
+        "I can contribute with structured business analysis, clear requirement definition, and reliable operational follow-through",
     )
     body_one, body_two = summarize_evidence_for_cover_letter(selected_evidence)
     motivation = paragraph(
         intake["why_company"],
-        "I am particularly motivated by companies where digital work stays close to operational reality, measurable execution, and long-term product improvement",
+        "I am particularly motivated by companies where digital work stays close to operational reality and measurable execution",
     )
     closing = paragraph(
         f"I would welcome the opportunity to discuss how I can support {intake['company_name']} in this role",
-        f"My availability would be {intake['start_date']}",
-        "I would be happy to answer any further questions in a personal interview",
+        start_date_sentence(intake),
+        "I look forward to an interview",
     )
 
     return {
@@ -429,17 +437,17 @@ def build_cover_letter_html_context(
     plain_opening = paragraph(
         f"I am applying for the {intake['job_title']} position at {intake['company_name']}",
         source_line,
-        "I am confident that I can contribute with structured business analysis, clear requirement definition, and strong operational follow-through",
+        "I can contribute with structured business analysis, clear requirement definition, and reliable operational follow-through",
     )
     plain_body_one, plain_body_two = summarize_evidence_for_cover_letter(selected_evidence)
     motivation = paragraph(
         intake["why_company"],
-        "I am particularly motivated by companies where digital work stays close to operational reality, measurable execution, and long-term product improvement",
+        "I am particularly motivated by companies where digital work stays close to operational reality and measurable execution",
     )
     plain_closing = paragraph(
         f"I would welcome the opportunity to discuss how I can support {intake['company_name']} in this role",
-        f"My availability would be {intake['start_date']}",
-        "I would be happy to answer any further questions in a personal interview",
+        start_date_sentence(intake),
+        "I look forward to an interview",
     )
     return {
         "SENDER_BLOCK": build_sender_block(profile, latex_mode=False),
@@ -757,6 +765,13 @@ def main() -> None:
 
     if args.compile_pdf:
         compile_tex(cover_letter_dir / "cover_letter.tex")
+        cover_letter_pdf = cover_letter_dir / "cover_letter.pdf"
+        cover_letter_pages = get_pdf_page_count(cover_letter_pdf)
+        if cover_letter_pages > 1:
+            raise SystemExit(
+                f"Generated cover letter PDF `{cover_letter_pdf}` is {cover_letter_pages} pages. "
+                "Cover letters must stay within 1 page."
+            )
         if dev_server_process is not None:
             dev_server_process.terminate()
             try:
