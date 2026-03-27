@@ -7,7 +7,7 @@ export const RESUME_DATA: ResumeData = {
   locationLink:
     "https://www.google.com/maps/place/Gildenstra%C3%9Fe+13,+74074+Heilbronn,+Germany",
   about:
-    "Product Owner/Manager building AI-enabled and B2B products across eCommerce, LegalTech, and Ai-enable Apps.",
+    "Product delivery and business analysis professional focused on eCommerce, digital operations, and AI-assisted workflows.",
   summary: (
     <>
       Experienced product professional with a strong foundation in research,
@@ -38,7 +38,7 @@ export const RESUME_DATA: ResumeData = {
   education: [
     {
       school: "Heilbronn University",
-      degree: "Master in Software Engineering",
+      degree: "Master in Software Engineering; Grade: 1.4 (German scale)",
       start: "Summer 2026",
       end: "Present",
       location: "Heilbronn, Germany",
