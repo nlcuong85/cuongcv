@@ -290,40 +290,70 @@ def build_role_skills(
 
 
 def sender_lines(profile: dict[str, Any]) -> list[str]:
-    return [
-        profile["name"],
-        profile["location"],
-        profile["email"],
-        profile["phone"],
-        profile["website"],
-    ]
+    location_lines = split_address_lines(profile["location"])
+    return [profile["name"], *location_lines, profile["phone"], profile["email"]]
 
 
-def build_sender_block(profile: dict[str, Any]) -> str:
-    return "\\\\\n".join(latex_escape(line) for line in sender_lines(profile))
+def split_address_lines(value: str) -> list[str]:
+    parts = [part.strip() for part in value.split(",") if part.strip()]
+    if parts and parts[-1].lower() in {"germany", "deutschland"}:
+        parts = parts[:-1]
+    if len(parts) >= 3:
+        return [", ".join(parts[:-1]), parts[-1]]
+    if len(parts) == 2:
+        return [parts[0], parts[1]]
+    return [value]
 
 
-def build_recipient_block(intake: dict[str, Any], latex_mode: bool) -> str:
-    lines = []
-    if intake.get("contact_name"):
-        lines.append(intake["contact_name"])
-    elif intake.get("contact_title"):
-        lines.append(intake["contact_title"])
-    else:
-        lines.append("Hiring Team")
-    lines.append(intake["company_name"])
-    if intake.get("company_location"):
-        lines.append(intake["company_location"])
-
+def join_lines(lines: list[str], latex_mode: bool) -> str:
     if latex_mode:
         return "\\\\\n".join(latex_escape(line) for line in lines)
     return "\n".join(html_escape(line) for line in lines)
+
+
+def build_sender_block(profile: dict[str, Any], latex_mode: bool) -> str:
+    return join_lines(sender_lines(profile), latex_mode)
+
+
+def preferred_contact_line(intake: dict[str, Any]) -> str:
+    if intake.get("contact_name"):
+        return intake["contact_name"]
+    if intake.get("contact_title"):
+        return intake["contact_title"]
+    return "Hiring Team"
+
+
+def build_recipient_block(intake: dict[str, Any], latex_mode: bool) -> str:
+    lines = [intake["company_name"], preferred_contact_line(intake)]
+    if intake.get("company_location"):
+        lines.extend(split_address_lines(intake["company_location"]))
+    return join_lines(lines, latex_mode)
 
 
 def build_salutation(intake: dict[str, Any]) -> str:
     if intake.get("contact_name"):
         return f"Dear {intake['contact_name']},"
     return "Dear Hiring Team,"
+
+
+def subject_line(intake: dict[str, Any]) -> str:
+    return f"Application for {intake['job_title']}"
+
+
+def date_line(profile: dict[str, Any]) -> str:
+    location_lines = split_address_lines(profile["location"])
+    city_line = location_lines[-1] if location_lines else profile["location"]
+    location_city = re.sub(r"^\d{4,5}\s+", "", city_line).strip()
+    return f"{location_city}, {date.today().strftime('%d %B %Y')}"
+
+
+def signature_path() -> str:
+    return str((APP_ROOT / "signature.png").resolve())
+
+
+def enclosure_lines(intake: dict[str, Any]) -> list[str]:
+    values = intake.get("enclosures") or ["Curriculum Vitae"]
+    return [str(item).strip() for item in values if str(item).strip()]
 
 
 def summarize_evidence_for_cover_letter(selected: list[dict[str, Any]]) -> tuple[str, str]:
@@ -349,32 +379,43 @@ def build_cover_letter_context(
     intake: dict[str, Any],
     selected_evidence: list[dict[str, Any]],
 ) -> dict[str, str]:
+    source_line = "I came across this opportunity via the Bosch careers page" if "bosch.com/careers" in intake.get("job_url", "") else "I came across this opportunity through the advertised job posting"
     opening = paragraph(
         f"I am applying for the {intake['job_title']} position at {intake['company_name']}",
-        profile["core_pitch"],
-        intake["why_company"],
+        source_line,
+        "I am confident that I can contribute with structured business analysis, clear requirement definition, and strong operational follow-through",
     )
     body_one, body_two = summarize_evidence_for_cover_letter(selected_evidence)
+    motivation = paragraph(
+        intake["why_company"],
+        "I am particularly motivated by companies where digital work stays close to operational reality, measurable execution, and long-term product improvement",
+    )
     closing = paragraph(
-        "I am particularly interested in contributing in Germany because I value structured, systems-oriented environments where product work stays close to real operational outcomes",
-        f"I would welcome the opportunity to discuss how my background can support {intake['company_name']}",
+        f"I would welcome the opportunity to discuss how I can support {intake['company_name']} in this role",
         f"My availability would be {intake['start_date']}",
+        "I would be happy to answer any further questions in a personal interview",
     )
 
     return {
-        "SENDER_BLOCK": build_sender_block(profile),
+        "SENDER_BLOCK": build_sender_block(profile, latex_mode=True),
         "RECIPIENT_BLOCK": build_recipient_block(intake, latex_mode=True),
-        "DATE_LINE": latex_escape(date.today().strftime("%d %B %Y")),
-        "JOB_TITLE": latex_escape(intake["job_title"]),
+        "DATE_LINE": latex_escape(date_line(profile)),
+        "SUBJECT_LINE": latex_escape(subject_line(intake)),
         "SALUTATION": latex_escape(build_salutation(intake)),
         "OPENING_PARAGRAPH": latex_escape(opening),
         "BODY_PARAGRAPH_ONE": latex_escape(body_one),
         "BODY_PARAGRAPH_TWO": latex_escape(body_two),
+        "MOTIVATION_PARAGRAPH": latex_escape(motivation),
         "CLOSING_PARAGRAPH": latex_escape(closing),
         "SIGNATURE_NAME": latex_escape(profile["name"]),
+        "SIGNATURE_PATH": latex_escape(signature_path()),
+        "ENCLOSURES": latex_escape(", ".join(enclosure_lines(intake))),
         "ROLE_LABEL": latex_escape(role["label"]),
         "EVIDENCE_IDS": latex_escape(", ".join(item["id"] for item in selected_evidence)),
         "COMPANY_NAME": latex_escape(intake["company_name"]),
+        "CONTACT_LOOKUP_STATUS": latex_escape(
+            "named contact found" if intake.get("contact_name") else "fallback to hiring team after no named recruiter was available"
+        ),
     }
 
 
@@ -384,31 +425,42 @@ def build_cover_letter_html_context(
     intake: dict[str, Any],
     selected_evidence: list[dict[str, Any]],
 ) -> dict[str, str]:
+    source_line = "I came across this opportunity via the Bosch careers page" if "bosch.com/careers" in intake.get("job_url", "") else "I came across this opportunity through the advertised job posting"
     plain_opening = paragraph(
         f"I am applying for the {intake['job_title']} position at {intake['company_name']}",
-        profile["core_pitch"],
-        intake["why_company"],
+        source_line,
+        "I am confident that I can contribute with structured business analysis, clear requirement definition, and strong operational follow-through",
     )
     plain_body_one, plain_body_two = summarize_evidence_for_cover_letter(selected_evidence)
+    motivation = paragraph(
+        intake["why_company"],
+        "I am particularly motivated by companies where digital work stays close to operational reality, measurable execution, and long-term product improvement",
+    )
     plain_closing = paragraph(
-        "I am particularly interested in contributing in Germany because I value structured, systems-oriented environments where product work stays close to real operational outcomes",
-        f"I would welcome the opportunity to discuss how my background can support {intake['company_name']}",
+        f"I would welcome the opportunity to discuss how I can support {intake['company_name']} in this role",
         f"My availability would be {intake['start_date']}",
+        "I would be happy to answer any further questions in a personal interview",
     )
     return {
-        "SENDER_BLOCK": html_escape("\n".join(sender_lines(profile))),
+        "SENDER_BLOCK": build_sender_block(profile, latex_mode=False),
         "RECIPIENT_BLOCK": build_recipient_block(intake, latex_mode=False),
-        "DATE_LINE": html_escape(date.today().strftime("%d %B %Y")),
-        "JOB_TITLE": html_escape(intake["job_title"]),
+        "DATE_LINE": html_escape(date_line(profile)),
+        "SUBJECT_LINE": html_escape(subject_line(intake)),
         "SALUTATION": html_escape(build_salutation(intake)),
         "OPENING_PARAGRAPH": html_escape(plain_opening),
         "BODY_PARAGRAPH_ONE": html_escape(plain_body_one),
         "BODY_PARAGRAPH_TWO": html_escape(plain_body_two),
+        "MOTIVATION_PARAGRAPH": html_escape(motivation),
         "CLOSING_PARAGRAPH": html_escape(plain_closing),
         "SIGNATURE_NAME": html_escape(profile["name"]),
+        "SIGNATURE_PATH": html_escape(signature_path()),
+        "ENCLOSURES": html_escape(", ".join(enclosure_lines(intake))),
         "ROLE_LABEL": html_escape(role["label"]),
         "EVIDENCE_IDS": html_escape(", ".join(item["id"] for item in selected_evidence)),
         "COMPANY_NAME": html_escape(intake["company_name"]),
+        "CONTACT_LOOKUP_STATUS": html_escape(
+            "named contact found" if intake.get("contact_name") else "fallback to hiring team after no named recruiter was available"
+        ),
     }
 
 

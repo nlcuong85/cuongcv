@@ -59,6 +59,7 @@ Workflow rules:
   - 7 adaptive skills selected from role focus and the job description
 - Keep the online CV skills unchanged unless the user explicitly asks to edit the public CV.
 - When the user provides a JD or company URL, prefer creating or updating an intake JSON and then run the Python generator.
+- For cover letters, search for a named recruiter or contact person first. Use `Hiring Team` only when a named contact cannot be verified.
 - The generator should output one requested CV variant by default unless the user explicitly asks for more.
 - The default generated summary is `strongest_balanced`; if the JD clearly leans toward another stored summary style, the workflow should ask the user to choose via `summary_version`.
 - Prefer deterministic edits to the structured JSON and templates over ad hoc document rewriting.
@@ -162,6 +163,7 @@ To add new sections to the CV, modify the `RESUME_DATA` object in `src/data/resu
 - For job-application artifacts, prefer editing `application-system/data/` and `application-system/templates/` instead of hardcoding company-specific text into the website.
 - For generated CVs, audit `application-system/data/master_profile.json` against `src/data/resume-data.tsx` before regeneration when contact, education, awards, projects, or work-history identity may have changed.
 - For generated CVs, audit that the skills section still follows the 7 core + 7 JD-adaptive rule.
+- For generated cover letters, audit that the layout keeps the company block on the left, sender block on the right, right-aligned location/date, embedded signature, and enclosure line.
 
 ### GraphQL API
 The app exposes a GraphQL endpoint at `/graphql` that serves the resume data. This can be used to integrate the CV data with other applications.

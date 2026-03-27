@@ -36,6 +36,15 @@ The public CV source at `src/data/resume-data.tsx` remains the canonical fact la
 - employer names
 - work-history dates
 
+For cover letters, the generator should also follow these rules:
+
+- search for a named recruiter or contact person first
+- prefer official career pages or official company contact surfaces
+- use `Hiring Team` only as a fallback when a named contact cannot be verified
+- keep the final layout conservative and German-application friendly
+- use the company block on the left and sender block on the right
+- include the signature image from `application-system/signature.png`
+
 For generated CVs, this means:
 
 - `About` / summary may change
@@ -104,6 +113,7 @@ The intake file is plain JSON. Expected fields:
 - `company_location`
 - `contact_name`
 - `contact_title`
+- `contact_lookup_status` (recommended when falling back to `Hiring Team`)
 - `job_title`
 - `job_url`
 - `language`

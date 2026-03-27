@@ -1,29 +1,36 @@
 \documentclass[11pt,a4paper]{article}
-\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[a4paper,left=25mm,right=20mm,top=45mm,bottom=25mm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage{setspace}
 \usepackage{parskip}
+\usepackage{graphicx}
 \usepackage[hidelinks]{hyperref}
 \setstretch{1.05}
 \pagestyle{empty}
 
 \begin{document}
 
-@@SENDER_BLOCK@@
-
-\vspace{1.0em}
-
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
 @@RECIPIENT_BLOCK@@
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.34\textwidth}
+\raggedleft
+@@SENDER_BLOCK@@
+\end{minipage}
 
-\vspace{1.0em}
+\vspace{1.2em}
 
+\begin{flushright}
 @@DATE_LINE@@
+\end{flushright}
 
-\vspace{1.0em}
+\vspace{0.8em}
 
-\textbf{Subject: Application for the position of @@JOB_TITLE@@}
+\textbf{@@SUBJECT_LINE@@}
 
 \vspace{1.0em}
 
@@ -43,12 +50,22 @@
 
 \vspace{0.8em}
 
+@@MOTIVATION_PARAGRAPH@@
+
+\vspace{0.8em}
+
 @@CLOSING_PARAGRAPH@@
 
 \vspace{1.0em}
 
-Sincerely,\\
-\vspace{1.6em}
+Best regards,\\
+\vspace{0.6em}
+\includegraphics[width=3.6cm]{@@SIGNATURE_PATH@@}\\
+\vspace{0.2em}
 @@SIGNATURE_NAME@@
+
+\vspace{1.0em}
+\textbf{Enclosure:}\\
+@@ENCLOSURES@@
 
 \end{document}
