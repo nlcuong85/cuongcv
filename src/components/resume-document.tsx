@@ -41,7 +41,7 @@ export function ResumeDocument({
 }: ResumeDocumentProps) {
   return (
     <main
-      className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-11 md:p-16"
+      className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:overflow-visible print:p-4 md:p-16"
       id="main-content"
     >
       <div className="sr-only">
@@ -49,7 +49,7 @@ export function ResumeDocument({
       </div>
 
       <section
-        className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-4"
+        className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-2"
         aria-label="Resume Content"
       >
         <SectionErrorBoundary sectionName="Header">
@@ -58,7 +58,7 @@ export function ResumeDocument({
           </Suspense>
         </SectionErrorBoundary>
 
-        <div className="space-y-8 print:space-y-4">
+        <div className="space-y-8 print:space-y-2">
           <SectionErrorBoundary sectionName="Summary">
             <Suspense fallback={<SectionSkeleton lines={2} />}>
               <Summary summary={data.summary} />

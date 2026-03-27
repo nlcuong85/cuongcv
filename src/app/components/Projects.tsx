@@ -91,21 +91,21 @@ interface ProjectCardProps {
  */
 function ProjectCard({ title, description, tags, link }: ProjectCardProps) {
   return (
-    <Card className="flex h-full flex-col overflow-hidden border p-3">
-      <CardHeader>
+    <Card className="flex h-full flex-col overflow-hidden border p-3 print:break-inside-avoid print:p-2">
+      <CardHeader className="print:space-y-1">
         <div className="space-y-1">
-          <CardTitle className="text-base">
+          <CardTitle className="text-base print:text-[13px]">
             <ProjectLink title={title} link={link} />
           </CardTitle>
           <CardDescription
-            className="text-pretty font-mono text-xs print:text-[10px]"
+            className="text-pretty font-mono text-xs print:text-[9px]"
             aria-label="Project description"
           >
             {description}
           </CardDescription>
         </div>
       </CardHeader>
-      <CardContent className="mt-auto flex">
+      <CardContent className="mt-auto flex print:mt-1">
         <ProjectTags tags={tags} />
       </CardContent>
     </Card>
@@ -124,20 +124,17 @@ export function Projects({ projects }: ProjectsProps) {
     return null;
   }
   return (
-    <Section className="scroll-mb-16 print:space-y-4">
+    <Section className="scroll-mb-16 print:space-y-2">
       <h2 className="text-xl font-bold" id="side-projects">
         Side projects
       </h2>
       <div
-        className="-mx-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:grid-cols-3 print:gap-2"
+        className="-mx-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 print:-mx-1 print:grid-cols-3 print:gap-1"
         role="feed"
         aria-labelledby="side-projects"
       >
         {projects.map((project) => (
-          <article
-            key={project.title}
-            className="h-full" // Added h-full here
-          >
+          <article key={project.title} className="print:break-inside-avoid">
             <ProjectCard
               title={project.title}
               description={project.description}

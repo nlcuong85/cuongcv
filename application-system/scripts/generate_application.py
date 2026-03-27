@@ -473,6 +473,20 @@ def print_cv_pdf(render_url: str, pdf_path: Path) -> None:
     )
 
 
+def get_pdf_page_count(pdf_path: Path) -> int:
+    result = subprocess.run(
+        ["pdfinfo", str(pdf_path)],
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    match = re.search(r"^Pages:\s+(\d+)$", result.stdout, re.MULTILINE)
+    if not match:
+        raise ValueError(f"Could not determine page count for {pdf_path}")
+    return int(match.group(1))
+
+
 def build_notes(
     intake: dict[str, Any],
     selected_for_cover_letter: list[dict[str, Any]],
@@ -595,6 +609,12 @@ def main() -> None:
         pdf_path = cv_dir / f"{role['id']}.pdf"
         if args.compile_pdf:
             print_cv_pdf(render_url, pdf_path)
+            page_count = get_pdf_page_count(pdf_path)
+            if page_count > 2:
+                raise SystemExit(
+                    f"Generated CV PDF `{pdf_path}` is {page_count} pages. "
+                    "CV outputs must stay within 2 pages."
+                )
 
         manifest["cv_variants"].append(
             {

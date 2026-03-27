@@ -38,7 +38,7 @@ export const RESUME_DATA: ResumeData = {
   education: [
     {
       school: "Heilbronn University",
-      degree: "Master in Software Engineering; Grade: 1.4 (German scale)",
+      degree: "Master in Software Engineering; Grade: 1.4",
       start: "Summer 2026",
       end: "Present",
       location: "Heilbronn, Germany",

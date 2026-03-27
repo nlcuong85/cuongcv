@@ -122,7 +122,7 @@ interface PrintContactProps {
 
 function PrintContact({ contact, personalWebsiteUrl }: PrintContactProps) {
   return (
-    <div className="hidden gap-x-2 font-mono text-sm text-foreground/80 print:flex print:text-[12px]">
+    <div className="hidden gap-x-2 font-mono text-sm text-foreground/80 print:flex print:text-[11px]">
       {personalWebsiteUrl && (
         <>
           <a
@@ -164,7 +164,7 @@ export function Header({ data }: { data: ResumeData }) {
         <h1 className="text-2xl font-bold" id="resume-name">
           {data.name}
         </h1>
-        <p className="max-w-md text-pretty font-mono text-sm text-foreground/80 print:text-[12px]">
+        <p className="max-w-md text-pretty font-mono text-sm text-foreground/80 print:text-[11px]">
           {data.about}
         </p>
 
@@ -185,7 +185,7 @@ export function Header({ data }: { data: ResumeData }) {
       </div>
 
       <Avatar
-        className="size-28"
+        className="size-28 print:size-20"
         src={data.avatarUrl}
         alt={`${data.name}'s profile picture`}
         fallback={data.initials}
