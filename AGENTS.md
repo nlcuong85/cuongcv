@@ -6,6 +6,41 @@ This file provides guidance to Agent Ai when working with code in this repositor
 
 This is a **Minimalist CV/Resume web application** built with Next.js 14, React, TypeScript, and Tailwind CSS. The app renders a clean, print-friendly CV layout with data configured in a single file.
 
+## Skill To Use
+
+Use [`job-search-cuong`](/Users/pmlecuong/.codex/skills/job-search-cuong/SKILL.md) for CV edits, GitHub Pages deployment, live-site verification, and Germany job-search updates.
+
+Use [`builder-ops`](/Users/pmlecuong/.codex/skills/builder-ops/SKILL.md) when you need repo shipping, Git/GitHub operations, environment checks, or deployment diagnosis.
+
+Use [`playwright`](/Users/pmlecuong/.codex/skills/playwright/SKILL.md) for browser validation after visible CV changes or deployment checks.
+
+## Application Workflow
+
+This repo now includes a CLI-first application generator under `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system`.
+
+Use this workflow when the user asks for:
+- cover-letter generation
+- company-specific application packages
+- CV tailoring based on a job description
+- multiple CV variants for one target role
+
+Important files:
+- `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/README.md`
+- `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/scripts/generate_application.py`
+- `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/master_profile.json`
+- `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/evidence_library.json`
+- `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/role_profiles.json`
+- `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/portfolio_digest.json`
+- `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/intakes/`
+
+Workflow rules:
+- Treat `src/data/resume-data.tsx` as the source of truth for the public CV site.
+- Treat `application-system/data/*.json` as the source of truth for generated applications, cover letters, and CV variants.
+- Keep the application generator aligned with the public CV facts. Do not invent new experience in tailored variants.
+- When the user provides a JD or company URL, prefer creating or updating an intake JSON and then run the Python generator.
+- The generator is expected to output one cover letter and four CV variants: `product_manager`, `product_owner`, `business_analyst`, and `ai_product_ops`.
+- Prefer deterministic edits to the structured JSON and templates over ad hoc document rewriting.
+
 ## Commands
 
 ### Development
@@ -55,6 +90,15 @@ pm2 delete cv-app               # Remove from PM2
 
 **Note**: The project uses **Biome.js** for linting and formatting instead of ESLint and Prettier. Always run `pnpm check:fix` before committing to ensure code quality.
 
+## CV Rules
+
+- Treat `src/data/resume-data.tsx` as the single source of truth for CV content.
+- Keep work dates explicit; use an end date when employment has ended.
+- Keep the RouteOps side project description current: React + TypeScript travel-planning decision support with a local Fastify backend, deterministic results, and saved trip history.
+- Remove stale experimental side-project entries when replacing them.
+- Keep the public CV aligned with `https://nlcuong85.github.io/cuongcv/` and the GitHub Pages workflow on `main`.
+- Verify the live site after any user-visible CV change.
+
 ## Architecture
 
 ### Project Structure
@@ -84,6 +128,13 @@ pm2 delete cv-app               # Remove from PM2
 
 ### Adding New Sections
 To add new sections to the CV, modify the `RESUME_DATA` object in `src/data/resume-data.tsx`. The layout automatically adjusts based on the data provided.
+
+### Working On The CV
+- Prefer data-only edits in `src/data/resume-data.tsx`.
+- Update components only when layout, spacing, or render behavior must change.
+- Use the current public email and profile details from the CV data file.
+- Check print layout when changing section order or content length.
+- For job-application artifacts, prefer editing `application-system/data/` and `application-system/templates/` instead of hardcoding company-specific text into the website.
 
 ### GraphQL API
 The app exposes a GraphQL endpoint at `/graphql` that serves the resume data. This can be used to integrate the CV data with other applications.

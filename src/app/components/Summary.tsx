@@ -1,9 +1,8 @@
-import React from "react";
-import type { RESUME_DATA } from "@/data/resume-data";
+import type { ResumeData } from "@/lib/types";
 import { Section } from "../../components/ui/section";
 
 interface AboutProps {
-  summary: typeof RESUME_DATA.summary;
+  summary: ResumeData["summary"];
   className?: string;
 }
 

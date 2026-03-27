@@ -39,3 +39,7 @@ next-env.d.ts
 
 # ide
 .idea
+application-system/outputs/*
+!application-system/outputs/.gitkeep
+public/generated-cv-data/*
+!public/generated-cv-data/.gitkeep

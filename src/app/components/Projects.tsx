@@ -1,4 +1,3 @@
-import React from "react";
 import { Badge } from "../../components/ui/badge";
 import {
   Card,
@@ -8,7 +7,7 @@ import {
   CardTitle,
 } from "../../components/ui/card";
 import { Section } from "../../components/ui/section";
-import type { RESUME_DATA } from "../../data/resume-data";
+import type { ResumeData } from "../../lib/types";
 
 type ProjectTags = readonly string[];
 
@@ -20,10 +19,7 @@ interface ProjectLinkProps {
 /**
  * Renders project title with optional link and status indicator
  */
-function ProjectLink({
-  title,
-  link,
-}: ProjectLinkProps) {
+function ProjectLink({ title, link }: ProjectLinkProps) {
   if (!link) {
     return <span>{title}</span>;
   }
@@ -61,9 +57,7 @@ interface ProjectTagsProps {
 /**
  * Renders a list of technology tags used in the project
  */
-function ProjectTags({
-  tags,
-}: ProjectTagsProps) {
+function ProjectTags({ tags }: ProjectTagsProps) {
   if (tags.length === 0) return null;
 
   return (
@@ -95,12 +89,7 @@ interface ProjectCardProps {
 /**
  * Card component displaying project information
  */
-function ProjectCard({
-  title,
-  description,
-  tags,
-  link,
-}: ProjectCardProps) {
+function ProjectCard({ title, description, tags, link }: ProjectCardProps) {
   return (
     <Card className="flex h-full flex-col overflow-hidden border p-3">
       <CardHeader>
@@ -124,15 +113,13 @@ function ProjectCard({
 }
 
 interface ProjectsProps {
-  projects: (typeof RESUME_DATA)["projects"];
+  projects: ResumeData["projects"];
 }
 
 /**
  * Section component displaying all side projects
  */
-export function Projects({
-  projects,
-}: ProjectsProps) {
+export function Projects({ projects }: ProjectsProps) {
   if (!projects || projects.length === 0) {
     return null;
   }

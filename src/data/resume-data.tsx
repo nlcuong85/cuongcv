@@ -3,8 +3,9 @@ import type { ResumeData } from "@/lib/types";
 export const RESUME_DATA: ResumeData = {
   name: "Cuong Le Nguyen",
   initials: "CLN",
-  location: "Ho Chi Minh City, Vietnam",
-  locationLink: "https://www.google.com/maps/place/Ho+Chi+Minh+City",
+  location: "Gildenstraße 13, 74074 Heilbronn, Germany",
+  locationLink:
+    "https://www.google.com/maps/place/Gildenstra%C3%9Fe+13,+74074+Heilbronn,+Germany",
   about:
     "Product Owner/Manager building AI-enabled and B2B products across eCommerce, LegalTech, and Ai-enable Apps.",
   summary: (
@@ -20,7 +21,7 @@ export const RESUME_DATA: ResumeData = {
   personalWebsiteUrl: "https://pmlecuong.com/",
   contact: {
     email: "nlcuong999@gmail.com",
-    tel: "+84945687768",
+    tel: "+49 163 3628505",
     social: [
       {
         name: "GitHub",

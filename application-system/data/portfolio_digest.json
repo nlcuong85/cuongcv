@@ -1,0 +1,77 @@
+{
+  "latest_voice_posts": [
+    {
+      "title": "Warum ich in Deutschland bleiben möchte: Zwischen Doppelabschluss, Technik und echter Integration",
+      "date": "2026-03-14",
+      "themes": ["Germany motivation", "integration", "systems thinking", "study path"]
+    },
+    {
+      "title": "Context Engineering vs Vibe Coding: The Project Memory Framework I Actually Needed (Part 2 of 2)",
+      "date": "2026-03-11",
+      "themes": ["durable project memory", "AI workflow discipline", "self-correction"]
+    },
+    {
+      "title": "Intent First, Prompts Second: A Practical Model for AI Projects",
+      "date": "2026-03-11",
+      "themes": ["intent-driven work", "AI project framing", "practical execution"]
+    },
+    {
+      "title": "AI Coder Timeline 2025-Early2026: From Prompting to Agentic Software Teams",
+      "date": "2026-02-18",
+      "themes": ["AI tooling", "agentic workflows", "technical curiosity"]
+    },
+    {
+      "title": "The 6 Phases of IT Projects",
+      "date": "2026-01-24",
+      "themes": ["delivery lifecycle", "project structure", "failure points"]
+    },
+    {
+      "title": "Context Engineering vs Vibe Coding: A Business Person's Technical Discovery (Part 1 of 2)",
+      "date": "2025-11-09",
+      "themes": ["business-to-technical transition", "learning by doing", "AI development"]
+    },
+    {
+      "title": "When the Real Developers Mock Your AI Enthusiasm",
+      "date": "2025-11-04",
+      "themes": ["humility", "skepticism", "technical social reality"]
+    },
+    {
+      "title": "From Design System Dreams to Reality: 5 Days of Bug Fixing",
+      "date": "2025-11-02",
+      "themes": ["debugging", "messy middle", "execution honesty"]
+    },
+    {
+      "title": "From 500 Lines to 7000+ Lines: How I Accidentally Built a Design System",
+      "date": "2025-10-26",
+      "themes": ["non-linear technical growth", "systems design", "learning in public"]
+    },
+    {
+      "title": "From Raspberry Pi Scripts to AI Agents: How I Became Addicted to Code",
+      "date": "2025-09-30",
+      "themes": ["technical curiosity", "automation", "maker mentality"]
+    }
+  ],
+  "case_study_posts": [
+    {
+      "title": "Building SCCK.vn: Vietnamese Mechanical Marketplace, China Plus One, German Mittelstand",
+      "url": "https://pmlecuong.com/building-scckvn-vietnamese-mechanical-marketplace-china-plus-one-german-mittelstand/",
+      "use_for": ["B2B marketplace applications", "industrial product roles", "Mittelstand-oriented narratives"]
+    },
+    {
+      "title": "Patient Workflow Pain to OCR Productivity: Healthcare Product Case Study",
+      "url": "https://pmlecuong.com/patient-workflow-pain-to-ocr-productivity-healthcare-product-case-study/",
+      "use_for": ["healthcare", "workflow automation", "OCR and AI-enabled operations"]
+    },
+    {
+      "title": "Private Capital Investor Onboarding: Product Requirements in Regulated Environments",
+      "url": "https://pmlecuong.com/private-capital-investor-onboarding-product-requirements-regulated-environments/",
+      "use_for": ["regulated onboarding", "LegalTech", "compliance-heavy product roles"]
+    }
+  ],
+  "voice_rules_for_applications": [
+    "Keep the internal drafting layer reflective and grounded in real tradeoffs.",
+    "Keep the final application documents concise, formal, and recruiter-safe.",
+    "Use confidence through proof, not hype.",
+    "Prefer systems, workflow, and measurable outcomes over generic motivation language."
+  ]
+}

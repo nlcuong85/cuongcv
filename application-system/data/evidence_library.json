@@ -1,0 +1,144 @@
+{
+  "evidence": [
+    {
+      "id": "scck_marketplace",
+      "title": "SCCK.vn mechanical marketplace growth and operational product work",
+      "company": "SCCK.vn",
+      "role": "Product Development Manager",
+      "tags": ["product_manager", "product_owner", "business_analyst", "ai_product_ops", "b2b", "marketplace", "operations", "industrial"],
+      "problem": "Industrial buyers and sellers needed a marketplace that could handle trust, category complexity, seller enablement, and practical purchase workflows rather than a superficial consumer-style storefront.",
+      "actions": [
+        "Led cross-functional product delivery across operations, engineering, and product design",
+        "Helped shape features around marketplace trust, seller onboarding, and real buyer behavior",
+        "Built AI-assisted support through a Botpress and OpenAI chatbot for FAQs and price lookup"
+      ],
+      "results": [
+        "Positioned the platform as a more complete mechanical-industry marketplace",
+        "Built operationally grounded product thinking in a complex B2B environment",
+        "Demonstrated ability to connect product decisions with supply-side and buyer-side execution"
+      ],
+      "fit_for_roles": {
+        "product_manager": "Strong proof for B2B product strategy, operational tradeoffs, and market-facing delivery.",
+        "product_owner": "Strong proof for backlog shaping and execution in a multi-stakeholder environment.",
+        "business_analyst": "Useful for workflow and requirement framing in a domain with messy real-world constraints.",
+        "ai_product_ops": "Useful for AI-enabled support workflows grounded in business operations."
+      }
+    },
+    {
+      "id": "talosix_ocr_workflow",
+      "title": "Healthcare workflow redesign and OCR productivity improvement",
+      "company": "Talosix",
+      "role": "Product Owner",
+      "tags": ["product_manager", "product_owner", "business_analyst", "ai_product_ops", "healthcare", "ocr", "workflow", "compliance"],
+      "problem": "Clinical teams were losing time in document-heavy workflows that required better usability, stronger process design, and compliance-aware digitization.",
+      "actions": [
+        "Mapped pain points in patient-care and clinical workflows with stakeholders",
+        "Co-developed HIPAA and GDPR roadmap considerations with the team",
+        "Shipped an OCR note-reading feature with workflow impact in mind rather than as a standalone technical novelty"
+      ],
+      "results": [
+        "Improved doctor productivity by 20 percent",
+        "Reduced compliance incidents by 30 percent through roadmap work",
+        "Helped support a 2 million USD UK project"
+      ],
+      "fit_for_roles": {
+        "product_manager": "Strong proof for outcome-focused product work in compliance-heavy environments.",
+        "product_owner": "Strong proof for translating workflow pain into deliverable product increments.",
+        "business_analyst": "Strong proof for process mapping, user pain analysis, and acceptance-focused thinking.",
+        "ai_product_ops": "Strong proof for automation that improves real operations with measurable results."
+      }
+    },
+    {
+      "id": "anduin_regulated_onboarding",
+      "title": "Private markets onboarding in a regulated environment",
+      "company": "Anduin Transaction",
+      "role": "Associate Product Manager",
+      "tags": ["product_manager", "product_owner", "business_analyst", "legaltech", "regulated", "onboarding", "esignature"],
+      "problem": "Private-capital clients needed smoother investor onboarding while still meeting legal, signing, and audit expectations.",
+      "actions": [
+        "Coordinated product requirements with legal stakeholders and signature vendors such as GlobalSign and DocuSign",
+        "Improved onboarding and digital-signing flows in a regulated environment",
+        "Migrated work management from Airtable to Jira so requests could be tracked and prioritized more effectively"
+      ],
+      "results": [
+        "Supported a 40 percent increase in secure signing adoption",
+        "Enabled the team to track and prioritize roughly three times more requests",
+        "Maintained an average NPS of 75 in 2022 by addressing key drivers with Customer Success and Data teams"
+      ],
+      "fit_for_roles": {
+        "product_manager": "Strong proof for regulated-product delivery, vendor coordination, and stakeholder management.",
+        "product_owner": "Useful for execution detail, risk management, and workflow improvement.",
+        "business_analyst": "Strong proof for requirement translation across product, legal, and vendor constraints.",
+        "ai_product_ops": "Indirectly useful for trust, control, and process-heavy digital workflows."
+      }
+    },
+    {
+      "id": "kyanon_superapp_delivery",
+      "title": "Super-app and gamification delivery at Kyanon Digital",
+      "company": "Kyanon Digital",
+      "role": "Senior Product Owner",
+      "tags": ["product_manager", "product_owner", "consumer", "enterprise_client", "delivery", "gamification"],
+      "problem": "The client needed a backlog owner who could move from kickoff to launch while keeping multiple stakeholders aligned around user-visible outcomes.",
+      "actions": [
+        "Led backlog and roadmap work for the iAEON super-app",
+        "Coordinated design, engineering, and QC stakeholders through delivery",
+        "Mentored junior Business Analysts and standardized Jira, Confluence, and OKR templates"
+      ],
+      "results": [
+        "Delivered user-facing gamification features including Lucky Wheel, daily check-in, and progress bar flows",
+        "Improved alignment and visibility for the wider team",
+        "Added management and coaching proof on top of execution ownership"
+      ],
+      "fit_for_roles": {
+        "product_manager": "Useful for roadmap ownership and stakeholder alignment.",
+        "product_owner": "Strong proof for backlog ownership and shipping cadence.",
+        "business_analyst": "Useful for mentoring and requirement quality discipline.",
+        "ai_product_ops": "Lower relevance unless the target role values delivery systems and process scale."
+      }
+    },
+    {
+      "id": "nashtech_ba_foundation",
+      "title": "Business analysis foundation at NashTech",
+      "company": "NashTech",
+      "role": "Business Analyst",
+      "tags": ["business_analyst", "product_owner", "requirements", "documentation", "process"],
+      "problem": "Multi-industry clients needed clear requirements, workflows, and alignment artifacts before development could move with confidence.",
+      "actions": [
+        "Authored user stories, acceptance criteria, process diagrams, and workflow documents",
+        "Supported the launch of a self-service app suite for gym members",
+        "Worked through requirement detail that replaced legacy operational flows"
+      ],
+      "results": [
+        "Helped clients save roughly 500 thousand USD per year through modernized self-service workflows",
+        "Built a durable foundation in requirement quality and documentation discipline"
+      ],
+      "fit_for_roles": {
+        "product_manager": "Supportive evidence for delivery discipline, not the main strategic proof.",
+        "product_owner": "Useful for backlog-ready requirement quality.",
+        "business_analyst": "Core foundational evidence.",
+        "ai_product_ops": "Useful only where operational process design matters."
+      }
+    },
+    {
+      "id": "portfolio_germany_motivation",
+      "title": "Germany motivation grounded in study, systems, and integration",
+      "company": "Portfolio",
+      "role": "Author",
+      "tags": ["product_manager", "product_owner", "business_analyst", "ai_product_ops", "germany", "motivation"],
+      "problem": "A Germany application needs credible long-term motivation rather than generic relocation language.",
+      "actions": [
+        "Connected Germany motivation to double-degree study path, software engineering learning, and preference for structured operating environments",
+        "Framed relocation intent around contribution, integration, and systems-oriented work rather than lifestyle rhetoric"
+      ],
+      "results": [
+        "Provides a credible motivation narrative for cover letters aimed at German employers"
+      ],
+      "fit_for_roles": {
+        "product_manager": "Useful for explaining long-term move and cultural fit.",
+        "product_owner": "Useful for practical motivation statements.",
+        "business_analyst": "Useful for formal applications needing stability and clarity.",
+        "ai_product_ops": "Useful for Germany-oriented tech and operations applications."
+      }
+    }
+  ]
+}

@@ -76,6 +76,25 @@ pnpm start        # Start production server
 pnpm lint         # Run ESLint
 ```
 
+## 📄 Application Generator
+
+This repository also includes a CLI-first application workflow under [application-system](./application-system/README.md). It is designed for job-search operations where one intake file can generate:
+
+- a tailored cover letter
+- an HTML preview
+- one requested CV variant by default
+- PDFs compiled from LaTeX for the cover letter and browser print for the CV
+
+Example:
+
+```bash
+python3 application-system/scripts/generate_application.py \
+  --intake application-system/intakes/sample-generic-company.json \
+  --compile-pdf
+```
+
+The generated CV PDF reuses the main site layout and print styles through `/generated-cv`, so the job-application engine no longer maintains a separate LaTeX CV design.
+
 ## 📁 Project Structure
 
 ```

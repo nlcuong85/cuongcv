@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>@@COMPANY_NAME@@ Cover Letter Preview</title>
+    <style>
+      :root {
+        --ink: #1f2933;
+        --muted: #52606d;
+        --line: #d9e2ec;
+        --paper: #fffdf8;
+        --accent: #8d6e63;
+      }
+
+      body {
+        margin: 0;
+        background: linear-gradient(180deg, #f7f4ef 0%, #efebe4 100%);
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", serif;
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 24px auto;
+        padding: 22mm 20mm;
+        background: var(--paper);
+        box-shadow: 0 18px 45px rgba(31, 41, 51, 0.12);
+        box-sizing: border-box;
+      }
+
+      .topline {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .address,
+      .date,
+      .subject,
+      .paragraph,
+      .signature {
+        white-space: pre-line;
+      }
+
+      .subject {
+        margin-top: 24px;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+        font-weight: 700;
+      }
+
+      .salutation {
+        margin-top: 18px;
+        font-weight: 600;
+      }
+
+      .paragraph {
+        margin-top: 16px;
+        line-height: 1.6;
+        font-size: 16px;
+      }
+
+      .signature {
+        margin-top: 28px;
+      }
+
+      .meta {
+        margin-top: 28px;
+        padding: 14px 16px;
+        background: rgba(141, 110, 99, 0.08);
+        border-left: 4px solid var(--accent);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="topline">
+        <div class="address">@@SENDER_BLOCK@@</div>
+        <div class="address">@@RECIPIENT_BLOCK@@</div>
+      </section>
+      <div class="date">@@DATE_LINE@@</div>
+      <div class="subject">Subject: Application for the position of @@JOB_TITLE@@</div>
+      <div class="salutation">@@SALUTATION@@</div>
+      <div class="paragraph">@@OPENING_PARAGRAPH@@</div>
+      <div class="paragraph">@@BODY_PARAGRAPH_ONE@@</div>
+      <div class="paragraph">@@BODY_PARAGRAPH_TWO@@</div>
+      <div class="paragraph">@@CLOSING_PARAGRAPH@@</div>
+      <div class="signature">Sincerely,
+
+@@SIGNATURE_NAME@@</div>
+
+      <div class="meta">Primary role preset: @@ROLE_LABEL@@
+
+Evidence used: @@EVIDENCE_IDS@@</div>
+    </main>
+  </body>
+</html>

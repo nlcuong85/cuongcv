@@ -1,0 +1,84 @@
+{
+  "roles": [
+    {
+      "id": "product_manager",
+      "label": "Product Manager",
+      "summary": "Product manager with experience across B2B marketplaces, regulated onboarding, healthcare workflow digitization, and AI-enabled product operations. Strongest in roles that need structured discovery, stakeholder alignment, and measurable delivery rather than abstract feature ownership.",
+      "top_skills": [
+        "Product Strategy",
+        "Stakeholder Alignment",
+        "Roadmapping",
+        "Requirement Prioritization",
+        "Cross-functional Delivery",
+        "AI-assisted Product Workflows"
+      ],
+      "evidence_priority": [
+        "scck_marketplace",
+        "anduin_regulated_onboarding",
+        "talosix_ocr_workflow",
+        "kyanon_superapp_delivery",
+        "portfolio_germany_motivation"
+      ]
+    },
+    {
+      "id": "product_owner",
+      "label": "Product Owner",
+      "summary": "Product owner with hands-on delivery experience from backlog definition to launch, especially in environments where requirements need to stay connected to real operations, compliance, and user pain points.",
+      "top_skills": [
+        "Backlog Management",
+        "User Stories and Acceptance Criteria",
+        "Sprint Collaboration",
+        "Stakeholder Coordination",
+        "Workflow Improvement",
+        "Jira and Confluence"
+      ],
+      "evidence_priority": [
+        "kyanon_superapp_delivery",
+        "talosix_ocr_workflow",
+        "anduin_regulated_onboarding",
+        "scck_marketplace",
+        "nashtech_ba_foundation"
+      ]
+    },
+    {
+      "id": "business_analyst",
+      "label": "Business Analyst",
+      "summary": "Business analyst with a product-delivery mindset, experienced in requirement discovery, workflow mapping, documentation quality, and translating operational pain points into implementable delivery plans.",
+      "top_skills": [
+        "Requirements Engineering",
+        "Process Mapping",
+        "Acceptance Criteria",
+        "Documentation",
+        "Stakeholder Interviews",
+        "Operational Analysis"
+      ],
+      "evidence_priority": [
+        "nashtech_ba_foundation",
+        "anduin_regulated_onboarding",
+        "talosix_ocr_workflow",
+        "scck_marketplace",
+        "kyanon_superapp_delivery"
+      ]
+    },
+    {
+      "id": "ai_product_ops",
+      "label": "AI Product Operations",
+      "summary": "Product and operations professional using AI as a workflow multiplier rather than a branding layer. Strong fit for roles that combine process clarity, experimentation, lightweight technical depth, and practical automation.",
+      "top_skills": [
+        "AI-assisted Workflow Design",
+        "Operations-heavy Product Delivery",
+        "Automation Mindset",
+        "Prompt and Context Design",
+        "Cross-functional Execution",
+        "Workflow Instrumentation"
+      ],
+      "evidence_priority": [
+        "talosix_ocr_workflow",
+        "scck_marketplace",
+        "kyanon_superapp_delivery",
+        "portfolio_germany_motivation",
+        "anduin_regulated_onboarding"
+      ]
+    }
+  ]
+}

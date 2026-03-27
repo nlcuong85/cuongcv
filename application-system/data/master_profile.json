@@ -1,0 +1,172 @@
+{
+  "name": "Cuong Le Nguyen",
+  "initials": "CLN",
+  "preferred_name": "Cuong",
+  "location": "Gildenstraße 13, 74074 Heilbronn, Germany",
+  "location_link": "https://www.google.com/maps/place/Gildenstra%C3%9Fe+13,+74074+Heilbronn,+Germany",
+  "target_region": "Germany",
+  "email": "nlcuong999@gmail.com",
+  "phone": "+49 163 3628505",
+  "linkedin": "https://www.linkedin.com/in/lecuongair/",
+  "github": "https://github.com/nlcuong85",
+  "website": "https://pmlecuong.com/",
+  "cv_site": "https://nlcuong85.github.io/cuongcv/",
+  "avatar_url": "/cuongcv/images/avatar.jpg",
+  "headline": "Product leader building AI-enabled and B2B products across eCommerce, LegalTech, healthcare workflows, and digital operations.",
+  "core_pitch": "Product leader with experience owning end-to-end delivery from discovery and requirement definition to launch, iteration, and cross-functional alignment. Strongest in operations-heavy product environments where process clarity, user pain points, and measurable outcomes matter more than product theater.",
+  "tone_profile": {
+    "voice_traits": [
+      "practical before theoretical",
+      "reflective but direct",
+      "curious about systems and execution",
+      "honest about limitations",
+      "confident without inflated claims"
+    ],
+    "cover_letter_rules": [
+      "keep final output concise and formal",
+      "avoid hype language",
+      "prefer measurable outcomes and operational proof",
+      "show Germany motivation through structure, integration, and long-term fit",
+      "do not drift into blog-style tangents in final application documents"
+    ]
+  },
+  "germany_motivation": [
+    "Pursuing a double-degree path through Vietnamese-German University and Heilbronn University",
+    "Interested in structured, systems-oriented environments that connect technology with operational responsibility",
+    "Motivated by long-term integration into Germany's product and technology ecosystem rather than short-term relocation"
+  ],
+  "education": [
+    {
+      "school": "Vietnamese-German University",
+      "degree": "MA in Business Information Systems",
+      "start": "2024",
+      "end": "Present"
+    },
+    {
+      "school": "Heilbronn University",
+      "degree": "Master in Software Engineering",
+      "start": "Summer 2026",
+      "end": "Expected"
+    },
+    {
+      "school": "Troy University, Alabama, USA (HCMC campus)",
+      "degree": "BA in Business Administration and General Management",
+      "start": "2010",
+      "end": "2015"
+    }
+  ],
+  "work_history": [
+    {
+      "id": "kyanon",
+      "company": "Kyanon Digital",
+      "title": "Senior Product Owner",
+      "start": "Aug 2024",
+      "end": "Jan 2026",
+      "industry_tags": ["digital product delivery", "consumer app", "enterprise client"],
+      "highlights": [
+        "Managed end-to-end delivery for assigned projects from kickoff to launch",
+        "Led backlog and roadmap for AEON's iAEON super-app",
+        "Shipped gamification initiatives including Lucky Wheel, daily check-in, and progress-bar experiences",
+        "Mentored three junior Business Analysts and formalized Jira, Confluence, and OKR templates"
+      ]
+    },
+    {
+      "id": "scck",
+      "company": "SCCK.vn",
+      "title": "Product Development Manager",
+      "start": "Jul 2020",
+      "end": "Jul 2024",
+      "industry_tags": ["B2B marketplace", "industrial commerce", "operations"],
+      "highlights": [
+        "Built platform features and customer experience for a Vietnamese mechanical marketplace",
+        "Led cross-functional delivery across operations, engineering, and product design",
+        "Developed and deployed an AI chatbot using Botpress and OpenAI for FAQ and price lookup support"
+      ]
+    },
+    {
+      "id": "anduin",
+      "company": "Anduin Transaction",
+      "title": "Associate Product Manager",
+      "start": "Feb 2021",
+      "end": "May 2023",
+      "industry_tags": ["private markets", "onboarding", "regulated workflows"],
+      "highlights": [
+        "Improved onboarding experiences for private capital firms",
+        "Coordinated with legal and vendors to support EU AES and QES signing requirements",
+        "Migrated project management from Airtable to Jira to improve prioritization capacity",
+        "Partnered with Customer Success and Data teams to address NPS drivers"
+      ]
+    },
+    {
+      "id": "talosix",
+      "company": "Talosix",
+      "title": "Product Owner",
+      "start": "Jun 2019",
+      "end": "Feb 2021",
+      "industry_tags": ["healthcare", "workflow digitization", "OCR"],
+      "highlights": [
+        "Improved patient-care and clinical workflows with compliance-aware initiatives",
+        "Co-developed HIPAA and GDPR roadmaps",
+        "Shipped an OCR note-reading feature that improved doctor productivity and supported a major UK project"
+      ]
+    },
+    {
+      "id": "nashtech",
+      "company": "NashTech",
+      "title": "Business Analyst",
+      "start": "Mar 2018",
+      "end": "Jun 2019",
+      "industry_tags": ["business analysis", "requirements", "workflow design"],
+      "highlights": [
+        "Delivered requirements and documentation for multi-industry projects",
+        "Launched a self-service app suite for gym members that replaced legacy workflows",
+        "Authored user stories, acceptance criteria, process diagrams, and workflows"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "RouteOps",
+      "description": "Travel-planning decision-support prototype with a local Fastify backend, deterministic planning outputs, and saved trip history.",
+      "tech_stack": ["React", "TypeScript", "Fastify", "SQLite"]
+    },
+    {
+      "name": "AI-Powered WordPress CMS Portal",
+      "description": "Private portal that connects WordPress sites to an AI-assisted content workflow with review and change tracking.",
+      "tech_stack": ["TypeScript", "Next.js", "WordPress API", "OpenAI"]
+    }
+  ],
+  "skills": [
+    "Product Roadmapping",
+    "Requirements Engineering",
+    "Stakeholder Alignment",
+    "Business Analysis",
+    "AI-assisted Product Workflows",
+    "Operations-heavy Product Delivery",
+    "Jira",
+    "Confluence",
+    "Figma",
+    "SQL",
+    "Next.js",
+    "HTML & CSS",
+    "n8n Automation",
+    "Docker",
+    "Linux"
+  ],
+  "awards": [
+    "Product Management 101 - Udemy",
+    "Advanced Product Management: Vision, Strategy & Metric - Udemy",
+    "Scrum Fundamentals Certified - SCRUMstudy: 746783",
+    "UI UX 101: Digital Product Design - Keyframe HCM",
+    "Foundation of Project Management - Google on Coursera",
+    "Project Initiation - Starting a successful project - Google on Coursera",
+    "IELTS 7.5 - Issued on April 2025",
+    "AI Mentor for Kyanon Fresher"
+  ],
+  "portfolio_recap": [
+    "Writes in a reflective, systems-oriented tone with a strong focus on what worked, what failed, and what should change next",
+    "Frames AI and engineering work through product discipline, context management, and practical execution",
+    "Highlights Germany motivation through study, structure, integration, and long-term contribution",
+    "Uses case studies to connect product decisions with operational consequences"
+  ]
+}

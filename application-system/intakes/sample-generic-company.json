@@ -1,0 +1,20 @@
+{
+  "company_name": "Example Mittelstand GmbH",
+  "company_location": "Heilbronn, Germany",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "job_title": "Product Manager",
+  "job_url": "https://example.com/careers/product-manager",
+  "language": "english",
+  "primary_role": "product_manager",
+  "start_date": "As soon as possible or by mutual agreement",
+  "why_company": "I am interested in companies that connect strong operational discipline with practical technology delivery, especially in Germany's Mittelstand and B2B-oriented environment.",
+  "job_description": "We are looking for a Product Manager who can work across business stakeholders, engineering, and operations. The role requires structured discovery, backlog prioritization, workflow improvement, and the ability to support digital product initiatives in a cross-functional environment.",
+  "requirements": [
+    "Experience in product management or product ownership",
+    "Ability to work with engineering and non-technical stakeholders",
+    "Strong requirement prioritization and workflow thinking",
+    "Interest in AI, automation, or process digitization",
+    "Comfort with structured, operations-heavy environments"
+  ]
+}
