@@ -1,0 +1,49 @@
+{
+  "company_name": "Schwarz Digits",
+  "company_location": "Stiftsbergstraße 1, 74172 Neckarsulm, Germany",
+  "contact_name": "Jana Scherer",
+  "contact_title": "Recruiterin",
+  "contact_lookup_status": "Named recruiter verified from the official Schwarz Digits posting page on 2026-03-28.",
+  "job_title": "Werkstudent Detection Engineering (m/w/d)",
+  "job_url": "https://schwarz-digits.de/jobsearch/hr/werkstudent-detection-engineering-m-w-d-GT2375",
+  "language": "english",
+  "primary_role": "ai_product_ops",
+  "target_roles": [
+    "ai_product_ops"
+  ],
+  "summary_version": "strongest_balanced",
+  "why_company": "Schwarz Digits stands out to me because this role sits at the intersection of data, automation, analytics, and security operations. That combination matches the technical direction I want to build through hands-on work in a structured environment.",
+  "job_description": "Schwarz Digits is hiring a working student in Detection Engineering within IT Security. The role supports research, automation, and development teams in the Cyber Defence Center, improves data engineering processes for cyber security, helps administer and extend the data base used for analysis and detection, and contributes to the continuous improvement of detection mechanisms and data quality.",
+  "requirements": [
+    "Student in computer science, business informatics, or a comparable field",
+    "Initial exposure to cyber security and security-relevant data is beneficial",
+    "Interest in data administration or similar technical areas",
+    "Strong analytical and communication skills",
+    "Ability to work independently and collaboratively",
+    "Interest in data pipelines, data quality, detection mechanisms, and automation",
+    "Deutsch B2 and English required"
+  ],
+  "cv_about_override": "Business analysis and digital operations professional building stronger technical depth in data-focused systems, analytics, automation, and security-adjacent workflows.",
+  "cv_summary_override": "Experienced product and business analysis professional with a strong foundation in research, requirements, stakeholder alignment, and structured execution. Alongside my earlier business background, I am deepening my technical path through Software Engineering studies at Heilbronn University and Business Information Systems studies at Vietnamese-German University. My hands-on work across SQL, automation, AI-assisted workflows, and digital operations has strengthened my interest in data-intensive systems, monitoring, and technical decision support in structured environments.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "AI-assisted Product Workflows",
+    "Jira",
+    "Confluence",
+    "SQL",
+    "Data Analysis",
+    "Systems Thinking",
+    "Linux",
+    "Docker",
+    "Monitoring and Reporting",
+    "Documentation",
+    "Cross-functional Delivery"
+  ],
+  "cover_letter_opening": "I am applying for the position of Werkstudent Detection Engineering (m/w/d) at Schwarz Digits. The role stands out to me because it combines data, automation, analytics, and security-focused operational work in the technical direction I want to build further.",
+  "cover_letter_body_one": "My background began more on the business and product side, but my studies and recent work have moved me steadily toward technical analysis and systems-oriented problem solving. In past roles, I worked across digital products and operations-heavy environments where I had to understand systems, structure requirements clearly, and support implementation in a practical way.",
+  "cover_letter_body_two": "Through my current Software Engineering studies at Heilbronn University, my Business Information Systems background, and my hands-on work across SQL, automation, AI-assisted workflows, and digital operations, I have been intentionally moving toward more technical and data-intensive work. I can bring a strong analytical foundation and I learn quickly in structured technical environments.",
+  "cover_letter_motivation": "I am particularly interested in Schwarz Digits because Detection Engineering connects data quality, automation, monitoring, and continuous improvement in a technically meaningful way.",
+  "cover_letter_closing": "I am available to start from 01 April 2026 and can work up to 20 hours per week under my current student visa. While my German is not yet at B2 level, I work confidently in English at C1 level with IELTS 7.5 and continue to improve my German. If another Werkstudent role within Schwarz Digits is a stronger fit, I would be grateful to be considered."
+}

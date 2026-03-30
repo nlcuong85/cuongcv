@@ -1,0 +1,47 @@
+{
+  "company_name": "Coperion GmbH",
+  "company_location": "Theodorstraße 10, 70469 Stuttgart, Germany",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter was visible on the live StepStone posting checked on 2026-03-28, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Werkstudent (m/w/d) im Bereich IT (Prozessmanagement)",
+  "job_url": "https://www.stepstone.de/stellenangebote----13715759-inline.html?CID=R_EM_CLC_DE_AbandonedBasket_28032026_recommendedJobTitle&lang=de&adjust_t=1bgbco6g_1bhvxvt1&adjust_campaign=ApplicationAbandoned&state=0",
+  "language": "english",
+  "primary_role": "business_analyst",
+  "target_roles": [
+    "business_analyst"
+  ],
+  "summary_version": "business_analysis",
+  "why_company": "Coperion stands out to me because this role combines process documentation, process analysis, visualization, and improvement work in a technical industrial environment where structured execution and operational clarity matter.",
+  "job_description": "Coperion is hiring a working student in IT process management in Stuttgart. The role includes recording, documenting, and visualizing IT processes, analyzing existing processes, identifying weaknesses and proposing improvements, and updating process documentation in line with company standards. The role runs for an initial 12 months and allows up to 20 hours per week during the semester.",
+  "requirements": [
+    "Ongoing studies in business administration, business informatics, or computer science, at least in the 3rd semester",
+    "Basic understanding of IT concepts and business processes",
+    "Ability to visualize complex processes with Microsoft Visio, Lucidchart, or similar tools",
+    "Very good German and English skills",
+    "Organizational talent, analytical thinking, and an independent, careful way of working"
+  ],
+  "cv_about_override": "Business analysis and digital operations professional focused on process documentation, workflow improvement, and structured execution in operations-heavy environments.",
+  "cv_summary_override": "Experienced business analysis and product professional with a strong foundation in research, requirements, stakeholder alignment, documentation, and continuous improvement. I have worked across eCommerce, LegalTech, healthcare, and digital operations, with a focus on structured execution, process clarity, and measurable operational impact. This makes me well suited for working student roles that combine process documentation, visualization, analysis, and continuous improvement in IT-related environments.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "Operations-heavy Product Delivery",
+    "Jira",
+    "Confluence",
+    "Process Mapping",
+    "Workflow Improvement",
+    "Data Analysis",
+    "Management Presentations",
+    "Cross-functional Delivery",
+    "Systems Thinking",
+    "Lucidchart"
+  ],
+  "cover_letter_opening": "I am applying for the position of Werkstudent (m/w/d) im Bereich IT (Prozessmanagement) at Coperion GmbH. This role stands out to me because it combines process documentation, visualization, analysis, and improvement work in a structured IT environment with clear operational relevance.",
+  "cover_letter_body_one": "In my previous roles across digital products and operations-heavy environments, I worked closely with stakeholders, engineers, and business teams to structure requirements, document workflows, improve processes, and support execution. That experience gave me a strong foundation in turning complex operational needs into clear and practical process artifacts.",
+  "cover_letter_body_two": "I am particularly comfortable in roles that connect structured analysis with documentation and continuous improvement. Through my work across marketplace products, regulated onboarding, and healthcare workflow digitization, I have built experience in process mapping, identifying inefficiencies, preparing decision-ready materials, and supporting teams with clear documentation and implementation follow-through. This is closely aligned with the mix of process recording, visualization, analysis, and documentation updates described in your posting.",
+  "cover_letter_motivation": "I am especially interested in this role because Coperion combines technical industrial work with practical IT process improvement. That combination matches both my analytical strengths and my interest in contributing in environments where well-structured processes directly support real operations.",
+  "cover_letter_closing": "@@AVAILABILITY@@. While my German is not yet at a confident professional level, I work confidently in English at C1 level with IELTS 7.5 and continue to improve my German. If this specific role is not the best fit at the moment, I would be grateful to be considered for another suitable working student opportunity at Coperion. I would welcome the opportunity to discuss my application in an interview."
+}

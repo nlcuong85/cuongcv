@@ -1,0 +1,47 @@
+{
+  "company_name": "IT Baden-Württemberg (BITBW)",
+  "company_location": "Krailenshaldenstraße 44, 70469 Stuttgart, Germany",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter was visible on the live StepStone posting checked on 2026-03-28, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Werkstudent im Bereich Controlling (w/m/d)",
+  "job_url": "https://www.stepstone.de/stellenangebote--Werkstudent-im-Bereich-Controlling-w-m-d-Stuttgart-IT-Baden-Wuerttemberg-BITBW--13709377-inline.html?rltr=11_11_25_seorl_m_0_0_0_0_0_0",
+  "language": "english",
+  "primary_role": "business_analyst",
+  "target_roles": [
+    "business_analyst"
+  ],
+  "summary_version": "business_analysis",
+  "why_company": "BITBW stands out to me because this role combines reporting, budgeting, SAP master-data support, and structured controlling work in a public-sector IT environment where process discipline and reliability matter.",
+  "job_description": "IT Baden-Württemberg (BITBW) is hiring a working student in controlling in Stuttgart. The role supports the controlling team, maintains SAP master data, supports reporting, helps calculate IT services, and assists with budget planning, monitoring, and steering. The role is part-time with mobile work possible and typically runs for one semester.",
+  "requirements": [
+    "Current studies in business administration, economics, public management, business informatics, or a comparable field",
+    "Knowledge of MS Office including Excel, Word, and PowerPoint",
+    "Team-oriented mindset and independent way of working",
+    "Interest in controlling, reporting, budgeting, and structured process support",
+    "Initial exposure to SAP or data maintenance is beneficial"
+  ],
+  "cv_about_override": "Business analysis and digital operations professional focused on reporting, documentation, process improvement, and structured execution in operations-heavy environments.",
+  "cv_summary_override": "Experienced business analysis and product professional with a strong foundation in research, requirements, stakeholder alignment, documentation, and continuous improvement. I have worked across eCommerce, LegalTech, healthcare, and digital operations, with a focus on structured execution, process clarity, and measurable operational impact. This makes me well suited for working student roles that combine reporting, budgeting support, documentation, and analytical process work.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "Operations-heavy Product Delivery",
+    "Jira",
+    "Confluence",
+    "Reporting",
+    "Excel",
+    "Budget Monitoring",
+    "Data Analysis",
+    "Process Mapping",
+    "Management Presentations",
+    "Cross-functional Delivery"
+  ],
+  "cover_letter_opening": "I am applying for the position of Werkstudent im Bereich Controlling (w/m/d) at IT Baden-Württemberg (BITBW). This role stands out to me because it combines reporting, budgeting support, structured process work, and analytical coordination in a public-sector IT environment with real operational relevance.",
+  "cover_letter_body_one": "In my previous roles across digital products and operations-heavy environments, I worked closely with stakeholders, engineers, and business teams to structure requirements, improve workflows, and support execution. That experience gave me a strong foundation in documentation, reporting, and turning operational needs into practical and structured decisions.",
+  "cover_letter_body_two": "I am particularly comfortable in roles that connect analysis with delivery support. Through my work across marketplace products, regulated onboarding, and healthcare workflow digitization, I have built experience in preparing decision-ready materials, coordinating across functions, working with structured data, and improving processes through measurable follow-through. This is closely aligned with the mix of reporting, budgeting support, and analytical controlling work described in your posting.",
+  "cover_letter_motivation": "I am especially interested in this role because BITBW combines public-sector responsibility with modern IT services and structured controlling processes. That combination matches both my analytical strengths and my interest in supporting reliable, data-informed operations.",
+  "cover_letter_closing": "@@AVAILABILITY@@. I would welcome the opportunity to discuss how I can support your controlling team in an interview."
+}

@@ -1,0 +1,47 @@
+{
+  "company_name": "AIM Infrarot-Module GmbH / Diehl Defence",
+  "company_location": "Theresienstraße 2, 74072 Heilbronn, Germany",
+  "contact_name": "Cornelia Reisser",
+  "contact_title": "Recruiter",
+  "contact_lookup_status": "Named recruiter Cornelia Reisser and the Heilbronn address were verified from the official Diehl Karriere posting checked on 2026-03-28.",
+  "job_title": "Werkstudent (m/w/d) Digitalisierung von Geschäftsprozessen",
+  "job_url": "https://www.diehl.com/career/de/jobs-bewerbung/stellenboerse/werkstudent-mwd-digitalisierung-von-geschaeftsprozessen/",
+  "language": "english",
+  "primary_role": "business_analyst",
+  "target_roles": [
+    "business_analyst"
+  ],
+  "summary_version": "business_analysis",
+  "why_company": "Diehl Defence stands out to me because this role combines SAP-near process work, business-process analysis, target-process design, and documentation in a structured industrial environment with direct operational impact.",
+  "job_description": "Diehl Defence is hiring a working student in the digitalization of business processes in Heilbronn. The role supports implementation of the digitalization roadmap in SAP-near processes, analysis and optimization of existing business processes, development of target processes together with specialist departments, and creation of process documentation. The official posting lists Heilbronn as the location, part-time work, on-site mode, and immediate start.",
+  "requirements": [
+    "Master studies in computer science, business informatics, industrial engineering, or a similar field",
+    "Practical experience with SAP or ERP systems is required",
+    "Very good analytical and structured way of working",
+    "Very good MS Office skills",
+    "Interest in process analysis, optimization, and documentation in SAP-near environments"
+  ],
+  "cv_about_override": "Business analysis and digital operations professional focused on process documentation, workflow improvement, and structured execution in operations-heavy environments, now building deeper capability in ERP-adjacent and systems-oriented work.",
+  "cv_summary_override": "Experienced business analysis and product professional with a strong foundation in research, requirements, stakeholder alignment, documentation, and continuous improvement. I have worked across eCommerce, LegalTech, healthcare, and digital operations, with a focus on structured execution, process clarity, and measurable operational impact. This makes me well suited for working student roles that combine process analysis, target-process design, documentation, and continuous improvement in SAP-near business environments.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "Operations-heavy Product Delivery",
+    "Jira",
+    "Confluence",
+    "Process Mapping",
+    "Workflow Improvement",
+    "Data Analysis",
+    "Systems Thinking",
+    "ERP-adjacent Process Work",
+    "Management Presentations",
+    "Cross-functional Delivery"
+  ],
+  "cover_letter_opening": "I am applying for the position of Werkstudent (m/w/d) Digitalisierung von Geschäftsprozessen at AIM Infrarot-Module GmbH / Diehl Defence. This role stands out to me because it combines process analysis, optimization, target-process design, and documentation work in a structured SAP-near environment with direct operational relevance.",
+  "cover_letter_body_one": "In my previous roles across digital products and operations-heavy environments, I worked closely with stakeholders, engineers, and business teams to structure requirements, document workflows, improve processes, and support execution. That experience gave me a strong foundation in turning complex operational needs into clear and practical process artifacts.",
+  "cover_letter_body_two": "I am particularly comfortable in roles that connect structured analysis with documentation and continuous improvement. Through my work across marketplace products, regulated onboarding, and healthcare workflow digitization, I have built experience in process mapping, identifying inefficiencies, preparing decision-ready materials, and supporting teams with clear documentation and implementation follow-through. This is closely aligned with the mix of process analysis, target-process design, and process documentation described in your posting.",
+  "cover_letter_motivation": "I am especially interested in this role because Diehl Defence combines technical industrial work with practical digitalization of business processes. That combination matches both my analytical strengths and my interest in contributing in environments where structured process improvement directly supports real operations.",
+  "cover_letter_closing": "@@AVAILABILITY@@. I would welcome the opportunity to discuss how I can support your team in an interview."
+}

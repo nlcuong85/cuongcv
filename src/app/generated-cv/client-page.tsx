@@ -4,21 +4,33 @@ import { useEffect, useMemo, useState } from "react";
 import { ResumeDocument } from "@/components/resume-document";
 import type { ResumeData } from "@/lib/types";
 
-export function GeneratedResumeClientPage() {
+interface GeneratedResumeClientPageProps {
+  initialParams?: {
+    company: string;
+    role: string;
+  };
+}
+
+export function GeneratedResumeClientPage({
+  initialParams,
+}: GeneratedResumeClientPageProps) {
   const [data, setData] = useState<ResumeData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [params, setParams] = useState<{
     company: string;
     role: string;
-  } | null>(null);
+  } | null>(initialParams ?? null);
 
   useEffect(() => {
+    if (initialParams) {
+      return;
+    }
     const searchParams = new URLSearchParams(window.location.search);
     setParams({
       company: searchParams.get("company") ?? "",
       role: searchParams.get("role") ?? "",
     });
-  }, []);
+  }, [initialParams]);
 
   const dataUrl = useMemo(
     () =>
@@ -29,12 +41,16 @@ export function GeneratedResumeClientPage() {
   );
 
   useEffect(() => {
+    document.body.dataset.generatedCvStatus = "loading";
+
     if (!params) {
       return;
     }
 
     if (!params.company || !params.role) {
+      setData(null);
       setError("Missing company or role query parameter.");
+      document.body.dataset.generatedCvStatus = "error";
       return;
     }
 
@@ -50,14 +66,17 @@ export function GeneratedResumeClientPage() {
         const payload = (await response.json()) as ResumeData;
         if (!cancelled) {
           setData(payload);
+          document.body.dataset.generatedCvStatus = "ready";
         }
       } catch (loadError) {
         if (!cancelled) {
+          setData(null);
           setError(
             loadError instanceof Error
               ? loadError.message
               : "Failed to load generated CV."
           );
+          document.body.dataset.generatedCvStatus = "error";
         }
       }
     }

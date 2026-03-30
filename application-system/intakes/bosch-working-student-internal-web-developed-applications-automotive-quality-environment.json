@@ -1,0 +1,48 @@
+{
+  "company_name": "Robert Bosch GmbH",
+  "company_location": "Tübinger Straße, 72770 Reutlingen-Kusterdingen, Germany",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter was visible on the official Bosch posting checked on 2026-03-29. The posting lists Olaf Autzen as the functional contact, not the recruiter, so the letter uses Hiring Team as the application contact.",
+  "job_title": "Working Student Internal Web Developed Applications in Automotive Quality Environment (f/m/div.)",
+  "subject_line": "Application for Working Student Internal Web Applications",
+  "job_url": "https://jobs.bosch.de/job/Working-Student-Internal-Web-Developed-Applications-in-Automotive-Quality-Environment-f_m_div.-Reutlingen-Kusterdingen?id=744000098778195",
+  "language": "english",
+  "primary_role": "business_analyst",
+  "target_roles": [
+    "business_analyst"
+  ],
+  "summary_version": "strongest_balanced",
+  "why_company": "Bosch stands out to me because this role combines internal web applications, SQL-backed process support, low-code development, and quality-management reporting in a structured automotive environment where technical execution and operational reliability matter.",
+  "job_description": "Bosch is hiring a working student for internal web developed applications in automotive quality environment in Reutlingen-Kusterdingen. The role supports risk analysis and quality reporting, maintenance and expansion of associated SQL databases, independent troubleshooting in existing applications with user-focused validation, and enhancement of existing low-code applications based on Outsystems. The role is part-time for 12 months at 10 hours per week starting in April 2026.",
+  "requirements": [
+    "Studies in computer science, data science, or a comparable field",
+    "Experience with HTML/JavaScript, Python, Java, relational databases (SQL), and low-code development",
+    "Team-minded, organized, with time-management skills",
+    "Creativity and enthusiasm for web applications and their development",
+    "Business-fluent German and English, written and spoken"
+  ],
+  "cv_about_override": "Business analysis and digital operations professional building stronger technical depth in internal web applications, SQL-backed workflows, structured problem-solving, and data-informed process improvement.",
+  "cv_summary_override": "Experienced business analysis and product professional with a strong foundation in research, requirements, stakeholder alignment, rollout, and continuous improvement. Alongside my earlier business background, I am building deeper technical capability through Software Engineering studies at Heilbronn University and hands-on work across SQL, automation, digital operations, and AI-assisted tools. This makes me well suited for working student roles that combine internal web applications, data-backed process support, troubleshooting, and continuous improvement in structured quality environments.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "Operations-heavy Product Delivery",
+    "Jira",
+    "Confluence",
+    "SQL",
+    "Python",
+    "HTML and JavaScript",
+    "Low-code Application Support",
+    "Troubleshooting",
+    "Workflow Improvement",
+    "Cross-functional Delivery"
+  ],
+  "cover_letter_opening": "I am applying for the position of Working Student Internal Web Developed Applications in Automotive Quality Environment (f/m/div.) at Robert Bosch GmbH. The role stands out to me because it combines internal web applications, SQL-backed processes, troubleshooting, and low-code development in a structured quality environment.",
+  "cover_letter_body_one": "In my previous roles across digital products and operations-heavy environments, I worked with stakeholders, engineers, and business teams to structure requirements, improve workflows, and support practical digital solutions. This gave me a strong foundation in structured problem-solving, user-focused improvement, and reliable execution.",
+  "cover_letter_body_two": "Through my Software Engineering studies at Heilbronn University, my Business Information Systems background, and hands-on work across SQL, automation, digital operations, and AI-assisted tools, I have been intentionally moving toward more technical and systems-oriented work. This is why I am particularly interested in contributing to internal applications, database-backed processes, and iterative improvements in close collaboration with users and quality teams.",
+  "cover_letter_motivation": "Bosch is especially attractive to me because of its high engineering standards and practical internal digitalization work. Supporting quality reporting, risk-analysis processes, SQL databases, and low-code applications is closely aligned with the technical direction I want to keep building.",
+  "cover_letter_closing": "@@AVAILABILITY@@. My German is still improving and not yet business fluent, but I am actively learning and work confidently in English at C1 level with IELTS 7.5. If this role is not the best fit, I would be grateful to be considered for another suitable working student opportunity at Bosch. I would welcome the opportunity to discuss my application in an interview."
+}

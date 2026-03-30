@@ -8,10 +8,12 @@ import subprocess
 import time
 import urllib.error
 import urllib.request
-from datetime import date
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 import re
+import shutil
+import unicodedata
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -39,8 +41,32 @@ def write_json(path: Path, payload: Any) -> None:
 
 
 def slugify(value: str) -> str:
-    slug = re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+    normalized = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
+    slug = re.sub(r"[^a-z0-9]+", "-", normalized.lower()).strip("-")
     return slug or "application"
+
+
+def file_slug(value: str) -> str:
+    normalized = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
+    slug = re.sub(r"[^a-z0-9]+", "-", normalized.lower()).strip("-")
+    return slug or "document"
+
+
+def package_slug(intake: dict[str, Any]) -> str:
+    return slugify(f"{intake['company_name']}-{intake['job_title']}")
+
+
+def render_timestamp() -> str:
+    return datetime.now().strftime("%Y%m%d-%H%M%S")
+
+
+def build_pdf_filename(prefix: str, profile: dict[str, Any], intake: dict[str, Any], timestamp: str) -> str:
+    return (
+        f"{prefix}-"
+        f"{file_slug(profile['name'])}-"
+        f"{file_slug(intake['job_title'])}-"
+        f"{timestamp}.pdf"
+    )
 
 
 def read_template(name: str) -> str:
@@ -248,6 +274,20 @@ def jd_skill_candidates(intake: dict[str, Any]) -> list[str]:
         "jira": "Jira",
         "confluence": "Confluence",
         "sql": "SQL",
+        "python": "Python",
+        "cloud": "Cloud Cost Analysis",
+        "finops": "Cloud Cost Analysis",
+        "cost optimization": "Technical Cost Optimization",
+        "analytics": "Data Analysis",
+        "data analysis": "Data Analysis",
+        "dashboard": "Dashboarding",
+        "monitoring": "Monitoring and Reporting",
+        "reporting": "Monitoring and Reporting",
+        "excel": "Excel",
+        "powerpoint": "PowerPoint",
+        "governance": "Process Governance",
+        "tagging": "Resource Structuring",
+        "architecture": "Systems Thinking",
         "ai": "AI-assisted Product Workflows",
         "automation": "n8n Automation",
     }
@@ -337,6 +377,8 @@ def build_salutation(intake: dict[str, Any]) -> str:
 
 
 def subject_line(intake: dict[str, Any]) -> str:
+    if intake.get("subject_line"):
+        return str(intake["subject_line"]).strip()
     return f"Application for {intake['job_title']}"
 
 
@@ -351,13 +393,34 @@ def signature_path() -> str:
     return str((APP_ROOT / "signature.png").resolve())
 
 
+def next_available_start(today: date | None = None) -> date:
+    current = today or date.today()
+    return current + timedelta(days=14)
+
+
+def default_availability_sentence() -> str:
+    start = next_available_start()
+    return (
+        f"I am available to start from {start.strftime('%d %B %Y')} "
+        "and can work up to 20 hours per week in line with my current student visa"
+    )
+
+
 def start_date_sentence(intake: dict[str, Any]) -> str:
+    override = (intake.get("availability_override") or "").strip()
+    if override:
+        return override
+
     value = (intake.get("start_date") or "").strip()
     if not value:
-        return ""
+        return default_availability_sentence()
     if value.lower() in {"by mutual agreement", "mutual agreement", "negotiable"}:
-        return ""
+        return default_availability_sentence()
     return f"I am available to start {value}"
+
+
+def apply_availability_placeholder(text: str, intake: dict[str, Any]) -> str:
+    return text.replace("@@AVAILABILITY@@", start_date_sentence(intake))
 
 
 def enclosure_lines(intake: dict[str, Any]) -> list[str]:
@@ -388,17 +451,20 @@ def build_cover_letter_context(
     selected_evidence: list[dict[str, Any]],
 ) -> dict[str, str]:
     source_line = "I came across this opportunity via the Bosch careers page" if "bosch.com/careers" in intake.get("job_url", "") else "I came across this opportunity through the advertised job posting"
-    opening = paragraph(
+    opening = intake.get("cover_letter_opening") or paragraph(
         f"I am applying for the {intake['job_title']} position at {intake['company_name']}",
         source_line,
         "I can contribute with structured business analysis, clear requirement definition, and reliable operational follow-through",
     )
     body_one, body_two = summarize_evidence_for_cover_letter(selected_evidence)
-    motivation = paragraph(
+    body_one = intake.get("cover_letter_body_one") or body_one
+    body_two = intake.get("cover_letter_body_two") or body_two
+    motivation = intake.get("cover_letter_motivation") or paragraph(
         intake["why_company"],
         "I am particularly motivated by companies where digital work stays close to operational reality and measurable execution",
     )
-    closing = paragraph(
+    custom_closing = intake.get("cover_letter_closing")
+    closing = apply_availability_placeholder(custom_closing, intake) if custom_closing else paragraph(
         f"I would welcome the opportunity to discuss how I can support {intake['company_name']} in this role",
         start_date_sentence(intake),
         "I look forward to an interview",
@@ -434,17 +500,20 @@ def build_cover_letter_html_context(
     selected_evidence: list[dict[str, Any]],
 ) -> dict[str, str]:
     source_line = "I came across this opportunity via the Bosch careers page" if "bosch.com/careers" in intake.get("job_url", "") else "I came across this opportunity through the advertised job posting"
-    plain_opening = paragraph(
+    plain_opening = intake.get("cover_letter_opening") or paragraph(
         f"I am applying for the {intake['job_title']} position at {intake['company_name']}",
         source_line,
         "I can contribute with structured business analysis, clear requirement definition, and reliable operational follow-through",
     )
     plain_body_one, plain_body_two = summarize_evidence_for_cover_letter(selected_evidence)
-    motivation = paragraph(
+    plain_body_one = intake.get("cover_letter_body_one") or plain_body_one
+    plain_body_two = intake.get("cover_letter_body_two") or plain_body_two
+    motivation = intake.get("cover_letter_motivation") or paragraph(
         intake["why_company"],
         "I am particularly motivated by companies where digital work stays close to operational reality and measurable execution",
     )
-    plain_closing = paragraph(
+    custom_closing = intake.get("cover_letter_closing")
+    plain_closing = apply_availability_placeholder(custom_closing, intake) if custom_closing else paragraph(
         f"I would welcome the opportunity to discuss how I can support {intake['company_name']} in this role",
         start_date_sentence(intake),
         "I look forward to an interview",
@@ -473,7 +542,7 @@ def build_cover_letter_html_context(
 
 
 def compile_tex(tex_path: Path) -> None:
-    subprocess.run(
+    result = subprocess.run(
         [
             "latexmk",
             "-pdf",
@@ -482,11 +551,29 @@ def compile_tex(tex_path: Path) -> None:
             tex_path.name,
         ],
         cwd=tex_path.parent,
-        check=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
-        text=True,
     )
+    if result.returncode != 0:
+        output = result.stdout.decode("utf-8", errors="replace")
+        raise subprocess.CalledProcessError(
+            result.returncode,
+            result.args,
+            output=output,
+            stderr=None,
+        )
+
+
+def archive_cover_letter_pdf(
+    cover_letter_dir: Path,
+    profile: dict[str, Any],
+    intake: dict[str, Any],
+    timestamp: str,
+) -> Path:
+    generated_pdf = cover_letter_dir / "cover_letter.pdf"
+    archived_pdf = cover_letter_dir / build_pdf_filename("cover-letter", profile, intake, timestamp)
+    shutil.move(generated_pdf, archived_pdf)
+    return archived_pdf
 
 
 def build_generated_resume_data(
@@ -528,14 +615,14 @@ def build_generated_resume_data(
         for project in profile["projects"]
     ]
 
-    role_skills = build_role_skills(profile, role, intake)
+    role_skills = intake.get("cv_skills_override") or build_role_skills(profile, role, intake)
 
     return {
         "name": profile["name"],
         "initials": profile["initials"],
         "location": profile["location"],
         "locationLink": profile["location_link"],
-        "about": role.get("about", profile["headline"]),
+        "about": intake.get("cv_about_override") or role.get("about", profile["headline"]),
         "summary": summary_text,
         "avatarUrl": profile["avatar_url"],
         "personalWebsiteUrl": profile["website"],
@@ -687,12 +774,13 @@ def main() -> None:
             f"Valid options: {', '.join(summary_version_map.keys())}."
         )
     selected_summary = summary_version_map[selected_summary_version]
+    selected_summary_text = intake.get("cv_summary_override") or selected_summary["text"]
 
     primary_role = get_role(role_profiles, intake["primary_role"])
     target_role_ids = intake.get("target_roles") or [intake["primary_role"]]
     target_roles = [get_role(role_profiles, role_id) for role_id in target_role_ids]
 
-    company_slug = slugify(intake["company_name"])
+    company_slug = package_slug(intake)
     output_root = Path(args.output).resolve() if args.output else DEFAULT_OUTPUTS_DIR / company_slug
     cover_letter_dir = output_root / "cover-letter"
     cv_dir = output_root / "cv"
@@ -720,6 +808,8 @@ def main() -> None:
     }
 
     dev_server_process: subprocess.Popen[str] | None = None
+    render_id = render_timestamp()
+
     if args.compile_pdf:
         dev_server_process = ensure_render_server(args.render_base_url)
 
@@ -730,7 +820,7 @@ def main() -> None:
             role,
             intake,
             selected_for_cv,
-            selected_summary["text"],
+            selected_summary_text,
         )
         json_path = cv_dir / f"{role['id']}.json"
         public_json_path = PUBLIC_CV_DATA_DIR / company_slug / f"{role['id']}.json"
@@ -739,7 +829,7 @@ def main() -> None:
         write_json(CURRENT_PUBLIC_CV_PATH, role_payload)
 
         render_url = f"{args.render_base_url}/generated-cv/"
-        pdf_path = cv_dir / f"{role['id']}.pdf"
+        pdf_path = cv_dir / build_pdf_filename("resume", profile, intake, render_id)
         if args.compile_pdf:
             print_cv_pdf(render_url, pdf_path)
             page_count = get_pdf_page_count(pdf_path)
@@ -765,7 +855,7 @@ def main() -> None:
 
     if args.compile_pdf:
         compile_tex(cover_letter_dir / "cover_letter.tex")
-        cover_letter_pdf = cover_letter_dir / "cover_letter.pdf"
+        cover_letter_pdf = archive_cover_letter_pdf(cover_letter_dir, profile, intake, render_id)
         cover_letter_pages = get_pdf_page_count(cover_letter_pdf)
         if cover_letter_pages > 1:
             raise SystemExit(

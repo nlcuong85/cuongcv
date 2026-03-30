@@ -65,6 +65,11 @@ Workflow rules:
 - Prefer deterministic edits to the structured JSON and templates over ad hoc document rewriting.
 - Run the rule checker for CV wording or cover-letter logic changes before shipping.
 - Treat the 2-page CV limit as a hard rule for both the public CV and generated CV PDFs. If a CV cannot fit within 2 pages cleanly, report what should be kept, shortened, or removed instead of forcing unreadable layout changes.
+- For application outputs, use folder names based on `company + job title`, not just the company name.
+- Rendered PDFs must use the naming convention:
+  - `resume + candidate name + job title + timestamp`
+  - `cover-letter + candidate name + job title + timestamp`
+- Never delete an earlier rendered PDF version just because a newer one was generated. New runs should create new timestamped PDFs.
 
 ## Commands
 

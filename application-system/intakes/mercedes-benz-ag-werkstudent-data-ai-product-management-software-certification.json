@@ -1,0 +1,48 @@
+{
+  "company_name": "Mercedes-Benz AG",
+  "company_location": "Mercedesstraße 120, 70372 Stuttgart, Germany",
+  "contact_name": "",
+  "contact_title": "HR Services",
+  "contact_lookup_status": "No named recruiter was visible on the live StepStone and Mercedes-Benz careers postings checked on 2026-03-28. The posting refers applicants to HR Services via myhrservice@mercedes-benz.com and +49 711 17 99000, so the letter uses HR Services as the fallback.",
+  "job_title": "Werkstudent:in Data & AI Product Management Software Certification",
+  "job_url": "https://www.stepstone.de/stellenangebote--Werkstudentin-Data-AI-Product-Management-Software-Certification-Boeblingen-Mercedes-Benz-AG--13787074-inline.html",
+  "language": "english",
+  "primary_role": "product_manager",
+  "target_roles": [
+    "product_manager"
+  ],
+  "summary_version": "strongest_balanced",
+  "why_company": "Mercedes-Benz AG stands out to me because this role combines data-informed product work, user feedback analysis, KPI-based improvement, and early AI use cases in a software-certification environment with real operational impact.",
+  "job_description": "Mercedes-Benz AG is hiring a working student in Data & AI Product Management Software Certification in Boeblingen. The role supports idea analysis and evaluation, testing new solution approaches, structuring and preparing data for data-driven decisions, analyzing user feedback to improve processes and digital products, carrying out benefit and impact analysis through suitable KPIs, and collaborating closely with product management, development, and other stakeholders in an international environment where English is often the project language.",
+  "requirements": [
+    "Ongoing studies in business informatics, computer science, data science, industrial engineering, or a comparable field",
+    "Interest in process analysis and optimization and user-centered solutions",
+    "Affinity for data, AI technologies, and innovative digital products",
+    "Willingness to understand different user groups",
+    "Ideally first knowledge of software architecture or software development",
+    "Structured, independent working style, analytical thinking, and teamwork"
+  ],
+  "cv_about_override": "Product and business analysis professional with strong experience in research, operations-heavy delivery, and digital product improvement, now building deeper focus in data-informed product management and AI-supported workflows.",
+  "cv_summary_override": "Experienced product and business analysis professional with a strong foundation in research, requirements, stakeholder alignment, rollout, and continuous improvement. I have worked across eCommerce, LegalTech, healthcare, and digital operations, with a focus on structured execution and measurable business impact. This makes me well suited for working student roles that combine data-informed product decisions, user feedback analysis, KPI-based improvement, and collaboration across product, development, and business teams.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Operations-heavy Product Delivery",
+    "AI-assisted Product Workflows",
+    "Jira",
+    "Confluence",
+    "Data Analysis",
+    "User Feedback Analysis",
+    "KPI Definition and Tracking",
+    "Product Discovery",
+    "Workflow Improvement",
+    "SQL",
+    "Cross-functional Delivery"
+  ],
+  "cover_letter_opening": "I am applying for the position of Werkstudent:in Data & AI Product Management Software Certification at Mercedes-Benz AG. This role stands out to me because it combines data-informed product work, user feedback analysis, KPI-based improvement, and practical AI use cases in exactly the direction I want to develop further.",
+  "cover_letter_body_one": "In my previous roles across digital products and operations-heavy environments, I worked closely with stakeholders, engineers, designers, and business teams to structure requirements, evaluate ideas, improve workflows, and support execution. That experience gave me a strong foundation in turning user and business needs into practical product decisions and keeping delivery aligned with measurable outcomes.",
+  "cover_letter_body_two": "Through my work across marketplace products, regulated onboarding, healthcare workflow digitization, and AI-assisted side projects, I have built experience in analyzing user feedback, preparing structured information for decision-making, coordinating across functions, and improving digital processes through iterative refinement. This is closely aligned with the mix of idea evaluation, data preparation, KPI-based analysis, and cross-functional collaboration described in your posting.",
+  "cover_letter_motivation": "I am especially interested in this role because your Software Certification team appears to sit at the intersection of digital product improvement, AI experimentation, and operational process enhancement. That combination matches both my current strengths and the technical direction in which I want to continue growing.",
+  "cover_letter_closing": "@@AVAILABILITY@@. I would welcome the opportunity to discuss how I can support the Data & AI Product Management Software Certification team in an interview."
+}

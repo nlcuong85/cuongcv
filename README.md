@@ -84,6 +84,7 @@ This repository also includes a CLI-first application workflow under [applicatio
 - an HTML preview
 - one requested CV variant by default
 - PDFs compiled from LaTeX for the cover letter and browser print for the CV
+- a summary-version selection workflow for JD-specific CV positioning
 
 Example:
 
@@ -94,6 +95,25 @@ python3 application-system/scripts/generate_application.py \
 ```
 
 The generated CV PDF reuses the main site layout and print styles through `/generated-cv`, so the job-application engine no longer maintains a separate LaTeX CV design.
+
+### German CV / Cover-Letter Rules
+
+This repo now follows a stricter Germany-oriented application standard:
+
+- the public CV must stay visually calm, easy to scan, and recruiter-safe
+- the online `About` section should stay conservative and evidence-oriented
+- generated CVs use stored summary variants from `application-system/data/summary_versions.json`
+- the default generated summary is `strongest_balanced`
+- when a JD clearly leans toward another summary style, the generator should stop and ask for a `summary_version`
+- cover letters should stay one page, formal, and evidence-heavy rather than motivational fluff
+
+The reusable rule checker lives outside the repo in the linked skill:
+
+```bash
+python3 /Users/pmlecuong/.codex/skills/job-search-cuong/scripts/check_application_rules.py \
+  --resume-data src/data/resume-data.tsx \
+  --summary-versions application-system/data/summary_versions.json
+```
 
 ## 📁 Project Structure
 

@@ -1,0 +1,30 @@
+{
+  "company_name": "AUDI AG",
+  "company_location": "Auto-Union-Str. 1, 85057 Ingolstadt, Germany",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter was exposed in Audi's official open-jobs feed or the public posting PDF checked on 2026-03-27, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Praktikum – Digitales After Sales Business (w/m/d)",
+  "job_url": "https://careers.audi.com/EREC_OPEN_DESTINATION/sap/hcmx/download_na/job/CE6634AF2C021FE188BA957132A34138/Praktikum%20%e2%80%93%20Digitales%20After%20Sales%20Business%20(w_m_d).pdf?sap-client=200&sap-language=de",
+  "language": "english",
+  "primary_role": "product_manager",
+  "target_roles": [
+    "product_manager"
+  ],
+  "summary_version": "strongest_balanced",
+  "why_company": "Audi's After Sales transformation stands out to me because it connects digital strategy, customer experience, online service models, and structured execution in one high-impact business area.",
+  "job_description": "Audi is looking for an intern to support the digital After Sales strategy, help build a central portfolio for After Sales digitalization initiatives, contribute to the operationalization of strategy across intelligent vehicle services and the digital customer journey, support the concept of an online sales model for digital After Sales offers, help identify and structure an AI use case portfolio, contribute to CRM strategy development, and prepare management materials in a cross-functional environment.",
+  "requirements": [
+    "Studies in business, business informatics, industrial engineering, or a comparable field",
+    "Good English skills in speaking and writing",
+    "Initial knowledge of digital business models, data analysis, or innovation methods",
+    "Confident use of MS Office, especially PowerPoint and Excel",
+    "Interest in digitalization trends, customer experience, and intelligent vehicle services",
+    "Structured and independent working style",
+    "Clear communication and collaborative work"
+  ],
+  "cover_letter_opening": "I am applying for the Praktikum – Digitales After Sales Business (w/m/d) position at AUDI AG. This opportunity stands out to me because it brings together digital strategy, customer experience, portfolio thinking, and operational execution in a business area that is actively transforming.",
+  "cover_letter_body_one": "At SCCK.vn, I worked on a marketplace product where digital decisions had to reflect real user behavior, operational constraints, and scalable execution rather than surface-level features. I coordinated across operations, engineering, and product design and helped shape workflows around trust, onboarding, category complexity, and practical buying journeys.",
+  "cover_letter_body_two": "In later roles across regulated onboarding and healthcare workflow digitization, I strengthened my ability to structure requirements, support cross-functional delivery, prepare decision-ready materials, and connect business needs with practical implementation. That background is highly relevant to digital portfolio work, AI-supported process improvement, CRM-related initiatives, and the operationalization of strategy.",
+  "cover_letter_motivation": "I am particularly interested in this role because Audi After Sales is working at the intersection of digital business models, customer journey design, intelligent services, and measurable process improvement. That combination matches the kind of product and operational work where I can contribute strongly."
+}

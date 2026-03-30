@@ -1,0 +1,47 @@
+{
+  "company_name": "Stadtwerke Stuttgart GmbH",
+  "company_location": "Kesselstraße 21-23, 70327 Stuttgart, Germany",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter was visible on the live StepStone posting checked on 2026-03-28, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Werkstudent agiles Projektmanagement (m/w/d)",
+  "job_url": "https://www.stepstone.de/stellenangebote--Werkstudent-agiles-Projektmanagement-m-w-d-Stuttgart-Stadtwerke-Stuttgart-GmbH--13756190-inline.html?rltr=66_16_25_seorl_m_0_0_1_0_0_0",
+  "language": "english",
+  "primary_role": "product_owner",
+  "target_roles": [
+    "product_owner"
+  ],
+  "summary_version": "product_delivery",
+  "why_company": "Stadtwerke Stuttgart stands out to me because this role combines agile coordination, structured project support, strong visual communication, and real work on sustainability and energy-transition programs.",
+  "job_description": "Stadtwerke Stuttgart is hiring a working student in agile project management in Stuttgart. The role supports the interdisciplinary program Volle Kraft with visualization of complex content in PowerPoint and Miro, maintenance of program and project steering tools such as Miro and Monday, support for program leadership through documentation and review of agile events, and project work around CO2 neutrality and renewable energy. The role is part-time, home office possible, and expects 12 to 20 hours across at least two days per week.",
+  "requirements": [
+    "Current studies in industrial engineering, economics, business psychology, renewable energy, sustainability communication, business informatics, social sciences, or a comparable field",
+    "Initial experience in project management and agile methods is an advantage",
+    "Strong interest in visualizing complex content in PowerPoint or Miro",
+    "Interest in agile methods, organizational development, multiproject management, and new work",
+    "Strong communication skills and independent working style"
+  ],
+  "cv_about_override": "Product and business analysis professional focused on structured delivery, agile collaboration, stakeholder communication, and translating complex work into clear execution artifacts.",
+  "cv_summary_override": "Experienced product and business analysis professional with a strong foundation in research, requirements, stakeholder alignment, rollout, and continuous improvement. I have worked across eCommerce, LegalTech, healthcare, and digital operations, and I am particularly strong in structured execution, cross-functional coordination, and turning complex topics into practical delivery decisions. This makes me well suited for working student roles that combine agile project support, visualization, documentation, and multiproject coordination.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Operations-heavy Product Delivery",
+    "AI-assisted Product Workflows",
+    "Jira",
+    "Confluence",
+    "Agile Collaboration",
+    "Miro",
+    "Project Coordination",
+    "Documentation",
+    "Management Presentations",
+    "Cross-functional Delivery",
+    "Workflow Improvement"
+  ],
+  "cover_letter_opening": "I am applying for the position of Werkstudent agiles Projektmanagement (m/w/d) at Stadtwerke Stuttgart GmbH. This role stands out to me because it combines agile coordination, visualization of complex topics, structured project support, and meaningful work in the energy-transition context.",
+  "cover_letter_body_one": "In my previous roles across digital products and operations-heavy environments, I worked closely with stakeholders, engineers, designers, and business teams to structure requirements, improve workflows, and support execution. That experience gave me a strong foundation in organizing complex work, documenting progress clearly, and helping teams move from discussion to practical delivery.",
+  "cover_letter_body_two": "I am particularly comfortable in roles that connect structured analysis with communication and coordination. Through my work across marketplace products, regulated onboarding, and healthcare workflow digitization, I have built experience in preparing decision-ready materials, facilitating cross-functional collaboration, and turning complex information into clear artifacts that support execution. This is closely aligned with the mix of visualization, tool maintenance, event follow-up, and agile program support described in your posting.",
+  "cover_letter_motivation": "I am especially interested in this role because Stadtwerke Stuttgart combines agile ways of working with tangible public impact through CO2 neutrality, renewable energy, and organizational development. That combination matches both my current strengths and the type of work I want to keep building on.",
+  "cover_letter_closing": "@@AVAILABILITY@@. I would welcome the opportunity to discuss how I can support your team in an interview."
+}

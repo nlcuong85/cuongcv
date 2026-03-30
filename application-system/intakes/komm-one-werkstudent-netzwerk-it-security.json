@@ -1,0 +1,47 @@
+{
+  "company_name": "Komm.ONE",
+  "company_location": "Krailenshaldenstraße 44, 70469 Stuttgart, Germany",
+  "contact_name": "Tamara Stengel",
+  "contact_title": "Recruiter",
+  "contact_lookup_status": "Named recruiter Tamara Stengel was provided by the user on 2026-03-28, so the letter uses that verified contact instead of the fallback.",
+  "job_title": "Werkstudent Netzwerk/IT-Security (w/m/d)",
+  "job_url": "https://www.stepstone.de/stellenangebote--Werkstudent-Netzwerk-IT-Security-w-m-d-Stuttgart-Freiburg-Heidelberg-Heilbronn-Karlsruhe-Reutlingen-oder-Ulm-Komm-ONE--13802103-inline.html?rltr=45_20_25_seorl_m_0_0_0_0_1_0",
+  "language": "english",
+  "primary_role": "business_analyst",
+  "target_roles": [
+    "business_analyst"
+  ],
+  "summary_version": "strongest_balanced",
+  "why_company": "Komm.ONE stands out to me because this role combines structured technical support, security-related infrastructure work, documentation, and rollout support in a public-sector IT environment where reliability and process discipline matter.",
+  "job_description": "Komm.ONE is hiring a working student in network and IT security for Stuttgart, Freiburg, Heidelberg, Heilbronn, Karlsruhe, Reutlingen, or Ulm. The role supports standardized configuration adjustments on routers, switches, proxy systems, and firewalls, rollout support for VPN connections, maintenance of online documentation and knowledge bases, and collaboration in projects. The role is part-time, home-office possible, and expects availability up to 20 hours per week.",
+  "requirements": [
+    "Bachelor or Master studies in computer science or business informatics from the 3rd semester onward",
+    "Curiosity and interest in network and security solutions",
+    "Initial practical experience is welcome but not required",
+    "Availability up to a maximum of 20 hours per week, with possible additional work during semester breaks",
+    "Interest in documentation, rollout support, and project collaboration"
+  ],
+  "cv_about_override": "Business analysis and digital operations professional building stronger technical depth in systems-oriented work, structured delivery, and IT-adjacent coordination.",
+  "cv_summary_override": "Experienced business analysis and product professional with a strong foundation in research, requirements, stakeholder alignment, rollout, and continuous improvement. Alongside my earlier business background, I am building deeper technical capability through Software Engineering studies at Heilbronn University and hands-on work across digital operations, structured problem-solving, and cross-functional delivery. This makes me well suited for working student roles that combine documentation, rollout support, systems-oriented work, and practical coordination in technical environments.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "Operations-heavy Product Delivery",
+    "Jira",
+    "Confluence",
+    "Systems Thinking",
+    "Linux",
+    "IT Infrastructure Support",
+    "Process Mapping",
+    "Rollout Coordination",
+    "Knowledge Base Maintenance",
+    "Cross-functional Delivery"
+  ],
+  "cover_letter_opening": "I am applying for the position of Werkstudent Netzwerk/IT-Security (w/m/d) at Komm.ONE. This role stands out to me because it combines structured technical support, network and security-related tasks, documentation, and rollout work in exactly the kind of practical IT environment where I want to continue developing.",
+  "cover_letter_body_one": "In my previous roles across digital products and operations-heavy environments, I worked closely with stakeholders, engineers, and business teams to structure requirements, improve workflows, document processes, and support execution. That experience gave me a strong foundation in structured problem-solving, coordination, and reliable follow-through in environments where operational clarity matters.",
+  "cover_letter_body_two": "Through my current Software Engineering studies at Heilbronn University, my Business Information Systems background, and my hands-on work across SQL, automation, digital operations, and AI-assisted tools, I have been intentionally moving toward more technical and systems-oriented work. This makes me particularly interested in a role where I can contribute to configuration support, VPN rollout activities, documentation, and project collaboration while continuing to grow on the infrastructure and security side.",
+  "cover_letter_motivation": "I am especially interested in this role because Komm.ONE combines public-sector impact with practical IT operations and security-related infrastructure work. That combination matches both my current strengths in structured execution and my intention to build stronger technical depth in real delivery environments.",
+  "cover_letter_closing": "@@AVAILABILITY@@. If there are specific German-language requirements for this role beyond what is stated in the posting, I would be grateful for clarification. I would welcome the opportunity to discuss how I can support your team in an interview."
+}

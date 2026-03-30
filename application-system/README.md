@@ -10,6 +10,13 @@ It is designed for AI-agent usage from the project root. The generator accepts o
 - optional PDFs compiled from LaTeX for the cover letter and browser print for the CV
 - a manifest that explains which evidence blocks were used
 
+Default output naming rules:
+
+- output folder: `company-name + job-title`
+- CV PDF: `resume + your name + job title + timestamp`
+- cover-letter PDF: `cover-letter + your name + job title + timestamp`
+- reruns must create new timestamped PDFs instead of overwriting older rendered PDFs
+
 ## Why this exists
 
 The public CV site in this repository is still the canonical profile surface, but job applications need a second layer:
@@ -41,6 +48,9 @@ For cover letters, the generator should also follow these rules:
 - search for a named recruiter or contact person first
 - prefer official career pages or official company contact surfaces
 - use `Hiring Team` only as a fallback when a named contact cannot be verified
+- derive availability from the current date by default instead of using vague wording
+- default to 14 days from the current date as the available start date
+- explicitly state `up to 20 hours per week` in line with the current student-visa constraint unless the user overrides it
 - keep the final layout conservative and German-application friendly
 - use the company block on the left and sender block on the right
 - include the signature image from `application-system/signature.png`
@@ -120,6 +130,7 @@ The intake file is plain JSON. Expected fields:
 - `primary_role`
 - `target_roles` (optional array)
 - `start_date`
+- `availability_override` (optional explicit replacement for the default date-based availability sentence)
 - `why_company`
 - `job_description`
 - `requirements`
@@ -133,6 +144,15 @@ The CV PDF reuses the main Next.js CV layout instead of a separate LaTeX templat
 1. the generator writes role-specific resume JSON to `public/generated-cv-data/<company>/<role>.json`
 2. the app renders it at `/cuongcv/generated-cv/?company=<company>&role=<role>`
 3. headless Chrome prints that route to PDF using the site's existing print styles
+
+## Output conventions
+
+- Default folder example:
+  - `outputs/schwarz-digits-werkstudent-praktikant-cloud-finops-technical-cost-optimization-analytics/`
+- Default PDF example:
+  - `resume-cuong-le-nguyen-werkstudent-praktikant-cloud-finops-technical-cost-optimization-analytics-20260327-231500.pdf`
+  - `cover-letter-cuong-le-nguyen-werkstudent-praktikant-cloud-finops-technical-cost-optimization-analytics-20260327-231500.pdf`
+- Keep older timestamped PDFs. Do not delete earlier rendered PDF versions just because a new run exists.
 
 ## Future agent workflow
 

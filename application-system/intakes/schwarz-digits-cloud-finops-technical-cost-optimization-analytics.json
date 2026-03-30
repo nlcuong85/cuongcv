@@ -1,0 +1,48 @@
+{
+  "company_name": "Schwarz Digits",
+  "company_location": "Ferdinand Braun Straße 4/2, 74074 Heilbronn, Germany",
+  "contact_name": "Larissa Blümich",
+  "contact_title": "Recruiterin",
+  "contact_lookup_status": "Named recruiter verified from the official Schwarz Digits posting page on 2026-03-27.",
+  "job_title": "Werkstudent / Praktikant (m/w/d) Cloud FinOps - Technical Cost Optimization & Analytics",
+  "job_url": "https://www.linkedin.com/jobs/view/4383918114/",
+  "language": "english",
+  "primary_role": "product_manager",
+  "target_roles": [
+    "product_manager"
+  ],
+  "summary_version": "strongest_balanced",
+  "why_company": "Schwarz Digits stands out to me because this role sits exactly between technical depth, analytics, and measurable business impact. That is the direction I want to develop further through practical work in a structured environment.",
+  "job_description": "Schwarz Digits is hiring a working student or intern in Cloud FinOps with a focus on technical cost optimization and analytics. The role supports cost transparency, analytical evaluation of cloud usage, optimization opportunities, collaboration with technical teams, and structured reporting in a cloud-native environment.",
+  "requirements": [
+    "Interest in cloud-native systems and technical cost optimization",
+    "Analytical mindset and comfort with data-driven work",
+    "Ability to support reporting, dashboards, and structured analysis",
+    "Strong communication with technical and business stakeholders",
+    "Interest in building technical depth through real operational work",
+    "Student profile aligned with business informatics, software engineering, or adjacent technical-business programs",
+    "Excel, PowerPoint, analytics, cloud, cost optimization, reporting, governance"
+  ],
+  "cv_about_override": "Business analysis and product professional building stronger technical depth in analytics, systems-oriented work, and digital operations.",
+  "cv_summary_override": "Experienced product and business analysis professional with a strong foundation in research, requirements, stakeholder alignment, and structured execution. Alongside my earlier business background, I am now deepening my technical path through Software Engineering studies at Heilbronn University and Business Information Systems studies at Vietnamese-German University. My hands-on work across SQL, automation, AI-assisted workflows, and digital operations has strengthened my interest in systems-oriented analysis, technical decision support, and measurable operational improvement.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Operations-heavy Product Delivery",
+    "AI-assisted Product Workflows",
+    "Jira",
+    "Confluence",
+    "SQL",
+    "Data Analysis",
+    "Systems Thinking",
+    "Linux",
+    "Docker",
+    "Monitoring and Reporting",
+    "Excel"
+  ],
+  "cover_letter_opening": "I am applying for the position of Werkstudent / Praktikant (m/w/d) Cloud FinOps - Technical Cost Optimization & Analytics at Schwarz Digits. This role stands out to me because it combines technical learning, analytical thinking, and measurable business impact in exactly the direction I want to develop further.",
+  "cover_letter_body_one": "My background began more on the business and product side, but my academic path and recent work have moved me steadily toward technical analysis and systems-oriented problem solving. In past roles, I worked across digital products and operations-heavy environments where I had to understand systems, structure requirements clearly, support implementation, and translate operational problems into practical actions.",
+  "cover_letter_body_two": "What makes this role especially attractive is the opportunity to build stronger depth in technical analysis and cloud-related cost optimization. Through my current Software Engineering studies at Heilbronn University, my Business Information Systems background, and my hands-on work across SQL, automation, AI-assisted workflows, and digital operations, I have been intentionally moving toward more technical and system-oriented work. I am not positioning myself as a finished cloud specialist already, but as someone with a strong analytical and operational foundation who can contribute while learning fast in a technical environment.",
+  "cover_letter_motivation": "I am particularly interested in Schwarz Digits because Cloud FinOps connects architecture awareness, cost discipline, analytics, and operational execution. That combination matches both my existing strengths and the technical direction I am actively building toward."
+}

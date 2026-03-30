@@ -1,0 +1,48 @@
+{
+  "company_name": "TransnetBW GmbH",
+  "company_location": "Osloer Str. 15-17, 70173 Stuttgart, Germany",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter was visible on the live StepStone posting checked on 2026-03-28, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Werkstudent Qualitätsmanagement Netzbauprojekte (w/m/d)",
+  "job_url": "https://www.stepstone.de/stellenangebote----13702131-inline.html?CID=R_EM_IJM_DE_ST_00100_27032026_jobShowMore&lang=de&adjust_t=1b4ytiiw_1btvtyrs&adjust_campaign=IJM&state=0",
+  "language": "english",
+  "primary_role": "business_analyst",
+  "target_roles": [
+    "business_analyst"
+  ],
+  "summary_version": "business_analysis",
+  "why_company": "TransnetBW stands out to me because this role combines quality management, process improvement, documentation, and digital tooling in a critical-infrastructure environment where structured execution matters.",
+  "job_description": "TransnetBW is hiring a working student in quality management for grid construction projects in Stuttgart. The role supports real quality-management projects, workshops and training, further development of quality documentation, tools and templates, preparation of presentations and reports for management reviews, process analysis, identification of improvement potential, and digital work with Power BI, SharePoint, and Power Automate.",
+  "requirements": [
+    "Student in industrial engineering, business informatics, business administration, engineering, or a related field",
+    "Interest in quality management, processes, standards, and digital tools",
+    "Initial exposure to ISO 9001, PDCA, or quality-management methods is beneficial",
+    "Confident use of MS Office; SharePoint, Power BI, Power Automate, or SAP are helpful",
+    "Analytical, structured, and team-oriented working style",
+    "Interest in documentation, reporting, workflows, and process improvement"
+  ],
+  "cv_about_override": "Business analysis and digital operations professional focused on process improvement, documentation, reporting, and structured delivery in operations-heavy environments.",
+  "cv_summary_override": "Experienced business analysis and product professional with a strong foundation in research, requirements, stakeholder alignment, documentation, and continuous improvement. I have worked across eCommerce, LegalTech, healthcare, and digital operations, with a focus on structured execution, process clarity, and measurable operational impact. This makes me well suited for working student roles that combine quality management, workflows, reporting, and digital tooling.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "Operations-heavy Product Delivery",
+    "Jira",
+    "Confluence",
+    "Process Mapping",
+    "Workflow Improvement",
+    "Data Analysis",
+    "Monitoring and Reporting",
+    "Management Presentations",
+    "Excel",
+    "Cross-functional Delivery"
+  ],
+  "cover_letter_opening": "I am applying for the position of Werkstudent Qualitätsmanagement Netzbauprojekte (w/m/d) at TransnetBW GmbH. This role stands out to me because it combines process work, documentation, reporting, and digital tooling in a structured project environment with direct operational impact.",
+  "cover_letter_body_one": "In my previous roles across digital products and operations-heavy environments, I worked closely with stakeholders, engineers, and business teams to structure requirements, improve workflows, and support execution. That experience gave me a strong foundation in documentation, process thinking, and turning operational needs into practical improvements.",
+  "cover_letter_body_two": "I am particularly comfortable in roles that connect structured analysis with delivery support. Through my work across marketplace products, regulated onboarding, and healthcare workflow digitization, I have built experience in documenting processes, supporting cross-functional coordination, preparing decision-ready materials, and using data and feedback to improve operational outcomes.",
+  "cover_letter_motivation": "I am especially interested in this role because TransnetBW combines quality management with digital tools such as reporting, workflow support, and process optimization in a critical-infrastructure setting. That combination matches both my current strengths and the direction in which I want to continue developing.",
+  "cover_letter_closing": "@@AVAILABILITY@@. If there are specific German-language requirements for this role beyond what is stated in the posting, I would be grateful for clarification. I would welcome the opportunity to discuss how I can support your team in an interview."
+}
