@@ -1,0 +1,31 @@
+{
+  "company_name": "realworld one",
+  "company_location": "Munich, Germany",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter or contact was visible in the Arbeitnow posting checked on 2026-04-03, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Solution Delivery Associate (Working Student / Intern)",
+  "job_url": "https://www.arbeitnow.com/jobs/companies/realworld-one/solution-delivery-associate-working-student-intern-munich-365558",
+  "language": "english",
+  "primary_role": "product_owner",
+  "target_roles": [
+    "product_owner"
+  ],
+  "summary_version": "product_delivery",
+  "start_date": "17 April 2026",
+  "why_company": "realworld one stands out to me because this role connects client delivery, structured coordination, and practical XR software work in a fast-moving environment where delivery quality directly affects customer value. I am especially interested in learning how immersive technology is delivered for life sciences clients while keeping milestones, documentation, and stakeholder communication disciplined.",
+  "job_description": "realworld one is hiring a Solution Delivery Associate (Working Student / Intern) in Munich to support delivery of XR software solutions for global life sciences clients. The role helps manage delivery from kick-off to go-live, maintains project plans, milestones, action logs, and documentation, prepares client materials such as status updates, milestone reviews, and roll-out or onboarding content, tracks risks and dependencies, and contributes to templates, playbooks, and internal routines. The job is intended for students in IT, economics, science, or related fields, with experience in software project coordination, delivery support, consulting, or product-related work. English fluency is required and German is a plus.",
+  "requirements": [
+    "Enrolled in a bachelor’s or master’s program in IT, economics, science, or related fields",
+    "Prior experience in software project coordination, delivery support, consulting, or product-related roles",
+    "Strong interest in working in a performance-driven, cross-functional, and international team",
+    "Proactive, solution-oriented mindset and strong problem-solving skills under pressure",
+    "Fluent in English; German is a plus",
+    "Background in science, the medical or pharmaceutical industry, or hands-on VR/XR/MR technologies is a plus"
+  ],
+  "cover_letter_opening": "I am applying for the Solution Delivery Associate (Working Student / Intern) position at realworld one. The role stands out to me because it combines delivery coordination, client communication, and structured follow-through in a setting where software delivery must support real customer outcomes.",
+  "cover_letter_body_one": "In my previous roles across product delivery and operations-heavy environments, I have worked closely with stakeholders, engineers, and business teams to structure requirements, manage priorities, and keep delivery moving with clear documentation and coordination. That experience taught me how to work across functions, keep projects organized, and support execution from planning through rollout.",
+  "cover_letter_body_two": "This is why the role at realworld one is a strong match for me. I am comfortable with project plans, action logs, status updates, and milestone-oriented work, and I enjoy the kind of delivery support that turns complex work into a predictable and useful process for the team and for clients. The opportunity to do that in the context of XR software for life sciences clients is especially interesting to me.",
+  "cover_letter_motivation": "I am especially interested in realworld one because the company combines innovative XR technology with practical client delivery in an industry where reliability and clarity matter. I would value the chance to contribute to that delivery discipline while learning more about immersive software in life sciences.",
+  "cover_letter_closing": "I am available to start from 17 April 2026 and can work up to 20 hours per week in line with my current student visa. I would welcome the opportunity to discuss how I can support your Solution Delivery team in an interview."
+}

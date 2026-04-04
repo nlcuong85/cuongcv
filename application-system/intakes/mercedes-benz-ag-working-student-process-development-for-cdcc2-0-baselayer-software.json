@@ -1,0 +1,51 @@
+{
+  "company_name": "Mercedes-Benz AG",
+  "company_location": "Bela-Barenyi-Str Tor 14, 71063 Sindelfingen, Germany",
+  "contact_name": "Ms. Naeem",
+  "contact_title": "Mercedes-Benz AG Recruiting Contact",
+  "contact_lookup_status": "The official Mercedes-Benz careers posting for MER0003Y52 checked on 2026-04-01 lists Momna Naeem as the contact person. The letter uses Ms. Naeem in the salutation.",
+  "job_title": "Working student Process development for CDCC2.0 Baselayer Software",
+  "job_url": "https://jobs.mercedes-benz.com/enUS/working-student-process-development-for-cdcc20-baselayer-software-209117-mer0003y52",
+  "language": "english",
+  "primary_role": "business_analyst",
+  "target_roles": [
+    "business_analyst"
+  ],
+  "summary_version": "business_analysis",
+  "start_date": "from 01 May 2026",
+  "why_company": "Mercedes-Benz AG stands out to me because this role connects structured software-process work, ASPICE-compliant execution, continuous improvement, and team enablement inside the same MB.OS Baselayer Integration environment that originally drew my interest.",
+  "job_description": "Mercedes-Benz AG is hiring a working student in Process development for CDCC2.0 Baselayer Software in Sindelfingen within MB.OS Baselayer Integration. The team develops, integrates, and configures base layer software for the microcontroller that charges and controls the vehicle in an AUTOSAR-oriented environment. The role supports creation of ASPICE-compliant team and department processes, implementation and documentation of those processes, process-compliance collaboration with team members, continuous improvement based on feedback, and onboarding support for new colleagues.",
+  "requirements": [
+    "Current enrollment in a relevant degree program such as Computer Science or Electrical Engineering",
+    "Basic knowledge of ASPICE standards and SAFe/SCRUM",
+    "Good knowledge of German and English, both written and spoken",
+    "Confident handling of MS Office",
+    "Analytical mindset and strategic way of working",
+    "Strong organizational and communication skills",
+    "Ability to work independently and in a team",
+    "Proactive attitude and willingness to learn"
+  ],
+  "cv_about_override": "Business analysis professional building stronger technical depth in requirements engineering, systems-oriented work, and structured software delivery.",
+  "cv_summary_override": "Experienced business analysis and product professional with a strong foundation in requirements, workflow mapping, stakeholder alignment, and structured execution. Alongside my earlier business background, I am deepening my technical path through Software Engineering studies at Heilbronn University and Business Information Systems studies at Vietnamese-German University. My work across SQL, automation, digital operations, and cross-functional delivery has strengthened my interest in requirements engineering and technical coordination in structured software environments.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "AI-assisted Product Workflows",
+    "Jira",
+    "Confluence",
+    "Process Mapping",
+    "Acceptance Criteria",
+    "Systems Thinking",
+    "SQL",
+    "Cross-functional Delivery",
+    "Workflow Improvement",
+    "Linux"
+  ],
+  "cover_letter_opening": "Thank you for contacting me and suggesting this opportunity after reviewing my earlier application for the Working student Requirements Engineering for CDCC2.0 Baselayer Software Development role. After reading the Process development posting, I am pleased to apply because it stays within the same MB.OS Baselayer Integration environment while matching more directly with my strengths in structured documentation, process improvement, and cross-functional coordination.",
+  "cover_letter_body_one": "In my previous roles across digital products and operations-heavy environments, I worked with engineers, designers, and business stakeholders to structure requirements, document workflows, and support disciplined delivery. This gave me a strong foundation in turning complex needs into clear processes, usable documentation, and reliable follow-through in Jira, Confluence, and Scrum-based collaboration.",
+  "cover_letter_body_two": "After receiving this job description, I took time to read more about Automotive SPICE. What appeals to me is its focus on defined processes, traceable execution, and continuous improvement in automotive software development. That fits well with how I already work: clarifying responsibilities, documenting repeatable ways of working, supporting compliance, and improving processes based on feedback.",
+  "cover_letter_motivation": "Compared with the earlier requirements-engineering position, this process-development role is a stronger practical match for my current profile. I can contribute where process discipline, onboarding support, and agile teamwork matter, while quickly building deeper ASPICE context in the CDCC2.0 baselayer environment.",
+  "cover_letter_closing": "Thank you again for the opportunity. I am available to start from 01 May 2026 and can work up to 20 hours per week in line with my current student visa. While my German is still improving, I work confidently in English at C1 level with IELTS 7.5 and continue to strengthen my German. I would welcome the opportunity to speak with you."
+}

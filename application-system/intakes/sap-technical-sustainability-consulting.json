@@ -1,0 +1,34 @@
+{
+  "company_name": "SAP",
+  "company_location": "Walldorf, DE, 69190",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter or contact was visible on the SAP careers posting checked on 2026-04-03, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Werkstudent (w/m/d) - Technical Sustainability Consulting",
+  "job_url": "https://jobs.sap.com/job/Walldorf-Werkstudent-%28wmd%29-Technical-Sustainability-Consulting-69190/1375480233/",
+  "language": "english",
+  "primary_role": "business_analyst",
+  "target_roles": [
+    "business_analyst"
+  ],
+  "summary_version": "business_analysis",
+  "start_date": "17 April 2026",
+  "availability_override": "I am available to start from 17 April 2026 and can work up to 20 hours per week in line with my current student visa. My German is still developing, while I can contribute confidently in English and continue improving my German alongside the role.",
+  "why_company": "SAP stands out to me because this role connects sustainability knowledge with technical consulting, structured analysis, and practical work around AI, SAP Business Technology Platform, SAP Business Data Cloud, and SAP Build. I am especially drawn to environments where complex information is turned into clear material for teams and customers, and where learning is tied to real delivery.",
+  "job_description": "SAP is hiring a working student in Technical Sustainability Consulting in Walldorf. The role focuses on building knowledge across sustainability, AI, agentic AI, SAP Business Data Cloud, SAP Business Technology Platform, and SAP Build; analysing market requirements and competitor offerings; supporting proof-of-concepts with consultants; preparing and presenting PowerPoint research results; and helping the team with practical tasks and team events. The role is part-time, fixed-term, and hybrid, with the office in Walldorf not required.",
+  "requirements": [
+    "Student at a university or university of applied sciences",
+    "Preferred field of study: business informatics, computer science, sustainability management, or similar",
+    "Good knowledge of generative AI, business AI, agentic AI, and chatbots",
+    "At least one programming language such as Python; ABAP is a plus",
+    "Fluent English and good German",
+    "Team player who can work independently and structure complex information",
+    "Creative mindset with good presentation skills",
+    "Strong interest in sustainability topics"
+  ],
+  "cover_letter_opening": "I am applying for the Werkstudent (w/m/d) - Technical Sustainability Consulting position at SAP. The role stands out to me because it combines sustainability, technical consulting, and structured knowledge work in an environment where AI, SAP Business Technology Platform, SAP Business Data Cloud, and SAP Build are part of the day-to-day conversation.",
+  "cover_letter_body_one": "In my previous roles across business analysis, product delivery, and operations-heavy environments, I learned how to turn complex information into clear requirements, documents, and decisions that teams can actually use. I have worked closely with stakeholders across different functions, and that has made me comfortable with research, structured thinking, and presenting practical recommendations instead of just ideas.",
+  "cover_letter_body_two": "This makes the role at SAP particularly relevant to me, because it combines research, presentation, and technical exploration with a sustainability context. I am interested in how sustainability work can be connected to practical technology choices and in how technical teams can translate market requirements and product knowledge into concrete guidance for customers and colleagues.",
+  "cover_letter_motivation": "I am especially interested in SAP because of its scale, its sustainability product portfolio, and the opportunity to learn from consultants and architects who work at the intersection of sustainability and enterprise technology.",
+  "cover_letter_closing": "I am available to start from 17 April 2026 and can work up to 20 hours per week in line with my current student visa. My German is still developing, while I can contribute confidently in English and continue improving my German alongside the role."
+}

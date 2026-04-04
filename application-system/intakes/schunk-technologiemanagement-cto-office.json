@@ -1,0 +1,49 @@
+{
+  "company_name": "SCHUNK SE & Co. KG",
+  "company_location": "Stuttgart, Germany",
+  "contact_name": "Lara Schneider",
+  "contact_title": "Specialist HR Marketing @SCHUNK",
+  "contact_lookup_status": "The public snippet associated with the role shows Lara Schneider as the hiring-team contact, so the letter uses her name in the salutation.",
+  "job_title": "Praktikum oder Werkstudent – Technologiemanagement im CTO-Office (m/w/d)",
+  "job_url": "https://www.linkedin.com/jobs/view/4368010752/",
+  "language": "english",
+  "primary_role": "business_analyst",
+  "target_roles": [
+    "business_analyst"
+  ],
+  "summary_version": "business_analysis",
+  "start_date": "17 April 2026",
+  "why_company": "SCHUNK stands out to me because this role combines technology strategy, modular technology/toolbox thinking, SharePoint-based consolidation, and workshop support in a company that is clearly focused on practical industrial innovation. I am especially drawn to roles where structure, communication, and technology management meet in a cross-functional environment.",
+  "job_description": "SCHUNK is hiring a Praktikum oder Werkstudent – Technologiemanagement im CTO-Office (m/w/d). The role supports the CTO office in further developing the technology strategy, developing a technology toolbox, aligning closely with specialist departments, consolidating and visualizing the technology toolbox in SharePoint, preparing MS Office documents for internal and external communication, and organizing and shaping workshops in the CTO area. The posting asks for Master students in industrial engineering, business informatics, mechanical engineering, or comparable programs, very good MS Office skills especially in PowerPoint and Excel, SharePoint knowledge as a plus, analytical and strategic thinking, quick comprehension, enthusiasm for modularization and technology/product platforms, and a structured, goal-oriented working style. The public snippets do not mention a German language requirement.",
+  "requirements": [
+    "Current master student in industrial engineering, business informatics, mechanical engineering, or a comparable field",
+    "Very good MS Office skills, especially PowerPoint and Excel",
+    "SharePoint knowledge is an advantage",
+    "Analytical and strategic thinking with quick comprehension",
+    "Interest in modularization, technology/toolboxes, and platform thinking",
+    "Structured and goal-oriented way of working"
+  ],
+  "cover_letter_opening": "I am applying for the Praktikum oder Werkstudent – Technologiemanagement im CTO-Office (m/w/d) position at SCHUNK. The role stands out to me because it combines technology strategy, modular technology thinking, SharePoint-based consolidation, and workshop support in a setting where structured communication and practical execution matter.",
+  "cover_letter_body_one": "In my previous roles across business analysis, product delivery, and operations-heavy environments, I have worked with stakeholders, engineers, and business teams to structure requirements, document workflows, and support execution. That experience made me comfortable working on strategic or cross-functional topics that need clear communication, disciplined organization, and follow-through.",
+  "cover_letter_body_two": "This is a strong match for the CTO-office context at SCHUNK, because the role asks for exactly the kind of combination I enjoy: analyzing complexity, preparing clear documents, supporting workshops, and helping teams turn a broad technology strategy into something organized and usable. I am particularly interested in the technology toolbox aspect and the chance to support knowledge consolidation in SharePoint and Microsoft Office.",
+  "cover_letter_motivation": "I am especially interested in SCHUNK because the company combines industrial innovation with practical technology management. The opportunity to contribute to technology strategy and modularization in a highly structured environment is exactly the kind of role where I can add value while learning quickly.",
+  "cover_letter_closing": "I am available to start from 17 April 2026 and can work up to 20 hours per week in line with my current student visa. I would welcome the opportunity to discuss how I can support your CTO office in an interview.",
+  "cv_about_override": "Business analysis and product professional focused on structured execution, stakeholder alignment, and process support in technology-driven environments.",
+  "cv_summary_override": "Experienced business analysis and product professional with a strong foundation in requirements engineering, workflow mapping, stakeholder alignment, and structured execution. I have worked across eCommerce, LegalTech, healthcare, and digital operations, with a focus on turning complex business needs into clear delivery plans and practical outcomes. This makes me well suited for technology management roles that combine strategy, documentation, workshop support, and cross-functional coordination.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "Operations-heavy Product Delivery",
+    "Jira",
+    "Confluence",
+    "PowerPoint",
+    "Excel",
+    "SharePoint",
+    "Process Mapping",
+    "Strategic Thinking",
+    "Workshop Facilitation",
+    "Technology Strategy"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "company_name": "XL2 by Audi & Capgemini",
+  "company_location": "Heilbronn, Germany",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter or contact was visible in the public snippets checked on 2026-04-03, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Werkstudent Business Analyst (m/w/d)",
+  "job_url": "https://xl2jobs.career.softgarden.de/jobs/63747589/Werkstudent-Business-Analyst-m-w-d-/",
+  "language": "german",
+  "primary_role": "business_analyst",
+  "target_roles": [
+    "business_analyst"
+  ],
+  "summary_version": "business_analysis",
+  "start_date": "17 April 2026",
+  "why_company": "XL2 stands out to me because the role combines process analysis, project contribution, and consulting-style work inside an agile IT environment shaped by Audi and Capgemini. I am especially interested in roles where business analysis is closely connected to transformation, collaboration, and practical delivery.",
+  "job_description": "XL2 is hiring a Werkstudent Business Analyst (m/w/d) in Heilbronn, with search snippets also referencing Ingolstadt. Public snippets show that the role is part of XL2 by Audi & Capgemini and involve student-facing consulting and project support work. The visible search snippets indicate that German at C1 level and English at B2 level are required. The role is for students and appears to be a working-student position with up to 20 hours during the semester.",
+  "requirements": [
+    "Enrolled student in a relevant program",
+    "Strong interest in business analysis, process analysis, and project contribution",
+    "German language skills at least C1 level",
+    "English language skills at least B2 level",
+    "Interest in an agile IT consulting environment",
+    "Structured and collaborative working style"
+  ],
+  "cover_letter_opening": "I am applying for the Werkstudent Business Analyst (m/w/d) position at XL2 by Audi & Capgemini. The role stands out to me because it combines business analysis, process understanding, and project contribution in an agile consulting environment where structured thinking and practical execution matter.",
+  "cover_letter_body_one": "In my previous roles across business analysis, product delivery, and operations-heavy environments, I have worked with stakeholders, engineers, and business teams to structure requirements, document workflows, and support delivery. That experience taught me how to turn complex topics into clear decisions and practical next steps.",
+  "cover_letter_body_two": "This is a strong match for XL2 because the role sits close to consulting, process analysis, and project support. I am comfortable with documentation, cross-functional communication, and the kind of disciplined follow-through that helps teams move from analysis to implementation.",
+  "cover_letter_motivation": "I am especially interested in XL2 because it combines the mindset of a young, agile IT consultancy with the scale and expertise of Audi and Capgemini. That combination makes it an attractive place for me to contribute and continue developing as a business analyst.",
+  "cover_letter_closing": "I am available to start from 17 April 2026 and can work up to 20 hours per week in line with my current student visa. I also want to be transparent that the posting mentions German at C1 level, while my current German is not yet at that level; I can contribute in English and continue improving my German alongside the role. I would welcome the opportunity to discuss my application with you.",
+  "cv_about_override": "Business analysis and product professional focused on requirements, stakeholder alignment, process mapping, and structured execution in consulting and operations-heavy environments.",
+  "cv_summary_override": "Experienced business analysis and product professional with a strong foundation in requirements engineering, workflow mapping, stakeholder alignment, and structured execution. I have worked across eCommerce, LegalTech, healthcare, and digital operations, with a focus on turning complex business needs into clear delivery plans and practical outcomes. This makes me well suited for student roles that combine analysis, consulting-style collaboration, and process-oriented project work.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "Operations-heavy Product Delivery",
+    "Jira",
+    "Confluence",
+    "Process Mapping",
+    "Acceptance Criteria",
+    "Operational Analysis",
+    "Project Coordination",
+    "Cross-functional Delivery",
+    "Presentation Skills",
+    "Consulting Mindset"
+  ]
+}

@@ -1,30 +1,179 @@
 # AGENTS.md
 
-This file provides guidance to Agent Ai when working with code in this repository.
+This file is the operating contract for AI agents working in `/Users/pmlecuong/Documents/CuongProjects/CuongCV`.
 
-## Project Overview
+Follow it before making edits, generating applications, replying to emails, or deploying the CV site.
 
-This is a **Minimalist CV/Resume web application** built with Next.js 14, React, TypeScript, and Tailwind CSS. The app renders a clean, print-friendly CV layout with data configured in a single file.
+## Mission
 
-## Skill To Use
+This repository serves two related purposes:
 
-Use [`job-search-cuong`](/Users/pmlecuong/.codex/skills/job-search-cuong/SKILL.md) for CV edits, GitHub Pages deployment, live-site verification, and Germany job-search updates.
+1. The public CV website for **Le Cuong Nguyen**
+2. The local application-generation system for role-specific CVs, cover letters, and PDFs
 
-Use [`builder-ops`](/Users/pmlecuong/.codex/skills/builder-ops/SKILL.md) when you need repo shipping, Git/GitHub operations, environment checks, or deployment diagnosis.
+Agents should preserve factual consistency across both layers.
 
-Use [`playwright`](/Users/pmlecuong/.codex/skills/playwright/SKILL.md) for browser validation after visible CV changes or deployment checks.
+## First Actions
 
-## Application Workflow
+When you enter this repository:
 
-This repo now includes a CLI-first application generator under `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system`.
+1. Read this `AGENTS.md`
+2. Read `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/README.md` if the task involves applications
+3. Check `git status --short`
+4. Identify whether the request is about:
+   - public CV site edits
+   - generated application artifacts
+   - interview or recruiter email drafting
+   - deployment / GitHub Pages / PM2 / Docker
+   - job-search research
 
-Use this workflow when the user asks for:
+Do not assume the user wants public CV edits when they are asking for company-specific application documents.
+
+## Skills To Load
+
+Use these skills deliberately:
+
+- Use [`job-search-cuong`](/Users/pmlecuong/.codex/skills/job-search-cuong/SKILL.md) for:
+  - CV edits
+  - application packages
+  - cover letters
+  - job-search updates
+  - GitHub Pages verification for the CV site
+- Use [`builder-ops`](/Users/pmlecuong/.codex/skills/builder-ops/SKILL.md) for:
+  - repo shipping
+  - Git/GitHub work
+  - environment checks
+  - deployment diagnosis
+- Use [`playwright`](/Users/pmlecuong/.codex/skills/playwright/SKILL.md) for:
+  - browser validation after visible CV changes
+  - print/layout validation
+  - live-site verification
+
+If the task is only drafting a recruiter/interview reply email, you do not need to run the full application workflow. Read the relevant intake and output files first, then draft the reply in the same tone and context.
+
+## Canonical Identity Rules
+
+Use these facts consistently unless the user explicitly updates them:
+
+- Legal / paperwork name: `Le Cuong Nguyen`
+- Email: use the current value from `src/data/resume-data.tsx`
+- CV site canonical fact file: `src/data/resume-data.tsx`
+- Application generator canonical fact file: `application-system/data/master_profile.json`
+
+If the name changes in one canonical source, update the other canonical source too.
+
+Do not silently leave the public CV and generator profile out of sync.
+
+## Source Of Truth
+
+### Public CV layer
+
+- `src/data/resume-data.tsx` is the source of truth for the public CV site
+- Prefer data-only edits here
+- Only edit components when layout or rendering actually needs to change
+
+### Application layer
+
+- `application-system/data/master_profile.json` is the source of truth for generator profile facts
+- `application-system/data/evidence_library.json` stores reusable proof blocks
+- `application-system/data/role_profiles.json` stores role presets
+- `application-system/data/summary_versions.json` stores reusable summary styles
+- `application-system/intakes/*.json` stores per-job inputs
+- `application-system/scripts/generate_application.py` is the canonical generator
+
+### Generated outputs
+
+- Output folder: `application-system/outputs/<company-and-job-slug>/`
+- Generated CV JSON for printing: `public/generated-cv-data/<company-and-job-slug>/<role>.json`
+
+Generated artifacts are outputs, not the primary source of truth. Edit inputs, then regenerate.
+
+## Request Routing
+
+When the user gives a command, classify it first.
+
+### 1. Public CV edit
+
+Examples:
+
+- “update my CV site”
+- “change this project wording”
+- “fix the live CV”
+- “change my name on the site”
+
+Handle it by:
+
+1. Editing `src/data/resume-data.tsx` first
+2. Updating related generator source files if the fact is identity-level
+3. Running validation
+4. Verifying layout and print output
+5. Deploying only if the user wants shipping / live update
+
+### 2. Job-specific application package
+
+Examples:
+
+- “write a cover letter”
+- “tailor my CV to this JD”
+- “make an application for Mercedes”
+- “generate one CV variant”
+
+Handle it by:
+
+1. Creating or updating an intake JSON under `application-system/intakes/`
+2. Keeping fixed facts aligned with the public CV
+3. Running the generator
+4. Running the rule checker
+5. Checking PDF page limits
+6. Returning the exact artifact paths
+
+### 3. Interview / recruiter email drafting
+
+Examples:
+
+- “draft a thank-you email”
+- “reply to this interview invite”
+- “answer this recruiter message”
+
+Handle it by:
+
+1. Read the relevant intake JSON and existing application output folder if they exist
+2. Match the tone to prior application materials
+3. Keep the email concise, natural, and recruiter-safe
+4. Prefer clean business English unless the user asks for German
+5. Do not overcomplicate the reply with application-system regeneration unless the user asks for document changes
+
+### 4. Deployment / GitHub Pages / environment
+
+Examples:
+
+- “deploy this live”
+- “push to GitHub”
+- “check the live site”
+- “fix the deployment”
+
+Handle it by:
+
+1. Use `builder-ops` patterns
+2. Validate locally first
+3. Use non-interactive git commands
+4. Verify the live site after shipping
+
+### 5. Job search / market research
+
+Handle it with `job-search-cuong` and prefer official job pages.
+
+## Application Workflow Contract
+
+Use the application workflow when the user asks for:
+
 - cover-letter generation
 - company-specific application packages
-- CV tailoring based on a job description
-- multiple CV variants for one target role
+- CV tailoring from a JD
+- multiple CV variants for one role
 
-Important files:
+### Required files
+
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/README.md`
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/scripts/generate_application.py`
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/master_profile.json`
@@ -35,166 +184,237 @@ Important files:
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/intakes/`
 - `/Users/pmlecuong/.codex/skills/job-search-cuong/scripts/check_application_rules.py`
 
-Workflow rules:
-- Treat `src/data/resume-data.tsx` as the source of truth for the public CV site.
-- Treat `application-system/data/*.json` as the source of truth for generated applications, cover letters, and CV variants.
-- Treat `application-system/data/summary_versions.json` as the source of truth for reusable CV summary styles.
-- Keep the application generator aligned with the public CV facts. Do not invent new experience in tailored variants.
-- Audit generated CV facts against the public CV before shipping when generated outputs are involved.
-- Fixed facts that must stay aligned with the online CV:
-  - contact information and address
-  - education entries, locations, and grades
+### Non-negotiable rules
+
+- Do not invent experience
+- Keep generated documents aligned with the public CV facts
+- Fixed facts that must stay aligned:
+  - name
+  - contact information
+  - address
+  - education entries, grades, and locations
   - awards and certifications
-  - side-project titles and core descriptions
   - employer names
   - work start and end dates
-- Fields that may change by role or job description:
-  - `About` and summary wording
-  - skill ordering and rotation
+  - side-project titles and core descriptions
+- Allowed variation by role:
+  - `about`
+  - summary wording
   - skill ordering and emphasis
-  - work bullet wording, selection, and emphasis
-  - cover-letter evidence selection
-- For generated CVs, target 14 visible skills:
-  - 7 fixed core skills
-  - 7 adaptive skills selected from role focus and the job description
-- Keep the online CV skills unchanged unless the user explicitly asks to edit the public CV.
-- When the user provides a JD or company URL, prefer creating or updating an intake JSON and then run the Python generator.
-- For cover letters, search for a named recruiter or contact person first. Use `Hiring Team` only when a named contact cannot be verified.
-- The generator should output one requested CV variant by default unless the user explicitly asks for more.
-- The default generated summary is `strongest_balanced`; if the JD clearly leans toward another stored summary style, the workflow should ask the user to choose via `summary_version`.
-- Prefer deterministic edits to the structured JSON and templates over ad hoc document rewriting.
-- Run the rule checker for CV wording or cover-letter logic changes before shipping.
-- Treat the 2-page CV limit as a hard rule for both the public CV and generated CV PDFs. If a CV cannot fit within 2 pages cleanly, report what should be kept, shortened, or removed instead of forcing unreadable layout changes.
-- For application outputs, use folder names based on `company + job title`, not just the company name.
-- Rendered PDFs must use the naming convention:
-  - `resume + candidate name + job title + timestamp`
-  - `cover-letter + candidate name + job title + timestamp`
-- Never delete an earlier rendered PDF version just because a newer one was generated. New runs should create new timestamped PDFs.
+  - work bullet selection / emphasis
+  - evidence selection for the cover letter
+
+### Skills rule for generated CVs
+
+Target 14 visible skills:
+
+- 7 fixed core skills
+- 7 adaptive skills chosen from the role focus and JD
+
+Keep the public CV skills unchanged unless the user explicitly asks to edit the public CV.
+
+### Contact lookup rule
+
+- Look for a named recruiter or contact first
+- Use a named contact when verified
+- Use `Hiring Team` only when no named contact can be verified
+
+### German-language mismatch rule
+
+If any of the following are true:
+
+- the job posting is written mainly in German
+- the requirements explicitly ask for strong / fluent / business German
+- the recruiter or JD clearly signals that German is important for the role
+
+and the user has not given a newer fact showing that this requirement is now met, then the cover letter should acknowledge this briefly in the final paragraph.
+
+Use this pattern:
+
+- state that German is still being improved and is not yet at the required professional level
+- state strong English ability when relevant
+- keep the note brief and honest
+- add a polite sentence asking to be considered or referred for another suitable role that better matches the current English-first level if this role is not the right fit
+
+Do not make this the center of the letter. Keep it concise and place it in the closing paragraph so the main body still focuses on fit and evidence.
+
+### Summary version rule
+
+- Default summary: `strongest_balanced`
+- If the JD clearly points to a different summary style, set `summary_version`
+- If a non-default summary is strongly indicated and ambiguous, ask the user instead of guessing
+
+### Output rule
+
+Default deliverable for one live job URL:
+
+1. one intake JSON
+2. one cover letter
+3. one CV variant
+4. PDFs when possible
+5. a short report with contact status, page-limit result, and major risks
+
+### PDF naming rule
+
+- `resume + candidate-name + job-title + timestamp`
+- `cover-letter + candidate-name + job-title + timestamp`
+
+Never delete earlier timestamped PDFs just because a newer one exists.
+
+## Validation And Acceptance
+
+### For public CV changes
+
+Run the relevant checks:
+
+- `pnpm check`
+- browser / print validation when visible content changed
+
+Minimum acceptance:
+
+- no broken layout
+- no broken links
+- A4-friendly print
+- CV stays within 2 pages
+
+### For generated applications
+
+Run:
+
+```bash
+python3 application-system/scripts/generate_application.py --intake <path> --compile-pdf
+python3 /Users/pmlecuong/.codex/skills/job-search-cuong/scripts/check_application_rules.py --resume-data /Users/pmlecuong/Documents/CuongProjects/CuongCV/src/data/resume-data.tsx --summary-versions /Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/summary_versions.json --intake <path>
+```
+
+Add `--cover-letter <cover-letter-tex-path>` when validating the generated letter source directly.
+
+Acceptance:
+
+- cover letter must be 1 page
+- CV must be 2 pages or fewer
+- if output overflows, shorten content first; do not hide the problem with unreadable layout
+
+## Tone And Writing Rules
+
+### Public CV and generated application documents
+
+- Keep wording recruiter-safe
+- Be clear, specific, and structured
+- Avoid weak wording such as:
+  - `currently testing three private apps`
+  - `comfortable driving`
+  - `Ai-enable Apps`
+- Keep RouteOps described as:
+  - React + TypeScript travel-planning decision support
+  - local Fastify backend
+  - deterministic best-balance / cheapest / most-comfort outputs
+  - saved trip history
+
+### Email drafting
+
+When drafting replies to recruiters, hiring managers, or interviewers:
+
+- keep the reply concise
+- prefer natural, calm, professional English
+- match the user’s tone request when specified
+- default to a German-corporate style when the user asks for “shorter” or “more German-style”
+- avoid exaggerated enthusiasm
+- do not sound overly templated
+
+Common email intents:
+
+- thank-you after a call
+- confirmation of interview availability
+- confirmation of in-person attendance
+- short follow-up after application submission
+
+## Project Structure
+
+- `/src/app/` - Next.js App Router pages and layouts
+- `/src/components/` - reusable UI components
+- `/src/data/resume-data.tsx` - public CV data
+- `/src/apollo/` - GraphQL server setup
+- `/src/images/logos/` - logo components
+- `/application-system/` - application generator, templates, intakes, outputs
 
 ## Commands
 
 ### Development
+
 ```bash
-pnpm dev          # Start development server on http://localhost:3000
-pnpm build        # Create production build
-pnpm start        # Start production server
-pnpm export       # Build and export static files
-pnpm deploy       # Build and prepare for GitHub Pages deployment
-pnpm lint         # Run Biome linting checks
-pnpm lint:fix     # Run Biome linting with auto-fix
-pnpm format       # Check code formatting with Biome
-pnpm format:fix   # Format code with Biome
-pnpm check        # Run both linting and formatting checks
-pnpm check:fix    # Run both linting and formatting with auto-fix
+pnpm dev
+pnpm build
+pnpm start
+pnpm export
+pnpm deploy
+pnpm lint
+pnpm lint:fix
+pnpm format
+pnpm format:fix
+pnpm check
+pnpm check:fix
 ```
 
-### Docker Deployment
+### Docker
+
 ```bash
-docker compose build     # Build the container
-docker compose up -d     # Run the container
-docker compose down      # Stop the container
+docker compose build
+docker compose up -d
+docker compose down
 ```
 
-### PM2 Production Deployment
-```bash
-# Automated deployment script
-./scripts/pm2-start.sh    # Complete production deployment with PM2
+### PM2
 
-# Manual PM2 commands
-pnpm install --frozen-lockfile  # Install dependencies
-pnpm build                      # Build for production
-pm2 start ecosystem.config.js   # Start with PM2
-pm2 save                        # Save PM2 process list
-pm2 status                      # Check status
-pm2 logs cv-app                 # View logs
-pm2 restart cv-app              # Restart application
-pm2 stop cv-app                 # Stop application
-pm2 delete cv-app               # Remove from PM2
+```bash
+./scripts/pm2-start.sh
+pnpm install --frozen-lockfile
+pnpm build
+pm2 start ecosystem.config.js
+pm2 save
+pm2 status
+pm2 logs cv-app
+pm2 restart cv-app
+pm2 stop cv-app
+pm2 delete cv-app
 ```
 
-**PM2 Configuration**: 
-- App runs on port 3125 in production
-- Cluster mode with 1 instance (configurable)
-- Auto-restart enabled with 512MB memory limit
-- Logs stored in `./logs/` directory
+PM2 facts:
 
-**Note**: The project uses **Biome.js** for linting and formatting instead of ESLint and Prettier. Always run `pnpm check:fix` before committing to ensure code quality.
+- production port: `3125`
+- cluster mode: `1` instance by default
+- logs: `./logs/`
 
-## CV Rules
+## Git And Safety Rules
 
-- Treat `src/data/resume-data.tsx` as the single source of truth for CV content.
-- Keep work dates explicit; use an end date when employment has ended.
-- Keep the RouteOps side project description current: React + TypeScript travel-planning decision support with a local Fastify backend, deterministic results, and saved trip history.
-- Remove stale experimental side-project entries when replacing them.
-- Avoid weak wording in the public CV such as `currently testing three private apps`, `comfortable driving`, or `Ai-enable Apps`.
-- Keep the public CV aligned with `https://nlcuong85.github.io/cuongcv/` and the GitHub Pages workflow on `main`.
-- Verify the live site after any user-visible CV change.
+- The worktree may be dirty
+- Never revert unrelated user changes
+- Prefer non-interactive git commands
+- Do not claim deployment success until the live site reflects the intended change
+- When modifying identity-level facts, check whether both public CV and generator profile need updating
 
-## Architecture
+## Delivery Format
 
-### Project Structure
-- **`/src/app/`** - Next.js App Router pages and layouts
-- **`/src/components/`** - Reusable UI components (using shadcn/ui)
-- **`/src/data/resume-data.tsx`** - Single configuration file for all CV content
-- **`/src/apollo/`** - GraphQL server setup with resolvers and type definitions
-- **`/src/images/logos/`** - Company logo components
+When finishing work, report only the relevant items:
 
-### Key Technologies
-- **Framework**: Next.js 14 with App Router
-- **Language**: TypeScript with decorators enabled
-- **Styling**: Tailwind CSS with custom theme extensions
-- **UI Components**: shadcn/ui (Radix UI based)
-- **GraphQL**: Apollo Server with type-graphql at `/graphql` endpoint
-- **Command Palette**: cmdk library for keyboard navigation
-- **Print Optimization**: Custom print styles in global CSS
+### For CV site work
 
-### Important Files
-- **`src/data/resume-data.tsx`** - Main configuration file containing all CV data (personal info, work experience, education, skills, projects)
-- **`src/app/page.tsx`** - Main resume page component that renders the CV
-- **`src/app/layout.tsx`** - Root layout with metadata and analytics
-- **`src/components/command-menu.tsx`** - Keyboard shortcuts (Cmd+K) for navigation
-- **`src/components/print-drawer.tsx`** - Print functionality component
+- files changed
+- checks run
+- deployment result if shipped
+- live URL checked if applicable
 
-## Development Notes
+### For application packages
 
-### Adding New Sections
-To add new sections to the CV, modify the `RESUME_DATA` object in `src/data/resume-data.tsx`. The layout automatically adjusts based on the data provided.
+- intake file used
+- output directory
+- whether PDFs were compiled
+- page-count result
+- evidence used
+- summary version used
+- whether the rule checker passed
 
-### Working On The CV
-- Prefer data-only edits in `src/data/resume-data.tsx`.
-- Update components only when layout, spacing, or render behavior must change.
-- Use the current public email and profile details from the CV data file.
-- Check print layout when changing section order or content length.
-- For job-application artifacts, prefer editing `application-system/data/` and `application-system/templates/` instead of hardcoding company-specific text into the website.
-- For generated CVs, audit `application-system/data/master_profile.json` against `src/data/resume-data.tsx` before regeneration when contact, education, awards, projects, or work-history identity may have changed.
-- For generated CVs, audit that the skills section still follows the 7 core + 7 JD-adaptive rule.
-- For generated cover letters, audit that the layout keeps the company block on the left, sender block on the right, right-aligned location/date, embedded signature, and enclosure line.
+### For interview/recruiter emails
 
-### GraphQL API
-The app exposes a GraphQL endpoint at `/graphql` that serves the resume data. This can be used to integrate the CV data with other applications.
-
-### Print Optimization
-The app includes special print styles to ensure the CV looks good when printed. Test print functionality when making layout changes.
-
-Minimum print acceptance:
-- no browser header/footer junk
-- A4-friendly output
-- CV stays within 2 pages
-- if the CV exceeds 2 pages, do not ship without either a clean print-specific fix or a user-facing recommendation on what content to trim
-
-### Deployment
-The app is optimized for multiple deployment options:
-
-1. **Vercel** (Recommended) - Optimized for Next.js applications
-2. **GitHub Pages** - Static export with automated deployment
-   - Configured with Next.js static export (`output: 'export'`)
-   - Automated deployment via GitHub Actions on push to main
-   - Available at: `https://nlcuong85.github.io/cuongcv/`
-   - Manual deployment: `pnpm deploy`
-3. **PM2** - Production deployment with process management
-   - Uses `ecosystem.config.js` for configuration
-   - Runs on port 3125 with cluster mode
-   - Includes automated deployment script at `scripts/pm2-start.sh`
-4. **Docker** - Containerized deployment for any environment
-
-For PM2 deployment, ensure you have Node.js, pnpm, and PM2 installed on your server.
+- provide the final reply text
+- keep it ready to paste
+- offer one tighter or warmer variant only if useful

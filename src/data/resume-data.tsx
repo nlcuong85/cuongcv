@@ -1,7 +1,7 @@
 import type { ResumeData } from "@/lib/types";
 
 export const RESUME_DATA: ResumeData = {
-  name: "Cuong Le Nguyen",
+  name: "Le Cuong Nguyen",
   initials: "CLN",
   location: "Gildenstraße 13, 74074 Heilbronn, Germany",
   locationLink:
