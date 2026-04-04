@@ -78,11 +78,12 @@ pnpm lint         # Run ESLint
 
 ## 📄 Application Generator
 
-This repository also includes a CLI-first application workflow under [application-system](./application-system/README.md). It is designed for job-search operations where one intake file can generate:
+This repository also includes a CLI-first application workflow under [application-system](./application-system/AGENTS.md). It is designed for job-search operations where one intake file can generate:
 
 - a tailored cover letter
 - an HTML preview
 - one requested CV variant by default
+- one role-fit snapshot / self-assessment supplement
 - PDFs compiled from LaTeX for the cover letter and browser print for the CV
 - a summary-version selection workflow for JD-specific CV positioning
 

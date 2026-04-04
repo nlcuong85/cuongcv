@@ -139,6 +139,33 @@
         "business_analyst": "Useful for formal applications needing stability and clarity.",
         "ai_product_ops": "Useful for Germany-oriented tech and operations applications."
       }
+    },
+    {
+      "id": "portfolio_ai_workflow_systems",
+      "title": "AI workflow systems thinking through portfolio writing and personal tooling",
+      "company": "Portfolio",
+      "role": "Author and builder",
+      "tags": ["ai_product_ops", "product_manager", "business_analyst", "automation", "workflow", "portfolio"],
+      "problem": "AI roles often over-index on hype or generic prompting, while employers increasingly need practical workflow improvement, automation judgment, and disciplined context design.",
+      "actions": [
+        "Documented practical AI workflow lessons through public writing on context engineering, intent-first project framing, and durable project memory",
+        "Built and iterated AI-assisted tools and personal systems that connect content operations, workflow support, and product thinking",
+        "Framed AI work around execution discipline, process clarity, and realistic business use rather than novelty alone"
+      ],
+      "results": [
+        "Provides credible proof for AI workflow, automation, and enablement roles without overstating engineering depth",
+        "Shows a consistent pattern of connecting AI ideas to operational use cases and better team execution"
+      ],
+      "fit_for_roles": {
+        "product_manager": "Useful when the role values AI-enabled product operations, experimentation, or internal tooling.",
+        "product_owner": "Useful when backlog and workflow design intersect with AI-enabled features or process improvement.",
+        "business_analyst": "Useful for roles that need structured analysis of workflow pain points before automation.",
+        "requirements_process": "Useful for process-oriented roles where AI is applied to internal operations or documentation workflows.",
+        "process_automation": "Strong proof for workflow automation, AI enablement, and digitalization narratives.",
+        "pmo_delivery_support": "Supportive evidence for roles that coordinate AI or automation initiatives across teams.",
+        "quality_compliance_ops": "Useful when AI work must stay grounded in control, review, and process discipline.",
+        "ai_product_ops": "Core evidence for AI workflow, automation, and practical enablement positioning."
+      }
     }
   ]
 }

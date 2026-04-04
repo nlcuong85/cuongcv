@@ -30,6 +30,30 @@
       "label": "Senior Confident",
       "usage": "Best when the JD rewards stronger ownership language, leadership, and strategic execution.",
       "text": "Product professional with experience leading research, operational rollout, and cross-functional execution across digital products. Strong in communication, product planning, process improvement, and feedback-based refinement throughout the product lifecycle, from discovery to post-launch optimization."
+    },
+    {
+      "id": "requirements_process_germany",
+      "label": "Requirements & Process Focus",
+      "usage": "Best when the JD emphasizes requirements engineering, process analysis, documentation quality, BPMN/Signavio, or German-market process roles.",
+      "text": "Requirements and process professional with experience in business analysis, workflow mapping, stakeholder alignment, and delivery-ready documentation. Strong at turning operational needs into clear requirements, acceptance criteria, and structured handoffs that help teams execute reliably."
+    },
+    {
+      "id": "operations_digitalization",
+      "label": "Operations & Digitalization",
+      "usage": "Best when the JD emphasizes process improvement, digitalization, workflow optimization, operations enablement, or continuous improvement.",
+      "text": "Operations-focused product and process professional with experience improving workflows, coordinating cross-functional execution, and supporting digitalization in real business environments. Strongest in roles where process clarity, execution discipline, and measurable operational improvement matter more than abstract strategy."
+    },
+    {
+      "id": "ai_workflow_automation",
+      "label": "AI Workflow & Automation",
+      "usage": "Best when the JD emphasizes AI enablement, workflow automation, process tooling, internal AI adoption, or automation-minded product work.",
+      "text": "Product and process professional using AI as a practical workflow multiplier. Strong in connecting operational pain points, process clarity, and lightweight technical experimentation to support automation, internal tooling, and more reliable execution."
+    },
+    {
+      "id": "quality_process_delivery",
+      "label": "Quality & Process Delivery",
+      "usage": "Best when the JD emphasizes quality management, testing coordination, compliance, ASPICE, documentation discipline, or process-governed delivery.",
+      "text": "Process- and quality-minded delivery professional with experience in regulated and documentation-heavy environments. Strong at supporting teams through structured execution, quality discipline, stakeholder coordination, and practical improvement of workflows that need to remain reliable and auditable."
     }
   ]
 }

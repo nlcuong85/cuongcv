@@ -18,7 +18,7 @@ Agents should preserve factual consistency across both layers.
 When you enter this repository:
 
 1. Read this `AGENTS.md`
-2. Read `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/README.md` if the task involves applications
+2. Read `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/AGENTS.md` if the task involves applications
 3. Check `git status --short`
 4. Identify whether the request is about:
    - public CV site edits
@@ -78,8 +78,10 @@ Do not silently leave the public CV and generator profile out of sync.
 - `application-system/data/evidence_library.json` stores reusable proof blocks
 - `application-system/data/role_profiles.json` stores role presets
 - `application-system/data/summary_versions.json` stores reusable summary styles
+- `application-system/data/job_taxonomy.json` stores shared JD/search vocabulary
 - `application-system/intakes/*.json` stores per-job inputs
 - `application-system/scripts/generate_application.py` is the canonical generator
+- `application-system/AGENTS.md` is the application-layer operating contract
 
 ### Generated outputs
 
@@ -174,12 +176,13 @@ Use the application workflow when the user asks for:
 
 ### Required files
 
-- `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/README.md`
+- `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/AGENTS.md`
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/scripts/generate_application.py`
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/master_profile.json`
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/evidence_library.json`
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/role_profiles.json`
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/summary_versions.json`
+- `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/job_taxonomy.json`
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/portfolio_digest.json`
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/intakes/`
 - `/Users/pmlecuong/.codex/skills/job-search-cuong/scripts/check_application_rules.py`
@@ -251,13 +254,40 @@ Default deliverable for one live job URL:
 1. one intake JSON
 2. one cover letter
 3. one CV variant
-4. PDFs when possible
-5. a short report with contact status, page-limit result, and major risks
+4. one role-fit snapshot supplement
+5. PDFs when possible
+6. a short report with contact status, page-limit result, and major risks
 
 ### PDF naming rule
 
 - `resume + candidate-name + job-title + timestamp`
 - `cover-letter + candidate-name + job-title + timestamp`
+
+### Role-fit snapshot rule
+
+- treat it as a separate one-page supplement, not part of the cover letter or main CV
+- keep the four assessment dimensions fixed:
+  - `Requirements & Analysis`
+  - `Process & Workflow Design`
+  - `Delivery & Stakeholder Coordination`
+  - `AI Workflow & Automation`
+- keep the scores, notes, keywords, tools, domains, and growth areas dynamic per JD
+- use only verified skills from the profile; do not promote JD-only tools into claimed experience
+
+### Current role-family set
+
+The application system currently supports 10 role families:
+
+1. `product_manager`
+2. `product_owner`
+3. `business_analyst`
+4. `requirements_process`
+5. `process_automation`
+6. `pmo_delivery_support`
+7. `quality_compliance_ops`
+8. `ai_product_ops`
+9. `implementation_enablement`
+10. `workflow_operations_analyst`
 
 Never delete earlier timestamped PDFs just because a newer one exists.
 

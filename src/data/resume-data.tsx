@@ -7,14 +7,14 @@ export const RESUME_DATA: ResumeData = {
   locationLink:
     "https://www.google.com/maps/place/Gildenstra%C3%9Fe+13,+74074+Heilbronn,+Germany",
   about:
-    "Product delivery and business analysis professional focused on eCommerce, digital operations, and AI-assisted workflows.",
+    "Business analysis, product delivery, and AI workflow professional focused on process-heavy digital products, operational improvement, and practical automation.",
   summary: (
     <>
-      Experienced product professional with a strong foundation in research,
-      requirements, stakeholder alignment, rollout, and continuous improvement.
-      I have worked across eCommerce, LegalTech, healthcare, and digital
-      operations, with a focus on structured execution and measurable business
-      impact.
+      Product and business-analysis professional with experience across
+      requirements, workflow design, stakeholder alignment, rollout, and
+      continuous improvement. I have worked across eCommerce, LegalTech,
+      healthcare, and digital operations, with a focus on structured execution,
+      measurable business impact, and practical process improvement.
     </>
   ),
   avatarUrl: "/cuongcv/images/avatar.jpg",
@@ -210,31 +210,39 @@ export const RESUME_DATA: ResumeData = {
     },
   ],
   skills: [
-    "Product Roadmapping",
-    "Market Research",
-    "UX/UI",
-    "Business Analyst",
-    "Information Architecture",
-    "Operation Management and Process",
-    "Professional English",
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Process Improvement",
+    "Workflow Optimization",
+    "Process Mapping",
+    "BPMN",
+    "Acceptance Criteria",
     "Agile & Scrum",
+    "Project Coordination",
+    "Quality Coordination",
+    "AI-assisted Workflow Design",
+    "Automation Thinking",
+    "Professional English",
     "Figma",
     "Jira",
     "Confluence",
-    "Business Mindset",
     "HTML & CSS",
     "Next.js",
-    "C++",
     "SQL",
-    "Ai Tech Stack 2025",
+    "OpenAI",
+    "Codex",
+    "GitHub Copilot",
+    "GitHub",
+    "Kiro",
+    "Vibe Coding",
+    "Context Engineering",
     "Linux",
     "n8n Automation",
     "Docker",
-    "Github",
     "HomeLab",
     "3D Prototyping and Manufacturing",
-    "Spec-Driven Development (AWS framework)",
-    "Context Engineering",
+    "Spec-Driven Development",
   ],
   awards: [
     "Product Management 101 - Udemy",

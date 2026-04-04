@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>@@DOCUMENT_TITLE@@ Preview</title>
+    <style>
+      :root {
+        --ink: #1f2933;
+        --muted: #52606d;
+        --grid: #6f8399;
+        --paper: #fffdf8;
+        --accent-fill: #c9d8ea;
+        --accent-line: #244d73;
+        --top-axis: #@@TOP_COLOR@@;
+        --right-axis: #@@RIGHT_COLOR@@;
+        --bottom-axis: #@@BOTTOM_COLOR@@;
+        --left-axis: #@@LEFT_COLOR@@;
+      }
+
+      body {
+        margin: 0;
+        background: linear-gradient(180deg, #f7f4ef 0%, #efebe4 100%);
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", serif;
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 24px auto;
+        padding: 36mm 20mm 18mm 25mm;
+        background: var(--paper);
+        box-shadow: 0 18px 45px rgba(31, 41, 51, 0.12);
+        box-sizing: border-box;
+      }
+
+      .title {
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .intro {
+        margin-top: 6px;
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .scale {
+        margin-top: 6px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .contact {
+        width: 34%;
+        margin-left: auto;
+        text-align: right;
+        font-size: 13px;
+        line-height: 1.35;
+        white-space: pre-line;
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: 30% 34% 30%;
+        gap: 3%;
+        align-items: start;
+        margin-top: 18px;
+      }
+
+      .chart-wrap {
+        text-align: center;
+      }
+
+      .legend {
+        margin-top: 6px;
+        text-align: left;
+        font-size: 12px;
+        line-height: 1.4;
+        color: var(--muted);
+      }
+
+      .axis-label {
+        font-size: 11px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .axis-top {
+        color: var(--top-axis);
+      }
+
+      .axis-right {
+        color: var(--right-axis);
+      }
+
+      .axis-bottom {
+        color: var(--bottom-axis);
+      }
+
+      .axis-left {
+        color: var(--left-axis);
+      }
+
+      .cards {
+        display: grid;
+        gap: 12px;
+      }
+
+      .card-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .card p {
+        margin: 4px 0 0;
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .meta {
+        display: grid;
+        grid-template-columns: 48% 48%;
+        gap: 4%;
+        margin-top: 22px;
+      }
+
+      .meta h3 {
+        margin: 0 0 4px;
+        font-size: 14px;
+      }
+
+      .meta p {
+        margin: 0 0 12px;
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="contact">@@SENDER_BLOCK@@</div>
+
+      <div style="height: 18px;"></div>
+
+      <div class="title">@@DOCUMENT_TITLE@@</div>
+      <div class="intro">@@INTRO_LINE@@</div>
+      <div class="scale">@@SCORE_SCALE@@</div>
+
+      <section class="content">
+        <div>
+          <div class="card">
+            <div class="card-head top"><span>@@TOP_LABEL@@</span><span>@@TOP_SCORE@@</span></div>
+            <p>@@TOP_NOTE@@</p>
+          </div>
+          <div class="card">
+            <div class="card-head left"><span>@@LEFT_LABEL@@</span><span>@@LEFT_SCORE@@</span></div>
+            <p>@@LEFT_NOTE@@</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="chart-wrap">
+            <svg width="205" height="205" viewBox="0 0 150 150" role="img" aria-label="Role fit diamond chart">
+              <text x="75" y="18" text-anchor="middle" class="axis-label axis-top">@@TOP_AXIS_DISPLAY@@</text>
+              <text x="102" y="79" text-anchor="start" class="axis-label axis-right">@@RIGHT_AXIS_DISPLAY@@</text>
+              <text x="75" y="140" text-anchor="middle" class="axis-label axis-bottom">@@BOTTOM_AXIS_DISPLAY@@</text>
+              <text x="48" y="79" text-anchor="end" class="axis-label axis-left">@@LEFT_AXIS_DISPLAY@@</text>
+              <polygon points="75,24 126,75 75,126 24,75" fill="none" stroke="var(--grid)" stroke-width="1.4" />
+              <polygon points="75,34 116,75 75,116 34,75" fill="none" stroke="var(--grid)" stroke-width="1.1" />
+              <polygon points="75,44 106,75 75,106 44,75" fill="none" stroke="var(--grid)" stroke-width="1.1" />
+              <polygon points="75,54 96,75 75,96 54,75" fill="none" stroke="var(--grid)" stroke-width="1.1" />
+              <polygon points="75,64 86,75 75,86 64,75" fill="none" stroke="var(--grid)" stroke-width="1.1" />
+              <line x1="75" y1="21" x2="75" y2="129" stroke="var(--grid)" stroke-width="1.4" />
+              <line x1="21" y1="75" x2="129" y2="75" stroke="var(--grid)" stroke-width="1.4" />
+              <polygon points="@@POLYGON_PATH@@" fill="var(--accent-fill)" stroke="var(--accent-line)" stroke-width="2.2" />
+            </svg>
+          </div>
+        </div>
+
+        <div>
+          <div class="card">
+            <div class="card-head right"><span>@@RIGHT_LABEL@@</span><span>@@RIGHT_SCORE@@</span></div>
+            <p>@@RIGHT_NOTE@@</p>
+          </div>
+          <div class="card">
+            <div class="card-head bottom"><span>@@BOTTOM_LABEL@@</span><span>@@BOTTOM_SCORE@@</span></div>
+            <p>@@BOTTOM_NOTE@@</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="meta">
+        <div>
+          <h3>Role-fit Keywords</h3>
+          <p>@@ROLE_FIT_LINE@@</p>
+          <h3>Methods &amp; Tools</h3>
+          <p>@@TOOLS_LINE@@</p>
+        </div>
+        <div>
+          <h3>Domain Exposure</h3>
+          <p>@@DOMAINS_LINE@@</p>
+          <h3>Growth Areas</h3>
+          <p>@@GROWTH_AREAS_LINE@@</p>
+        </div>
+      </section>
+
+    </main>
+  </body>
+</html>

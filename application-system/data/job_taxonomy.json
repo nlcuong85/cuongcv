@@ -1,0 +1,290 @@
+{
+  "groups": [
+    {
+      "id": "requirements_process",
+      "keywords": [
+        "requirements",
+        "requirements engineering",
+        "requirement engineering",
+        "business analysis",
+        "acceptance criteria",
+        "user stories",
+        "documentation",
+        "workflow",
+        "process mapping",
+        "anforderungsmanagement",
+        "anforderungsanalyse",
+        "anforderungsmanager",
+        "fachkonzept",
+        "fachkonzeption",
+        "prozessanalyse",
+        "prozessmanagement",
+        "prozessmodellierung",
+        "geschaeftsprozessmanagement",
+        "geschäftsprozessmanagement",
+        "business process management",
+        "bpmn",
+        "signavio"
+      ],
+      "skills": [
+        "Requirements Engineering",
+        "Business Analysis",
+        "Acceptance Criteria",
+        "User Stories",
+        "Documentation",
+        "Process Mapping",
+        "Process Modeling",
+        "BPMN",
+        "Signavio",
+        "Stakeholder Interviews"
+      ],
+      "evidence_boosts": [
+        "nashtech_ba_foundation",
+        "anduin_regulated_onboarding",
+        "talosix_ocr_workflow"
+      ],
+      "summary_scores": {
+        "business_analysis": 3,
+        "requirements_process_germany": 4,
+        "german_market_conservative": 2
+      }
+    },
+    {
+      "id": "process_digitalization",
+      "keywords": [
+        "process improvement",
+        "process optimization",
+        "process optimisation",
+        "process governance",
+        "continuous improvement",
+        "operational excellence",
+        "digitalization",
+        "digitalisation",
+        "process automation",
+        "data quality",
+        "quality management",
+        "prozessoptimierung",
+        "prozessautomatisierung",
+        "prozessmanagement",
+        "prozessmodellierung",
+        "digitalisierung",
+        "datenqualität",
+        "qualitätsmanagement",
+        "signavio"
+      ],
+      "skills": [
+        "Process Improvement",
+        "Workflow Optimization",
+        "Operational Analysis",
+        "Process Governance",
+        "Continuous Improvement",
+        "Data Quality",
+        "Quality Coordination",
+        "Signavio"
+      ],
+      "evidence_boosts": [
+        "scck_marketplace",
+        "kyanon_superapp_delivery",
+        "anduin_regulated_onboarding"
+      ],
+      "summary_scores": {
+        "operations_digitalization": 4,
+        "business_analysis": 2,
+        "german_market_conservative": 2
+      }
+    },
+    {
+      "id": "pmo_delivery",
+      "keywords": [
+        "project management office",
+        "pmo",
+        "delivery support",
+        "delivery management",
+        "rollout",
+        "implementation",
+        "go-live",
+        "release",
+        "project support",
+        "program management",
+        "programme management",
+        "stakeholder coordination",
+        "project coordination"
+      ],
+      "skills": [
+        "Project Coordination",
+        "PMO Support",
+        "Cross-functional Delivery",
+        "Rollout Support",
+        "Stakeholder Alignment",
+        "Jira",
+        "Confluence"
+      ],
+      "evidence_boosts": [
+        "kyanon_superapp_delivery",
+        "anduin_regulated_onboarding",
+        "scck_marketplace"
+      ],
+      "summary_scores": {
+        "product_delivery": 3,
+        "senior_confident": 2,
+        "quality_process_delivery": 1
+      }
+    },
+    {
+      "id": "implementation_enablement",
+      "keywords": [
+        "implementation",
+        "implementation support",
+        "solution delivery",
+        "enablement",
+        "customer enablement",
+        "adoption",
+        "rollout support",
+        "go-live support",
+        "onboarding",
+        "transition",
+        "handover",
+        "change support",
+        "einfuehrung",
+        "einführung",
+        "onboarding support"
+      ],
+      "skills": [
+        "Project Coordination",
+        "Stakeholder Alignment",
+        "Operations-heavy Product Delivery",
+        "Workflow Optimization",
+        "Jira",
+        "Confluence"
+      ],
+      "evidence_boosts": [
+        "anduin_regulated_onboarding",
+        "kyanon_superapp_delivery",
+        "scck_marketplace"
+      ],
+      "summary_scores": {
+        "product_delivery": 3,
+        "operations_digitalization": 1,
+        "german_market_conservative": 1
+      }
+    },
+    {
+      "id": "workflow_operations",
+      "keywords": [
+        "workflow analyst",
+        "operations analyst",
+        "workflow support",
+        "operations support",
+        "operational support",
+        "business operations",
+        "service operations",
+        "process support",
+        "handoff",
+        "operating model",
+        "runbook",
+        "reporting",
+        "documentation quality",
+        "betriebsablaeufe",
+        "betriebsabläufe",
+        "prozessunterstuetzung",
+        "prozessunterstützung"
+      ],
+      "skills": [
+        "Business Analysis",
+        "Process Mapping",
+        "Workflow Optimization",
+        "Stakeholder Alignment",
+        "BPMN",
+        "Quality Coordination"
+      ],
+      "evidence_boosts": [
+        "nashtech_ba_foundation",
+        "scck_marketplace",
+        "talosix_ocr_workflow"
+      ],
+      "summary_scores": {
+        "business_analysis": 3,
+        "operations_digitalization": 2,
+        "quality_process_delivery": 1
+      }
+    },
+    {
+      "id": "quality_test_compliance",
+      "keywords": [
+        "quality",
+        "quality assurance",
+        "quality management",
+        "testing",
+        "test management",
+        "testmanagement",
+        "compliance",
+        "regulatory",
+        "audit",
+        "validation",
+        "aspice",
+        "automotive spice",
+        "gdpr",
+        "hipaa",
+        "qualitätsmanagement",
+        "datenqualität"
+      ],
+      "skills": [
+        "Quality Coordination",
+        "Test Coordination",
+        "Compliance-aware Delivery",
+        "Process Governance",
+        "Documentation",
+        "Data Quality"
+      ],
+      "evidence_boosts": [
+        "talosix_ocr_workflow",
+        "anduin_regulated_onboarding",
+        "kyanon_superapp_delivery"
+      ],
+      "summary_scores": {
+        "quality_process_delivery": 4,
+        "german_market_conservative": 2,
+        "business_analysis": 1
+      }
+    },
+    {
+      "id": "ai_workflow_automation",
+      "keywords": [
+        "ai",
+        "artificial intelligence",
+        "ki",
+        "automation",
+        "workflow automation",
+        "ai enablement",
+        "prompt engineering",
+        "context engineering",
+        "agentic",
+        "llm",
+        "workflow design",
+        "automation support",
+        "botpress",
+        "openai",
+        "n8n",
+        "copilot"
+      ],
+      "skills": [
+        "AI-assisted Workflow Design",
+        "Automation Thinking",
+        "n8n Automation",
+        "Prompt and Context Design",
+        "Workflow Instrumentation",
+        "Process Automation"
+      ],
+      "evidence_boosts": [
+        "portfolio_ai_workflow_systems",
+        "scck_marketplace",
+        "talosix_ocr_workflow"
+      ],
+      "summary_scores": {
+        "ai_workflow_automation": 4,
+        "operations_digitalization": 2,
+        "senior_confident": 1
+      }
+    }
+  ]
+}

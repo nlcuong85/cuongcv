@@ -1,0 +1,98 @@
+\documentclass[9pt,a4paper]{article}
+\usepackage[a4paper,left=25mm,right=20mm,top=36mm,bottom=18mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\setstretch{1.0}
+\pagestyle{empty}
+
+\definecolor{ink}{HTML}{1F2933}
+\definecolor{muted}{HTML}{52606D}
+\definecolor{grid}{HTML}{6F8399}
+\definecolor{accentfill}{HTML}{C9D8EA}
+\definecolor{polyline}{HTML}{244D73}
+\definecolor{topaxis}{HTML}{@@TOP_COLOR@@}
+\definecolor{rightaxis}{HTML}{@@RIGHT_COLOR@@}
+\definecolor{bottomaxis}{HTML}{@@BOTTOM_COLOR@@}
+\definecolor{leftaxis}{HTML}{@@LEFT_COLOR@@}
+
+\begin{document}
+\color{ink}
+
+\begin{flushright}
+\begin{minipage}[t]{0.34\textwidth}
+\raggedleft
+@@SENDER_BLOCK@@
+\end{minipage}
+\end{flushright}
+
+\vspace{1.35em}
+
+\textbf{@@DOCUMENT_TITLE@@}\\[0.35em]
+@@INTRO_LINE@@\\[0.25em]
+{\small\textcolor{muted}{@@SCORE_SCALE@@}}
+
+\vspace{0.75em}
+
+\noindent
+\begin{minipage}[t]{0.30\textwidth}
+\vspace{0pt}
+\normalsize
+\textcolor{topaxis}{\textbf{@@TOP_LABEL@@}} \hfill \textcolor{muted}{@@TOP_SCORE@@}\\[0.1em]
+@@TOP_NOTE@@\\[1.0em]
+\textcolor{leftaxis}{\textbf{@@LEFT_LABEL@@}} \hfill \textcolor{muted}{@@LEFT_SCORE@@}\\[0.1em]
+@@LEFT_NOTE@@
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.34\textwidth}
+\vspace{0pt}
+\centering
+\begin{tikzpicture}[x=0.48mm,y=0.48mm]
+  \foreach \r in {10,20,30,40,50} {
+    \draw[line width=0.6pt,color=grid] (0,\r) -- (\r,0) -- (0,-\r) -- (-\r,0) -- cycle;
+  }
+  \draw[line width=1.0pt,color=grid] (-54,0) -- (54,0);
+  \draw[line width=1.0pt,color=grid] (0,-54) -- (0,54);
+  \filldraw[fill=accentfill!85, draw=polyline, line width=1.8pt] @@POLYGON_PATH@@;
+  \node[align=center, text=topaxis, font=\scriptsize\bfseries] at (0,56) {@@TOP_AXIS_DISPLAY@@};
+  \node[align=left, text=rightaxis, font=\scriptsize\bfseries, anchor=west] at (26,0) {@@RIGHT_AXIS_DISPLAY@@};
+  \node[align=center, text=bottomaxis, font=\scriptsize\bfseries] at (0,-59) {@@BOTTOM_AXIS_DISPLAY@@};
+  \node[align=right, text=leftaxis, font=\scriptsize\bfseries, anchor=east] at (-26,0) {@@LEFT_AXIS_DISPLAY@@};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.30\textwidth}
+\vspace{0pt}
+\normalsize
+\textcolor{rightaxis}{\textbf{@@RIGHT_LABEL@@}} \hfill \textcolor{muted}{@@RIGHT_SCORE@@}\\[0.1em]
+@@RIGHT_NOTE@@\\[1.0em]
+
+\textcolor{bottomaxis}{\textbf{@@BOTTOM_LABEL@@}} \hfill \textcolor{muted}{@@BOTTOM_SCORE@@}\\[0.1em]
+@@BOTTOM_NOTE@@
+\end{minipage}
+
+\vspace{1.0em}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\vspace{0pt}
+\textbf{Role-fit Keywords}\\[0.18em]
+@@ROLE_FIT_LINE@@\\[0.65em]
+\textbf{Methods \& Tools}\\[0.18em]
+@@TOOLS_LINE@@
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\vspace{0pt}
+\textbf{Domain Exposure}\\[0.18em]
+@@DOMAINS_LINE@@\\[0.65em]
+\textbf{Growth Areas}\\[0.18em]
+@@GROWTH_AREAS_LINE@@
+\end{minipage}
+
+\end{document}
