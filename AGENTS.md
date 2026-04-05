@@ -13,6 +13,67 @@ This repository serves two related purposes:
 
 Agents should preserve factual consistency across both layers.
 
+## Fast path
+
+Read only the minimum set that matches the task.
+
+### For public CV site work
+
+Read:
+1. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/AGENTS.md`
+2. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/src/data/resume-data.tsx`
+
+Load other files only if the task expands into layout, deployment, or generator-sync work.
+
+Escalate to deeper reading when:
+- the change affects identity-level facts
+- the change might also require generator/profile synchronization
+- visible layout, print behavior, or deployment is involved
+
+### For application work
+
+Read:
+1. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/AGENTS.md`
+2. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/AGENTS.md`
+3. the specific intake file or generator source relevant to the task
+
+Do not load public-site component files unless the request actually touches the public CV layer.
+
+Escalate to deeper reading when:
+- the task changes generator logic, templates, or tone policy
+- the user asks for stronger authenticity or says the application still feels templated
+- the output is high-stakes and recruiter-facing
+- page-limit, snapshot, or validation issues appear
+
+### For work writing / internal documentation
+
+Read:
+1. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/AGENTS.md`
+2. `/Users/pmlecuong/.codex/skills/blog-writer/SKILL.md`
+3. `/Users/pmlecuong/.codex/skills/blog-writer/references/writing-mode-framework.md`
+4. `/Users/pmlecuong/.codex/skills/blog-writer/references/work-mode-guidance.md`
+
+Do not route this through the application system unless the user explicitly wants application materials.
+
+Escalate to deeper reading when:
+- the writing will be reused as a standard or template
+- the note affects team decisions, stakeholder commitments, or execution timing
+- the user asks for a more personal tone without losing work clarity
+
+### For recruiter or interview emails
+
+Read:
+1. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/AGENTS.md`
+2. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/AGENTS.md` only if an intake/output folder already exists for that company
+3. the relevant intake/output files if they exist
+
+Keep the read set narrow and avoid loading the full generator stack when the user only needs a reply.
+
+Escalate to deeper reading when:
+- the email refers to prior application materials or interview context
+- the user asks to match an existing company-specific tone closely
+- the email has negotiation, risk, or mismatch implications
+
 ## First Actions
 
 When you enter this repository:
@@ -24,6 +85,7 @@ When you enter this repository:
    - public CV site edits
    - generated application artifacts
    - interview or recruiter email drafting
+   - work writing / internal documentation
    - deployment / GitHub Pages / PM2 / Docker
    - job-search research
 
@@ -48,6 +110,13 @@ Use these skills deliberately:
   - browser validation after visible CV changes
   - print/layout validation
   - live-site verification
+- Use [`Blog Writer`](/Users/pmlecuong/.codex/skills/blog-writer/SKILL.md) for:
+  - internal work writing
+  - user stories
+  - requirement clarifications
+  - meeting recaps
+  - Slack / Teams summaries
+  - writing-mode decisions for blog vs work vs application tone
 
 If the task is only drafting a recruiter/interview reply email, you do not need to run the full application workflow. Read the relevant intake and output files first, then draft the reply in the same tone and context.
 
@@ -165,6 +234,41 @@ Handle it by:
 
 Handle it with `job-search-cuong` and prefer official job pages.
 
+### 6. Work writing / internal documentation
+
+Examples:
+
+- “write this user story”
+- “summarize this meeting”
+- “turn this into a Slack update”
+- “write a requirement clarification note”
+- “draft an internal follow-up message”
+
+Handle it by:
+
+1. Use `Blog Writer`
+2. Explicitly switch it into `work mode`
+3. Optimize for scanning, alignment, decisions, blockers, and next steps
+4. Do not route internal work writing through the application workflow unless the user is explicitly asking for application materials
+
+### 7. Franklee / OpenClaw recovery snapshot
+
+Examples:
+
+- “refresh the Franklee snapshot”
+- “back up the OpenClaw server state”
+- “update the recovery repo”
+- “run the SOP and save the Franklee backup”
+
+Handle it by:
+
+1. Use the repo-backed refresh script:
+   - `/Users/pmlecuong/Documents/CuongProjects/OpenClaw-franklee/scripts/sync_franklee_snapshot.py`
+2. Treat `/Users/pmlecuong/Documents/CuongProjects/OpenClaw-franklee` as the recovery record repo
+3. Keep the snapshot sanitized and non-secret
+4. If the task is an SSD SOP execution, prefer the `sop-runner` hook path so the SOP and the Franklee backup stay coupled
+5. Update recovery docs when the live Franklee contract changes
+
 ## Application Workflow Contract
 
 Use the application workflow when the user asks for:
@@ -183,6 +287,10 @@ Use the application workflow when the user asks for:
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/role_profiles.json`
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/summary_versions.json`
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/job_taxonomy.json`
+- `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/authentic_writing_profile.json`
+- `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/authentic-writing-samples-2012-2018.md`
+- `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/authentic-writing-samples-annotated.md`
+- `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/writing-mode-framework.md`
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/portfolio_digest.json`
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/intakes/`
 - `/Users/pmlecuong/.codex/skills/job-search-cuong/scripts/check_application_rules.py`

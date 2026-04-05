@@ -627,10 +627,13 @@ def summarize_evidence_for_cover_letter(selected: list[dict[str, Any]]) -> tuple
     first = selected[0]
     second = selected[1] if len(selected) > 1 else selected[0]
     return (
-        paragraph(f"In recent roles, I worked on products where {first['problem'].lower()}", first["actions"][0]),
+        paragraph(
+            f"In recent roles, I worked on products where {first['problem'].lower()}",
+            "That experience taught me how much clear structure and practical follow-through matter when teams are trying to move complex work forward",
+        ),
         paragraph(
             second["actions"][0],
-            "This strengthened my ability to translate business needs into clear requirements and practical delivery decisions",
+            "This strengthened my ability to translate business needs into clear requirements, practical delivery decisions, and day-to-day coordination that actually helps the team",
         ),
     )
 
@@ -638,12 +641,63 @@ def summarize_evidence_for_cover_letter(selected: list[dict[str, Any]]) -> tuple
 def contribution_sentence(role: dict[str, Any]) -> str:
     strengths = [str(item).strip() for item in role.get("cover_letter_strengths", []) if str(item).strip()]
     if len(strengths) >= 3:
-        return f"I can contribute with {strengths[0]}, {strengths[1]}, and {strengths[2]}"
+        return f"I believe I can contribute most through {strengths[0]}, {strengths[1]}, and {strengths[2]}"
     if len(strengths) == 2:
-        return f"I can contribute with {strengths[0]} and {strengths[1]}"
+        return f"I believe I can contribute most through {strengths[0]} and {strengths[1]}"
     if len(strengths) == 1:
-        return f"I can contribute with {strengths[0]}"
-    return "I can contribute with structured business analysis, clear requirement definition, and reliable operational follow-through"
+        return f"I believe I can contribute most through {strengths[0]}"
+    return "I believe I can contribute most through structured business analysis, clear requirement definition, and reliable operational follow-through"
+
+
+def source_line_for_job(intake: dict[str, Any]) -> str:
+    url = str(intake.get("job_url", "")).lower()
+    if "bosch.com" in url:
+        return "After reading the role on the Bosch careers page, I wanted to apply."
+    if "mercedes-benz.com" in url:
+        return "After reading the role on the Mercedes-Benz careers page, I wanted to apply."
+    if "jobs.sap.com" in url:
+        return "After reading the role on the SAP careers page, I wanted to apply."
+    if "linkedin.com" in url:
+        return "After reading the role description more carefully, I wanted to apply."
+    if "stepstone" in url or "arbeitnow" in url or "indeed" in url:
+        return "After reading the job description more carefully, I wanted to apply."
+    return "After reading the job description, I wanted to apply."
+
+
+def role_hook_sentence(intake: dict[str, Any], role: dict[str, Any]) -> str:
+    strengths = [str(item).strip() for item in role.get("cover_letter_strengths", []) if str(item).strip()]
+    if len(strengths) >= 3:
+        return f"What caught my attention is how clearly the role connects {strengths[0]}, {strengths[1]}, and {strengths[2]}."
+    if len(strengths) == 2:
+        return f"What caught my attention is the combination of {strengths[0]} and {strengths[1]}."
+    return f"What caught my attention is how closely the role aligns with my background in {role.get('label', 'structured digital work').lower()}."
+
+
+def build_authentic_opening(intake: dict[str, Any], role: dict[str, Any], application_voice: dict[str, Any]) -> str:
+    _ = application_voice
+    return paragraph(
+        f"I am writing to apply for the {intake['job_title']} position at {intake['company_name']}",
+        source_line_for_job(intake),
+        role_hook_sentence(intake, role),
+        contribution_sentence(role),
+    )
+
+
+def build_authentic_motivation(intake: dict[str, Any], role: dict[str, Any], application_voice: dict[str, Any]) -> str:
+    _ = application_voice
+    return paragraph(
+        intake["why_company"],
+        f"This is the kind of role where I believe I can do useful work because it stays close to real operations, real users, and the kind of {role.get('label', 'digital work').lower()} discipline I have been building toward.",
+    )
+
+
+def build_authentic_closing(intake: dict[str, Any], application_voice: dict[str, Any]) -> str:
+    _ = application_voice
+    return paragraph(
+        "Thank you for considering my application.",
+        start_date_sentence(intake),
+        f"I would be glad to discuss how I can support {intake['company_name']} in this role.",
+    )
 
 
 def build_cover_letter_context(
@@ -651,26 +705,16 @@ def build_cover_letter_context(
     role: dict[str, Any],
     intake: dict[str, Any],
     selected_evidence: list[dict[str, Any]],
+    authentic_voice: dict[str, Any],
 ) -> dict[str, str]:
-    source_line = "I came across this opportunity via the Bosch careers page" if "bosch.com/careers" in intake.get("job_url", "") else "I came across this opportunity through the advertised job posting"
-    opening = intake.get("cover_letter_opening") or paragraph(
-        f"I am applying for the {intake['job_title']} position at {intake['company_name']}",
-        source_line,
-        contribution_sentence(role),
-    )
+    application_voice = authentic_voice.get("application_voice", {})
+    opening = intake.get("cover_letter_opening") or build_authentic_opening(intake, role, application_voice)
     body_one, body_two = summarize_evidence_for_cover_letter(selected_evidence)
     body_one = intake.get("cover_letter_body_one") or body_one
     body_two = intake.get("cover_letter_body_two") or body_two
-    motivation = intake.get("cover_letter_motivation") or paragraph(
-        intake["why_company"],
-        "I am particularly motivated by companies where digital work stays close to operational reality and measurable execution",
-    )
+    motivation = intake.get("cover_letter_motivation") or build_authentic_motivation(intake, role, application_voice)
     custom_closing = intake.get("cover_letter_closing")
-    closing = apply_availability_placeholder(custom_closing, intake) if custom_closing else paragraph(
-        f"I would welcome the opportunity to discuss how I can support {intake['company_name']} in this role",
-        start_date_sentence(intake),
-        "I look forward to an interview",
-    )
+    closing = apply_availability_placeholder(custom_closing, intake) if custom_closing else build_authentic_closing(intake, application_voice)
 
     return {
         "SENDER_BLOCK": build_sender_block(profile, latex_mode=True),
@@ -700,26 +744,16 @@ def build_cover_letter_html_context(
     role: dict[str, Any],
     intake: dict[str, Any],
     selected_evidence: list[dict[str, Any]],
+    authentic_voice: dict[str, Any],
 ) -> dict[str, str]:
-    source_line = "I came across this opportunity via the Bosch careers page" if "bosch.com/careers" in intake.get("job_url", "") else "I came across this opportunity through the advertised job posting"
-    plain_opening = intake.get("cover_letter_opening") or paragraph(
-        f"I am applying for the {intake['job_title']} position at {intake['company_name']}",
-        source_line,
-        contribution_sentence(role),
-    )
+    application_voice = authentic_voice.get("application_voice", {})
+    plain_opening = intake.get("cover_letter_opening") or build_authentic_opening(intake, role, application_voice)
     plain_body_one, plain_body_two = summarize_evidence_for_cover_letter(selected_evidence)
     plain_body_one = intake.get("cover_letter_body_one") or plain_body_one
     plain_body_two = intake.get("cover_letter_body_two") or plain_body_two
-    motivation = intake.get("cover_letter_motivation") or paragraph(
-        intake["why_company"],
-        "I am particularly motivated by companies where digital work stays close to operational reality and measurable execution",
-    )
+    motivation = intake.get("cover_letter_motivation") or build_authentic_motivation(intake, role, application_voice)
     custom_closing = intake.get("cover_letter_closing")
-    plain_closing = apply_availability_placeholder(custom_closing, intake) if custom_closing else paragraph(
-        f"I would welcome the opportunity to discuss how I can support {intake['company_name']} in this role",
-        start_date_sentence(intake),
-        "I look forward to an interview",
-    )
+    plain_closing = apply_availability_placeholder(custom_closing, intake) if custom_closing else build_authentic_closing(intake, application_voice)
     return {
         "SENDER_BLOCK": build_sender_block(profile, latex_mode=False),
         "RECIPIENT_BLOCK": build_recipient_block(intake, latex_mode=False),
@@ -1349,6 +1383,7 @@ def main() -> None:
     evidence_library = load_json(DATA_DIR / "evidence_library.json")
     summary_versions = load_json(DATA_DIR / "summary_versions.json")
     taxonomy = load_json(DATA_DIR / "job_taxonomy.json")
+    authentic_voice = load_json(DATA_DIR / "authentic_writing_profile.json")
     summary_version_map = get_summary_versions(summary_versions)
 
     recommended_summary_versions = detect_summary_recommendations(intake, summary_versions, taxonomy)
@@ -1380,8 +1415,8 @@ def main() -> None:
     snapshot_dir = output_root / "skill-assessment"
 
     selected_for_cover_letter = select_evidence(intake, primary_role, evidence_library, taxonomy)
-    cover_letter_context = build_cover_letter_context(profile, primary_role, intake, selected_for_cover_letter)
-    cover_letter_html_context = build_cover_letter_html_context(profile, primary_role, intake, selected_for_cover_letter)
+    cover_letter_context = build_cover_letter_context(profile, primary_role, intake, selected_for_cover_letter, authentic_voice)
+    cover_letter_html_context = build_cover_letter_html_context(profile, primary_role, intake, selected_for_cover_letter, authentic_voice)
     snapshot_payload = build_snapshot_payload(profile, primary_role, intake, selected_for_cover_letter, taxonomy)
     snapshot_tex_context = build_snapshot_context(profile, primary_role, intake, snapshot_payload, latex_mode=True)
     snapshot_html_context = build_snapshot_context(profile, primary_role, intake, snapshot_payload, latex_mode=False)

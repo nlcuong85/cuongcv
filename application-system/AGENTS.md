@@ -19,6 +19,65 @@ The generator must produce recruiter-safe, German-market-friendly application ar
 
 - `/Users/pmlecuong/Documents/CuongProjects/CuongCV/src/data/resume-data.tsx`
 
+This system always writes in `application mode` from:
+
+- `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/writing-mode-framework.md`
+
+It may borrow sincerity, lived context, and contribution-oriented confidence from Cuong's authentic voice, but it must not drift into blog mode, work mode, or academic mode.
+
+## Fast path
+
+For most application tasks, do not load the whole folder.
+
+### For generating or revising one application package
+
+Read:
+1. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/AGENTS.md`
+2. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/AGENTS.md`
+3. the specific intake file
+4. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/scripts/generate_application.py` only if the task changes generator behavior
+
+Load profile/tone/reference JSON files only when the task actually edits those layers.
+
+Escalate to deeper reading when:
+- the user asks for a tone shift or stronger authenticity
+- the generated output feels generic, flat, or too templated
+- the task modifies templates, scoring logic, or summary behavior
+- page-limit or layout problems appear in rendered PDFs
+
+### For tone / voice work
+
+Read:
+1. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/AGENTS.md`
+2. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/AGENTS.md`
+3. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/writing-mode-framework.md`
+4. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/authentic_writing_profile.json`
+5. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/portfolio_digest.json`
+
+Load the raw authentic archive only when you need stronger evidence for a tone decision.
+
+Escalate to deeper reading when:
+- abstract voice notes are not enough to resolve the tone decision
+- the user wants higher fidelity to Cuong's real historical writing
+- there is tension between recruiter safety and authentic voice
+- a change may affect future outputs broadly
+
+### For rule/debug/layout work
+
+Read:
+1. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/AGENTS.md`
+2. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/AGENTS.md`
+3. the specific intake file
+4. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/scripts/generate_application.py`
+5. the relevant template or generated output involved in the bug
+
+Do not load all taxonomy/profile/evidence files unless the bug points there.
+
+Escalate to deeper reading when:
+- the bug may come from profile data, taxonomy, or evidence selection
+- the output mismatch is not explained by the first file set
+- the issue is recurring across multiple applications
+
 ## First Actions
 
 When you enter this folder for application work:
@@ -44,6 +103,10 @@ Use these as the source of truth:
 - shared summary variants: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/summary_versions.json`
 - shared JD/search taxonomy: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/job_taxonomy.json`
 - portfolio/tone digest: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/portfolio_digest.json`
+- authentic voice DNA: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/authentic_writing_profile.json`
+- raw authentic writing archive: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/authentic-writing-samples-2012-2018.md`
+- annotated authentic writing guide: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/authentic-writing-samples-annotated.md`
+- writing-mode framework: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/writing-mode-framework.md`
 - intakes: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/intakes/*.json`
 - generator: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/scripts/generate_application.py`
 - rule checker: `/Users/pmlecuong/.codex/skills/job-search-cuong/scripts/check_application_rules.py`
@@ -151,6 +214,10 @@ Content rules:
 - default work constraint is up to 20 hours per week unless the user overrides it
 - do not invent experience
 - keep tone formal and evidence-oriented
+- keep the final letter recruiter-safe, but let the opening and motivation feel personally grounded rather than fully templated
+- preserve sincerity and contribution-oriented confidence from Cuong's authentic pre-AI writing, while removing old repetition and outdated phrasing
+- when changing tone logic materially, review the raw authentic writing archive first rather than relying only on abstract voice notes
+- do not use blog mode, work mode, or academic mode language in final application artifacts
 
 German mismatch rule:
 

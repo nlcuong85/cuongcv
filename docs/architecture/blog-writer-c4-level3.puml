@@ -1,0 +1,74 @@
+@startuml
+!theme plain
+skinparam backgroundColor #F8F9FA
+skinparam defaultFontName Arial
+skinparam defaultFontSize 10
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam roundcorner 8
+skinparam wrapWidth 220
+
+title Blog Writer Skill - C4 Level 3 Component View
+
+actor "User or Calling Agent" as User
+
+rectangle "CuongCV Authentic Archive\napplication-system/data/authentic-writing-samples-*.md\napplication-system/data/authentic_writing_profile.json" as Archive #FFF2CC
+rectangle "Recent Publishing Baseline\npmlecuong-last-10-style-baseline-2026-02-18.md" as Baseline #FFF2CC
+rectangle "Social Planning References\nsocial-mode-guidance.md\nsocial-content-planning.md\nsocial-output-templates.md" as SocialRefs #FFF2CC
+rectangle "Wordpress Ops Skill" as Wordpress #E1F5FE
+rectangle "Research Writer Skill" as Research #E1F5FE
+rectangle "Web Search Skill\nExa | SerpAPI | ScrapeCreators |\nOpenAlex | Crossref | arXiv ..." as WebSearch #E1F5FE
+rectangle "PlantUML Toolchain" as PlantUML #E1F5FE
+
+package "Blog Writer Skill\n/Users/pmlecuong/.codex/skills/blog-writer" <<System>> {
+  rectangle "Control Plane\nSKILL.md + AGENTS.md\nfast path + escalation rules" as Control #D5E8D4
+  rectangle "Mode Router\nblog | work | social |\napplication | academic" as ModeRouter #DAE8FC
+  rectangle "Authenticity Layer\npre-AI DNA + annotated archive signals" as VoiceLayer #F8CECC
+  rectangle "Blog Drafting Engine\nstory flow, visuals, metadata,\ncorpus-fit checks, WordPress-ready output" as BlogEngine #DAE8FC
+  rectangle "Work Writing Engine\nuser stories, meeting recaps,\nSlack updates, decision notes" as WorkEngine #DAE8FC
+  rectangle "Social Writing Engine\nLinkedIn | X | Threads |\nInstagram | Facebook |\n7/30/90-day planning" as SocialEngine #DAE8FC
+  rectangle "Application Tone Support\nanalysis only,\nhandoff final generation to application system" as AppSupport #DAE8FC
+  rectangle "Academic Boundary Support\nvoice calibration only,\nhandoff final drafting to Research Writer" as AcademicSupport #DAE8FC
+  database "Output Workspace\nREADME.md\nimages/\ndiagrams/" as Workspace #D5E8D4
+}
+
+User --> Control : invokes skill
+Control --> ModeRouter : classify task
+ModeRouter --> VoiceLayer : load right voice depth
+Archive --> VoiceLayer : raw historical writing
+Baseline --> BlogEngine : quality and rhythm gate
+SocialRefs --> SocialEngine : platform rules and planning
+VoiceLayer --> BlogEngine : authenticity cues
+VoiceLayer --> WorkEngine : clarity plus human tone
+VoiceLayer --> SocialEngine : hooks, lived insight,\nbilingual grounding
+VoiceLayer --> AppSupport : sincere application tone hints
+VoiceLayer --> AcademicSupport : explanation clarity only
+
+ModeRouter --> BlogEngine : if blog mode
+ModeRouter --> WorkEngine : if work mode
+ModeRouter --> SocialEngine : if social mode
+ModeRouter --> AppSupport : if application mode
+ModeRouter --> AcademicSupport : if academic mode
+
+BlogEngine --> Workspace : create article artifacts
+BlogEngine --> PlantUML : render diagrams when needed
+BlogEngine --> Wordpress : handoff publish-ready markdown
+WorkEngine --> Workspace : optional local docs
+SocialEngine --> WebSearch : only when current external validation,\ntrend checks, or news context are needed
+SocialEngine --> Workspace : optional plans or file artifacts
+AcademicSupport --> Research : defer real academic drafting
+
+note right of ModeRouter
+Fast path keeps reading cost low.
+Escalation triggers force deeper reading
+when tone, quality, or risk requires it.
+end note
+
+note bottom of SocialEngine
+Default social output can include both
+English and Vietnamese versions.
+These should be native rewrites, not
+literal translations of the same post.
+end note
+
+@enduml

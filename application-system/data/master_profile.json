@@ -20,14 +20,18 @@
       "reflective but direct",
       "curious about systems and execution",
       "honest about limitations",
-      "confident without inflated claims"
+      "confident without inflated claims",
+      "sincere and situational rather than generic",
+      "personally motivated by real context"
     ],
     "cover_letter_rules": [
       "keep final output concise and formal",
       "avoid hype language",
       "prefer measurable outcomes and operational proof",
       "show Germany motivation through structure, integration, and long-term fit",
-      "do not drift into blog-style tangents in final application documents"
+      "do not drift into blog-style tangents in final application documents",
+      "start from a real reason for writing when possible",
+      "sound intentional and human, not overly neutral"
     ]
   },
   "germany_motivation": [
@@ -244,6 +248,7 @@
     "Writes in a reflective, systems-oriented tone with a strong focus on what worked, what failed, and what should change next",
     "Frames AI and engineering work through product discipline, context management, and practical execution",
     "Highlights Germany motivation through study, structure, integration, and long-term contribution",
-    "Uses case studies to connect product decisions with operational consequences"
+    "Uses case studies to connect product decisions with operational consequences",
+    "Authentic older writing shows direct motivation, contribution-oriented confidence, and a natural tendency to connect roles to lived context"
   ]
 }

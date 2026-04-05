@@ -1,0 +1,91 @@
+{
+  "source_note": "Derived from Le Cuong Nguyen's pre-AI cover letters, product/gamification notes, and early authentic blog articles written between 2012 and 2019. Use as a voice-DNA reference, not as a structure or grammar template.",
+  "source_files": [
+    "/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/authentic-writing-samples-2012-2018.md",
+    "/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/authentic-writing-samples-annotated.md"
+  ],
+  "application_voice": {
+    "core_traits": [
+      "sincere and direct",
+      "contribution-oriented",
+      "personally motivated by real context",
+      "warm but recruiter-safe",
+      "confident without hype",
+      "experience-backed rather than title-backed"
+    ],
+    "preserve_patterns": [
+      "start from a real reason for writing",
+      "connect motivation to lived context",
+      "show conviction through contribution rather than status",
+      "sound like a real person who noticed something specific about the role"
+    ],
+    "avoid_patterns": [
+      "generic active-student claims",
+      "repeating the same confidence line in every paragraph",
+      "old-fashioned formula openings copied literally",
+      "overly emotional or needy closings",
+      "grammar or phrasing quirks from old letters"
+    ],
+    "preferred_opening_moves": [
+      "state why the role caught attention",
+      "connect the role to one real strength area",
+      "sound intentional rather than templated"
+    ],
+    "preferred_motivation_moves": [
+      "explain why the company or environment is interesting in human terms",
+      "tie the role to operations, workflows, users, or systems when relevant",
+      "keep motivation concrete"
+    ],
+    "preferred_closing_moves": [
+      "thank the reader cleanly",
+      "invite discussion or interview without stiffness",
+      "keep availability and logistics concise"
+    ],
+    "secondary_signals": [
+      "authority should come from lived experience and what was learned",
+      "short lesson-like lines are acceptable when they stay formal and restrained",
+      "show scars and growth without sounding dramatic"
+    ]
+  },
+  "blog_voice": {
+    "core_traits": [
+      "reflective and story-driven",
+      "systems-oriented",
+      "comfortable showing the messy middle",
+      "playful when the topic allows it",
+      "product and incentive aware",
+      "mentor-like and battle-tested when the topic is career or product work"
+    ],
+    "preserve_patterns": [
+      "ask real design questions",
+      "show tradeoffs and alternatives",
+      "keep open questions visible when they add realism",
+      "move naturally between concept, mechanism, and human behavior",
+      "turn painful experience into practical lessons",
+      "use short takeaway lines or mini slogans when they sharpen the lesson"
+    ],
+    "avoid_patterns": [
+      "turning everything into polished framework language",
+      "erasing the exploratory feel of early drafts",
+      "generic AI-blog cadence"
+    ],
+    "mentor_voice": {
+      "traits": [
+        "older-brother teaching energy",
+        "pain-first authority",
+        "warning plus encouragement",
+        "realistic about failure and recovery"
+      ],
+      "preferred_shapes": [
+        "story -> pain -> lesson -> warning",
+        "incident -> reflection -> practical advice",
+        "mistake -> system insight -> reader takeaway"
+      ],
+      "signature_patterns": [
+        "bilingual takeaway lines",
+        "short standalone lesson sentences",
+        "advice grounded in incidents rather than theory"
+      ]
+    }
+  }
+}

@@ -1,0 +1,62 @@
+@startuml
+!theme plain
+skinparam backgroundColor #F8F9FA
+skinparam defaultFontName Arial
+skinparam defaultFontSize 10
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam roundcorner 8
+skinparam wrapWidth 220
+
+title CuongCV + Application Workflow - C4 Level 2 Container View
+
+actor "User or Calling Agent" as User
+
+rectangle "Official Job Sources\ncompany sites, LinkedIn,\nStepStone, public listings" as JobSources #FFF2CC
+rectangle "pmlecuong.com\npublic portfolio and blog" as Portfolio #FFF2CC
+rectangle "GitHub + GitHub Pages\ncuongcv repo and live CV site" as GitHubPages #FFF2CC
+rectangle "Blog Writer Skill\nwork mode and tone support" as BlogWriter #E1F5FE
+rectangle "Web Search Skill\nshared external provider layer\nExa | SerpAPI | ScrapeCreators |\nOpenAlex | Crossref | arXiv ..." as WebSearch #E1F5FE
+rectangle "Builder Ops + Playwright\nshipping, browser checks,\nprint and live validation" as OpsTools #E1F5FE
+
+package "CuongCV Ecosystem\n/Users/pmlecuong/Documents/CuongProjects/CuongCV" <<System>> {
+  rectangle "job-search-cuong Skill\norchestrates job search,\nCV site work, and application workflow" as JobSkill #D5E8D4
+
+  rectangle "Public CV Layer\nsrc/data/resume-data.tsx\nNext.js site\npublic/generated-cv-data/" as PublicCV #DAE8FC
+
+  rectangle "Application System\napplication-system/AGENTS.md\nintakes/\ndata/*.json\ngenerate_application.py\ntemplates/" as AppSystem #DAE8FC
+
+  rectangle "Validation Layer\ncheck_application_rules.py\npage-limit checks\nrendered PDF inspection" as Validation #F8CECC
+
+  database "Generated Outputs\ncover letters\nCV variants\nrole-fit snapshots\nHTML previews\nPDFs" as Outputs #D5E8D4
+}
+
+User --> JobSkill : request search, CV update,\nor application package
+JobSkill --> JobSources : discover and verify roles
+JobSkill --> WebSearch : provider-backed search only when\nbuilt-in browsing or direct discovery is not enough
+JobSkill --> Portfolio : refresh portfolio evidence
+JobSkill --> PublicCV : read or update canonical CV facts
+JobSkill --> AppSystem : create intakes and generate packages
+JobSkill --> BlogWriter : route internal work writing\nor tone-support tasks
+
+PublicCV --> GitHubPages : deploy live CV site
+AppSystem --> Validation : run rule and page checks
+Validation --> Outputs : approve or reject artifacts
+AppSystem --> Outputs : write generated package files
+OpsTools --> PublicCV : local and live browser validation
+OpsTools --> GitHubPages : verify shipped site
+OpsTools --> Outputs : inspect rendered PDFs and layout
+
+note bottom of AppSystem
+Application artifacts stay in application mode only.
+Fast-path reads are allowed, but escalation is mandatory
+when output feels generic, high-stakes, or layout-risky.
+end note
+
+note right of JobSkill
+job-search-cuong now routes all external
+search-provider work through web-search-skill
+instead of maintaining isolated provider logic.
+end note
+
+@enduml
