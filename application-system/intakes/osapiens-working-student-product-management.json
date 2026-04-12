@@ -1,0 +1,50 @@
+{
+  "company_name": "osapiens GmbH",
+  "company_location": "Mannheim, Germany",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter was visible on the public osapiens careers posting checked on 2026-04-12, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Working Student - Product Management (m/f/x)",
+  "job_url": "https://careers.osapiens.com/en/postings/2dd916b1-f34f-42c5-a421-58eb942e5099",
+  "language": "english",
+  "primary_role": "requirements_process",
+  "target_roles": [
+    "requirements_process"
+  ],
+  "summary_version": "business_analysis",
+  "why_company": "What caught my attention about osapiens is that this role sits where product work, regulatory thinking, supply-chain requirements, and structured content all meet. I am especially drawn to work where product quality depends not only on features, but on how clearly requirements, processes, and operational knowledge are translated into something teams and customers can actually use.",
+  "job_description": "osapiens GmbH is hiring a Working Student in Product Management in Mannheim on a hybrid basis. Public job mirrors for the same role show responsibilities around product content development, research on regulatory topics and process requirements, cross-functional collaboration with Product Management, Development, and Legal, support for requirements gathering, documentation of internal product processes and content workflows, and support for internal ESG-related tasks. The role asks for students ideally from economics, sustainability, social sciences, product management, or related fields, interest in supply chain topics and regulatory requirements, structured analytical work, affinity for large amounts of data, strong communication, very good German and English, and good MS Office skills especially Excel.",
+  "requirements": [
+    "Currently pursuing a Bachelor's or Master's degree, ideally with a focus on economics, sustainability, social sciences, product management, or a related field",
+    "Interest in supply chain topics, internal business processes, or regulatory requirements",
+    "Ideally first exposure to operational or compliance-related subjects",
+    "Structured, analytical, and detail-oriented working style",
+    "Affinity for large amounts of data and how to use it",
+    "Enjoy contributing ideas in a dynamic interdisciplinary team",
+    "Excellent German and English skills",
+    "Solid proficiency in MS Office, particularly Excel"
+  ],
+  "cv_about_override": "Business analysis, requirements, and workflow professional focused on structured product support, process clarity, and translating operational and regulatory complexity into usable product knowledge.",
+  "cv_summary_override": "Experienced business analysis and product professional with a strong foundation in requirements, workflow improvement, stakeholder alignment, documentation, and structured execution. I have worked across eCommerce, LegalTech, healthcare, and digital operations, with a focus on turning complex operational needs into clear processes, practical handoffs, and more reliable delivery. This makes me well suited for working student roles that combine product support, regulatory or process-related research, requirements gathering, and structured documentation in software environments.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "Process Mapping",
+    "Workflow Improvement",
+    "Operations-heavy Product Delivery",
+    "Cross-functional Delivery",
+    "Management Presentations",
+    "Data Analysis",
+    "Excel",
+    "Confluence",
+    "Jira",
+    "Quality Coordination"
+  ],
+  "cover_letter_opening": "I wanted to apply for the Working Student - Product Management (m/f/x) role at osapiens because the work itself caught my attention immediately. It sits in the part of product work I find especially meaningful: connecting regulatory and process complexity with structured product content, requirements, and workflows that people can actually use.",
+  "cover_letter_body_one": "That kind of role fits how I have usually contributed in previous positions. Across digital products and operations-heavy environments, I often worked where teams needed clearer requirements, better documentation, and more structured communication between business, product, and operational stakeholders.",
+  "cover_letter_body_two": "What makes this role especially relevant for me is the mix of research, process understanding, requirements support, and documentation. Through my work across marketplace products, a B2B onboarding product in the private-markets environment with institutional client-process constraints, and healthcare workflow digitization, I have built experience turning complex operational and compliance-related topics into clearer product structures and more usable delivery artifacts. That feels closely aligned with the way osapiens connects software products with supply-chain, ESG, and process requirements.",
+  "cover_letter_motivation": "I am particularly interested in osapiens because the company works on transparency, efficiency, and trust across the value chain in a way that combines software with real business responsibility. That is exactly the kind of environment where I believe structured product support and careful process thinking create real value.",
+  "cover_letter_closing": "@@AVAILABILITY@@. While my German is still improving and not yet at an excellent professional level, I work confidently in English at C1 level with IELTS 7.5 and continue to strengthen my German. If there is another suitable English-first working student role at osapiens that is closer to my current language level, I would also be grateful to be considered."
+}

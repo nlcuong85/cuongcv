@@ -1,0 +1,50 @@
+{
+  "company_name": "Cinemo GmbH",
+  "company_location": "Karlsruhe, Germany",
+  "contact_name": "",
+  "contact_title": "Recruiting Team",
+  "contact_lookup_status": "The public JOIN posting checked on 2026-04-12 lists only `Recruiting Team` as the contact person, so the letter uses that fallback.",
+  "job_title": "Working Student – GenAI / LLM Evaluation – Agentic AI / NLP (f/m/d)",
+  "job_url": "https://join.com/companies/cinemo/15947330-working-student-genai-llm-evaluation-agentic-ai-nlp-f-m-d?pid=e65242534431eadcb0c9",
+  "language": "english",
+  "primary_role": "ai_product_ops",
+  "target_roles": [
+    "ai_product_ops"
+  ],
+  "summary_version": "strongest_balanced",
+  "why_company": "What caught my attention about Cinemo is that this role treats GenAI seriously at the level where it actually becomes useful or risky: datasets, evaluation, testing workflows, and making non-deterministic systems more measurable and reliable. I am especially drawn to AI work that stays close to real product behavior, structured validation, and practical improvement instead of only model hype.",
+  "job_description": "Cinemo GmbH is hiring a working student in GenAI / LLM Evaluation – Agentic AI / NLP in Karlsruhe. The role supports evaluation and validation of agentic AI systems and LLM-based NLP features for in-car experiences, including dataset creation and maintenance, benchmarking, regression testing, scenario coverage, evaluation tooling, dashboards, automated test runs, end-to-end testing workflows, documentation of findings, and close collaboration with engineers and researchers. The posting asks for ongoing studies in Computer Science, AI/ML, Data Science, Computational Linguistics, or a related field, hands-on programming skills in Python, understanding of ML/NLP basics, interest in GenAI and evaluation of non-deterministic behavior, experience with data handling and dataset creation, familiarity with software testing concepts, and good English.",
+  "requirements": [
+    "Ongoing Bachelor's or Master's studies in Computer Science, AI/ML, Data Science, Computational Linguistics, or a related field",
+    "Hands-on programming skills in Python",
+    "Solid understanding of basic ML and NLP concepts",
+    "Interest in GenAI, LLMs, agentic systems, and evaluation of non-deterministic AI behavior",
+    "Experience with data handling and dataset creation, including labeling, preprocessing, and quality checks",
+    "Familiarity with software testing concepts such as unit or end-to-end testing is a plus",
+    "Good written and spoken English communication skills",
+    "Willingness to work from Karlsruhe, Germany"
+  ],
+  "cv_about_override": "AI workflow, business analysis, and structured-delivery professional focused on practical evaluation, operational reliability, and turning complex AI behavior into more usable and measurable systems.",
+  "cv_summary_override": "Experienced business analysis and AI workflow professional with a strong foundation in structured execution, stakeholder alignment, workflow improvement, and practical communication across technical and non-technical contexts. Alongside my earlier product and business-analysis work, I have been building a stronger AI-focused profile through Software Engineering studies, hands-on automation and agent workflows, and public writing that explores context engineering, AI agents, and practical AI adoption. This makes me well suited for working student roles that combine GenAI evaluation, structured analysis, documentation, and practical support for improving AI-enabled products.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "AI-assisted Workflow Design",
+    "Automation Thinking",
+    "Context Engineering",
+    "Systems Thinking",
+    "Data Analysis",
+    "Monitoring and Reporting",
+    "OpenAI",
+    "Codex",
+    "Cross-functional Delivery",
+    "Workflow Improvement"
+  ],
+  "cover_letter_opening": "I wanted to apply for the Working Student – GenAI / LLM Evaluation – Agentic AI / NLP (f/m/d) role at Cinemo because the work itself caught my attention immediately. It focuses on the part of AI that matters most in real products: evaluation, datasets, testing workflows, and making non-deterministic behavior more reliable.",
+  "cover_letter_body_one": "My profile is not centered on pure model research, but it is strongly connected to practical AI workflow work. Over the past year, I have been writing extensively on pmlecuong.com about AI agents, context engineering, and how AI systems should be structured so they behave more usefully in real settings. That has made me think seriously about evaluation, failure modes, and what it takes to move from interesting output to something teams can actually trust.",
+  "cover_letter_body_two": "At the same time, my background in business analysis, product delivery, and structured operations has made me comfortable with exactly the kind of discipline this role needs: organizing information, documenting findings clearly, working across functions, and improving workflows through repeated feedback. Through my Software Engineering studies at Heilbronn University and my hands-on work across automation and AI workflows, I have been moving toward more technical work of this kind. I would not overstate myself as an NLP specialist already, but I can contribute with strong structure, clear thinking, and a serious interest in evaluation-driven AI work.",
+  "cover_letter_motivation": "I am particularly interested in Cinemo because the company applies AI in a demanding product environment where reliability, integration, and real-world behavior matter. That is exactly the kind of setting where I want to keep growing.",
+  "cover_letter_closing": "@@AVAILABILITY@@. I would welcome the opportunity to discuss how I can support your GenAI / LLM team in this role."
+}

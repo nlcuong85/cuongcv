@@ -1,0 +1,53 @@
+{
+  "company_name": "SAP",
+  "company_location": "Walldorf, DE, 69190",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter or contact was visible on the SAP careers posting checked on 2026-04-12, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Working Student (f/m/d) - Technical Writing & Team Support",
+  "job_url": "https://jobs.sap.com/job/Walldorf-Working-Student-%28fmd%29-Technical-Writing-%26-Team-Support-69190/1382269433/",
+  "language": "english",
+  "primary_role": "implementation_enablement",
+  "target_roles": [
+    "implementation_enablement"
+  ],
+  "summary_version": "business_analysis",
+  "start_date": "26 April 2026",
+  "availability_override": "I am available from 26 April 2026 for up to 20 hours per week in line with my current student visa, and I can work regularly from the Walldorf office. I work confidently in English, and my German is still improving.",
+  "why_company": "What caught my attention about this SAP role is that it treats technical writing as part of real team execution: turning complex topics into useful documentation, keeping shared spaces organized, and helping engineers and product managers communicate more clearly. I am especially interested in work where structured writing directly supports better delivery and developer understanding.",
+  "job_description": "SAP is hiring a working student for Technical Writing and Team Support in Walldorf within the Platform CoE inside SAP IT. The role helps turn complex technical topics into clear documentation and communication materials for developers, colleagues, and stakeholders; creates and maintains user guides, internal how-tos, and slide decks; supports the team by organizing information, preparing meetings, and keeping wikis, project boards, and presentations up to date; and works closely with engineers and product managers to improve how the team communicates what it builds. The posting asks for a student in computer science or a comparable field, Office skills, a programming language as a plus, strong written and verbal English, German as a plus, strong organization, teamwork, creativity, and regular work from the Walldorf office.",
+  "requirements": [
+    "Student at a university or university of applied sciences",
+    "Preferred field of study: Computer Science or comparable",
+    "Strong written and verbal English; German is a plus",
+    "Office skills; a programming language is a plus",
+    "Team player with strong organizational ability",
+    "Creative and strong interest in writing",
+    "Ability to create and maintain user guides, internal how-tos, and presentation materials",
+    "Comfort working closely with engineers and product managers",
+    "Working from the Walldorf office is required"
+  ],
+  "cv_about_override": "Documentation, workflow, and delivery-support professional focused on clear technical communication, structured handoffs, and practical coordination in digital product environments.",
+  "cv_summary_override": "Experienced business analysis and delivery-support professional with a strong foundation in documentation, stakeholder alignment, workflow clarity, and structured execution. Through Software Engineering studies at Heilbronn University, Business Information Systems studies at Vietnamese-German University, and hands-on work across requirements, presentations, operational documentation, and cross-functional delivery, I have built a strong fit for working student roles that combine technical writing, shared knowledge maintenance, and team support in product and engineering environments.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "Workflow Optimization",
+    "Operations-heavy Product Delivery",
+    "Cross-functional Delivery",
+    "Management Presentations",
+    "Workshop Preparation",
+    "Training Material Development",
+    "Confluence",
+    "Jira",
+    "Process Mapping",
+    "Excel"
+  ],
+  "cover_letter_opening": "I am applying for the Working Student (f/m/d) - Technical Writing & Team Support role at SAP because it combines clear writing, documentation, and practical team support in a technical environment.",
+  "cover_letter_body_one": "Across business analysis, product delivery, and operations-heavy environments, I have often worked where teams needed clearer documentation, better structured information, and stronger coordination between stakeholders. That has made me comfortable creating guides, presentations, meeting materials, and working documents that help teams move from discussion to execution.",
+  "cover_letter_body_two": "This role is especially relevant to me because it brings writing and organization close to engineers and product managers. Through my Software Engineering studies, my Business Information Systems background, and my earlier work across requirements, workflow documentation, and cross-functional delivery, I have built a strong foundation for turning complex topics into structured, usable material. I am not presenting myself as a pure technical writer already, but I can contribute with clarity, discipline, and a serious interest in improving how teams communicate what they build.",
+  "cover_letter_motivation": "I am particularly interested in SAP because the company combines technical depth, internal platform work, and real developer-facing communication needs at scale.",
+  "cover_letter_closing": "I am available from 26 April 2026 for up to 20 hours per week in line with my current student visa, and I can work regularly from the Walldorf office. I work confidently in English, and my German is still improving. I would welcome the opportunity to discuss how I can support your team."
+}

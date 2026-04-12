@@ -1,0 +1,49 @@
+{
+  "company_name": "Schwarz Digits",
+  "company_location": "Haller Str. 59, 74189 Weinsberg, Germany",
+  "contact_name": "Laura Ehlbeck",
+  "contact_title": "Recruiterin",
+  "contact_lookup_status": "Named recruiter Laura Ehlbeck and the Weinsberg address were verified from the official Schwarz Digits posting checked on 2026-04-12.",
+  "job_title": "Werkstudent Data-Automation (m/w/d)",
+  "job_url": "https://schwarz-digits.de/jobsearch/hr/werkstudent-data-automation-m-w-d-GT3061",
+  "language": "english",
+  "primary_role": "process_automation",
+  "target_roles": [
+    "process_automation"
+  ],
+  "summary_version": "business_analysis",
+  "why_company": "What caught my attention about Schwarz Digits is that this role is concrete in the right way: migrate existing automations, keep the logic working, and do it carefully enough that the output can be trusted. I am especially drawn to work where small technical changes improve real day-to-day operations.",
+  "job_description": "Schwarz Digits is hiring a working student in Data-Automation in Weinsberg within IT Consulting. The role focuses on migrating existing SAP-related automations from Excel to Google Sheets, adapting scripts and logic so the workflows still work in the new environment, and following a structured approval process while delivering roughly two to three solutions per workday.",
+  "requirements": [
+    "Current studies in business informatics, computer science, or a comparable field",
+    "Interest in Google Apps Script",
+    "Good knowledge of Microsoft Excel or Google Sheets",
+    "Structured and careful working style",
+    "Enjoyment of efficient process execution",
+    "Ability to adapt scripts and logic in a controlled workflow",
+    "Comfort working within a defined approval and release process"
+  ],
+  "cv_about_override": "Process and digitalization professional focused on workflow improvement, structured execution, and practical automation in operations-heavy environments.",
+  "cv_summary_override": "Experienced business analysis and product professional with a strong foundation in workflow improvement, stakeholder alignment, and structured execution. Alongside my earlier business background, I am deepening my technical path through Software Engineering studies at Heilbronn University and Business Information Systems studies at Vietnamese-German University. My hands-on work across automation, digital operations, SQL, and cross-functional delivery makes me well suited for working student roles that combine process migration, logic adaptation, and disciplined operational follow-through.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Process Improvement",
+    "Workflow Optimization",
+    "Operations-heavy Product Delivery",
+    "AI-assisted Workflow Design",
+    "Automation Thinking",
+    "Process Mapping",
+    "Documentation",
+    "Cross-functional Delivery",
+    "Systems Thinking",
+    "SQL",
+    "Quality Coordination"
+  ],
+  "cover_letter_opening": "I am applying for the position of Werkstudent Data-Automation (m/w/d) at Schwarz Digits because this role caught my attention immediately. It is simple and concrete in a way I like: move existing automations from Excel to Google Sheets, adjust the logic carefully, and make sure the output stays reliable.",
+  "cover_letter_body_one": "That kind of work fits how I have contributed in previous roles. Across digital products and operations-heavy environments, I often worked in the space between business needs and execution: improving workflows, clarifying logic, documenting changes, and helping teams make transitions without losing control of day-to-day operations.",
+  "cover_letter_body_two": "What also makes this role a good fit for me now is the direction I am already moving in. Through my Software Engineering studies at Heilbronn University, my Business Information Systems background, and my hands-on work across automation and digital operations, I have been building toward more technical, process-centered work. I would not describe myself as someone who already knows every detail of Google Apps Script, but I am careful, fast to learn, and comfortable working in structured approval-driven environments.",
+  "cover_letter_motivation": "I am particularly interested in Schwarz Digits because the company combines serious digital infrastructure with practical operational responsibility. Roles like this are appealing to me because they are not about abstract innovation language, but about making real internal work run more reliably.",
+  "cover_letter_closing": "@@AVAILABILITY@@. My German is still improving, while I work confidently in English at C1 level with IELTS 7.5. If this specific role requires stronger German than my current level, I would still be grateful to be considered for another suitable English-first student role within Schwarz Digits."
+}

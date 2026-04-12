@@ -1,0 +1,53 @@
+{
+  "company_name": "SAP",
+  "company_location": "Walldorf, DE, 69190",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter or contact was visible on the SAP careers posting checked on 2026-04-12, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Working Student (f/m/d) - Threat Modelling Service Operation and Automation",
+  "job_url": "https://jobs.sap.com/job/Walldorf-Working-Student-%28fmd%29-Threat-Modelling-Service-Operation-and-Automation-69190/1382325433/?feedId=384233&utm_campaign=SAP_Linkedin&utm_source=LinkedinJobPostings",
+  "language": "english",
+  "primary_role": "process_automation",
+  "target_roles": [
+    "process_automation"
+  ],
+  "summary_version": "business_analysis",
+  "start_date": "26 April 2026",
+  "availability_override": "I am available from 26 April 2026 for up to 20 hours per week in line with my current student visa, and I can work regularly from the Walldorf office. I work confidently in English, and my German is still improving.",
+  "why_company": "What caught my attention about this SAP role is that it is operational and technical in a concrete way: handling Jira-based service requests, improving threat-modelling workflows, shaping a prioritized automation backlog, and supporting backend work around a security-critical internal service. I am especially interested in roles where structured operations, practical automation, and careful follow-through matter more than presentation alone.",
+  "job_description": "SAP is hiring a working student for Threat Modelling Service Operation and Automation in Walldorf, with regular work from the Walldorf or Dresden office required. The role operates the Threat Model Service through Jira request handling, scheduling, and follow-through on outcomes; improves automation around scheduling, assessments, and finding handling; supports backend service development related to threat modelling; and helps create and implement a prioritized backlog for automation and service-handling improvements. The posting asks for a student in computer science or information security, programming familiarity including Python or Java, strong English, German as a plus, self-driven teamwork, Jira familiarity, workflow automation experience especially around Jira or Outlook, and beneficial hands-on experience with agents and AI-aided development.",
+  "requirements": [
+    "Student at a university or university of applied sciences",
+    "Preferred fields of study: Computer Science or Information Security",
+    "Programming familiarity including Python or Java",
+    "Full working proficiency in English; German is a plus",
+    "Self-driven, open-minded, and strong sense of urgency",
+    "Ability to operate and improve a Jira-based service workflow",
+    "Experience designing and implementing workflow automations, especially around Jira issues or Outlook meeting requests, is beneficial",
+    "Hands-on experience with agents and AI-aided development is beneficial",
+    "Working regularly from Walldorf or Dresden office is required"
+  ],
+  "cv_about_override": "Process and automation professional focused on workflow operations, structured service handling, and AI-assisted execution in technical environments.",
+  "cv_summary_override": "Experienced business analysis and operations professional with a strong foundation in workflow improvement, backlog-oriented coordination, documentation, and practical automation. Through current Software Engineering studies at Heilbronn University and hands-on work with AI-assisted workflows, automation, and structured operational delivery, I am moving toward more technical service-operations work. This makes me well suited for working student roles that combine Jira-based handling, automation improvement, backend-adjacent support, and disciplined follow-through.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Process Improvement",
+    "Workflow Optimization",
+    "Operations-heavy Product Delivery",
+    "AI-assisted Workflow Design",
+    "Automation Thinking",
+    "Jira",
+    "Confluence",
+    "SQL",
+    "Documentation",
+    "Process Mapping",
+    "OpenAI"
+  ],
+  "cover_letter_opening": "I am applying for the Working Student (f/m/d) - Threat Modelling Service Operation and Automation role at SAP because it combines service handling, backlog-driven improvement, and automation in a concrete technical setting.",
+  "cover_letter_body_one": "Across business analysis, product delivery, and operations-heavy environments, I have often worked where teams needed clearer workflows, stronger follow-through, and better coordination between requests, priorities, and execution. That has made me comfortable with structured service handling, documentation, and workflow improvement.",
+  "cover_letter_body_two": "This role is especially relevant to me because of its automation and AI-assisted direction. Through my Software Engineering studies, my Business Information Systems background, and my hands-on work with AI workflows and process improvement, I have been moving toward more technical service-operations work. I do not claim a pure information-security background, but I can bring strong workflow discipline, automation thinking, and a serious willingness to learn quickly in a security-focused environment.",
+  "cover_letter_motivation": "I am particularly interested in SAP because the company combines technical depth, operational scale, and real internal process responsibility.",
+  "cover_letter_closing": "I am available from 26 April 2026 for up to 20 hours per week in line with my current student visa, and I can work regularly from the Walldorf office. I work confidently in English, and my German is still improving. I would welcome the opportunity to discuss how I can support your team."
+}

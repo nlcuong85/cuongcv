@@ -1,0 +1,49 @@
+{
+  "company_name": "Hosokawa Alpine",
+  "company_location": "Leingarten, Germany",
+  "contact_name": "Katharina Krebs",
+  "contact_title": "Recruiting Contact",
+  "contact_lookup_status": "Named contact Katharina Krebs and the Leingarten location were verified from the official Hosokawa Alpine posting checked on 2026-04-12.",
+  "job_title": "Working Student (m/f/d) for AI",
+  "job_url": "https://career.hosokawa-alpine.com/Working-Student-mfd-for-AI-eng-j843.html",
+  "language": "english",
+  "primary_role": "ai_product_ops",
+  "target_roles": [
+    "ai_product_ops"
+  ],
+  "summary_version": "strongest_balanced",
+  "why_company": "What caught my attention about Hosokawa Alpine is that the AI work here is very concrete: support configuration work for compactors, analyze test reports, and structure information so the sales side can use it better. I am especially interested in AI when it is applied to real industrial processes instead of being treated as a vague innovation topic.",
+  "job_description": "Hosokawa Alpine is hiring a working student in AI for its Business Unit Powder in Leingarten. The role focuses on developing an AI concept for the configuration of compactors to support the sales team, systematically analysing and evaluating test reports using AI, and sorting and structuring test reports. The posting asks for studies in computer science, process engineering, or a similar field, initial knowledge of AI platforms and AI technology, confident use of MS Office, and fluent German with good English.",
+  "requirements": [
+    "Studies in computer science, process engineering, or a similar field",
+    "Initial knowledge of AI platforms and AI technology",
+    "Confident use of MS Office",
+    "Fluent German and good English",
+    "Ability to work independently and in a team",
+    "Interest in AI-supported analysis and structured report handling",
+    "Interest in industrial or process-oriented business environments"
+  ],
+  "cv_about_override": "Business analysis and AI workflow professional building stronger technical depth in applied AI, structured analysis, and practical automation for real operational environments.",
+  "cv_summary_override": "Experienced business analysis and product professional with a strong foundation in workflow improvement, stakeholder alignment, and structured execution. Alongside my earlier business background, I am deepening my technical path through Software Engineering studies at Heilbronn University and Business Information Systems studies at Vietnamese-German University. My hands-on work across automation, digital operations, AI-assisted workflows, and SQL makes me well suited for working student roles that combine applied AI, structured analysis, and practical support for real business processes.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Process Improvement",
+    "Workflow Optimization",
+    "Operations-heavy Product Delivery",
+    "AI-assisted Workflow Design",
+    "Automation Thinking",
+    "Data Analysis",
+    "Systems Thinking",
+    "SQL",
+    "Documentation",
+    "Cross-functional Delivery",
+    "Monitoring and Reporting"
+  ],
+  "cover_letter_opening": "I wanted to apply for the Working Student (m/f/d) for AI role at Hosokawa Alpine because the work itself caught my attention immediately. It is concrete in the right way: develop an AI concept for compactor configuration, analyse test reports, and structure information so it becomes more useful for the sales team.",
+  "cover_letter_body_one": "That kind of work fits how I have usually contributed in previous roles. Across digital products and operations-heavy environments, I often worked where information was messy, workflows needed more structure, and teams needed clearer logic or better support to move forward reliably.",
+  "cover_letter_body_two": "What makes this role especially interesting to me now is that it applies AI in a practical industrial context rather than as a branding exercise. Through my Software Engineering studies at Heilbronn University, my Business Information Systems background, and my hands-on work across automation, AI-assisted workflows, and digital operations, I have been moving toward exactly this kind of applied, process-centered work. I am not presenting myself as a finished AI specialist already, but as someone who can think structurally, learn quickly, and contribute carefully.",
+  "cover_letter_motivation": "I am particularly interested in Hosokawa Alpine because the company combines engineering depth, long-term industrial know-how, and a very practical use case for AI. That combination is much more attractive to me than generic AI roles, because the value is visible and tied to real operational work.",
+  "cover_letter_closing": "@@AVAILABILITY@@. I also want to be transparent that the posting asks for fluent German, while my German is still improving and not yet at that level. I work confidently in English at C1 level with IELTS 7.5 and continue to strengthen my German. If there is another suitable English-first working student role at Hosokawa Alpine, I would also be grateful to be considered."
+}

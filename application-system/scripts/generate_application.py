@@ -628,12 +628,14 @@ def summarize_evidence_for_cover_letter(selected: list[dict[str, Any]]) -> tuple
     second = selected[1] if len(selected) > 1 else selected[0]
     return (
         paragraph(
-            f"In recent roles, I worked on products where {first['problem'].lower()}",
-            "That experience taught me how much clear structure and practical follow-through matter when teams are trying to move complex work forward",
+            "In previous roles, I was usually most useful when work sat between process clarity and execution discipline",
+            first["actions"][0],
+            first["results"][0],
         ),
         paragraph(
+            "That experience fits roles where the work is not abstract strategy, but making sure changes are understood, implemented carefully, and useful in day-to-day operations",
             second["actions"][0],
-            "This strengthened my ability to translate business needs into clear requirements, practical delivery decisions, and day-to-day coordination that actually helps the team",
+            second["results"][0],
         ),
     )
 
@@ -667,19 +669,41 @@ def source_line_for_job(intake: dict[str, Any]) -> str:
 def role_hook_sentence(intake: dict[str, Any], role: dict[str, Any]) -> str:
     strengths = [str(item).strip() for item in role.get("cover_letter_strengths", []) if str(item).strip()]
     if len(strengths) >= 3:
-        return f"What caught my attention is how clearly the role connects {strengths[0]}, {strengths[1]}, and {strengths[2]}."
+        return f"It fits how I work best because it stays close to {strengths[0]}, {strengths[1]}, and {strengths[2]}."
     if len(strengths) == 2:
-        return f"What caught my attention is the combination of {strengths[0]} and {strengths[1]}."
-    return f"What caught my attention is how closely the role aligns with my background in {role.get('label', 'structured digital work').lower()}."
+        return f"It fits how I work best because it stays close to {strengths[0]} and {strengths[1]}."
+    return f"It fits how I work best because it stays close to {role.get('label', 'structured digital work').lower()}."
+
+
+def extract_concrete_role_focus(intake: dict[str, Any]) -> str:
+    description = " ".join(str(intake.get("job_description", "")).split())
+    patterns = [
+        r"\bThe role focuses on ([^.]+)\.",
+        r"\bThe role involves ([^.]+)\.",
+        r"\bThe role supports ([^.]+)\.",
+        r"\bThe role combines ([^.]+)\.",
+        r"\bThe role centers on ([^.]+)\.",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, description, re.IGNORECASE)
+        if match:
+            return match.group(1).strip()
+    return ""
+
+
+def concrete_trigger_sentence(intake: dict[str, Any]) -> str:
+    focus = extract_concrete_role_focus(intake)
+    if focus:
+        return f"What caught my attention immediately is that the work is concrete: {focus}"
+    return "What caught my attention immediately is that the work itself sounds concrete, useful, and close to real operations"
 
 
 def build_authentic_opening(intake: dict[str, Any], role: dict[str, Any], application_voice: dict[str, Any]) -> str:
     _ = application_voice
     return paragraph(
-        f"I am writing to apply for the {intake['job_title']} position at {intake['company_name']}",
-        source_line_for_job(intake),
+        f"I wanted to apply for the {intake['job_title']} role at {intake['company_name']}",
+        concrete_trigger_sentence(intake),
         role_hook_sentence(intake, role),
-        contribution_sentence(role),
     )
 
 
@@ -687,7 +711,7 @@ def build_authentic_motivation(intake: dict[str, Any], role: dict[str, Any], app
     _ = application_voice
     return paragraph(
         intake["why_company"],
-        f"This is the kind of role where I believe I can do useful work because it stays close to real operations, real users, and the kind of {role.get('label', 'digital work').lower()} discipline I have been building toward.",
+        f"That matters to me because I do my best work in roles where the value is practical, the contribution is visible, and the learning stays tied to real operations rather than abstract ownership.",
     )
 
 

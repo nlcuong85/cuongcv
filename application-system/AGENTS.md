@@ -143,8 +143,19 @@ Each package can contain:
 - `cv/resume-<name>-<job>-<timestamp>.pdf`
 - `manifest.json`
 - `notes.md`
+- `communication-log.md`
 
 Keep earlier timestamped PDFs. Never delete prior rendered versions just because a newer run exists.
+
+## Communication Log Rules
+
+For recruiter or interview email work tied to an existing application package:
+
+- create or update `communication-log.md` in that package folder
+- append every meaningful inbound or outbound email interaction
+- record the concrete date logged, participants, direction, status, summary, and the final reply text when a reply is drafted
+- if no reply is needed, record that explicitly instead of leaving the thread undocumented
+- treat this file as the communication history for future reapplications or follow-ups
 
 ## Role Families
 

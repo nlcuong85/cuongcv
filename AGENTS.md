@@ -66,6 +66,7 @@ Read:
 1. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/AGENTS.md`
 2. `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/AGENTS.md` only if an intake/output folder already exists for that company
 3. the relevant intake/output files if they exist
+4. `communication-log.md` inside the matching application output folder if it exists
 
 Keep the read set narrow and avoid loading the full generator stack when the user only needs a reply.
 
@@ -212,7 +213,8 @@ Handle it by:
 2. Match the tone to prior application materials
 3. Keep the email concise, natural, and recruiter-safe
 4. Prefer clean business English unless the user asks for German
-5. Do not overcomplicate the reply with application-system regeneration unless the user asks for document changes
+5. Create or update `communication-log.md` in the matching application output folder and save the incoming message, final draft reply, date, and current status
+6. Do not overcomplicate the reply with application-system regeneration unless the user asks for document changes
 
 ### 4. Deployment / GitHub Pages / environment
 
@@ -554,5 +556,6 @@ When finishing work, report only the relevant items:
 ### For interview/recruiter emails
 
 - provide the final reply text
+- provide the `communication-log.md` path if it was created or updated
 - keep it ready to paste
 - offer one tighter or warmer variant only if useful

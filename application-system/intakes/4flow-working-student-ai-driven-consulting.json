@@ -1,0 +1,50 @@
+{
+  "company_name": "4flow SE",
+  "company_location": "Berlin, Düsseldorf, Hamburg, München, Rüsselsheim, Stuttgart, Germany",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter was visible on the public 4flow careers posting checked on 2026-04-12, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Working Student - AI-Driven Consulting (d/f/m)",
+  "job_url": "https://4flow.wd3.myworkdayjobs.com/en-US/4flow/job/Berlin/Werkstudent-in-im-Bereich-Digital-Driven-Consulting--d-w-m----Fokus-Knstliche-Intelligenz--KI-_R3285?src=LinkedIn",
+  "language": "english",
+  "primary_role": "ai_product_ops",
+  "target_roles": [
+    "ai_product_ops"
+  ],
+  "summary_version": "strongest_balanced",
+  "why_company": "What caught my attention about 4flow is that this role is not asking for AI in the abstract. It is about identifying business-relevant AI agents, shaping practical consulting use cases, and helping consultants use AI more effectively in day-to-day work. That is very close to how I already think about AI: useful only when it becomes concrete, operational, and usable by real teams.",
+  "job_description": "4flow SE is hiring a Working Student - AI-Driven Consulting (d/f/m) across several German locations with remote work possible. The role supports the team in developing AI-driven solutions from a consulting perspective with a focus on strategic and business-relevant applications. Tasks include identifying and defining AI agents that streamline everyday business processes, contributing to the conceptual design of an AI platform tailored to business needs without technical implementation or data science work, collaborating with consultants to translate AI opportunities into actionable internal strategies, analyzing AI market trends and best practices, and creating concepts and presentations that demonstrate the value of AI solutions across industries and business models.",
+  "requirements": [
+    "Studies in Business Informatics, Logistics, Economics, or a comparable degree program, ideally at Master's level",
+    "Excellent academic record",
+    "Passion for complex issues in logistics",
+    "Ideally initial practical experience, preferably in consulting or project management",
+    "Strong analytical and communication skills",
+    "Interest in new technologies and their implementation",
+    "Excellent English skills",
+    "Professional use of MS Office programs"
+  ],
+  "cv_about_override": "AI workflow, business analysis, and structured-delivery professional focused on practical automation, operational clarity, and turning AI ideas into usable workflows and business-facing concepts.",
+  "cv_summary_override": "Experienced business analysis and AI workflow professional with a strong foundation in structured execution, stakeholder alignment, workflow improvement, and practical communication across technical and non-technical contexts. Alongside my earlier product and business-analysis work, I have been building a stronger AI-focused profile through Software Engineering studies, hands-on automation and agent workflows, and public writing that explores context engineering, AI agents, and practical AI adoption. This makes me well suited for working student roles that combine AI use-case thinking, structured analysis, market-oriented communication, and practical enablement for consultants and business teams.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "AI-assisted Workflow Design",
+    "Automation Thinking",
+    "Context Engineering",
+    "Systems Thinking",
+    "Management Presentations",
+    "Competitor and Market Analysis",
+    "Cross-functional Delivery",
+    "OpenAI",
+    "Codex",
+    "Workflow Improvement"
+  ],
+  "cover_letter_opening": "I wanted to apply for the Working Student - AI-Driven Consulting (d/f/m) role at 4flow because the work itself caught my attention immediately: identifying practical agent use cases, shaping business-relevant concepts, and helping teams use AI in a way that is actually useful.",
+  "cover_letter_body_one": "My profile is not centered on pure model engineering. It sits more between business needs, workflow design, and practical AI adoption. Over the past year, I have written extensively on pmlecuong.com about AI agents, context engineering, and how AI becomes more useful when it is tied to real processes instead of hype.",
+  "cover_letter_body_two": "That is why this role feels like a strong fit. Through my Software Engineering studies at Heilbronn University, my Business Information Systems background, and my hands-on work across automation, AI workflows, and structured product and operations work, I have been building the kind of perspective this role asks for: connecting AI ideas with business context, communication, and practical consulting value. I am especially comfortable turning unclear topics into clearer concepts and next steps that other teams can actually use.",
+  "cover_letter_motivation": "I am particularly interested in 4flow because the company combines consulting, operational thinking, and real business complexity in supply chain and logistics environments. That makes it an attractive place to work on AI in a way that stays practical and close to real client value.",
+  "cover_letter_closing": "@@AVAILABILITY@@. I would welcome the opportunity to discuss how I can support your AI-Driven Consulting team."
+}

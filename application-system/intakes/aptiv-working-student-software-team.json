@@ -1,0 +1,51 @@
+{
+  "company_name": "Aptiv",
+  "company_location": "Stuttgart, Germany",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter or contact was visible on the Aptiv Workday posting checked on 2026-04-12, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Working student in Software Team (m/w/d)",
+  "job_url": "https://aptiv.wd5.myworkdayjobs.com/en-US/APTIV_CAREERS/job/Stuttgart-Germany/Working-student-in-Software-Team--m-w-d-_J000690261?AdCode=LINKEDIN13&source=Linkedin",
+  "language": "english",
+  "primary_role": "implementation_enablement",
+  "target_roles": [
+    "implementation_enablement"
+  ],
+  "summary_version": "business_analysis",
+  "start_date": "26 April 2026",
+  "availability_override": "I am available to start from 26 April 2026 and can work up to 20 hours per week in line with my current student visa.",
+  "why_company": "What caught my attention about this Aptiv role is that it sits close to real software rollout and operational quality in an automotive context: making sure vehicles are on the right software version, keeping accurate status records, reporting issues clearly, and helping teams resolve problems efficiently. I am especially interested in work where structured follow-through around software delivery matters in day-to-day operations.",
+  "job_description": "Aptiv is hiring a part-time working student in the Software Team in Stuttgart. The role supports management of newly produced vehicles with the latest software releases, monitors that vehicles are updated with the most recent software versions, identifies and reports software-related issues to the engineering team, maintains accurate records and status reports of vehicle software updates, and collaborates with cross-functional teams to resolve technical issues efficiently. The posting asks for enrollment at a German university in Automotive, Electrical, Computer Science, or a related field, strong interest in automotive technology and embedded software systems, ability to work independently and take ownership, basic understanding of software update processes and vehicle electronics, English as mandatory, and German as preferred.",
+  "requirements": [
+    "Enrolled at a German university in Automotive, Electrical, Computer Science, or related fields",
+    "Strong interest in automotive technology and embedded software systems",
+    "Ability to work independently and take ownership of assigned tasks",
+    "Basic understanding of software update processes and vehicle electronics",
+    "English mandatory and German preferred",
+    "Ability to maintain accurate records and status reports",
+    "Comfort collaborating with cross-functional teams to resolve technical issues"
+  ],
+  "cv_about_override": "Workflow, delivery, and operations-support professional focused on structured execution, issue handling, documentation, and practical coordination in technical environments.",
+  "cv_summary_override": "Experienced business analysis and delivery-support professional with a strong foundation in documentation, workflow clarity, stakeholder coordination, and structured execution. Through Software Engineering studies at Heilbronn University, Business Information Systems studies at Vietnamese-German University, and hands-on work across requirements, reporting, issue handling, and cross-functional delivery, I have built a strong fit for working student roles that combine software-release support, status tracking, technical issue follow-up, and dependable operational coordination.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "Workflow Optimization",
+    "Cross-functional Delivery",
+    "Quality Coordination",
+    "Management Presentations",
+    "Jira",
+    "Confluence",
+    "Process Mapping",
+    "SQL",
+    "Excel",
+    "Linux"
+  ],
+  "cover_letter_opening": "I am applying for the Working student in Software Team (m/w/d) role at Aptiv because it combines software-release support, issue handling, and structured coordination in an automotive environment.",
+  "cover_letter_body_one": "Across business analysis, product delivery, and operations-heavy environments, I have often worked where teams needed clearer tracking, stronger documentation, and better coordination between issues, priorities, and execution. That has made me comfortable with status reporting, structured follow-through, and supporting teams where reliable day-to-day execution matters.",
+  "cover_letter_body_two": "This role is especially relevant for me because it brings together software-related coordination, records, and issue reporting in a practical technical setting. Through my Software Engineering studies, my Business Information Systems background, and my earlier work across workflow documentation and cross-functional delivery, I have built a strong foundation for handling structured operational tasks carefully and communicating issues clearly to the right stakeholders. I am not presenting myself as an embedded-software specialist already, but I can contribute with discipline, ownership, and a serious interest in learning quickly in an automotive software environment.",
+  "cover_letter_motivation": "I am particularly interested in Aptiv because the company works on technology where software quality and coordination have direct real-world impact.",
+  "cover_letter_closing": "I am available to start from 26 April 2026 and can work up to 20 hours per week in line with my current student visa. I would welcome the opportunity to discuss how I can support your software team."
+}

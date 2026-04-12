@@ -1,0 +1,51 @@
+{
+  "company_name": "Philips",
+  "company_location": "Böblingen, Baden-Württemberg, Germany",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter or contact was visible on the public LinkedIn posting checked on 2026-04-12, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Working Student / Intern (all genders) - Service Operations Analyst",
+  "job_url": "https://www.linkedin.com/jobs/view/4393492537/",
+  "language": "english",
+  "primary_role": "workflow_operations_analyst",
+  "target_roles": [
+    "workflow_operations_analyst"
+  ],
+  "summary_version": "business_analysis",
+  "start_date": "26 April 2026",
+  "availability_override": "I am available to start from 26 April 2026 and can work up to 20 hours per week in line with my current student visa.",
+  "why_company": "What caught my attention about this Philips role is that it uses AI in a practical service-operations context: improving how a global team works with data, communication, meeting follow-up, and internal analysis rather than treating AI as a separate experiment. I am especially interested in roles where AI directly improves everyday execution and decision-making.",
+  "job_description": "Philips is hiring a Working Student / Intern Service Operations Analyst in Böblingen. The role helps shape a broader AI strategy for a global service team, uses AI tools to draft and refine emails and documents, summarize complex reports and technical articles, transcribe meetings and prepare concise meeting minutes, support analysis of large datasets with AI-enabled Excel features, create visualizations such as charts and pivot tables, prepare presentation drafts, research market and industry trends, and analyze feedback from different functions and regions through automated evaluation of surveys and comments. The posting asks for enrollment in Computer Science, Information Technology, Business Informatics, or a comparable field, solid knowledge of Microsoft Copilot and AI-supported productivity tools, strong English communication, and the ability to work independently in a structured way.",
+  "requirements": [
+    "Enrolled in a relevant degree program such as Computer Science, Information Technology, Business Informatics, or a comparable field",
+    "Solid knowledge of Microsoft Copilot and AI-supported productivity tools",
+    "Strong English communication skills, written and spoken",
+    "Ability to work independently and in a structured manner",
+    "Comfort analyzing datasets and preparing charts, pivot tables, and visualizations in Excel",
+    "Ability to summarize complex reports and prepare concise meeting minutes",
+    "Interest in shaping AI-supported ways of working for a global service team"
+  ],
+  "cv_about_override": "Workflow and service-operations professional focused on structured analysis, AI-assisted productivity, documentation, and practical improvement of day-to-day team execution.",
+  "cv_summary_override": "Experienced business analysis and operations professional with a strong foundation in documentation, workflow improvement, stakeholder alignment, and structured execution. Through Software Engineering studies, Business Information Systems studies, and hands-on work across AI workflows, reporting-oriented analysis, presentations, and cross-functional delivery, I have built a strong fit for working student roles that combine service operations, AI-supported productivity, data-informed decision support, and practical communication work.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "Workflow Improvement",
+    "Cross-functional Delivery",
+    "Management Presentations",
+    "Excel",
+    "Data Analysis",
+    "AI-assisted Workflow Design",
+    "Automation Thinking",
+    "OpenAI",
+    "Confluence",
+    "Jira"
+  ],
+  "cover_letter_opening": "I am applying for the Working Student / Intern (all genders) - Service Operations Analyst role at Philips because it combines service operations, AI-assisted productivity, and structured analytical support in a practical team setting.",
+  "cover_letter_body_one": "Across business analysis, product delivery, and operations-heavy environments, I have often worked where teams needed clearer communication, better documentation, stronger meeting follow-up, and more structured ways to turn information into action. That has made me comfortable with preparing decision-ready materials, summarizing complex topics clearly, and supporting teams through reliable day-to-day execution.",
+  "cover_letter_body_two": "What makes this role especially relevant for me is the way it uses AI to improve operational work. Through my Software Engineering studies, my Business Information Systems background, and my hands-on work across AI workflows, reporting-oriented analysis, and structured digital operations, I have been building toward exactly this kind of work: using AI as a practical assistant for analysis, communication, and process improvement. I am confident with English communication, presentation work, and structured task ownership, and I would be motivated to support a global service team in this way.",
+  "cover_letter_motivation": "I am particularly interested in Philips because the company combines global scale, meaningful healthcare impact, and a practical approach to improving how teams work.",
+  "cover_letter_closing": "I am available to start from 26 April 2026 and can work up to 20 hours per week in line with my current student visa. I would welcome the opportunity to discuss how I can support your service team."
+}

@@ -1,0 +1,50 @@
+{
+  "company_name": "Lio",
+  "company_location": "Munich, Germany",
+  "contact_name": "Gabriel",
+  "contact_title": "Hiring Contact",
+  "contact_lookup_status": "The public Arbeitnow posting checked on 2026-04-12 says 'Feel free to reach out to Gabriel', but does not show a full name or title. The letter therefore keeps the salutation conservative.",
+  "job_title": "IT Administration & Automation Manager (all genders)",
+  "job_url": "https://www.arbeitnow.com/jobs/companies/lio/it-administration-automation-manager-all-genders-munich-471472",
+  "language": "english",
+  "primary_role": "process_automation",
+  "target_roles": [
+    "process_automation"
+  ],
+  "summary_version": "business_analysis",
+  "availability_override": "I am available to start from 01 July 2026 and can relocate to Munich for the role.",
+  "why_company": "What caught my attention about Lio is that the role treats internal IT as something to be engineered and automated, not just maintained. Automating onboarding, offboarding, access management, and internal workflows is exactly the kind of practical systems work that I find meaningful, especially in a fast-moving AI company where operational leverage matters.",
+  "job_description": "Lio is hiring a full-time IT Administration & Automation Manager in Munich. The role automates onboarding, offboarding, access management, and device provisioning across the company's tool stack; builds lightweight internal tools with low-code, custom scripts, or AI-assisted coding; integrates and orchestrates systems into a clean automated setup; owns role- and group-based access structures; supports IT security initiatives such as firewall setup and device policies; documents systems clearly; and creates scalable IT processes for a growing AI company. The posting asks for experience in IT administration, systems engineering, or IT operations in a startup or SaaS environment, an automation-first mindset, ability to script or build internal tools via Python, APIs, low-code tools, or AI-assisted coding, understanding of identity and access management and modern cloud environments, security fundamentals, and independent pragmatic execution.",
+  "requirements": [
+    "Experience in IT administration, systems engineering, or IT operations in a startup or SaaS environment",
+    "Automation-first mindset",
+    "Ability to script or build internal tools using Python, APIs, low-code tools, or AI-assisted coding",
+    "Understanding of identity and access management, SaaS ecosystems, and modern cloud environments",
+    "Security fundamentals and structured permission concepts",
+    "Independent, pragmatic, and solution-oriented working style",
+    "Ability to document systems and design scalable IT processes"
+  ],
+  "cv_about_override": "Automation and workflow professional focused on internal tooling, structured operations, access-aware process design, and practical system improvement.",
+  "cv_summary_override": "Business analysis and process-improvement professional with strong hands-on experience in workflow design, structured execution, documentation, and AI-assisted automation. Through Software Engineering studies, Business Information Systems studies, and practical work across SQL, automation, digital operations, and internal tooling, I have been moving toward more technical systems-oriented work. This makes me well suited for roles that combine workflow automation, access-aware process design, internal tooling, and scalable operational improvement.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Process Improvement",
+    "Workflow Optimization",
+    "AI-assisted Workflow Design",
+    "Automation Thinking",
+    "Systems Thinking",
+    "Documentation",
+    "SQL",
+    "Linux",
+    "Docker",
+    "OpenAI",
+    "n8n Automation",
+    "Cross-functional Delivery"
+  ],
+  "cover_letter_opening": "I am applying for the IT Administration & Automation Manager role at Lio because the work itself is appealing in a very concrete way: automate repetitive internal processes, build useful tools, and create cleaner systems instead of accepting operational friction as normal.",
+  "cover_letter_body_one": "Across business analysis, product delivery, and operations-heavy environments, I have often worked where unclear workflows, manual handoffs, and inconsistent process logic slowed teams down. That has made me comfortable with documenting systems clearly, improving workflows, and building more structured ways of working around real operational constraints.",
+  "cover_letter_body_two": "What makes this role especially relevant for me now is the automation-first direction. Through my Software Engineering studies, my Business Information Systems background, and my hands-on work across AI workflows, SQL, Linux, Docker, internal tooling, and automation-minded process improvement, I have been intentionally moving toward more technical systems work. I would not overstate myself as someone who already comes from a classic long-tenure IT administration background, but I can bring strong workflow discipline, practical automation thinking, and a serious willingness to own and improve the internal systems that teams rely on every day.",
+  "cover_letter_motivation": "I am particularly interested in Lio because the company appears to treat IT as leverage: something that should increase speed, security, and operational clarity across the whole organization. That is exactly the kind of environment where I want to contribute.",
+  "cover_letter_closing": "I am available to start from 01 July 2026 and can relocate to Munich for the role. I would welcome the opportunity to discuss how I can support your team."
+}

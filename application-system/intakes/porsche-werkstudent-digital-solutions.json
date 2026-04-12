@@ -1,0 +1,50 @@
+{
+  "company_name": "Dr. Ing. h.c. F. Porsche AG",
+  "company_location": "Weissach, Germany",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter or contact was visible on the public Porsche careers posting checked on 2026-04-12, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Werkstudent (m/w/d) Digital Solutions",
+  "job_url": "https://jobs.porsche.com/index.php?ac=jobad&id=20101",
+  "language": "english",
+  "primary_role": "implementation_enablement",
+  "target_roles": [
+    "implementation_enablement"
+  ],
+  "summary_version": "business_analysis",
+  "start_date": "26 April 2026",
+  "availability_override": "I am available to start from 26 April 2026 and can work up to 20 hours per week in line with my current student visa.",
+  "why_company": "What caught my attention about this Porsche role is that it sits where digital tools need practical support to become usable in real day-to-day work: testing new software releases, documenting workflows clearly, supporting users, coordinating with software providers, and helping the team keep VR/AR solutions reliable and useful. I am especially interested in roles where structured support work directly improves how technical solutions are used.",
+  "job_description": "Porsche is hiring a part-time working student in Digital Solutions in Weissach. The role is part of the VR/AR Competence Center and supports testing different VR/AR use cases, checking new releases of selected AR software for bugs, acting as an interface between users and software manufacturers, preparing and regularly updating documentation and instructions for AR-related topics, supporting license management for different applications, contributing to software market analyses, and supporting security approvals. The posting asks for studies in industrial engineering, business informatics, electrical engineering, computer science, automotive engineering, or a comparable field; familiarity with VR/AR technologies such as headsets and tracking systems; independent and structured working style; solid MS Office knowledge; and strong communication and teamwork.",
+  "requirements": [
+    "Studies in industrial engineering, business informatics, electrical engineering, computer science, automotive engineering, or a comparable field",
+    "Knowledge of VR/AR technology such as headsets and tracking systems",
+    "Independent and structured working style",
+    "Solid MS Office knowledge",
+    "Strong communication and teamwork",
+    "Ability to support testing, documentation, license management, and user-facing coordination"
+  ],
+  "cv_about_override": "Documentation, workflow, and digital enablement professional focused on structured support, release testing, user-facing coordination, and practical improvement of technical tools in operational environments.",
+  "cv_summary_override": "Experienced business analysis and delivery-support professional with a strong foundation in documentation, stakeholder alignment, workflow clarity, and structured execution. Through Software Engineering studies at Heilbronn University, Business Information Systems studies at Vietnamese-German University, and hands-on work across requirements, issue handling, presentations, and cross-functional delivery, I have built a strong fit for working student roles that combine software testing support, documentation updates, user-vendor coordination, and dependable operational follow-through.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "Workflow Improvement",
+    "Cross-functional Delivery",
+    "Quality Coordination",
+    "Management Presentations",
+    "Jira",
+    "Confluence",
+    "Excel",
+    "Process Mapping",
+    "Troubleshooting",
+    "Systems Thinking"
+  ],
+  "cover_letter_opening": "I am applying for the Werkstudent (m/w/d) Digital Solutions role at Porsche because it combines testing support, documentation, user-facing coordination, and practical work around VR/AR solutions in a technical environment.",
+  "cover_letter_body_one": "Across business analysis, product delivery, and operations-heavy environments, I have often worked where teams needed clearer documentation, better structured communication, and stronger follow-through between users, technical teams, and implementation work. That has made me comfortable with release-related support, issue reporting, documentation updates, and practical coordination work that helps digital tools run more reliably.",
+  "cover_letter_body_two": "What makes this role especially relevant for me is the mix of testing, instructions, coordination, and support for day-to-day tool usage. Through my Software Engineering studies, my Business Information Systems background, and my earlier work across workflow documentation and cross-functional delivery, I have built a strong foundation for handling structured operational tasks carefully and communicating issues clearly to the right stakeholders. I am not presenting myself as a VR/AR specialist already, but I can contribute with discipline, documentation quality, and a serious willingness to learn quickly in this environment.",
+  "cover_letter_motivation": "I am particularly interested in Porsche because the company combines strong engineering standards with practical digital-solution work that directly supports how teams operate.",
+  "cover_letter_closing": "I am available to start from 26 April 2026 and can work up to 20 hours per week in line with my current student visa. While my German is still improving and not yet at a fully professional level, I work confidently in English at C1 level with IELTS 7.5 and continue to strengthen my German. I would welcome the opportunity to discuss how I can support your team."
+}

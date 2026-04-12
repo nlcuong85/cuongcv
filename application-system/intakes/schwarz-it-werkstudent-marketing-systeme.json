@@ -1,0 +1,50 @@
+{
+  "company_name": "Schwarz IT",
+  "company_location": "Gottfried-Leibniz-Straße 5, 74172 Neckarsulm, Germany",
+  "contact_name": "Laura Ehlbeck",
+  "contact_title": "Recruiterin",
+  "contact_lookup_status": "Named recruiter verified from the official Schwarz Digits job posting on 2026-04-12.",
+  "job_title": "Werkstudent Marketing Systeme (m/w/d)",
+  "job_url": "https://schwarz-digits.de/jobsearch/hr/werkstudent-marketing-systeme-m-w-d-GT3096",
+  "language": "english",
+  "primary_role": "business_analyst",
+  "target_roles": [
+    "business_analyst"
+  ],
+  "summary_version": "business_analysis",
+  "why_company": "Schwarz Digits stands out to me because this role sits where e-commerce systems, stakeholder coordination, and practical digital execution meet. I am especially interested in environments where business needs, systems changes, and cross-functional delivery have to stay aligned in a structured way.",
+  "job_description": "Schwarz IT is hiring a working student for Marketing Systems in Neckarsulm within the E-Commerce area. The role supports OS Marketing Systeme, contributes to projects around transaction communication systems, helps implement new requirements and smaller projects, coordinates topics across business teams, IT, and external partners, supports stakeholders with solution options and execution, and analyzes new market developments and competitors.",
+  "requirements": [
+    "Current studies in business administration, business informatics, industrial engineering, or a comparable field",
+    "Ideally a specialization in retail, digital and e-commerce, or marketing",
+    "Initial practical exposure to digital marketing and strategy, customer journey and experience management, omni-channel strategy, or e-commerce",
+    "Affinity for business models, services, and technologies in digital commerce",
+    "Willingness to learn new topics and tools quickly",
+    "Strong sense of ownership and responsibility",
+    "Strong communication skills and ability to prepare clear presentations",
+    "Enjoyment of digital topics and collaborative teamwork"
+  ],
+  "cv_about_override": "Business analysis and digital operations professional with hands-on experience in structured requirements work, stakeholder coordination, and execution across product, workflow, and e-commerce-related environments.",
+  "cv_summary_override": "Experienced business analysis and product professional with a strong foundation in requirements clarification, stakeholder alignment, documentation, and structured execution across digital products and operations-heavy environments. I have worked on marketplace, onboarding, and workflow-oriented initiatives where success depended on turning business needs into practical system changes, clear communication, and reliable delivery follow-through. This makes me a strong fit for working student roles that connect e-commerce systems, cross-functional coordination, stakeholder support, and continuous improvement.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "Cross-functional Delivery",
+    "Jira",
+    "Confluence",
+    "E-Commerce Operations",
+    "Process Coordination",
+    "Presentation Preparation",
+    "Market and Competitor Analysis",
+    "Systems Thinking",
+    "Workflow Improvement",
+    "AI-assisted Workflows"
+  ],
+  "cover_letter_opening": "I am applying for the position of Werkstudent Marketing Systeme (m/w/d) at Schwarz IT. The role stands out to me because it combines systems-related project work, stakeholder coordination, and e-commerce-oriented execution in exactly the kind of structured digital environment where I can contribute well.",
+  "cover_letter_body_one": "In my previous roles across digital products and operations-heavy environments, I worked closely with stakeholders, product teams, and technical colleagues to structure requirements, support implementation, prepare decision-ready materials, and keep execution aligned across different parties. That experience taught me how valuable clear communication and practical follow-through are when business needs have to become workable system changes.",
+  "cover_letter_body_two": "What makes this role especially relevant for me is the mix of new requirements, smaller projects, stakeholder support, and coordination with specialist teams and external partners. Through my studies in Software Engineering and Business Information Systems and my earlier work across marketplace, workflow, and digital operations contexts, I have built a strong foundation for understanding system-related topics quickly, organizing information clearly, and supporting teams in a dependable way.",
+  "cover_letter_motivation": "I am particularly interested in Schwarz Digits because the company combines large-scale digital infrastructure with practical business execution. A role in Marketing Systems within E-Commerce is especially attractive to me because it connects customer-facing digital processes with structured coordination, system understanding, and continuous improvement.",
+  "cover_letter_closing": "@@AVAILABILITY@@. While my German is still improving and is not yet at a fully professional level, I work confidently in English at C1 level with IELTS 7.5 and continue to strengthen my German. I would welcome the opportunity to discuss how I can support your team in this role."
+}

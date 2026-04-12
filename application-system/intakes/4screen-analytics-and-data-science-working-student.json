@@ -1,0 +1,52 @@
+{
+  "company_name": "4screen",
+  "company_location": "Munich, Germany",
+  "contact_name": "Celine Exenberger",
+  "contact_title": "Recruiting Team",
+  "contact_lookup_status": "Named contact Celine Exenberger was visible on the public JOIN posting checked on 2026-04-12.",
+  "job_title": "Analytics & Data Science Working Student (f/m/x)",
+  "job_url": "https://join.com/companies/4screen/15973639-analytics-and-data-science-working-student-f-m-x",
+  "language": "english",
+  "primary_role": "business_analyst",
+  "target_roles": [
+    "business_analyst"
+  ],
+  "summary_version": "business_analysis",
+  "start_date": "26 April 2026",
+  "availability_override": "I am available from 26 April 2026 for up to 20 hours per week in line with my current student visa.",
+  "why_company": "What caught my attention about 4screen is that this role sits where analytics becomes useful for real operations: ad-hoc stakeholder questions, reporting reliability, dashboards, and practical business insights for internal teams and OEM partners. I am especially interested in work where structured analysis helps teams make better day-to-day decisions instead of staying at the level of abstract reporting.",
+  "job_description": "4screen is hiring an Analytics & Data Science Working Student in Munich. The role supports the data and analytics team by maintaining and improving the reporting and analytics stack, handling ad-hoc analytics requests in a Scrum-based workflow, building dashboards and reports, translating stakeholder requirements into analytical solutions, and helping shape better analytics practices. The posting asks for ongoing Bachelor's or Master's studies in a quantitative field, basic Python and SQL knowledge, familiarity with data analysis libraries and BI or visualization tools such as Hex, dashboard or analytics workflow experience, strong analytical thinking, excellent English, and comfort working with cross-functional stakeholders.",
+  "requirements": [
+    "Currently enrolled in a Bachelor's or Master's degree in Analytics, Data Science, Computer Science, Statistics, Mathematics, Engineering, or a related quantitative field",
+    "Basic knowledge of Python and SQL for data analysis and querying structured data",
+    "Familiarity with data analysis libraries and BI or visualization tools",
+    "Ability to build or maintain dashboards, reports, or automated analytics workflows",
+    "Strong analytical thinking and ability to translate business questions into meaningful analysis",
+    "Excellent English communication skills",
+    "Comfort working with different stakeholders in a cross-functional and agile team environment",
+    "Bonus: experience with data pipelines, statistics or machine learning concepts, or notebook environments"
+  ],
+  "cv_about_override": "Business analysis and analytics-oriented professional focused on structured reporting, stakeholder-facing insights, and workflow improvement in digital product environments.",
+  "cv_summary_override": "Experienced business analysis and product professional with a strong foundation in structured execution, stakeholder alignment, documentation, workflow improvement, and practical analytical thinking. Through Software Engineering studies at Heilbronn University, Business Information Systems studies at Vietnamese-German University, and hands-on work across SQL, reporting-oriented analysis, automation, and digital operations, I have been building toward more analytics-focused work. This makes me well suited for working student roles that combine dashboard support, stakeholder-facing insights, ad-hoc analysis, and reliable reporting workflows.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Documentation",
+    "Process Improvement",
+    "Workflow Optimization",
+    "SQL",
+    "Data Analysis",
+    "Monitoring and Reporting",
+    "Cross-functional Delivery",
+    "Excel",
+    "Confluence",
+    "Jira",
+    "Automation Thinking"
+  ],
+  "cover_letter_opening": "I am applying for the Analytics & Data Science Working Student (f/m/x) role at 4screen because the work itself is appealing in a practical way: supporting stakeholder questions with reliable analysis, improving reporting workflows, and building dashboards that help teams make better decisions.",
+  "cover_letter_body_one": "Across business analysis, product delivery, and operations-heavy environments, I have often worked where teams needed clearer reporting, stronger documentation, and better translation between business questions and actionable next steps. That experience made me comfortable with structured analysis, stakeholder communication, and turning operational needs into practical outputs that teams can actually use.",
+  "cover_letter_body_two": "What makes this role especially relevant for me now is the analytics direction. Through my current Software Engineering studies, my Business Information Systems background, and my hands-on work across SQL, automation, workflow improvement, and reporting-oriented product work, I have been moving toward more technical and data-informed roles. I would not overstate myself as a finished data scientist already, but I can bring strong analytical structure, careful communication, and a serious willingness to deepen further on the tooling side.",
+  "cover_letter_motivation": "I am particularly interested in 4screen because the company combines digital product thinking, mobility context, and real business impact at scale. A role like this is attractive to me because analytics here is clearly tied to practical stakeholder value rather than reporting for its own sake.",
+  "cover_letter_closing": "I am available from 26 April 2026 for up to 20 hours per week in line with my current student visa. I would welcome the opportunity to discuss how I can support your analytics team."
+}
