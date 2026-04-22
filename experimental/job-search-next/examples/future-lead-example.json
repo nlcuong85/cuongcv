@@ -1,0 +1,17 @@
+{
+  "lead_id": "future-sample-product-ops-student",
+  "company_name": "Future Sample GmbH",
+  "job_title": "Working Student Product Operations & AI Workflow",
+  "job_url": "https://example.com/jobs/future-sample-product-ops-student",
+  "company_location": "Heilbronn, Baden-Wuerttemberg, Germany",
+  "language": "english",
+  "job_description": "Support product operations, workflow automation, AI-assisted documentation, stakeholder coordination, and requirements analysis across internal digital products.",
+  "requirements": [
+    "Working student",
+    "Product operations",
+    "Workflow automation",
+    "Requirements analysis",
+    "Stakeholder coordination"
+  ],
+  "source": "manual_example"
+}

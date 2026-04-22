@@ -1,0 +1,25 @@
+{
+  "company_name": "Review Queue GmbH",
+  "company_location": "Berlin, Germany",
+  "contact_name": "",
+  "contact_title": "",
+  "contact_lookup_status": "No named recruiter or contact has been verified yet in the prototype flow, so the draft intake uses a fallback contact until live lookup is completed.",
+  "job_title": "Working Student General Support",
+  "job_url": "https://example.com/jobs/review-queue-working-student-general-support",
+  "job_description": "Working student support for documentation and operations coordination.",
+  "requirements": [],
+  "language": "english",
+  "primary_role": "requirements_process",
+  "summary_version": "business_analysis",
+  "target_roles": [
+    "requirements_process"
+  ],
+  "why_company": "",
+  "cover_letter_opening": "",
+  "cover_letter_motivation": "",
+  "cover_letter_body_one": "",
+  "cover_letter_body_two": "",
+  "cover_letter_closing": "",
+  "prototype_origin": "experimental/job-search-next",
+  "prototype_lead_id": "review-queue-gmbh-working-student-general-support"
+}

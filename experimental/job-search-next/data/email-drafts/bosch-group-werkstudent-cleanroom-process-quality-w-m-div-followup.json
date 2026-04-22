@@ -1,0 +1,36 @@
+{
+  "subject": "Follow-up on application for Werkstudent Cleanroom Process & Quality (w/m/div.)",
+  "body": "Dear Hiring Team,\n\nI hope you are well. I wanted to follow up on my application for the Werkstudent Cleanroom Process & Quality (w/m/div.) role.\nI remain interested in the opportunity because it aligns well with my background in Quality, Compliance & Process Operations, Quality & Compliance.\nMy current package in this workflow was prepared on 2026-04-14, and I would be glad to provide any additional information if helpful.\n\nThank you for your time and consideration.\n\nBest regards,\nLe Cuong Nguyen",
+  "intent": "followup",
+  "context": {
+    "slug": "bosch-group-werkstudent-cleanroom-process-quality-w-m-div",
+    "company_name": "Bosch Group",
+    "job_title": "Werkstudent Cleanroom Process & Quality (w/m/div.)",
+    "primary_role": "quality_compliance_ops",
+    "role_anchor": "Quality, Compliance & Process Operations, Quality & Compliance",
+    "summary_version": "german_market_conservative",
+    "output_dir": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/outputs/bosch-group-werkstudent-cleanroom-process-quality-w-m-div",
+    "manifest_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/outputs/bosch-group-werkstudent-cleanroom-process-quality-w-m-div/manifest.json",
+    "communication_log_path": "",
+    "contact_name": "",
+    "job_url": "https://jobs.smartrecruiters.com/BoschGroup/744000119553118-werkstudent-cleanroom-process-quality-w-m-div-",
+    "intake_path": "application-system/intakes/draft-bosch-group-werkstudent-cleanroom-process-quality-w-m-div.json",
+    "package_generated_on": "2026-04-14",
+    "latest_cv_pdf": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/outputs/bosch-group-werkstudent-cleanroom-process-quality-w-m-div/cv/resume-le-cuong-nguyen-werkstudent-cleanroom-process-quality-w-m-div-20260414-001440.pdf",
+    "latest_cover_letter_pdf": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/outputs/bosch-group-werkstudent-cleanroom-process-quality-w-m-div/cover-letter/cover-letter-le-cuong-nguyen-werkstudent-cleanroom-process-quality-w-m-div-20260414-001440.pdf",
+    "communication": {
+      "path": "",
+      "events": [],
+      "latest_event": null,
+      "latest_inbound": null,
+      "latest_outbound": null,
+      "inbound_count": 0,
+      "outbound_count": 0
+    },
+    "stage": "package_generated",
+    "next_action": "confirm_if_application_was_sent",
+    "suggested_intent": "none",
+    "follow_up_due": false,
+    "days_since_anchor": ""
+  }
+}

@@ -1,0 +1,2 @@
+lead_id	decision	predicted_role	promotion_status	existing_intake_path	existing_output_dir	draft_payload_path	notes
+bosch-group-werkstudent-cleanroom-process-quality-w-m-div	keep	quality_compliance_ops	live_intake_written			promotions/intakes/bosch-group-werkstudent-cleanroom-process-quality-w-m-div.json	Draft intake written in prototype and live intake folder: application-system/intakes/draft-bosch-group-werkstudent-cleanroom-process-quality-w-m-div.json

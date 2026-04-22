@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Working Student Business Analysis & AI Workflow",
+    "company": "Sample Mobility GmbH",
+    "location": "Heilbronn, Baden-Wuerttemberg, Germany",
+    "work_model": "Hybrid",
+    "posted_date": "2026-04-10",
+    "age_days": 3,
+    "url": "https://example.com/jobs/sample-mobility-working-student-business-analysis-ai-workflow",
+    "normalized_url": "https://example.com/jobs/sample-mobility-working-student-business-analysis-ai-workflow",
+    "domain": "example.com",
+    "language_note": "English-friendly posting with no explicit strong German requirement",
+    "score": 88,
+    "why_match": "working student format, requirements analysis, workflow automation, stakeholder support"
+  },
+  {
+    "title": "Werkstudent Process Automation and Operations",
+    "company": "Demo Industrial Systems",
+    "location": "Frankfurt, Hesse, Germany",
+    "work_model": "Remote / Hybrid",
+    "posted_date": "2026-04-11",
+    "age_days": 2,
+    "url": "https://example.com/jobs/demo-industrial-systems-werkstudent-process-automation-operations",
+    "normalized_url": "https://example.com/jobs/demo-industrial-systems-werkstudent-process-automation-operations",
+    "domain": "example.com",
+    "language_note": "German-language posting without an explicit fluent German requirement",
+    "score": 81,
+    "why_match": "werkstudent scope, process improvement, automation, operations support"
+  }
+]

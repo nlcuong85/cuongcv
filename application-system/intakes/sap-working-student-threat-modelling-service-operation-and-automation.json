@@ -3,7 +3,7 @@
   "company_location": "Walldorf, DE, 69190",
   "contact_name": "",
   "contact_title": "Hiring Team",
-  "contact_lookup_status": "No named recruiter or contact was visible on the SAP careers posting checked on 2026-04-12, so the letter uses Hiring Team as the fallback.",
+  "contact_lookup_status": "No named recruiter or contact was visible on the SAP careers posting checked on 2026-04-18, so the letter uses Hiring Team as the fallback.",
   "job_title": "Working Student (f/m/d) - Threat Modelling Service Operation and Automation",
   "job_url": "https://jobs.sap.com/job/Walldorf-Working-Student-%28fmd%29-Threat-Modelling-Service-Operation-and-Automation-69190/1382325433/?feedId=384233&utm_campaign=SAP_Linkedin&utm_source=LinkedinJobPostings",
   "language": "english",
@@ -12,8 +12,8 @@
     "process_automation"
   ],
   "summary_version": "business_analysis",
-  "start_date": "26 April 2026",
-  "availability_override": "I am available from 26 April 2026 for up to 20 hours per week in line with my current student visa, and I can work regularly from the Walldorf office. I work confidently in English, and my German is still improving.",
+  "start_date": "02 May 2026",
+  "availability_override": "I am available from 02 May 2026 for up to 20 hours per week in line with my current student visa, and I can work regularly from the Walldorf office. I work confidently in English, and my German is still improving.",
   "why_company": "What caught my attention about this SAP role is that it is operational and technical in a concrete way: handling Jira-based service requests, improving threat-modelling workflows, shaping a prioritized automation backlog, and supporting backend work around a security-critical internal service. I am especially interested in roles where structured operations, practical automation, and careful follow-through matter more than presentation alone.",
   "job_description": "SAP is hiring a working student for Threat Modelling Service Operation and Automation in Walldorf, with regular work from the Walldorf or Dresden office required. The role operates the Threat Model Service through Jira request handling, scheduling, and follow-through on outcomes; improves automation around scheduling, assessments, and finding handling; supports backend service development related to threat modelling; and helps create and implement a prioritized backlog for automation and service-handling improvements. The posting asks for a student in computer science or information security, programming familiarity including Python or Java, strong English, German as a plus, self-driven teamwork, Jira familiarity, workflow automation experience especially around Jira or Outlook, and beneficial hands-on experience with agents and AI-aided development.",
   "requirements": [

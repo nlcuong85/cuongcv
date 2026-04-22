@@ -1,0 +1,51 @@
+{
+  "company_name": "acteno energy GmbH",
+  "company_location": "Heidelberg, Germany",
+  "contact_name": "",
+  "contact_title": "Hiring Team",
+  "contact_lookup_status": "No named recruiter is listed on the official acteno career page checked on 2026-04-13. The page asks applicants to send documents to start@acteno.de, so the letter uses Hiring Team as the fallback.",
+  "job_title": "Praktikum / Werkstudium Smart Energy Systems",
+  "job_url": "https://www.acteno.de/en/dabei-sein-karriere/",
+  "language": "english",
+  "primary_role": "ai_product_ops",
+  "target_roles": [
+    "ai_product_ops"
+  ],
+  "summary_version": "strongest_balanced",
+  "start_date": "27 April 2026",
+  "availability_override": "I am available to start from 27 April 2026. In a working student format, I can work up to 20 hours per week during the semester in line with my current student visa. If a full-time internship format is required and there is mutual fit, I would also be open to discussing a suitable timeline.",
+  "why_company": "What caught my attention about acteno is that the role sits where smart-energy systems, energy data, process design, and the practical energy transition meet. I am especially interested in roles where technical systems have to become usable, understandable, and operationally reliable in the real world.",
+  "job_description": "The official acteno career page lists a Praktikum / Werkstudium Smart Energy Systems role in Heidelberg with remote possibility. The tasks include monitoring and coordinating internal energy data management, conducting project-related site analyses, creating and managing projects, coordinating metering concepts, carrying out research independently, writing scientific texts, shaping processes with customers and grid operators, and supporting the project development team in day-to-day work. The official page requires regular enrollment in a business, technical, or natural-science degree program at advanced bachelor or master level, first knowledge and strong interest in the energy sector, experience researching and evaluating data and information, confidence with MS Office and digital media, strong motivation, communication and organizational skills, teamwork, customer contact readiness, and native-level German.",
+  "requirements": [
+    "Enrollment in computer science, engineering, or a natural-science degree program, ideally advanced bachelor or master level",
+    "Strong interest in energy industry topics and the energy transition",
+    "Experience researching and evaluating data and information",
+    "Ability to write structured scientific texts",
+    "Team-oriented, hands-on, and motivated in a dynamic environment",
+    "Ability to work with customers and grid operators in process-oriented settings",
+    "Native-level German is explicitly required on the official acteno page"
+  ],
+  "cv_about_override": "Business analysis, product delivery, and AI workflow professional focused on turning complex digital systems into structured execution, practical automation, and usable processes.",
+  "cv_summary_override": "Product and business-analysis professional with experience across requirements, workflow design, stakeholder alignment, rollout, and continuous improvement. I have worked across eCommerce, LegalTech, healthcare, and digital operations, and over the past year I have also built a stronger AI-focused profile through agent workflows, automation tooling, and public writing on practical AI adoption. This makes me best suited to roles where technical systems, process clarity, and real operational value need to come together.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Process Mapping",
+    "AI-assisted Workflow Design",
+    "Automation Thinking",
+    "Next.js",
+    "SQL",
+    "OpenAI",
+    "n8n Automation",
+    "Workflow Optimization",
+    "Jira",
+    "Confluence",
+    "Context Engineering"
+  ],
+  "cover_letter_opening": "I wanted to apply for the Praktikum / Werkstudium Smart Energy Systems role at acteno energy because the work itself caught my attention immediately. It brings together energy data, process design, research, and real operational energy systems in a way I find genuinely meaningful.",
+  "cover_letter_body_one": "My background is not that of a pure energy specialist. What I do bring is experience across product delivery, business analysis, workflow design, research-heavy coordination, and AI-assisted systems thinking in environments where technical ideas had to become structured, usable, and operationally reliable.",
+  "cover_letter_body_two": "Through my Software Engineering studies, my Business Information Systems background, and my hands-on work across digital products and AI workflows, I have been building toward roles where data, process logic, stakeholder coordination, and practical execution need to be connected carefully. That feels relevant to tasks such as research, project-related analyses, metering-concept coordination, process design, and structured writing.",
+  "cover_letter_motivation": "I am particularly interested in acteno because the company works on the energy transition through practical smart-energy systems rather than abstract innovation language. That combination of technical substance and real customer-facing energy work is exactly what makes the role appealing to me.",
+  "cover_letter_closing": "I am available to start from 27 April 2026. In a working-student format, I can work up to 20 hours per week during the semester in line with my student visa. I also want to be transparent that my German is still improving and not yet at the native level stated on the official page, while I work confidently in English at C1 level with IELTS 7.5. If there is another suitable English-first opportunity at acteno, I would also be grateful to be considered for that."
+}

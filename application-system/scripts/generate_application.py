@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
+import tempfile
 import time
 import urllib.error
 import urllib.request
@@ -218,6 +219,38 @@ def html_escape(text: str) -> str:
         .replace(">", "&gt;")
         .replace('"', "&quot;")
     )
+
+
+def normalize_text_for_ats(text: str) -> str:
+    replacements = {
+        "\u2014": "-",
+        "\u2013": "-",
+        "\u2018": "'",
+        "\u2019": "'",
+        "\u201c": '"',
+        "\u201d": '"',
+        "\u2026": "...",
+        "\u00a0": " ",
+        "\u200b": "",
+        "\u200c": "",
+        "\u200d": "",
+        "\ufeff": "",
+        "\u00df": "ss",
+    }
+    normalized = "".join(replacements.get(char, char) for char in text)
+    normalized = unicodedata.normalize("NFKD", normalized).encode("ascii", "ignore").decode("ascii")
+    normalized = re.sub(r"\s+", " ", normalized).strip()
+    return normalized
+
+
+def normalize_payload_for_ats(value: Any) -> Any:
+    if isinstance(value, str):
+        return normalize_text_for_ats(value)
+    if isinstance(value, list):
+        return [normalize_payload_for_ats(item) for item in value]
+    if isinstance(value, dict):
+        return {key: normalize_payload_for_ats(item) for key, item in value.items()}
+    return value
 
 
 def sentence(text: str) -> str:
@@ -1203,6 +1236,57 @@ def compile_tex(tex_path: Path) -> None:
         )
 
 
+def sanitize_cover_letter_pdf(pdf_path: Path) -> None:
+    qpdf_path = shutil.which("qpdf")
+    if not qpdf_path:
+        raise FileNotFoundError("qpdf is required to generate upload-safe cover letter PDFs.")
+
+    with tempfile.TemporaryDirectory(prefix="cover-letter-sanitize-", dir=pdf_path.parent) as tmp_dir_name:
+        tmp_dir = Path(tmp_dir_name)
+        qdf_path = tmp_dir / "cover_letter.qdf.pdf"
+        edited_qdf_path = tmp_dir / "cover_letter.edited.qdf.pdf"
+        sanitized_path = tmp_dir / "cover_letter.sanitized.pdf"
+
+        subprocess.run(
+            [qpdf_path, "--qdf", "--object-streams=disable", str(pdf_path), str(qdf_path)],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+        )
+
+        qdf_text = qdf_path.read_text(encoding="latin-1")
+        sanitized_qdf_text = re.sub(
+            r"\n\s*/OpenAction\s+\d+\s+\d+\s+R",
+            "",
+            qdf_text,
+            count=1,
+        )
+        sanitized_qdf_text = re.sub(
+            r"\n\s*/OpenAction\s*\[\s*\n\s*\d+\s+\d+\s+R\s*\n\s*/Fit\s*\n\s*\]",
+            "",
+            sanitized_qdf_text,
+            count=1,
+        )
+        edited_qdf_path.write_text(sanitized_qdf_text, encoding="latin-1")
+
+        result = subprocess.run(
+            [qpdf_path, str(edited_qdf_path), str(sanitized_path)],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+        )
+        if result.returncode not in {0, 3}:
+            raise subprocess.CalledProcessError(
+                result.returncode,
+                result.args,
+                output=result.stdout,
+                stderr=None,
+            )
+
+        shutil.move(sanitized_path, pdf_path)
+
+
 def archive_generated_pdf(
     generated_pdf: Path,
     target_dir: Path,
@@ -1497,6 +1581,7 @@ def main() -> None:
             selected_summary_text,
             taxonomy,
         )
+        role_payload = normalize_payload_for_ats(role_payload)
         json_path = cv_dir / f"{role['id']}.json"
         public_json_path = PUBLIC_CV_DATA_DIR / company_slug / f"{role['id']}.json"
         write_json(json_path, role_payload)
@@ -1538,6 +1623,7 @@ def main() -> None:
             intake,
             render_id,
         )
+        sanitize_cover_letter_pdf(cover_letter_pdf)
         cover_letter_pages = get_pdf_page_count(cover_letter_pdf)
         if cover_letter_pages > 1:
             raise SystemExit(

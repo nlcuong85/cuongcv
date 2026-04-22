@@ -1,0 +1,52 @@
+# ATS Readiness Report
+
+This is a heuristic ATS parseability check, not a guarantee for every ATS product.
+
+- PDFs tested: 43
+- Max pages rule: 2
+- Minimum extracted characters: 1200
+- Verdicts: pass=0, warn=43, fail=0
+
+- [warn] resume-le-cuong-nguyen-working-student-ai-driven-consulting-d-f-m-20260412-161104.pdf | pages=2 | chars=5461 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-analytics-data-science-working-student-f-m-x-20260412-182017.pdf | pages=2 | chars=5332 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-internships-working-student-ai-meets-energy-hybrid-energy-systems-for-h2-storage-renewable-energies-20260413-110420.pdf | pages=2 | chars=5203 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-praktikum-werkstudium-smart-energy-systems-20260413-111254.pdf | pages=2 | chars=5203 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-cuong-le-nguyen-werkstudent-m-w-d-digitalisierung-von-geschaftsprozessen-20260328-233212.pdf | pages=2 | chars=5320 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-working-student-m-f-x-instructional-design-20260412-144757.pdf | pages=2 | chars=5410 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-working-student-in-software-team-m-w-d-20260412-194108.pdf | pages=2 | chars=5258 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] product_manager.pdf | pages=2 | chars=5062 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-working-student-genai-llm-evaluation-agentic-ai-nlp-f-m-d-20260412-154659.pdf | pages=2 | chars=5423 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-cuong-le-nguyen-werkstudent-m-w-d-im-bereich-it-prozessmanagement-20260328-213808.pdf | pages=2 | chars=5217 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-werkstudent-m-w-d-digital-solutions-20260412-205825.pdf | pages=2 | chars=5322 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-werkstudent.pdf | pages=2 | chars=5312 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] cv_product_owner.pdf | pages=2 | chars=4165 | unicode_risk=12 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-working-student-product-operations-ai-workflow-20260413-233302.pdf | pages=2 | chars=5097 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-working-student-m-f-d-for-ai-20260412-143301.pdf | pages=2 | chars=5339 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-process-digitalisation-working-student-20260412-195223.pdf | pages=2 | chars=5260 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-cuong-le-nguyen-werkstudent-im-bereich-controlling-w-m-d-20260328-203343.pdf | pages=2 | chars=5174 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-cuong-le-nguyen-werkstudent-netzwerk-it-security-w-m-d-20260328-204655.pdf | pages=2 | chars=5302 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-it-administration-automation-manager-all-genders-20260412-185317.pdf | pages=2 | chars=5211 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-werkstudent-life-cycle-management-20260403-211332.pdf | pages=2 | chars=4997 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-cuong-le-nguyen-werkstudent-in-data-ai-product-management-software-certification-20260328-201540.pdf | pages=2 | chars=5314 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-working-student-process-development-for-cdcc2-0-baselayer-software-20260404-122825.pdf | pages=2 | chars=5241 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-cuong-le-nguyen-working-student-requirements-engineering-for-cdcc2-0-baselayer-software-development-20260328-190043.pdf | pages=2 | chars=5241 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-cuong-le-nguyen-working-student-product-owner-support-insurance-platform-of-services-20260328-175720.pdf | pages=2 | chars=5254 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-werkstudent-m-w-d-corporate-innovation-services-ab-15-04-2026-15-20-h-20260412-170213.pdf | pages=2 | chars=5384 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-working-student-product-management-m-f-x-20260412-164936.pdf | pages=2 | chars=5319 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-working-student-intern-all-genders-service-operations-analyst-20260412-200226.pdf | pages=2 | chars=5235 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-solution-delivery-associate-working-student-intern-20260403-205640.pdf | pages=2 | chars=5011 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] business_analyst.pdf | pages=2 | chars=4997 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-business-analyst-ecommerce-20260405-133242.pdf | pages=2 | chars=5021 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-cuong-le-nguyen-working-student-internal-web-developed-applications-in-automotive-quality-environment-f-m-div-20260329-095001.pdf | pages=2 | chars=5337 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-werkstudent-w-m-d-technical-sustainability-consulting-20260403-211236.pdf | pages=2 | chars=4998 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-working-student-f-m-d-technical-writing-team-support-20260412-183830.pdf | pages=2 | chars=5326 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-working-student-f-m-d-threat-modelling-service-operation-and-automation-20260412-180434.pdf | pages=2 | chars=5245 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-praktikum-oder-werkstudent-technologiemanagement-im-cto-office-m-w-d-20260403-220616.pdf | pages=2 | chars=5168 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-werkstudent-data-automation-m-w-d-20260412-142256.pdf | pages=2 | chars=5315 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-cuong-le-nguyen-werkstudent-detection-engineering-m-w-d-20260328-165756.pdf | pages=2 | chars=5251 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-cuong-le-nguyen-werkstudent-praktikant-m-w-d-cloud-finops-technical-cost-optimization-analytics-20260327-232425.pdf | pages=2 | chars=5224 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-werkstudent-marketing-systeme-m-w-d-20260412-135023.pdf | pages=2 | chars=5388 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-cuong-le-nguyen-werkstudent-agiles-projektmanagement-m-w-d-20260328-210055.pdf | pages=2 | chars=5281 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-work-student-product-management-all-genders-20260412-153249.pdf | pages=2 | chars=5283 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-cuong-le-nguyen-werkstudent-qualitatsmanagement-netzbauprojekte-w-m-d-20260328-195400.pdf | pages=2 | chars=5180 | unicode_risk=6 | failed=unicode_risk_ok
+- [warn] resume-le-cuong-nguyen-werkstudent-business-analyst-m-w-d-20260403-213934.pdf | pages=2 | chars=5218 | unicode_risk=6 | failed=unicode_risk_ok

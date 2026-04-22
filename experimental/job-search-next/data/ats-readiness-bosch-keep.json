@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "pdf_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/outputs/bosch-group-werkstudent-cleanroom-process-quality-w-m-div/cv/resume-le-cuong-nguyen-werkstudent-cleanroom-process-quality-w-m-div-20260414-001440.pdf",
+      "pages": 2,
+      "char_count": 5030,
+      "word_count": 703,
+      "unicode_risk_count": 0,
+      "checks": {
+        "text_extractable": true,
+        "page_limit_ok": true,
+        "unicode_risk_ok": true,
+        "has_contact_markers": true
+      },
+      "failed_checks": [],
+      "verdict": "pass"
+    }
+  ]
+}

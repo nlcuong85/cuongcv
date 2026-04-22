@@ -1,0 +1,29 @@
+{
+  "company_name": "Sample Mobility GmbH",
+  "company_location": "Heilbronn, Baden-Wuerttemberg, Germany",
+  "contact_name": "",
+  "contact_title": "",
+  "contact_lookup_status": "No named recruiter or contact has been verified yet in the prototype flow, so the draft intake uses a fallback contact until live lookup is completed.",
+  "job_title": "Working Student Business Analysis & AI Workflow",
+  "job_url": "https://example.com/jobs/sample-mobility-working-student-business-analysis-ai-workflow",
+  "job_description": "Imported from the Franklee validator shortlist. Company: Sample Mobility GmbH. Location: Heilbronn, Baden-Wuerttemberg, Germany. Work model: Hybrid. Posted date: 2026-04-10. Language note: English-friendly posting with no explicit strong German requirement. Why it matches: working student format, requirements analysis, workflow automation, stakeholder support.",
+  "requirements": [
+    "Franklee work model: Hybrid",
+    "Franklee language note: English-friendly posting with no explicit strong German requirement",
+    "Franklee match note: working student format, requirements analysis, workflow automation, stakeholder support"
+  ],
+  "language": "english + german",
+  "primary_role": "ai_product_ops",
+  "summary_version": "strongest_balanced",
+  "target_roles": [
+    "ai_product_ops"
+  ],
+  "why_company": "",
+  "cover_letter_opening": "",
+  "cover_letter_motivation": "",
+  "cover_letter_body_one": "",
+  "cover_letter_body_two": "",
+  "cover_letter_closing": "",
+  "prototype_origin": "experimental/job-search-next",
+  "prototype_lead_id": "sample-mobility-gmbh-working-student-business-analysis-ai-workflow"
+}

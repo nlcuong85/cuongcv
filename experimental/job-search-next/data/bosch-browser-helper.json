@@ -1,0 +1,33 @@
+{
+  "tab": {
+    "status": "no_active_browser_window",
+    "browser": "Google Chrome",
+    "window_count": 0,
+    "title": "",
+    "url": "",
+    "form_snapshot": null,
+    "error": "Google Chrome is frontmost but has no open browser window."
+  },
+  "matched_application": {
+    "slug": "bosch-group-werkstudent-cleanroom-process-quality-w-m-div",
+    "company_name": "Bosch Group",
+    "job_title": "Werkstudent Cleanroom Process & Quality (w/m/div.)",
+    "job_url": "https://jobs.smartrecruiters.com/BoschGroup/744000119553118-werkstudent-cleanroom-process-quality-w-m-div-"
+  },
+  "profile": {
+    "full_name": "Le Cuong Nguyen",
+    "email": "nlcuong999@gmail.com",
+    "phone": "+49 163 3628505",
+    "location": "Gildenstra\u00dfe 13, 74074 Heilbronn, Germany",
+    "website": "https://pmlecuong.com/",
+    "linkedin": "https://www.linkedin.com/in/lecuongair/",
+    "github": "https://github.com/nlcuong85"
+  },
+  "uploads": {
+    "resume_pdf": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/outputs/bosch-group-werkstudent-cleanroom-process-quality-w-m-div/cv/resume-le-cuong-nguyen-werkstudent-cleanroom-process-quality-w-m-div-20260414-001440.pdf",
+    "cover_letter_pdf": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/outputs/bosch-group-werkstudent-cleanroom-process-quality-w-m-div/cover-letter/cover-letter-le-cuong-nguyen-werkstudent-cleanroom-process-quality-w-m-div-20260414-001440.pdf"
+  },
+  "suggested_answers": [],
+  "mode": "Mode A companion helper",
+  "submit_policy": "Do not auto-submit. Review answers in the real browser session before sending."
+}

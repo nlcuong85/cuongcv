@@ -1,0 +1,77 @@
+{
+  "subject": "Re: Application for Praktikum \u2013 Digitales After Sales Business (w/m/d)",
+  "body": "Dear Michael Karmann,\n\nThank you for your message and for taking the time to review my application.\nI appreciate the update regarding the Praktikum \u2013 Digitales After Sales Business (w/m/d) role and the consideration you gave my profile.\nI remain interested in AUDI AG and would be glad to be considered again for suitable future opportunities.\n\nKind regards,\nLe Cuong Nguyen",
+  "intent": "reply",
+  "context": {
+    "slug": "audi-ag",
+    "company_name": "AUDI AG",
+    "job_title": "Praktikum \u2013 Digitales After Sales Business (w/m/d)",
+    "primary_role": "product_manager",
+    "role_anchor": "product delivery and prioritization",
+    "summary_version": "strongest_balanced",
+    "output_dir": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/outputs/audi-ag",
+    "manifest_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/outputs/audi-ag/manifest.json",
+    "communication_log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/outputs/audi-ag/communication-log.md",
+    "contact_name": "Michael Karmann, Recruiting, AUDI AG",
+    "job_url": "https://careers.audi.com/EREC_OPEN_DESTINATION/sap/hcmx/download_na/job/CE6634AF2C021FE188BA957132A34138/Praktikum%20%e2%80%93%20Digitales%20After%20Sales%20Business%20(w_m_d).pdf?sap-client=200&sap-language=de",
+    "intake_path": "application-system/intakes/audi-digital-after-sales-praktikum.json",
+    "package_generated_on": "2026-03-27",
+    "latest_cv_pdf": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/application-system/outputs/audi-ag/cv/product_manager.pdf",
+    "latest_cover_letter_pdf": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/outputs/audi-ag/cover-letter/cover_letter.pdf",
+    "communication": {
+      "path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/outputs/audi-ag/communication-log.md",
+      "events": [
+        {
+          "logged_date": "2026-04-12",
+          "heading": "2026-04-12",
+          "direction": "inbound",
+          "status": "Closed for current application",
+          "reply_needed": "Optional",
+          "contact": "Michael Karmann, Recruiting, AUDI AG",
+          "event_type": "Rejection email",
+          "subject": "",
+          "summary": "Audi declined the application submitted on March 27, 2026 for `Praktikum \u2013 Digitales After Sales Business (w/m/d)` and invited a future reapplication for other entry-level opportunities.",
+          "incoming_message": "Dear Mr. Le Cuong Nguyen, Thank you very much for your application and the interest you have shown in our company. Your documents give us a good impression of your personal and professional qualifications. However, we were unfortunately unable to consider you for the current positions, as some applicants whose previous career path makes them a particularly good match for our requirement profiles. Should you decide to book one of our attractive offers again at a later date and are interested in entry-level opportunities, we would be pleased to receive another application from you. We thank you for your trust and hope that you will continue to have a positive relationship with Audi. We wish you every success in your search for a position that meets your expectations and all the best.",
+          "draft_reply": "",
+          "index": 1
+        }
+      ],
+      "latest_event": {
+        "logged_date": "2026-04-12",
+        "heading": "2026-04-12",
+        "direction": "inbound",
+        "status": "Closed for current application",
+        "reply_needed": "Optional",
+        "contact": "Michael Karmann, Recruiting, AUDI AG",
+        "event_type": "Rejection email",
+        "subject": "",
+        "summary": "Audi declined the application submitted on March 27, 2026 for `Praktikum \u2013 Digitales After Sales Business (w/m/d)` and invited a future reapplication for other entry-level opportunities.",
+        "incoming_message": "Dear Mr. Le Cuong Nguyen, Thank you very much for your application and the interest you have shown in our company. Your documents give us a good impression of your personal and professional qualifications. However, we were unfortunately unable to consider you for the current positions, as some applicants whose previous career path makes them a particularly good match for our requirement profiles. Should you decide to book one of our attractive offers again at a later date and are interested in entry-level opportunities, we would be pleased to receive another application from you. We thank you for your trust and hope that you will continue to have a positive relationship with Audi. We wish you every success in your search for a position that meets your expectations and all the best.",
+        "draft_reply": "",
+        "index": 1
+      },
+      "latest_inbound": {
+        "logged_date": "2026-04-12",
+        "heading": "2026-04-12",
+        "direction": "inbound",
+        "status": "Closed for current application",
+        "reply_needed": "Optional",
+        "contact": "Michael Karmann, Recruiting, AUDI AG",
+        "event_type": "Rejection email",
+        "subject": "",
+        "summary": "Audi declined the application submitted on March 27, 2026 for `Praktikum \u2013 Digitales After Sales Business (w/m/d)` and invited a future reapplication for other entry-level opportunities.",
+        "incoming_message": "Dear Mr. Le Cuong Nguyen, Thank you very much for your application and the interest you have shown in our company. Your documents give us a good impression of your personal and professional qualifications. However, we were unfortunately unable to consider you for the current positions, as some applicants whose previous career path makes them a particularly good match for our requirement profiles. Should you decide to book one of our attractive offers again at a later date and are interested in entry-level opportunities, we would be pleased to receive another application from you. We thank you for your trust and hope that you will continue to have a positive relationship with Audi. We wish you every success in your search for a position that meets your expectations and all the best.",
+        "draft_reply": "",
+        "index": 1
+      },
+      "latest_outbound": null,
+      "inbound_count": 1,
+      "outbound_count": 0
+    },
+    "stage": "closed_rejected",
+    "next_action": "archive_or_reapply_later",
+    "suggested_intent": "reply",
+    "follow_up_due": false,
+    "days_since_anchor": "2"
+  }
+}

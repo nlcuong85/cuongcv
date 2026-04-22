@@ -1,0 +1,50 @@
+{
+  "company_name": "prognum Automotive GmbH",
+  "company_location": "Löffelstraße 22-24\n70597 Stuttgart, Germany",
+  "contact_name": "Annica Hackenberg",
+  "contact_title": "HR Recruiting Specialist",
+  "contact_lookup_status": "Named recruiter Annica Hackenberg and the Stuttgart company address were verified from the official prognum coveto posting and prognum contact page checked on 2026-04-18.",
+  "job_title": "Werkstudent (m/w/d) künstliche Intelligenz (KI) - Automation & Implementierung von KI-Tools",
+  "job_url": "https://www.stepstone.de/stellenangebote----12762991-inline.html?CID=R_EM_iJBE_DE_ST_17042026_IJBEV2_DCR_V2_D_jobTitle&lang=de&adjust_t=1dvgdvzh_1dz7dh55&adjust_campaign=IJBE&state=0",
+  "language": "german_or_mixed",
+  "primary_role": "process_automation",
+  "target_roles": [
+    "process_automation"
+  ],
+  "summary_version": "business_analysis",
+  "why_company": "What caught my attention about prognum is that the role treats AI as practical internal work rather than a slogan. It is about looking at real workflows, identifying where AI tools can actually help, and carrying the work through from research and decision support to implementation and user enablement.",
+  "job_description": "prognum Automotive GmbH is hiring a working student for AI, automation, and implementation in Stuttgart. The role analyzes existing internal processes and identifies where AI tools could create value across internal communication, recruiting, and sales in close collaboration with management. It includes researching and comparing suitable AI solutions from a greenfield starting point, preparing decision materials for management, supporting the strategic selection of tools, and accompanying implementation from configuration and first tests to user training. The posting asks for ongoing studies in business informatics, data science, business, engineering, or a comparable field, interest in AI, automation, and digital processes, first hands-on experience with AI or automation tools such as ChatGPT, RPA, ERP systems, or ATS, analytical thinking, a structured working style, and strong willingness to learn.",
+  "requirements": [
+    "Current studies in business informatics, data science, business, engineering, or a comparable field",
+    "Interest in artificial intelligence, automation, and digital processes",
+    "Initial hands-on exposure to AI or automation tools such as ChatGPT, RPA, ERP systems, or ATS",
+    "Ability to analyze current processes and identify practical AI-tool use cases",
+    "Ability to research and compare suitable solutions from a greenfield starting point",
+    "Comfort preparing decision materials for management and supporting tool selection",
+    "Structured working style, analytical thinking, teamwork, and strong willingness to learn",
+    "Readiness to support implementation, early testing, and user enablement"
+  ],
+  "cv_about_override": "Process and AI workflow professional focused on analyzing operational pain points, selecting practical tools, and helping teams adopt automation in real business environments.",
+  "cv_summary_override": "Process and AI-workflow professional with experience across business analysis, stakeholder alignment, workflow improvement, and practical automation. Through Software Engineering studies at Heilbronn University, Business Information Systems studies, and hands-on work across AI-assisted workflows, digital operations, and cross-functional delivery, I am building toward roles that connect process analysis, tool evaluation, and implementation support in real business settings.",
+  "cv_skills_override": [
+    "Requirements Engineering",
+    "Business Analysis",
+    "Stakeholder Alignment",
+    "Process Improvement",
+    "Workflow Optimization",
+    "Process Mapping",
+    "AI-assisted Workflow Design",
+    "Automation Thinking",
+    "Documentation",
+    "Cross-functional Delivery",
+    "Systems Thinking",
+    "SQL",
+    "Jira",
+    "Confluence"
+  ],
+  "cover_letter_opening": "I wanted to apply for the Werkstudent (m/w/d) künstliche Intelligenz (KI) - Automation & Implementierung von KI-Tools role at prognum because the work itself is concrete in the right way: analyze internal processes, identify where AI tools can actually help, and carry the work through from research and tool selection to implementation and user enablement.",
+  "cover_letter_body_one": "That fits the kind of contribution I am strongest at. Across product, business-analysis, and operations-heavy roles, I have often worked where workflows needed to become clearer, teams needed more structure, and ideas only became valuable once they were translated into something practical that people could actually use.",
+  "cover_letter_body_two": "What makes this role especially relevant to me now is the AI-adoption angle. Through my current Software Engineering studies at Heilbronn University, my Business Information Systems background, and my hands-on work across AI-assisted workflows, automation thinking, SQL, documentation, and cross-functional delivery, I have been moving toward exactly this kind of role: connecting operational pain points, tool evaluation, and practical implementation without treating AI as abstract hype.",
+  "cover_letter_motivation": "I am particularly interested in prognum because the company works in technology-driven mobility environments while approaching AI in a pragmatic way. A role that sits close to management decisions but still requires careful rollout, testing, and user support is much more appealing to me than a purely theoretical innovation role.",
+  "cover_letter_closing": "@@AVAILABILITY@@. I would welcome the opportunity to discuss how I can support prognum in identifying and implementing useful AI tools for day-to-day business workflows."
+}

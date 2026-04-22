@@ -1,0 +1,9 @@
+{
+  "status": "no_active_browser_window",
+  "browser": "Google Chrome",
+  "window_count": 0,
+  "title": "",
+  "url": "",
+  "form_snapshot": null,
+  "error": "Google Chrome is frontmost but has no open browser window."
+}

@@ -1,0 +1,161 @@
+candidate:
+  full_name: "Le Cuong Nguyen"
+  preferred_name: "Cuong"
+  location: "Heilbronn, Baden-Wuerttemberg, Germany"
+  timezone: "Europe/Berlin"
+  target_region: "Germany"
+
+search_policy:
+  allowed_country: "Germany"
+  preferred_states:
+    - "Baden-Wuerttemberg"
+    - "Bavaria"
+    - "Hesse"
+    - "Rhineland-Palatinate"
+  preferred_location_terms:
+    - "Heidelberg"
+    - "Mannheim"
+    - "Ludwigshafen"
+    - "Walldorf"
+    - "Heilbronn"
+    - "Karlsruhe"
+    - "Stuttgart"
+    - "Sindelfingen"
+    - "Boeblingen"
+    - "Ludwigsburg"
+    - "Esslingen"
+    - "Frankfurt"
+    - "Darmstadt"
+    - "Mainz"
+    - "Wiesbaden"
+    - "Aschaffenburg"
+    - "Wuerzburg"
+    - "Nuremberg"
+    - "Erlangen"
+    - "Fuerth"
+    - "Regensburg"
+    - "Ingolstadt"
+    - "Augsburg"
+    - "Munich"
+  allow_remote_countrywide: true
+  allow_review_outside_preferred_states: true
+  reject_explicit_strong_german_roles: true
+  allowed_job_modes:
+    - "working_student"
+    - "internship"
+    - "part_time"
+    - "full_time"
+
+role_targets:
+  priority_role_families:
+    - "business_analyst"
+    - "requirements_process"
+    - "process_automation"
+    - "ai_product_ops"
+    - "implementation_enablement"
+    - "workflow_operations_analyst"
+    - "product_manager"
+    - "product_owner"
+    - "pmo_delivery_support"
+    - "quality_compliance_ops"
+  keyword_map:
+    business_analyst:
+      - "business analyst"
+      - "analysis"
+      - "analytics"
+      - "requirements"
+      - "stakeholder"
+      - "process"
+      - "reporting"
+    requirements_process:
+      - "requirements engineering"
+      - "requirement"
+      - "bpmn"
+      - "process management"
+      - "prozessmanagement"
+      - "workflow"
+      - "documentation"
+    process_automation:
+      - "automation"
+      - "digitalisation"
+      - "digitalization"
+      - "workflow automation"
+      - "ai workflow"
+      - "process improvement"
+      - "tooling"
+    ai_product_ops:
+      - "ai"
+      - "genai"
+      - "llm"
+      - "agentic"
+      - "ai operations"
+      - "ai product"
+      - "automation"
+    implementation_enablement:
+      - "implementation"
+      - "enablement"
+      - "rollout"
+      - "onboarding"
+      - "training"
+      - "adoption"
+      - "service operations"
+    workflow_operations_analyst:
+      - "operations analyst"
+      - "workflow operations"
+      - "service operations"
+      - "process operations"
+      - "operational support"
+    product_manager:
+      - "product manager"
+      - "product management"
+      - "roadmap"
+      - "discovery"
+      - "product owner"
+    product_owner:
+      - "product owner"
+      - "backlog"
+      - "scrum"
+      - "user story"
+      - "acceptance criteria"
+    pmo_delivery_support:
+      - "project management"
+      - "delivery support"
+      - "coordination"
+      - "pmo"
+      - "project office"
+      - "agile project management"
+    quality_compliance_ops:
+      - "quality management"
+      - "compliance"
+      - "aspice"
+      - "audit"
+      - "quality"
+      - "governance"
+
+language_policy:
+  explicit_strong_german_patterns:
+    - "fluent german"
+    - "business german"
+    - "very good german"
+    - "excellent german"
+    - "verhandlungssicher deutsch"
+    - "fliessend deutsch"
+    - "fließend deutsch"
+    - "sehr gute deutschkenntnisse"
+    - "sehr gute kenntnisse der deutschen sprache"
+    - "muttersprache deutsch"
+    - "c1 german"
+    - "c2 german"
+    - "german language skills are required"
+  softer_german_patterns:
+    - "german is a plus"
+    - "basic german"
+    - "german preferred"
+    - "deutsch von vorteil"
+
+compensation_policy:
+  annual_salary_floor_eur:
+    product_manager: 75000
+    product_owner: 75000
+    business_analyst: 70000
+  working_student_hourly_floor_eur: 15

@@ -1,0 +1,31 @@
+{
+  "company_name": "Future Sample GmbH",
+  "company_location": "Heilbronn, Baden-Wuerttemberg, Germany",
+  "contact_name": "",
+  "contact_title": "",
+  "contact_lookup_status": "No named recruiter or contact has been verified yet in the prototype flow, so the draft intake uses a fallback contact until live lookup is completed.",
+  "job_title": "Working Student Product Operations & AI Workflow",
+  "job_url": "https://example.com/jobs/future-sample-product-ops-student",
+  "job_description": "Support product operations, workflow automation, AI-assisted documentation, stakeholder coordination, and requirements analysis across internal digital products.",
+  "requirements": [
+    "Working student",
+    "Product operations",
+    "Workflow automation",
+    "Requirements analysis",
+    "Stakeholder coordination"
+  ],
+  "language": "english",
+  "primary_role": "ai_product_ops",
+  "summary_version": "strongest_balanced",
+  "target_roles": [
+    "ai_product_ops"
+  ],
+  "why_company": "",
+  "cover_letter_opening": "",
+  "cover_letter_motivation": "",
+  "cover_letter_body_one": "",
+  "cover_letter_body_two": "",
+  "cover_letter_closing": "",
+  "prototype_origin": "experimental/job-search-next",
+  "prototype_lead_id": "future-sample-product-ops-student"
+}
