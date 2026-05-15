@@ -174,6 +174,7 @@ def latest_pdf_path(path: Path) -> str:
 
 
 def infer_stage(communication: dict[str, Any], follow_up_days: int) -> dict[str, Any]:
+    events: list[CommunicationEvent] = communication.get("events", [])
     latest_event: CommunicationEvent | None = communication.get("latest_event")
     latest_inbound: CommunicationEvent | None = communication.get("latest_inbound")
     latest_outbound: CommunicationEvent | None = communication.get("latest_outbound")
@@ -228,6 +229,25 @@ def infer_stage(communication: dict[str, Any], follow_up_days: int) -> dict[str,
 
         if latest_event.direction == "inbound" and "initial application" in type_lower:
             stage = "submitted_waiting"
+
+        onboarding_signal = any(
+            any(
+                token in " ".join([event.status, event.event_type, event.summary]).lower()
+                for token in [
+                    "hiring task closed",
+                    "preparation for planned employment",
+                    "joiner",
+                    "verbal offer received",
+                ]
+            )
+            for event in events
+        )
+        if onboarding_signal and stage != "closed_rejected":
+            stage = "onboarding_pending"
+            next_action = "wait_or_follow_up_on_contract"
+            suggested_intent = "followup"
+            if anchor_date:
+                follow_up_due = (date.today() - anchor_date).days >= follow_up_days
 
     return {
         "stage": stage,

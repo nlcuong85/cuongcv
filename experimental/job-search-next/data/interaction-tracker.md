@@ -10,16 +10,18 @@ Generated from `application-system/outputs/*` using a follow-up threshold of `7`
 ## Stage Counts
 
 - `closed_rejected`: 5
-- `package_generated`: 41
+- `onboarding_pending`: 1
+- `package_generated`: 40
 - `reply_pending`: 1
 - `submitted_waiting`: 1
 
 ## Next Actions
 
 - `archive_or_reapply_later`: 5
-- `confirm_if_application_was_sent`: 41
+- `confirm_if_application_was_sent`: 40
 - `draft_follow_up`: 1
 - `draft_reply`: 1
+- `wait_or_follow_up_on_contract`: 1
 
 ## Priority Rows
 

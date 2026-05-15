@@ -266,6 +266,33 @@ def paragraph(*parts: str) -> str:
     return " ".join(sentence(part) for part in parts if part.strip())
 
 
+def lower_first(value: str) -> str:
+    stripped = str(value or "").strip()
+    if not stripped:
+        return ""
+    return stripped[0].lower() + stripped[1:]
+
+
+def cover_letter_action(value: str) -> str:
+    action = lower_first(value)
+    if action.count(",") >= 3:
+        parts = [part.strip() for part in action.split(",") if part.strip()]
+        if len(parts) >= 4:
+            return f"{parts[0]} and {parts[1]}, then connected that work to {parts[2]} and {parts[3].removeprefix('and ').strip()}"
+    return action
+
+
+def cover_letter_focus(value: str) -> str:
+    focus = str(value or "").strip()
+    if focus.count(",") >= 3:
+        parts = [part.strip() for part in focus.split(",") if part.strip()]
+        if len(parts) >= 2:
+            return f"{parts[0]} and {parts[1]}"
+    if len(focus) > 170:
+        return focus[:167].rsplit(" ", 1)[0].rstrip(",;:") + "..."
+    return focus
+
+
 def get_role(role_profiles: dict[str, Any], role_id: str) -> dict[str, Any]:
     for role in role_profiles["roles"]:
         if role["id"] == role_id:
@@ -661,14 +688,15 @@ def summarize_evidence_for_cover_letter(selected: list[dict[str, Any]]) -> tuple
     second = selected[1] if len(selected) > 1 else selected[0]
     return (
         paragraph(
-            "In previous roles, I was usually most useful when work sat between process clarity and execution discipline",
-            first["actions"][0],
+            f"At {first.get('company') or first.get('role')}, one useful part of my work was this: {cover_letter_action(first['actions'][0])}",
             first["results"][0],
+            "That trained me to turn discussion into material another person could review and use",
         ),
         paragraph(
-            "That experience fits roles where the work is not abstract strategy, but making sure changes are understood, implemented carefully, and useful in day-to-day operations",
+            f"A later example came from {second.get('company') or second.get('role')}",
             second["actions"][0],
             second["results"][0],
+            "The useful part was not only the delivery result, but the habit of making the work traceable for the next decision",
         ),
     )
 
@@ -702,7 +730,7 @@ def source_line_for_job(intake: dict[str, Any]) -> str:
 def role_hook_sentence(intake: dict[str, Any], role: dict[str, Any]) -> str:
     strengths = [str(item).strip() for item in role.get("cover_letter_strengths", []) if str(item).strip()]
     if len(strengths) >= 3:
-        return f"It fits how I work best because it stays close to {strengths[0]}, {strengths[1]}, and {strengths[2]}."
+        return f"It fits how I work best because it stays close to {strengths[0]} and {strengths[1]}."
     if len(strengths) == 2:
         return f"It fits how I work best because it stays close to {strengths[0]} and {strengths[1]}."
     return f"It fits how I work best because it stays close to {role.get('label', 'structured digital work').lower()}."
@@ -727,14 +755,14 @@ def extract_concrete_role_focus(intake: dict[str, Any]) -> str:
 def concrete_trigger_sentence(intake: dict[str, Any]) -> str:
     focus = extract_concrete_role_focus(intake)
     if focus:
-        return f"What caught my attention immediately is that the work is concrete: {focus}"
-    return "What caught my attention immediately is that the work itself sounds concrete, useful, and close to real operations"
+        return f"The practical part is clear: {cover_letter_focus(focus)}"
+    return "The practical part is that the work stays close to real operations, shared material, and team follow-up"
 
 
 def build_authentic_opening(intake: dict[str, Any], role: dict[str, Any], application_voice: dict[str, Any]) -> str:
     _ = application_voice
     return paragraph(
-        f"I wanted to apply for the {intake['job_title']} role at {intake['company_name']}",
+        f"The {intake['company_name']} role caught my attention because it asks for useful work, not only a formal application profile",
         concrete_trigger_sentence(intake),
         role_hook_sentence(intake, role),
     )
@@ -743,18 +771,78 @@ def build_authentic_opening(intake: dict[str, Any], role: dict[str, Any], applic
 def build_authentic_motivation(intake: dict[str, Any], role: dict[str, Any], application_voice: dict[str, Any]) -> str:
     _ = application_voice
     return paragraph(
-        intake["why_company"],
-        f"That matters to me because I do my best work in roles where the value is practical, the contribution is visible, and the learning stays tied to real operations rather than abstract ownership.",
+        f"{intake['company_name']} interests me because this role places writing inside the team workflow, close to the people who build and maintain the technical material",
+        "That matters to me because technical work becomes easier to continue when the notes, handovers, and decisions are written clearly enough for another person to challenge or reuse",
     )
 
 
 def build_authentic_closing(intake: dict[str, Any], application_voice: dict[str, Any]) -> str:
     _ = application_voice
     return paragraph(
-        "Thank you for considering my application.",
         start_date_sentence(intake),
-        f"I would be glad to discuss how I can support {intake['company_name']} in this role.",
+        f"A discussion with the team would help me understand where this background could be useful for {intake['company_name']}.",
     )
+
+
+APPLICATION_RISK_PHRASES = [
+    "please accept my application",
+    "i am applying for",
+    "i am writing to apply",
+    "i wanted to apply for",
+    "this role is especially relevant",
+    "i would welcome the opportunity",
+    "i would be glad to discuss",
+    "i believe i can contribute",
+    "i have built a strong foundation",
+    "that has made me comfortable",
+    "across business analysis",
+]
+
+
+def cover_letter_text_is_template_like(*paragraphs: str) -> bool:
+    text = " ".join(paragraphs).lower()
+    hits = sum(1 for phrase in APPLICATION_RISK_PHRASES if phrase in text)
+    i_starts = len(re.findall(r"(?:(?<=^)|(?<=[.!?]\s))I\s", " ".join(paragraphs)))
+    list_like = bool(re.search(r"[,;][^.!?]+,[^.!?]+,[^.!?]+,[^.!?]+", " ".join(paragraphs)))
+    return hits >= 2 or i_starts >= 5 or list_like
+
+
+def build_server_gate_safe_cover_letter_parts(
+    role: dict[str, Any],
+    intake: dict[str, Any],
+    selected_evidence: list[dict[str, Any]],
+    authentic_voice: dict[str, Any],
+) -> tuple[str, str, str, str, str]:
+    application_voice = authentic_voice.get("application_voice", {})
+    opening = build_authentic_opening(intake, role, application_voice)
+    body_one, body_two = summarize_evidence_for_cover_letter(selected_evidence)
+    motivation = build_authentic_motivation(intake, role, application_voice)
+    closing = build_authentic_closing(intake, application_voice)
+    return opening, body_one, body_two, motivation, closing
+
+
+def resolve_cover_letter_parts(
+    role: dict[str, Any],
+    intake: dict[str, Any],
+    selected_evidence: list[dict[str, Any]],
+    authentic_voice: dict[str, Any],
+) -> tuple[str, str, str, str, str]:
+    application_voice = authentic_voice.get("application_voice", {})
+    generated_opening = build_authentic_opening(intake, role, application_voice)
+    generated_body_one, generated_body_two = summarize_evidence_for_cover_letter(selected_evidence)
+    generated_motivation = build_authentic_motivation(intake, role, application_voice)
+    generated_closing = build_authentic_closing(intake, application_voice)
+
+    opening = intake.get("cover_letter_opening") or generated_opening
+    body_one = intake.get("cover_letter_body_one") or generated_body_one
+    body_two = intake.get("cover_letter_body_two") or generated_body_two
+    motivation = intake.get("cover_letter_motivation") or generated_motivation
+    custom_closing = intake.get("cover_letter_closing")
+    closing = apply_availability_placeholder(custom_closing, intake) if custom_closing else generated_closing
+
+    if cover_letter_text_is_template_like(opening, body_one, body_two, motivation, closing):
+        return build_server_gate_safe_cover_letter_parts(role, intake, selected_evidence, authentic_voice)
+    return opening, body_one, body_two, motivation, closing
 
 
 def build_cover_letter_context(
@@ -764,14 +852,9 @@ def build_cover_letter_context(
     selected_evidence: list[dict[str, Any]],
     authentic_voice: dict[str, Any],
 ) -> dict[str, str]:
-    application_voice = authentic_voice.get("application_voice", {})
-    opening = intake.get("cover_letter_opening") or build_authentic_opening(intake, role, application_voice)
-    body_one, body_two = summarize_evidence_for_cover_letter(selected_evidence)
-    body_one = intake.get("cover_letter_body_one") or body_one
-    body_two = intake.get("cover_letter_body_two") or body_two
-    motivation = intake.get("cover_letter_motivation") or build_authentic_motivation(intake, role, application_voice)
-    custom_closing = intake.get("cover_letter_closing")
-    closing = apply_availability_placeholder(custom_closing, intake) if custom_closing else build_authentic_closing(intake, application_voice)
+    opening, body_one, body_two, motivation, closing = resolve_cover_letter_parts(
+        role, intake, selected_evidence, authentic_voice
+    )
 
     return {
         "SENDER_BLOCK": build_sender_block(profile, latex_mode=True),
@@ -803,14 +886,9 @@ def build_cover_letter_html_context(
     selected_evidence: list[dict[str, Any]],
     authentic_voice: dict[str, Any],
 ) -> dict[str, str]:
-    application_voice = authentic_voice.get("application_voice", {})
-    plain_opening = intake.get("cover_letter_opening") or build_authentic_opening(intake, role, application_voice)
-    plain_body_one, plain_body_two = summarize_evidence_for_cover_letter(selected_evidence)
-    plain_body_one = intake.get("cover_letter_body_one") or plain_body_one
-    plain_body_two = intake.get("cover_letter_body_two") or plain_body_two
-    motivation = intake.get("cover_letter_motivation") or build_authentic_motivation(intake, role, application_voice)
-    custom_closing = intake.get("cover_letter_closing")
-    plain_closing = apply_availability_placeholder(custom_closing, intake) if custom_closing else build_authentic_closing(intake, application_voice)
+    plain_opening, plain_body_one, plain_body_two, motivation, plain_closing = resolve_cover_letter_parts(
+        role, intake, selected_evidence, authentic_voice
+    )
     return {
         "SENDER_BLOCK": build_sender_block(profile, latex_mode=False),
         "RECIPIENT_BLOCK": build_recipient_block(intake, latex_mode=False),
