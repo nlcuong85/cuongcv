@@ -194,7 +194,12 @@ def infer_stage(communication: dict[str, Any], follow_up_days: int) -> dict[str,
         reply_lower = latest_event.reply_needed.lower()
         type_lower = latest_event.event_type.lower()
 
-        if any(token in status_lower for token in ["rejected", "declined", "closed"]):
+        is_rejection = any(token in status_lower for token in ["rejected", "declined"]) or (
+            "closed" in status_lower
+            and not any(token in status_lower for token in ["check closed", "task closed"])
+        )
+
+        if is_rejection:
             stage = "closed_rejected"
             next_action = "archive_or_reapply_later"
             suggested_intent = "reply" if "optional" in reply_lower else "none"
