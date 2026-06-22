@@ -75,14 +75,56 @@ Escalate to deeper reading when:
 - the user asks to match an existing company-specific tone closely
 - the email has negotiation, risk, or mismatch implications
 
+## Durable SOP Work Controller
+
+This repository uses a root-level durable work controller:
+
+- `SOP.py`
+- `governance/.sop/state.json`
+- `governance/SOP_STATE.md`
+- `governance/SOP_SEQUENCE_DIAGRAM.md`
+
+For substantial multi-step work—including public CV changes, application-generator changes, Kiro execution, browser-visible fixes, deployment preparation, or long validation runs—use this sequence before editing:
+
+```bash
+python3 SOP.py preflight --strict
+python3 SOP.py status
+python3 SOP.py resume
+python3 SOP.py session --goal "<current work>" --task-id "<stable-id>"
+```
+
+Run important commands through the controller so their working directory, output, exit code, and log are durable:
+
+```bash
+python3 SOP.py run -- pnpm check
+python3 SOP.py run --cwd application-system -- python3 scripts/generate_application.py --help
+```
+
+Record the exact continuation point before compaction, interruption, or handoff:
+
+```bash
+python3 SOP.py handoff --current "<current state>" --next "<exact next action>" --risk "<what must not be assumed>"
+```
+
+Close substantial work with:
+
+```bash
+python3 SOP.py postflight --summary "<result>" --file "<important file>" --next-step "<next action>"
+```
+
+`postflight` refreshes the goal and handoff and closes the current session unless `--keep-session` is explicit. A changed goal or task starts a fresh session unless `--continue-existing` is explicit. Kiro tasks must use `kiro-start` and `kiro-done`; completion requires concrete evidence.
+
+After context compaction or a new agent session, trust `governance/.sop/state.json` and `governance/SOP_STATE.md` over chat memory when they conflict, then verify the filesystem. SOP-mutating commands are transactionally serialized; do not bypass the controller for concurrent state edits.
+
 ## First Actions
 
 When you enter this repository:
 
 1. Read this `AGENTS.md`
 2. Read `/Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/AGENTS.md` if the task involves applications
-3. Check `git status --short`
-4. Identify whether the request is about:
+3. For substantial work, run `python3 SOP.py preflight --strict`, then `status` and `resume`
+4. Check `git status --short`
+5. Identify whether the request is about:
    - public CV site edits
    - generated application artifacts
    - interview or recruiter email drafting

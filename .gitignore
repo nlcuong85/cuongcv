@@ -26,6 +26,8 @@ logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+__pycache__/
+*.py[cod]
 
 # local env files
 .env*.local
@@ -43,3 +45,7 @@ application-system/outputs/*
 !application-system/outputs/.gitkeep
 public/generated-cv-data/*
 !public/generated-cv-data/.gitkeep
+
+# SOP runtime artifacts; durable state and its Markdown mirror remain tracked
+governance/.sop/state.lock
+governance/.sop/run_logs/
