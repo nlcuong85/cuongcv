@@ -1,5 +1,5 @@
 {
-  "active_goal": "Installed and validated the CuongCV durable SOP governance controller with transaction-wide locking.",
+  "active_goal": "Completed and visually verified the filled Lohtor student accommodation application form with photo, September 1 start, and requested preferences.",
   "active_task_id": null,
   "checkpoints": [
     {
@@ -93,6 +93,142 @@
       "open_questions": [],
       "summary": "Preflight completed: status, resume brief, and audit check were run.",
       "time": "2026-06-19T09:20:32+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-06-29T13:08:11+00:00"
+    },
+    {
+      "commands_run": [
+        "git diff --check"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260629-131029-837169.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: git diff --check",
+      "time": "2026-06-29T13:10:29+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py handoff"
+      ],
+      "files_changed": [],
+      "label": "handoff",
+      "next_steps": [
+        "For future Franklee 15:00 bot checks, inspect systemd timer/service, manual-recovery report, delivery manifest, and Slack timestamps on root@100.124.166.95 before answering."
+      ],
+      "open_questions": [],
+      "summary": "Handoff updated: Updated CuongCV AGENTS, experimental Franklee docs, job-search-cuong skill, and Codex ad-hoc memory so the Franklee 15:00 job-search bot is documented as a systemd production workflow.",
+      "time": "2026-06-29T13:10:41+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "AGENTS.md",
+        "experimental/job-search-next/docs/franklee-queue-integration.md",
+        "experimental/job-search-next/README.md",
+        "docs/feature-notes/franklee-1500-job-search-bot-2026-06-29.md"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "Use live Franklee systemd/report/manifest checks for any future 15:00 bot status or failure diagnosis."
+      ],
+      "open_questions": [],
+      "summary": "Strengthened Franklee 15:00 job-search bot governance: documented systemd production path, live verification commands, healthy-day criteria, stale OpenClaw cron warning, validator/report invariants, and durable memory update.",
+      "time": "2026-06-29T13:10:48+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-06-29T13:10:49+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-07-11T06:16:34+00:00"
+    },
+    {
+      "commands_run": [
+        "/Users/pmlecuong/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 tmp/docs/fill_lohtor_form.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260711-061932-418356.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: /Users/pmlecuong/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 tmp/docs/fill_lohtor_form.py",
+      "time": "2026-07-11T06:19:32+00:00"
+    },
+    {
+      "commands_run": [
+        "/Users/pmlecuong/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 tmp/docs/fill_lohtor_form.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260711-062034-607577.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: /Users/pmlecuong/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 tmp/docs/fill_lohtor_form.py",
+      "time": "2026-07-11T06:20:34+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "output/doc/Lohtor.Nguyen.LeCuong.doc"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "Review unfilled personal fields, then email the completed form to info@studentinheilbronn.de if ready."
+      ],
+      "open_questions": [],
+      "summary": "Completed and visually verified the filled Lohtor student accommodation application form with photo, September 1 start, and requested preferences.",
+      "time": "2026-07-11T06:21:40+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-07-11T06:21:41+00:00"
     }
   ],
   "command_log": [
@@ -111,6 +247,30 @@
       "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260619-091934-873662.log",
       "started_at": "2026-06-19T09:19:34+00:00",
       "time": "2026-06-19T09:19:35+00:00"
+    },
+    {
+      "command": "git diff --check",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260629-131029-837169.log",
+      "started_at": "2026-06-29T13:10:29+00:00",
+      "time": "2026-06-29T13:10:29+00:00"
+    },
+    {
+      "command": "/Users/pmlecuong/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 tmp/docs/fill_lohtor_form.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260711-061932-418356.log",
+      "started_at": "2026-07-11T06:19:32+00:00",
+      "time": "2026-07-11T06:19:32+00:00"
+    },
+    {
+      "command": "/Users/pmlecuong/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 tmp/docs/fill_lohtor_form.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260711-062034-607577.log",
+      "started_at": "2026-07-11T06:20:34+00:00",
+      "time": "2026-07-11T06:20:34+00:00"
     }
   ],
   "created_at": "2026-06-19T09:19:21+00:00",
@@ -126,21 +286,13 @@
     "commands": [
       "python3 SOP.py postflight"
     ],
-    "current": "Installed and validated the CuongCV durable SOP governance controller with transaction-wide locking.",
+    "current": "Completed and visually verified the filled Lohtor student accommodation application form with photo, September 1 start, and requested preferences.",
     "files": [
-      "SOP.py",
-      "AGENTS.md",
-      ".gitignore",
-      "governance/SOP_RESEARCH.md",
-      "governance/SOP_SEQUENCE_DIAGRAM.md",
-      "governance/SOP_STATE.md",
-      "governance/.sop/state.json",
-      "docs/feature-notes/sop-governance-hardening-2026-06-19.md",
-      "tests/test_sop.py"
+      "output/doc/Lohtor.Nguyen.LeCuong.doc"
     ],
-    "next": "Use strict preflight, a fresh session, SOP-run validation, handoff, and postflight for the next substantial repository task.",
+    "next": "Review unfilled personal fields, then email the completed form to info@studentinheilbronn.de if ready.",
     "risk": "Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.",
-    "updated_at": "2026-06-19T09:20:13+00:00"
+    "updated_at": "2026-07-11T06:21:40+00:00"
   },
   "kiro": {
     "active_spec": null,
@@ -151,7 +303,7 @@
   "open_questions": [],
   "repo": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
   "repo_snapshot": {
-    "created_at": "2026-06-19T09:20:14+00:00",
+    "created_at": "2026-07-11T06:21:41+00:00",
     "directories": [
       ".github",
       ".github/workflows",
@@ -214,6 +366,8 @@
       "governance",
       "governance/.sop",
       "governance/.sop/run_logs",
+      "output",
+      "output/doc",
       "public",
       "public/generated-cv-data",
       "public/images",
@@ -237,1957 +391,1579 @@
       "src/lib",
       "tests"
     ],
-    "directory_count": 83,
-    "file_count": 390,
+    "directory_count": 85,
+    "file_count": 393,
     "files": {
       ".github/workflows/deploy.yml": {
         "mtime": 1756829608,
-        "sha256": "a049cddc4bf5cfe2300a36f9d99b17913c72b12e691b765b7d1fb566ca59b374",
         "size": 1162
       },
       ".gitignore": {
         "mtime": 1781860757,
-        "sha256": "87bc42313387a721fe514c6ed9af617d99cf0e0e9baac060014036e59626e565",
         "size": 699
       },
       "AGENTS.md": {
-        "mtime": 1781860733,
-        "sha256": "7053d8fec216fc2cd478417ca74a3288e37c386b0b87e0eac0702ede394e1222",
-        "size": 20419
+        "mtime": 1782738615,
+        "size": 23286
       },
       "DEUTSCH_B2_6_MONTH_PLAN_2026-03-31.md": {
         "mtime": 1774911223,
-        "sha256": "5bf1d191ae9b3d661f27255240d5afea03f18bddbd351ee5500dbb4a76692303",
         "size": 10589
       },
       "Dockerfile": {
         "mtime": 1756824088,
-        "sha256": "dff8f97f810d741c855f364aa4e4698cf0b24c9dccde9d9286fc833b85bd01eb",
         "size": 524
       },
       "LICENSE": {
         "mtime": 1756824088,
-        "sha256": "9c27f932e8354009970b42a7a83a30c1df8729d7adf0f4f681c440ee5a4af7ed",
         "size": 1072
       },
       "README.md": {
         "mtime": 1775299578,
-        "sha256": "e0d79286f5f0598377dace6a3f6de24418918f1b3a291ca49661b5f1898cbe5f",
         "size": 7848
       },
       "SAP_JOB_SEARCH_KEYWORDS_2026-03-31.md": {
         "mtime": 1774911223,
-        "sha256": "d6eecf57f3fa38c029ed6b0eb82eaeab1e8201227c6aa19b13bf059f72730a6a",
         "size": 7305
       },
       "SAP_TRANSITION_PLAN_2026-03-31.md": {
         "mtime": 1774910835,
-        "sha256": "875a83e3037a64311d168dde53c3c048535064f77d6ff9a29960b3349f7bafd5",
         "size": 15530
       },
       "SOP.py": {
         "mtime": 1781860647,
-        "sha256": "eedcdcce61c9b17673d550845937313df1c90d5ceb78c6cfbb2b813a88521b05",
         "size": 51872
       },
       "application-system/AGENTS.md": {
         "mtime": 1775587437,
-        "sha256": "6acfb876e618cfb1d01e5e52ab3b2babc4da7d8c18eaea6561f430ce9a4e531a",
         "size": 12922
       },
       "application-system/data/authentic-writing-samples-2012-2018.md": {
         "mtime": 1775388348,
-        "sha256": "03b939eaabd465d67c9cc5f6d9de68fd51a6de8e6388b4380920e84bb3ee4aec",
         "size": 23899
       },
       "application-system/data/authentic-writing-samples-annotated.md": {
         "mtime": 1775388358,
-        "sha256": "1580da2c3b26ef943e6c45f3f64cf0070deb26f784fafcacc7cf147ecea86929",
         "size": 4457
       },
       "application-system/data/authentic_writing_profile.json": {
         "mtime": 1775388429,
-        "sha256": "1ad49657c8442706ed02303063540f4ac52fc5cd8b331bfef763bd2eddb01f95",
         "size": 3634
       },
       "application-system/data/evidence_library.json": {
         "mtime": 1775292368,
-        "sha256": "9812192521c820a0b43aad7f30e05903876eec050db2cb64313af265b9313741",
         "size": 11201
       },
       "application-system/data/job_taxonomy.json": {
         "mtime": 1775299060,
-        "sha256": "b915ce053223e7c73f28fac8812ba72805650c1635302b158bc973cb356f44d4",
         "size": 7270
       },
       "application-system/data/master_profile.json": {
         "mtime": 1775387346,
-        "sha256": "58460dbdba318fa50c6bc7768db83ded764839dc0a85e1cdadd7c94dd1164d45",
         "size": 12043
       },
       "application-system/data/portfolio_digest.json": {
         "mtime": 1775388400,
-        "sha256": "6b5bb577ce30758cf8adb539a484d0ccdafc0fe7ea1fd720e47ca66f16101f12",
         "size": 3881
       },
       "application-system/data/role_profiles.json": {
         "mtime": 1775299044,
-        "sha256": "b86d391680d4bb5c249f847d899c14238b63171c62c71ef6ac618c7a270d8f13",
         "size": 11162
       },
       "application-system/data/summary_versions.json": {
         "mtime": 1775292381,
-        "sha256": "a4174c5b2d4b7f7eb065b976b147e70a2919ab52babba63f0b6c4313df976481",
         "size": 5022
       },
       "application-system/data/writing-mode-framework.md": {
         "mtime": 1775390064,
-        "sha256": "d3fd30dba17a7fe168eced052b5a6b17720b59bbcc4ef003884c184b2fe1241a",
         "size": 3795
       },
       "application-system/intakes/4flow-working-student-ai-driven-consulting.json": {
         "mtime": 1776003058,
-        "sha256": "82980e9fa94ae9b42e1e03c2a11b32b53919ac5ead151386422e3b51a620cbb0",
         "size": 5508
       },
       "application-system/intakes/4screen-analytics-and-data-science-working-student.json": {
         "mtime": 1776010809,
-        "sha256": "b78314f48b38314091426a1cd61ce9b138d009cd0b5e09062beac47a52871fa6",
         "size": 5883
       },
       "application-system/intakes/acteno-energy-ai-meets-energy-hybrid-systems.json": {
         "mtime": 1776071565,
-        "sha256": "bb8bc1ac55b72601bb7151b91f843381e632645166f51286d845247afba74114",
         "size": 5900
       },
       "application-system/intakes/appliedai-working-student-instructional-design.json": {
         "mtime": 1775998072,
-        "sha256": "158274be4fc77e4a0f2bae43a2581cfebe76b68da4f689d9703e07e98e453aba",
         "size": 5491
       },
       "application-system/intakes/aptiv-working-student-software-team.json": {
         "mtime": 1776015661,
-        "sha256": "e795857b5fb43d159993b27e4c366b63a480e39467c7b3f8c7ec94becc3d5c11",
         "size": 5663
       },
       "application-system/intakes/audi-digital-after-sales-praktikum.json": {
         "mtime": 1774641272,
-        "sha256": "ac52fbf4aea8f5ebe303d53ee15cbf6f7b2e821b9f29c22c0a65a1b6152efbbc",
         "size": 3568
       },
       "application-system/intakes/bitbw-werkstudent-im-bereich-controlling.json": {
         "mtime": 1774726410,
-        "sha256": "ee269b24c66003844ba8e01fd478f3ee9c50901596961bbb815079b34a7d699f",
         "size": 4574
       },
       "application-system/intakes/bosch-business-analyst-ecommerce.json": {
         "mtime": 1774635383,
-        "sha256": "f3768f365f7cb738ddef1dae0028335f2bb37affcd50b7e16193967810d7cc3f",
         "size": 1643
       },
       "application-system/intakes/bosch-working-student-internal-web-developed-applications-automotive-quality-environment.json": {
         "mtime": 1774770593,
-        "sha256": "4c34ac72ed5ecace0b4a5610b9505df48498ad1715adeff7b9635025e5131e82",
         "size": 5325
       },
       "application-system/intakes/cinemo-working-student-genai-llm-evaluation-agentic-ai-nlp.json": {
         "mtime": 1776001610,
-        "sha256": "6d708bf2d81a5ff746d0221eb78b40387bac7bf3d8e5600bc4db24ad776bd186",
         "size": 5930
       },
       "application-system/intakes/coperion-werkstudent-it-prozessmanagement.json": {
         "mtime": 1774730279,
-        "sha256": "fe6bbeca91a1fe057c6db2af3605fd2f677aa71d0452ec4993736ac52ab336c7",
         "size": 5049
       },
       "application-system/intakes/diehl-defence-werkstudent-digitalisierung-von-geschaeftsprozessen.json": {
         "mtime": 1774737123,
-        "sha256": "795e5571d23bb6d39a7abf8d1188421bd03f4268269ee354e478b35694c97b9f",
         "size": 4888
       },
       "application-system/intakes/draft-bosch-group-werkstudent-cleanroom-process-quality-w-m-div.json": {
         "mtime": 1776118472,
-        "sha256": "5f1d395f1caaf0ac061eb8de7b1c083ae3add0be14f2a305ca602961a150d651",
         "size": 1489
       },
       "application-system/intakes/draft-future-sample-product-ops-student.json": {
         "mtime": 1776115968,
-        "sha256": "49a7bf10f93678424aea3195a99b26d10805ef46cdc46e978ce7c1079ebd7c64",
         "size": 1262
       },
       "application-system/intakes/enbw-werkstudent-kundenschnittstelle-sonderloesungen.json": {
         "mtime": 1776007082,
-        "sha256": "f1b841422cbbf23b2aec991d0572830a9e6aaf18ad5fe1145c6cb808af564d7f",
         "size": 6000
       },
       "application-system/intakes/hosokawa-alpine-working-student-for-ai.json": {
         "mtime": 1775997175,
-        "sha256": "c35f4736b83ee6b744bc9a29be8278ad747cd766312ef4029a80de09ddfc0d27",
         "size": 5194
       },
       "application-system/intakes/ilos-process-digitalisation-working-student.json": {
         "mtime": 1776016333,
-        "sha256": "893cdd2567e8a8df7f9fe33cb6474ccc04970f59668b80671ef7ec82d4f03b00",
         "size": 5897
       },
       "application-system/intakes/komm-one-werkstudent-netzwerk-it-security.json": {
         "mtime": 1774727205,
-        "sha256": "1b128ae92f0e4b4ff5b586e6a66620d2737cf8ac1430542b15194c0d1edf1ab3",
         "size": 5145
       },
       "application-system/intakes/lio-it-administration-automation-manager.json": {
         "mtime": 1776012788,
-        "sha256": "4645435d17e2836bd327d654319d266d371995d5fc24cd96dce838f7f31aedae",
         "size": 5713
       },
       "application-system/intakes/medmix-werkstudent-life-cycle-management.json": {
         "mtime": 1775243173,
-        "sha256": "87659227ed2b43aedd6c9dce09e44ba2de69df1c1490a809aac98bea1a2f50ae",
         "size": 4200
       },
       "application-system/intakes/mercedes-benz-ag-werkstudent-data-ai-product-management-software-certification.json": {
         "mtime": 1774725331,
-        "sha256": "306db6139249d53265b22fc39ee238ae51a3df5cc6bf5dd6db28d09acdc8ffc3",
         "size": 5275
       },
       "application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json": {
         "mtime": 1775052355,
-        "sha256": "2e7b6e501b8af0aec3d680b51c8206f35358d2bf7d515aded55bbf06658dc7f7",
         "size": 5429
       },
       "application-system/intakes/mercedes-benz-ag-working-student-requirements-engineering-for-cdcc2-0-baselayer-software-development.json": {
         "mtime": 1774720835,
-        "sha256": "06e335135b99cfe593010cf3bb8d17de63d8eaa7354e0908e0b74eeaf59a5e28",
         "size": 5094
       },
       "application-system/intakes/mercedes-benz-insurance-services-working-student-product-owner-support-insurance-platform-of-services.json": {
         "mtime": 1774717028,
-        "sha256": "74669d137ed90aba79d96d1da82a591bef84d4a01b69dc34e5484f9dd25211b6",
         "size": 5246
       },
       "application-system/intakes/nxtgn-working-student-corporate-innovation-services.json": {
         "mtime": 1776006121,
-        "sha256": "9da0e1f0d5d1d2608874c34a9534155d6bf8ac98b31fbdb88385a3f4662367e8",
         "size": 6121
       },
       "application-system/intakes/osapiens-working-student-product-management.json": {
         "mtime": 1776004320,
-        "sha256": "7b36f6d8d677fa50575e7055c36a22b9e0c0771792c4e96d01296cd3240f5388",
         "size": 5841
       },
       "application-system/intakes/philips-working-student-service-operations-analyst.json": {
         "mtime": 1776016937,
-        "sha256": "2d11bf6870821e42442c6d959d6a913aa96e0f313feb284fc14fa9521efa0278",
         "size": 5676
       },
       "application-system/intakes/porsche-werkstudent-digital-solutions.json": {
         "mtime": 1776020292,
-        "sha256": "8579d9c0d762271f541fc42c7bd49c19762cef53d96ba0942e3b6043b991b6cd",
         "size": 5847
       },
       "application-system/intakes/prognum-automotive-werkstudent-ki-automation-implementierung.json": {
         "mtime": 1776520495,
-        "sha256": "afb8d698a23e4222ad8afe6d9f19a92c38a30749a729d3d9fecea1598b685390",
         "size": 5800
       },
       "application-system/intakes/ratbacher-product-owner-ai-ki-produkt-manager.json": {
         "mtime": 1776535139,
-        "sha256": "beb9a29988a40d767b0b9ca102d5841b0e928cbac6c43d7b557084f14deb16ad",
         "size": 5891
       },
       "application-system/intakes/realworld-one-solution-delivery-associate-working-student-intern.json": {
         "mtime": 1775242674,
-        "sha256": "d4564662a649355b8eb81d5b4deb39880ba7390ccc99c26a4bcc69107a86cad3",
         "size": 4247
       },
       "application-system/intakes/sample-generic-company.json": {
         "mtime": 1774617980,
-        "sha256": "9fa439c37483948806980353073ce6c0f2a70c6668943f4c632d2b844fff58b8",
         "size": 1210
       },
       "application-system/intakes/sap-technical-sustainability-consulting.json": {
         "mtime": 1775240027,
-        "sha256": "642334c27df383252c42cca8732012336a433823e7b79fc6079476735c2c1fc8",
         "size": 4295
       },
       "application-system/intakes/sap-working-student-technical-writing-team-support.json": {
         "mtime": 1776011901,
-        "sha256": "3d350b9717c841ee977f8988162439636af68066a9867689de4913fa3461478c",
         "size": 5788
       },
       "application-system/intakes/sap-working-student-threat-modelling-service-operation-and-automation.json": {
         "mtime": 1776532959,
-        "sha256": "a6164125d9293d71cd3078084f95a71c149c7077157f67347d9a51f1717cd238",
         "size": 5884
       },
       "application-system/intakes/schunk-technologiemanagement-cto-office.json": {
         "mtime": 1775246777,
-        "sha256": "cfcb114fdf7fc3dc2f3f02bd8b6a508848ce6b32302d87cf5670314feba8ae9d",
         "size": 5372
       },
       "application-system/intakes/schwarz-digits-cloud-finops-technical-cost-optimization-analytics.json": {
         "mtime": 1774647845,
-        "sha256": "24eafbaed33d8b37bd39fd77aec2cab07069de021517356b4c19f4352e80b33c",
         "size": 4682
       },
       "application-system/intakes/schwarz-digits-werkstudent-data-automation.json": {
         "mtime": 1775996243,
-        "sha256": "20ff8c194a9af480d5ce125de52d3f330af206280fa0ef72c5b53e0f96cdd2cd",
         "size": 4926
       },
       "application-system/intakes/schwarz-digits-werkstudent-detection-engineering.json": {
         "mtime": 1774713465,
-        "sha256": "14dc231cd57280299d98876f6554340d60372c3c0667a6510fadbf2486a3b249",
         "size": 4644
       },
       "application-system/intakes/schwarz-it-werkstudent-marketing-systeme.json": {
         "mtime": 1775994615,
-        "sha256": "ca8499fb2b5affd26507e49d98f87841885ad4a59ecc427efcaaa47216f411ee",
         "size": 5426
       },
       "application-system/intakes/stadtwerke-stuttgart-werkstudent-agiles-projektmanagement.json": {
         "mtime": 1774728043,
-        "sha256": "489e3574bb92ec6d765886fa54688343b3156a1bb70b43b2d9b5d04b76878856",
         "size": 5032
       },
       "application-system/intakes/teamviewer-work-student-product-management.json": {
         "mtime": 1776000763,
-        "sha256": "6b6cb5faa34a5013fc8e8896914b0a193012c1c3f1cabbe07e056a9fc56bd1e2",
         "size": 6504
       },
       "application-system/intakes/transnetbw-werkstudent-qualitaetsmanagement-netzbauprojekte.json": {
         "mtime": 1774724031,
-        "sha256": "91018c1112a108bf57c0011d21f5a741da883eb1572b39e7f4ea52426d23a0ba",
         "size": 4806
       },
       "application-system/intakes/vishay-semiconductor-werkstudent-controlling.json": {
         "mtime": 1776864420,
-        "sha256": "d89f9bef3e86b66ba39a75fa82660c5d61abfb09689d0b7fd4b38b5230580554",
         "size": 5340
       },
       "application-system/intakes/xl2-werkstudent-business-analyst.json": {
         "mtime": 1775245185,
-        "sha256": "5658baf7a169070354ef4e015df59c1de57644a649917f34df0ddd32d5027170",
         "size": 4678
       },
       "application-system/scripts/generate_application.py": {
         "mtime": 1777837218,
-        "sha256": "16e2b3cd9990b122a26fc470f13c15e772fa01272a9bda14094a3787ab727bd1",
         "size": 67606
       },
       "application-system/signature.png": {
         "mtime": 1779270527,
-        "sha256": "79d31678a2c68fe1c6a88b262380f233a2cb9ee981702c16a7ec88629f956422",
         "size": 11257
       },
       "application-system/templates/cover_letter.tex": {
         "mtime": 1775243594,
-        "sha256": "c4fd283308a4875be618dfdc6bb499f088a1661dfd1bda52ea7bb0ac30eab485",
         "size": 1349
       },
       "application-system/templates/cover_letter_preview.html": {
         "mtime": 1775243594,
-        "sha256": "7a6225fd4b3a9a1aa31418c19ef1be93e86639cc0f953c7d29366a4bac43d83c",
         "size": 3542
       },
       "application-system/templates/role_fit_snapshot.tex": {
         "mtime": 1775298228,
-        "sha256": "d48deca75a948e7c3be18590ca282ebd5cc3505fb8da1873192689414b7e785e",
         "size": 2904
       },
       "application-system/templates/role_fit_snapshot_preview.html": {
         "mtime": 1775298261,
-        "sha256": "025ec951479748051c71762e7fbb8b29de861089802aafd6528612aed73f8846",
         "size": 5851
       },
       "biome.json": {
         "mtime": 1756824088,
-        "sha256": "41242fe790102242f6045d485bc3ea2b07ddbb0cc48083aca2e754fac9c0a503",
         "size": 4192
       },
       "components.json": {
         "mtime": 1756824088,
-        "sha256": "5dde5a4e2eb2bba9b31c2f430998d1cd691f00365005a9ed7ffc75167e9aa862",
         "size": 340
       },
       "docker-compose.yaml": {
         "mtime": 1756824088,
-        "sha256": "cb4e15da15184512b50c591738a38ec1bcff7aabcabe45e9e29c0a60fbf3cd61",
         "size": 150
       },
       "docs/architecture/README.md": {
         "mtime": 1775404386,
-        "sha256": "56aed3812de7857aec0cdbfb34d33a9dfb81ab9714386bf8ce1b5af57b8ba9d1",
         "size": 1507
       },
       "docs/architecture/blog-writer-c4-level3.png": {
         "mtime": 1775404396,
-        "sha256": "82a6d268a12ae6a8614606aad5c4d0913438f9eec91a87841243062f456836af",
         "size": 150704
       },
       "docs/architecture/blog-writer-c4-level3.puml": {
         "mtime": 1775404386,
-        "sha256": "5bcfea67a681492294bac86e867d4e99e5a84483c191a8019a541f38a0e4e5f8",
         "size": 3697
       },
       "docs/architecture/cuongcv-application-c4-level2.png": {
         "mtime": 1775404396,
-        "sha256": "08e994720c554b6566e5864181f88d9cbccb15b5cecfd83829b47c4aca7cf174",
         "size": 117468
       },
       "docs/architecture/cuongcv-application-c4-level2.puml": {
         "mtime": 1775404386,
-        "sha256": "c67a1a763b82d497d23427f911ffc5d7f84e1fe1e109f4eb8b885c32ae6d02a6",
         "size": 2899
+      },
+      "docs/feature-notes/franklee-1500-job-search-bot-2026-06-29.md": {
+        "mtime": 1782738615,
+        "size": 3097
       },
       "docs/feature-notes/sop-governance-hardening-2026-06-19.md": {
         "mtime": 1781860716,
-        "sha256": "763412646f0ace30bad6a33d72cbb821b178483805fbf35c416724f88ef588d2",
         "size": 1644
       },
       "ecosystem.config.js": {
         "mtime": 1756828309,
-        "sha256": "d6853a67aafb2fcf28fadf192ce4af91a2bb07b01926c5a67efb18c17038faf1",
         "size": 499
       },
       "experimental/job-search-next/DATA_CONTRACT.md": {
         "mtime": 1776117279,
-        "sha256": "a8dfde279ea701ae25c2223e74fdbd02bdbaec2e081593181da052c41e5bb019",
         "size": 1996
       },
       "experimental/job-search-next/README.md": {
-        "mtime": 1776120352,
-        "sha256": "d58ef4ff2b37a40c5d52575dd88ca867e64a5673d85c58ad118f35c9749a2925",
-        "size": 6684
+        "mtime": 1782738615,
+        "size": 7517
       },
       "experimental/job-search-next/config/portals.yml": {
         "mtime": 1776114524,
-        "sha256": "0fb1958d5a35479d1b4bfcd7670bd653de9daa8a231b8d371ba48c402ac45188",
         "size": 1159
       },
       "experimental/job-search-next/config/profile.yml": {
         "mtime": 1776117230,
-        "sha256": "bc8e93bef85ada941cdd3ac26f7af53c9f50879bc86de6ec5bf840e2c7a0763c",
         "size": 3743
       },
       "experimental/job-search-next/data/active-browser-tab.json": {
         "mtime": 1776120372,
-        "sha256": "5b7b1ea0f327cd69b9bb524184e4983274f5c644d244a04291fb48a9f5c1b9f6",
         "size": 220
       },
       "experimental/job-search-next/data/active-browser-tab.md": {
         "mtime": 1776120372,
-        "sha256": "727d3f40fb1d88e5875615c08f938da13f4724004edd716e1be9ccc663da230b",
         "size": 195
       },
       "experimental/job-search-next/data/ats-readiness-bosch-keep.json": {
         "mtime": 1776118666,
-        "sha256": "45fc6241ad8747912c4636969261b3de9b3d20351a26b36d794ebd0393829d8b",
         "size": 594
       },
       "experimental/job-search-next/data/ats-readiness-bosch-keep.md": {
         "mtime": 1776118666,
-        "sha256": "afe24acd21ff1b3665f5757e98b85162c3fed2891bbda62b3ed01e24918b939f",
         "size": 370
       },
       "experimental/job-search-next/data/ats-readiness-future-sample.json": {
         "mtime": 1776118404,
-        "sha256": "8f6db902f25358054e84604862f5446e0f666e5cbd4b59d62d4d018b6742ecbb",
         "size": 603
       },
       "experimental/job-search-next/data/ats-readiness-future-sample.md": {
         "mtime": 1776118404,
-        "sha256": "e1918088a0159216cf5034b3390a3b96c3a99e294feb08d25afbe11462b467e0",
         "size": 371
       },
       "experimental/job-search-next/data/ats-readiness-generated-resumes.json": {
         "mtime": 1776118114,
-        "sha256": "acad7fcc9c69618eae255138b4bc2df1bec57f4c2ae87b619c8d01623c4dc2af",
         "size": 26351
       },
       "experimental/job-search-next/data/ats-readiness-generated-resumes.md": {
         "mtime": 1776118114,
-        "sha256": "ad557d53ef848df7e5895dcdc6051663c4bf8f8e058a2530b538dcacf472c7b8",
         "size": 7217
       },
       "experimental/job-search-next/data/bosch-browser-helper.json": {
         "mtime": 1776120397,
-        "sha256": "1646c61d8bb6b638c8adaeb97e95b5805d05fb1135e87d1f424c54ad9c3d3bf4",
         "size": 1620
       },
       "experimental/job-search-next/data/bosch-browser-helper.md": {
         "mtime": 1776120397,
-        "sha256": "c1724242018d6a908381c6a3eccca8d63f92d1bf458fd991c9676581cefa3418",
         "size": 1210
       },
       "experimental/job-search-next/data/current_corpus.json": {
         "mtime": 1776114531,
-        "sha256": "c28c52e78bf80ce82a5753419166aee958fed5fc176352e1b560a54004c63603",
         "size": 106389
       },
       "experimental/job-search-next/data/current_corpus_summary.md": {
         "mtime": 1776114531,
-        "sha256": "0755e095847572a97fae244d6d19d627e1342bff4f7746186a50977102d590f8",
         "size": 318
       },
       "experimental/job-search-next/data/email-drafts/audi-ag-reply.json": {
         "mtime": 1776120363,
-        "sha256": "8d31ad198be1d38e6686c40dee37505f3b10aaefd388e2e80dd8a3cf2f4fc6e0",
         "size": 6625
       },
       "experimental/job-search-next/data/email-drafts/audi-ag-reply.md": {
         "mtime": 1776120363,
-        "sha256": "80f743516b8dfaf659866294e923466597e2f38163bbc2b2889743118b0c5ee6",
         "size": 780
       },
       "experimental/job-search-next/data/email-drafts/bosch-group-werkstudent-cleanroom-process-quality-w-m-div-followup.json": {
         "mtime": 1776120436,
-        "sha256": "e02aa77b2289e89424abbe257e3afa12bc578b4408009b2205960eba7cb2b4de",
         "size": 2611
       },
       "experimental/job-search-next/data/email-drafts/bosch-group-werkstudent-cleanroom-process-quality-w-m-div-followup.md": {
         "mtime": 1776120436,
-        "sha256": "2fbc539f8c17e71650c6c9e2dcc489e0b842262e29f7ec8fe25f600eccd10614",
         "size": 845
       },
       "experimental/job-search-next/data/franklee-live-2026-04-13-report.md": {
         "mtime": 1776118175,
-        "sha256": "4db300ba96dc78b48e1ba5a387211eeeba98721c764e7cfdc1c3322328ed755e",
         "size": 1696
       },
       "experimental/job-search-next/data/franklee_live_direct_student_2026-04-14-direct-test.json": {
         "mtime": 1776118925,
-        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
         "size": 3
       },
       "experimental/job-search-next/data/franklee_live_direct_student_2026-04-14-direct-test.md": {
         "mtime": 1776118925,
-        "sha256": "9cfe7be474a4bf06c01218c97ea7eae00086856ca1ce98bad18205ffc52c67b4",
         "size": 244
       },
       "experimental/job-search-next/data/franklee_live_student_2026-04-13.json": {
         "mtime": 1776118103,
-        "sha256": "e5aa547b1e417b8aed6cfd7d88c6a4a3a97e1027197fbe759e27b83cc9d9fe7f",
         "size": 1688
       },
       "experimental/job-search-next/data/franklee_live_student_2026-04-13.md": {
         "mtime": 1776118103,
-        "sha256": "25725c7c112a2805eef49b025ba1545066bc82c66a9493013a45664704abb848",
         "size": 2051
       },
       "experimental/job-search-next/data/franklee_student_queue.json": {
         "mtime": 1776117383,
-        "sha256": "0305fde38ba07fe74f7c5a2b2125fc75d7b3c7b988e1b8ce157dd45ca27813dc",
         "size": 1409
       },
       "experimental/job-search-next/data/franklee_student_queue.md": {
         "mtime": 1776117383,
-        "sha256": "51f2d9bc8a37de09f24ddc8fb63b930dff885ee04ae84f4f56583bc0467f6224",
         "size": 515
       },
       "experimental/job-search-next/data/interaction-tracker.md": {
         "mtime": 1779879595,
-        "sha256": "a65f8cfba41dfa15c5aa1700f8739a6f752388675883d1775806aa67e5ef0e4b",
         "size": 906
       },
       "experimental/job-search-next/data/interaction-tracker.tsv": {
         "mtime": 1779879595,
-        "sha256": "57789b52b36717062c9b56aaba8dd5b73db257a9c58c3cc6e849546d9d790936",
         "size": 35357
       },
       "experimental/job-search-next/data/pipeline.md": {
         "mtime": 1776118112,
-        "sha256": "2e2d27ac63a5442f021de7259ad9a5010b7ef448b841c1844362ee2f4524109b",
         "size": 467
       },
       "experimental/job-search-next/data/promotion-map.tsv": {
         "mtime": 1776118472,
-        "sha256": "c06cb1eaec2c31658e3a74b44e34a0501329ff062701a4bc0bdea69bf2c064f4",
         "size": 459
       },
       "experimental/job-search-next/data/promotion-preview.md": {
         "mtime": 1776118472,
-        "sha256": "e2b723ddf5b068d46c57d7e6d3bce6dea4d9aaaaef17ea765948226ec005748f",
         "size": 333
       },
       "experimental/job-search-next/data/raw_leads.jsonl": {
         "mtime": 1776118925,
-        "sha256": "4a3c148286eb3fe36137f7388dab9ce7d5d7824bc733ee18f2ce92dc46786f44",
         "size": 10751
       },
       "experimental/job-search-next/data/stada-duyen-working-student-global-commercial-biosimilars-interview-prep.md": {
         "mtime": 1776505365,
-        "sha256": "5c5d0a9a63249661e116d2fded0e8280469d98a42e521b0b4331c2df3c2197fe",
         "size": 24611
       },
       "experimental/job-search-next/data/tracker.tsv": {
         "mtime": 1776118112,
-        "sha256": "fd79d6d9859893c61f3102e0af2eed71283ed2b1ae677caf398651e5abb739ac",
         "size": 2015
       },
       "experimental/job-search-next/data/verification_report.md": {
         "mtime": 1776118126,
-        "sha256": "1783c5c7c00236d62400f006089a21f9a340163150586c5ef320c3cddb59347f",
         "size": 275
       },
       "experimental/job-search-next/docs/architecture.md": {
         "mtime": 1776115450,
-        "sha256": "8b6791d5f15af650098033f47438fb70bca6ac2f640201f059f1262e33c348af",
         "size": 2057
       },
       "experimental/job-search-next/docs/franklee-queue-integration.md": {
-        "mtime": 1776118954,
-        "sha256": "743cba25f046d3327ceb78ae656a465a2c6c4c1260ef010511a37556ae64d736",
-        "size": 4927
+        "mtime": 1782738615,
+        "size": 6759
       },
       "experimental/job-search-next/docs/phase4-requirements-audit.md": {
         "mtime": 1776116038,
-        "sha256": "226aa72df7eda5ed71c75b2baeae5ce54c24dbc0f2eb8a97314d3dcbbc61c955",
         "size": 3949
       },
       "experimental/job-search-next/docs/phase4-sequence-diagrams.md": {
         "mtime": 1776117289,
-        "sha256": "99784e1a17b5316aa82a18a8873fdc622b229886aeaec651333385989e18a769",
         "size": 4058
       },
       "experimental/job-search-next/examples/franklee-student-sample.json": {
         "mtime": 1776117241,
-        "sha256": "0305fde38ba07fe74f7c5a2b2125fc75d7b3c7b988e1b8ce157dd45ca27813dc",
         "size": 1409
       },
       "experimental/job-search-next/examples/future-lead-example.json": {
         "mtime": 1776115450,
-        "sha256": "eface181c732709d5c35ba107427e88d26bf3258c4ec8cd6a9a43024f7971159",
         "size": 701
       },
       "experimental/job-search-next/promotions/intakes/bosch-group-werkstudent-cleanroom-process-quality-w-m-div.json": {
         "mtime": 1776118472,
-        "sha256": "5f1d395f1caaf0ac061eb8de7b1c083ae3add0be14f2a305ca602961a150d651",
         "size": 1489
       },
       "experimental/job-search-next/promotions/intakes/future-sample-product-ops-student.json": {
         "mtime": 1776115968,
-        "sha256": "49a7bf10f93678424aea3195a99b26d10805ef46cdc46e978ce7c1079ebd7c64",
         "size": 1262
       },
       "experimental/job-search-next/promotions/intakes/review-queue-gmbh-working-student-general-support.json": {
         "mtime": 1776117467,
-        "sha256": "137e6b2b4a0d8eca1f6a4605310bb8541012aa18e6d546c2adf24b4027a4142e",
         "size": 1029
       },
       "experimental/job-search-next/promotions/intakes/sample-mobility-gmbh-working-student-business-analysis-ai-workflow.json": {
         "mtime": 1776117467,
-        "sha256": "d45e0b9c010e2a3379c4d41fa9ab633c0a0c2954ccd01cd7d7900fc63c959603",
         "size": 1647
       },
       "experimental/job-search-next/scripts/add_job.py": {
         "mtime": 1776117182,
-        "sha256": "2a4274ed8e61e68549020794f212748058299e66290a55473eff2053dab01377",
         "size": 1791
       },
       "experimental/job-search-next/scripts/application_context.py": {
         "mtime": 1779879569,
-        "sha256": "86364532548f3553bbb549c4a42424dec3404921fb9048c75915cb6f9b166b08",
         "size": 15586
       },
       "experimental/job-search-next/scripts/browser_form_helper.py": {
         "mtime": 1776120337,
-        "sha256": "0c8de8fc0e22086ca653db2740a0d83800ce250e7b3081f1fb1da2974c63fe46",
         "size": 7262
       },
       "experimental/job-search-next/scripts/build_interaction_tracker.py": {
         "mtime": 1776120225,
-        "sha256": "bcf83449a6de05931fda576b9500b08def6d59464edd0b364d31c1fa08ac807d",
         "size": 3770
       },
       "experimental/job-search-next/scripts/check_ats_readiness.py": {
         "mtime": 1776118064,
-        "sha256": "ae93e8f28d88d0c60c0e0979cb8316f92133538e2f019f6db3a6b8835d08d6ca",
         "size": 6874
       },
       "experimental/job-search-next/scripts/common.py": {
         "mtime": 1776117119,
-        "sha256": "d2c01e952ec225c49a2e0b7213984c0b87a02b271d860788dac592dfc0e35f17",
         "size": 11045
       },
       "experimental/job-search-next/scripts/draft_recruiter_email.py": {
         "mtime": 1776120258,
-        "sha256": "e53a4d01647eff3ac6c6eb74f0b5b8ce906fcc9126c945d879906e6367891c6b",
         "size": 6734
       },
       "experimental/job-search-next/scripts/import_current_jobs.py": {
         "mtime": 1776114524,
-        "sha256": "c348e387b2b5855c47599835c426c83503f31acb17e2377016224c670eb4ee7c",
         "size": 1420
       },
       "experimental/job-search-next/scripts/import_franklee_queue.py": {
         "mtime": 1776117153,
-        "sha256": "00ed4b2031b18229673733b312e696d746b3a17b7a139533cb07351b0634efa2",
         "size": 6436
       },
       "experimental/job-search-next/scripts/import_live_franklee_run.py": {
         "mtime": 1776118100,
-        "sha256": "e2f13480d770d3b9dcec1f1a90d04dd03415640152c59eb6f707c8df988f6a28",
         "size": 5569
       },
       "experimental/job-search-next/scripts/import_live_franklee_validator.py": {
         "mtime": 1776118866,
-        "sha256": "806d76ca2aa41ec8dabb30938cae36316f71e9de9bdee348ecc25f6f29f5b557",
         "size": 5843
       },
       "experimental/job-search-next/scripts/promote_to_application.py": {
         "mtime": 1776117460,
-        "sha256": "1e82574cd50cd8b1754e9bb78d17f546f9c4772b7c8e0eb00c855ffd400c670d",
         "size": 7975
       },
       "experimental/job-search-next/scripts/read_active_browser_tab.py": {
         "mtime": 1776120302,
-        "sha256": "20e7872c82d53f528769d2aad0f17fcda5a2dd178b7b24dabbc586eda5983198",
         "size": 8691
       },
       "experimental/job-search-next/scripts/run_search_queue.py": {
         "mtime": 1776118878,
-        "sha256": "07eb77dfeb596daf537fe76ddd8ae0391e9facb28285fdaf38a651b5d9325b29",
         "size": 5508
       },
       "experimental/job-search-next/scripts/scan_jobs.py": {
         "mtime": 1776118083,
-        "sha256": "4fd0cb4adeaa0e3bf39c7f298b9dd58638c9dd9242c97821ea09eb46fef92642",
         "size": 11481
       },
       "experimental/job-search-next/scripts/sync_check.py": {
         "mtime": 1776114524,
-        "sha256": "a12a21d4d9e289660539868afc595618a61a97ee3990936901a93da6f660585a",
         "size": 1785
       },
       "experimental/job-search-next/scripts/verify_tracker.py": {
         "mtime": 1776117197,
-        "sha256": "b68ff7266c295541411ade5e9363cc9470d63fef9a2f87454411fb40a9b00f05",
         "size": 4271
       },
       "experimental/job-search-skill-assessment/README.md": {
         "mtime": 1776111374,
-        "sha256": "460c11eb74cf992e93b52bc3ae8463aa4e35ae709fe236693afb29cbfce7afa6",
         "size": 611
       },
       "experimental/job-search-skill-assessment/assessment-plan.md": {
         "mtime": 1776111374,
-        "sha256": "0a7121a877569113eca52c84dd38a9a2b4237beebd2f7088d2695325a198ce63",
         "size": 12893
       },
       "experimental/job-search-skill-assessment/external/career-ops/.claude/skills/career-ops/SKILL.md": {
         "mtime": 1776111213,
-        "sha256": "ea4d10e12b9215ab0794b2999c7537707e5e634eb314fe4b78144344fbce5262",
         "size": 3423
       },
       "experimental/job-search-skill-assessment/external/career-ops/.coderabbit.yaml": {
         "mtime": 1776111213,
-        "sha256": "42fbf3b3c1ade0025686ff38949ed782f59142d078650d98f970abc0c692972f",
         "size": 1040
       },
       "experimental/job-search-skill-assessment/external/career-ops/.envrc": {
         "mtime": 1776111213,
-        "sha256": "3355c1c86337dc8c4148ba2d977a704fd09803b792b6130b338bd483adf040a7",
         "size": 259
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/FUNDING.yml": {
         "mtime": 1776111213,
-        "sha256": "bd218204153a89299116dbc0b1e9a518a3c570002d713b8660ac00cbd93468a1",
         "size": 43
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/ISSUE_TEMPLATE/bug_report.yml": {
         "mtime": 1776111213,
-        "sha256": "9ee0974aeb8c189c86a723aa8208f42913216791cc22b3a33695d7a20a907fa6",
         "size": 1419
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/ISSUE_TEMPLATE/config.yml": {
         "mtime": 1776111213,
-        "sha256": "e30c18295fe72e3e0b74b5640d4436c27d98f223afe970102201ee779759308b",
         "size": 360
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/ISSUE_TEMPLATE/feature_request.yml": {
         "mtime": 1776111213,
-        "sha256": "febdbd9069c3dd2113a9aac65c6d8e24ed47e72191549e8136f458b550085106",
         "size": 1217
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/ISSUE_TEMPLATE/i-got-hired.yml": {
         "mtime": 1776111213,
-        "sha256": "e0daad29fae7abc69d6e52ee765bb6d6c2cf23e0bfc7769bc8d3d31cddd07dba",
         "size": 1982
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/PULL_REQUEST_TEMPLATE.md": {
         "mtime": 1776111213,
-        "sha256": "75d20ba65af19759173f0ae1d7f2ebd1e4c9fdc2fbf4c88a6f5e0d086b48f4ad",
         "size": 1093
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/SECURITY.md": {
         "mtime": 1776111213,
-        "sha256": "eed66af101f3add3dc16df8df3f9a7f98e02f9d6a4f2b62c9a9f5aaf4aefc808",
         "size": 1099
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/dependabot.yml": {
         "mtime": 1776111213,
-        "sha256": "f45aed16d91d6fae82c254d40b1396fdd58df9c799a59c5ea617968a65964a79",
         "size": 401
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/labeler.yml": {
         "mtime": 1776111213,
-        "sha256": "fddcef7a336ef09ddb0fb4051177b9b6dbed74d74cf66c369260a2cb5678b6b8",
         "size": 1146
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/workflows/codeql.yml": {
         "mtime": 1776111213,
-        "sha256": "b12c778f760418ef3f4738ce1d67e59c988e529118961c6c574e7d02cec42314",
         "size": 1161
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/workflows/dependency-review.yml": {
         "mtime": 1776111213,
-        "sha256": "d3d7c76e531a086712b4c9b5241aa1ebf5724230f0e384f2d3578daf86dba15f",
         "size": 412
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/workflows/labeler.yml": {
         "mtime": 1776111213,
-        "sha256": "03ab44e4824dac6b96bb2adf5c13931ebd6bc79d855f72e6e4da4e754a05bc2b",
         "size": 293
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/workflows/release.yml": {
         "mtime": 1776111213,
-        "sha256": "8285679c77eb717087ce5b3156c8bd972574d6efdb3c1ad05eb1dbb8964835eb",
         "size": 357
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/workflows/sbom.yml": {
         "mtime": 1776111213,
-        "sha256": "cf7b8123118bf511e9c467a9ddeb42405b0f15e76c1284d20abbfd3a4f46987d",
         "size": 602
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/workflows/stale.yml": {
         "mtime": 1776111213,
-        "sha256": "efef7d416f7b814ef190d62412badf65418d8ce970605c6a59459b1ac393d75a",
         "size": 1396
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/workflows/test.yml": {
         "mtime": 1776111213,
-        "sha256": "2a8633a39128116979dc9be350ecf1e812b5e16cd65818be1bfd2a2a6a75d378",
         "size": 361
       },
       "experimental/job-search-skill-assessment/external/career-ops/.github/workflows/welcome.yml": {
         "mtime": 1776111213,
-        "sha256": "a47a7dcc0fc762e5e4d7060b7c80b4f0cfb8943eb7c3914c156fe6b968026a2d",
         "size": 1183
       },
       "experimental/job-search-skill-assessment/external/career-ops/.gitignore": {
         "mtime": 1776111213,
-        "sha256": "e4b38e1ac1de97b28fcb8b6c7fdb5d7ffb91ae3f8e04915fb3d2489e9679e23b",
         "size": 634
       },
       "experimental/job-search-skill-assessment/external/career-ops/.opencode/commands/career-ops-apply.md": {
         "mtime": 1776111213,
-        "sha256": "c1f8fdbeb8e4e0d41c89ae3117e746da4afd7de4a6519e230a0aabdde7b3e8f9",
         "size": 197
       },
       "experimental/job-search-skill-assessment/external/career-ops/.opencode/commands/career-ops-batch.md": {
         "mtime": 1776111213,
-        "sha256": "a9a59a77939b49083af1b5f691b07ed5dba07a930e49ea35c7dc815dc7dd6186",
         "size": 185
       },
       "experimental/job-search-skill-assessment/external/career-ops/.opencode/commands/career-ops-compare.md": {
         "mtime": 1776111213,
-        "sha256": "65059ecae77de07b7408c801433963b0d76f0b069e910b274c7af99da3ca02db",
         "size": 201
       },
       "experimental/job-search-skill-assessment/external/career-ops/.opencode/commands/career-ops-contact.md": {
         "mtime": 1776111213,
-        "sha256": "5155f15134a7b6ca5a59b9cce4cea0dc5d86d07e6ac7a75f2545d86813effa68",
         "size": 221
       },
       "experimental/job-search-skill-assessment/external/career-ops/.opencode/commands/career-ops-deep.md": {
         "mtime": 1776111213,
-        "sha256": "f124d1805f0806ae331110d2fc5af6b6e8df0ceaba53845c6c44a56babb0f041",
         "size": 186
       },
       "experimental/job-search-skill-assessment/external/career-ops/.opencode/commands/career-ops-evaluate.md": {
         "mtime": 1776111213,
-        "sha256": "c9f8e9c1ed53bb7fc3cb73ca330c9580eff063df8ebc6453610d2b5670ca07ed",
         "size": 215
       },
       "experimental/job-search-skill-assessment/external/career-ops/.opencode/commands/career-ops-pdf.md": {
         "mtime": 1776111213,
-        "sha256": "8d6c7b9f37f9206ef026ca46fc5916abaae814e2a095ff90e855f78ca91daf3a",
         "size": 171
       },
       "experimental/job-search-skill-assessment/external/career-ops/.opencode/commands/career-ops-pipeline.md": {
         "mtime": 1776111213,
-        "sha256": "68d918f68b70863728abc75f9f9f381fae90c198043516b7e7bf64ed28761281",
         "size": 208
       },
       "experimental/job-search-skill-assessment/external/career-ops/.opencode/commands/career-ops-project.md": {
         "mtime": 1776111213,
-        "sha256": "ee06dafe833d0cd62fe9a98f1736c9fc8e1dd6b797436dbc632048c17c647b9e",
         "size": 204
       },
       "experimental/job-search-skill-assessment/external/career-ops/.opencode/commands/career-ops-scan.md": {
         "mtime": 1776111213,
-        "sha256": "4d43ea31d837fb1dfd37161d2c40fb8a308cb6570c218357fbe116dc7480ba06",
         "size": 189
       },
       "experimental/job-search-skill-assessment/external/career-ops/.opencode/commands/career-ops-tracker.md": {
         "mtime": 1776111213,
-        "sha256": "ba19e5a547fb9498111589aa9a469cad6fe245adb34bf973b5bd19dbfc34e0f4",
         "size": 179
       },
       "experimental/job-search-skill-assessment/external/career-ops/.opencode/commands/career-ops-training.md": {
         "mtime": 1776111213,
-        "sha256": "8e7345d7472cef4abce18dd72beaaa9ab705a3b5af4d099edb1b39b87c1884a1",
         "size": 211
       },
       "experimental/job-search-skill-assessment/external/career-ops/.opencode/commands/career-ops.md": {
         "mtime": 1776111213,
-        "sha256": "1eb2e8d1442059c4f1f9c35ada5ff868806a71a8c47ae9b3fc87d87e80985198",
         "size": 451
       },
       "experimental/job-search-skill-assessment/external/career-ops/.release-please-manifest.json": {
         "mtime": 1776111213,
-        "sha256": "c1e45c4e520538dc41b4cb4c2e5950ca22237c9b1b4e18739cf82b9f8260597f",
         "size": 19
       },
       "experimental/job-search-skill-assessment/external/career-ops/AGENTS.md": {
         "mtime": 1776111213,
-        "sha256": "55635f4c5ccc47f4c8eea705f68da1488377f57616fc16e6b534af14b651b439",
         "size": 481
       },
       "experimental/job-search-skill-assessment/external/career-ops/CHANGELOG.md": {
         "mtime": 1776111213,
-        "sha256": "840ed688713c0c0e196be973c12d355c7d1d15bb8bdfe2784677957be2f76c62",
         "size": 1947
       },
       "experimental/job-search-skill-assessment/external/career-ops/CITATION.cff": {
         "mtime": 1776111213,
-        "sha256": "efb24d5c1976ddc50c92da50859c5214ac4311b2c5a380f584768f18822271d0",
         "size": 468
       },
       "experimental/job-search-skill-assessment/external/career-ops/CLAUDE.md": {
         "mtime": 1776111213,
-        "sha256": "4087496c9334b872dc2b11b6b06129487b96427d285320966c1fbeda62b1091b",
         "size": 19755
       },
       "experimental/job-search-skill-assessment/external/career-ops/CODE_OF_CONDUCT.md": {
         "mtime": 1776111213,
-        "sha256": "0035a7ed854fe14309228f4f410be2209847b3af5550ea177b77c5f92bee0e09",
         "size": 2110
       },
       "experimental/job-search-skill-assessment/external/career-ops/CONTRIBUTING.md": {
         "mtime": 1776111213,
-        "sha256": "42ec936fe73be7c1fe086cc10998feb9e5bf4fa95e6f9c4deb1c13bbd7374151",
         "size": 2807
       },
       "experimental/job-search-skill-assessment/external/career-ops/DATA_CONTRACT.md": {
         "mtime": 1776111213,
-        "sha256": "d1c12bb5a266e5ec91a964e9d4f000306c357d26dbd6dcf9ba4bfadac324ce2f",
         "size": 2760
       },
       "experimental/job-search-skill-assessment/external/career-ops/GOVERNANCE.md": {
         "mtime": 1776111213,
-        "sha256": "1a963570f4c0a058a7c0d81e1b9ecaa09d829bcff0879952f7d63ce421abaa3d",
         "size": 2787
       },
       "experimental/job-search-skill-assessment/external/career-ops/LEGAL_DISCLAIMER.md": {
         "mtime": 1776111213,
-        "sha256": "96d6d52fec2b00c39f6bb4b55d19161e2d5275fd303662a65ab0cf1e7d2bca29",
         "size": 4963
       },
       "experimental/job-search-skill-assessment/external/career-ops/LICENSE": {
         "mtime": 1776111213,
-        "sha256": "51989d2589b2aa87ca6cbb253391bcb476a21cbafdc71eea4410548538510870",
         "size": 1090
       },
       "experimental/job-search-skill-assessment/external/career-ops/README.es.md": {
         "mtime": 1776111213,
-        "sha256": "a3cc63a73e19fc36e06aa0b87802755907a287fa3c4cfae2b56979718485f268",
         "size": 14912
       },
       "experimental/job-search-skill-assessment/external/career-ops/README.ja.md": {
         "mtime": 1776111213,
-        "sha256": "7ff853b2f957665a610f2e74c972e9686f9b01b97cb45aa807164dba7be2752c",
         "size": 17972
       },
       "experimental/job-search-skill-assessment/external/career-ops/README.ko-KR.md": {
         "mtime": 1776111213,
-        "sha256": "57c6374d0834f52ab22d59356d24e9adbe6b5d039b70658d63beca53184844d7",
         "size": 16940
       },
       "experimental/job-search-skill-assessment/external/career-ops/README.md": {
         "mtime": 1776111213,
-        "sha256": "af3f3c2bd73d1d297d225da6b54cfa1d13ba0a310802dd0a476ad4e85feac99f",
         "size": 15293
       },
       "experimental/job-search-skill-assessment/external/career-ops/README.pt-BR.md": {
         "mtime": 1776111213,
-        "sha256": "098b9492a737b6af662edc7875e88f741df498fad6f5abd1225bb594f2bd8910",
         "size": 15902
       },
       "experimental/job-search-skill-assessment/external/career-ops/README.ru.md": {
         "mtime": 1776111213,
-        "sha256": "2161963e46cd0df4b2a19489fa4888d4413ca83598479797cf70ba3492241a33",
         "size": 15460
       },
       "experimental/job-search-skill-assessment/external/career-ops/README.zh-TW.md": {
         "mtime": 1776111213,
-        "sha256": "c451172d1e2d6962ea7fbdfe296d8908f5ec9e3b38abff8c8d0da7420498e0e7",
         "size": 15527
       },
       "experimental/job-search-skill-assessment/external/career-ops/SECURITY.md": {
         "mtime": 1776111213,
-        "sha256": "eed66af101f3add3dc16df8df3f9a7f98e02f9d6a4f2b62c9a9f5aaf4aefc808",
         "size": 1099
       },
       "experimental/job-search-skill-assessment/external/career-ops/SUPPORT.md": {
         "mtime": 1776111213,
-        "sha256": "46db28f56b8949cef55de669ddc558e38c2f795cef9251994ac0a9c8073f6d85",
         "size": 1300
       },
       "experimental/job-search-skill-assessment/external/career-ops/VERSION": {
         "mtime": 1776111213,
-        "sha256": "64d23f858ef51b0f996e4966d4e27c0371b437e2d2787890b1f7ad22d4ec5663",
         "size": 6
       },
       "experimental/job-search-skill-assessment/external/career-ops/analyze-patterns.mjs": {
         "mtime": 1776111213,
-        "sha256": "eabfb5b428499377b105571c8a74932bfdc0acb2c3f0223a509b30e116e2785c",
         "size": 21084
       },
       "experimental/job-search-skill-assessment/external/career-ops/batch/README.md": {
         "mtime": 1776111213,
-        "sha256": "7414697692d13b32a00a11a1728fce95559e8467e424b3c05b6e0d5803043997",
         "size": 3392
       },
       "experimental/job-search-skill-assessment/external/career-ops/batch/batch-prompt.md": {
         "mtime": 1776111213,
-        "sha256": "2f724705c6333e0368ed4289ed1219b9c3f35f2fd9ae1b73f6c564718837d104",
         "size": 15101
       },
       "experimental/job-search-skill-assessment/external/career-ops/batch/batch-runner.sh": {
         "mtime": 1776111213,
-        "sha256": "ac04ff9d43e0493147a7bc8fdcce86cf0a1d63093b821b1c9b3ed6f4876a24ab",
         "size": 16972
       },
       "experimental/job-search-skill-assessment/external/career-ops/batch/tracker-additions/.gitkeep": {
         "mtime": 1776111213,
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "size": 0
       },
       "experimental/job-search-skill-assessment/external/career-ops/check-liveness.mjs": {
         "mtime": 1776111213,
-        "sha256": "0c5ef48eeb666b6b3b5142ef76ace06231e0b6fcd7915946a9ce390da1769afd",
         "size": 3669
       },
       "experimental/job-search-skill-assessment/external/career-ops/config/profile.example.yml": {
         "mtime": 1776111213,
-        "sha256": "ff63ff424195e863b2c985e87f407a9cd934dbdf5a0de6e6bc2b1979e8d30bae",
         "size": 2530
       },
       "experimental/job-search-skill-assessment/external/career-ops/cv-sync-check.mjs": {
         "mtime": 1776111213,
-        "sha256": "ceb53aae1913c0aa34f82821bbb96756ad5a32909042bb7b0f605ff03499d6ae",
         "size": 3583
       },
       "experimental/job-search-skill-assessment/external/career-ops/dashboard/go.mod": {
         "mtime": 1776111213,
-        "sha256": "c985896a140b7bf15521b271e676241ceb6697bc5b4f3ed89444e31cbf7ac6b2",
         "size": 1243
       },
       "experimental/job-search-skill-assessment/external/career-ops/dashboard/go.sum": {
         "mtime": 1776111213,
-        "sha256": "41280514923f35a39cce254dd440de103194e831ad13aee3c15eaf16450dc88b",
         "size": 4907
       },
       "experimental/job-search-skill-assessment/external/career-ops/dashboard/internal/data/career.go": {
         "mtime": 1776111213,
-        "sha256": "70ffa97a9adc5dbca2fd7509d58957ec9a504e08dcd3b738b0a4b0ebbe3d9ca8",
         "size": 20899
       },
       "experimental/job-search-skill-assessment/external/career-ops/dashboard/internal/model/career.go": {
         "mtime": 1776111213,
-        "sha256": "0d61ff2ade581a64051c62bad5b887bf143de6830e6cf2c4df91bc4949d45c61",
         "size": 1741
       },
       "experimental/job-search-skill-assessment/external/career-ops/dashboard/internal/theme/catppuccin.go": {
         "mtime": 1776111213,
-        "sha256": "bb1213662aa556fa9469ab039831ed7399930eecbe882cc42aa696387097add0",
         "size": 643
       },
       "experimental/job-search-skill-assessment/external/career-ops/dashboard/internal/theme/catppuccin_latte.go": {
         "mtime": 1776111213,
-        "sha256": "70cad3a595e4b7fff96dfb9830861d4205c7ff6b3fbb0d41b5b2055a018216e6",
         "size": 643
       },
       "experimental/job-search-skill-assessment/external/career-ops/dashboard/internal/theme/theme.go": {
         "mtime": 1776111213,
-        "sha256": "732d996088acf63ae37ddd82c042555480f25a56b247ddb17b65b3d28ceeb80f",
         "size": 1004
       },
       "experimental/job-search-skill-assessment/external/career-ops/dashboard/internal/ui/screens/pipeline.go": {
         "mtime": 1776111213,
-        "sha256": "f070b8cca7483ae0420ab9306a1ca92c8fb3458d98a36b50ed835e5cffca13a2",
         "size": 24650
       },
       "experimental/job-search-skill-assessment/external/career-ops/dashboard/internal/ui/screens/pipeline_test.go": {
         "mtime": 1776111213,
-        "sha256": "43d039f32bd84884d02f18570b0a096594cc7dc097992636b9267915f59af903",
         "size": 1893
       },
       "experimental/job-search-skill-assessment/external/career-ops/dashboard/internal/ui/screens/progress.go": {
         "mtime": 1776111213,
-        "sha256": "e20f639e8526fed84482a08cce2bcfba55fb4b75e1c025f45d0c524658453e8e",
         "size": 10648
       },
       "experimental/job-search-skill-assessment/external/career-ops/dashboard/internal/ui/screens/viewer.go": {
         "mtime": 1776111213,
-        "sha256": "9be0ee3773c5e85b4a4612440cf121835438f40c6fc4322eb3e2982e244b836f",
         "size": 14089
       },
       "experimental/job-search-skill-assessment/external/career-ops/dashboard/main.go": {
         "mtime": 1776111213,
-        "sha256": "98cdbc35d85aaf354f0cb3b1775bda388caa1aa5df259f8d3739c111a0d1f247",
         "size": 4686
       },
       "experimental/job-search-skill-assessment/external/career-ops/data/.gitkeep": {
         "mtime": 1776111213,
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "size": 0
       },
       "experimental/job-search-skill-assessment/external/career-ops/dedup-tracker.mjs": {
         "mtime": 1776111213,
-        "sha256": "8d298fc36c2d66ed7dc6295f51e51000754cde4ca7e60f1bc03e6baec2a344b9",
         "size": 7087
       },
       "experimental/job-search-skill-assessment/external/career-ops/docs/ARCHITECTURE.md": {
         "mtime": 1776111213,
-        "sha256": "d7be3053fc14d97e27d4e04899e4a93d56cc70cd1d9b0f563e18f082bb1660d5",
         "size": 5377
       },
       "experimental/job-search-skill-assessment/external/career-ops/docs/CODEX.md": {
         "mtime": 1776111213,
-        "sha256": "142251b855ca933d7a0b3df0dcb29195322e5df96ec44eb68bf71fd5f7088a4a",
         "size": 2340
       },
       "experimental/job-search-skill-assessment/external/career-ops/docs/CUSTOMIZATION.md": {
         "mtime": 1776111213,
-        "sha256": "6bf981440fcdf4d9892403e4b83de1473db03b00826723a021c7fa713a13471d",
         "size": 2462
       },
       "experimental/job-search-skill-assessment/external/career-ops/docs/SCRIPTS.md": {
         "mtime": 1776111213,
-        "sha256": "85a1881fb8c629093b9f229216cdaf6d2aef818bbb6618bcd9bdd7f2810457b4",
         "size": 6605
       },
       "experimental/job-search-skill-assessment/external/career-ops/docs/SETUP.md": {
         "mtime": 1776111213,
-        "sha256": "a2ab1baa94e9d25ec6ea5cd1065b21cd13dce58a8b77aee8a67db04f567ebf55",
         "size": 2027
       },
       "experimental/job-search-skill-assessment/external/career-ops/docs/demo.gif": {
         "mtime": 1776111213,
-        "sha256": "26787a2a4dd4cc98e4b714d99ebb72f3a2d56218e794095d1b5dcf9f468d4125",
         "size": 8672895
       },
       "experimental/job-search-skill-assessment/external/career-ops/docs/hero-banner.jpg": {
         "mtime": 1776111213,
-        "sha256": "ea63ff6ae063cb04d0d4e69139674840707ec532d2e591dda6a3a634a0405fe2",
         "size": 687167
       },
       "experimental/job-search-skill-assessment/external/career-ops/docs/og-image.jpg": {
         "mtime": 1776111213,
-        "sha256": "29fb2f1b44574aadc78dc213cb4c6220e65bed602310b9011d43849d7fc3301f",
         "size": 5986975
       },
       "experimental/job-search-skill-assessment/external/career-ops/docs/roadmap-phases.jpg": {
         "mtime": 1776111213,
-        "sha256": "fda6ea509de3bf78a3f8634bdbe7499dc14a319db6b9f8750716d38e55b52364",
         "size": 6872215
       },
       "experimental/job-search-skill-assessment/external/career-ops/docs/vision-banner.jpg": {
         "mtime": 1776111213,
-        "sha256": "5947743606c62eeb632db7328be1349dffd96aef4f594553a39ecbaae0771226",
         "size": 7073277
       },
       "experimental/job-search-skill-assessment/external/career-ops/doctor.mjs": {
         "mtime": 1776111213,
-        "sha256": "63152641c91402b3a4518b1ed294562d1a7405a7cd5f8e7e4f8887f83bea0522",
         "size": 5194
       },
       "experimental/job-search-skill-assessment/external/career-ops/examples/README.md": {
         "mtime": 1776111213,
-        "sha256": "88d4da8b79339eb0db595ce328aaffd0c7c282cc7ae43a8b83895f7c05a1d789",
         "size": 1551
       },
       "experimental/job-search-skill-assessment/external/career-ops/examples/article-digest-example.md": {
         "mtime": 1776111213,
-        "sha256": "eee7c7d1dca63fc855151144cad868d4810e1e963c56e836180776a7ca67159a",
         "size": 1705
       },
       "experimental/job-search-skill-assessment/external/career-ops/examples/ats-normalization-test.md": {
         "mtime": 1776111213,
-        "sha256": "8421c0edb0db1c01b89c642ecb0fb66be54cc9c17f4fb6b219c2d32e05afda6c",
         "size": 2369
       },
       "experimental/job-search-skill-assessment/external/career-ops/examples/cv-example.md": {
         "mtime": 1776111213,
-        "sha256": "b7b8b491ab56d8b4b0925e5d519cafea1e3e9a338d55fe098011e98790e24d5a",
         "size": 2146
       },
       "experimental/job-search-skill-assessment/external/career-ops/examples/dual-track-engineer-instructor/README.md": {
         "mtime": 1776111213,
-        "sha256": "85d7149ccda897a8ea7640a594acd6e2292e7f423254e88de8c08321e424a2b8",
         "size": 7031
       },
       "experimental/job-search-skill-assessment/external/career-ops/examples/dual-track-engineer-instructor/cv.md": {
         "mtime": 1776111213,
-        "sha256": "ab06aff143aec539fa46bb7e5cf423d3f6c868d5f47f4eaa51a500677df0fec7",
         "size": 6713
       },
       "experimental/job-search-skill-assessment/external/career-ops/examples/dual-track-engineer-instructor/profile.yml": {
         "mtime": 1776111213,
-        "sha256": "686eb381d1f99a5f20941a1bf98d204e110abf868492e83d10c77c932fb7ce58",
         "size": 5525
       },
       "experimental/job-search-skill-assessment/external/career-ops/examples/sample-report.md": {
         "mtime": 1776111213,
-        "sha256": "afbc04b9c4991decc1ac0c0c88bfb111322ee8fb6ff3e78399ae54492a4d69a5",
         "size": 3265
       },
       "experimental/job-search-skill-assessment/external/career-ops/flake.lock": {
         "mtime": 1776111213,
-        "sha256": "5252dc58a8e1f94dccec2499255fe13c3b8cc226eb51b31c023301c8ac44466a",
         "size": 1529
       },
       "experimental/job-search-skill-assessment/external/career-ops/flake.nix": {
         "mtime": 1776111213,
-        "sha256": "62f1237b916289dbdd8fd38c358a2f7f1dddbb12bf28f8eccf8cfe765b157eaa",
         "size": 1168
       },
       "experimental/job-search-skill-assessment/external/career-ops/followup-cadence.mjs": {
         "mtime": 1776111213,
-        "sha256": "702a9d9e542ad95fa0a28f92d81ddb7c67939549930389d87e6499a62a685eaf",
         "size": 11312
       },
       "experimental/job-search-skill-assessment/external/career-ops/fonts/dm-sans-latin-ext.woff2": {
         "mtime": 1776111213,
-        "sha256": "0d0609aee778d21b40bda1d27b7e6b5b3cb1a3e96b90b8831c681aca097c2219",
         "size": 31312
       },
       "experimental/job-search-skill-assessment/external/career-ops/fonts/dm-sans-latin.woff2": {
         "mtime": 1776111213,
-        "sha256": "aa530716b0d351866af7dbfa3eee4120fb36f2d071baff8c234185141865c7ff",
         "size": 62556
       },
       "experimental/job-search-skill-assessment/external/career-ops/fonts/space-grotesk-latin-ext.woff2": {
         "mtime": 1776111213,
-        "sha256": "054c266fbb441ee059365dba0885d206f67ca05b375de869b88e02ebfccc9b9d",
         "size": 18924
       },
       "experimental/job-search-skill-assessment/external/career-ops/fonts/space-grotesk-latin.woff2": {
         "mtime": 1776111213,
-        "sha256": "a0d054c4af557de20afd6ca59f47ab353bcaec49c63ff04b6c9d39d0f8910557",
         "size": 22320
       },
       "experimental/job-search-skill-assessment/external/career-ops/generate-pdf.mjs": {
         "mtime": 1776111213,
-        "sha256": "f2f49bd1de784ecef29e033ecc4cce5db29e44dbe08acc7cb2238581a2c901ff",
         "size": 5932
       },
       "experimental/job-search-skill-assessment/external/career-ops/interview-prep/story-bank.md": {
         "mtime": 1776111213,
-        "sha256": "d1fb92e60e7585746696336577696a763b0ed9a43290cba82d281d7786cf8cfe",
         "size": 1173
       },
       "experimental/job-search-skill-assessment/external/career-ops/jds/.gitkeep": {
         "mtime": 1776111213,
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "size": 0
       },
       "experimental/job-search-skill-assessment/external/career-ops/liveness-core.mjs": {
         "mtime": 1776111213,
-        "sha256": "e18a19c3efc6ec41e72ecb68cee31a8f238b970bc64a50f657239ff43c273e9e",
         "size": 2203
       },
       "experimental/job-search-skill-assessment/external/career-ops/merge-tracker.mjs": {
         "mtime": 1776111213,
-        "sha256": "905760ac03e99d75d812eb70e5d159d9668411333f980fc7e878b93fc73e6add",
         "size": 11910
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/_profile.template.md": {
         "mtime": 1776111213,
-        "sha256": "bba2af6b364191d9830f6ae551976b8ae23a0b205e2a5df6689f7390bb5f45e9",
         "size": 4687
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/_shared.md": {
         "mtime": 1776111213,
-        "sha256": "57950e3d666209ffbda2320c13e6a6027a13727d2cf3059719ebf7dbbff78f35",
         "size": 7751
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/apply.md": {
         "mtime": 1776111213,
-        "sha256": "b027815bf20658d4b6c4acb91dd7094ee5783a09cede2e5d1ece63eb2c93bd30",
         "size": 4153
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/auto-pipeline.md": {
         "mtime": 1776111213,
-        "sha256": "7c7421a432df24f08b0e235b299057664dfc2618bf44530084b72de94ef99787",
         "size": 3862
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/batch.md": {
         "mtime": 1776111213,
-        "sha256": "fce33d62331f5ad7b4af631247fba1a0579ccc07b417899f18660edbdeeb56f5",
         "size": 3787
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/contacto.md": {
         "mtime": 1776111213,
-        "sha256": "9c80fb6b2f12be37b2ab3a658f8086a74b4b2ad954f6e98176160bc50ae081da",
         "size": 2825
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/de/README.md": {
         "mtime": 1776111213,
-        "sha256": "d631b1baf2fdd217950c9551c99ed72f6d47749c25796be70da64591fdded448",
         "size": 5668
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/de/_shared.md": {
         "mtime": 1776111213,
-        "sha256": "83537a1b9e19d073dd5645470ba8fb4255e9d86df3bbadad1719cc4a12a41008",
         "size": 13316
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/de/angebot.md": {
         "mtime": 1776111213,
-        "sha256": "5b8644b6e68532f2970cf0a4e90dc5e24961d32e47f62b56fec456f2d000ea4a",
         "size": 6386
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/de/bewerben.md": {
         "mtime": 1776111213,
-        "sha256": "1120b4c4c07e88dc809aba0a7d2afb37517c55b70b74831793dab64a9513479a",
         "size": 5317
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/de/pipeline.md": {
         "mtime": 1776111213,
-        "sha256": "028075f5dfcaca2d66be626d4f4ac0ac4276b1ae1a86ba0d4971633dfd568494",
         "size": 3203
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/deep.md": {
         "mtime": 1776111213,
-        "sha256": "c4be3c7bee48b4f07544e7139637d70346ed7337fdfb0f597af91a595ce95cd1",
         "size": 1604
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/followup.md": {
         "mtime": 1776111213,
-        "sha256": "04e25411dd6acce180263f7a35fa38fa96d7b8847b86fccf0bfe3e218c28bfff",
         "size": 6307
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/fr/README.md": {
         "mtime": 1776111213,
-        "sha256": "e65b84a148c672efbd4e951251bbe802ab94c1256e74aeb0fca09c373a5925c1",
         "size": 5047
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/fr/_shared.md": {
         "mtime": 1776111213,
-        "sha256": "bbfcbd554ac1b2d431254df263fe014af1711fbdcd90527d5d9bdbfee7fd9757",
         "size": 13947
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/fr/offre.md": {
         "mtime": 1776111213,
-        "sha256": "0cc7ca3b04939546cbd092bdaad9914ffdff179d628063c89637f5a8dd85e712",
         "size": 6366
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/fr/pipeline.md": {
         "mtime": 1776111213,
-        "sha256": "ad129b6f556ede98ead36e3724d917932aedc88cfb33cacf5debaef3f4203daf",
         "size": 3103
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/fr/postuler.md": {
         "mtime": 1776111213,
-        "sha256": "17400ef067d9f372fa193f6e1632820c4a162c8f1fbc752ea30e6284a4bb1897",
         "size": 5161
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/interview-prep.md": {
         "mtime": 1776111213,
-        "sha256": "c1ba877e650702a2abd3dfca6c76ae1e26529baff0980cef9b862be64b82715a",
         "size": 6876
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/ja/README.md": {
         "mtime": 1776111213,
-        "sha256": "ea7a9623cfb098c3936df90fe4d6ba36f4139cdd8552bee92f8a2e3cf731c603",
         "size": 6314
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/ja/_shared.md": {
         "mtime": 1776111213,
-        "sha256": "b77ece2f7bf1674739ccbe6719dce3df898e0ebb6570b6f3c87d772a9239f428",
         "size": 16512
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/ja/kyujin.md": {
         "mtime": 1776111213,
-        "sha256": "3b8a02a23f5f7f28b2e3da6d01d9611ddcd478e0e9b7112f16810afe32a2a7cf",
         "size": 7018
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/ja/oubo.md": {
         "mtime": 1776111213,
-        "sha256": "e6bd5808a0fa1ca408c57b428915e9067ed152ca8bd4339770d8a9d73cc9994f",
         "size": 5979
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/ja/pipeline.md": {
         "mtime": 1776111213,
-        "sha256": "39e18e57f74de1740b2d6050c9fd3e624130f387d9c944905b9657b8706e2d4e",
         "size": 3631
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/oferta.md": {
         "mtime": 1776111213,
-        "sha256": "c2ba0b6d8a45db50fefaccc1c7acc428479b3d9b4b459ff912e337f773b46bd7",
         "size": 8794
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/ofertas.md": {
         "mtime": 1776111213,
-        "sha256": "e35e11178b3b2cb6da83cde67b2bfccc728f21fba4c0e618195c98e5087fc816",
         "size": 1075
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/patterns.md": {
         "mtime": 1776111213,
-        "sha256": "0aaeccf31b098be74385b45cde4fee97de87a483f49ede288f4a402059197a1a",
         "size": 5280
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/pdf.md": {
         "mtime": 1776111213,
-        "sha256": "782834d0cec2fe111686cad2a42b6fcc3538a60b882a468dced2f00bab853c3d",
         "size": 9443
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/pipeline.md": {
         "mtime": 1776111213,
-        "sha256": "5b0d0b7c4d2b0962fa19dc1335822e365501aefea4701c9a44ae0f5c2c158df9",
         "size": 2491
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/project.md": {
         "mtime": 1776111213,
-        "sha256": "4975fcd866ac14a84ffc205ff74e1e09f76fdbdde138a8f6e812f5e7cd0e1ccb",
         "size": 1150
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/pt/README.md": {
         "mtime": 1776111213,
-        "sha256": "58fdb5356218edf89a5de00ff709f4f5eb8defca7e68e54ada1383c6f44449cb",
         "size": 5402
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/pt/_shared.md": {
         "mtime": 1776111213,
-        "sha256": "38cec1cc0f92cb1e499f7ba887b84560a2e1f5697e31206c16fa56a932124af0",
         "size": 13488
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/pt/aplicar.md": {
         "mtime": 1776111213,
-        "sha256": "d2b710aa5bae5b6a9f37811eedd596a86a30c5b1b2e15e9789006cf842f71ef7",
         "size": 4838
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/pt/oferta.md": {
         "mtime": 1776111213,
-        "sha256": "ef9a8d7e984c2b98c909334e6bf600fac8fdeb202ed3883be889e10cc479154a",
         "size": 5752
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/pt/pipeline.md": {
         "mtime": 1776111213,
-        "sha256": "694474644d4ce2a0c73fe5257242cf723f88afd9fc7f353972b22ac30c1f6851",
         "size": 3000
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/ru/README.md": {
         "mtime": 1776111213,
-        "sha256": "76dc09ad542975ebec22e5b27b6dc3ace8591a4ab9d7086f56e114a42013f9a7",
         "size": 7317
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/ru/_shared.md": {
         "mtime": 1776111213,
-        "sha256": "62ddb6e80cebfabe08c6d6cb82ea971350b34e5016f30ae584dd1dbceedf072b",
         "size": 18241
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/ru/apply.md": {
         "mtime": 1776111213,
-        "sha256": "e9cb291e4398927d4f0703d559b8f8b7bf6dc3a0d0a0dbde309f591d25473716",
         "size": 5125
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/ru/interview-prep.md": {
         "mtime": 1776111213,
-        "sha256": "cb211cad7c92115a3b01a2e4e27cfd15c110ce6a7b906de02633b8ed308d1fa7",
         "size": 8350
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/ru/oferta.md": {
         "mtime": 1776111213,
-        "sha256": "3a4b61a7cdacd52a2ab7d3c65af82875ac48a972db9005b5561c4d42337b0993",
         "size": 9436
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/ru/pipeline.md": {
         "mtime": 1776111213,
-        "sha256": "7aab0bfdae4e5d6a994da4065ae2b9f443374de6579fa68ca46c93ef228fbf0b",
         "size": 3755
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/scan.md": {
         "mtime": 1776111213,
-        "sha256": "55cf2893d5e1180bda9ca38af1c008a6ca06b27736539bd5430d9777ca0e1259",
         "size": 12502
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/tracker.md": {
         "mtime": 1776111213,
-        "sha256": "7779ec2ff99dbcc5c5ae60ac14893f1895c4388346f22825a794e970efd57b42",
         "size": 792
       },
       "experimental/job-search-skill-assessment/external/career-ops/modes/training.md": {
         "mtime": 1776111213,
-        "sha256": "a940f496aab9d363cd837628d9cdcc5af0e468c9d000187c55b7c1f13d45cf5f",
         "size": 1001
       },
       "experimental/job-search-skill-assessment/external/career-ops/normalize-statuses.mjs": {
         "mtime": 1776111213,
-        "sha256": "e35901d3ea234695e94ec687cb88dd06d184068efa429d56d6c6172afeb4846a",
         "size": 5732
       },
       "experimental/job-search-skill-assessment/external/career-ops/output/.gitkeep": {
         "mtime": 1776111213,
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "size": 0
       },
       "experimental/job-search-skill-assessment/external/career-ops/package.json": {
         "mtime": 1776111213,
-        "sha256": "f7c9f82dacfc37f3d328e1e6edd99217699d005d752b647a0e2b0a829fe9ea17",
         "size": 1058
       },
       "experimental/job-search-skill-assessment/external/career-ops/renovate.json": {
         "mtime": 1776111213,
-        "sha256": "d6dadc200397f6ff105c2f599172f2911a6cde8165199cf64e9be1662916d9c7",
         "size": 642
       },
       "experimental/job-search-skill-assessment/external/career-ops/reports/.gitkeep": {
         "mtime": 1776111213,
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "size": 0
       },
       "experimental/job-search-skill-assessment/external/career-ops/scan.mjs": {
         "mtime": 1776111213,
-        "sha256": "8906061ca566c8ae5d0d603ce79b0871bc76bd360cbbcfd5a89daa602e127981",
         "size": 12254
       },
       "experimental/job-search-skill-assessment/external/career-ops/templates/README.md": {
         "mtime": 1776111213,
-        "sha256": "6922172ecfb9ef90e04b3dd7c51583ecf86d23b457f24dcf8c077b20047ef04a",
         "size": 1908
       },
       "experimental/job-search-skill-assessment/external/career-ops/templates/cv-template.html": {
         "mtime": 1776111213,
-        "sha256": "b8156285a13a6ef78e5bd8625ea5216397f46601a10c0eb023127d3673cbb5c2",
         "size": 8312
       },
       "experimental/job-search-skill-assessment/external/career-ops/templates/portals.example.yml": {
         "mtime": 1776111213,
-        "sha256": "66e2c3b66a99849a94b37973c168d4bcec7e1508d429ecd140e5375f8278cd2e",
         "size": 31819
       },
       "experimental/job-search-skill-assessment/external/career-ops/templates/states.yml": {
         "mtime": 1776111213,
-        "sha256": "aab4466a5d04b8bacb417928bb532bbb4e4675267c35d57155f0cc26d0d1ff52",
         "size": 1536
       },
       "experimental/job-search-skill-assessment/external/career-ops/test-all.mjs": {
         "mtime": 1776111213,
-        "sha256": "1483152924a1af2e4ac0cd0898a49e4391d2da70de920536348112ee1c437ce7",
         "size": 11007
       },
       "experimental/job-search-skill-assessment/external/career-ops/update-system.mjs": {
         "mtime": 1776111213,
-        "sha256": "352a555ec4f3f1768f1b250595707785f9bffea362c04152fc7b22568fb45ed8",
         "size": 9759
       },
       "experimental/job-search-skill-assessment/external/career-ops/verify-pipeline.mjs": {
         "mtime": 1776111213,
-        "sha256": "b763f7d06a1bc58d64763000319f3a4b4d6ebc4aef5e5adf29de6eb284f63002",
         "size": 6668
       },
       "governance/SOP_RESEARCH.md": {
         "mtime": 1781860716,
-        "sha256": "5964328448d8293bf5fce14629006dab5eb4668b568aaf7c5a9a52f04ab78269",
         "size": 2226
       },
       "governance/SOP_SEQUENCE_DIAGRAM.md": {
         "mtime": 1781860716,
-        "sha256": "e6b6d5d8c20632a6dc7fce3eeaccdcb82a9c454410980f9a5aec313543208f8f",
         "size": 2267
       },
       "next-env.d.ts": {
         "mtime": 1756824220,
-        "sha256": "9269d492817e359123ac64c8205e5d05dab63d71a3a7a229e68b5d9a0e8150bf",
         "size": 201
       },
       "next.config.js": {
         "mtime": 1756830705,
-        "sha256": "1f8d8e4c7faed6d085247fddb0f64ac02d87f71ccbb89963c715904850ef3d60",
         "size": 1952
+      },
+      "output/doc/Lohtor.Nguyen.LeCuong.doc": {
+        "mtime": 1783750866,
+        "size": 121856
+      },
+      "output/doc/Lohtor.Nguyen.LeCuong.docx": {
+        "mtime": 1783750834,
+        "size": 101917
       },
       "package.json": {
         "mtime": 1756829460,
-        "sha256": "7f2eb7ceeeddcee428fa54674a2b70b608242d42140508d59aabb107b70eaef0",
         "size": 1432
       },
       "pnpm-lock.yaml": {
         "mtime": 1756824193,
-        "sha256": "9d18a1aca5ef20d905823765281898bd3b103ee315426a961263ad91481b5838",
         "size": 115695
       },
       "postcss.config.js": {
         "mtime": 1756824088,
-        "sha256": "251ecddd4672c9cf467547e3dc535de00ad2129df26e7e7ae728fa4e5ac45fc5",
         "size": 82
       },
       "public/images/avatar.jpg": {
         "mtime": 1756826566,
-        "sha256": "44c35adcb75805019b71df5ae984af025bdfd56a4f11f924060e4b5579aea27e",
         "size": 101358
       },
       "public/images/og.jpg": {
         "mtime": 1756919482,
-        "sha256": "0df5502b538785cdaa0937fa34e312d4cfc6a01379b1e784b8969d6f2826d7c7",
         "size": 69025
       },
       "public/next.svg": {
         "mtime": 1756824088,
-        "sha256": "55995dfad6ecb4945a1e856ddca03c5e16aa5bf13fd21b4df6a74ae79357bcfc",
         "size": 1375
       },
       "public/robots.txt": {
         "mtime": 1756824088,
-        "sha256": "eb85e13db52a5140a931f4afaaf037c03b7607ad0028478c7023a3e196638c1c",
         "size": 233
       },
       "public/vercel.svg": {
         "mtime": 1756824088,
-        "sha256": "3fa5cd757b418e18afc68ddebad55f443206e410327921ddb2bf1be731658880",
         "size": 629
       },
       "scripts/pm2-start.sh": {
         "mtime": 1756828035,
-        "sha256": "0c330cacf41a4403e6a2c02f0c32d0055662e486b7febc658e35d6e9bdbc5c90",
         "size": 574
       },
       "src/apollo/resolvers.ts": {
         "mtime": 1756824088,
-        "sha256": "0e3a1f0cb2163cb60dfe1779be2732703889c252d95db8b8ea3aa030a00f1f23",
         "size": 315
       },
       "src/apollo/type-defs.ts": {
         "mtime": 1756824088,
-        "sha256": "08f90ec24a8c7a2bee18a34b3be5d5a6184691592af99b6c9b437699a4a59530",
         "size": 1849
       },
       "src/app/api/health/route.ts": {
         "mtime": 1774620623,
-        "sha256": "a2867452d916e963abebbcf4ac47f5d11ba65b151775dbc90ea0e8fd26446484",
         "size": 74
       },
       "src/app/apple-icon.png": {
         "mtime": 1756824088,
-        "sha256": "fc2fb117f1d2a28f928da17d09d3cb5ceb165b06b64806bad1d293298e1840c7",
         "size": 8640
       },
       "src/app/components/Awards.tsx": {
         "mtime": 1774620691,
-        "sha256": "2d34ee7737419e3b924059753c3734048489cfecd070c00be0a72f61d4b93a54",
         "size": 637
       },
       "src/app/components/Education.tsx": {
         "mtime": 1774623631,
-        "sha256": "fd1f0039e033f5162c154235c189d91381e72af7208938998086ee7e69ec6478",
         "size": 2294
       },
       "src/app/components/Header.tsx": {
         "mtime": 1774633440,
-        "sha256": "da0a6632a6cfca0dae45649b5e9362ff17bcd4d3ba36d3d73c40d6ec36c630d0",
         "size": 4959
       },
       "src/app/components/Projects.tsx": {
         "mtime": 1774626694,
-        "sha256": "5a462e49c66ed59d5b8e747a85e86560daf6aad60b1b7f801f7ab0bc35a3919c",
         "size": 3773
       },
       "src/app/components/Skills.tsx": {
         "mtime": 1774623631,
-        "sha256": "788cbf8d28368dc0df962b2e3d3e104ccd87acdcee44e3b168d4b4547ee19d1a",
         "size": 1133
       },
       "src/app/components/Summary.tsx": {
         "mtime": 1774623631,
-        "sha256": "4ff167f13e808777f0feb19dd95548b31f22e32aff6a3b9a372ca7d17dac12a1",
         "size": 620
       },
       "src/app/components/WorkExperience.tsx": {
         "mtime": 1774623618,
-        "sha256": "07a524734b270f0c6db4443748a55098b2b97663617f0c286b7b24600d29cc7e",
         "size": 4382
       },
       "src/app/favicon.ico": {
         "mtime": 1756824088,
-        "sha256": "72de8986354f5c948b29b7259aa1e1b5e8305a10f6b4de2f6b06376bf2e05051",
         "size": 15406
       },
       "src/app/generated-cv/client-page.tsx": {
         "mtime": 1774621275,
-        "sha256": "a1fd3cad197f51f5105919144cf6c3e47ee4d06d96c64f42e933828c91e0f700",
         "size": 2775
       },
       "src/app/generated-cv/page.tsx": {
         "mtime": 1774621475,
-        "sha256": "f176e0a3b117c864aa463b86e85e882777ddf7874f22b6d930dc939af7a73fde",
         "size": 841
       },
       "src/app/globals.css": {
         "mtime": 1774626797,
-        "sha256": "8e35790180f3c201b6bb11af7fc5aa3277ee2537ec9077a4cad0f46950a92095",
         "size": 1645
       },
       "src/app/graphql/route.ts": {
         "mtime": 1756824088,
-        "sha256": "fe9385ef1a832f371ba3353afb3d901b4e4e8f44abf8a7670c7b2140816ca8ff",
         "size": 1606
       },
       "src/app/layout.tsx": {
         "mtime": 1756919172,
-        "sha256": "3ce3fc52bf5e0624d6943be3df6f744ac750be435965c4f7daeb843e6f431707",
         "size": 2321
       },
       "src/app/loading.tsx": {
         "mtime": 1756824088,
-        "sha256": "e700cd2c25edc32846e83bcf6bfa979c526667e1e94a02b330259418452b3cfd",
         "size": 1492
       },
       "src/app/opengraph-image.tsx": {
         "mtime": 1756824088,
-        "sha256": "78ea27676bd333a34757686b62b613a5a43ba14e4a30bc8070b3bd76ba27b17f",
         "size": 1967
       },
       "src/app/page.tsx": {
         "mtime": 1774620623,
-        "sha256": "6efeef24ba7b8a65d4579244436d90befdce4c2331fe9f3b66f14e7c57a880b3",
         "size": 1335
       },
       "src/app/sitemap.ts": {
         "mtime": 1756824088,
-        "sha256": "0da5580f39fda429d8ecb846c715f14c91700a9b5f9d194e9f3a08ec6f22f045",
         "size": 283
       },
       "src/components/avatar.tsx": {
         "mtime": 1774633440,
-        "sha256": "bfcb20b32b8e76b6d69e799bd953221a0388f39810e2d51f4c179cffc761e200",
         "size": 1013
       },
       "src/components/command-menu.tsx": {
         "mtime": 1774620691,
-        "sha256": "5ef755a746e1fea77f57ea1c8eca76621b42fba707bb2a50c74bea488f98a3ab",
         "size": 2867
       },
       "src/components/error-boundary.tsx": {
         "mtime": 1756824088,
-        "sha256": "a9f47b9a35633cdccd3333247af88e53598c48032492c236363a2f82ce69bc28",
         "size": 1439
       },
       "src/components/icons/GitHubIcon.tsx": {
         "mtime": 1756824088,
-        "sha256": "e1ad40416bfec85e071fe6bf55bde4967100c7d6c667355be160371a806fd213",
         "size": 1027
       },
       "src/components/icons/LinkedInIcon.tsx": {
         "mtime": 1756824088,
-        "sha256": "f2ddf36f33f9ab43445b0512628841c283a691d5590c703dc7cfa8ca979fc19e",
         "size": 768
       },
       "src/components/icons/index.ts": {
         "mtime": 1756824088,
-        "sha256": "a0a916053c6bf6a1fd241d02987c7bd21736cadebd2d8eed48c0e2e63b504fb8",
         "size": 128
       },
       "src/components/icons/x-icon.tsx": {
         "mtime": 1756824088,
-        "sha256": "d74d78619145257176b99eb421f2e4735d5546c15cb3ebec66036bd754ff97d0",
         "size": 403
       },
       "src/components/resume-document.tsx": {
         "mtime": 1774626797,
-        "sha256": "e4aa4643e19ed09d9a8ab621218f471426a6645e61f02d9cfb52995801354b53",
         "size": 3483
       },
       "src/components/section-error-boundary.tsx": {
         "mtime": 1756824088,
-        "sha256": "77a441e19b47dccea7208d1edf60e1f70b45fecf2f25e3b93b23d4535c354154",
         "size": 614
       },
       "src/components/section-skeleton.tsx": {
         "mtime": 1774620691,
-        "sha256": "54b255ac0735dc467e0ad59e4653c49df226af1a97749d33423f5ea8ad718780",
         "size": 856
       },
       "src/components/ui/avatar.tsx": {
         "mtime": 1756824088,
-        "sha256": "be389cadcfe6675f6d9077fcf1ef11752aa11e59d22c8e570c8617de3ca6607b",
         "size": 1426
       },
       "src/components/ui/badge.tsx": {
         "mtime": 1756824088,
-        "sha256": "61c3b125fc2d346eb318608b8f859dc3d1818b556b180fde76222dbaad308ace",
         "size": 1161
       },
       "src/components/ui/button.tsx": {
         "mtime": 1756824088,
-        "sha256": "f40d829b6012f0358b11789647a23641cb536dcd7b69d90036c5e5fa584d4b39",
         "size": 1861
       },
       "src/components/ui/card.tsx": {
         "mtime": 1756824088,
-        "sha256": "5d20cce2c6470967195accb51f92b00fa68801655e2d1a47546430fbbd66d6ba",
         "size": 1912
       },
       "src/components/ui/command.tsx": {
         "mtime": 1756824088,
-        "sha256": "56b5740d975a63d8c32c68e2328929e707f8f62f7c017607d51dff5a13600628",
         "size": 4894
       },
       "src/components/ui/dialog.tsx": {
         "mtime": 1756824088,
-        "sha256": "e0040edbe725d2e6a561418310f4526e33af19457aae2efe0eda5e61d7099f47",
         "size": 3897
       },
       "src/components/ui/drawer.tsx": {
         "mtime": 1756824088,
-        "sha256": "81dd38c51e4347fdb047768944ddfef5acecda737849d09b90c36b85cc29a7c0",
         "size": 3044
       },
       "src/components/ui/section.tsx": {
         "mtime": 1756824088,
-        "sha256": "3339bdd41f56f14eb5e4fce38adc6b7e3abb20239edc139935b8cc2c44355a97",
         "size": 341
       },
       "src/data/resume-data.tsx": {
         "mtime": 1775293183,
-        "sha256": "3f4313555c78cbd4a216d95ab35372a851f17b8bd48054704e272fb3613bc074",
         "size": 9384
       },
       "src/images/Avatar.JPG": {
         "mtime": 1756826475,
-        "sha256": "44c35adcb75805019b71df5ae984af025bdfd56a4f11f924060e4b5579aea27e",
         "size": 101358
       },
       "src/images/logos/ambit.png": {
         "mtime": 1756824088,
-        "sha256": "32d16ac35fe3d7f75572bace7cbfedfd6dc75d7ef22a75f7ed9a17c578194608",
         "size": 12990
       },
       "src/images/logos/barepapers.svg": {
         "mtime": 1756824088,
-        "sha256": "986c34e91fc5f0bd81419486310316eef7829b7a8ec37d399b6a432d1c1e37af",
         "size": 1816
       },
       "src/images/logos/bim.png": {
         "mtime": 1756824088,
-        "sha256": "9079007b9bd826e6feb56b0dedd7797452abe1ecf99e605d9f9f4ccb33cae483",
         "size": 68348
       },
       "src/images/logos/cdgo.png": {
         "mtime": 1756824088,
-        "sha256": "ae79374affa33f6d8fdc0779f5d7226dad4b86e369ca2b972b18f66f56a17a80",
         "size": 20630
       },
       "src/images/logos/clevertech.png": {
         "mtime": 1756824088,
-        "sha256": "329ce50d593408ad71fa031433a40928f165ca3855f598e5a6bd420e3ce5379f",
         "size": 11170
       },
       "src/images/logos/consultly.svg": {
         "mtime": 1756824088,
-        "sha256": "7fb9e7d98cebd969e0b42b1224de5428445f3c21b00eb282206f82f6e3a82dab",
         "size": 2016
       },
       "src/images/logos/evercast.svg": {
         "mtime": 1756824088,
-        "sha256": "68ebe15c6b0ff3c568086bef5364f854607c656218b7f84bd93423da58518e38",
         "size": 866
       },
       "src/images/logos/howdy.png": {
         "mtime": 1756824088,
-        "sha256": "081b512f8d54ae25bb331febf2cbe00aa38fcd8c317b1ae44f9fde22f21c2033",
         "size": 27542
       },
       "src/images/logos/index.ts": {
         "mtime": 1756824088,
-        "sha256": "11ebc638cb48a45d1ecdb2ecc9484d12d64ed8d01ffdc97b38d4456f888a02b2",
         "size": 972
       },
       "src/images/logos/jarocki.svg": {
         "mtime": 1756824088,
-        "sha256": "c4f00c6fc9a8ef28dc229891bd4e4d6fba47f0e3420e0ea2689ab352543c4368",
         "size": 2815
       },
       "src/images/logos/jojomobile.png": {
         "mtime": 1756824088,
-        "sha256": "714c92b83789e77144c3f1ef4dbbceb21907ce4503d3922bf0d36d429778b1d0",
         "size": 4136
       },
       "src/images/logos/minimal.svg": {
         "mtime": 1756824088,
-        "sha256": "27ac8a1939573d2b18b24cd2a756cbaeae9fc3bd6f21bcf2e1f9855ed6fb221f",
         "size": 1057
       },
       "src/images/logos/monito.svg": {
         "mtime": 1756824088,
-        "sha256": "3c95f19875a59a9a7b0c34724839001007dc86897fd3d37caf339a90bccaaae7",
         "size": 1917
       },
       "src/images/logos/mv.png": {
         "mtime": 1756824088,
-        "sha256": "08ac7be2ce5ff3558d152b04d31e8fcf5b490226aee8d4500919917e7da99326",
         "size": 47415
       },
       "src/images/logos/nsn.svg": {
         "mtime": 1756824088,
-        "sha256": "e223d22586b13c3d85e31852b75d9fafd8a069baf59dfa9b150619bf41ada73f",
         "size": 313457
       },
       "src/images/logos/parabol.svg": {
         "mtime": 1756824088,
-        "sha256": "0b54575ccb95a7de4eb22f29f1571bfc623fc74d230ee9eb0d305ea0ad48e0f6",
         "size": 1485
       },
       "src/images/logos/tastycloud.png": {
         "mtime": 1756824088,
-        "sha256": "871e7699186edc280bc9e800bc3b825f25625fd1e268d946b60fba5d7238abe8",
         "size": 10212
       },
       "src/images/logos/yearprogress.svg": {
         "mtime": 1756824088,
-        "sha256": "620ddbdd3496283a2a7ff84f8ccc4fb048e234b3023565f361047d40d813ac2b",
         "size": 1535
       },
       "src/lib/structured-data.ts": {
         "mtime": 1756824088,
-        "sha256": "e739258c637325f817b498135b4db6433164b405bf15d236d7a264d0270862a0",
         "size": 2524
       },
       "src/lib/types.ts": {
         "mtime": 1774623698,
-        "sha256": "0c256814d6969745038e63395c7423220aa6bd416903ca24f54a548b9ddd139c",
         "size": 3773
       },
       "src/lib/utils.ts": {
         "mtime": 1756824088,
-        "sha256": "4acbc7165a8d54738ff62b51414e772c08fe78434e524e6d8770180d3ba2925f",
         "size": 169
       },
       "tailwind.config.js": {
         "mtime": 1756824088,
-        "sha256": "0aa84af0c8a0b8384d5bed67867081d5bfcb6b39e058f61fce0507e9779dcfca",
         "size": 2143
       },
       "tests/test_sop.py": {
         "mtime": 1781860716,
-        "sha256": "830557afa3cc61f565b1a7b1623a56a35ce9568a718d453a0364471a6682b9ac",
         "size": 3592
       },
       "tsconfig.json": {
         "mtime": 1756824088,
-        "sha256": "046a78677602d407a9daccd40821249d35e49732bafcb7dec0f8851e67c0fb37",
         "size": 764
       }
     }
@@ -2229,14 +2005,14 @@
       "updated_at": "2026-06-19T09:20:07+00:00"
     }
   ],
-  "updated_at": "2026-06-19T09:20:32+00:00",
+  "updated_at": "2026-07-11T06:21:41+00:00",
   "work_session": {
     "active": false,
-    "ended_at": "2026-06-19T09:20:13+00:00",
-    "goal": "Upgrade CuongCV with durable SOP governance and transactional state locking",
-    "id": "WS-20260619-091926-374796",
-    "last_update": "2026-06-19T09:20:13+00:00",
-    "started_at": "2026-06-19T09:19:26+00:00",
-    "task_id": "T-0001"
+    "ended_at": "2026-07-11T06:21:40+00:00",
+    "goal": "Fill Lohtor student accommodation application form",
+    "id": "WS-20260711-061634-615533",
+    "last_update": "2026-07-11T06:21:40+00:00",
+    "started_at": "2026-07-11T06:16:34+00:00",
+    "task_id": "lohtor-application-form-2026"
   }
 }

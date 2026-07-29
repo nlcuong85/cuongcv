@@ -4,15 +4,47 @@ This note explains how the experimental job-search front door now uses the Frank
 
 ## What the 15:00 job actually does
 
-The Franklee 15:00 Europe/Berlin student cron is validator-first.
+The Franklee 15:00 Europe/Berlin student job is validator-first and currently runs through a systemd timer/service on the Franklee host, not through the old OpenClaw cron/agentTurn path.
+
+Current production surfaces:
+
+- SSH target: `root@100.124.166.95`
+- workspace: `/root/clawdFrankLee`
+- timer: `/etc/systemd/system/franklee-job-search-slack.timer`
+- service: `/etc/systemd/system/franklee-job-search-slack.service`
+- runner: `/usr/local/bin/franklee-job-search-slack-runner.py`
+- validator: `/root/clawdFrankLee/dist/job_search_prefilter.py`
+- output/manifest folder: `/root/.openclaw/manual-recovery/`
+- Slack channel: `C0AN1ENTLMQ`
 
 It runs the validator directly:
 
 ```bash
-python3 /root/clawdFrankLee/dist/job_search_prefilter.py --profile student --max-age-days 20 --format markdown
+python3 /root/clawdFrankLee/dist/job_search_prefilter.py --combined-1500 --max-age-days 20
 ```
 
-The cron prompt does not do extra discovery if the validator succeeds. It simply relays the validator output.
+The runner saves the report Markdown, validates the visible output contract, posts visible chunks to Slack, and writes a delivery manifest. Do not infer success from scheduler state alone; verify scheduler, report artifact, delivery manifest, and Slack timestamps separately.
+
+The old OpenClaw cron id `74e37d6d-099b-4ef8-84b1-53a5cbc06b43` is historical for this workflow. Do not re-enable it unless there is a deliberate migration plan.
+
+Health check:
+
+```bash
+ssh root@100.124.166.95 'systemctl list-timers franklee-job-search-slack.timer --all --no-pager'
+ssh root@100.124.166.95 'systemctl status franklee-job-search-slack.service --no-pager'
+ssh root@100.124.166.95 'journalctl -u franklee-job-search-slack.service --since "today 14:55" --no-pager'
+ssh root@100.124.166.95 'ls -lh /root/.openclaw/manual-recovery/job-search-$(date +%F)-1500*'
+```
+
+A healthy day has service `0/SUCCESS`, a `job-search-YYYY-MM-DD-1500.md` report, a `job-search-YYYY-MM-DD-1500.delivery.json` manifest with `status: posted`, and Slack `message_ts` values.
+
+Current visible report contract:
+
+- two sections only: `Section 1` for working student / internship / part-time and `Section 2` for full-time
+- no separate German-heavy `Section 3`
+- no-date jobs are allowed and render as `Posted: Date not found`
+- dated stale jobs are still rejected
+- one bad URL must become a row-level `fetch_failed`, not a whole-run failure
 
 ## What is implemented in this repo
 
@@ -99,7 +131,7 @@ That writes:
 
 ## Cheaper future path: direct live validator
 
-If the goal is a manual search run without paying the extra token cost of the cron bot's final post, use the validator directly over SSH:
+If the goal is a manual search run without triggering Slack delivery, use the validator directly over SSH:
 
 ```bash
 python3 experimental/job-search-next/scripts/import_live_franklee_validator.py \
@@ -114,7 +146,7 @@ This path does:
 
 1. call `/root/clawdFrankLee/dist/job_search_prefilter.py --format json` directly
 2. import the returned shortlist into `raw_leads.jsonl`
-3. avoid relying on the cron's LLM-written Slack summary
+3. avoid posting to Slack or relying on saved daily delivery artifacts
 
 If you want one command instead of two:
 

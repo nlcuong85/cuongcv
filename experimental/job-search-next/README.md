@@ -118,11 +118,22 @@ python3 experimental/job-search-next/scripts/run_search_queue.py \
   --description "Support product operations, requirements analysis, and AI-assisted workflows."
 ```
 
-The real local Franklee replica command is:
+The old local Franklee replica path may not exist on this Mac. Verify the checkout before using it:
 
 ```bash
 python3 /Users/pmlecuong/Documents/CuongProjects/OpenClaw-franklee/scripts/run_local_franklee_job_search.py --profile student --format json
 ```
+
+The live 3 p.m. Franklee job-search bot is currently maintained on the Franklee host as a systemd timer/service, not as the historical OpenClaw cron job:
+
+```bash
+ssh root@100.124.166.95 'systemctl list-timers franklee-job-search-slack.timer --all --no-pager'
+ssh root@100.124.166.95 'systemctl status franklee-job-search-slack.service --no-pager'
+ssh root@100.124.166.95 'journalctl -u franklee-job-search-slack.service --since "today 14:55" --no-pager'
+ssh root@100.124.166.95 'ls -lh /root/.openclaw/manual-recovery/job-search-$(date +%F)-1500*'
+```
+
+Healthy delivery means the service exited successfully, `/root/.openclaw/manual-recovery/job-search-YYYY-MM-DD-1500.md` exists, the matching `.delivery.json` has `status: posted`, and Slack message timestamps are present.
 
 Live Franklee April 13 run import:
 

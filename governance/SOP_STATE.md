@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-06-19T09:20:32+00:00`
+- updated_at: `2026-07-11T06:21:41+00:00`
 - current_phase: `postflight`
-- active_goal: Installed and validated the CuongCV durable SOP governance controller with transaction-wide locking.
+- active_goal: Completed and visually verified the filled Lohtor student accommodation application form with photo, September 1 start, and requested preferences.
 - active_task_id: `None`
-- work_session: `WS-20260619-091926-374796` active=`False`
+- work_session: `WS-20260711-061634-615533` active=`False`
 
 ## Required Resume Files
 
@@ -36,11 +36,11 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-06-19T09:20:13+00:00`
-- current: Installed and validated the CuongCV durable SOP governance controller with transaction-wide locking.
-- next: Use strict preflight, a fresh session, SOP-run validation, handoff, and postflight for the next substantial repository task.
+- updated_at: `2026-07-11T06:21:40+00:00`
+- current: Completed and visually verified the filled Lohtor student accommodation application form with photo, September 1 start, and requested preferences.
+- next: Review unfilled personal fields, then email the completed form to info@studentinheilbronn.de if ready.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: SOP.py, AGENTS.md, .gitignore, governance/SOP_RESEARCH.md, governance/SOP_SEQUENCE_DIAGRAM.md, governance/SOP_STATE.md, governance/.sop/state.json, docs/feature-notes/sop-governance-hardening-2026-06-19.md, tests/test_sop.py
+- files: output/doc/Lohtor.Nguyen.LeCuong.doc
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
@@ -55,27 +55,39 @@ When an agent resumes after context compaction or a new session:
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260619-091930-979827.log`
 - `2026-06-19T09:19:35+00:00` exit=0 `python3 -m unittest -v tests/test_sop.py`
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260619-091934-873662.log`
+- `2026-06-29T13:10:29+00:00` exit=0 `git diff --check`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260629-131029-837169.log`
+- `2026-07-11T06:19:32+00:00` exit=0 `/Users/pmlecuong/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 tmp/docs/fill_lohtor_form.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260711-061932-418356.log`
+- `2026-07-11T06:20:34+00:00` exit=0 `/Users/pmlecuong/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 tmp/docs/fill_lohtor_form.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260711-062034-607577.log`
 
 ## Latest Checkpoints
 
-- `2026-06-19T09:19:21+00:00` init: Initialized durable SOP governance state for the CuongCV repository.
-  - next_steps: Validate SOP.py; Update AGENTS.md and governance documentation
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md; /Users/pmlecuong/Documents/CuongProjects/CuongCV/SOP.py
-  - commands_run: python3 SOP.py init
-- `2026-06-19T09:19:31+00:00` py-compile: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 -m py_compile SOP.py tests/test_sop.py
-  - commands_run: python3 -m py_compile SOP.py tests/test_sop.py
-- `2026-06-19T09:19:35+00:00` sop-regression-tests: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 -m unittest -v tests/test_sop.py
-  - commands_run: python3 -m unittest -v tests/test_sop.py
-- `2026-06-19T09:20:13+00:00` postflight: Installed and validated the CuongCV durable SOP governance controller with transaction-wide locking.
-  - next_steps: Use strict preflight, a fresh session, SOP-run validation, handoff, and postflight for the next substantial repository task.
-  - files_changed: SOP.py; AGENTS.md; .gitignore; governance/SOP_RESEARCH.md; governance/SOP_SEQUENCE_DIAGRAM.md; governance/SOP_STATE.md; governance/.sop/state.json; docs/feature-notes/sop-governance-hardening-2026-06-19.md; tests/test_sop.py
+- `2026-06-29T13:10:41+00:00` handoff: Handoff updated: Updated CuongCV AGENTS, experimental Franklee docs, job-search-cuong skill, and Codex ad-hoc memory so the Franklee 15:00 job-search bot is documented as a systemd production workflow.
+  - next_steps: For future Franklee 15:00 bot checks, inspect systemd timer/service, manual-recovery report, delivery manifest, and Slack timestamps on root@100.124.166.95 before answering.
+  - commands_run: python3 SOP.py handoff
+- `2026-06-29T13:10:48+00:00` postflight: Strengthened Franklee 15:00 job-search bot governance: documented systemd production path, live verification commands, healthy-day criteria, stale OpenClaw cron warning, validator/report invariants, and durable memory update.
+  - next_steps: Use live Franklee systemd/report/manifest checks for any future 15:00 bot status or failure diagnosis.
+  - files_changed: AGENTS.md; experimental/job-search-next/docs/franklee-queue-integration.md; experimental/job-search-next/README.md; docs/feature-notes/franklee-1500-job-search-bot-2026-06-29.md
   - commands_run: python3 SOP.py postflight
-- `2026-06-19T09:20:14+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+- `2026-06-29T13:10:49+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
   - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
   - commands_run: python3 SOP.py postflight
-- `2026-06-19T09:20:32+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
+- `2026-07-11T06:16:34+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
   - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
   - commands_run: python3 SOP.py preflight
+- `2026-07-11T06:19:32+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: /Users/pmlecuong/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 tmp/docs/fill_lohtor_form.py
+  - commands_run: /Users/pmlecuong/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 tmp/docs/fill_lohtor_form.py
+- `2026-07-11T06:20:34+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: /Users/pmlecuong/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 tmp/docs/fill_lohtor_form.py
+  - commands_run: /Users/pmlecuong/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 tmp/docs/fill_lohtor_form.py
+- `2026-07-11T06:21:40+00:00` postflight: Completed and visually verified the filled Lohtor student accommodation application form with photo, September 1 start, and requested preferences.
+  - next_steps: Review unfilled personal fields, then email the completed form to info@studentinheilbronn.de if ready.
+  - files_changed: output/doc/Lohtor.Nguyen.LeCuong.doc
+  - commands_run: python3 SOP.py postflight
+- `2026-07-11T06:21:41+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
 
 ## Decisions
 

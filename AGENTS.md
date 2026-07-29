@@ -306,12 +306,59 @@ Examples:
 
 Handle it by:
 
-1. Use the repo-backed refresh script:
+1. Use the repo-backed refresh script when the local recovery checkout exists:
    - `/Users/pmlecuong/Documents/CuongProjects/OpenClaw-franklee/scripts/sync_franklee_snapshot.py`
-2. Treat `/Users/pmlecuong/Documents/CuongProjects/OpenClaw-franklee` as the recovery record repo
+2. Treat `/Users/pmlecuong/Documents/CuongProjects/OpenClaw-franklee` as the recovery record repo only after verifying that path exists; if it is missing, inspect the live Franklee host directly before assuming the checkout name or location
 3. Keep the snapshot sanitized and non-secret
 4. If the task is an SSD SOP execution, prefer the `sop-runner` hook path so the SOP and the Franklee backup stay coupled
 5. Update recovery docs when the live Franklee contract changes
+
+### 8. Franklee 15:00 job-search bot
+
+Examples:
+
+- “check the 3pm bot”
+- “why did the Franklee job search fail?”
+- “post today’s Franklee jobs to Slack”
+- “is the 15:00 bot healthy?”
+
+Handle it by:
+
+1. Treat the production 15:00 Germany job-search bot as a deterministic systemd job on Franklee, not as an OpenClaw cron/agentTurn job
+2. Inspect the live host before answering:
+   - SSH target: `root@100.124.166.95`
+   - workspace: `/root/clawdFrankLee`
+   - OpenClaw state: `/root/.openclaw`
+   - timer: `/etc/systemd/system/franklee-job-search-slack.timer`
+   - service: `/etc/systemd/system/franklee-job-search-slack.service`
+   - runner: `/usr/local/bin/franklee-job-search-slack-runner.py`
+   - validator: `/root/clawdFrankLee/dist/job_search_prefilter.py --combined-1500 --max-age-days 20`
+   - output and delivery manifests: `/root/.openclaw/manual-recovery/`
+   - Slack channel: `C0AN1ENTLMQ`
+3. Verify scheduler, payload, and delivery separately:
+   - `systemctl list-timers franklee-job-search-slack.timer --all --no-pager`
+   - `systemctl status franklee-job-search-slack.service --no-pager`
+   - `journalctl -u franklee-job-search-slack.service --since "<date> 14:55" --until "<date> 16:15" --no-pager`
+   - inspect `/root/.openclaw/manual-recovery/job-search-YYYY-MM-DD-1500.md`
+   - inspect `/root/.openclaw/manual-recovery/job-search-YYYY-MM-DD-1500.delivery.json`
+4. Do not treat `openclaw cron list` or the old cron run status as proof for this bot; the former OpenClaw cron id `74e37d6d-099b-4ef8-84b1-53a5cbc06b43` is historical and should not be re-enabled without an explicit migration plan
+5. A healthy day means:
+   - timer fired near `15:00 Europe/Berlin`
+   - service exited `0/SUCCESS`
+   - report Markdown exists
+   - delivery manifest has `status: posted`
+   - Slack message timestamps are present
+6. Runner behavior to preserve:
+   - idempotent repost prevention through the delivery manifest
+   - `FRANKLEE_FORCE_REPOST=1` only for intentional reposts
+   - Slack retry handling for transient failures and rate limits
+   - conservative visible message splitting
+7. Validator behavior to preserve:
+   - one bad job URL must become a row-level `fetch_failed`, not a whole-run failure
+   - catch partial reads such as `http.client.IncompleteRead`
+   - report format has exactly two sections: working-student/internship/part-time and full-time
+   - jobs without dates render as `Posted: Date not found`; stale rejection applies only when a date exists
+8. If this contract changes, update this file, `experimental/job-search-next/docs/franklee-queue-integration.md`, the `job-search-cuong` skill, and durable memory in the same work session
 
 ## Application Workflow Contract
 
