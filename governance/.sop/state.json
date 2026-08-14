@@ -1,5 +1,5 @@
 {
-  "active_goal": "Ran a second blind end-to-end regression using Aptiv Software Team, Coperion IT Process Management, and osapiens Product Management intakes. Each package was drafted from canonical facts plus application-mode authentic voice sources, rendered to a one-page cover PDF, reviewed by the local MCP in three distinct revisions, and checked by the local SOP. All PDFs passed the one-page check, the workspace audit returned workspace_current, and the SOP correctly blocked all releases because real MCP risk remained unresolved in each loop. The test also confirms that profile-only evidence is insufficient to obtain low-risk authentic copy without candidate-authored work examples.",
+  "active_goal": "Release the validated standalone MCP style-review enhancement and dependency-security updates to Franklee with a recoverable rollback checkpoint",
   "active_task_id": null,
   "checkpoints": [
     {
@@ -1226,6 +1226,79 @@
       "open_questions": [],
       "summary": "Postflight recorded fresh repository snapshot.",
       "time": "2026-08-14T21:04:36+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py kiro-start --spec resilient-application-mcp --task 10"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/kiro/specs/resilient-application-mcp/tasks.md"
+      ],
+      "label": "kiro-start",
+      "next_steps": [
+        "Update handoff after each meaningful unit of work.",
+        "Do not mark done without evidence."
+      ],
+      "open_questions": [],
+      "summary": "Started Kiro task resilient-application-mcp#10: 3 Add compatibility and regression tests for generic, hostile, and improved application drafts; prove existing high-risk examples cannot be downgraded merely by the new output layer. _Requirements: R33.1, R33.6_",
+      "time": "2026-08-14T21:18:38+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py kiro-done --spec resilient-application-mcp --task 10"
+      ],
+      "files_changed": [
+        "experimental/application-package-mcp/src/checker.ts"
+      ],
+      "label": "kiro-done",
+      "next_steps": [
+        "User reviews the three generated test cover-letter PDFs with their external engine."
+      ],
+      "open_questions": [],
+      "summary": "Completed Kiro task resilient-application-mcp#10: 3 Add compatibility and regression tests for generic, hostile, and improved application drafts; prove existing high-risk examples cannot be downgraded merely by the new output layer. _Requirements: R33.1, R33.6_",
+      "time": "2026-08-14T21:26:03+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "experimental/application-package-mcp/src/checker.ts"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "User reviews the three test PDFs with their external engine."
+      ],
+      "open_questions": [],
+      "summary": "Enhanced the standalone selected-text MCP style revision gate without weakening existing rules; verified three fresh one-page cover letters through the local HTTP MCP.",
+      "time": "2026-08-14T21:26:03+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-14T21:26:05+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-08-14T21:40:56+00:00"
     }
   ],
   "command_log": [
@@ -1371,17 +1444,17 @@
     "commands": [
       "python3 SOP.py postflight"
     ],
-    "current": "Ran a second blind end-to-end regression using Aptiv Software Team, Coperion IT Process Management, and osapiens Product Management intakes. Each package was drafted from canonical facts plus application-mode authentic voice sources, rendered to a one-page cover PDF, reviewed by the local MCP in three distinct revisions, and checked by the local SOP. All PDFs passed the one-page check, the workspace audit returned workspace_current, and the SOP correctly blocked all releases because real MCP risk remained unresolved in each loop. The test also confirms that profile-only evidence is insufficient to obtain low-risk authentic copy without candidate-authored work examples.",
+    "current": "Enhanced the standalone selected-text MCP style revision gate without weakening existing rules; verified three fresh one-page cover letters through the local HTTP MCP.",
     "files": [
-      "experimental/application-package-mcp/resources/application-kit/scripts/application_sop.py"
+      "experimental/application-package-mcp/src/checker.ts"
     ],
-    "next": "Collect candidate-authored employer bullets or source material for each target role, then use the same three-loop workflow without inventing evidence.",
+    "next": "User reviews the three test PDFs with their external engine.",
     "risk": "Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.",
-    "updated_at": "2026-08-14T21:04:35+00:00"
+    "updated_at": "2026-08-14T21:26:03+00:00"
   },
   "kiro": {
     "active_spec": "resilient-application-mcp",
-    "active_task": "1",
+    "active_task": null,
     "specs": {
       "resilient-application-mcp": {
         "created_at": "2026-08-14T19:13:43+00:00",
@@ -1398,6 +1471,20 @@
             "status": "in_progress",
             "title": "4 Add contract/fixture validation tests that prove no fixture or public resource embeds checker source, private rule lists, or personal production data. _Requirements: R18, R25, R27_",
             "updated_at": "2026-08-14T19:13:43+00:00"
+          },
+          "10": {
+            "checkbox": "pending",
+            "created_at": "2026-08-14T21:18:38+00:00",
+            "evidence": [
+              "Added the backward-compatible styleReview contract to selected-text checker responses, retained every existing signal and threshold, and passed npm test including hostile, revise, and ready-for-human-review MCP paths."
+            ],
+            "notes": [
+              "Enhance only the standalone selected-text style revision gate while preserving all existing checker signals and public MCP compatibility."
+            ],
+            "risk": "Style feedback is advisory, not an authorship verdict or detector-bypass guarantee.",
+            "status": "done",
+            "title": "3 Add compatibility and regression tests for generic, hostile, and improved application drafts; prove existing high-risk examples cannot be downgraded merely by the new output layer. _Requirements: R33.1, R33.6_",
+            "updated_at": "2026-08-14T21:26:03+00:00"
           },
           "2": {
             "checkbox": "pending",
@@ -1472,7 +1559,7 @@
             "updated_at": "2026-08-14T19:13:43+00:00"
           }
         },
-        "updated_at": "2026-08-14T19:24:06+00:00"
+        "updated_at": "2026-08-14T21:26:03+00:00"
       }
     }
   },
@@ -1480,7 +1567,7 @@
   "open_questions": [],
   "repo": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
   "repo_snapshot": {
-    "created_at": "2026-08-14T21:04:36+00:00",
+    "created_at": "2026-08-14T21:26:05+00:00",
     "directories": [
       ".github",
       ".github/workflows",
@@ -2131,8 +2218,8 @@
         "size": 2231
       },
       "experimental/application-package-mcp/dist/checker.js": {
-        "mtime": 1786740146,
-        "size": 32323
+        "mtime": 1786742749,
+        "size": 35406
       },
       "experimental/application-package-mcp/dist/docx.js": {
         "mtime": 1777492263,
@@ -2143,15 +2230,15 @@
         "size": 14966
       },
       "experimental/application-package-mcp/dist/index.js": {
-        "mtime": 1786740146,
-        "size": 74998
+        "mtime": 1786742749,
+        "size": 75043
       },
       "experimental/application-package-mcp/dist/pdf.js": {
         "mtime": 1777492263,
         "size": 4638
       },
       "experimental/application-package-mcp/dist/resources.js": {
-        "mtime": 1786740146,
+        "mtime": 1786742749,
         "size": 2318
       },
       "experimental/application-package-mcp/dist/storage.js": {
@@ -2899,12 +2986,12 @@
         "size": 4256
       },
       "experimental/application-package-mcp/src/checker.ts": {
-        "mtime": 1777837291,
-        "size": 30869
+        "mtime": 1786742353,
+        "size": 34122
       },
       "experimental/application-package-mcp/src/index.ts": {
-        "mtime": 1786739576,
-        "size": 74426
+        "mtime": 1786742396,
+        "size": 74467
       },
       "experimental/application-package-mcp/src/resources.ts": {
         "mtime": 1786739420,
@@ -2915,8 +3002,8 @@
         "size": 4885
       },
       "experimental/application-package-mcp/tests/mcp-http.test.mjs": {
-        "mtime": 1786739426,
-        "size": 17546
+        "mtime": 1786742744,
+        "size": 19719
       },
       "experimental/application-package-mcp/tests/smoke-remote.mjs": {
         "mtime": 1777834254,
@@ -3911,16 +3998,16 @@
         "size": 2042
       },
       "kiro/specs/resilient-application-mcp/design.md": {
-        "mtime": 1786734616,
-        "size": 26006
+        "mtime": 1786742313,
+        "size": 27383
       },
       "kiro/specs/resilient-application-mcp/requirements.md": {
-        "mtime": 1786734590,
-        "size": 41465
+        "mtime": 1786742297,
+        "size": 43136
       },
       "kiro/specs/resilient-application-mcp/tasks.md": {
-        "mtime": 1786734747,
-        "size": 11357
+        "mtime": 1786742313,
+        "size": 12098
       },
       "next-env.d.ts": {
         "mtime": 1756824220,
@@ -4337,14 +4424,14 @@
       "updated_at": "2026-06-19T09:20:07+00:00"
     }
   ],
-  "updated_at": "2026-08-14T21:04:36+00:00",
+  "updated_at": "2026-08-14T21:42:27+00:00",
   "work_session": {
-    "active": false,
-    "ended_at": "2026-08-14T21:04:35+00:00",
-    "goal": "Run a fresh end-to-end blind regression on three additional application packages through PDF rendering, MCP feedback, revision loops, and SOP release gates",
-    "id": "WS-20260814-205914-785444",
-    "last_update": "2026-08-14T21:04:35+00:00",
-    "started_at": "2026-08-14T20:59:14+00:00",
-    "task_id": "mcp-second-blind-regression"
+    "active": true,
+    "ended_at": null,
+    "goal": "Release the validated standalone MCP style-review enhancement and dependency-security updates to Franklee with a recoverable rollback checkpoint",
+    "id": "WS-20260814-214227-233019",
+    "last_update": "2026-08-14T21:42:27+00:00",
+    "started_at": "2026-08-14T21:42:27+00:00",
+    "task_id": "jobmcp-production-release"
   }
 }

@@ -14,6 +14,13 @@ export type CheckerResult = {
   summary: string;
   issues: CheckerIssue[];
   revisionPlan: string[];
+  styleReview: {
+    status: "revise" | "ready_for_human_review";
+    prioritySignals: string[];
+    revisionBrief: string[];
+    releaseDecision: "revise" | "ready_for_human_review";
+    limitations: string;
+  };
   doNotDo: string[];
   privacy: {
     stored: false;
@@ -242,6 +249,30 @@ const APPLICATION_ABSTRACT_NOUNS = [
   "discipline"
 ];
 
+const STYLE_SIGNAL_PRIORITY = [
+  "internal_language",
+  "generic_ai_phrase",
+  "application_template_phrase",
+  "application_template_sequence",
+  "generic_application_opening",
+  "application_paragraph_skeleton",
+  "repeated_sentence_starts",
+  "too_even_rhythm",
+  "paragraph_symmetry",
+  "list_like_sentence",
+  "thin_application_evidence_texture",
+  "missing_personal_work_anchor",
+  "missing_work_difficulty",
+  "missing_checked_artifact",
+  "abstract_application_language",
+  "unsupported_strength_word",
+  "long_average_sentence",
+  "academic_formulaic_phrase",
+  "missing_academic_specificity",
+  "missing_limitation_boundary",
+  "missing_human_texture"
+];
+
 function normalizeText(text: string): string {
   return text.replace(/\s+/g, " ").trim();
 }
@@ -349,6 +380,41 @@ function paragraphStartCounts(paragraphs: string[]): Map<string, number> {
 
 function addIssue(issues: CheckerIssue[], issue: CheckerIssue): void {
   issues.push(issue);
+}
+
+function buildStyleReview(mode: WritingMode, riskLevel: CheckerResult["riskLevel"], issues: CheckerIssue[]) {
+  const issueCodes = new Set(issues.map((issue) => issue.code));
+  const prioritySignals = STYLE_SIGNAL_PRIORITY.filter((code) => issueCodes.has(code)).slice(0, 4);
+  const revisionBrief: string[] = [];
+  const has = (codes: string[]) => codes.some((code) => issueCodes.has(code));
+
+  if (has(["generic_ai_phrase", "application_template_phrase", "application_template_sequence", "generic_application_opening"])) {
+    revisionBrief.push("Replace the formulaic application move with the actual job task or reader need; keep the claim plain and specific.");
+  }
+  if (has(["repeated_sentence_starts", "too_even_rhythm", "paragraph_symmetry", "long_average_sentence"])) {
+    revisionBrief.push("Rebuild the paragraph movement around the idea: one short framing line, one concrete explanation, and one concise implication.");
+  }
+  if (has(["thin_application_evidence_texture", "missing_personal_work_anchor", "missing_work_difficulty", "missing_checked_artifact", "missing_human_texture"])) {
+    revisionBrief.push("Use one real task, checked artifact, constraint, or lesson already known to the writer; do not add a new story or metric.");
+  }
+  if (has(["list_like_sentence", "abstract_application_language", "unsupported_strength_word"])) {
+    revisionBrief.push("Replace keyword stacks or broad strength claims with one bounded action and its practical consequence.");
+  }
+  if (mode === "application" && revisionBrief.length === 0 && riskLevel !== "low") {
+    revisionBrief.push("Keep the role trigger and contribution concrete, then simplify the sentence that sounds most polished rather than adding more material.");
+  }
+  if (riskLevel === "low") {
+    revisionBrief.push("Keep the wording factual and make only reader-value edits before human review.");
+  }
+
+  const releaseDecision = riskLevel === "low" ? "ready_for_human_review" : "revise";
+  return {
+    status: releaseDecision,
+    prioritySignals,
+    revisionBrief: revisionBrief.slice(0, 4),
+    releaseDecision,
+    limitations: "Style feedback is not an authorship verdict, an AI-detection score, or a detector-bypass guarantee."
+  } as const;
 }
 
 export function parseWritingMode(mode: string | undefined): WritingMode {
@@ -731,11 +797,13 @@ export function checkWritingHumanFit(input: {
           : "The writing needs revision before final use. Fix errors first, then reduce generic rhythm and unsupported claims.",
     issues,
     revisionPlan: buildRevisionPlan(mode, issues),
+    styleReview: buildStyleReview(mode, riskLevel, issues),
     doNotDo: [
       "Do not add fake stories, fake metrics, or deliberate grammar mistakes.",
       "Do not copy another person's tone or private examples.",
       "Do not treat any detector score as proof of authorship.",
-      "Do not weaken factual or academic correctness just to sound casual."
+      "Do not weaken factual or academic correctness just to sound casual.",
+      "Do not use synonym spinning, random slang, or deliberate detector evasion."
     ],
     privacy: {
       stored: false,

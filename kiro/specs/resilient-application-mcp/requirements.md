@@ -511,6 +511,19 @@ Explicitly excluded:
 3. The `health` and workspace-audit outputs SHALL include concise hygiene signals: current kit version, stale-output count, duplicate-source warning, large-directory warning, and whether a performance baseline is stale.
 4. The supported workflow SHALL avoid broad workspace scans during normal generation by using a maintained index/manifest and content hashes to reuse unchanged extraction/rendering outputs.
 
+### Requirement 33: Standalone selected-text style revision gate (R33)
+
+**User Story:** As a local AI agent, I want a private MCP checker that evaluates only the selected draft text and returns clear revision instructions, so that I can make an application read less templated and more naturally human without treating the result as proof of AI authorship.
+
+#### Acceptance Criteria
+
+1. The existing `check_writing_human_fit` tool SHALL remain backward compatible and SHALL retain every existing issue family; enhancements may add signals but may not silently remove or weaken a prior warning.
+2. The result SHALL add an additive structured `styleReview` object containing `status`, `prioritySignals`, `revisionBrief`, and `releaseDecision`; it SHALL state that style signals are not an authorship verdict or a detector-bypass guarantee.
+3. The checker SHALL operate on submitted text only. It SHALL not require a workspace manifest, candidate corpus, local file lookup, evidence record, or external-detector score.
+4. The revision brief SHALL be bounded, actionable, and preserve factual safety: no fabricated events, metrics, grammar mistakes, synonym spinning, or deliberate detector evasion.
+5. The application-mode gate SHALL preserve a three-revision-loop compatible release decision: a `ready_for_human_review` result is allowed only when no high-priority machine-like style signal remains; the local SOP remains responsible for artifact hashes and loop count.
+6. Tests SHALL prove compatibility with the existing result, additive structured feedback, hostile-text containment, and that known generic drafts do not receive a weaker outcome after the enhancement.
+
 ## Quality Attributes
 
 - Privacy: candidate documents and assets stay local by default.

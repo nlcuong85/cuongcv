@@ -66,6 +66,11 @@
   - [ ] 9.2 Update local developer/operator documentation with supported commands, troubleshooting, performance diagnosis, safe migration, privacy model, and explicit non-bypassable-limitations statement. _Requirements: R18D, R26, R29-R32_
   - [ ] 9.3 Prepare—but do not execute—a BuilderOps deployment checklist: Franklee runtime inventory, rollback point, compose rebuild/restart command, public health/MCP verification, and post-deploy manifest-audit call. _Requirements: R28_
 
+- [ ] 10. Enhance the standalone selected-text style revision gate without weakening existing checker behavior. _Requirements: R33_
+  - [ ] 10.1 Preserve the current checker result and every existing issue family; add an additive, bounded `styleReview` result for local agents. _Requirements: R33.1-R33.3_
+  - [ ] 10.2 Derive an ordered application-mode revision brief and release decision from the private issue result; explicitly prohibit factual invention and detector-evasion tactics. _Requirements: R33.4-R33.5_
+  - [ ] 10.3 Add compatibility and regression tests for generic, hostile, and improved application drafts; prove existing high-risk examples cannot be downgraded merely by the new output layer. _Requirements: R33.1, R33.6_
+
 ## Milestones
 
 | Milestone | User-testable outcome | Automated proof | Manual testcase |

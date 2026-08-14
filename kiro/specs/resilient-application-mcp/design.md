@@ -360,6 +360,26 @@ Signature uses `provided | declined | not_available | not_answered_after_request
 
 Receipts contain no CV, source text, contact data, photo, signature, or private checker explanation.
 
+## Standalone Selected-Text Style Revision Gate
+
+The private checker remains a selected-text service. It does not read a client workspace, require a personal corpus, or attempt to prove who authored a document. Its purpose is narrower: preserve the current private heuristics and turn their result into a concise, local-agent revision brief.
+
+`check_writing_human_fit` retains its current `riskLevel`, `issues`, `revisionPlan`, and `doNotDo` fields for compatibility. It adds the following bounded object:
+
+```json
+{
+  "styleReview": {
+    "status": "revise | ready_for_human_review",
+    "prioritySignals": ["bounded issue codes"],
+    "revisionBrief": ["up to four ordered local-agent actions"],
+    "releaseDecision": "revise | ready_for_human_review",
+    "limitations": "Style feedback is not an authorship verdict or a detector-bypass guarantee."
+  }
+}
+```
+
+The checker derives this object from the existing issue list after all existing signals run. High-priority signals include generic/template language, repeated or mechanically even structure, weak concrete work texture, excessive abstraction, and unsupported strength language. The new object cannot downgrade a pre-existing high-risk result; it only provides a more usable revision route. Local agents remain responsible for factual correctness, rendering, artifact hashes, and the existing three-loop SOP gate.
+
 ## Error Handling
 
 | Condition | SOP response | Candidate-facing guidance | Release state |

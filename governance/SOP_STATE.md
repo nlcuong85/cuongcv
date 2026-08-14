@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-14T21:04:36+00:00`
+- updated_at: `2026-08-14T21:42:27+00:00`
 - current_phase: `postflight`
-- active_goal: Ran a second blind end-to-end regression using Aptiv Software Team, Coperion IT Process Management, and osapiens Product Management intakes. Each package was drafted from canonical facts plus application-mode authentic voice sources, rendered to a one-page cover PDF, reviewed by the local MCP in three distinct revisions, and checked by the local SOP. All PDFs passed the one-page check, the workspace audit returned workspace_current, and the SOP correctly blocked all releases because real MCP risk remained unresolved in each loop. The test also confirms that profile-only evidence is insufficient to obtain low-risk authentic copy without candidate-authored work examples.
+- active_goal: Release the validated standalone MCP style-review enhancement and dependency-security updates to Franklee with a recoverable rollback checkpoint
 - active_task_id: `None`
-- work_session: `WS-20260814-205914-785444` active=`False`
+- work_session: `WS-20260814-214227-233019` active=`True`
 
 ## Required Resume Files
 
@@ -36,19 +36,22 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-08-14T21:04:35+00:00`
-- current: Ran a second blind end-to-end regression using Aptiv Software Team, Coperion IT Process Management, and osapiens Product Management intakes. Each package was drafted from canonical facts plus application-mode authentic voice sources, rendered to a one-page cover PDF, reviewed by the local MCP in three distinct revisions, and checked by the local SOP. All PDFs passed the one-page check, the workspace audit returned workspace_current, and the SOP correctly blocked all releases because real MCP risk remained unresolved in each loop. The test also confirms that profile-only evidence is insufficient to obtain low-risk authentic copy without candidate-authored work examples.
-- next: Collect candidate-authored employer bullets or source material for each target role, then use the same three-loop workflow without inventing evidence.
+- updated_at: `2026-08-14T21:26:03+00:00`
+- current: Enhanced the standalone selected-text MCP style revision gate without weakening existing rules; verified three fresh one-page cover letters through the local HTTP MCP.
+- next: User reviews the three test PDFs with their external engine.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: experimental/application-package-mcp/resources/application-kit/scripts/application_sop.py
+- files: experimental/application-package-mcp/src/checker.ts
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
 
 - active_spec: `resilient-application-mcp`
-- active_task: `1`
+- active_task: `None`
 - `resilient-application-mcp`
   - task `1` [in_progress] 4 Add contract/fixture validation tests that prove no fixture or public resource embeds checker source, private rule lists, or personal production data. _Requirements: R18, R25, R27_
+  - task `10` [done] 3 Add compatibility and regression tests for generic, hostile, and improved application drafts; prove existing high-risk examples cannot be downgraded merely by the new output layer. _Requirements: R33.1, R33.6_
+    - evidence: Added the backward-compatible styleReview contract to selected-text checker responses, retained every existing signal and threshold, and passed npm test including hostile, revise, and ready-for-human-review MCP paths.
+    - risk: Style feedback is advisory, not an authorship verdict or detector-bypass guarantee.
   - task `2` [pending] 4 Add unit tests for lock contention, interrupted write recovery, state/schema corruption, snapshot drift, handoff recovery, receipt evidence verification, and direct-artifact-without-receipt `NOT READY` handling. _Requirements: R18A-R18F, R27_
   - task `3` [pending] 5 Add regression fixtures/tests that prove read-only diagnosis, no migration without approval, protected-source preservation, and before/after timing reports. _Requirements: R29-R32, R27_
   - task `4` [pending] 5 Add tests for generic-voice consent, sparse-evidence reminder suppression after deferral, employer-bullet skip, unsupported JD skill handling, photo decision, and non-blocking signature absence. _Requirements: R6-R11, R7A-R7C, R27_
@@ -79,23 +82,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Latest Checkpoints
 
-- `2026-08-14T20:39:17+00:00` postflight: Ran blind fresh-generation regression on Schwarz Digits Cloud FinOps, Philips Service Operations Analyst, and Cinemo GenAI Evaluation using only selected job intakes and canonical profile facts. All three cover-letter PDFs failed because the local kit cannot resolve a workspace-relative signature path during LaTex compilation; all three drafts also triggered local authoring quality flags. CV HTML files were produced but are source-transcription rather than job-tailored CVs.
-  - next_steps: Fix relative signature-path resolution, then rerun the same three blind cases through actual MCP review and SOP release loops.
-  - files_changed: experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py
-  - commands_run: python3 SOP.py postflight
-- `2026-08-14T20:39:19+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
-- `2026-08-14T20:40:31+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
-  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
-  - commands_run: python3 SOP.py preflight
-- `2026-08-14T20:44:04+00:00` postflight: Fixed local workspace-relative signature resolution and reran the three blind cases. All three fresh cover PDFs compile as one-page A4 files; actual local MCP reviews returned non-low risk and the local SOP release gates correctly blocked finalization because loops 2/3 are absent and loop 1 remains unresolved. The current CV builder generated identical source-transcription HTML for all three jobs, so it is not yet JD-tailored.
-  - next_steps: Implement genuine JD-aware CV tailoring and revise each cover letter with candidate-authored evidence before attempting the three-loop release gate.
-  - files_changed: experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py
-  - commands_run: python3 SOP.py postflight
-- `2026-08-14T20:44:05+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
 - `2026-08-14T20:59:09+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
   - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
   - commands_run: python3 SOP.py preflight
@@ -106,6 +92,24 @@ When an agent resumes after context compaction or a new session:
 - `2026-08-14T21:04:36+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
   - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
   - commands_run: python3 SOP.py postflight
+- `2026-08-14T21:18:38+00:00` kiro-start: Started Kiro task resilient-application-mcp#10: 3 Add compatibility and regression tests for generic, hostile, and improved application drafts; prove existing high-risk examples cannot be downgraded merely by the new output layer. _Requirements: R33.1, R33.6_
+  - next_steps: Update handoff after each meaningful unit of work.; Do not mark done without evidence.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/kiro/specs/resilient-application-mcp/tasks.md
+  - commands_run: python3 SOP.py kiro-start --spec resilient-application-mcp --task 10
+- `2026-08-14T21:26:03+00:00` kiro-done: Completed Kiro task resilient-application-mcp#10: 3 Add compatibility and regression tests for generic, hostile, and improved application drafts; prove existing high-risk examples cannot be downgraded merely by the new output layer. _Requirements: R33.1, R33.6_
+  - next_steps: User reviews the three generated test cover-letter PDFs with their external engine.
+  - files_changed: experimental/application-package-mcp/src/checker.ts
+  - commands_run: python3 SOP.py kiro-done --spec resilient-application-mcp --task 10
+- `2026-08-14T21:26:03+00:00` postflight: Enhanced the standalone selected-text MCP style revision gate without weakening existing rules; verified three fresh one-page cover letters through the local HTTP MCP.
+  - next_steps: User reviews the three test PDFs with their external engine.
+  - files_changed: experimental/application-package-mcp/src/checker.ts
+  - commands_run: python3 SOP.py postflight
+- `2026-08-14T21:26:05+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
+- `2026-08-14T21:40:56+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
+  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
+  - commands_run: python3 SOP.py preflight
 
 ## Decisions
 

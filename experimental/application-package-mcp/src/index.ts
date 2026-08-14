@@ -306,6 +306,7 @@ async function createServer(): Promise<McpServer> {
         mode: result.mode,
         riskLevel: result.riskLevel,
         summary: result.summary,
+        styleReview: result.styleReview,
         revisionPlan: result.revisionPlan,
         topIssues: result.issues.slice(0, 8),
         doNotDo: result.doNotDo,
