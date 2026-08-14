@@ -644,6 +644,43 @@ def signature_path() -> str:
     return str((APP_ROOT / "signature.png").resolve())
 
 
+def prepare_signature_image(output_dir: Path) -> str:
+    source = APP_ROOT / "signature.png"
+    target = output_dir / "signature-rendered.png"
+    try:
+        from PIL import Image  # type: ignore
+
+        image = Image.open(source).convert("RGBA")
+        bbox = image.getbbox()
+        if bbox:
+            left = max(0, bbox[0] - 12)
+            top = max(0, bbox[1] - 12)
+            right = min(image.width, bbox[2] + 12)
+            bottom = min(image.height, bbox[3] + 12)
+            image = image.crop((left, top, right, bottom))
+        background = Image.new("RGBA", (900, 220), (255, 253, 248, 255))
+        x = max(0, (background.width - image.width) // 2)
+        y = max(0, (background.height - image.height) // 2)
+        background.alpha_composite(image, (x, y))
+        background.convert("RGB").save(target)
+    except Exception:
+        shutil.copy2(source, target)
+    return str(target.resolve())
+
+
+def inline_signature_svg(path: str) -> str:
+    try:
+        resolved = Path(path).resolve()
+        if resolved.suffix.lower() != ".svg":
+            return f'<img class="signature-image" src="{html_escape(resolved.as_uri())}" alt="Signature" />'
+        svg = resolved.read_text(encoding="utf-8").strip()
+        if "<svg" not in svg:
+            return f'<img class="signature-image" src="{html_escape(resolved.as_uri())}" alt="Signature" />'
+        return re.sub(r"<svg\s+", '<svg class="signature-image" role="img" aria-label="Signature" ', svg, count=1)
+    except Exception:
+        return ""
+
+
 def next_available_start(today: date | None = None) -> date:
     current = today or date.today()
     return current + timedelta(days=14)
@@ -851,6 +888,7 @@ def build_cover_letter_context(
     intake: dict[str, Any],
     selected_evidence: list[dict[str, Any]],
     authentic_voice: dict[str, Any],
+    prepared_signature_path: str | None = None,
 ) -> dict[str, str]:
     opening, body_one, body_two, motivation, closing = resolve_cover_letter_parts(
         role, intake, selected_evidence, authentic_voice
@@ -868,7 +906,7 @@ def build_cover_letter_context(
         "MOTIVATION_PARAGRAPH": latex_escape(motivation),
         "CLOSING_PARAGRAPH": latex_escape(closing),
         "SIGNATURE_NAME": latex_escape(profile["name"]),
-        "SIGNATURE_PATH": latex_escape(signature_path()),
+        "SIGNATURE_PATH": latex_escape(prepared_signature_path or signature_path()),
         "ENCLOSURES": latex_escape(", ".join(enclosure_lines(intake))),
         "ROLE_LABEL": latex_escape(role["label"]),
         "EVIDENCE_IDS": latex_escape(", ".join(item["id"] for item in selected_evidence)),
@@ -885,6 +923,7 @@ def build_cover_letter_html_context(
     intake: dict[str, Any],
     selected_evidence: list[dict[str, Any]],
     authentic_voice: dict[str, Any],
+    prepared_signature_path: str | None = None,
 ) -> dict[str, str]:
     plain_opening, plain_body_one, plain_body_two, motivation, plain_closing = resolve_cover_letter_parts(
         role, intake, selected_evidence, authentic_voice
@@ -900,8 +939,9 @@ def build_cover_letter_html_context(
         "BODY_PARAGRAPH_TWO": html_escape(plain_body_two),
         "MOTIVATION_PARAGRAPH": html_escape(motivation),
         "CLOSING_PARAGRAPH": html_escape(plain_closing),
+        "SIGNATURE_IMAGE": inline_signature_svg(prepared_signature_path or signature_path()),
         "SIGNATURE_NAME": html_escape(profile["name"]),
-        "SIGNATURE_PATH": html_escape(signature_path()),
+        "SIGNATURE_PATH": html_escape(prepared_signature_path or signature_path()),
         "ENCLOSURES": html_escape(", ".join(enclosure_lines(intake))),
         "ROLE_LABEL": html_escape(role["label"]),
         "EVIDENCE_IDS": html_escape(", ".join(item["id"] for item in selected_evidence)),
@@ -1495,6 +1535,12 @@ def print_cv_pdf(render_url: str, pdf_path: Path) -> None:
     )
 
 
+def print_html_pdf(html_path: Path, pdf_path: Path) -> None:
+    if not CHROME_PATH.exists():
+        raise FileNotFoundError(f"Google Chrome not found at {CHROME_PATH}")
+    subprocess.run([str(CHROME_PATH), "--headless", "--disable-gpu", "--no-first-run", "--virtual-time-budget=3000", "--no-pdf-header-footer", f"--print-to-pdf={pdf_path}", html_path.as_uri()], check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+
+
 def get_pdf_page_count(pdf_path: Path) -> int:
     result = subprocess.run(
         ["pdfinfo", str(pdf_path)],
@@ -1609,8 +1655,13 @@ def main() -> None:
         shutil.copytree(TEMPLATES_DIR / "fonts", output_dir / "fonts", dirs_exist_ok=True)
 
     selected_for_cover_letter = select_evidence(intake, primary_role, evidence_library, taxonomy)
-    cover_letter_context = build_cover_letter_context(profile, primary_role, intake, selected_for_cover_letter, authentic_voice)
-    cover_letter_html_context = build_cover_letter_html_context(profile, primary_role, intake, selected_for_cover_letter, authentic_voice)
+    prepared_signature_path = prepare_signature_image(cover_letter_dir)
+    cover_letter_context = build_cover_letter_context(
+        profile, primary_role, intake, selected_for_cover_letter, authentic_voice, prepared_signature_path
+    )
+    cover_letter_html_context = build_cover_letter_html_context(
+        profile, primary_role, intake, selected_for_cover_letter, authentic_voice, prepared_signature_path
+    )
     snapshot_payload = build_snapshot_payload(profile, primary_role, intake, selected_for_cover_letter, taxonomy)
     snapshot_tex_context = build_snapshot_context(profile, primary_role, intake, snapshot_payload, latex_mode=True)
     snapshot_html_context = build_snapshot_context(profile, primary_role, intake, snapshot_payload, latex_mode=False)
@@ -1700,7 +1751,7 @@ def main() -> None:
         )
 
     if args.compile_pdf:
-        compile_tex(cover_letter_dir / "cover_letter.tex")
+        print_html_pdf(cover_letter_dir / "cover_letter.html", cover_letter_dir / "cover_letter.pdf")
         cover_letter_pdf = archive_generated_pdf(
             cover_letter_dir / "cover_letter.pdf",
             cover_letter_dir,
@@ -1709,7 +1760,6 @@ def main() -> None:
             intake,
             render_id,
         )
-        sanitize_cover_letter_pdf(cover_letter_pdf)
         require_inter_font(cover_letter_pdf)
         cover_letter_pages = get_pdf_page_count(cover_letter_pdf)
         if cover_letter_pages > 1:
@@ -1717,7 +1767,7 @@ def main() -> None:
                 f"Generated cover letter PDF `{cover_letter_pdf}` is {cover_letter_pages} pages. "
                 "Cover letters must stay within 1 page."
             )
-        compile_tex(snapshot_dir / "role_fit_snapshot.tex")
+        print_html_pdf(snapshot_dir / "role_fit_snapshot.html", snapshot_dir / "role_fit_snapshot.pdf")
         snapshot_pdf = archive_generated_pdf(
             snapshot_dir / "role_fit_snapshot.pdf",
             snapshot_dir,

@@ -9,7 +9,9 @@ checker only for selected text that the student intentionally submits.
 from __future__ import annotations
 
 import argparse
+import html
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -51,6 +53,23 @@ REQUIRED_TEMPLATE_MARKERS = [
     "@@MOTIVATION_PARAGRAPH@@",
     "@@CLOSING_PARAGRAPH@@",
     "@@SIGNATURE_NAME@@",
+]
+
+REQUIRED_HTML_TEMPLATE_MARKERS = [
+    '@font-face',
+    'font-family: "Inter"',
+    "@@SENDER_BLOCK@@",
+    "@@RECIPIENT_BLOCK@@",
+    "@@DATE_LINE@@",
+    "@@SUBJECT_LINE@@",
+    "@@SALUTATION@@",
+    "@@OPENING_PARAGRAPH@@",
+    "@@BODY_PARAGRAPH_ONE@@",
+    "@@BODY_PARAGRAPH_TWO@@",
+    "@@MOTIVATION_PARAGRAPH@@",
+    "@@CLOSING_PARAGRAPH@@",
+    "@@SIGNATURE_NAME@@",
+    "@@ENCLOSURE_ITEMS@@",
 ]
 
 LOCAL_TEMPLATE_PHRASES = [
@@ -181,11 +200,27 @@ def join_latex_lines(lines: list[str]) -> str:
     return "\\\\\n".join(latex_escape(str(line).strip()) for line in lines if str(line).strip())
 
 
+def html_escape(value: str) -> str:
+    return html.escape(value, quote=True)
+
+
+def join_html_lines(lines: list[str]) -> str:
+    return "<br>\n".join(html_escape(str(line).strip()) for line in lines if str(line).strip())
+
+
 def validate_template(template: str) -> list[str]:
     errors: list[str] = []
     for marker in REQUIRED_TEMPLATE_MARKERS:
         if marker not in template:
             errors.append(f"Template is missing required marker or layout line: {marker}")
+    return errors
+
+
+def validate_html_template(template: str) -> list[str]:
+    errors: list[str] = []
+    for marker in REQUIRED_HTML_TEMPLATE_MARKERS:
+        if marker not in template:
+            errors.append(f"HTML template is missing required marker or layout line: {marker}")
     return errors
 
 
@@ -216,6 +251,38 @@ def build_mapping(draft: dict[str, Any]) -> dict[str, str]:
     return mapping
 
 
+def build_html_mapping(draft: dict[str, Any]) -> dict[str, str]:
+    enclosures = [
+        f"<li>{html_escape(str(item).strip())}</li>"
+        for item in list(draft.get("enclosures") or [
+            "Curriculum Vitae",
+            "Bachelor Degree Diploma",
+            "Reference letter from previous employers",
+        ])
+        if str(item).strip()
+    ]
+    signature_path = str(draft.get("signature_path") or "").strip()
+    signature_image = ""
+    if signature_path:
+        signature_image = inline_signature_svg(signature_path)
+    return {
+        "COMPANY_NAME": html_escape(str(draft.get("company_name") or "Application")),
+        "SENDER_BLOCK": join_html_lines(list(draft.get("sender_lines") or [])),
+        "RECIPIENT_BLOCK": join_html_lines(list(draft.get("recipient_lines") or [])),
+        "DATE_LINE": html_escape(str(draft.get("date_line") or "")),
+        "SUBJECT_LINE": html_escape(str(draft.get("subject_line") or "")),
+        "SALUTATION": html_escape(str(draft.get("salutation") or "Dear Hiring Team,")),
+        "OPENING_PARAGRAPH": html_escape(str(draft.get("opening_paragraph") or "")),
+        "BODY_PARAGRAPH_ONE": html_escape(str(draft.get("body_paragraph_one") or "")),
+        "BODY_PARAGRAPH_TWO": html_escape(str(draft.get("body_paragraph_two") or "")),
+        "MOTIVATION_PARAGRAPH": html_escape(str(draft.get("motivation_paragraph") or "")),
+        "CLOSING_PARAGRAPH": html_escape(str(draft.get("closing_paragraph") or "")),
+        "SIGNATURE_IMAGE": signature_image,
+        "SIGNATURE_NAME": html_escape(str(draft.get("signature_name") or "")),
+        "ENCLOSURE_ITEMS": "\n".join(enclosures),
+    }
+
+
 def render_template(template: str, mapping: dict[str, str]) -> str:
     rendered = template
     for key, value in mapping.items():
@@ -237,6 +304,50 @@ def resolve_local_signature_path(draft: dict[str, Any], draft_path: Path) -> dic
     return draft
 
 
+def prepare_signature_image(draft: dict[str, Any], output_dir: Path) -> dict[str, Any]:
+    signature_path = str(draft.get("signature_path") or "").strip()
+    if not signature_path:
+        return draft
+    source = Path(signature_path)
+    if not source.is_file():
+        return draft
+    target = output_dir / "signature-rendered.png"
+    try:
+        from PIL import Image  # type: ignore
+
+        image = Image.open(source).convert("RGBA")
+        bbox = image.getbbox()
+        if bbox:
+            left = max(0, bbox[0] - 12)
+            top = max(0, bbox[1] - 12)
+            right = min(image.width, bbox[2] + 12)
+            bottom = min(image.height, bbox[3] + 12)
+            image = image.crop((left, top, right, bottom))
+        background = Image.new("RGBA", (900, 220), (255, 253, 248, 255))
+        x = max(0, (background.width - image.width) // 2)
+        y = max(0, (background.height - image.height) // 2)
+        background.alpha_composite(image, (x, y))
+        background.convert("RGB").save(target)
+        prepared = dict(draft)
+        prepared["signature_path"] = str(target.resolve())
+        return prepared
+    except Exception:
+        return draft
+
+
+def inline_signature_svg(path: str) -> str:
+    try:
+        resolved = Path(path).resolve()
+        if resolved.suffix.lower() != ".svg":
+            return f'<img class="signature-image" src="{html_escape(resolved.as_uri())}" alt="Signature" />'
+        svg = resolved.read_text(encoding="utf-8").strip()
+        if "<svg" not in svg:
+            return f'<img class="signature-image" src="{html_escape(resolved.as_uri())}" alt="Signature" />'
+        return re.sub(r"<svg\s+", '<svg class="signature-image" role="img" aria-label="Signature" ', svg, count=1)
+    except Exception:
+        return ""
+
+
 def strip_signature_if_missing(tex: str, draft: dict[str, Any]) -> str:
     signature_path = str(draft.get("signature_path") or "").strip()
     if signature_path:
@@ -246,6 +357,22 @@ def strip_signature_if_missing(tex: str, draft: dict[str, Any]) -> str:
         "",
         tex,
     )
+
+
+def resolve_chrome() -> str | None:
+    candidates = [
+        os.environ.get("GOOGLE_CHROME_BIN"),
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "/Applications/Chromium.app/Contents/MacOS/Chromium",
+        shutil.which("google-chrome"),
+        shutil.which("google-chrome-stable"),
+        shutil.which("chromium"),
+        shutil.which("chromium-browser"),
+    ]
+    for candidate in candidates:
+        if candidate and Path(candidate).exists():
+            return str(candidate)
+    return None
 
 
 def validate_draft(draft: dict[str, Any]) -> Validation:
@@ -284,24 +411,27 @@ def validate_draft(draft: dict[str, Any]) -> Validation:
     return Validation(errors, warnings)
 
 
-def compile_pdf(tex_path: Path, output_dir: Path) -> tuple[Path | None, list[str]]:
+def print_html_pdf(html_path: Path, output_dir: Path) -> tuple[Path | None, list[str]]:
     warnings: list[str] = []
-    compiler = shutil.which("xelatex")
-    if not compiler:
-        warnings.append("xelatex not found; Inter cover letters cannot be compiled. Install a TeX Live distribution with XeLaTeX.")
+    chrome = resolve_chrome()
+    if not chrome:
+        warnings.append("Google Chrome or Chromium not found; install Chrome or set GOOGLE_CHROME_BIN to render the Inter PDF.")
         return None, warnings
+    pdf_path = output_dir / "cover-letter.pdf"
     cmd = [
-        compiler,
-        "-interaction=nonstopmode",
-        "-halt-on-error",
-        "-output-directory=.",
-        tex_path.name,
+        chrome,
+        "--headless",
+        "--disable-gpu",
+        "--no-first-run",
+        "--no-pdf-header-footer",
+        "--virtual-time-budget=3000",
+        f"--print-to-pdf={pdf_path}",
+        html_path.resolve().as_uri(),
     ]
-    proc = subprocess.run(cmd, cwd=output_dir, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=False)
+    proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=False)
     if proc.returncode != 0:
-        warnings.append("pdflatex failed:\n" + proc.stdout[-2500:])
+        warnings.append("Chrome PDF rendering failed:\n" + proc.stdout[-2500:])
         return None, warnings
-    pdf_path = output_dir / (tex_path.stem + ".pdf")
     return pdf_path if pdf_path.exists() else None, warnings
 
 
@@ -324,7 +454,7 @@ def validate_pdf(pdf_path: Path | None) -> Validation:
     errors: list[str] = []
     warnings: list[str] = []
     if not pdf_path:
-        errors.append("Hard typography gate cannot pass: install XeLaTeX to compile an Inter PDF.")
+        errors.append("Hard typography gate cannot pass: Chrome did not produce an Inter PDF.")
         return Validation(errors, warnings)
     pages = pdf_page_count(pdf_path)
     if pages is None:
@@ -336,10 +466,13 @@ def validate_pdf(pdf_path: Path | None) -> Validation:
         errors.append("Hard typography gate cannot run: install Poppler pdffonts to verify Inter is embedded.")
     else:
         output = subprocess.run([pdffonts, str(pdf_path)], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True, check=False).stdout
-        if "Inter" not in output:
-            errors.append("Hard typography gate failed: cover-letter PDF does not embed Inter.")
+        if "Inter-Regular" not in output or "Inter-Bold" not in output:
+            errors.append("Hard typography gate failed: cover-letter PDF does not embed Inter Regular and Inter Bold.")
+        for forbidden_font in ["LMRoman", "TeXGyre", "NimbusRomNo9", "Times-Roman"]:
+            if forbidden_font in output:
+                errors.append(f"Hard typography gate failed: forbidden non-Inter font detected: {forbidden_font}.")
     data = pdf_path.read_bytes()
-    for token in [b"/OpenAction", b"/AA", b"/JavaScript", b"/JS"]:
+    for token in [b"/OpenAction", b"/JavaScript", b"/JS"]:
         if token in data:
             errors.append(f"PDF contains active-content marker: {token.decode()}")
     pdftotext = shutil.which("pdftotext")
@@ -457,22 +590,28 @@ def main() -> int:
 
     script_root = Path(__file__).resolve().parents[1]
     template_path = args.template or script_root / "templates" / "cover_letter.tex"
+    html_template_path = script_root / "templates" / "cover_letter.html"
     output_dir = args.output_dir
     output_dir.mkdir(parents=True, exist_ok=True)
     shutil.copytree(script_root / "fonts", output_dir / "fonts", dirs_exist_ok=True)
 
-    draft = resolve_local_signature_path(read_json(args.draft), args.draft.resolve())
+    draft = prepare_signature_image(resolve_local_signature_path(read_json(args.draft), args.draft.resolve()), output_dir)
     template = template_path.read_text(encoding="utf-8")
+    html_template = html_template_path.read_text(encoding="utf-8")
     template_validation = Validation(validate_template(template), [])
+    html_template_validation = Validation(validate_html_template(html_template), [])
     draft_validation = validate_draft(draft)
     authoring_validation = local_authoring_checks(draft)
     tex_path = output_dir / "cover-letter.tex"
+    html_path = output_dir / "cover-letter.html"
     if template_validation.ok:
         tex = strip_signature_if_missing(render_template(template, build_mapping(draft)), draft)
         tex_path.write_text(tex, encoding="utf-8")
         write_cover_letter_md(draft, output_dir / "cover-letter.md")
+    if html_template_validation.ok:
+        html_path.write_text(render_template(html_template, build_html_mapping(draft)), encoding="utf-8")
 
-    pdf_path, compile_warnings = compile_pdf(tex_path, output_dir) if tex_path.exists() else (None, [])
+    pdf_path, compile_warnings = print_html_pdf(html_path, output_dir) if html_path.exists() else (None, [])
     compile_validation = Validation([], compile_warnings)
     pdf_validation = validate_pdf(pdf_path)
 
@@ -482,6 +621,7 @@ def main() -> int:
 
     results = {
         "template": template_validation,
+        "html_template": html_template_validation,
         "draft": draft_validation,
         "local_authoring": authoring_validation,
         "compile": compile_validation,
@@ -495,6 +635,7 @@ def main() -> int:
         "template": str(template_path),
         "outputs": {
             "tex": str(tex_path) if tex_path.exists() else "",
+            "html": str(html_path) if html_path.exists() else "",
             "pdf": str(pdf_path) if pdf_path else "",
             "cover_letter_md": str(output_dir / "cover-letter.md"),
             "cv_tailored_md": str(output_dir / "cv-tailored.md") if (output_dir / "cv-tailored.md").exists() else "",

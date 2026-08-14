@@ -35,7 +35,7 @@ export async function readResourceBinary(relativePath: string): Promise<Buffer> 
 export async function readTemplateDirectory(relativePath: string): Promise<TemplateFile[]> {
   const root = path.join(resourcesDir(), relativePath);
   const files: TemplateFile[] = [];
-  const binarySuffixes = [".pdf", ".png", ".jpg", ".jpeg", ".svg"];
+  const binarySuffixes = [".pdf", ".png", ".jpg", ".jpeg", ".svg", ".ttf", ".otf", ".woff", ".woff2"];
 
   async function walk(current: string): Promise<void> {
     const entries = await fs.readdir(current, { withFileTypes: true });

@@ -13,10 +13,11 @@ import os
 import time
 from pathlib import Path
 
-KIT_VERSION = "2026.08.15-inter-hard-gate.1"
+KIT_VERSION = "2026.08.15-browser-inter-hard-gate.1"
 MANAGED = [
     "AGENTS.md", "scripts/application_sop.py", "scripts/mcp_check_client.mjs",
-    "application-kit/manifest.json", "application-kit/templates/cover_letter.tex",
+    "application-kit/manifest.json", "application-kit/templates/cover_letter.html",
+    "application-kit/templates/cover_letter.tex",
     "application-kit/contracts/typography-contract.md", "application-kit/scripts/local_application_generator.py",
 ]
 REQUIRED = ["profile", "voice", "candidate/source", "jobs", "applications", ".mcp"]

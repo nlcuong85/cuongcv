@@ -153,6 +153,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.equal(kit.root, "application-kit");
       assert.equal(kit.manifest.mode, "local-only");
       assert.equal(kit.manifest.privacy.advanced_checker_rules_in_bundle, false);
+      assert.ok(kit.files.some((file) => file.path === "templates/cover_letter.html"));
       assert.ok(kit.files.some((file) => file.path === "templates/cover_letter.tex"));
       assert.ok(kit.files.some((file) => file.path === "contracts/typography-contract.md"));
       assert.ok(kit.files.some((file) => file.path === "scripts/local_application_generator.py"));
@@ -162,6 +163,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.ok(!kit.files.some((file) => file.path.includes("ai-checker")));
       assert.ok(!kit.files.some((file) => file.path.includes("voice-safety")));
       assert.ok(!kit.files.some((file) => file.path.endsWith("cover-letter.pdf")));
+      assert.ok(!kit.files.some((file) => file.path.endsWith(".ttf")));
       assert.ok(!kit.files.some((file) => file.path.endsWith("signature-rendered.png")));
       assert.ok(!kit.files.some((file) => file.path.includes("__pycache__")));
       assert.ok(!kit.files.some((file) => file.path.endsWith(".pyc")));
@@ -169,6 +171,9 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       const coverLetterTemplate = kit.files.find((file) => file.path === "templates/cover_letter.tex");
       assert.match(coverLetterTemplate.content, /usepackage\{fontspec\}/);
       assert.match(coverLetterTemplate.content, /setmainfont\{Inter-Regular\}/);
+      const coverLetterHtmlTemplate = kit.files.find((file) => file.path === "templates/cover_letter.html");
+      assert.match(coverLetterHtmlTemplate.content, /@font-face/);
+      assert.match(coverLetterHtmlTemplate.content, /Inter-Regular\.ttf/);
 
       const checkResult = await client.callTool({
         name: "check_writing_human_fit",

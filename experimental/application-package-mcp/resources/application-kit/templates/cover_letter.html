@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>@@COMPANY_NAME@@ Cover Letter Preview</title>
+    <title>@@COMPANY_NAME@@ Cover Letter</title>
     <style>
       @font-face {
         font-family: "Inter";
@@ -14,17 +14,16 @@
         src: url("fonts/Inter-Bold.ttf") format("truetype");
         font-weight: 700;
       }
+
       :root {
         --ink: #1f2933;
         --muted: #52606d;
-        --line: #d9e2ec;
         --paper: #fffdf8;
-        --accent: #8d6e63;
       }
 
       body {
         margin: 0;
-        background: linear-gradient(180deg, #f7f4ef 0%, #efebe4 100%);
+        background: #fff;
         color: var(--ink);
         font-family: Inter, Arial, Helvetica, sans-serif;
       }
@@ -32,10 +31,9 @@
       .page {
         width: 210mm;
         min-height: 297mm;
-        margin: 24px auto;
+        margin: 0;
         padding: 36mm 20mm 18mm 25mm;
         background: var(--paper);
-        box-shadow: 0 18px 45px rgba(31, 41, 51, 0.12);
         box-sizing: border-box;
       }
 
@@ -51,20 +49,9 @@
       }
 
       .recipient-row {
-        display: block;
         margin-top: 18px;
         font-size: 12px;
         color: var(--muted);
-      }
-
-      .recipient,
-      .sender,
-      .date-line,
-      .subject,
-      .paragraph,
-      .signature-block,
-      .enclosure {
-        white-space: pre-line;
       }
 
       .date-line {
@@ -84,12 +71,13 @@
 
       .paragraph {
         margin-top: 10px;
-        line-height: 1.33;
         font-size: 12px;
+        line-height: 1.33;
       }
 
       .signature-block {
         margin-top: 14px;
+        white-space: pre-line;
       }
 
       .signature-image {
@@ -109,24 +97,14 @@
         font-size: 11px;
       }
 
-      @page { size: A4; margin: 0; }
-      @media print {
-        body { background: #fff; }
-        .page { width: 210mm; min-height: 297mm; margin: 0; box-shadow: none; }
-        .meta { display: none; }
-      }
-
       .enclosure li + li {
         margin-top: 2px;
       }
 
-      .meta {
-        margin-top: 28px;
-        padding: 14px 16px;
-        background: rgba(141, 110, 99, 0.08);
-        border-left: 4px solid var(--accent);
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        font-size: 12px;
+      @page { size: A4; margin: 0; }
+      @media print {
+        body { background: #fff; }
+        .page { width: 210mm; min-height: 297mm; margin: 0; box-shadow: none; }
       }
     </style>
   </head>
@@ -148,19 +126,12 @@
       <div class="paragraph">@@CLOSING_PARAGRAPH@@</div>
       <div class="signature-block">Best regards,
         @@SIGNATURE_IMAGE@@
-    @@SIGNATURE_NAME@@</div>
+@@SIGNATURE_NAME@@</div>
       <div class="enclosure"><strong>Enclosure:</strong>
         <ul>
-          <li>Curriculum Vitae</li>
-          <li>Bachelor Degree Diploma</li>
-          <li>Reference letter from previous employers</li>
+          @@ENCLOSURE_ITEMS@@
         </ul>
       </div>
-      <div class="meta">Primary role preset: @@ROLE_LABEL@@
-
-Evidence used: @@EVIDENCE_IDS@@
-
-Contact lookup: @@CONTACT_LOOKUP_STATUS@@</div>
     </main>
   </body>
 </html>

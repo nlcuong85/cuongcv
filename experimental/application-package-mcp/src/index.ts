@@ -16,7 +16,7 @@ import {
   samplePromptsDocument
 } from "./resources.js";
 
-const VERSION = "0.2.2";
+const VERSION = "0.2.3";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
@@ -36,7 +36,7 @@ const PUBLIC_TOOLS = [
   "suggest_writing_revision"
 ];
 
-const WORKSPACE_KIT_VERSION = "2026.08.15-inter-hard-gate.1";
+const WORKSPACE_KIT_VERSION = "2026.08.15-browser-inter-hard-gate.1";
 const REQUIRED_WORKSPACE_PATHS = [
   "AGENTS.md",
   ".mcp/workspace-manifest.json",
@@ -52,6 +52,7 @@ const REQUIRED_WORKSPACE_PATHS = [
   "scripts/application_quality_loop.py",
   "scripts/mcp_check_client.mjs",
   "application-kit/manifest.json",
+  "application-kit/templates/cover_letter.html",
   "application-kit/templates/cover_letter.tex",
   "application-kit/contracts/typography-contract.md",
   "application-kit/scripts/local_application_generator.py"
@@ -63,6 +64,7 @@ const MANAGED_HASHED_PATHS = [
   "scripts/application_sop.py",
   "scripts/mcp_check_client.mjs",
   "application-kit/manifest.json",
+  "application-kit/templates/cover_letter.html",
   "application-kit/templates/cover_letter.tex",
   "application-kit/contracts/typography-contract.md",
   "application-kit/scripts/local_application_generator.py"
@@ -120,7 +122,7 @@ async function auditWorkspaceManifest(manifest: {
       : { available: false },
     typography: {
       profile: "inter-regular-and-bold",
-      status: hashMismatches.includes("application-kit/templates/cover_letter.tex") ? "template_mismatch" : "verified_by_managed_hash",
+      status: hashMismatches.some((path) => path.startsWith("application-kit/templates/cover_letter.")) ? "template_mismatch" : "verified_by_managed_hash",
       message: "Cover letters must embed Inter Regular/Bold. No substitute font is allowed."
     },
     reminders: {

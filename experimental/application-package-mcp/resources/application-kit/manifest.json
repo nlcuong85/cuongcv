@@ -1,6 +1,6 @@
 {
   "kit_id": "application-kit",
-  "version": "2026.08.15-inter-hard-gate.1",
+  "version": "2026.08.15-browser-inter-hard-gate.1",
   "mode": "local-only",
   "privacy": {
     "remote_processing": "selected writing checks only through MCP tools",
@@ -11,7 +11,11 @@
   "resources": [
     {
       "path": "templates/cover_letter.tex",
-      "description": "Strict one-page business-letter LaTeX template with Inter as a hard gate."
+      "description": "Editable source template retained for review and migration compatibility."
+    },
+    {
+      "path": "templates/cover_letter.html",
+      "description": "Canonical strict one-page browser-print template with Inter as a hard gate."
     },
     {
       "path": "scripts/install_inter_fonts.py",
@@ -64,6 +68,7 @@
   ],
   "expected_outputs": [
     "cover-letter-draft.json",
+    "cover-letter.html",
     "cover-letter.tex",
     "cover-letter.pdf",
     "cover-letter.md",

@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-14T22:44:39+00:00`
+- updated_at: `2026-08-14T23:20:39+00:00`
 - current_phase: `postflight`
-- active_goal: Require exact Inter typography across application cover letters and MCP client workspaces; regenerate and validate three cover letters
+- active_goal: Fix Inter PDF rendering via browser print path and run fresh-client MCP end-to-end validation for three cover letters
 - active_task_id: `None`
-- work_session: `WS-20260814-224439-835070` active=`True`
+- work_session: `WS-20260814-230649-088711` active=`True`
 
 ## Required Resume Files
 
@@ -63,50 +63,41 @@ When an agent resumes after context compaction or a new session:
 
 ## Recent Commands
 
-- `2026-08-14T17:38:18+00:00` exit=0 `rm -rf experimental/application-package-mcp/samples/classmate-workspace`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173818-647921.log`
-- `2026-08-14T17:38:26+00:00` exit=0 `npm ci`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173823-667556.log`
-- `2026-08-14T17:38:27+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173826-262738.log`
-- `2026-08-14T17:38:29+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173827-966974.log`
-- `2026-08-14T17:38:47+00:00` exit=0 `rm -rf experimental/application-package-mcp/samples/local-kit-regression/workspace`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173847-872526.log`
-- `2026-08-14T17:40:17+00:00` exit=0 `git diff --check`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-174017-865009.log`
-- `2026-08-14T17:40:19+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-174017-952957.log`
-- `2026-08-14T22:35:09+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-223506-890649.log`
+- `2026-08-14T23:13:37+00:00` exit=1 `python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-svg --compile-pdf`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231331-636796.log`
+- `2026-08-14T23:14:48+00:00` exit=1 `python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-inline-svg --compile-pdf`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231443-085422.log`
+- `2026-08-14T23:16:45+00:00` exit=0 `python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-reportlab-mercedes --compile-pdf`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231639-837330.log`
+- `2026-08-14T23:18:24+00:00` exit=0 `python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-chrome-safe-signature-mercedes --compile-pdf`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231816-916227.log`
+- `2026-08-14T23:19:20+00:00` exit=0 `python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-final-mercedes --compile-pdf`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231912-878635.log`
+- `2026-08-14T23:19:34+00:00` exit=0 `python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-final-demo`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231931-402186.log`
+- `2026-08-14T23:20:19+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-232014-127936.log`
+- `2026-08-14T23:20:39+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-232034-568334.log`
 
 ## Latest Checkpoints
 
-- `2026-08-14T22:01:18+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
-- `2026-08-14T22:29:08+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
-  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
-  - commands_run: python3 SOP.py preflight
-- `2026-08-14T22:35:09+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+- `2026-08-14T23:13:37+00:00` run: Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-svg --compile-pdf
+  - commands_run: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-svg --compile-pdf
+- `2026-08-14T23:14:48+00:00` run: Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-inline-svg --compile-pdf
+  - commands_run: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-inline-svg --compile-pdf
+- `2026-08-14T23:16:45+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-reportlab-mercedes --compile-pdf
+  - commands_run: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-reportlab-mercedes --compile-pdf
+- `2026-08-14T23:18:24+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-chrome-safe-signature-mercedes --compile-pdf
+  - commands_run: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-chrome-safe-signature-mercedes --compile-pdf
+- `2026-08-14T23:19:20+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-final-mercedes --compile-pdf
+  - commands_run: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-final-mercedes --compile-pdf
+- `2026-08-14T23:19:34+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-final-demo
+  - commands_run: python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-final-demo
+- `2026-08-14T23:20:19+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
   - commands_run: npm test
-- `2026-08-14T22:38:36+00:00` postflight: Locked application typography to a portable modern sans-serif across the local generator and public MCP kit; added managed-hash audit enforcement; released MCP v0.2.1 on Franklee and regenerated three one-page cover letters.
-  - next_steps: User can review the three regenerated cover-letter PDFs; any newly scaffolded workspace will be prompted to update if its locked template drifts.
-  - files_changed: experimental/application-package-mcp/src/index.ts
-  - commands_run: python3 SOP.py postflight
-- `2026-08-14T22:38:38+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
-- `2026-08-14T22:39:28+00:00` postflight: Released MCP v0.2.1 typography contract: the local and public kit now lock portable TeX Gyre Heros sans-serif templates through managed hashes. Production health and public workspace audit passed. Aptiv, 4flow, and Mercedes cover-letter regressions are one page, embed TeXGyreHeros Regular/Bold, and pass rule checks.
-  - next_steps: User reviews the three regenerated cover-letter PDFs.
-  - files_changed: experimental/application-package-mcp/resources/application-kit/contracts/typography-contract.md
-  - commands_run: python3 SOP.py postflight
-- `2026-08-14T22:39:29+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
-- `2026-08-14T22:41:59+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
-  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
-  - commands_run: python3 SOP.py preflight
+- `2026-08-14T23:20:39+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+  - commands_run: npm test
 
 ## Decisions
 

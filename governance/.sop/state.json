@@ -1,5 +1,5 @@
 {
-  "active_goal": "Require exact Inter typography across application cover letters and MCP client workspaces; regenerate and validate three cover letters",
+  "active_goal": "Fix Inter PDF rendering via browser print path and run fresh-client MCP end-to-end validation for three cover letters",
   "active_task_id": null,
   "checkpoints": [
     {
@@ -1466,6 +1466,162 @@
       "open_questions": [],
       "summary": "Preflight completed: status, resume brief, and audit check were run.",
       "time": "2026-08-14T22:41:59+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-browser-inter-demo"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-230934-694818.log",
+      "summary": "Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-browser-inter-demo",
+      "time": "2026-08-14T23:09:37+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-browser-inter-demo"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-230958-707126.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-browser-inter-demo",
+      "time": "2026-08-14T23:10:01+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes --compile-pdf"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231011-303339.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes --compile-pdf",
+      "time": "2026-08-14T23:10:19+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-fixed --compile-pdf"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231144-489279.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-fixed --compile-pdf",
+      "time": "2026-08-14T23:11:49+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-jpg --compile-pdf"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231230-624659.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-jpg --compile-pdf",
+      "time": "2026-08-14T23:12:36+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-svg --compile-pdf"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231331-636796.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-svg --compile-pdf",
+      "time": "2026-08-14T23:13:37+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-inline-svg --compile-pdf"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231443-085422.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-inline-svg --compile-pdf",
+      "time": "2026-08-14T23:14:48+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-reportlab-mercedes --compile-pdf"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231639-837330.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-reportlab-mercedes --compile-pdf",
+      "time": "2026-08-14T23:16:45+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-chrome-safe-signature-mercedes --compile-pdf"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231816-916227.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-chrome-safe-signature-mercedes --compile-pdf",
+      "time": "2026-08-14T23:18:24+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-final-mercedes --compile-pdf"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231912-878635.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-final-mercedes --compile-pdf",
+      "time": "2026-08-14T23:19:20+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-final-demo"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231931-402186.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-final-demo",
+      "time": "2026-08-14T23:19:34+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-232014-127936.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-14T23:20:19+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-232034-568334.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-14T23:20:39+00:00"
     }
   ],
   "command_log": [
@@ -1604,6 +1760,110 @@
       "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-223506-890649.log",
       "started_at": "2026-08-14T22:35:06+00:00",
       "time": "2026-08-14T22:35:09+00:00"
+    },
+    {
+      "command": "python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-browser-inter-demo",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
+      "exit_code": 2,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-230934-694818.log",
+      "started_at": "2026-08-14T23:09:34+00:00",
+      "time": "2026-08-14T23:09:37+00:00"
+    },
+    {
+      "command": "python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-browser-inter-demo",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-230958-707126.log",
+      "started_at": "2026-08-14T23:09:58+00:00",
+      "time": "2026-08-14T23:10:01+00:00"
+    },
+    {
+      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes --compile-pdf",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231011-303339.log",
+      "started_at": "2026-08-14T23:10:11+00:00",
+      "time": "2026-08-14T23:10:19+00:00"
+    },
+    {
+      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-fixed --compile-pdf",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
+      "exit_code": 1,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231144-489279.log",
+      "started_at": "2026-08-14T23:11:44+00:00",
+      "time": "2026-08-14T23:11:49+00:00"
+    },
+    {
+      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-jpg --compile-pdf",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
+      "exit_code": 1,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231230-624659.log",
+      "started_at": "2026-08-14T23:12:30+00:00",
+      "time": "2026-08-14T23:12:36+00:00"
+    },
+    {
+      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-svg --compile-pdf",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
+      "exit_code": 1,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231331-636796.log",
+      "started_at": "2026-08-14T23:13:31+00:00",
+      "time": "2026-08-14T23:13:37+00:00"
+    },
+    {
+      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-inline-svg --compile-pdf",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
+      "exit_code": 1,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231443-085422.log",
+      "started_at": "2026-08-14T23:14:43+00:00",
+      "time": "2026-08-14T23:14:48+00:00"
+    },
+    {
+      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-reportlab-mercedes --compile-pdf",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231639-837330.log",
+      "started_at": "2026-08-14T23:16:39+00:00",
+      "time": "2026-08-14T23:16:45+00:00"
+    },
+    {
+      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-chrome-safe-signature-mercedes --compile-pdf",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231816-916227.log",
+      "started_at": "2026-08-14T23:18:16+00:00",
+      "time": "2026-08-14T23:18:24+00:00"
+    },
+    {
+      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-final-mercedes --compile-pdf",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231912-878635.log",
+      "started_at": "2026-08-14T23:19:12+00:00",
+      "time": "2026-08-14T23:19:20+00:00"
+    },
+    {
+      "command": "python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-final-demo",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231931-402186.log",
+      "started_at": "2026-08-14T23:19:31+00:00",
+      "time": "2026-08-14T23:19:34+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-232014-127936.log",
+      "started_at": "2026-08-14T23:20:14+00:00",
+      "time": "2026-08-14T23:20:19+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-232034-568334.log",
+      "started_at": "2026-08-14T23:20:34+00:00",
+      "time": "2026-08-14T23:20:39+00:00"
     }
   ],
   "created_at": "2026-06-19T09:19:21+00:00",
@@ -4685,14 +4945,14 @@
       "updated_at": "2026-06-19T09:20:07+00:00"
     }
   ],
-  "updated_at": "2026-08-14T22:44:39+00:00",
+  "updated_at": "2026-08-14T23:20:39+00:00",
   "work_session": {
     "active": true,
     "ended_at": null,
-    "goal": "Require exact Inter typography across application cover letters and MCP client workspaces; regenerate and validate three cover letters",
-    "id": "WS-20260814-224439-835070",
-    "last_update": "2026-08-14T22:44:39+00:00",
-    "started_at": "2026-08-14T22:44:39+00:00",
-    "task_id": "inter-font-hard-gate-20260815"
+    "goal": "Fix Inter PDF rendering via browser print path and run fresh-client MCP end-to-end validation for three cover letters",
+    "id": "WS-20260814-230649-088711",
+    "last_update": "2026-08-14T23:06:49+00:00",
+    "started_at": "2026-08-14T23:06:49+00:00",
+    "task_id": "mcp-fresh-client-inter-e2e"
   }
 }
