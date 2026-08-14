@@ -727,13 +727,13 @@ def summarize_evidence_for_cover_letter(selected: list[dict[str, Any]]) -> tuple
         paragraph(
             f"At {first.get('company') or first.get('role')}, one useful part of my work was this: {cover_letter_action(first['actions'][0])}",
             first["results"][0],
-            "That trained me to turn discussion into material another person could review and use",
+            "That trained me to turn discussion into acceptance criteria, workflow notes, and material another person could review and use",
         ),
         paragraph(
             f"A later example came from {second.get('company') or second.get('role')}",
             second["actions"][0],
             second["results"][0],
-            "The useful part was not only the delivery result, but the habit of making the work traceable for the next decision",
+            "The useful part was not only the delivery result, but the habit of making requirement notes and decision handovers traceable for the next decision",
         ),
     )
 
