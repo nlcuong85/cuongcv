@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-14T23:20:39+00:00`
+- updated_at: `2026-08-14T23:26:20+00:00`
 - current_phase: `postflight`
-- active_goal: Fix Inter PDF rendering via browser print path and run fresh-client MCP end-to-end validation for three cover letters
+- active_goal: Fixed cover-letter PDF rendering by using Chrome HTML with Inter, safe-canvas PNG signatures, no qpdf rewrite; deployed MCP v0.2.3; bootstrapped fresh client from public MCP and validated three cover letters with remote audit/checker.
 - active_task_id: `None`
-- work_session: `WS-20260814-230649-088711` active=`True`
+- work_session: `WS-20260814-230649-088711` active=`False`
 
 ## Required Resume Files
 
@@ -36,11 +36,11 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-08-14T22:39:28+00:00`
-- current: Released MCP v0.2.1 typography contract: the local and public kit now lock portable TeX Gyre Heros sans-serif templates through managed hashes. Production health and public workspace audit passed. Aptiv, 4flow, and Mercedes cover-letter regressions are one page, embed TeXGyreHeros Regular/Bold, and pass rule checks.
-- next: User reviews the three regenerated cover-letter PDFs.
+- updated_at: `2026-08-14T23:26:18+00:00`
+- current: Fixed cover-letter PDF rendering by using Chrome HTML with Inter, safe-canvas PNG signatures, no qpdf rewrite; deployed MCP v0.2.3; bootstrapped fresh client from public MCP and validated three cover letters with remote audit/checker.
+- next: User reviews fresh-client PDFs under /tmp/jobmcp-fresh-client.Ufao4Y/applications/.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: experimental/application-package-mcp/resources/application-kit/contracts/typography-contract.md
+- files: application-system/scripts/generate_application.py, experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py, experimental/application-package-mcp/resources/application-kit/templates/cover_letter.html
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
@@ -82,10 +82,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Latest Checkpoints
 
-- `2026-08-14T23:13:37+00:00` run: Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-svg --compile-pdf
-  - commands_run: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-svg --compile-pdf
-- `2026-08-14T23:14:48+00:00` run: Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-inline-svg --compile-pdf
-  - commands_run: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-inline-svg --compile-pdf
 - `2026-08-14T23:16:45+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-reportlab-mercedes --compile-pdf
   - commands_run: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-reportlab-mercedes --compile-pdf
 - `2026-08-14T23:18:24+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-chrome-safe-signature-mercedes --compile-pdf
@@ -98,6 +94,13 @@ When an agent resumes after context compaction or a new session:
   - commands_run: npm test
 - `2026-08-14T23:20:39+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
   - commands_run: npm test
+- `2026-08-14T23:26:18+00:00` postflight: Fixed cover-letter PDF rendering by using Chrome HTML with Inter, safe-canvas PNG signatures, no qpdf rewrite; deployed MCP v0.2.3; bootstrapped fresh client from public MCP and validated three cover letters with remote audit/checker.
+  - next_steps: User reviews fresh-client PDFs under /tmp/jobmcp-fresh-client.Ufao4Y/applications/.
+  - files_changed: application-system/scripts/generate_application.py; experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py; experimental/application-package-mcp/resources/application-kit/templates/cover_letter.html
+  - commands_run: python3 SOP.py postflight
+- `2026-08-14T23:26:20+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
 
 ## Decisions
 
