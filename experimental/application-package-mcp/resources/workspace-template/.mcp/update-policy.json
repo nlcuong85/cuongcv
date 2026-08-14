@@ -1,0 +1,5 @@
+{
+  "check_on_every_session": true,
+  "auto_apply_safe_updates": false,
+  "notify_only_when_action_needed": true
+}

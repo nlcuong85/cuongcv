@@ -1,0 +1,7 @@
+node_modules
+dist
+data
+tests
+samples
+npm-debug.log
+.DS_Store

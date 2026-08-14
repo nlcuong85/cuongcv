@@ -1,0 +1,14 @@
+{
+  "evidence": [
+    {
+      "id": "example_project_001",
+      "type": "project",
+      "claim": "Built or contributed to a specific project.",
+      "source": "Portfolio URL, GitHub URL, certificate, transcript, or user-provided file path.",
+      "date": "YYYY-MM-DD",
+      "strength": "medium",
+      "notes": "Explain what this evidence proves and what it does not prove.",
+      "usable_for": ["application", "social", "personal"]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "identity": {
+    "full_name": "Full Legal Name",
+    "preferred_name": "Preferred Name",
+    "pronouns": "",
+    "current_location": "City, Country",
+    "public_links": []
+  },
+  "contact": {
+    "email": "",
+    "phone": "",
+    "address": "",
+    "linkedin": "",
+    "portfolio": "",
+    "github": ""
+  },
+  "education": [
+    {
+      "institution": "University Name",
+      "degree": "Degree Name",
+      "field": "Field of Study",
+      "location": "City, Country",
+      "start": "YYYY",
+      "end": "Present",
+      "grade": "",
+      "notes": []
+    }
+  ],
+  "work_history": [
+    {
+      "organization": "Organization Name",
+      "title": "Role Title",
+      "location": "City, Country",
+      "start": "YYYY-MM",
+      "end": "YYYY-MM or Present",
+      "bullets": [
+        "Describe a verified responsibility, result, or contribution."
+      ],
+      "tools": [],
+      "domains": []
+    }
+  ],
+  "projects": [
+    {
+      "name": "Project Name",
+      "summary": "One factual sentence about what the project is.",
+      "role": "Role in the project",
+      "url": "",
+      "tools": [],
+      "evidence_ids": []
+    }
+  ],
+  "skills": {
+    "core": [],
+    "tools": [],
+    "domain": []
+  },
+  "languages": [
+    {
+      "language": "English",
+      "level": "B2/C1/native/etc.",
+      "evidence": ""
+    }
+  ],
+  "certifications": [],
+  "target_directions": [],
+  "constraints": {
+    "availability": "",
+    "location_preferences": [],
+    "visa_or_work_limits": "",
+    "must_not_claim": []
+  }
+}

@@ -1,0 +1,139 @@
+- generic [ref=e2]:
+  - navigation "Main navigation" [ref=e3]:
+    - link "Student Application AI Helper" [ref=e4] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e5]:
+      - link "How it works" [ref=e6] [cursor=pointer]:
+        - /url: "#how"
+      - link "Quality gates" [ref=e7] [cursor=pointer]:
+        - /url: "#gates"
+      - link "Privacy" [ref=e8] [cursor=pointer]:
+        - /url: "#privacy"
+      - link "Prompts" [ref=e9] [cursor=pointer]:
+        - /url: /sample-prompts
+  - main [ref=e10]:
+    - generic [ref=e11]:
+      - generic [ref=e12]: Local-first career coach + MCP
+      - heading "Turn your real experience into a stronger application." [level=1] [ref=e13]
+      - paragraph [ref=e14]: A guided workspace for creating an evidence-grounded, editable CV and a recruiter-ready cover letter—while you remain in control of your private files and every final decision.
+      - generic [ref=e15]:
+        - link "Start with a guided prompt" [ref=e16] [cursor=pointer]:
+          - /url: /sample-prompts
+        - link "See the process" [ref=e17] [cursor=pointer]:
+          - /url: "#how"
+      - paragraph [ref=e18]:
+        - text: For an AI agent, connect to
+        - code [ref=e19]: https://jobmcp.pmlecuong.com/mcp
+        - text: . The agent works in your local folder; this MCP provides the kit, a privacy-safe structure audit, and optional selected-text feedback.
+    - complementary "Four-stage application process" [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]: "1"
+          - generic [ref=e24]:
+            - heading "Check the workspace" [level=2] [ref=e25]
+            - paragraph [ref=e26]: The local SOP boots, audits folder health, and identifies safe updates or drift.
+        - generic [ref=e27]:
+          - generic [ref=e28]: "2"
+          - generic [ref=e29]:
+            - heading "Build your evidence" [level=2] [ref=e30]
+            - paragraph [ref=e31]: Use your CV, job description, personal bullets, documents, and real writing samples.
+        - generic [ref=e32]:
+          - generic [ref=e33]: "3"
+          - generic [ref=e34]:
+            - heading "Draft locally" [level=2] [ref=e35]
+            - paragraph [ref=e36]: Create an editable HTML CV and a role-specific cover letter from verified material.
+        - generic [ref=e37]:
+          - generic [ref=e38]: "4"
+          - generic [ref=e39]:
+            - heading "Review before release" [level=2] [ref=e40]
+            - paragraph [ref=e41]: One CV review; three cover-letter review loops; then a local release receipt.
+  - generic [ref=e42]:
+    - generic [ref=e43]: What the helper actually does
+    - heading "It makes the preparation process visible, not mysterious." [level=2] [ref=e44]
+    - paragraph [ref=e45]: "The local AI agent acts like a calm career coach: it explains the best next step, asks for missing evidence, and says plainly when a document is still not ready. It never invents work experience or promises an application outcome."
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]: Workspace health
+        - paragraph [ref=e49]: Every supported workflow starts with a privacy-safe manifest audit. Older folders can be diagnosed for drift, duplicate material, and slow stages before any migration is approved.
+      - generic [ref=e50]:
+        - generic [ref=e51]: Evidence, not generic claims
+        - paragraph [ref=e52]: For each employer, the agent recommends at least 10 personal bullets—15 is even better—then selects the best verified four or five for a job.
+      - generic [ref=e53]:
+        - generic [ref=e54]: Editable HTML CV
+        - paragraph [ref=e55]: Bring a PDF, DOCX, or HTML CV. The original stays safe; the working CV becomes editable HTML, with a PDF derivative when available.
+      - generic [ref=e56]:
+        - generic [ref=e57]: Voice and supporting material
+        - paragraph [ref=e58]: Writing samples and supporting documents are optional but improve accuracy. If you skip them, the agent explains the tradeoff instead of pretending the result is equally personal.
+      - generic [ref=e59]:
+        - generic [ref=e60]: Photo and signature choices
+        - paragraph [ref=e61]: The agent asks about a CV photo and a cover-letter signature. Provide them if you want; decline or defer them and the workflow still continues honestly.
+      - generic [ref=e62]:
+        - generic [ref=e63]: Selected-text feedback
+        - paragraph [ref=e64]: The private MCP checker receives only text you deliberately choose to review. It returns high-level guidance; its private rules never go into your workspace.
+  - generic [ref=e65]:
+    - generic [ref=e66]: The real workflow
+    - heading "Your files stay local. The quality process stays accountable." [level=2] [ref=e67]
+    - paragraph [ref=e68]: This is the full path for a job application. The public service cannot browse your files; the local agent creates a minimal manifest for structure and version checks instead.
+    - generic [ref=e69]:
+      - img "Sequence diagram showing the candidate, local AI agent, local application SOP, local files, and the public MCP working together" [ref=e71]
+      - generic [ref=e72]:
+        - generic [ref=e73]:
+          - strong [ref=e74]: Start with what you have
+          - paragraph [ref=e75]: CV (PDF, DOCX, or HTML), role/JD, and your own evidence are the minimum useful starting point.
+        - generic [ref=e76]:
+          - strong [ref=e77]: Measure old folders first
+          - paragraph [ref=e78]: If a package takes too long, diagnosis records timing and structure problems before anyone changes protected files.
+        - generic [ref=e79]:
+          - strong [ref=e80]: Keep choice with the candidate
+          - paragraph [ref=e81]: The agent can recommend stronger inputs and flag risk, but you decide whether to provide optional material or continue with an informed tradeoff.
+        - link "Open technical flow and PlantUML source" [ref=e82] [cursor=pointer]:
+          - /url: /technical-flow
+  - generic [ref=e83]:
+    - generic [ref=e84]: Hard local gates
+    - heading "The documents do not become “ready” just because a chat says so." [level=2] [ref=e85]
+    - paragraph [ref=e86]: The local Application SOP records the current artifact, review history, and release state. It catches edits made after review instead of treating an old approval as permanent.
+    - generic [ref=e87]:
+      - article [ref=e88]:
+        - text: CV
+        - heading "One review loop" [level=3] [ref=e89]
+        - paragraph [ref=e90]: Review the editable CV against the job and visual structure. If you accept a known weakness, it is recorded clearly; otherwise the agent explains what needs fixing.
+      - article [ref=e91]:
+        - text: Cover letter
+        - heading "Three distinct loops" [level=3] [ref=e92]
+        - paragraph [ref=e93]: Each loop requires a current draft and a real revision record. The local SOP releases the letter only after it can verify all three loops against the latest file.
+  - generic [ref=e94]:
+    - generic [ref=e95]: Privacy boundary
+    - heading "Useful feedback without uploading your whole career history." [level=2] [ref=e96]
+    - generic [ref=e97]:
+      - generic [ref=e98]:
+        - strong [ref=e99]: Stays on your device
+        - text: Source CV, evidence, profile, writing samples, job files, photos, signatures, drafts, outputs, and SOP history.
+      - generic [ref=e100]:
+        - strong [ref=e101]: Can be sent deliberately
+        - text: A privacy-safe folder manifest for update/audit guidance, or selected writing text for a quality review.
+      - generic [ref=e102]:
+        - strong [ref=e103]: Comes back from the MCP
+        - text: "Workspace/version guidance and selected-text feedback: issues, risk labels, and practical revision direction."
+      - generic [ref=e104]:
+        - strong [ref=e105]: What it does not claim
+        - text: It is not an authorship verdict or an AI-detection bypass. It helps you make writing clearer, more evidenced, and more trustworthy.
+  - generic [ref=e106]:
+    - generic [ref=e107]: Ready when you are
+    - heading "Start with the files you already have. Improve the package one honest step at a time." [level=2] [ref=e108]
+    - paragraph [ref=e109]: The prompt page tells your AI agent exactly how to set up, audit, prepare, draft, and review the local workspace.
+    - generic [ref=e110]:
+      - link "Open guided prompts" [ref=e111] [cursor=pointer]:
+        - /url: /sample-prompts
+      - link "Read privacy details" [ref=e112] [cursor=pointer]:
+        - /url: /privacy
+  - contentinfo [ref=e113]:
+    - generic [ref=e114]: Student Application AI Helper · local-first application workflow
+    - generic [ref=e115]:
+      - link "Service health" [ref=e116] [cursor=pointer]:
+        - /url: /health
+      - text: ·
+      - link "Sample prompts" [ref=e117] [cursor=pointer]:
+        - /url: /sample-prompts
+      - text: ·
+      - link "Technical flow" [ref=e118] [cursor=pointer]:
+        - /url: /technical-flow

@@ -1,0 +1,52 @@
+@startuml
+' Traceability:
+' - resilient-application-mcp requirements: R15-R18, R24-R28
+title Private Selected-Text Review
+
+skinparam backgroundColor #FFF8EA
+skinparam sequence {
+  ArrowColor #167766
+  LifeLineBorderColor #DFD4BD
+  LifeLineBackgroundColor #FFFDF7
+  ParticipantBorderColor #123F37
+  ParticipantBackgroundColor #ECFEF4
+  ParticipantFontColor #17130F
+  BoxBorderColor #DFD4BD
+  BoxBackgroundColor #FFFDF7
+}
+skinparam titleFontSize 20
+skinparam sequenceMessageAlign center
+
+actor "Candidate" as Candidate
+box "Candidate laptop" #FFFDF7
+participant "Local AI agent" as Agent
+database "Local workspace\nCV, evidence, job, drafts" as Local
+end box
+participant "MCP checker\nserver" as Checker
+
+Candidate -> Agent: Ask for an application package or writing review
+Agent -> Local: Read verified local sources and draft locally
+Agent --> Candidate: Show draft, evidence gaps, and next review action
+Candidate -> Agent: Approve a selected passage for review
+Agent -> Checker: Send selected text + writing mode
+Checker -> Checker: Apply private safety and quality checks
+Checker --> Agent: Return issue categories, risk, and revision guidance
+Agent -> Local: Revise locally; record the review loop
+
+alt CV
+  Agent --> Candidate: Present one required CV review
+else Cover letter
+  loop Three distinct local review/revision loops
+    Agent --> Candidate: Show current draft and what changed
+  end
+  Agent --> Candidate: Release only when local SOP verifies current evidence
+else Other writing
+  Agent --> Candidate: Return local revision with clear limitations
+end
+
+legend right
+Full workspace remains local: CV, notes, job files, drafts, PDFs, photos, and signatures.
+Only selected text is submitted. The server returns feedback, never its private checker logic.
+endlegend
+
+@enduml

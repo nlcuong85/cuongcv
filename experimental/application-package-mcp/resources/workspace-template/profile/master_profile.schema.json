@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Digital Twin Master Profile",
+  "type": "object",
+  "required": [
+    "identity",
+    "contact",
+    "education",
+    "work_history",
+    "projects",
+    "skills",
+    "languages",
+    "target_directions",
+    "constraints"
+  ],
+  "properties": {
+    "identity": {
+      "type": "object",
+      "required": ["full_name", "preferred_name"],
+      "properties": {
+        "full_name": {"type": "string"},
+        "preferred_name": {"type": "string"},
+        "pronouns": {"type": "string"},
+        "current_location": {"type": "string"},
+        "public_links": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "email": {"type": "string"},
+        "phone": {"type": "string"},
+        "address": {"type": "string"},
+        "linkedin": {"type": "string"},
+        "portfolio": {"type": "string"},
+        "github": {"type": "string"}
+      }
+    },
+    "education": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["institution", "degree", "start", "end"],
+        "properties": {
+          "institution": {"type": "string"},
+          "degree": {"type": "string"},
+          "field": {"type": "string"},
+          "location": {"type": "string"},
+          "start": {"type": "string"},
+          "end": {"type": "string"},
+          "grade": {"type": "string"},
+          "notes": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "work_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["organization", "title", "start", "end", "bullets"],
+        "properties": {
+          "organization": {"type": "string"},
+          "title": {"type": "string"},
+          "location": {"type": "string"},
+          "start": {"type": "string"},
+          "end": {"type": "string"},
+          "bullets": {"type": "array", "items": {"type": "string"}},
+          "tools": {"type": "array", "items": {"type": "string"}},
+          "domains": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "summary"],
+        "properties": {
+          "name": {"type": "string"},
+          "summary": {"type": "string"},
+          "role": {"type": "string"},
+          "url": {"type": "string"},
+          "tools": {"type": "array", "items": {"type": "string"}},
+          "evidence_ids": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "skills": {
+      "type": "object",
+      "required": ["core", "tools"],
+      "properties": {
+        "core": {"type": "array", "items": {"type": "string"}},
+        "tools": {"type": "array", "items": {"type": "string"}},
+        "domain": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["language", "level"],
+        "properties": {
+          "language": {"type": "string"},
+          "level": {"type": "string"},
+          "evidence": {"type": "string"}
+        }
+      }
+    },
+    "certifications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "issuer": {"type": "string"},
+          "date": {"type": "string"},
+          "url": {"type": "string"}
+        }
+      }
+    },
+    "target_directions": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "availability": {"type": "string"},
+        "location_preferences": {"type": "array", "items": {"type": "string"}},
+        "visa_or_work_limits": {"type": "string"},
+        "must_not_claim": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

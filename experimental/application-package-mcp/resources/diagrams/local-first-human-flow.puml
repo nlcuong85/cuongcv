@@ -1,0 +1,62 @@
+@startuml
+' Traceability:
+' - resilient-application-mcp requirements: R1-R23, R29-R32
+' - resilient-application-mcp design: local SOP, manifest audit, release gates
+title Local-First Application Workflow
+
+skinparam backgroundColor #FFFFFF
+skinparam sequence {
+  ArrowColor #0F766E
+  LifeLineBorderColor #CBD5E1
+  LifeLineBackgroundColor #F8FAFC
+  ParticipantBorderColor #0F172A
+  ParticipantBackgroundColor #ECFEFF
+  ParticipantFontColor #0F172A
+  BoxBorderColor #CBD5E1
+  BoxBackgroundColor #F8FAFC
+}
+skinparam titleFontSize 18
+skinparam sequenceMessageAlign center
+
+actor Candidate
+box "Candidate laptop (private workspace)" #F8FAFC
+participant "Local AI agent" as Agent
+participant "Application SOP\n+ workspace audit" as SOP
+database "Local files\nCV, evidence, voice, job, drafts" as Local
+end box
+participant "Public MCP\nkit + selected-text review" as MCP
+
+Candidate -> Agent: Start or resume an application
+Agent -> SOP: Strict boot and workspace health check
+SOP -> Local: Read privacy-safe inventory and timing data
+SOP -> MCP: Audit manifest + check kit version
+MCP --> SOP: Current / update guidance only
+SOP --> Agent: Readiness, drift, and next action
+Agent --> Candidate: Explain what to provide and why
+
+Candidate -> Local: Add CV (PDF, DOCX, or HTML), job, evidence, voice
+Agent -> Local: Preserve source, extract locally, build evidence inventory
+Agent --> Candidate: Ask for photo choice and cover-letter signature
+Agent -> Local: Build editable HTML CV and cover-letter draft
+
+group CV review gate (one loop)
+  Candidate -> Agent: Review CV and confirm or accept stated risks
+  Agent -> SOP: Record current CV review against artifact hash
+end
+
+group Cover-letter release gate (three distinct loops)
+  Agent -> MCP: Send only chosen cover-letter text for review
+  MCP --> Agent: Feedback and high-level risk result
+  Agent -> Local: Revise locally and record loop 1, 2, 3
+  SOP -> Local: Verify distinct current drafts before release receipt
+end
+
+SOP --> Candidate: HTML/PDF outputs, readiness report, and receipt
+
+legend right
+Private local files never leave the candidate workspace.
+MCP receives a privacy-safe manifest or text deliberately selected for review.
+The service returns guidance; it does not expose private checker rules.
+endlegend
+
+@enduml

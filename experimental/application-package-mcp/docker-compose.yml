@@ -1,0 +1,18 @@
+services:
+  application-package-mcp:
+    build: .
+    container_name: application-package-mcp
+    restart: unless-stopped
+    environment:
+      HOST: 0.0.0.0
+      PORT: 5920
+      # Optional second layer when exposing beyond Tailscale/Cloudflare Access.
+      # APPLICATION_MCP_TOKEN: change-me
+    ports:
+      - "5920:5920"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:5920/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

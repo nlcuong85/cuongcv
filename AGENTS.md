@@ -360,6 +360,33 @@ Handle it by:
    - jobs without dates render as `Posted: Date not found`; stale rejection applies only when a date exists
 8. If this contract changes, update this file, `experimental/job-search-next/docs/franklee-queue-integration.md`, the `job-search-cuong` skill, and durable memory in the same work session
 
+### 9. Student Application AI Helper MCP on Franklee
+
+Examples:
+
+- “update jobmcp.pmlecuong.com”
+- “change the student application MCP landing page”
+- “test the Student Application AI Helper”
+- “add a tool to the application-package MCP”
+
+This is a separate public, consent-based student writing service. It is not the private Cuong job-search tracker and it must never use Cuong's private CV profile, application evidence, tone archive, recruiter history, or `application-system/` outputs as student data.
+
+Handle it by:
+
+1. Read `experimental/application-package-mcp/LOCAL_CHECKOUT.md` and the local service `README.md` before editing.
+2. Treat `experimental/application-package-mcp/` as the local source-only development checkout. It deliberately excludes Franklee `data/`, credentials, dependencies, candidate workspaces, and generated packages.
+3. Use `builder-ops` for live-host work and verify the actual runtime before assuming a deployment path:
+   - SSH target: `root@100.124.166.95` (public-key fallback: `root@62.171.139.42`)
+   - Franklee source/runtime path: `/DATA/AppData/application-package-mcp`
+   - container: `application-package-mcp`
+   - browser landing page: `https://jobmcp.pmlecuong.com/`
+   - MCP endpoint: `https://jobmcp.pmlecuong.com/mcp`
+   - health endpoint: `https://jobmcp.pmlecuong.com/health`
+4. The MCP has a human landing page and a Streamable HTTP endpoint. Validate these separately: landing/handout pages, `/health`, then MCP initialization and tool/resource discovery.
+5. Preserve the privacy contract: student files remain on the student's local machine; the remote checker receives only selected text for transient writing feedback. Do not add server-side profile persistence, file upload, or raw-text logging without explicit user approval and a privacy/design review.
+6. Run `npm ci`, `npm test`, and `python3 samples/local-kit-regression/run_regression.py` locally before shipping. Do not commit `node_modules/`, `dist/`, `data/`, candidate data, generated packages, or tokens.
+7. The current public health contract reports `tokenRequired: false`. Treat any change to public exposure or authentication as a security-sensitive MCP change: inspect origin validation, authentication, and Cloudflare/Tailscale routing before deployment.
+
 ## Application Workflow Contract
 
 Use the application workflow when the user asks for:
@@ -565,6 +592,7 @@ Common email intents:
 - `/src/apollo/` - GraphQL server setup
 - `/src/images/logos/` - logo components
 - `/application-system/` - application generator, templates, intakes, outputs
+- `/experimental/application-package-mcp/` - local source-only checkout of the public Franklee Student Application AI Helper MCP; separate from Cuong's private application workflow
 
 ## Commands
 

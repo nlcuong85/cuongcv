@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="220" viewBox="0 0 900 220" role="img" aria-label="Fictional Jane Doe signature sample">
+  <rect width="900" height="220" fill="white" fill-opacity="0"/>
+  <path d="M64 147 C92 62 112 68 117 141 C119 171 109 182 96 173 C80 162 97 122 148 96 C180 80 191 97 177 127 C165 153 176 165 211 142 C240 123 251 85 271 91 C291 98 275 147 309 151 C334 154 350 118 364 106 C381 92 389 109 375 136 C363 158 388 168 419 142 C445 120 455 85 474 91 C491 96 487 127 496 140 C510 160 533 148 555 125 C581 98 600 90 612 100 C625 112 613 141 627 151 C645 164 672 139 690 117 C708 94 727 86 739 100 C750 113 738 137 752 146 C770 158 799 141 829 120" fill="none" stroke="#153d36" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="70" y="205" fill="#6a7b75" font-family="Arial, sans-serif" font-size="20" letter-spacing="2">FICTIONAL SAMPLE SIGNATURE</text>
+</svg>

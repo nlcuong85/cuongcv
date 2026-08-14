@@ -1,0 +1,5 @@
+- main [ref=e2]:
+  - generic [ref=e4]:
+    - heading "Jane Candidate" [level=1] [ref=e5]
+    - heading "EXPERIENCE" [level=2] [ref=e6]
+    - paragraph [ref=e7]: Improved reporting quality.

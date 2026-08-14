@@ -1,0 +1,35 @@
+{
+  "identity": {
+    "full_name": "",
+    "preferred_name": "",
+    "pronouns": "",
+    "current_location": "",
+    "public_links": []
+  },
+  "contact": {
+    "email": "",
+    "phone": "",
+    "address": "",
+    "linkedin": "",
+    "portfolio": "",
+    "github": ""
+  },
+  "education": [],
+  "work_history": [],
+  "projects": [],
+  "skills": {
+    "core": [],
+    "tools": [],
+    "domain": []
+  },
+  "languages": [],
+  "certifications": [],
+  "target_directions": [],
+  "constraints": {
+    "availability": "",
+    "location_preferences": [],
+    "visa_or_work_limits": "",
+    "must_not_claim": []
+  }
+}
+

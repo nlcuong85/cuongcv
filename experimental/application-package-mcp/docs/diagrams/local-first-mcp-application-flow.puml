@@ -1,0 +1,68 @@
+@startuml
+title Local-first application package flow
+
+autonumber
+hide footbox
+skinparam sequenceMessageAlign center
+skinparam ParticipantPadding 18
+skinparam BoxPadding 8
+skinparam MaxMessageSize 80
+
+actor "Classmate" as User
+participant "Classmate laptop\nCodex / AI agent" as Agent
+participant "Franklee MCP server\napplication-package-mcp" as MCP
+
+== Setup ==
+
+User -> Agent : Ask for cover letter / CV helper
+Agent -> MCP : get_client_skill()
+MCP --> Agent : Skill instructions
+Agent -> MCP : get_workspace_template()
+MCP --> Agent : Folder structure and example files
+Agent -> User : Create local workspace
+
+note over Agent
+Local workspace contains:
+candidate/profile.json
+candidate/evidence.md
+candidate/tone.md
+jobs/<role>/job.md
+outputs/<role>/
+end note
+
+== Recommended local-first generation ==
+
+User -> Agent : Add CV/profile/job files locally
+Agent -> Agent : Read local candidate files
+Agent -> Agent : Read local job description
+Agent -> MCP : get templates, schemas, rules
+MCP --> Agent : LaTeX format contract,\nvalidation checklist,\nwriting rules
+Agent -> Agent : Generate cover-letter.tex locally
+Agent -> Agent : Compile PDF locally
+Agent -> Agent : Check page count and PDF safety
+Agent -> Agent : Generate cv-tailored.md locally
+Agent --> User : Save files under local outputs/
+
+note over MCP
+In this recommended mode,
+the MCP server does not read the classmate's files,
+does not process private CV data,
+and does not run the final PDF tests.
+It provides reusable instructions, templates,
+schemas, and validation rules.
+end note
+
+== Privacy boundary ==
+
+Agent -x MCP : Do not send candidate CV/profile/evidence
+Agent -x MCP : Do not ask server to generate PDF
+Agent -x MCP : Do not ask server to validate private documents
+
+note over User, MCP
+The MCP server is only a distribution layer.
+It provides instructions, workspace files,
+templates, schemas, and checklists.
+All private processing stays on the laptop.
+end note
+
+@enduml

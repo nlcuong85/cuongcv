@@ -8,6 +8,12 @@ Files:
 - `cuongcv-application-c4-level2.puml`
 - `cuongcv-application-c4-level2.png`
 
+Related runtime source:
+
+- `../../experimental/application-package-mcp/` is the source-only local checkout of the separate public Student Application AI Helper MCP on Franklee.
+- Its browser landing page is `https://jobmcp.pmlecuong.com/`; its Streamable HTTP MCP endpoint is `https://jobmcp.pmlecuong.com/mcp`.
+- It is intentionally isolated from the private CuongCV application system. See `../../experimental/application-package-mcp/LOCAL_CHECKOUT.md` and the root `AGENTS.md` for its privacy and deployment contract.
+
 Purpose:
 - help future agents understand the main moving parts quickly
 - show where tone, routing, and validation decisions happen

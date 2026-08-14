@@ -1,0 +1,31 @@
+- main [ref=e2]:
+  - navigation "Technical flow navigation" [ref=e3]:
+    - link "🧭 Student Application AI Helper" [ref=e4] [cursor=pointer]:
+      - /url: /
+    - link "Prompts" [ref=e5] [cursor=pointer]:
+      - /url: /sample-prompts
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - generic [ref=e8]: Technical sequence diagram
+      - heading "How the local workflow and review boundary work." [level=1] [ref=e9]
+      - paragraph [ref=e10]: The local Application SOP checks workspace health, records release evidence, and keeps private files on the laptop. The MCP sees only a privacy-safe folder manifest or writing text the candidate deliberately selects for review.
+    - paragraph [ref=e11]: The service returns guidance, not private checker implementation details. It cannot browse the candidate's local workspace.
+  - region "Technical sequence diagram" [ref=e12]:
+    - img "Sequence diagram showing selected-text review between the candidate, local AI agent, local workspace, and MCP checker" [ref=e13]
+  - region "Flow notes" [ref=e14]:
+    - generic [ref=e15]:
+      - heading "Local SOP gate" [level=2] [ref=e16]
+      - paragraph [ref=e17]: The local controller records a strict boot, current artifact hashes, one CV review, and three distinct cover-letter loops before release.
+    - generic [ref=e18]:
+      - heading "Selected text only" [level=2] [ref=e19]
+      - paragraph [ref=e20]: The candidate or local agent chooses a paragraph or cover letter to send. It never uploads the CV, workspace, job folder, or output PDFs.
+    - generic [ref=e21]:
+      - heading "Feedback returns" [level=2] [ref=e22]
+      - paragraph [ref=e23]: The service returns high-level issue labels, risk, and revision guidance. The local agent applies edits and verifies readiness on the laptop.
+  - generic [ref=e24]:
+    - link "Back to main page" [ref=e25] [cursor=pointer]:
+      - /url: /
+    - link "Open review-diagram source" [ref=e26] [cursor=pointer]:
+      - /url: /assets/private-checker-flow.puml
+    - link "Open full-workflow source" [ref=e27] [cursor=pointer]:
+      - /url: /assets/local-first-human-flow.puml

@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "draft": "resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json",
+  "template": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp/resources/application-kit/templates/cover_letter.tex",
+  "outputs": {
+    "tex": "resources/application-kit/examples/german-cover-letter-demo/cover-letter.tex",
+    "pdf": "resources/application-kit/examples/german-cover-letter-demo/cover-letter.pdf",
+    "cover_letter_md": "resources/application-kit/examples/german-cover-letter-demo/cover-letter.md",
+    "cv_tailored_md": "",
+    "validation": "resources/application-kit/examples/german-cover-letter-demo/validation.md"
+  }
+}

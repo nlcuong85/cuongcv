@@ -1,0 +1,58 @@
+@startuml
+' Traceability:
+' - resilient-application-mcp requirements: R5B, R18A-R18F, R19-R28
+' - resilient-application-mcp design: bootstrap, local scaffolding, manifest audit
+title Bootstrap, Scaffolding, and Local Safety Boundary
+
+skinparam backgroundColor #FFF8EA
+skinparam sequence {
+  ArrowColor #156B59
+  LifeLineBorderColor #CBD5E1
+  LifeLineBackgroundColor #F8FAFC
+  ParticipantBorderColor #123F37
+  ParticipantBackgroundColor #ECFEFF
+  ParticipantFontColor #17130F
+  BoxBorderColor #CBD5E1
+  BoxBackgroundColor #F8FAFC
+}
+skinparam titleFontSize 18
+skinparam sequenceMessageAlign center
+
+actor "Human candidate" as Human
+box "Candidate computer (private)" #F8FAFC
+participant "Local AI agent" as Agent
+participant "Application SOP" as SOP
+database "Local application workspace" as Workspace
+end box
+participant "Public MCP" as MCP
+
+Human -> Agent: "Set up my application workspace"
+Agent -> MCP: initialize + tools/list
+MCP --> Agent: Public tool contract
+Agent -> MCP: Get latest workspace template and application kit
+MCP --> Agent: Generic folders, scripts, contracts, version
+
+Agent -> SOP: strict boot
+SOP -> Workspace: Create generic local scaffold
+note right of Workspace
+AGENTS.md, candidate/source,
+profile, voice, jobs, applications,
+scripts, local SOP state
+end note
+SOP -> Workspace: Write local state and managed-file hashes
+SOP --> Agent: Ready checklist + missing candidate inputs
+Agent --> Human: Explain folders and request CV, role/JD, evidence
+
+Human -> Workspace: Add private CV, evidence, voice, job files
+Agent -> SOP: run local workspace audit
+SOP -> Workspace: Build relative-path manifest only
+SOP -> MCP: audit_workspace_manifest(manifest)
+MCP --> SOP: Current / update guidance
+SOP --> Agent: Safe next action; no private file content sent
+
+legend right
+MCP supplies generic public resources and reads only the manifest supplied by the local SOP.
+Private CVs, profile evidence, photos, signatures, job files, and outputs remain on the candidate computer.
+endlegend
+
+@enduml

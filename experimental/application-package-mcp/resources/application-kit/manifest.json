@@ -1,0 +1,67 @@
+{
+  "kit_id": "application-kit",
+  "version": "2026.08.14-resilient-workspace.1",
+  "mode": "local-only",
+  "privacy": {
+    "remote_processing": "selected writing checks only through MCP tools",
+    "send_candidate_data_to_mcp": false,
+    "local_agent_reads_private_files": true,
+    "advanced_checker_rules_in_bundle": false
+  },
+  "resources": [
+    {
+      "path": "templates/cover_letter.tex",
+      "description": "Strict one-page business-letter LaTeX template."
+    },
+    {
+      "path": "contracts/cover-letter-contract.md",
+      "description": "Mandatory cover-letter paragraph, layout, length, and validation contract."
+    },
+    {
+      "path": "contracts/source-capture-contract.md",
+      "description": "Mandatory local-only source analysis and candidate memory capture contract."
+    },
+    {
+      "path": "contracts/cv-markdown-contract.md",
+      "description": "Markdown CV helper contract for overview and skills tailoring."
+    },
+    {
+      "path": "contracts/retry-policy.md",
+      "description": "Local retry loop when validation fails."
+    },
+    {
+      "path": "scripts/local_application_generator.py",
+      "description": "Local renderer and basic validator for cover-letter PDF and CV Markdown helper."
+    },
+    {
+      "path": "scripts/application_quality_loop.py",
+      "description": "Local gate recorder: one MCP-reviewed CV loop and three distinct MCP-reviewed cover-letter loops. Contains no checker rules."
+    },
+    {
+      "path": "scripts/mcp_check_client.mjs",
+      "description": "Small public-MCP client. Sends selected text only and contains no scoring logic."
+    },
+    {
+      "path": "scripts/workspace_audit.py",
+      "description": "Local privacy-safe workspace manifest and hygiene auditor."
+    },
+    {
+      "path": "scripts/ingest_cv.py",
+      "description": "Local Phase-1 PDF/DOCX/HTML CV source ingestion."
+    },
+    {
+      "path": "scripts/build_cv_html.py",
+      "description": "Editable HTML CV builder using verified local source material."
+    }
+  ],
+  "expected_outputs": [
+    "cover-letter-draft.json",
+    "cover-letter.tex",
+    "cover-letter.pdf",
+    "cover-letter.md",
+    "cv-tailored.md",
+    "cv-tailored.html",
+    "validation.md",
+    "manifest.json"
+  ]
+}

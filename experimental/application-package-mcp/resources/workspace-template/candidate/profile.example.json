@@ -1,0 +1,91 @@
+{
+  "profileId": "sample-candidate",
+  "name": "Sample Candidate",
+  "headline": "Business Informatics student focused on product operations and data-informed process improvement",
+  "summary": "A concise, evidence-backed summary in the candidate's own positioning.",
+  "contact": {
+    "email": "candidate@example.com",
+    "phone": "",
+    "location": "Example City"
+  },
+  "availability": {
+    "start_date": "needs_candidate_confirmation",
+    "weekly_hours": "needs_candidate_confirmation",
+    "work_mode": "needs_candidate_confirmation"
+  },
+  "work_authorization": {
+    "status": "needs_candidate_confirmation",
+    "notes": ""
+  },
+  "languages": [
+    {
+      "language": "English",
+      "level": "needs_candidate_confirmation",
+      "evidence": ""
+    },
+    {
+      "language": "Second language",
+      "level": "needs_candidate_confirmation",
+      "evidence": ""
+    }
+  ],
+  "skills": {
+    "core": [
+      "requirements analysis",
+      "process mapping",
+      "stakeholder communication",
+      "documentation",
+      "Excel",
+      "SQL",
+      "presentation"
+    ],
+    "adaptive": [
+      "Power BI",
+      "data quality checks",
+      "workflow analysis",
+      "user research",
+      "agile collaboration",
+      "reporting",
+      "AI-assisted documentation"
+    ],
+    "not_yet_supported": []
+  },
+  "experience": [
+    {
+      "role": "Working Student",
+      "company": "Example Company",
+      "location": "Example City",
+      "period": "2025-present",
+      "evidence_tags": ["process-documentation", "stakeholder-requests"],
+      "bullets": [
+        "Supported process documentation and reporting for an operations team.",
+        "Translated stakeholder requests into structured task notes."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Campus Event Discovery Study",
+      "evidence_tags": ["user-observation", "workflow-friction"],
+      "bullets": [
+        "Observed users and summarized friction points in a student-facing workflow."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "name": "B.Sc. Business Informatics",
+      "organization": "Example University",
+      "period": "2024-present",
+      "location": "Example City"
+    }
+  ],
+  "constraints": {
+    "must_not_claim": [
+      "Do not claim tools, language levels, or work authorization unless supported in evidence.md."
+    ],
+    "review_before_submission": [
+      "Candidate must review final cover-letter PDF and CV helper before applying."
+    ]
+  }
+}
