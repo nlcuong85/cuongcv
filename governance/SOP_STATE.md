@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-14T22:35:09+00:00`
+- updated_at: `2026-08-14T22:39:29+00:00`
 - current_phase: `postflight`
-- active_goal: Align application typography with established CV font, enforce it in local MCP kit and audit, release and verify three covers
+- active_goal: Released MCP v0.2.1 typography contract: the local and public kit now lock portable TeX Gyre Heros sans-serif templates through managed hashes. Production health and public workspace audit passed. Aptiv, 4flow, and Mercedes cover-letter regressions are one page, embed TeXGyreHeros Regular/Bold, and pass rule checks.
 - active_task_id: `None`
-- work_session: `WS-20260814-222918-670638` active=`True`
+- work_session: `WS-20260814-222918-670638` active=`False`
 
 ## Required Resume Files
 
@@ -36,11 +36,11 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-08-14T22:01:17+00:00`
-- current: Validated production MCP v0.2.0 from this Mac: current and drifted workspace-manifest audits behaved correctly; three fresh application packages were generated and reviewed through the public selected-text checker.
-- next: User reviews the three cover-letter PDFs with their external engine; revise the two remaining medium-risk letters if the user wants them released.
+- updated_at: `2026-08-14T22:39:28+00:00`
+- current: Released MCP v0.2.1 typography contract: the local and public kit now lock portable TeX Gyre Heros sans-serif templates through managed hashes. Production health and public workspace audit passed. Aptiv, 4flow, and Mercedes cover-letter regressions are one page, embed TeXGyreHeros Regular/Bold, and pass rule checks.
+- next: User reviews the three regenerated cover-letter PDFs.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: experimental/application-package-mcp/src/index.ts
+- files: experimental/application-package-mcp/resources/application-kit/contracts/typography-contract.md
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
@@ -82,19 +82,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Latest Checkpoints
 
-- `2026-08-14T21:40:56+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
-  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
-  - commands_run: python3 SOP.py preflight
-- `2026-08-14T21:47:11+00:00` postflight: Released MCP version 0.2.0 on Franklee from Git checkout f6b4e8a with rollback source archive, old runtime directory, and pre-release image tag; public browser and MCP checks passed.
-  - next_steps: Monitor user feedback and use the recorded rollback archive/image if a production regression appears.
-  - files_changed: experimental/application-package-mcp/src/checker.ts
-  - commands_run: python3 SOP.py postflight
-- `2026-08-14T21:47:13+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
-- `2026-08-14T21:53:01+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
-  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
-  - commands_run: python3 SOP.py preflight
 - `2026-08-14T22:01:17+00:00` postflight: Validated production MCP v0.2.0 from this Mac: current and drifted workspace-manifest audits behaved correctly; three fresh application packages were generated and reviewed through the public selected-text checker.
   - next_steps: User reviews the three cover-letter PDFs with their external engine; revise the two remaining medium-risk letters if the user wants them released.
   - files_changed: experimental/application-package-mcp/src/index.ts
@@ -107,6 +94,20 @@ When an agent resumes after context compaction or a new session:
   - commands_run: python3 SOP.py preflight
 - `2026-08-14T22:35:09+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
   - commands_run: npm test
+- `2026-08-14T22:38:36+00:00` postflight: Locked application typography to a portable modern sans-serif across the local generator and public MCP kit; added managed-hash audit enforcement; released MCP v0.2.1 on Franklee and regenerated three one-page cover letters.
+  - next_steps: User can review the three regenerated cover-letter PDFs; any newly scaffolded workspace will be prompted to update if its locked template drifts.
+  - files_changed: experimental/application-package-mcp/src/index.ts
+  - commands_run: python3 SOP.py postflight
+- `2026-08-14T22:38:38+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
+- `2026-08-14T22:39:28+00:00` postflight: Released MCP v0.2.1 typography contract: the local and public kit now lock portable TeX Gyre Heros sans-serif templates through managed hashes. Production health and public workspace audit passed. Aptiv, 4flow, and Mercedes cover-letter regressions are one page, embed TeXGyreHeros Regular/Bold, and pass rule checks.
+  - next_steps: User reviews the three regenerated cover-letter PDFs.
+  - files_changed: experimental/application-package-mcp/resources/application-kit/contracts/typography-contract.md
+  - commands_run: python3 SOP.py postflight
+- `2026-08-14T22:39:29+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
 
 ## Decisions
 
