@@ -167,8 +167,8 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.ok(!kit.files.some((file) => file.path.endsWith(".pyc")));
       assert.ok(!kit.files.some((file) => file.content.includes("validate_human_writing")));
       const coverLetterTemplate = kit.files.find((file) => file.path === "templates/cover_letter.tex");
-      assert.match(coverLetterTemplate.content, /usepackage\{tgheros\}/);
-      assert.match(coverLetterTemplate.content, /renewcommand\{\\familydefault\}\{\\sfdefault\}/);
+      assert.match(coverLetterTemplate.content, /usepackage\{fontspec\}/);
+      assert.match(coverLetterTemplate.content, /setmainfont\{Inter-Regular\}/);
 
       const checkResult = await client.callTool({
         name: "check_writing_human_fit",

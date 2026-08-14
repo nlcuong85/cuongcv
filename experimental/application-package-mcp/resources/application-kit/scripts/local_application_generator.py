@@ -37,8 +37,8 @@ PARAGRAPH_LIMITS = {
 REQUIRED_TEMPLATE_MARKERS = [
     r"\documentclass[9pt,a4paper]{article}",
     r"\usepackage[a4paper,left=25mm,right=20mm,top=36mm,bottom=18mm]{geometry}",
-    r"\usepackage{tgheros}",
-    r"\renewcommand{\familydefault}{\sfdefault}",
+    r"\usepackage{fontspec}",
+    r"\setmainfont{Inter-Regular}[Path=fonts/,Extension=.ttf,BoldFont=Inter-Bold]",
     r"\pagestyle{empty}",
     "@@SENDER_BLOCK@@",
     "@@RECIPIENT_BLOCK@@",
@@ -286,18 +286,18 @@ def validate_draft(draft: dict[str, Any]) -> Validation:
 
 def compile_pdf(tex_path: Path, output_dir: Path) -> tuple[Path | None, list[str]]:
     warnings: list[str] = []
-    compiler = shutil.which("pdflatex")
+    compiler = shutil.which("xelatex")
     if not compiler:
-        warnings.append("pdflatex not found; skipped PDF compilation.")
+        warnings.append("xelatex not found; Inter cover letters cannot be compiled. Install a TeX Live distribution with XeLaTeX.")
         return None, warnings
     cmd = [
         compiler,
         "-interaction=nonstopmode",
         "-halt-on-error",
-        f"-output-directory={output_dir}",
-        str(tex_path),
+        "-output-directory=.",
+        tex_path.name,
     ]
-    proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=False)
+    proc = subprocess.run(cmd, cwd=output_dir, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=False)
     if proc.returncode != 0:
         warnings.append("pdflatex failed:\n" + proc.stdout[-2500:])
         return None, warnings
@@ -324,13 +324,20 @@ def validate_pdf(pdf_path: Path | None) -> Validation:
     errors: list[str] = []
     warnings: list[str] = []
     if not pdf_path:
-        warnings.append("PDF was not compiled; install pdflatex to enable full validation.")
+        errors.append("Hard typography gate cannot pass: install XeLaTeX to compile an Inter PDF.")
         return Validation(errors, warnings)
     pages = pdf_page_count(pdf_path)
     if pages is None:
         warnings.append("Could not determine PDF page count.")
     elif pages != 1:
         errors.append(f"PDF must be exactly 1 page, got {pages}.")
+    pdffonts = shutil.which("pdffonts")
+    if not pdffonts:
+        errors.append("Hard typography gate cannot run: install Poppler pdffonts to verify Inter is embedded.")
+    else:
+        output = subprocess.run([pdffonts, str(pdf_path)], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True, check=False).stdout
+        if "Inter" not in output:
+            errors.append("Hard typography gate failed: cover-letter PDF does not embed Inter.")
     data = pdf_path.read_bytes()
     for token in [b"/OpenAction", b"/AA", b"/JavaScript", b"/JS"]:
         if token in data:
@@ -452,6 +459,7 @@ def main() -> int:
     template_path = args.template or script_root / "templates" / "cover_letter.tex"
     output_dir = args.output_dir
     output_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copytree(script_root / "fonts", output_dir / "fonts", dirs_exist_ok=True)
 
     draft = resolve_local_signature_path(read_json(args.draft), args.draft.resolve())
     template = template_path.read_text(encoding="utf-8")

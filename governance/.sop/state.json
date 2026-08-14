@@ -1,5 +1,5 @@
 {
-  "active_goal": "Released MCP v0.2.1 typography contract: the local and public kit now lock portable TeX Gyre Heros sans-serif templates through managed hashes. Production health and public workspace audit passed. Aptiv, 4flow, and Mercedes cover-letter regressions are one page, embed TeXGyreHeros Regular/Bold, and pass rule checks.",
+  "active_goal": "Require exact Inter typography across application cover letters and MCP client workspaces; regenerate and validate three cover letters",
   "active_task_id": null,
   "checkpoints": [
     {
@@ -1453,6 +1453,19 @@
       "open_questions": [],
       "summary": "Postflight recorded fresh repository snapshot.",
       "time": "2026-08-14T22:39:29+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-08-14T22:41:59+00:00"
     }
   ],
   "command_log": [
@@ -4672,14 +4685,14 @@
       "updated_at": "2026-06-19T09:20:07+00:00"
     }
   ],
-  "updated_at": "2026-08-14T22:39:29+00:00",
+  "updated_at": "2026-08-14T22:44:39+00:00",
   "work_session": {
-    "active": false,
-    "ended_at": "2026-08-14T22:38:36+00:00",
-    "goal": "Align application typography with established CV font, enforce it in local MCP kit and audit, release and verify three covers",
-    "id": "WS-20260814-222918-670638",
-    "last_update": "2026-08-14T22:38:36+00:00",
-    "started_at": "2026-08-14T22:29:18+00:00",
-    "task_id": "application-font-contract-20260815"
+    "active": true,
+    "ended_at": null,
+    "goal": "Require exact Inter typography across application cover letters and MCP client workspaces; regenerate and validate three cover letters",
+    "id": "WS-20260814-224439-835070",
+    "last_update": "2026-08-14T22:44:39+00:00",
+    "started_at": "2026-08-14T22:44:39+00:00",
+    "task_id": "inter-font-hard-gate-20260815"
   }
 }

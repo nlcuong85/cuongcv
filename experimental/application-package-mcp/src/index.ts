@@ -16,7 +16,7 @@ import {
   samplePromptsDocument
 } from "./resources.js";
 
-const VERSION = "0.2.1";
+const VERSION = "0.2.2";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
@@ -36,7 +36,7 @@ const PUBLIC_TOOLS = [
   "suggest_writing_revision"
 ];
 
-const WORKSPACE_KIT_VERSION = "2026.08.15-typography.1";
+const WORKSPACE_KIT_VERSION = "2026.08.15-inter-hard-gate.1";
 const REQUIRED_WORKSPACE_PATHS = [
   "AGENTS.md",
   ".mcp/workspace-manifest.json",
@@ -55,6 +55,7 @@ const REQUIRED_WORKSPACE_PATHS = [
   "application-kit/templates/cover_letter.tex",
   "application-kit/contracts/typography-contract.md",
   "application-kit/scripts/local_application_generator.py"
+  ,"application-kit/fonts/Inter-Regular.ttf", "application-kit/fonts/Inter-Bold.ttf"
 ];
 
 const MANAGED_HASHED_PATHS = [
@@ -118,9 +119,9 @@ async function auditWorkspaceManifest(manifest: {
         }
       : { available: false },
     typography: {
-      profile: "portable-helvetica-style-tgheros",
+      profile: "inter-regular-and-bold",
       status: hashMismatches.includes("application-kit/templates/cover_letter.tex") ? "template_mismatch" : "verified_by_managed_hash",
-      message: "Cover letters must use the MCP kit's locked TeX Gyre Heros sans-serif template; do not substitute Latin Modern or a system-only font."
+      message: "Cover letters must embed Inter Regular/Bold. No substitute font is allowed."
     },
     reminders: {
       photo_question_required: !manifest.candidate_asset_status?.photo_question_answered,

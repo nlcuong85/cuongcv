@@ -1,6 +1,6 @@
 {
   "kit_id": "application-kit",
-  "version": "2026.08.15-typography.1",
+  "version": "2026.08.15-inter-hard-gate.1",
   "mode": "local-only",
   "privacy": {
     "remote_processing": "selected writing checks only through MCP tools",
@@ -11,7 +11,11 @@
   "resources": [
     {
       "path": "templates/cover_letter.tex",
-      "description": "Strict one-page business-letter LaTeX template with locked portable Helvetica-style typography."
+      "description": "Strict one-page business-letter LaTeX template with Inter as a hard gate."
+    },
+    {
+      "path": "scripts/install_inter_fonts.py",
+      "description": "Fetches and verifies the required Inter Regular and Bold font assets locally."
     },
     {
       "path": "contracts/typography-contract.md",

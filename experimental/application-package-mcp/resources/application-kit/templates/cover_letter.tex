@@ -2,10 +2,9 @@
 \usepackage[a4paper,left=25mm,right=20mm,top=36mm,bottom=18mm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-% Portable Helvetica-style sans serif. Keep in sync with the main application system.
-% Do not substitute Latin Modern: it does not match the modern CV visual style.
-\usepackage{tgheros}
-\renewcommand{\familydefault}{\sfdefault}
+\usepackage{fontspec}
+% Hard gate: no fallback font. The local generator copies these Inter files.
+\setmainfont{Inter-Regular}[Path=fonts/,Extension=.ttf,BoldFont=Inter-Bold]
 \usepackage{setspace}
 \usepackage{parskip}
 \usepackage{graphicx}

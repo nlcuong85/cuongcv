@@ -1295,7 +1295,7 @@ def compile_tex(tex_path: Path) -> None:
     result = subprocess.run(
         [
             "latexmk",
-            "-pdf",
+            "-xelatex",
             "-interaction=nonstopmode",
             "-halt-on-error",
             tex_path.name,
@@ -1509,6 +1509,12 @@ def get_pdf_page_count(pdf_path: Path) -> int:
     return int(match.group(1))
 
 
+def require_inter_font(pdf_path: Path) -> None:
+    result = subprocess.run(["pdffonts", str(pdf_path)], check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    if "Inter" not in result.stdout:
+        raise RuntimeError(f"Hard typography gate failed: `{pdf_path}` does not embed Inter.")
+
+
 def build_notes(
     intake: dict[str, Any],
     selected_for_cover_letter: list[dict[str, Any]],
@@ -1599,6 +1605,8 @@ def main() -> None:
     cover_letter_dir = output_root / "cover-letter"
     cv_dir = output_root / "cv"
     snapshot_dir = output_root / "skill-assessment"
+    for output_dir in (cover_letter_dir, snapshot_dir):
+        shutil.copytree(TEMPLATES_DIR / "fonts", output_dir / "fonts", dirs_exist_ok=True)
 
     selected_for_cover_letter = select_evidence(intake, primary_role, evidence_library, taxonomy)
     cover_letter_context = build_cover_letter_context(profile, primary_role, intake, selected_for_cover_letter, authentic_voice)
@@ -1702,6 +1710,7 @@ def main() -> None:
             render_id,
         )
         sanitize_cover_letter_pdf(cover_letter_pdf)
+        require_inter_font(cover_letter_pdf)
         cover_letter_pages = get_pdf_page_count(cover_letter_pdf)
         if cover_letter_pages > 1:
             raise SystemExit(
@@ -1717,6 +1726,7 @@ def main() -> None:
             intake,
             render_id,
         )
+        require_inter_font(snapshot_pdf)
         snapshot_pages = get_pdf_page_count(snapshot_pdf)
         if snapshot_pages > 1:
             raise SystemExit(
