@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-14T21:42:27+00:00`
+- updated_at: `2026-08-14T22:35:09+00:00`
 - current_phase: `postflight`
-- active_goal: Release the validated standalone MCP style-review enhancement and dependency-security updates to Franklee with a recoverable rollback checkpoint
+- active_goal: Align application typography with established CV font, enforce it in local MCP kit and audit, release and verify three covers
 - active_task_id: `None`
-- work_session: `WS-20260814-214227-233019` active=`True`
+- work_session: `WS-20260814-222918-670638` active=`True`
 
 ## Required Resume Files
 
@@ -36,11 +36,11 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-08-14T21:26:03+00:00`
-- current: Enhanced the standalone selected-text MCP style revision gate without weakening existing rules; verified three fresh one-page cover letters through the local HTTP MCP.
-- next: User reviews the three test PDFs with their external engine.
+- updated_at: `2026-08-14T22:01:17+00:00`
+- current: Validated production MCP v0.2.0 from this Mac: current and drifted workspace-manifest audits behaved correctly; three fresh application packages were generated and reviewed through the public selected-text checker.
+- next: User reviews the three cover-letter PDFs with their external engine; revise the two remaining medium-risk letters if the user wants them released.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: experimental/application-package-mcp/src/checker.ts
+- files: experimental/application-package-mcp/src/index.ts
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
@@ -63,8 +63,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Recent Commands
 
-- `2026-08-14T17:38:18+00:00` exit=0 `find experimental/application-package-mcp -type d -name __pycache__ -prune -exec rm -rf '{}' +`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173818-568863.log`
 - `2026-08-14T17:38:18+00:00` exit=0 `rm -rf experimental/application-package-mcp/samples/classmate-workspace`
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173818-647921.log`
 - `2026-08-14T17:38:26+00:00` exit=0 `npm ci`
@@ -79,37 +77,36 @@ When an agent resumes after context compaction or a new session:
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-174017-865009.log`
 - `2026-08-14T17:40:19+00:00` exit=0 `npm test`
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-174017-952957.log`
+- `2026-08-14T22:35:09+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-223506-890649.log`
 
 ## Latest Checkpoints
 
-- `2026-08-14T20:59:09+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
-  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
-  - commands_run: python3 SOP.py preflight
-- `2026-08-14T21:04:35+00:00` postflight: Ran a second blind end-to-end regression using Aptiv Software Team, Coperion IT Process Management, and osapiens Product Management intakes. Each package was drafted from canonical facts plus application-mode authentic voice sources, rendered to a one-page cover PDF, reviewed by the local MCP in three distinct revisions, and checked by the local SOP. All PDFs passed the one-page check, the workspace audit returned workspace_current, and the SOP correctly blocked all releases because real MCP risk remained unresolved in each loop. The test also confirms that profile-only evidence is insufficient to obtain low-risk authentic copy without candidate-authored work examples.
-  - next_steps: Collect candidate-authored employer bullets or source material for each target role, then use the same three-loop workflow without inventing evidence.
-  - files_changed: experimental/application-package-mcp/resources/application-kit/scripts/application_sop.py
-  - commands_run: python3 SOP.py postflight
-- `2026-08-14T21:04:36+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
-- `2026-08-14T21:18:38+00:00` kiro-start: Started Kiro task resilient-application-mcp#10: 3 Add compatibility and regression tests for generic, hostile, and improved application drafts; prove existing high-risk examples cannot be downgraded merely by the new output layer. _Requirements: R33.1, R33.6_
-  - next_steps: Update handoff after each meaningful unit of work.; Do not mark done without evidence.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/kiro/specs/resilient-application-mcp/tasks.md
-  - commands_run: python3 SOP.py kiro-start --spec resilient-application-mcp --task 10
-- `2026-08-14T21:26:03+00:00` kiro-done: Completed Kiro task resilient-application-mcp#10: 3 Add compatibility and regression tests for generic, hostile, and improved application drafts; prove existing high-risk examples cannot be downgraded merely by the new output layer. _Requirements: R33.1, R33.6_
-  - next_steps: User reviews the three generated test cover-letter PDFs with their external engine.
-  - files_changed: experimental/application-package-mcp/src/checker.ts
-  - commands_run: python3 SOP.py kiro-done --spec resilient-application-mcp --task 10
-- `2026-08-14T21:26:03+00:00` postflight: Enhanced the standalone selected-text MCP style revision gate without weakening existing rules; verified three fresh one-page cover letters through the local HTTP MCP.
-  - next_steps: User reviews the three test PDFs with their external engine.
-  - files_changed: experimental/application-package-mcp/src/checker.ts
-  - commands_run: python3 SOP.py postflight
-- `2026-08-14T21:26:05+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
 - `2026-08-14T21:40:56+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
   - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
   - commands_run: python3 SOP.py preflight
+- `2026-08-14T21:47:11+00:00` postflight: Released MCP version 0.2.0 on Franklee from Git checkout f6b4e8a with rollback source archive, old runtime directory, and pre-release image tag; public browser and MCP checks passed.
+  - next_steps: Monitor user feedback and use the recorded rollback archive/image if a production regression appears.
+  - files_changed: experimental/application-package-mcp/src/checker.ts
+  - commands_run: python3 SOP.py postflight
+- `2026-08-14T21:47:13+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
+- `2026-08-14T21:53:01+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
+  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
+  - commands_run: python3 SOP.py preflight
+- `2026-08-14T22:01:17+00:00` postflight: Validated production MCP v0.2.0 from this Mac: current and drifted workspace-manifest audits behaved correctly; three fresh application packages were generated and reviewed through the public selected-text checker.
+  - next_steps: User reviews the three cover-letter PDFs with their external engine; revise the two remaining medium-risk letters if the user wants them released.
+  - files_changed: experimental/application-package-mcp/src/index.ts
+  - commands_run: python3 SOP.py postflight
+- `2026-08-14T22:01:18+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
+- `2026-08-14T22:29:08+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
+  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
+  - commands_run: python3 SOP.py preflight
+- `2026-08-14T22:35:09+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+  - commands_run: npm test
 
 ## Decisions
 

@@ -1,6 +1,6 @@
 {
   "kit_id": "application-kit",
-  "version": "2026.08.14-resilient-workspace.1",
+  "version": "2026.08.15-typography.1",
   "mode": "local-only",
   "privacy": {
     "remote_processing": "selected writing checks only through MCP tools",
@@ -11,7 +11,11 @@
   "resources": [
     {
       "path": "templates/cover_letter.tex",
-      "description": "Strict one-page business-letter LaTeX template."
+      "description": "Strict one-page business-letter LaTeX template with locked portable Helvetica-style typography."
+    },
+    {
+      "path": "contracts/typography-contract.md",
+      "description": "Mandatory typography profile and local audit contract."
     },
     {
       "path": "contracts/cover-letter-contract.md",

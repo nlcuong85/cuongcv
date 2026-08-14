@@ -154,6 +154,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.equal(kit.manifest.mode, "local-only");
       assert.equal(kit.manifest.privacy.advanced_checker_rules_in_bundle, false);
       assert.ok(kit.files.some((file) => file.path === "templates/cover_letter.tex"));
+      assert.ok(kit.files.some((file) => file.path === "contracts/typography-contract.md"));
       assert.ok(kit.files.some((file) => file.path === "scripts/local_application_generator.py"));
       assert.ok(kit.files.some((file) => file.path === "scripts/application_quality_loop.py"));
       assert.ok(kit.files.some((file) => file.path === "scripts/mcp_check_client.mjs"));
@@ -165,6 +166,9 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.ok(!kit.files.some((file) => file.path.includes("__pycache__")));
       assert.ok(!kit.files.some((file) => file.path.endsWith(".pyc")));
       assert.ok(!kit.files.some((file) => file.content.includes("validate_human_writing")));
+      const coverLetterTemplate = kit.files.find((file) => file.path === "templates/cover_letter.tex");
+      assert.match(coverLetterTemplate.content, /usepackage\{tgheros\}/);
+      assert.match(coverLetterTemplate.content, /renewcommand\{\\familydefault\}\{\\sfdefault\}/);
 
       const checkResult = await client.callTool({
         name: "check_writing_human_fit",

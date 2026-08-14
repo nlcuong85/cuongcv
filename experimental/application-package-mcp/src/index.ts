@@ -1,4 +1,5 @@
 import http, { IncomingMessage, ServerResponse } from "node:http";
+import { createHash } from "node:crypto";
 import { URL } from "node:url";
 import process from "node:process";
 import * as z from "zod/v4";
@@ -15,7 +16,7 @@ import {
   samplePromptsDocument
 } from "./resources.js";
 
-const VERSION = "0.2.0";
+const VERSION = "0.2.1";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
@@ -35,7 +36,7 @@ const PUBLIC_TOOLS = [
   "suggest_writing_revision"
 ];
 
-const WORKSPACE_KIT_VERSION = "2026.08.14-resilient-workspace.1";
+const WORKSPACE_KIT_VERSION = "2026.08.15-typography.1";
 const REQUIRED_WORKSPACE_PATHS = [
   "AGENTS.md",
   ".mcp/workspace-manifest.json",
@@ -49,36 +50,78 @@ const REQUIRED_WORKSPACE_PATHS = [
   "applications",
   "scripts/workspace_audit.py",
   "scripts/application_quality_loop.py",
-  "scripts/mcp_check_client.mjs"
+  "scripts/mcp_check_client.mjs",
+  "application-kit/manifest.json",
+  "application-kit/templates/cover_letter.tex",
+  "application-kit/contracts/typography-contract.md",
+  "application-kit/scripts/local_application_generator.py"
 ];
+
+const MANAGED_HASHED_PATHS = [
+  "AGENTS.md",
+  "scripts/application_sop.py",
+  "scripts/mcp_check_client.mjs",
+  "application-kit/manifest.json",
+  "application-kit/templates/cover_letter.tex",
+  "application-kit/contracts/typography-contract.md",
+  "application-kit/scripts/local_application_generator.py"
+];
+
+function sha256(value: string): string {
+  return createHash("sha256").update(value, "utf8").digest("hex");
+}
+
+async function expectedManagedHashes(): Promise<Record<string, string>> {
+  const entries = await Promise.all(
+    MANAGED_HASHED_PATHS.map(async (path) => {
+      const resourcePath = path.startsWith("application-kit/")
+        ? path
+        : `workspace-template/${path}`;
+      return [path, sha256(await readResource(resourcePath))] as const;
+    })
+  );
+  return Object.fromEntries(entries);
+}
 
 function safeRelativePath(value: string): boolean {
   return value.length <= 240 && !value.startsWith("/") && !value.includes("\\") && !value.split("/").some((part) => part === "" || part === "." || part === "..");
 }
 
-function auditWorkspaceManifest(manifest: {
+async function auditWorkspaceManifest(manifest: {
   schema_version: string;
   kit_version?: string;
   paths: string[];
   managed_file_hashes?: Record<string, string>;
   candidate_asset_status?: { photo_question_answered?: boolean; signature_question_answered?: boolean };
-}): Record<string, unknown> {
+}): Promise<Record<string, unknown>> {
   const paths = new Set(manifest.paths);
   const missing = REQUIRED_WORKSPACE_PATHS.filter((required) => !paths.has(required) && ![...paths].some((path) => path.startsWith(`${required}/`)));
   const updateRequired = manifest.kit_version !== WORKSPACE_KIT_VERSION;
+  const expectedHashes = await expectedManagedHashes();
+  const managedHashes = manifest.managed_file_hashes ?? {};
+  const hashMismatches = Object.entries(expectedHashes)
+    .filter(([path, hash]) => managedHashes[path] !== hash)
+    .map(([path]) => path);
+  const needsManagedUpdate = updateRequired || hashMismatches.length > 0;
   return {
-    status: missing.length || updateRequired ? "action_required" : "workspace_current",
+    status: missing.length || needsManagedUpdate ? "action_required" : "workspace_current",
     schema_version: "1.0",
     kit_version: WORKSPACE_KIT_VERSION,
     minimum_supported_version: WORKSPACE_KIT_VERSION,
     missing_paths: missing,
-    update: updateRequired
+    managed_hash_mismatches: hashMismatches,
+    update: needsManagedUpdate
       ? {
           available: true,
           safe_only: true,
           message: "Update MCP-managed templates and scripts only. Never overwrite profile, source documents, voice samples, assets, jobs, or applications."
         }
       : { available: false },
+    typography: {
+      profile: "portable-helvetica-style-tgheros",
+      status: hashMismatches.includes("application-kit/templates/cover_letter.tex") ? "template_mismatch" : "verified_by_managed_hash",
+      message: "Cover letters must use the MCP kit's locked TeX Gyre Heros sans-serif template; do not substitute Latin Modern or a system-only font."
+    },
     reminders: {
       photo_question_required: !manifest.candidate_asset_status?.photo_question_answered,
       signature_question_required: !manifest.candidate_asset_status?.signature_question_answered,
@@ -189,7 +232,7 @@ async function createServer(): Promise<McpServer> {
         }).optional()
       }
     },
-    async (manifest) => jsonText(auditWorkspaceManifest(manifest))
+    async (manifest) => jsonText(await auditWorkspaceManifest(manifest))
   );
 
   server.registerTool(

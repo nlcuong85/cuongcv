@@ -32,6 +32,10 @@ The generated `cover-letter.tex` must use the provided `templates/cover_letter.t
 - signature area
 - enclosure list
 - `\pagestyle{empty}`
+- typography: `\usepackage{tgheros}` and
+  `\renewcommand{\familydefault}{\sfdefault}`. This is the required portable
+  Helvetica-style profile. Do not use Latin Modern, a serif fallback, or an
+  unbundled system font.
 
 ## Fixed Paragraph Order
 

@@ -206,6 +206,16 @@ The master profile must keep exactly 7 core skills. Do not quietly add tool name
 
 ## Cover Letter Rules
 
+### Typography Contract
+
+- The public CV uses Inter. The PDF cover letter and role-fit snapshot use the portable
+  Helvetica-style TeX Gyre Heros family (`tgheros`) so they retain the same modern,
+  clean sans-serif appearance on any pdflatex-equipped machine.
+- Do not restore `lmodern`, serif fonts, or a system-only font as a template fallback.
+- Treat the shared template typography as a hard layout contract. If a new local
+  workspace was bootstrapped through the MCP, run its workspace audit before release;
+  a changed managed template must be updated from the MCP kit, never improvised.
+
 Hard rules:
 
 - one page maximum

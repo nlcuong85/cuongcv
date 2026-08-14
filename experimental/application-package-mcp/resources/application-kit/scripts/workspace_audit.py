@@ -13,8 +13,12 @@ import os
 import time
 from pathlib import Path
 
-KIT_VERSION = "2026.08.14-resilient-workspace.1"
-MANAGED = ["AGENTS.md", "README.md", "scripts/application_sop.py", "scripts/mcp_check_client.mjs"]
+KIT_VERSION = "2026.08.15-typography.1"
+MANAGED = [
+    "AGENTS.md", "scripts/application_sop.py", "scripts/mcp_check_client.mjs",
+    "application-kit/manifest.json", "application-kit/templates/cover_letter.tex",
+    "application-kit/contracts/typography-contract.md", "application-kit/scripts/local_application_generator.py",
+]
 REQUIRED = ["profile", "voice", "candidate/source", "jobs", "applications", ".mcp"]
 EXCLUDED = {".git", "node_modules", "__pycache__", ".application-sop", ".DS_Store"}
 

@@ -37,6 +37,8 @@ PARAGRAPH_LIMITS = {
 REQUIRED_TEMPLATE_MARKERS = [
     r"\documentclass[9pt,a4paper]{article}",
     r"\usepackage[a4paper,left=25mm,right=20mm,top=36mm,bottom=18mm]{geometry}",
+    r"\usepackage{tgheros}",
+    r"\renewcommand{\familydefault}{\sfdefault}",
     r"\pagestyle{empty}",
     "@@SENDER_BLOCK@@",
     "@@RECIPIENT_BLOCK@@",
