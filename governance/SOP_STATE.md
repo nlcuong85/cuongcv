@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-15T07:03:58+00:00`
+- updated_at: `2026-08-15T07:04:26+00:00`
 - current_phase: `postflight`
-- active_goal: Add confirmed-enclosure intake and cover-letter rendering rules to Student Application MCP
+- active_goal: Implemented confirmed-enclosure intake gate, dynamic cover-letter enclosure rendering, footer version tracking, tests, and production deployment for Student Application MCP.
 - active_task_id: `None`
-- work_session: `WS-20260815-065431-842278` active=`True`
+- work_session: `WS-20260815-065431-842278` active=`False`
 
 ## Required Resume Files
 
@@ -36,11 +36,11 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-08-15T06:43:10+00:00`
-- current: Ran three fresh-client production MCP application-kit tests with a fictional Minh Tran profile. Workspace audit and PDF hard gates passed for all three; remote writing checker returned revise on all three due thin fictional evidence/personality anchor.
-- next: If the goal is checker-ready output, rerun with a richer real client profile and personal writing samples, then use the MCP revision loop until releaseDecision improves.
+- updated_at: `2026-08-15T07:04:25+00:00`
+- current: Implemented confirmed-enclosure intake gate, dynamic cover-letter enclosure rendering, footer version tracking, tests, and production deployment for Student Application MCP.
+- next: If needed, run browser screenshot QA of the landing footer and sample prompt page.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: /var/folders/b9/x56871850pzc7rqg1w55x5w00000gn/T/jobmcp-fresh-client-3jobs-final-NgVJ2s/fresh-client-3-job-test-report.md
+- files: experimental/application-package-mcp/src/index.ts, experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py, experimental/application-package-mcp/resources/workspace-template/AGENTS.md
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
@@ -82,10 +82,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Latest Checkpoints
 
-- `2026-08-15T06:59:37+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
-  - commands_run: npm test
-- `2026-08-15T06:59:40+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
-  - commands_run: python3 samples/local-kit-regression/run_regression.py
 - `2026-08-15T07:02:03+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
   - commands_run: npm test
 - `2026-08-15T07:02:06+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
@@ -98,6 +94,13 @@ When an agent resumes after context compaction or a new session:
   - commands_run: npm test
 - `2026-08-15T07:03:58+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote
   - commands_run: env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote
+- `2026-08-15T07:04:25+00:00` postflight: Implemented confirmed-enclosure intake gate, dynamic cover-letter enclosure rendering, footer version tracking, tests, and production deployment for Student Application MCP.
+  - next_steps: If needed, run browser screenshot QA of the landing footer and sample prompt page.
+  - files_changed: experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py; experimental/application-package-mcp/resources/workspace-template/AGENTS.md
+  - commands_run: python3 SOP.py postflight
+- `2026-08-15T07:04:26+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
 
 ## Decisions
 
