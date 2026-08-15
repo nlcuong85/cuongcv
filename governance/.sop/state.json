@@ -1,5 +1,5 @@
 {
-  "active_goal": "Deploy Student Application MCP root URL and CV template preview routes to production",
+  "active_goal": "Reduced oversized public page display headings across Student Application AI Helper pages while preserving Hermes-style blue visual system.",
   "active_task_id": null,
   "checkpoints": [
     {
@@ -2368,408 +2368,1752 @@
       "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-073437-518269.log",
       "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
       "time": "2026-08-15T07:34:40+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "experimental/application-package-mcp/src/index.ts",
+        "experimental/application-package-mcp/tests/smoke-remote.mjs"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "Monitor user review of production URLs; rollback tag on Franklee is jobmcp-prod-backup-20260815-073129 if needed."
+      ],
+      "open_questions": [],
+      "summary": "Deployed Student Application MCP v0.2.8 to production from Git commit b3779fe. Root setup URL, footer credit, English/German CV preview routes, health, and remote MCP smoke are verified.",
+      "time": "2026-08-15T07:35:25+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-15T07:35:27+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-08-15T09:22:28+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "application-system/outputs/mercedes-benz-insurance-services-gmbh-working-student-product-owner-support-insurance-platform-of-services/interview-prep-2026-04-16.md",
+        "application-system/outputs/acteno-energy-gmbh-praktikum-werkstudium-smart-energy-systems/interview-prep-2026-04-16.md"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "If requested, turn interview-prep pattern into a reusable application-system or MCP feature."
+      ],
+      "open_questions": [],
+      "summary": "Read-only audit of existing interview-prep documents completed. Found Mercedes-Benz Insurance Services and Acteno prep files, plus related communication logs and Mercedes intake/manifest context.",
+      "time": "2026-08-15T09:23:15+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-15T09:23:16+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-08-15T09:29:55+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-093520-707490.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T09:35:23+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-093532-384708.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T09:35:35+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-093542-915245.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T09:35:45+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-093620-894119.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T09:36:23+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-093647-517153.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T09:36:50+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-093650-621767.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T09:36:53+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-093724-356343.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T09:37:27+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-093727-743366.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T09:37:30+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-094055-943389.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T09:40:59+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-094102-835323.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T09:41:05+00:00"
+    },
+    {
+      "commands_run": [
+        "env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-094112-476480.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote",
+      "time": "2026-08-15T09:41:12+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-094132-936489.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T09:41:36+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-094136-067320.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T09:41:38+00:00"
+    },
+    {
+      "commands_run": [
+        "env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-094143-960566.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote",
+      "time": "2026-08-15T09:41:44+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "experimental/application-package-mcp/resources/application-kit/scripts/build_interview_prep.py",
+        "experimental/application-package-mcp/resources/application-kit/contracts/interview-prep-contract.md",
+        "experimental/application-package-mcp/resources/workspace-template/AGENTS.md",
+        "experimental/application-package-mcp/resources/workspace-template/CLAUDE.md"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "User reviews local generated interview-prep outputs; production deployment only after explicit approval."
+      ],
+      "open_questions": [],
+      "summary": "Implemented local-only interview-prep workflow with strict STAR incident hard gate. Builder now asks for actual past incidents instead of inventing STAR stories from CV/cover-letter text; tests, local-kit regression, and local MCP smoke passed.",
+      "time": "2026-08-15T09:41:50+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-15T09:41:52+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-08-15T09:46:07+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-094856-180247.log",
+      "summary": "Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T09:48:59+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-094859-069832.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T09:49:02+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-094920-234238.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T09:49:23+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-094923-406661.log",
+      "summary": "Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T09:49:26+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-094945-560080.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T09:49:48+00:00"
+    },
+    {
+      "commands_run": [
+        "env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-094956-335382.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote",
+      "time": "2026-08-15T09:49:56+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-095041-537627.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T09:50:44+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-095044-701178.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T09:50:47+00:00"
+    },
+    {
+      "commands_run": [
+        "env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-095054-834554.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote",
+      "time": "2026-08-15T09:50:55+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "experimental/application-package-mcp/resources/application-kit/scripts/build_interview_prep.py",
+        "experimental/application-package-mcp/resources/application-kit/templates/interview_prep.md",
+        "experimental/application-package-mcp/resources/application-kit/contracts/interview-prep-contract.md",
+        "experimental/application-package-mcp/tests/application-sop.test.mjs",
+        "experimental/application-package-mcp/samples/local-kit-regression/run_regression.py"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "User reviews regenerated local interview-prep samples; production deployment only after explicit approval."
+      ],
+      "open_questions": [],
+      "summary": "Upgraded local interview-prep builder from a questionnaire-like skeleton to a Mercedes/Acteno-grade coaching structure while preserving the no-hallucinated-STAR hard gate. Added likely-question rationale, spoken answer scripts, screening logic, stricter contract wording, and regression gates.",
+      "time": "2026-08-15T09:51:02+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-15T09:51:04+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-08-15T10:01:45+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100531-958853.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:05:35+00:00"
+    },
+    {
+      "commands_run": [
+        "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100546-063273.log",
+      "summary": "Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T10:05:49+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100611-551044.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:06:14+00:00"
+    },
+    {
+      "commands_run": [
+        "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100622-958475.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T10:06:25+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100739-711657.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:07:43+00:00"
+    },
+    {
+      "commands_run": [
+        "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100755-738770.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T10:07:58+00:00"
+    },
+    {
+      "commands_run": [
+        "env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100758-797725.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote",
+      "time": "2026-08-15T10:07:59+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "experimental/application-package-mcp/resources/application-kit/scripts/build_interview_prep.py",
+        "experimental/application-package-mcp/resources/application-kit/scripts/application_sop.py",
+        "experimental/application-package-mcp/src/checker.ts",
+        "experimental/application-package-mcp/samples/local-kit-regression/run_regression.py"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "User reviews three generated interview-prep samples and review results; production deploy only after explicit approval."
+      ],
+      "open_questions": [],
+      "summary": "Implemented local interview-prep one-loop MCP review gate. Added review packet generation, SOP review/finalize commands for interview prep, interview-aware checker handling, docs/manifest updates, version 0.2.10 and kit version 2026.08.15-interview-prep-review.1. Validated npm test, local MCP smoke, and 3-job regression with low review risk for all interview preps.",
+      "time": "2026-08-15T10:08:22+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-15T10:08:23+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-08-15T10:10:43+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-101857-296730.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:19:01+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-101908-874388.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:19:12+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-101920-412666.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:19:24+00:00"
+    },
+    {
+      "commands_run": [
+        "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-101934-885955.log",
+      "summary": "Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T10:19:38+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102037-459678.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:20:41+00:00"
+    },
+    {
+      "commands_run": [
+        "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102046-324790.log",
+      "summary": "Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T10:20:49+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102147-700543.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:21:51+00:00"
+    },
+    {
+      "commands_run": [
+        "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102202-820029.log",
+      "summary": "Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T10:22:06+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102308-439909.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:23:12+00:00"
+    },
+    {
+      "commands_run": [
+        "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102322-857279.log",
+      "summary": "Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T10:23:26+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102533-793592.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:25:37+00:00"
+    },
+    {
+      "commands_run": [
+        "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102548-443213.log",
+      "summary": "Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T10:25:52+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102652-668925.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:26:56+00:00"
+    },
+    {
+      "commands_run": [
+        "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102707-663679.log",
+      "summary": "Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T10:27:10+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102729-031649.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:27:32+00:00"
+    },
+    {
+      "commands_run": [
+        "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102744-014726.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T10:27:47+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103006-217931.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:30:09+00:00"
+    },
+    {
+      "commands_run": [
+        "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103021-054834.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T10:30:24+00:00"
+    },
+    {
+      "commands_run": [
+        "env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103028-786234.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote",
+      "time": "2026-08-15T10:30:29+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "experimental/application-package-mcp/resources/application-kit/contracts/mcp-review-payload-contract.md",
+        "experimental/application-package-mcp/resources/application-kit/scripts/build_interview_prep.py",
+        "experimental/application-package-mcp/samples/local-kit-regression/run_regression.py"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "User review of generated interview prep outputs; production deployment only after explicit approval."
+      ],
+      "open_questions": [],
+      "summary": "Implemented MCP review payload hard gate, upgraded interview prep to two low-risk selected-text loops, added general writing 1-3 loop workflow, and validated local MCP 0.2.12 with tests plus three-job regression.",
+      "time": "2026-08-15T10:30:34+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-15T10:30:36+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-08-15T10:31:50+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103216-959547.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:32:20+00:00"
+    },
+    {
+      "commands_run": [
+        "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103220-751772.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T10:32:23+00:00"
+    },
+    {
+      "commands_run": [
+        "env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103223-835080.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote",
+      "time": "2026-08-15T10:32:24+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103443-745721.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:34:47+00:00"
+    },
+    {
+      "commands_run": [
+        "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103447-521294.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T10:34:50+00:00"
+    },
+    {
+      "commands_run": [
+        "env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103450-739567.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote",
+      "time": "2026-08-15T10:34:51+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103503-299184.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T10:35:07+00:00"
+    },
+    {
+      "commands_run": [
+        "env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103648-738457.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote",
+      "time": "2026-08-15T10:36:51+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "experimental/application-package-mcp/src/index.ts",
+        "experimental/application-package-mcp/resources/sample-prompts.md",
+        "experimental/application-package-mcp/resources/application-kit/contracts/mcp-review-payload-contract.md"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "Monitor user review of production pages and only deploy future changes through Git checkout plus rollback tag."
+      ],
+      "open_questions": [],
+      "summary": "Released Student Application AI Helper MCP 0.2.12 to production at jobmcp.pmlecuong.com with final-reader-facing review payload gate, updated landing/technical/sample-prompt pages, and verified public health plus MCP smoke.",
+      "time": "2026-08-15T10:38:07+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-15T10:38:09+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-08-15T11:22:15+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [],
+      "label": "postflight",
+      "next_steps": [
+        "Await user approval before changing the Job MCP landing/documentation structure."
+      ],
+      "open_questions": [],
+      "summary": "Audited Hermes Agent and Job MCP production pages with Playwright screenshots, fetched HTML/CSS/docs index, and prepared redesign proposal only; no source changes made.",
+      "time": "2026-08-15T11:26:40+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-15T11:26:41+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-08-15T11:28:12+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113251-436166.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T11:32:55+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113323-665266.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T11:33:27+00:00"
+    },
+    {
+      "commands_run": [
+        "npm run build"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113426-462429.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build",
+      "time": "2026-08-15T11:34:27+00:00"
+    },
+    {
+      "commands_run": [
+        "npm run build"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113515-772143.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build",
+      "time": "2026-08-15T11:35:16+00:00"
+    },
+    {
+      "commands_run": [
+        "npm run build"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113614-720138.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build",
+      "time": "2026-08-15T11:36:15+00:00"
+    },
+    {
+      "commands_run": [
+        "npm run build"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113710-392049.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build",
+      "time": "2026-08-15T11:37:11+00:00"
+    },
+    {
+      "commands_run": [
+        "npm run build"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113807-837400.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build",
+      "time": "2026-08-15T11:38:08+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113922-106385.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T11:39:25+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-114120-820789.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T11:41:24+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-114124-789659.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T11:41:28+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "experimental/application-package-mcp/src/index.ts",
+        "experimental/application-package-mcp/tests/mcp-http.test.mjs",
+        "experimental/application-package-mcp/package.json",
+        "experimental/application-package-mcp/package-lock.json"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "Await user review/approval before committing, pushing, or deploying the redesigned Job MCP site to production."
+      ],
+      "open_questions": [],
+      "summary": "Implemented local Hermes-inspired Job MCP public-site redesign with split routes, updated tests, version 0.2.13, seven Playwright comparison loops, npm test, local-kit regression, and local health verification.",
+      "time": "2026-08-15T11:42:17+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-15T11:42:19+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-08-15T11:46:49+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-115307-811569.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T11:53:11+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-115446-326511.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T11:54:49+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-115944-238561.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T11:59:48+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-120435-410693.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T12:04:39+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-120628-488820.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T12:06:32+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-120901-054917.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T12:09:04+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "experimental/application-package-mcp/src/index.ts",
+        "experimental/application-package-mcp/tests/mcp-http.test.mjs",
+        "experimental/application-package-mcp/package.json",
+        "experimental/application-package-mcp/package-lock.json"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "Await user visual review at http://127.0.0.1:5944/ before commit, push, or production deployment."
+      ],
+      "open_questions": [],
+      "summary": "Completed local-only second Hermes-style blue redesign pass for Student Application AI Helper pages; removed standalone prompt page from nav via redirect, restored X/Y checker section, added four use-case surfaces, expanded docs, and validated local MCP/site behavior.",
+      "time": "2026-08-15T12:09:28+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-15T12:09:30+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-121129-475313.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T12:11:33+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "experimental/application-package-mcp/src/index.ts"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "Await user visual review before commit, push, or production deployment."
+      ],
+      "open_questions": [],
+      "summary": "Reduced oversized public page display headings across Student Application AI Helper pages while preserving Hermes-style blue visual system.",
+      "time": "2026-08-15T12:12:37+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-15T12:12:39+00:00"
     }
   ],
   "command_log": [
     {
-      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes --compile-pdf",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231011-303339.log",
-      "started_at": "2026-08-14T23:10:11+00:00",
-      "time": "2026-08-14T23:10:19+00:00"
-    },
-    {
-      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-fixed --compile-pdf",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 1,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231144-489279.log",
-      "started_at": "2026-08-14T23:11:44+00:00",
-      "time": "2026-08-14T23:11:49+00:00"
-    },
-    {
-      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-jpg --compile-pdf",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 1,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231230-624659.log",
-      "started_at": "2026-08-14T23:12:30+00:00",
-      "time": "2026-08-14T23:12:36+00:00"
-    },
-    {
-      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-svg --compile-pdf",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 1,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231331-636796.log",
-      "started_at": "2026-08-14T23:13:31+00:00",
-      "time": "2026-08-14T23:13:37+00:00"
-    },
-    {
-      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-browser-inter-mercedes-inline-svg --compile-pdf",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 1,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231443-085422.log",
-      "started_at": "2026-08-14T23:14:43+00:00",
-      "time": "2026-08-14T23:14:48+00:00"
-    },
-    {
-      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-reportlab-mercedes --compile-pdf",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231639-837330.log",
-      "started_at": "2026-08-14T23:16:39+00:00",
-      "time": "2026-08-14T23:16:45+00:00"
-    },
-    {
-      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-chrome-safe-signature-mercedes --compile-pdf",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231816-916227.log",
-      "started_at": "2026-08-14T23:18:16+00:00",
-      "time": "2026-08-14T23:18:24+00:00"
-    },
-    {
-      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/mercedes-benz-ag-working-student-process-development-for-cdcc2-0-baselayer-software.json --output /tmp/cuongcv-main-final-mercedes --compile-pdf",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231912-878635.log",
-      "started_at": "2026-08-14T23:19:12+00:00",
-      "time": "2026-08-14T23:19:20+00:00"
-    },
-    {
-      "command": "python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-final-demo",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-231931-402186.log",
-      "started_at": "2026-08-14T23:19:31+00:00",
-      "time": "2026-08-14T23:19:34+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-232014-127936.log",
-      "started_at": "2026-08-14T23:20:14+00:00",
-      "time": "2026-08-14T23:20:19+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-232034-568334.log",
-      "started_at": "2026-08-14T23:20:34+00:00",
-      "time": "2026-08-14T23:20:39+00:00"
-    },
-    {
-      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/schwarz-it-werkstudent-marketing-systeme.json --output /tmp/schwarz-style-parity --compile-pdf",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 1,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062215-931357.log",
-      "started_at": "2026-08-15T06:22:15+00:00",
-      "time": "2026-08-15T06:22:16+00:00"
-    },
-    {
-      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/schwarz-it-werkstudent-marketing-systeme.json --output /tmp/schwarz-style-parity --compile-pdf",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062225-739035.log",
-      "started_at": "2026-08-15T06:22:25+00:00",
-      "time": "2026-08-15T06:22:30+00:00"
-    },
-    {
-      "command": "python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-lmodern-demo",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 2,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062247-870870.log",
-      "started_at": "2026-08-15T06:22:47+00:00",
-      "time": "2026-08-15T06:22:48+00:00"
-    },
-    {
-      "command": "python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-lmodern-demo2",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062306-948662.log",
-      "started_at": "2026-08-15T06:23:06+00:00",
-      "time": "2026-08-15T06:23:07+00:00"
-    },
-    {
-      "command": "latexmk -pdf -interaction=nonstopmode -halt-on-error cover-letter.tex",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062610-139313.log",
-      "started_at": "2026-08-15T06:26:10+00:00",
-      "time": "2026-08-15T06:26:10+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062615-094450.log",
-      "started_at": "2026-08-15T06:26:15+00:00",
-      "time": "2026-08-15T06:26:17+00:00"
-    },
-    {
-      "command": "python3 application-system/scripts/generate_application.py --intake application-system/intakes/schwarz-it-werkstudent-marketing-systeme.json --output /tmp/schwarz-style-parity-final --compile-pdf",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062625-028789.log",
-      "started_at": "2026-08-15T06:26:25+00:00",
-      "time": "2026-08-15T06:26:29+00:00"
-    },
-    {
-      "command": "python3 /Users/pmlecuong/.codex/skills/job-search-cuong/scripts/check_application_rules.py --resume-data /Users/pmlecuong/Documents/CuongProjects/CuongCV/src/data/resume-data.tsx --summary-versions /Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/summary_versions.json --intake application-system/intakes/schwarz-it-werkstudent-marketing-systeme.json --cover-letter /tmp/schwarz-style-parity-final/cover-letter/cover_letter.tex",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062629-122847.log",
-      "started_at": "2026-08-15T06:26:29+00:00",
-      "time": "2026-08-15T06:26:29+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062721-235371.log",
-      "started_at": "2026-08-15T06:27:21+00:00",
-      "time": "2026-08-15T06:27:24+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-064857-099520.log",
-      "started_at": "2026-08-15T06:48:57+00:00",
-      "time": "2026-08-15T06:49:00+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065144-842786.log",
-      "started_at": "2026-08-15T06:51:44+00:00",
-      "time": "2026-08-15T06:51:47+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 1,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065829-201264.log",
-      "started_at": "2026-08-15T06:58:29+00:00",
-      "time": "2026-08-15T06:58:31+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065839-837696.log",
-      "started_at": "2026-08-15T06:58:39+00:00",
-      "time": "2026-08-15T06:58:42+00:00"
-    },
-    {
-      "command": "python3 samples/local-kit-regression/run_regression.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 1,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065846-157864.log",
-      "started_at": "2026-08-15T06:58:46+00:00",
-      "time": "2026-08-15T06:58:46+00:00"
-    },
-    {
-      "command": "python3 samples/local-kit-regression/run_regression.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 1,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065858-836858.log",
-      "started_at": "2026-08-15T06:58:58+00:00",
-      "time": "2026-08-15T06:58:59+00:00"
-    },
-    {
-      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
       "exit_code": 2,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065912-964929.log",
-      "started_at": "2026-08-15T06:59:12+00:00",
-      "time": "2026-08-15T06:59:15+00:00"
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100546-063273.log",
+      "started_at": "2026-08-15T10:05:46+00:00",
+      "time": "2026-08-15T10:05:49+00:00"
     },
     {
       "command": "npm test",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
       "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065933-788579.log",
-      "started_at": "2026-08-15T06:59:33+00:00",
-      "time": "2026-08-15T06:59:37+00:00"
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100611-551044.log",
+      "started_at": "2026-08-15T10:06:11+00:00",
+      "time": "2026-08-15T10:06:14+00:00"
     },
     {
-      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
       "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065937-519463.log",
-      "started_at": "2026-08-15T06:59:37+00:00",
-      "time": "2026-08-15T06:59:40+00:00"
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100622-958475.log",
+      "started_at": "2026-08-15T10:06:22+00:00",
+      "time": "2026-08-15T10:06:25+00:00"
     },
     {
       "command": "npm test",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
       "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070158-212541.log",
-      "started_at": "2026-08-15T07:01:58+00:00",
-      "time": "2026-08-15T07:02:03+00:00"
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100739-711657.log",
+      "started_at": "2026-08-15T10:07:39+00:00",
+      "time": "2026-08-15T10:07:43+00:00"
     },
     {
-      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
       "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070203-864261.log",
-      "started_at": "2026-08-15T07:02:03+00:00",
-      "time": "2026-08-15T07:02:06+00:00"
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100755-738770.log",
+      "started_at": "2026-08-15T10:07:55+00:00",
+      "time": "2026-08-15T10:07:58+00:00"
     },
     {
-      "command": "npm run smoke:remote",
+      "command": "env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100758-797725.log",
+      "started_at": "2026-08-15T10:07:58+00:00",
+      "time": "2026-08-15T10:07:59+00:00"
+    },
+    {
+      "command": "npm test",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
       "exit_code": 1,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070331-459397.log",
-      "started_at": "2026-08-15T07:03:31+00:00",
-      "time": "2026-08-15T07:03:31+00:00"
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-101857-296730.log",
+      "started_at": "2026-08-15T10:18:57+00:00",
+      "time": "2026-08-15T10:19:01+00:00"
     },
     {
-      "command": "env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote",
+      "command": "npm test",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
       "exit_code": 1,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070340-847188.log",
-      "started_at": "2026-08-15T07:03:40+00:00",
-      "time": "2026-08-15T07:03:42+00:00"
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-101908-874388.log",
+      "started_at": "2026-08-15T10:19:08+00:00",
+      "time": "2026-08-15T10:19:12+00:00"
     },
     {
       "command": "npm test",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
       "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070353-357161.log",
-      "started_at": "2026-08-15T07:03:53+00:00",
-      "time": "2026-08-15T07:03:56+00:00"
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-101920-412666.log",
+      "started_at": "2026-08-15T10:19:20+00:00",
+      "time": "2026-08-15T10:19:24+00:00"
+    },
+    {
+      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 2,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-101934-885955.log",
+      "started_at": "2026-08-15T10:19:34+00:00",
+      "time": "2026-08-15T10:19:38+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102037-459678.log",
+      "started_at": "2026-08-15T10:20:37+00:00",
+      "time": "2026-08-15T10:20:41+00:00"
+    },
+    {
+      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 2,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102046-324790.log",
+      "started_at": "2026-08-15T10:20:46+00:00",
+      "time": "2026-08-15T10:20:49+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102147-700543.log",
+      "started_at": "2026-08-15T10:21:47+00:00",
+      "time": "2026-08-15T10:21:51+00:00"
+    },
+    {
+      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 2,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102202-820029.log",
+      "started_at": "2026-08-15T10:22:02+00:00",
+      "time": "2026-08-15T10:22:06+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102308-439909.log",
+      "started_at": "2026-08-15T10:23:08+00:00",
+      "time": "2026-08-15T10:23:12+00:00"
+    },
+    {
+      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 2,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102322-857279.log",
+      "started_at": "2026-08-15T10:23:22+00:00",
+      "time": "2026-08-15T10:23:26+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102533-793592.log",
+      "started_at": "2026-08-15T10:25:33+00:00",
+      "time": "2026-08-15T10:25:37+00:00"
+    },
+    {
+      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 2,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102548-443213.log",
+      "started_at": "2026-08-15T10:25:48+00:00",
+      "time": "2026-08-15T10:25:52+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102652-668925.log",
+      "started_at": "2026-08-15T10:26:52+00:00",
+      "time": "2026-08-15T10:26:56+00:00"
+    },
+    {
+      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 2,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102707-663679.log",
+      "started_at": "2026-08-15T10:27:07+00:00",
+      "time": "2026-08-15T10:27:10+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102729-031649.log",
+      "started_at": "2026-08-15T10:27:29+00:00",
+      "time": "2026-08-15T10:27:32+00:00"
+    },
+    {
+      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102744-014726.log",
+      "started_at": "2026-08-15T10:27:44+00:00",
+      "time": "2026-08-15T10:27:47+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103006-217931.log",
+      "started_at": "2026-08-15T10:30:06+00:00",
+      "time": "2026-08-15T10:30:09+00:00"
+    },
+    {
+      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103021-054834.log",
+      "started_at": "2026-08-15T10:30:21+00:00",
+      "time": "2026-08-15T10:30:24+00:00"
+    },
+    {
+      "command": "env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103028-786234.log",
+      "started_at": "2026-08-15T10:30:28+00:00",
+      "time": "2026-08-15T10:30:29+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103216-959547.log",
+      "started_at": "2026-08-15T10:32:16+00:00",
+      "time": "2026-08-15T10:32:20+00:00"
+    },
+    {
+      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103220-751772.log",
+      "started_at": "2026-08-15T10:32:20+00:00",
+      "time": "2026-08-15T10:32:23+00:00"
+    },
+    {
+      "command": "env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103223-835080.log",
+      "started_at": "2026-08-15T10:32:23+00:00",
+      "time": "2026-08-15T10:32:24+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 1,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103443-745721.log",
+      "started_at": "2026-08-15T10:34:43+00:00",
+      "time": "2026-08-15T10:34:47+00:00"
+    },
+    {
+      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103447-521294.log",
+      "started_at": "2026-08-15T10:34:47+00:00",
+      "time": "2026-08-15T10:34:50+00:00"
+    },
+    {
+      "command": "env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103450-739567.log",
+      "started_at": "2026-08-15T10:34:50+00:00",
+      "time": "2026-08-15T10:34:51+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103503-299184.log",
+      "started_at": "2026-08-15T10:35:03+00:00",
+      "time": "2026-08-15T10:35:07+00:00"
     },
     {
       "command": "env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
       "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070356-419759.log",
-      "started_at": "2026-08-15T07:03:56+00:00",
-      "time": "2026-08-15T07:03:58+00:00"
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-103648-738457.log",
+      "started_at": "2026-08-15T10:36:48+00:00",
+      "time": "2026-08-15T10:36:51+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 1,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113251-436166.log",
+      "started_at": "2026-08-15T11:32:51+00:00",
+      "time": "2026-08-15T11:32:55+00:00"
     },
     {
       "command": "npm test",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
       "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071003-420651.log",
-      "started_at": "2026-08-15T07:10:03+00:00",
-      "time": "2026-08-15T07:10:06+00:00"
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113323-665266.log",
+      "started_at": "2026-08-15T11:33:23+00:00",
+      "time": "2026-08-15T11:33:27+00:00"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113426-462429.log",
+      "started_at": "2026-08-15T11:34:26+00:00",
+      "time": "2026-08-15T11:34:27+00:00"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113515-772143.log",
+      "started_at": "2026-08-15T11:35:15+00:00",
+      "time": "2026-08-15T11:35:16+00:00"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113614-720138.log",
+      "started_at": "2026-08-15T11:36:14+00:00",
+      "time": "2026-08-15T11:36:15+00:00"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113710-392049.log",
+      "started_at": "2026-08-15T11:37:10+00:00",
+      "time": "2026-08-15T11:37:11+00:00"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113807-837400.log",
+      "started_at": "2026-08-15T11:38:07+00:00",
+      "time": "2026-08-15T11:38:08+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-113922-106385.log",
+      "started_at": "2026-08-15T11:39:22+00:00",
+      "time": "2026-08-15T11:39:25+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-114120-820789.log",
+      "started_at": "2026-08-15T11:41:20+00:00",
+      "time": "2026-08-15T11:41:24+00:00"
     },
     {
       "command": "python3 samples/local-kit-regression/run_regression.py",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
       "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071024-881677.log",
-      "started_at": "2026-08-15T07:10:24+00:00",
-      "time": "2026-08-15T07:10:27+00:00"
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-114124-789659.log",
+      "started_at": "2026-08-15T11:41:24+00:00",
+      "time": "2026-08-15T11:41:28+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 1,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-115307-811569.log",
+      "started_at": "2026-08-15T11:53:07+00:00",
+      "time": "2026-08-15T11:53:11+00:00"
     },
     {
       "command": "npm test",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
       "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071133-822882.log",
-      "started_at": "2026-08-15T07:11:33+00:00",
-      "time": "2026-08-15T07:11:36+00:00"
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-115446-326511.log",
+      "started_at": "2026-08-15T11:54:46+00:00",
+      "time": "2026-08-15T11:54:49+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-115944-238561.log",
+      "started_at": "2026-08-15T11:59:44+00:00",
+      "time": "2026-08-15T11:59:48+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-120435-410693.log",
+      "started_at": "2026-08-15T12:04:35+00:00",
+      "time": "2026-08-15T12:04:39+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-120628-488820.log",
+      "started_at": "2026-08-15T12:06:28+00:00",
+      "time": "2026-08-15T12:06:32+00:00"
     },
     {
       "command": "python3 samples/local-kit-regression/run_regression.py",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
       "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071136-833543.log",
-      "started_at": "2026-08-15T07:11:36+00:00",
-      "time": "2026-08-15T07:11:39+00:00"
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-120901-054917.log",
+      "started_at": "2026-08-15T12:09:01+00:00",
+      "time": "2026-08-15T12:09:04+00:00"
     },
     {
       "command": "npm test",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
       "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071238-321712.log",
-      "started_at": "2026-08-15T07:12:38+00:00",
-      "time": "2026-08-15T07:12:41+00:00"
-    },
-    {
-      "command": "python3 samples/local-kit-regression/run_regression.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071241-322470.log",
-      "started_at": "2026-08-15T07:12:41+00:00",
-      "time": "2026-08-15T07:12:43+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071326-483262.log",
-      "started_at": "2026-08-15T07:13:26+00:00",
-      "time": "2026-08-15T07:13:29+00:00"
-    },
-    {
-      "command": "python3 samples/local-kit-regression/run_regression.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071329-364100.log",
-      "started_at": "2026-08-15T07:13:29+00:00",
-      "time": "2026-08-15T07:13:31+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071903-510872.log",
-      "started_at": "2026-08-15T07:19:03+00:00",
-      "time": "2026-08-15T07:19:06+00:00"
-    },
-    {
-      "command": "python3 samples/local-kit-regression/run_regression.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071913-154167.log",
-      "started_at": "2026-08-15T07:19:13+00:00",
-      "time": "2026-08-15T07:19:15+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072156-269015.log",
-      "started_at": "2026-08-15T07:21:56+00:00",
-      "time": "2026-08-15T07:21:59+00:00"
-    },
-    {
-      "command": "python3 samples/local-kit-regression/run_regression.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072203-100390.log",
-      "started_at": "2026-08-15T07:22:03+00:00",
-      "time": "2026-08-15T07:22:05+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072858-719390.log",
-      "started_at": "2026-08-15T07:28:58+00:00",
-      "time": "2026-08-15T07:29:01+00:00"
-    },
-    {
-      "command": "python3 samples/local-kit-regression/run_regression.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072906-063632.log",
-      "started_at": "2026-08-15T07:29:06+00:00",
-      "time": "2026-08-15T07:29:08+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-073437-518269.log",
-      "started_at": "2026-08-15T07:34:37+00:00",
-      "time": "2026-08-15T07:34:40+00:00"
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-121129-475313.log",
+      "started_at": "2026-08-15T12:11:29+00:00",
+      "time": "2026-08-15T12:11:33+00:00"
     }
   ],
   "created_at": "2026-06-19T09:19:21+00:00",
@@ -2785,14 +4129,13 @@
     "commands": [
       "python3 SOP.py postflight"
     ],
-    "current": "Updated Student Application MCP locally so user-facing setup uses root URL, added direct English/German CV template preview routes, kept /mcp as technical transport endpoint, and verified local routes/tests/regression.",
+    "current": "Reduced oversized public page display headings across Student Application AI Helper pages while preserving Hermes-style blue visual system.",
     "files": [
-      "experimental/application-package-mcp/src/index.ts",
-      "experimental/application-package-mcp/tests/mcp-http.test.mjs"
+      "experimental/application-package-mcp/src/index.ts"
     ],
-    "next": "User reviews local root page and CV template preview URLs; deploy only after explicit approval.",
+    "next": "Await user visual review before commit, push, or production deployment.",
     "risk": "Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.",
-    "updated_at": "2026-08-15T07:29:40+00:00"
+    "updated_at": "2026-08-15T12:12:37+00:00"
   },
   "kiro": {
     "active_spec": "resilient-application-mcp",
@@ -2909,7 +4252,7 @@
   "open_questions": [],
   "repo": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
   "repo_snapshot": {
-    "created_at": "2026-08-15T07:29:42+00:00",
+    "created_at": "2026-08-15T12:12:39+00:00",
     "directories": [
       ".github",
       ".github/workflows",
@@ -2980,8 +4323,11 @@
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/vishay-controlling",
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs",
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos",
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep",
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling",
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep",
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling",
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep",
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated",
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos",
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/cover-letter",
@@ -3087,8 +4433,8 @@
       "src/lib",
       "tests"
     ],
-    "directory_count": 175,
-    "file_count": 709,
+    "directory_count": 178,
+    "file_count": 748,
     "files": {
       ".github/workflows/deploy.yml": {
         "mtime": 1756829608,
@@ -3587,12 +4933,12 @@
         "size": 3278
       },
       "experimental/application-package-mcp/README.md": {
-        "mtime": 1786778916,
-        "size": 3820
+        "mtime": 1786788948,
+        "size": 4251
       },
       "experimental/application-package-mcp/dist/checker.js": {
-        "mtime": 1786778939,
-        "size": 35406
+        "mtime": 1786795890,
+        "size": 35695
       },
       "experimental/application-package-mcp/dist/docx.js": {
         "mtime": 1777492263,
@@ -3603,15 +4949,15 @@
         "size": 14966
       },
       "experimental/application-package-mcp/dist/index.js": {
-        "mtime": 1786778939,
-        "size": 82096
+        "mtime": 1786795890,
+        "size": 90456
       },
       "experimental/application-package-mcp/dist/pdf.js": {
         "mtime": 1777492263,
         "size": 4638
       },
       "experimental/application-package-mcp/dist/resources.js": {
-        "mtime": 1786778939,
+        "mtime": 1786795890,
         "size": 2353
       },
       "experimental/application-package-mcp/dist/storage.js": {
@@ -3639,12 +4985,12 @@
         "size": 1673
       },
       "experimental/application-package-mcp/package-lock.json": {
-        "mtime": 1786778182,
-        "size": 42607
+        "mtime": 1786794778,
+        "size": 42609
       },
       "experimental/application-package-mcp/package.json": {
-        "mtime": 1786778182,
-        "size": 656
+        "mtime": 1786794778,
+        "size": 657
       },
       "experimental/application-package-mcp/resources/application-kit/contracts/cover-letter-contract.md": {
         "mtime": 1786777170,
@@ -3653,6 +4999,14 @@
       "experimental/application-package-mcp/resources/application-kit/contracts/cv-markdown-contract.md": {
         "mtime": 1786778230,
         "size": 4474
+      },
+      "experimental/application-package-mcp/resources/application-kit/contracts/interview-prep-contract.md": {
+        "mtime": 1786789777,
+        "size": 7423
+      },
+      "experimental/application-package-mcp/resources/application-kit/contracts/mcp-review-payload-contract.md": {
+        "mtime": 1786789715,
+        "size": 1704
       },
       "experimental/application-package-mcp/resources/application-kit/contracts/retry-policy.md": {
         "mtime": 1777830902,
@@ -3665,6 +5019,10 @@
       "experimental/application-package-mcp/resources/application-kit/contracts/typography-contract.md": {
         "mtime": 1786774906,
         "size": 1478
+      },
+      "experimental/application-package-mcp/resources/application-kit/contracts/writing-review-contract.md": {
+        "mtime": 1786789777,
+        "size": 2995
       },
       "experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/README.md": {
         "mtime": 1786739576,
@@ -3743,20 +5101,24 @@
         "size": 324820
       },
       "experimental/application-package-mcp/resources/application-kit/manifest.json": {
-        "mtime": 1786778182,
-        "size": 3071
+        "mtime": 1786789801,
+        "size": 5211
       },
       "experimental/application-package-mcp/resources/application-kit/scripts/application_quality_loop.py": {
-        "mtime": 1786735039,
-        "size": 686
+        "mtime": 1786788717,
+        "size": 854
       },
       "experimental/application-package-mcp/resources/application-kit/scripts/application_sop.py": {
-        "mtime": 1786776945,
-        "size": 22402
+        "mtime": 1786788709,
+        "size": 24123
       },
       "experimental/application-package-mcp/resources/application-kit/scripts/build_cv_html.py": {
         "mtime": 1786778200,
         "size": 9370
+      },
+      "experimental/application-package-mcp/resources/application-kit/scripts/build_interview_prep.py": {
+        "mtime": 1786789643,
+        "size": 44802
       },
       "experimental/application-package-mcp/resources/application-kit/scripts/ingest_cv.py": {
         "mtime": 1786735239,
@@ -3771,8 +5133,12 @@
         "size": 1882
       },
       "experimental/application-package-mcp/resources/application-kit/scripts/workspace_audit.py": {
-        "mtime": 1786778182,
-        "size": 4680
+        "mtime": 1786789801,
+        "size": 5169
+      },
+      "experimental/application-package-mcp/resources/application-kit/scripts/writing_review_loop.py": {
+        "mtime": 1786788769,
+        "size": 10449
       },
       "experimental/application-package-mcp/resources/application-kit/templates/cover_letter.html": {
         "mtime": 1786774918,
@@ -3790,9 +5156,13 @@
         "mtime": 1786777944,
         "size": 8231
       },
+      "experimental/application-package-mcp/resources/application-kit/templates/interview_prep.md": {
+        "mtime": 1786787179,
+        "size": 1142
+      },
       "experimental/application-package-mcp/resources/client-skill/SKILL.md": {
-        "mtime": 1786778265,
-        "size": 5222
+        "mtime": 1786789777,
+        "size": 8992
       },
       "experimental/application-package-mcp/resources/diagrams/bootstrap-scaffolding-flow.puml": {
         "mtime": 1786737863,
@@ -3819,12 +5189,12 @@
         "size": 16635
       },
       "experimental/application-package-mcp/resources/onboarding.md": {
-        "mtime": 1786778230,
-        "size": 6062
+        "mtime": 1786788924,
+        "size": 7997
       },
       "experimental/application-package-mcp/resources/sample-prompts.md": {
-        "mtime": 1786778906,
-        "size": 5957
+        "mtime": 1786790075,
+        "size": 8417
       },
       "experimental/application-package-mcp/resources/workspace-template/.github/copilot-instructions.md": {
         "mtime": 1777833937,
@@ -3843,16 +5213,16 @@
         "size": 115
       },
       "experimental/application-package-mcp/resources/workspace-template/AGENTS.md": {
-        "mtime": 1786778230,
-        "size": 11650
+        "mtime": 1786789777,
+        "size": 15714
       },
       "experimental/application-package-mcp/resources/workspace-template/CHANGELOG.md": {
         "mtime": 1786738792,
         "size": 730
       },
       "experimental/application-package-mcp/resources/workspace-template/CLAUDE.md": {
-        "mtime": 1786777030,
-        "size": 2395
+        "mtime": 1786789777,
+        "size": 4767
       },
       "experimental/application-package-mcp/resources/workspace-template/COPILOT.md": {
         "mtime": 1777833936,
@@ -3867,8 +5237,8 @@
         "size": 1035
       },
       "experimental/application-package-mcp/resources/workspace-template/README.md": {
-        "mtime": 1786778265,
-        "size": 2387
+        "mtime": 1786788940,
+        "size": 3385
       },
       "experimental/application-package-mcp/resources/workspace-template/applications/.gitkeep": {
         "mtime": 1786735105,
@@ -4071,8 +5441,8 @@
         "size": 672
       },
       "experimental/application-package-mcp/samples/local-kit-regression/run_regression.py": {
-        "mtime": 1786777148,
-        "size": 23855
+        "mtime": 1786789107,
+        "size": 29798
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/contracts/cover-letter-contract.md": {
         "mtime": 1786777170,
@@ -4081,6 +5451,14 @@
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/contracts/cv-markdown-contract.md": {
         "mtime": 1786778230,
         "size": 4474
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/contracts/interview-prep-contract.md": {
+        "mtime": 1786789777,
+        "size": 7423
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/contracts/mcp-review-payload-contract.md": {
+        "mtime": 1786789715,
+        "size": 1704
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/contracts/retry-policy.md": {
         "mtime": 1777830902,
@@ -4093,6 +5471,10 @@
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/contracts/typography-contract.md": {
         "mtime": 1786774906,
         "size": 1478
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/contracts/writing-review-contract.md": {
+        "mtime": 1786789777,
+        "size": 2995
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/examples/german-cover-letter-demo/README.md": {
         "mtime": 1786739576,
@@ -4171,20 +5553,24 @@
         "size": 324820
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/manifest.json": {
-        "mtime": 1786778182,
-        "size": 3071
+        "mtime": 1786789801,
+        "size": 5211
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/scripts/application_quality_loop.py": {
-        "mtime": 1786735039,
-        "size": 686
+        "mtime": 1786788717,
+        "size": 854
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/scripts/application_sop.py": {
-        "mtime": 1786776945,
-        "size": 22402
+        "mtime": 1786788709,
+        "size": 24123
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/scripts/build_cv_html.py": {
         "mtime": 1786778200,
         "size": 9370
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/scripts/build_interview_prep.py": {
+        "mtime": 1786789643,
+        "size": 44802
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/scripts/ingest_cv.py": {
         "mtime": 1786735239,
@@ -4199,8 +5585,12 @@
         "size": 1882
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/scripts/workspace_audit.py": {
-        "mtime": 1786778182,
-        "size": 4680
+        "mtime": 1786789801,
+        "size": 5169
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/scripts/writing_review_loop.py": {
+        "mtime": 1786788769,
+        "size": 10449
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/templates/cover_letter.html": {
         "mtime": 1786774918,
@@ -4218,329 +5608,441 @@
         "mtime": 1786777944,
         "size": 8231
       },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/templates/interview_prep.md": {
+        "mtime": 1786787179,
+        "size": 1142
+      },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/candidate/evidence.md": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 8524
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/candidate/profile.json": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 8642
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/candidate/source-analysis.md": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 18486
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/candidate/tone.md": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 2104
       },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/mercedes-ipos/interview.json": {
+        "mtime": 1786795741,
+        "size": 296
+      },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/mercedes-ipos/job.json": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 5250
       },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/sap-threat-modelling/interview.json": {
+        "mtime": 1786795742,
+        "size": 296
+      },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/sap-threat-modelling/job.json": {
-        "mtime": 1786778947,
+        "mtime": 1786795742,
         "size": 5884
       },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/vishay-controlling/interview.json": {
+        "mtime": 1786795743,
+        "size": 304
+      },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/vishay-controlling/job.json": {
-        "mtime": 1786778947,
+        "mtime": 1786795743,
         "size": 5340
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter-draft.json": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 2522
       },
-      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter-le-cuong-nguyen-working-student-product-owner-support-insurance-platform-of-services-20260815-092907.pdf": {
-        "mtime": 1786778947,
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter-le-cuong-nguyen-working-student-product-owner-support-insurance-platform-of-services-20260815-140902.pdf": {
+        "mtime": 1786795742,
         "size": 70047
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.aux": {
-        "mtime": 1786778946,
+        "mtime": 1786795742,
         "size": 162
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.fdb_latexmk": {
-        "mtime": 1786778947,
-        "size": 8140
+        "mtime": 1786795742,
+        "size": 8139
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.fls": {
-        "mtime": 1786778946,
+        "mtime": 1786795742,
         "size": 9923
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.html": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 4793
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.log": {
-        "mtime": 1786778947,
+        "mtime": 1786795742,
         "size": 16443
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.md": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 2004
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.out": {
-        "mtime": 1786778946,
+        "mtime": 1786795742,
         "size": 0
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.tex": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 3168
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cv-input.json": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 1915
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cv-tailored.md": {
-        "mtime": 1786778947,
+        "mtime": 1786795742,
         "size": 1775
       },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep-manifest.json": {
+        "mtime": 1786795742,
+        "size": 1540
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep-questions.md": {
+        "mtime": 1786795742,
+        "size": 509
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep-review-input-loop-1.json": {
+        "mtime": 1786795742,
+        "size": 2334
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep-review-input-loop-2.json": {
+        "mtime": 1786795742,
+        "size": 1354
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep-review-input.json": {
+        "mtime": 1786795742,
+        "size": 2334
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep-review-result-loop-1.json": {
+        "mtime": 1786795742,
+        "size": 1949
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep-review-result-loop-2.json": {
+        "mtime": 1786795742,
+        "size": 1403
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep.md": {
+        "mtime": 1786795742,
+        "size": 15387
+      },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/manifest.json": {
-        "mtime": 1786778947,
+        "mtime": 1786795742,
         "size": 1601
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/validation.md": {
-        "mtime": 1786778947,
+        "mtime": 1786795742,
         "size": 470
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter-draft.json": {
-        "mtime": 1786778947,
+        "mtime": 1786795742,
         "size": 2541
       },
-      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter-le-cuong-nguyen-working-student-f-m-d-threat-modelling-service-operation-and-automation-20260815-092907.pdf": {
-        "mtime": 1786778947,
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter-le-cuong-nguyen-working-student-f-m-d-threat-modelling-service-operation-and-automation-20260815-140903.pdf": {
+        "mtime": 1786795743,
         "size": 71468
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.aux": {
-        "mtime": 1786778947,
+        "mtime": 1786795743,
         "size": 162
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.fdb_latexmk": {
-        "mtime": 1786778947,
-        "size": 8140
+        "mtime": 1786795743,
+        "size": 8139
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.fls": {
-        "mtime": 1786778947,
+        "mtime": 1786795743,
         "size": 9930
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.html": {
-        "mtime": 1786778947,
+        "mtime": 1786795742,
         "size": 4812
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.log": {
-        "mtime": 1786778947,
+        "mtime": 1786795743,
         "size": 16443
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.md": {
-        "mtime": 1786778947,
+        "mtime": 1786795742,
         "size": 2023
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.out": {
-        "mtime": 1786778947,
+        "mtime": 1786795743,
         "size": 0
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.tex": {
-        "mtime": 1786778947,
+        "mtime": 1786795742,
         "size": 3187
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cv-input.json": {
-        "mtime": 1786778947,
+        "mtime": 1786795742,
         "size": 1878
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cv-tailored.md": {
-        "mtime": 1786778947,
+        "mtime": 1786795743,
         "size": 1738
       },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep-manifest.json": {
+        "mtime": 1786795743,
+        "size": 1520
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep-questions.md": {
+        "mtime": 1786795743,
+        "size": 509
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep-review-input-loop-1.json": {
+        "mtime": 1786795743,
+        "size": 2268
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep-review-input-loop-2.json": {
+        "mtime": 1786795743,
+        "size": 1306
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep-review-input.json": {
+        "mtime": 1786795743,
+        "size": 2268
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep-review-result-loop-1.json": {
+        "mtime": 1786795743,
+        "size": 1949
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep-review-result-loop-2.json": {
+        "mtime": 1786795743,
+        "size": 1403
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep.md": {
+        "mtime": 1786795743,
+        "size": 15276
+      },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/manifest.json": {
-        "mtime": 1786778947,
+        "mtime": 1786795743,
         "size": 1653
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/validation.md": {
-        "mtime": 1786778947,
+        "mtime": 1786795743,
         "size": 470
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter-draft.json": {
-        "mtime": 1786778947,
+        "mtime": 1786795743,
         "size": 2450
       },
-      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter-le-cuong-nguyen-werkstudent-m-w-d-controlling-20260815-092908.pdf": {
-        "mtime": 1786778948,
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter-le-cuong-nguyen-werkstudent-m-w-d-controlling-20260815-140904.pdf": {
+        "mtime": 1786795744,
         "size": 70267
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.aux": {
-        "mtime": 1786778948,
+        "mtime": 1786795744,
         "size": 162
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.fdb_latexmk": {
-        "mtime": 1786778948,
-        "size": 8140
+        "mtime": 1786795744,
+        "size": 8139
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.fls": {
-        "mtime": 1786778948,
+        "mtime": 1786795744,
         "size": 9928
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.html": {
-        "mtime": 1786778947,
+        "mtime": 1786795743,
         "size": 4721
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.log": {
-        "mtime": 1786778948,
+        "mtime": 1786795744,
         "size": 16443
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.md": {
-        "mtime": 1786778947,
+        "mtime": 1786795743,
         "size": 1932
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.out": {
-        "mtime": 1786778948,
+        "mtime": 1786795744,
         "size": 0
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.tex": {
-        "mtime": 1786778947,
+        "mtime": 1786795743,
         "size": 3096
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cv-input.json": {
-        "mtime": 1786778947,
+        "mtime": 1786795743,
         "size": 1835
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cv-tailored.md": {
-        "mtime": 1786778948,
+        "mtime": 1786795744,
         "size": 1695
       },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep-manifest.json": {
+        "mtime": 1786795744,
+        "size": 1496
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep-questions.md": {
+        "mtime": 1786795744,
+        "size": 509
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep-review-input-loop-1.json": {
+        "mtime": 1786795744,
+        "size": 2360
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep-review-input-loop-2.json": {
+        "mtime": 1786795744,
+        "size": 1342
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep-review-input.json": {
+        "mtime": 1786795744,
+        "size": 2360
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep-review-result-loop-1.json": {
+        "mtime": 1786795744,
+        "size": 1949
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep-review-result-loop-2.json": {
+        "mtime": 1786795744,
+        "size": 1403
+      },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep.md": {
+        "mtime": 1786795744,
+        "size": 15784
+      },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/manifest.json": {
-        "mtime": 1786778948,
+        "mtime": 1786795744,
         "size": 1597
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/validation.md": {
-        "mtime": 1786778948,
+        "mtime": 1786795744,
         "size": 470
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/regression-report.json": {
-        "mtime": 1786778948,
-        "size": 2283
+        "mtime": 1786795744,
+        "size": 5775
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/regression-report.md": {
-        "mtime": 1786778948,
-        "size": 1734
+        "mtime": 1786795744,
+        "size": 4755
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/cover-letter/cover_letter.html": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 5682
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/cover-letter/cover_letter.tex": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 3168
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/cv/product_owner.json": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 8059
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/manifest.json": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 4373
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/notes.md": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 1087
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/skill-assessment/role_fit_snapshot.html": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 7446
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/skill-assessment/role_fit_snapshot.json": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 2853
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/skill-assessment/role_fit_snapshot.tex": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 4401
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/cover-letter/cover_letter.html": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 5698
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/cover-letter/cover_letter.tex": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 3187
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/cv/process_automation.json": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 8050
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/manifest.json": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 4346
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/notes.md": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 1112
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/skill-assessment/role_fit_snapshot.html": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 7413
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/skill-assessment/role_fit_snapshot.json": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 2823
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/skill-assessment/role_fit_snapshot.tex": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 4361
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/cover-letter/cover_letter.html": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 5612
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/cover-letter/cover_letter.tex": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 3096
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/cv/workflow_operations_analyst.json": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 8056
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/manifest.json": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 4233
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/notes.md": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 1118
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/skill-assessment/role_fit_snapshot.html": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 7319
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/skill-assessment/role_fit_snapshot.json": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 2727
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/skill-assessment/role_fit_snapshot.tex": {
-        "mtime": 1786778946,
+        "mtime": 1786795741,
         "size": 4256
       },
       "experimental/application-package-mcp/src/checker.ts": {
-        "mtime": 1786742353,
-        "size": 34122
+        "mtime": 1786788367,
+        "size": 34405
       },
       "experimental/application-package-mcp/src/index.ts": {
-        "mtime": 1786778903,
-        "size": 81430
+        "mtime": 1786795880,
+        "size": 89853
       },
       "experimental/application-package-mcp/src/resources.ts": {
         "mtime": 1786748857,
         "size": 2446
       },
       "experimental/application-package-mcp/tests/application-sop.test.mjs": {
-        "mtime": 1786778338,
-        "size": 7710
+        "mtime": 1786789529,
+        "size": 17781
       },
       "experimental/application-package-mcp/tests/mcp-http.test.mjs": {
-        "mtime": 1786778928,
-        "size": 22972
+        "mtime": 1786794879,
+        "size": 27179
       },
       "experimental/application-package-mcp/tests/smoke-remote.mjs": {
-        "mtime": 1786777429,
-        "size": 3406
+        "mtime": 1786779273,
+        "size": 3517
       },
       "experimental/application-package-mcp/tsconfig.json": {
         "mtime": 1776802839,
@@ -5965,14 +7467,14 @@
       "updated_at": "2026-06-19T09:20:07+00:00"
     }
   ],
-  "updated_at": "2026-08-15T07:34:40+00:00",
+  "updated_at": "2026-08-15T12:12:39+00:00",
   "work_session": {
-    "active": true,
-    "ended_at": null,
-    "goal": "Deploy Student Application MCP root URL and CV template preview routes to production",
-    "id": "WS-20260815-073049-884064",
-    "last_update": "2026-08-15T07:30:49+00:00",
-    "started_at": "2026-08-15T07:30:49+00:00",
-    "task_id": "jobmcp-root-url-cv-preview-prod"
+    "active": false,
+    "ended_at": "2026-08-15T12:12:37+00:00",
+    "goal": "Reduce oversized Job MCP page display headings globally for blue Hermes-style pages",
+    "id": "WS-20260815-121038-689604",
+    "last_update": "2026-08-15T12:12:37+00:00",
+    "started_at": "2026-08-15T12:10:38+00:00",
+    "task_id": "jobmcp-heading-scale-tuning"
   }
 }

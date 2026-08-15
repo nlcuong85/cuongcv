@@ -16,7 +16,7 @@ import {
   samplePromptsDocument
 } from "./resources.js";
 
-const VERSION = "0.2.12";
+const VERSION = "0.2.14";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
@@ -955,158 +955,281 @@ After setup, show me the folder I should fill and the next action.</pre>
 </html>`;
 }
 
-function renderCurrentLandingPage(): string {
+function renderSiteNav(active = ""): string {
+  const items = [
+    ["/start", "Start"],
+    ["/examples", "Examples"],
+    ["/docs", "Docs"],
+    ["/technical-flow", "Technical"]
+  ];
+  return `<nav class="site-nav" aria-label="Main navigation">
+    <a class="brand" href="/"><span class="brand-mark">◇</span><span>Student Application<br>AI Helper</span></a>
+    <div class="navlinks">${items
+      .map(([href, label]) => `<a${active === href ? ' aria-current="page"' : ""} href="${href}">${label}</a>`)
+      .join("")}</div>
+  </nav>`;
+}
+
+function renderSiteFooter(): string {
+  return `<footer class="site-footer">
+    <span>MCP v${VERSION} · kit ${WORKSPACE_KIT_VERSION}</span>
+    <span><a href="/health">Health</a> · <a href="/privacy">Privacy</a> · <a href="/mcp">MCP endpoint</a> · <a href="https://pmlecuong.com/" target="_blank" rel="noopener noreferrer">Built by pmlecuong.com ↗</a></span>
+  </footer>`;
+}
+
+function renderSiteChrome(title: string, active: string, body: string, bodyClass = ""): string {
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Student Application AI Helper</title>
+<title>${title}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-:root { --paper:#f7f5ef; --ink:#152420; --muted:#59635f; --line:#d6d9d1; --green:#156b59; --deep:#0f3028; --mint:#dcf3e6; --sun:#f4c764; --coral:#dc765c; }
-* { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; color:var(--ink); background:var(--paper); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
-a { color:inherit; } .shell { overflow:hidden; } .nav, .section, .footer { width:min(1140px, calc(100% - 40px)); margin:0 auto; }
-.nav { min-height:74px; display:flex; justify-content:space-between; align-items:center; gap:18px; } .brand { color:var(--deep); font-weight:900; text-decoration:none; letter-spacing:-.03em; } .brand span { color:var(--green); }
-.navlinks { display:flex; gap:18px; flex-wrap:wrap; color:var(--muted); font-size:14px; } .navlinks a { text-decoration:none; } .navlinks a:hover { color:var(--green); }
-.hero { min-height:calc(100svh - 74px); padding:60px max(20px, calc((100% - 1140px) / 2)) 68px; display:grid; grid-template-columns:minmax(0, 1fr) minmax(420px, .88fr); gap:54px; align-items:center; background:linear-gradient(125deg, #f7f5ef 0 52%, #e4eee7 52% 100%); }
-.kicker { color:var(--green); font-size:13px; font-weight:850; letter-spacing:.12em; text-transform:uppercase; } h1 { max-width:750px; margin:17px 0 20px; font-size:clamp(50px, 7vw, 94px); line-height:.94; letter-spacing:-.065em; } .lead { max-width:650px; margin:0; color:#3f4d47; font-size:clamp(18px, 2vw, 23px); line-height:1.48; }
-.actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; } .button { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 17px; border-radius:7px; text-decoration:none; font-weight:800; border:1px solid transparent; transition:transform .18s ease, background .18s ease; } .button:hover { transform:translateY(-2px); } .primary { color:#fff; background:var(--deep); } .secondary { background:transparent; border-color:#aeb8b0; }
-.connection { margin-top:24px; max-width:620px; border-top:1px solid var(--line); padding-top:14px; color:var(--muted); font-size:13px; line-height:1.5; } code { color:var(--deep); font-weight:800; overflow-wrap:anywhere; }
-.hero-visual { position:relative; min-height:520px; padding:25px; display:flex; align-items:center; background:var(--deep); box-shadow:0 32px 80px rgba(15,48,40,.18); overflow:hidden; } .hero-visual:before { content:""; position:absolute; inset:0; opacity:.18; background-image:linear-gradient(rgba(255,255,255,.7) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.7) 1px,transparent 1px); background-size:38px 38px; mask-image:linear-gradient(#000,transparent); }
-.hero-visual:after { content:""; position:absolute; width:220px; height:220px; right:-80px; top:-70px; border-radius:50%; background:var(--sun); } .stack { position:relative; z-index:1; width:100%; } .stage { display:grid; grid-template-columns:42px 1fr; gap:14px; padding:17px 0; border-bottom:1px solid rgba(255,255,255,.21); color:#fff; } .stage:last-child { border-bottom:0; } .stage-num { display:grid; place-items:center; width:34px; height:34px; border-radius:50%; background:var(--sun); color:var(--deep); font-weight:900; } .stage h2 { margin:0 0 5px; font-size:19px; } .stage p { margin:0; color:#d1e5da; line-height:1.45; font-size:14px; }
-.section { padding:100px 0; border-top:1px solid var(--line); } .eyebrow { color:var(--green); font-size:13px; font-weight:850; text-transform:uppercase; letter-spacing:.11em; } .section h2, .privacy-inner h2 { max-width:820px; margin:12px 0 14px; font-size:clamp(34px,5vw,64px); line-height:.98; letter-spacing:-.055em; } .intro { max-width:760px; margin:0; color:var(--muted); font-size:18px; line-height:1.55; }
-.features { margin-top:44px; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-left:1px solid var(--line); } .feature { min-height:188px; padding:24px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); background:rgba(255,255,255,.32); } .feature b { display:block; margin-bottom:10px; font-size:19px; letter-spacing:-.025em; } .feature p { margin:0; color:var(--muted); line-height:1.5; }
-.setup-guide { margin-top:42px; display:grid; grid-template-columns:minmax(0,.78fr) minmax(360px,.58fr); gap:28px; align-items:start; } .setup-steps { display:grid; border:1px solid var(--line); background:#fff; } .setup-step { display:grid; grid-template-columns:58px 1fr; gap:18px; padding:22px 24px; border-bottom:1px solid var(--line); } .setup-step:last-child { border-bottom:0; } .setup-step strong { display:grid; place-items:center; width:42px; height:42px; border-radius:50%; background:var(--deep); color:#fff; font-weight:900; } .setup-step h3 { margin:0 0 7px; font-size:20px; letter-spacing:-.035em; } .setup-step p { margin:0; color:var(--muted); line-height:1.5; } .prompt-card { padding:24px; background:var(--deep); color:#fff; box-shadow:18px 20px 0 rgba(15,48,40,.1); } .prompt-card h3 { margin:0 0 10px; font-size:22px; } .prompt-card p { margin:0 0 16px; color:#cfe3d9; line-height:1.5; } .prompt-card code { display:block; padding:13px 14px; margin-bottom:14px; background:rgba(255,255,255,.08); color:#fff; border:1px solid rgba(255,255,255,.16); overflow-wrap:anywhere; } .prompt-card pre { margin:0; white-space:pre-wrap; color:#fff; font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
-.comparison-layout { display:grid; grid-template-columns:minmax(280px,.82fr) minmax(0,1.18fr); gap:56px; align-items:center; margin-top:44px; } .comparison-copy h3 { margin:0 0 12px; font-size:clamp(31px,4vw,48px); line-height:1; letter-spacing:-.05em; } .comparison-copy p { margin:0; max-width:460px; color:var(--muted); font-size:18px; line-height:1.55; } .comparison-legend { display:grid; gap:13px; margin-top:26px; color:var(--muted); line-height:1.45; } .comparison-legend > span { display:grid; grid-template-columns:14px 1fr; gap:10px; align-items:start; } .legend-dot { width:14px; height:14px; margin-top:4px; border-radius:50%; } .legend-dot.rose { background:#dc765c; } .legend-dot.gold { background:var(--sun); } .legend-dot.green { background:var(--green); } .comparison-chart { position:relative; min-height:350px; padding:28px 30px 52px 58px; border:1px solid var(--line); background:linear-gradient(rgba(21,36,32,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(21,36,32,.06) 1px,transparent 1px),#fffdf7; background-size:64px 64px; } .comparison-chart:before, .comparison-chart:after { content:""; position:absolute; background:#587068; } .comparison-chart:before { left:58px; right:28px; bottom:51px; height:1px; } .comparison-chart:after { left:58px; top:28px; bottom:51px; width:1px; } .axis { position:absolute; color:var(--muted); font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; } .axis.x { right:30px; bottom:20px; } .axis.y { top:30px; left:17px; writing-mode:vertical-rl; transform:rotate(180deg); } .chart-point { position:absolute; display:grid; place-items:center; width:22px; height:22px; border:3px solid #fffdf7; border-radius:50%; box-shadow:0 7px 16px rgba(15,48,40,.2); } .chart-point b { position:absolute; width:152px; left:20px; bottom:18px; color:var(--ink); font-size:13px; line-height:1.2; } .chart-point p { position:absolute; width:165px; left:20px; top:20px; margin:0; color:var(--muted); font-size:12px; line-height:1.35; } .chart-point.ai { left:25%; bottom:25%; background:#dc765c; } .chart-point.local { left:51%; bottom:51%; background:var(--sun); } .chart-point.checker { left:75%; bottom:74%; background:var(--green); }
-.simple-flow { position:relative; display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:46px; border:1px solid var(--line); background:#fff; } .simple-flow:before { content:""; position:absolute; top:55px; left:12.5%; right:12.5%; height:1px; background:var(--line); } .simple-step { position:relative; min-height:272px; padding:28px 24px 22px; border-right:1px solid var(--line); } .simple-step:last-child { border-right:0; } .simple-number { position:relative; z-index:1; display:grid; place-items:center; width:56px; height:56px; border-radius:50%; background:var(--paper); border:1px solid var(--green); color:var(--green); font-size:20px; font-weight:900; } .simple-step:nth-child(2) .simple-number, .simple-step:nth-child(4) .simple-number { background:var(--sun); border-color:var(--sun); color:var(--deep); } .simple-step h3 { margin:38px 0 9px; font-size:23px; letter-spacing:-.04em; } .simple-step p { margin:0; color:var(--muted); line-height:1.53; } .flow-footer { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-top:20px; padding:16px 0 0; color:var(--muted); font-size:14px; } .flow-footer strong { color:var(--deep); }
-.gates { display:grid; grid-template-columns:1fr 1fr; gap:1px; margin-top:42px; background:var(--line); border:1px solid var(--line); } .gate { padding:30px; background:#fff; } .gate small { color:var(--green); font-weight:850; letter-spacing:.1em; text-transform:uppercase; } .gate h3 { margin:12px 0 10px; font-size:29px; letter-spacing:-.04em; } .gate p { margin:0; color:var(--muted); line-height:1.55; }
-section.privacy { width:100%; margin:0; padding:108px 0 116px; border-top:0; background:linear-gradient(110deg, #dff4e9 0%, #d7efe3 56%, #cae8d9 100%); } .privacy-inner { width:min(1140px, calc(100% - 40px)); margin:0 auto; } .privacy-inner > .eyebrow { color:#256e5c; } .privacy-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:48px; row-gap:34px; margin-top:46px; } .privacy-grid div { min-height:112px; padding:20px 0 0; border-top:2px solid rgba(21,107,89,.78); } .privacy-grid strong { display:block; margin-bottom:9px; font-size:17px; letter-spacing:-.02em; } .privacy-grid span { display:block; max-width:500px; color:#38564b; line-height:1.58; }
-.letter-example { display:grid; grid-template-columns:minmax(300px,.85fr) minmax(280px,.65fr); gap:56px; align-items:center; } .letter-example h2 { margin-bottom:16px; } .letter-example p { max-width:510px; color:var(--muted); font-size:17px; line-height:1.58; } .letter-points { display:grid; gap:13px; margin:28px 0 0; padding:0; list-style:none; } .letter-points li { display:grid; grid-template-columns:22px 1fr; gap:10px; color:#3f4d47; line-height:1.45; } .letter-points li:before { content:"✓"; color:var(--green); font-weight:950; } .demo-note { margin-top:26px; padding-top:16px; border-top:1px solid var(--line); font-size:13px !important; } .letter-frame { padding:20px; background:#e8eee8; border:1px solid #c4d2c6; box-shadow:18px 20px 0 rgba(21,107,89,.10); } .letter-frame img { display:block; width:100%; height:auto; background:#fff; box-shadow:0 14px 36px rgba(15,48,40,.18); } .sample-link { margin-top:26px; } .final { padding:90px max(20px, calc((100% - 1140px) / 2)); background:var(--deep); color:#fff; } .final h2 { max-width:790px; margin:10px 0 16px; font-size:clamp(38px,5vw,70px); line-height:.97; letter-spacing:-.06em; } .final p { max-width:660px; color:#d1e5da; font-size:18px; line-height:1.55; } .footer { padding:28px 0 42px; color:var(--muted); font-size:14px; display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; } .footer a { color:var(--green); font-weight:800; }
-@media (max-width:850px) { .hero { min-height:auto; grid-template-columns:1fr; padding-top:36px; } .hero-visual { min-height:360px; } .features { grid-template-columns:1fr 1fr; } .comparison-layout,.letter-example,.setup-guide { grid-template-columns:1fr; gap:30px; } .simple-flow { grid-template-columns:1fr 1fr; } .simple-flow:before { display:none; } .simple-step:nth-child(2) { border-right:0; } .simple-step { min-height:230px; border-bottom:1px solid var(--line); } .simple-step:nth-child(3), .simple-step:nth-child(4) { border-bottom:0; } .privacy-grid { column-gap:30px; } }
-@media (max-width:540px) { .nav,.section,.footer,.privacy-inner { width:min(100% - 40px,1140px); } .nav { align-items:flex-start; padding:18px 0; } .navlinks { gap:10px; justify-content:flex-end; } h1 { font-size:clamp(48px,15vw,70px); } .button { width:100%; } .features,.gates,.simple-flow,.privacy-grid { grid-template-columns:1fr; } .section { padding:72px 0; } .comparison-chart { min-height:330px; padding-left:46px; } .comparison-chart:before { left:46px; } .comparison-chart:after { left:46px; } .axis.y { left:10px; } .chart-point b { width:120px; } .chart-point p { width:126px; } .chart-point.checker { left:72%; } .chart-point.checker b, .chart-point.checker p { left:-112px; text-align:right; } section.privacy { padding:76px 0 82px; } .privacy-grid { row-gap:28px; margin-top:36px; } .privacy-grid div { min-height:auto; padding-top:17px; } .simple-step,.simple-step:nth-child(2) { min-height:auto; padding:24px; border-right:0; border-bottom:1px solid var(--line); } .simple-step:last-child { border-bottom:0; } .simple-step h3 { margin-top:22px; } .flow-footer { align-items:stretch; flex-direction:column; } }
+:root { --blue:#071dff; --blue-soft:#1737ff; --paper:#f6f2e8; --white:#fffdf6; --ink:#090b10; --muted:#5e6470; --line:rgba(9,11,16,.16); --yellow:#edff45; --green:#0a4c3f; --mint:#dcf5e6; --dark:#04050d; }
+* { box-sizing:border-box; } html { scroll-behavior:smooth; overflow-x:hidden; } body { margin:0; overflow-x:hidden; color:var(--ink); background:var(--paper); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+a { color:inherit; } code, pre { font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; } .blue-page { background:var(--blue); color:white; }
+.site-nav { position:relative; z-index:5; min-height:84px; width:min(1220px, calc(100% - 44px)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+.brand { display:flex; align-items:center; gap:11px; color:inherit; text-decoration:none; font-weight:900; line-height:.92; letter-spacing:-.04em; } .brand-mark { display:grid; place-items:center; width:34px; height:34px; border:1px solid currentColor; border-radius:50%; font-size:16px; }
+.navlinks { display:flex; gap:24px; align-items:center; flex-wrap:wrap; font-size:13px; font-weight:850; letter-spacing:.08em; text-transform:uppercase; } .navlinks a { text-decoration:none; opacity:.82; } .navlinks a:hover, .navlinks a[aria-current="page"] { opacity:1; text-decoration:underline; text-underline-offset:5px; }
+.home-hero { min-height:calc(100svh - 84px); width:min(1220px, calc(100% - 44px)); margin:0 auto; display:grid; grid-template-columns:minmax(0,.86fr) minmax(390px,.78fr); gap:82px; align-items:center; padding:54px 0 86px; }
+.mono { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; text-transform:uppercase; letter-spacing:.22em; font-size:12px; font-weight:800; }
+h1 { margin:18px 0 22px; max-width:660px; font-family:Georgia,"Times New Roman",serif; font-size:clamp(48px,6.1vw,82px); line-height:.88; letter-spacing:-.06em; font-weight:400; text-transform:uppercase; }
+.lead { max-width:660px; margin:0; color:var(--muted); font-size:clamp(18px,2vw,24px); line-height:1.45; } .blue-panel .lead, .blue-page .lead { color:rgba(255,255,255,.82); }
+.actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:32px; } .button { display:inline-flex; min-height:48px; align-items:center; justify-content:center; padding:0 20px; border:1px solid currentColor; text-decoration:none; font-weight:900; font-size:13px; letter-spacing:.08em; text-transform:uppercase; transition:transform .16s ease, background .16s ease; } .button:hover { transform:translateY(-2px); } .button.primary { background:var(--yellow); color:var(--blue); border-color:var(--yellow); } .button.secondary { background:transparent; color:inherit; }
+.command { margin-top:26px; width:min(100%,620px); background:var(--white); color:var(--blue); border:1px solid rgba(255,255,255,.52); box-shadow:0 26px 80px rgba(0,0,0,.22); } .command-tabs { display:flex; gap:18px; padding:14px 17px 0; color:rgba(0,0,242,.62); font-size:12px; font-weight:900; } .command pre { margin:0; padding:17px; white-space:pre-wrap; line-height:1.5; font-size:13px; }
+.blue-panel { margin:0 max(22px, calc((100% - 1320px)/2)); background:var(--blue); color:white; border:1px solid rgba(9,11,16,.1); box-shadow:0 36px 90px rgba(7,29,255,.18); } .blue-panel .home-hero { min-height:calc(100svh - 120px); } .blue-page .blue-panel { margin:0; background:transparent; border:0; box-shadow:none; } .blue-page .blue-panel .home-hero { min-height:calc(100svh - 84px); }
+.signal-card { position:relative; min-height:560px; padding:32px; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.32); box-shadow:0 40px 90px rgba(0,0,0,.18); } .signal-card:before { content:""; position:absolute; inset:-18%; background:radial-gradient(circle at 72% 16%, rgba(237,255,69,.95) 0 13%, transparent 14%), repeating-linear-gradient(90deg, rgba(255,255,255,.35) 0 1px, transparent 1px 32px), repeating-linear-gradient(0deg, rgba(255,255,255,.22) 0 1px, transparent 1px 32px); opacity:.55; } .signal-card > * { position:relative; z-index:1; }
+.signal-card h2 { margin:0; max-width:390px; font-family:Georgia,"Times New Roman",serif; font-weight:400; font-size:clamp(34px,3.8vw,54px); line-height:.92; letter-spacing:-.052em; text-transform:uppercase; } .signal-list { display:grid; gap:15px; margin:0; padding:0; list-style:none; } .signal-list li { display:grid; grid-template-columns:36px 1fr; gap:13px; align-items:start; padding-top:15px; border-top:1px solid rgba(255,255,255,.28); } .signal-list b { color:var(--yellow); } .signal-list span { color:rgba(255,255,255,.82); line-height:1.42; }
+.section { width:min(1220px, calc(100% - 44px)); margin:0 auto; padding:78px 0; border-top:1px solid var(--line); } .section.compact { padding:54px 0; } .section-title { margin:10px 0 12px; max-width:780px; font-size:clamp(34px,4.5vw,58px); line-height:.96; letter-spacing:-.055em; } .blue-page .section-title { font-family:Georgia,"Times New Roman",serif; font-weight:400; text-transform:uppercase; letter-spacing:-.058em; } .section-copy { max-width:760px; margin:0; color:var(--muted); font-size:18px; line-height:1.55; } .blue-page .section { border-top-color:rgba(255,255,255,.28); } .blue-page .section-copy { color:rgba(255,255,255,.78); } .blue-page .mono { color:rgba(255,255,255,.95); }
+.door-grid, .feature-grid, .example-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; margin-top:34px; background:var(--line); border:1px solid var(--line); } .blue-page .door-grid, .blue-page .feature-grid, .blue-page .example-grid { background:rgba(255,255,255,.34); border-color:rgba(255,255,255,.34); } .feature-grid.four-grid, .example-grid.four-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } .door, .feature, .example-card { min-height:220px; padding:28px; background:var(--white); color:var(--ink); text-decoration:none; } .blue-page .door, .blue-page .feature, .blue-page .example-card { background:rgba(255,253,246,.96); } .door small, .feature small, .example-card small, .blue-page .door small.mono, .blue-page .feature small.mono, .blue-page .example-card small.mono { display:block; margin-bottom:18px; color:var(--blue); } .door h3, .feature h3, .example-card h3 { margin:0 0 10px; color:var(--ink); font-size:26px; line-height:1; letter-spacing:-.04em; } .door p, .feature p, .example-card p { margin:0; color:var(--muted); line-height:1.5; }
+.privacy-strip { width:100%; background:var(--mint); color:var(--ink); } .blue-page .privacy-strip { background:var(--blue); color:white; border-top:1px solid rgba(255,255,255,.28); } .privacy-strip .section { border-top:0; } .privacy-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:22px; margin-top:36px; } .privacy-grid div { padding-top:18px; border-top:2px solid var(--green); } .blue-page .privacy-grid div { border-top-color:var(--yellow); } .privacy-grid strong { display:block; margin-bottom:9px; } .privacy-grid span { color:#395a52; line-height:1.5; } .blue-page .privacy-grid span { color:rgba(255,255,255,.78); }
+.final-cta { width:100%; background:var(--dark); color:white; } .final-cta .section { border-top:0; } .final-cta .section-copy { color:rgba(255,255,255,.75); }
+.checker-layout { display:grid; grid-template-columns:minmax(280px,.76fr) minmax(0,1fr); gap:54px; align-items:center; margin-top:36px; } .checker-legend { display:grid; gap:14px; margin-top:24px; color:var(--muted); } .blue-page .checker-legend { color:rgba(255,255,255,.78); } .checker-legend > span { display:grid; grid-template-columns:18px 1fr; gap:12px; align-items:start; } .checker-legend strong { color:var(--ink); } .blue-page .checker-legend strong { color:white; } .dot { width:15px; height:15px; margin-top:4px; border-radius:50%; background:var(--blue); } .dot.fast { background:#de745f; } .dot.local { background:#e0b843; } .dot.checked { background:var(--green); } .xy-chart { position:relative; min-height:360px; border:1px solid var(--line); background:linear-gradient(rgba(9,11,16,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(9,11,16,.06) 1px,transparent 1px),var(--white); background-size:64px 64px; } .xy-chart:before,.xy-chart:after { content:""; position:absolute; background:#65716c; } .xy-chart:before { left:62px; right:30px; bottom:55px; height:1px; } .xy-chart:after { left:62px; top:32px; bottom:55px; width:1px; } .axis { position:absolute; color:var(--muted); font-size:11px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; } .axis.x { right:30px; bottom:22px; } .axis.y { left:18px; top:32px; writing-mode:vertical-rl; transform:rotate(180deg); } .point { position:absolute; width:22px; height:22px; border-radius:50%; border:3px solid var(--white); box-shadow:0 8px 20px rgba(0,0,0,.18); } .point b { position:absolute; left:23px; bottom:18px; width:155px; color:var(--ink); font-size:13px; line-height:1.2; } .point p { position:absolute; left:23px; top:20px; width:170px; margin:0; color:var(--muted); font-size:12px; line-height:1.35; } .point.fast { left:25%; bottom:25%; background:#de745f; } .point.local { left:51%; bottom:51%; background:#e0b843; } .point.checked { left:75%; bottom:74%; background:var(--green); }
+.tech-shell { display:grid; gap:28px; } .tech-card { background:var(--white); border:1px solid var(--line); padding:24px; } .tech-card img { display:block; width:100%; min-width:720px; height:auto; } .scroll-x { overflow:auto; } .protocol-grid { display:grid; grid-template-columns:190px minmax(0,1fr); border-top:1px solid var(--line); border-left:1px solid var(--line); background:var(--white); } .protocol-grid div { padding:16px 18px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted); line-height:1.55; } .protocol-grid .method { color:var(--blue); font-weight:900; background:#f8f4e8; } .protocol-note { margin-top:18px; padding-left:16px; border-left:4px solid var(--yellow); color:var(--muted); line-height:1.55; } .blue-page .protocol-note { color:rgba(255,255,255,.78); }
+.doc-callout { margin:24px 0; padding:22px; background:var(--dark); color:white; } .doc-callout p { color:rgba(255,255,255,.78) !important; margin:8px 0 0; } .doc-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; margin:22px 0; background:var(--line); border:1px solid var(--line); } .doc-tile { background:var(--white); padding:20px; } .doc-tile strong { display:block; margin-bottom:8px; } .doc-tile p { margin:0; }
+.site-footer { width:min(1220px, calc(100% - 44px)); margin:0 auto; padding:26px 0 42px; display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; color:var(--muted); font-size:13px; } .blue-page .site-footer { color:rgba(255,255,255,.76); } .site-footer a { font-weight:850; }
+.page-hero { width:min(1220px, calc(100% - 44px)); margin:0 auto; padding:74px 0 48px; } .page-hero h1 { max-width:820px; color:inherit; font-size:clamp(50px,6.5vw,88px); } .page-hero .lead { color:var(--muted); } .blue-page .page-hero .lead { color:rgba(255,255,255,.82); }
+.steps { display:grid; gap:1px; margin-top:32px; background:var(--line); border:1px solid var(--line); } .blue-page .steps { background:rgba(255,255,255,.34); border-color:rgba(255,255,255,.34); } .step { display:grid; grid-template-columns:92px 1fr; gap:22px; padding:28px; background:var(--white); } .blue-page .step { background:rgba(255,253,246,.96); color:var(--ink); } .step-number { font-family:Georgia,"Times New Roman",serif; font-size:46px; line-height:1; color:var(--blue); } .step h2 { margin:0 0 8px; font-size:26px; } .step p { margin:0; color:var(--muted); line-height:1.55; }
+.prompt-panel { margin-top:32px; padding:26px; background:var(--dark); color:white; } .prompt-panel pre { white-space:pre-wrap; line-height:1.5; font-size:13px; }
+.example-grid.showcase { grid-template-columns:minmax(0,.8fr) minmax(280px,.6fr); align-items:start; } .example-grid.showcase .example-card { min-height:auto; } .sample-frame { padding:18px; background:#eef4ee; border:1px solid #c7d5ca; } .blue-page .sample-frame { background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.28); } .sample-frame img { display:block; width:100%; height:auto; background:white; box-shadow:0 18px 42px rgba(0,0,0,.15); }
+.doc-layout { width:min(1220px, calc(100% - 44px)); margin:0 auto; display:grid; grid-template-columns:260px minmax(0,1fr); gap:52px; padding:44px 0 86px; } .side { position:sticky; top:24px; align-self:start; display:grid; gap:10px; } .side a { padding:10px 0; color:var(--muted); text-decoration:none; border-bottom:1px solid var(--line); font-weight:800; } .doc-main h1 { margin-top:0; font-family:Inter,ui-sans-serif,system-ui,sans-serif; font-size:clamp(42px,5vw,68px); text-transform:none; letter-spacing:-.06em; } .doc-main h2 { margin:42px 0 12px; font-size:32px; letter-spacing:-.04em; } .doc-main p, .doc-main li { color:var(--muted); line-height:1.65; } .doc-main code { color:var(--blue); font-weight:850; }
+@media (max-width:1100px) { .feature-grid.four-grid, .example-grid.four-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:900px) { .home-hero, .doc-layout, .checker-layout { grid-template-columns:1fr; } .blue-panel { margin:0; } .signal-card { min-height:420px; } .door-grid, .feature-grid, .example-grid, .privacy-grid, .example-grid.showcase, .doc-grid { grid-template-columns:1fr 1fr; } .feature-grid.four-grid, .example-grid.four-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .site-nav { align-items:flex-start; padding-top:18px; } }
+@media (max-width:560px) { .site-nav, .section, .page-hero, .site-footer, .home-hero, .doc-layout { width:min(100% - 32px,1220px); } .site-nav { display:grid; gap:18px; } .navlinks { gap:13px; font-size:11px; } h1 { font-size:clamp(38px,10.2vw,46px); line-height:.92; letter-spacing:-.042em; overflow-wrap:normal; } .home-hero { padding-top:42px; gap:38px; } .signal-card { min-height:360px; padding:22px; } .signal-card h2 { font-size:clamp(30px,8.6vw,38px); } .section-title { font-size:clamp(29px,8.2vw,38px); line-height:1; letter-spacing:-.048em; } .button { width:100%; } .door-grid, .feature-grid, .feature-grid.four-grid, .example-grid, .example-grid.four-grid, .privacy-grid, .example-grid.showcase, .doc-grid { grid-template-columns:1fr; } .step { grid-template-columns:1fr; gap:10px; } .section { padding:58px 0; } .side { position:static; } .xy-chart { min-height:340px; } .point.checked { left:70%; } .point.checked b,.point.checked p { left:-116px; text-align:right; } .protocol-grid { grid-template-columns:1fr; } }
 </style>
 </head>
-<body>
-<div class="shell">
-  <nav class="nav" aria-label="Main navigation"><a class="brand" href="/">Student Application <span>AI Helper</span></a><div class="navlinks"><a href="#start">Start setup</a><a href="#how">How it works</a><a href="#gates">Quality gates</a><a href="#letter-example">Letter example</a><a href="#privacy">Privacy</a><a href="/sample-prompts">Prompts</a></div></nav>
-  <main class="hero">
-    <div><div class="kicker">Local-first career coach + MCP</div><h1>Turn your real experience into a stronger application.</h1><p class="lead">Build an evidence-grounded CV and cover letter in your own local folder. You keep control of every file and final decision.</p><div class="actions"><a class="button primary" href="#start">Start setup</a><a class="button secondary" href="/sample-prompts">Copy prompts</a></div><p class="connection">Start URL for your AI agent: <code>${PUBLIC_SITE_URL}</code>. The page explains setup, prompts, privacy, and how the agent connects to the MCP service.</p></div>
-    <aside class="hero-visual" aria-label="Four-stage application process"><div class="stack"><div class="stage"><span class="stage-num">1</span><div><h2>Check the workspace</h2><p>The local SOP boots, audits folder health, and identifies safe updates or drift.</p></div></div><div class="stage"><span class="stage-num">2</span><div><h2>Build your evidence</h2><p>Use your CV, job description, personal bullets, documents, and real writing samples.</p></div></div><div class="stage"><span class="stage-num">3</span><div><h2>Draft locally</h2><p>Create an editable HTML CV, cover letter, interview prep, or writing draft from verified material.</p></div></div><div class="stage"><span class="stage-num">4</span><div><h2>Review before release</h2><p>The checker reviews final reader-facing text only; the SOP blocks medium/high review results.</p></div></div></div></aside>
-  </main>
-  <section id="how" class="section"><div class="eyebrow">What the helper does</div><h2>Clear preparation. Honest tailoring.</h2><p class="intro">The local AI agent explains the next useful action, asks for missing evidence, and flags a weak document before you send it.</p><div class="features"><div class="feature"><b>Workspace health</b><p>Audit folder drift and slow stages before changing an old workspace.</p></div><div class="feature"><b>Evidence into HTML</b><p>Turn verified CV material into an editable HTML CV for the target job.</p></div><div class="feature"><b>Interview prep</b><p>Optionally prepare likely questions, STAR stories, weaknesses, culture-fit answers, and questions to ask the team.</p></div></div></section>
-  <section id="start" class="section"><div class="eyebrow">Start from an empty folder</div><h2>What you actually need to do first.</h2><p class="intro">Create a dedicated project folder, give your AI agent the root URL, then let the agent read the setup page and ask for missing source files one by one.</p><div class="setup-guide"><div class="setup-steps"><article class="setup-step"><strong>1</strong><div><h3>Create a clean project folder</h3><p>Use VS Code, Codex, Claude, or another local AI workspace. Name it something clear, for example <em>my-job-application</em>. Start empty so old files do not slow or confuse the setup.</p></div></article><article class="setup-step"><strong>2</strong><div><h3>Give the AI this URL</h3><p>Ask the local AI agent to read the root page, fetch the workspace template and kit, create the local folder structure, and ask questions whenever it needs your verification.</p></div></article><article class="setup-step"><strong>3</strong><div><h3>Provide your real source material</h3><p>Upload your CV or the best available profile source. Tell the AI whether you are doing a Bachelor, Master, Ausbildung/job training, or another path. Add human-written samples such as old emails, IELTS writing, user stories, PRDs, BRDs, reports, or notes. Pre-2022 writing is especially useful for learning your real tone.</p></div></article><article class="setup-step"><strong>4</strong><div><h3>Send a job description</h3><p>Find a job online and give the AI the job URL or pasted description. It checks fit against your verified CV evidence, then prepares a tailored English resume by default plus a cover letter when appropriate.</p></div></article></div><aside class="prompt-card"><h3>Copy this starter prompt</h3><p>Paste this into your local AI agent after opening your empty folder.</p><code>${PUBLIC_SITE_URL}</code><pre>Please read this Student Application AI Helper page and set up a local project folder for me to handle job applications.
-
-Ask me questions along the way if you need my verification or validation.
-
-If you need my picture, CV, cover letter, sample CV, sample cover letter, education track, writing samples, or job description, ask me and I will provide them.
-
-Keep my private files local. Use the MCP only for workspace setup, safe structure/version audit, and selected final reader-facing text review.</pre></aside></div></section>
-  <section class="section" aria-labelledby="checker-value-title"><div class="eyebrow">Why the checker helps</div><div class="comparison-layout"><div class="comparison-copy"><h3 id="checker-value-title">Fast drafting is not the same as a strong application.</h3><p>Your local sources make a draft more truthful. A selected-text check adds a final reader-focused review before you decide to release it.</p><div class="comparison-legend"><span><i class="legend-dot rose"></i><span><strong>Normal AI</strong> — quick, but often generic.</span></span><span><i class="legend-dot gold"></i><span><strong>Local workspace</strong> — grounded in your evidence.</span></span><span><i class="legend-dot green"></i><span><strong>Local workspace + checker</strong> — evidence plus a focused quality review.</span></span></div></div><div class="comparison-chart" role="img" aria-label="Comparison chart. Normal AI is low on evidence and reader confidence; local workspace is higher; local workspace plus selected-text checker is highest."><span class="axis y">Reader confidence</span><span class="axis x">Evidence and review depth</span><span class="chart-point ai"><b>Normal AI</b><p>Fast draft</p></span><span class="chart-point local"><b>Local workspace</b><p>Grounded draft</p></span><span class="chart-point checker"><b>Local + checker</b><p>Focused review</p></span></div></div></section>
-  <section class="section"><div class="eyebrow">The real workflow</div><h2>Four simple steps. Your files never leave your laptop.</h2><p class="intro">The local agent manages the work in your own folder. The public service cannot browse it; it only receives a privacy-safe structure check or final text you actively choose to review.</p><div class="simple-flow" aria-label="Four-step application workflow"><article class="simple-step"><span class="simple-number">01</span><h3>Check the workspace</h3><p>The local SOP checks folder health, updates, and anything that may be making an old workspace slow.</p></article><article class="simple-step"><span class="simple-number">02</span><h3>Add your evidence</h3><p>Bring your CV, role or job description, personal work bullets, and any writing samples that sound like you.</p></article><article class="simple-step"><span class="simple-number">03</span><h3>Tailor locally</h3><p>The agent creates CV, cover-letter, interview-prep, or general-writing drafts using only verified information.</p></article><article class="simple-step"><span class="simple-number">04</span><h3>Review real output</h3><p>The MCP receives final reader-facing text only. If the result is medium/high, the local agent revises the real file and reruns the gate.</p></article></div><div class="flow-footer"><span><strong>Need the technical detail?</strong> The sequence diagram and PlantUML source live on the technical page.</span><a class="button secondary" href="/technical-flow">Open technical flow</a></div></section>
-  <section id="gates" class="section"><div class="eyebrow">Hard local gates</div><h2>The documents do not become “ready” just because a chat says so.</h2><p class="intro">The local Application SOP records the current artifact, review history, and release state. It catches edits made after review instead of treating an old approval as permanent.</p><div class="gates"><article class="gate"><small>CV / resume</small><h3>One review loop</h3><p>Review the editable CV against the job and visual structure. The payload must be the actual CV text the reader will see.</p></article><article class="gate"><small>Cover letter</small><h3>Three distinct loops</h3><p>Each loop requires a current draft and a real revision record. The SOP releases the letter only after all loops match the latest file.</p></article><article class="gate"><small>Interview prep</small><h3>Two low-risk loops</h3><p>The checker reviews final spoken answer text, not coaching notes or keyword maps. Medium/high results force a rewrite and rerun.</p></article><article class="gate"><small>Other writing</small><h3>One to three loops</h3><p>For academic, work, blog, social, or general writing, the user chooses 1–3 loops. The MCP never receives scaffolding or private folders.</p></article></div></section>
-  <section id="letter-example" class="section"><div class="letter-example"><div><div class="eyebrow">Rendered local output</div><h2>A German-style cover letter, built locally.</h2><p>This one-page LaTeX sample follows the familiar German business-letter structure: sender and recipient blocks, date, bold subject, salutation, evidence-led body, signature area, and enclosures.</p><ul class="letter-points"><li><span><strong>For Germany:</strong> use this structured business-letter format when it fits the employer and role.</span></li><li><span><strong>For other markets:</strong> keep the verified evidence and review process, then adapt language and conventions locally.</span></li><li><span><strong>Your signature:</strong> the agent asks for your PNG/JPG and uses it only if you provide it.</span></li></ul><p class="demo-note"><strong>Fictional demonstration only.</strong> The writing is adapted from a candidate-authorized Mercedes-Benz example; Jane Doe, the recruiting team, Stuttgart Hbf, and the signature graphic are placeholders. Never copy another person's signature.</p><p class="sample-link"><a class="button secondary" href="/assets/german-cover-letter-sample.pdf">Open the sample PDF</a></p></div><figure class="letter-frame"><img src="/assets/german-cover-letter-sample.svg" alt="One-page fictional German-format Mercedes-Benz cover letter for Jane Doe, including a clearly labelled fictional sample signature."></figure></div></section>
-  <section id="privacy" class="privacy"><div class="privacy-inner"><div class="eyebrow">Privacy boundary</div><h2>Useful feedback without uploading your whole career history.</h2><div class="privacy-grid"><div><strong>Stays on your device</strong><span>Source CV, evidence, profile, writing samples, job files, photos, signatures, drafts, outputs, and SOP history.</span></div><div><strong>Can be sent deliberately</strong><span>A privacy-safe folder manifest for update/audit guidance, or selected final reader-facing text for a quality review.</span></div><div><strong>Comes back from the MCP</strong><span>Workspace/version guidance and selected-text feedback: issues, risk labels, and practical revision direction.</span></div><div><strong>What it does not claim</strong><span>It is not an authorship verdict or an AI-detection bypass. It helps you make writing clearer, more evidenced, and more trustworthy.</span></div></div></div></section>
-  <section class="final"><div class="kicker" style="color:var(--sun)">Ready when you are</div><h2>Start with the files you already have. Improve the package one honest step at a time.</h2><p>The prompt page tells your AI agent exactly how to set up, audit, prepare, draft, and review the local workspace.</p><div class="actions"><a class="button primary" style="background:var(--sun);color:var(--deep)" href="/sample-prompts">Open guided prompts</a><a class="button secondary" style="border-color:#729489;color:#fff" href="/privacy">Read privacy details</a></div></section>
-  <footer class="footer"><span>Student Application AI Helper · local-first application workflow · MCP v${VERSION} · kit ${WORKSPACE_KIT_VERSION}</span><span><a href="/health">Service health</a> · <a href="/sample-prompts">Sample prompts</a> · <a href="/technical-flow">Technical flow</a> · <a href="/cv-template/english">English CV</a> · <a href="/cv-template/german">German CV</a> · <a href="https://pmlecuong.com/" target="_blank" rel="noopener noreferrer">Built by pmlecuong.com ↗</a></span></footer>
-</div>
+<body class="${bodyClass}">
+${renderSiteNav(active)}
+${body}
+${renderSiteFooter()}
 </body>
 </html>`;
 }
 
+function renderCurrentLandingPage(): string {
+  return renderSiteChrome(
+    "Student Application AI Helper",
+    "/",
+    `<div class="blue-panel"><main class="home-hero">
+      <section>
+        <div class="mono">Local-first career coach · MCP</div>
+        <h1>Real evidence. Stronger applications.</h1>
+        <p class="lead">Set up a local AI workspace that turns your CV, job description, writing samples, and documents into job-ready packages without uploading your whole career history.</p>
+        <div class="actions"><a class="button primary" href="/start">Start setup</a><a class="button secondary" href="/examples">See examples</a></div>
+        <div class="command" aria-label="Starter URL for local AI agent"><div class="command-tabs"><span>Agent URL</span><span>Copy into Codex / Claude</span></div><pre>${PUBLIC_SITE_URL}</pre></div>
+      </section>
+      <aside class="signal-card" aria-label="Local application workflow summary">
+        <h2>Draft local. Review selected text.</h2>
+        <ul class="signal-list">
+          <li><b>01</b><span>Workspace kit and SOP create the folder foundation.</span></li>
+          <li><b>02</b><span>Your CV, JD, voice samples, photo, and evidence stay on your machine.</span></li>
+          <li><b>03</b><span>Only final reader-facing text is sent to the MCP checker when you choose.</span></li>
+        </ul>
+      </aside>
+    </main></div>
+    <section class="section compact"><div class="mono">Four use cases</div><h2 class="section-title">One checker boundary. Four useful outputs.</h2><p class="section-copy">The local agent drafts from your private files. The MCP reviews only the selected reader-facing text or a safe structure manifest.</p>
+      <div class="feature-grid four-grid">
+        <a class="feature" href="/technical-flow"><small class="mono">Validator</small><h3>Code-style gate for writing</h3><p>The SOP treats review like a release check: current file, recorded loop, risk result, then revise if needed.</p></a>
+        <a class="feature" href="/examples"><small class="mono">CV</small><h3>Editable HTML CV</h3><p>Build or adapt an English/German CV from verified profile material and visual-check it locally.</p></a>
+        <a class="feature" href="/docs#interview-prep"><small class="mono">Interview</small><h3>Interview prep</h3><p>Create likely questions, STAR story prompts, weaknesses, culture-fit answers, and two review loops.</p></a>
+        <a class="feature" href="/docs#long-writing"><small class="mono">Writing</small><h3>Long-form text</h3><p>Review research, academic, work, blog, or social writing in one to three selected-text loops.</p></a>
+      </div>
+    </section>
+    <section class="section compact"><div class="mono">Why the checker helps</div><h2 class="section-title">Fast AI output is not the same as reader confidence.</h2>
+      <div class="checker-layout">
+        <div><p class="section-copy">The strongest result comes from a local workspace plus a selected-text checker: private evidence stays local, but the final text still gets a release-style review before the user sends it.</p>
+          <div class="checker-legend"><span><i class="dot fast"></i><span><strong>Normal AI</strong> — fast, but often generic.</span></span><span><i class="dot local"></i><span><strong>Local workspace</strong> — grounded in user evidence.</span></span><span><i class="dot checked"></i><span><strong>Local workspace + checker</strong> — evidence plus final quality gate.</span></span></div></div>
+        <div class="xy-chart" role="img" aria-label="X Y comparison chart showing normal AI, local workspace, and local workspace plus checker"><span class="axis y">Reader confidence</span><span class="axis x">Evidence and review depth</span><span class="point fast"><b>Normal AI</b><p>Fast draft</p></span><span class="point local"><b>Local workspace</b><p>Grounded draft</p></span><span class="point checked"><b>Local + checker</b><p>Release gate</p></span></div>
+      </div>
+    </section>
+    <section class="section compact"><div class="mono">Where to go</div><h2 class="section-title">Use the menu. Keep the homepage light.</h2><p class="section-copy">Detailed setup, examples, docs, and technical flow live in focused pages.</p>
+      <div class="door-grid">
+        <a class="door" href="/start"><small class="mono">Start</small><h3>Set up a fresh workspace</h3><p>Create the local folder, install the kit, and let the agent ask for missing files.</p></a>
+        <a class="door" href="/examples"><small class="mono">Examples</small><h3>See CV and cover-letter outputs</h3><p>Open English/German CV templates and the German-style cover letter sample.</p></a>
+        <a class="door" href="/technical-flow"><small class="mono">Technical</small><h3>Check the safety boundary</h3><p>See the MCP calls, diagrams, and exact data that can cross the boundary.</p></a>
+      </div>
+    </section>
+    <section class="privacy-strip"><div class="section"><div class="mono">Privacy boundary</div><h2 class="section-title">Useful feedback without sending the whole folder.</h2>
+      <div class="privacy-grid">
+        <div><strong>Local files stay local</strong><span>CVs, notes, job folders, photos, signatures, drafts, PDFs, and outputs.</span></div>
+        <div><strong>Structure check is safe</strong><span>The MCP can receive relative paths, version state, and managed-file hashes.</span></div>
+        <div><strong>Writing check is deliberate</strong><span>You send selected final text only: cover letter, CV section, interview answer, or writing paragraph.</span></div>
+        <div><strong>No fake promise</strong><span>It improves clarity and human rhythm. It is not an authorship verdict.</span></div>
+      </div></div></section>
+    <section class="final-cta"><div class="section"><div class="mono">Ready when you are</div><h2 class="section-title">Open an empty folder. Give the AI this URL. Let it ask properly.</h2><p class="section-copy">The start page now includes the setup prompt, source-material checklist, and agent instructions.</p><div class="actions"><a class="button primary" href="/start">Open start page</a><a class="button secondary" href="/docs">Read docs</a></div></div></section>`,
+    "blue-page"
+  );
+}
+
+function renderStartPage(): string {
+  const starterPrompt = `Please read ${PUBLIC_SITE_URL} and set up a local project folder for me to handle job applications.
+
+Ask me questions along the way if you need my verification.
+
+If you need my picture, CV, cover letter, sample CV, sample cover letter, education track, writing samples, or job description, ask me and I will provide them.
+
+Keep my private files local. Use the MCP only for workspace setup, safe structure/version audit, and selected final reader-facing text review.`;
+
+  const applicationPrompt = `I want to apply for this job. Please read the job description, check fit against my verified CV evidence, and tell me what is missing before drafting.
+
+Create or update the editable HTML CV if needed. Create a German-style cover letter only when appropriate. Run the required review loops before saying anything is ready.`;
+
+  const writingPrompt = `Please review this selected text with the MCP writing checker. Use the correct mode: application, interview_prep, academic, work, blog, social, or general.
+
+Send only the final reader-facing text, not my folder, notes, prompts, PDFs, images, or private source documents.`;
+
+  return renderSiteChrome(
+    "Start Setup - Student Application AI Helper",
+    "/start",
+    `<header class="page-hero"><div class="mono">Start from an empty folder</div><h1>Give your local AI a clean place to work.</h1><p class="lead">Old scattered folders make the process slow. Start fresh, then let the MCP kit scaffold the right structure.</p></header>
+    <section class="section compact"><div class="steps">
+      <article class="step"><div class="step-number">01</div><div><h2>Create a clean project folder</h2><p>Use Codex, VS Code, Claude, or another local AI workspace. Name it clearly, for example <code>my-job-application</code>.</p></div></article>
+      <article class="step"><div class="step-number">02</div><div><h2>Give the AI this URL</h2><p>Ask the agent to read <code>${PUBLIC_SITE_URL}</code>, fetch the workspace template, create the local structure, and ask before making uncertain decisions.</p></div></article>
+      <article class="step"><div class="step-number">03</div><div><h2>Provide source material</h2><p>CV or profile source is mandatory. Add job descriptions, education track, certificates, writing samples, role preference, photo if you want one, and signature if you want cover letters signed.</p></div></article>
+      <article class="step"><div class="step-number">04</div><div><h2>Send a job description</h2><p>The local agent checks fit, drafts locally, then runs the required review loops before saying a document is ready.</p></div></article>
+    </div>
+    <div class="prompt-panel"><div class="mono">Starter prompt</div><pre>${starterPrompt}</pre></div></section>
+    <section class="section"><div class="mono">What to prepare</div><h2 class="section-title">The agent can only be strong if the source material is real.</h2><p class="section-copy">The setup conversation should feel like a careful career coach, not a generic chatbot. It should ask for missing evidence, explain why the evidence matters, and stop before inventing facts.</p>
+      <div class="feature-grid">
+        <article class="feature"><small class="mono">Required</small><h3>CV or profile source</h3><p>PDF, DOCX, HTML, Markdown, LinkedIn export, or structured notes. If there is no old resume, the agent asks for education and work history.</p></article>
+        <article class="feature"><small class="mono">Recommended</small><h3>Real writing samples</h3><p>Old emails, IELTS writing, reports, PRDs, BRDs, user stories, or pre-2022 documents help the agent learn authentic tone.</p></article>
+        <article class="feature"><small class="mono">Optional</small><h3>Photo and signature</h3><p>Photo is asked for CV use. Signature is asked for cover letters. If the user does not provide them, the agent continues without inventing assets.</p></article>
+      </div></section>
+    <section class="section"><div class="mono">Copy prompts</div><h2 class="section-title">The prompt page is now part of start.</h2><p class="section-copy">Use these when the workspace already exists and you want to trigger a specific flow.</p>
+      <div class="prompt-panel"><div class="mono">Job application prompt</div><pre>${applicationPrompt}</pre></div>
+      <div class="prompt-panel"><div class="mono">Writing check prompt</div><pre>${writingPrompt}</pre></div></section>`,
+    "blue-page"
+  );
+}
+
+function renderExamplesPage(): string {
+  return renderSiteChrome(
+    "Examples - Student Application AI Helper",
+    "/examples",
+    `<header class="page-hero"><div class="mono">Output examples</div><h1>Templates and samples stay separate from the setup story.</h1><p class="lead">Use these only as references. The local agent still has to tailor every document to the actual person and job.</p></header>
+    <section class="section compact"><div class="mono">Four use cases</div><h2 class="section-title">Examples are organized by the thing the user wants checked.</h2>
+      <div class="example-grid four-grid">
+        <article class="example-card"><small class="mono">Validator</small><h3>Release-style writing gate</h3><p>The local SOP checks that the reviewed text is the current artifact and reruns when the file changes.</p></article>
+        <article class="example-card"><small class="mono">CV</small><h3>Editable resume package</h3><p>HTML CV first, visual review with browser screenshots, then PDF or export when the structure is right.</p></article>
+        <article class="example-card"><small class="mono">Interview</small><h3>Interview prep answers</h3><p>Likely questions, STAR prompts, weakness answers, culture-fit answers, and two selected-text review loops.</p></article>
+        <article class="example-card"><small class="mono">Writing</small><h3>Research or long-form text</h3><p>Academic, work, blog, social, or general text can run one to three selected-text review loops.</p></article>
+      </div></section>
+    <section class="section compact"><div class="example-grid">
+      <a class="example-card" href="/cv-template/english"><small class="mono">CV</small><h3>English HTML resume</h3><p>Editable HTML template for users who do not already have a usable resume format.</p></a>
+      <a class="example-card" href="/cv-template/german"><small class="mono">Lebenslauf</small><h3>German HTML CV</h3><p>German-style structure with photo area and real-content placeholders.</p></a>
+      <a class="example-card" href="/assets/german-cover-letter-sample.pdf"><small class="mono">Cover letter</small><h3>German business letter PDF</h3><p>One-page sample with sender, recipient, date, subject, body, signature, and enclosures.</p></a>
+    </div></section>
+    <section class="section"><div class="mono">Rendered sample</div><h2 class="section-title">A German-style cover letter, built locally.</h2><p class="section-copy">Fictional demonstration only. Jane Doe, Stuttgart Hbf, the recruiting team, and the signature graphic are placeholders.</p>
+      <div class="example-grid showcase">
+        <div class="example-card"><small class="mono">Rules shown</small><h3>Structure over decoration</h3><p>Sender block, recipient block, date, bold subject, concise evidence-led body, signature area, and enclosure list.</p></div>
+        <figure class="sample-frame"><img src="/assets/german-cover-letter-sample.svg" alt="One-page fictional German-format cover letter sample"></figure>
+      </div></section>`,
+    "blue-page"
+  );
+}
+
+function renderDocsPage(): string {
+  return renderSiteChrome(
+    "Docs - Student Application AI Helper",
+    "/docs",
+    `<div class="doc-layout"><aside class="side"><a href="#overview">Overview</a><a href="#use-cases">Use cases</a><a href="#inputs">Inputs</a><a href="#agent-behavior">Agent behavior</a><a href="#gates">Review gates</a><a href="#interview-prep">Interview prep</a><a href="#long-writing">Long writing</a><a href="#workspace">Workspace drift</a><a href="#privacy">Privacy</a><a href="#routes">Routes</a></aside>
+    <main class="doc-main">
+      <h1 id="overview">Student Application AI Helper docs</h1>
+      <p>This service gives local AI agents a workspace kit, prompt rules, folder-audit guidance, and selected-text writing review. It is designed for students and early-career candidates who need practical help preparing job documents without turning their private career folder into a server-side profile.</p>
+      <div class="doc-callout"><strong>Core model</strong><p>The local agent does the private work. The MCP supplies generic structure, public instructions, version checks, and selected-text feedback. The MCP cannot browse the user's machine.</p></div>
+      <h2 id="use-cases">Four supported use cases</h2>
+      <div class="doc-grid">
+        <div class="doc-tile"><strong>1. Code-validator style writing gate</strong><p>The local SOP treats writing readiness like a release gate: it checks the current artifact, records the loop, and blocks stale approvals.</p></div>
+        <div class="doc-tile"><strong>2. CV / resume</strong><p>The agent converts the user's CV source into editable HTML, preserves or recreates the preferred structure, and runs one review loop.</p></div>
+        <div class="doc-tile"><strong>3. Interview prep</strong><p>The agent can prepare likely questions, STAR story prompts, weakness answers, culture-fit answers, and candidate questions for the employer.</p></div>
+        <div class="doc-tile"><strong>4. Long-form writing</strong><p>Academic, work, blog, social, or general writing can be checked in one to three loops, selected by the user.</p></div>
+      </div>
+      <h2 id="inputs">What the user should provide</h2>
+      <p>The agent should ask for enough material to avoid a half-baked profile. If the user cannot provide something, it should adapt; it must not invent facts.</p>
+      <ul><li><strong>CV or best available profile source:</strong> PDF, DOCX, HTML, Markdown, LinkedIn export, or structured notes.</li><li><strong>Job description or job URL:</strong> needed for tailoring and role-fit decisions.</li><li><strong>Education path:</strong> Bachelor, Master, Ausbildung/job training, working student, internship, or another path.</li><li><strong>Human-written samples:</strong> old emails, IELTS writing, user stories, PRDs, BRDs, reports, notes, or pre-2022 documents.</li><li><strong>Company bullet bank:</strong> ideally 10–15 user-written bullet points per past company, so the agent can select the best 4–5 for a job.</li><li><strong>Optional assets:</strong> CV photo and PNG/JPG signature for cover letters.</li><li><strong>Enclosures:</strong> CV is mandatory; degree diploma/transcript and employer reference letters should be requested if available.</li></ul>
+      <h2 id="agent-behavior">How the local agent should behave</h2>
+      <ul><li>Act like a helpful career coach, not a generic document generator.</li><li>Explain what the user needs to provide and why it helps.</li><li>Ask for missing evidence before writing claims.</li><li>Use the user's own tone when enough authentic writing exists.</li><li>Stop asking for more tone samples when the user says the profile is already enough.</li><li>Never treat a document as ready just because chat text says it is ready.</li></ul>
+      <h2 id="gates">Review gates</h2>
+      <ul><li><strong>CV/resume:</strong> one review loop. The payload must be the actual CV text the reader will see.</li><li><strong>Cover letter:</strong> three distinct review loops. Each loop must refer to the current file and record what changed.</li><li><strong>Interview prep:</strong> two low-risk review loops for final spoken answer text, not private notes or coaching scaffolding.</li><li><strong>General writing:</strong> user-selected one to three loops. Do not exceed three unless a future release explicitly changes the contract.</li></ul>
+      <h2 id="interview-prep">Interview prep workflow</h2>
+      <p>Interview prep is optional. If the user accepts it, the local agent should ask for real stories and not hallucinate STAR examples. If it cannot find a story in the profile, it must ask the user for a real incident.</p>
+      <div class="doc-grid">
+        <div class="doc-tile"><strong>Role questions</strong><p>Likely questions based on job description, company, role family, and user profile.</p></div>
+        <div class="doc-tile"><strong>STAR bank</strong><p>Real situation, task, action, result stories drawn from profile evidence or user-provided incidents.</p></div>
+        <div class="doc-tile"><strong>Weakness answer</strong><p>A realistic weakness with a concrete improvement system, not a fake perfectionist answer.</p></div>
+        <div class="doc-tile"><strong>Culture fit</strong><p>Answers for questions like “Who are you outside work?” and work-life balance expectations.</p></div>
+      </div>
+      <h2 id="long-writing">Academic and long-form writing</h2>
+      <p>The writing checker can support research paragraphs, essays, reports, work updates, blog drafts, or social posts. The local agent should send only the selected text and selected mode, then apply the feedback to the real document locally.</p>
+      <ul><li>Academic writing should preserve claims, citations, and argument structure.</li><li>Work writing should stay clear, useful, and decision-oriented.</li><li>Blog/social writing should preserve voice and story rhythm.</li><li>The checker should not receive raw sources, private folders, notes, or full PDFs.</li></ul>
+      <h2 id="workspace">Workspace drift and slow folders</h2>
+      <p>Old candidate folders can become slow because outputs, drafts, PDFs, screenshots, and generated artifacts pile up. The local SOP should audit folder structure and compare it to the current MCP kit. If drift is detected, it should propose safe cleanup or migration without deleting private data automatically.</p>
+      <h2 id="privacy">Privacy contract</h2>
+      <p>The MCP can receive a privacy-safe folder manifest or selected final text. It must not receive raw folders, private PDFs, photos, signatures, prompts, coaching notes, or full profile archives.</p>
+      <h2 id="routes">Useful routes</h2>
+      <ul><li><code>/start</code> setup instructions and copyable prompts.</li><li><code>/examples</code> CV, cover-letter, interview, and writing use-case examples.</li><li><code>/technical-flow</code> diagrams and HTTP/MCP details.</li><li><code>/privacy</code> privacy boundary.</li><li><code>/health</code> service status.</li><li><code>/mcp</code> Streamable HTTP MCP endpoint.</li></ul>
+    </main></div>`
+  );
+}
+
+function renderPrivacyPage(): string {
+  return renderSiteChrome(
+    "Privacy - Student Application AI Helper",
+    "/privacy",
+    `<header class="page-hero"><div class="mono">Privacy boundary</div><h1>Your career folder is not the product.</h1><p class="lead">The service supports local work. It does not need to browse, upload, or store your full application workspace.</p></header>
+    <section class="section compact"><div class="feature-grid">
+      <article class="feature"><small class="mono">Stays local</small><h3>Private files</h3><p>CVs, job posts, profile notes, drafts, PDFs, images, signatures, and outputs remain on the candidate laptop.</p></article>
+      <article class="feature"><small class="mono">Can be sent</small><h3>Selected text</h3><p>Only the final reader-facing text the user deliberately submits for review.</p></article>
+      <article class="feature"><small class="mono">Can be audited</small><h3>Safe manifest</h3><p>Relative paths, kit version, and managed-file hashes; no personal document contents.</p></article>
+    </div></section>`,
+    "blue-page"
+  );
+}
+
 function renderTechnicalFlowPage(): string {
-  return `<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Technical Flow - Student Application AI Helper</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-:root { --paper:#fff8ea; --ink:#17130f; --muted:#62594d; --line:#dfd4bd; --green:#167766; --green-dark:#123f37; --gold:#f4c765; }
-* { box-sizing: border-box; }
-body { margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:var(--ink); background:linear-gradient(180deg,var(--paper),#fffdf7); }
-main { width:min(1120px, calc(100% - 36px)); margin:0 auto; padding:28px 0 64px; }
-.top { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:42px; }
-.brand { font-weight:900; text-decoration:none; color:var(--green-dark); }
-.top a:not(.brand) { color:var(--muted); text-decoration:none; font-weight:750; }
-.hero { display:grid; grid-template-columns:minmax(0,.9fr) minmax(280px,.55fr); gap:28px; align-items:end; margin-bottom:26px; }
-.eyebrow { display:inline-flex; padding:8px 12px; border-radius:999px; border:1px solid var(--line); background:#fffaf0; color:var(--green-dark); font-weight:800; font-size:13px; }
-h1 { margin:18px 0 14px; font-size:clamp(38px,7vw,78px); line-height:.95; letter-spacing:0; }
-.lead { max-width:760px; color:var(--muted); font-size:19px; line-height:1.55; margin:0; }
-.note { border-left:4px solid var(--gold); padding:14px 0 14px 16px; color:var(--muted); line-height:1.55; }
-.diagram { background:white; border:1px solid var(--line); border-radius:14px; padding:18px; overflow:auto; box-shadow:0 22px 60px rgba(18,63,55,.1); }
-.diagram img { display:block; width:min(100%, 980px); min-width:680px; height:auto; margin:0 auto; }
-.diagram-section { margin-top:56px; padding-top:50px; border-top:1px solid var(--line); }
-.diagram-section h2 { margin:0 0 10px; font-size:clamp(30px,4vw,48px); line-height:1; letter-spacing:-.04em; }
-.diagram-section p { max-width:760px; margin:0 0 24px; color:var(--muted); line-height:1.55; }
-.protocol-grid { display:grid; grid-template-columns:180px minmax(0,1fr); border-top:1px solid var(--line); border-left:1px solid var(--line); background:#fffdf7; }
-.protocol-grid div { padding:16px 18px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted); line-height:1.5; }
-.protocol-grid .method { color:var(--green-dark); font-weight:850; background:#fffaf0; }
-.protocol-grid code { color:var(--ink); font-size:.93em; font-weight:750; overflow-wrap:anywhere; }
-.protocol-note { margin-top:18px !important; padding-left:16px; border-left:3px solid var(--gold); }
-.grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:28px; }
-.tile { background:rgba(255,255,255,.66); border:1px solid var(--line); border-top:4px solid var(--green); border-radius:12px; padding:18px; }
-.tile h2 { margin:0 0 8px; font-size:19px; }
-.tile p { margin:0; color:var(--muted); line-height:1.52; }
-.links { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
-.button { display:inline-flex; min-height:44px; align-items:center; justify-content:center; padding:0 15px; border-radius:7px; text-decoration:none; font-weight:850; }
-.primary { background:var(--green-dark); color:#fffaf0; }
-.secondary { border:1px solid var(--line); color:var(--ink); background:#fffaf0; }
-@media (max-width:800px) { .hero, .grid, .protocol-grid { grid-template-columns:1fr; } .diagram img { min-width:620px; } .protocol-grid div { border-right:1px solid var(--line); } .protocol-grid .method { padding-bottom:7px; border-bottom:0; } }
-</style>
-</head>
-<body>
-<main>
-  <nav class="top" aria-label="Technical flow navigation">
-    <a class="brand" href="/">🧭 Student Application AI Helper</a>
-    <a href="/sample-prompts">Prompts</a>
-  </nav>
-  <section class="hero">
-    <div>
-      <div class="eyebrow">Technical sequence diagram</div>
-      <h1>How the local workflow and review boundary work.</h1>
-      <p class="lead">The local Application SOP checks workspace health, records release evidence, and keeps private files on the laptop. The MCP sees only a privacy-safe folder manifest or writing text the candidate deliberately selects for review.</p>
-    </div>
-    <p class="note">The service returns guidance, not private checker implementation details. It cannot browse the candidate's local workspace.</p>
-  </section>
-  <section class="diagram" aria-label="Technical sequence diagram">
-    <img src="/assets/private-checker-flow.svg" alt="Sequence diagram showing selected-text review between the candidate, local AI agent, local workspace, and MCP checker">
-  </section>
-  <section class="grid" aria-label="Flow notes">
-    <div class="tile"><h2>Local SOP gate</h2><p>The local controller records strict boot, current artifact hashes, one CV review, three cover-letter loops, two interview-prep loops, and configurable writing loops before release.</p></div>
-    <div class="tile"><h2>Final text only</h2><p>The candidate or local agent sends only the exact reader-facing paragraph, answer script, CV section, or cover-letter text. It never sends scaffolding or private folders.</p></div>
-    <div class="tile"><h2>Rewrite until low</h2><p>If feedback returns medium or high risk, the local agent revises the actual file, regenerates the review payload, and reruns the gate before finalizing.</p></div>
-  </section>
-  <section class="diagram-section" aria-labelledby="bootstrap-title">
-    <div class="eyebrow">Bootstrap and scaffolding</div>
-    <h2 id="bootstrap-title">How a human prompt creates a safe local foundation.</h2>
-    <p>This diagram shows the one-time setup path: the MCP returns only generic kit files and structure, while the local agent and local SOP create, inspect, and retain the real candidate workspace.</p>
-    <div class="diagram" aria-label="Bootstrap and local scaffolding sequence diagram">
-      <img src="/assets/bootstrap-scaffolding-flow.svg" alt="Sequence diagram showing human request, public MCP kit retrieval, local workspace scaffolding, strict SOP boot, and privacy-safe manifest audit">
-    </div>
-  </section>
-  <section class="diagram-section" aria-labelledby="protocol-title">
-    <div class="eyebrow">HTTP and MCP protocol</div>
-    <h2 id="protocol-title">What actually calls what.</h2>
-    <p>The human setup URL is <code>${PUBLIC_SITE_URL}</code>. The Streamable HTTP MCP transport endpoint is <code>${PUBLIC_MCP_ENDPOINT}</code>. A compatible AI client sends JSON-RPC requests to the transport endpoint; it does not receive shell or filesystem access to the candidate computer.</p>
-    <div class="protocol-grid" aria-label="HTTP endpoint and request contract">
-      <div class="method"><code>OPTIONS /mcp</code></div><div>Browser CORS preflight. The server responds <code>204</code> and allows <code>content-type</code>, <code>authorization</code>, and <code>mcp-session-id</code> headers.</div>
-      <div class="method"><code>POST /mcp</code></div><div>The MCP transport endpoint. Send <code>content-type: application/json</code> and an <code>Accept</code> header that includes <code>application/json</code> or <code>text/event-stream</code>. The client then sends JSON-RPC lifecycle requests such as <code>initialize</code> and <code>tools/list</code>, followed by JSON-RPC <code>tools/call</code> requests.</div>
-      <div class="method"><code>tools/call</code></div><div>For setup, the local agent calls <code>get_workspace_template</code> or <code>get_application_kit_bundle</code>. For structure health, it calls <code>audit_workspace_manifest</code> with relative paths and managed-file hashes only.</div>
-      <div class="method"><code>tools/call</code></div><div>For writing review, it calls <code>check_writing_human_fit</code> with selected final reader-facing text and a mode. It must not send prompts, coaching notes, missing-info questions, keyword maps, raw requirements, the CV folder, images, signatures, or generated PDFs.</div>
-      <div class="method"><code>GET /health</code></div><div>Simple service health and public-tool inventory for local diagnosis; it is not a candidate-data API.</div>
-      <div class="method"><code>GET /assets/*.puml</code></div><div>Read-only canonical PlantUML source for the public technical diagrams. Rendered SVG diagrams are served from matching <code>/assets/*.svg</code> routes.</div>
-    </div>
-    <p class="protocol-note">The HTTP handler permits only <code>POST</code> on <code>/mcp</code>; other methods receive <code>405</code>. Public request bodies are limited to 64 KiB. The endpoint is intentionally unauthenticated in this release, but it is stateless and does not persist candidate profiles or workspace files.</p>
-  </section>
-  <div class="links">
-    <a class="button primary" href="/">Back to main page</a>
-    <a class="button secondary" href="/assets/private-checker-flow.puml">Open review-diagram source</a>
-    <a class="button secondary" href="/assets/local-first-human-flow.puml">Open full-workflow source</a>
-    <a class="button secondary" href="/assets/bootstrap-scaffolding-flow.puml">Open bootstrap-diagram source</a>
-  </div>
-</main>
-</body>
-</html>`;
+  return renderSiteChrome(
+    "Technical Flow - Student Application AI Helper",
+    "/technical-flow",
+    `<header class="page-hero"><div class="mono">Technical flow</div><h1>How the local workflow and review boundary work.</h1><p class="lead">The local Application SOP checks workspace health, records release evidence, and keeps private files on the laptop. The MCP sees only a safe manifest or selected final text.</p></header>
+    <section class="section compact"><div class="feature-grid">
+      <article class="feature"><small class="mono">Local SOP</small><h3>Hard gate</h3><p>Records current artifact hashes, review loops, and release state before a document is marked ready.</p></article>
+      <article class="feature"><small class="mono">Selected text</small><h3>Boundary</h3><p>The MCP receives exact reader-facing text only, not private folders, PDFs, signatures, images, notes, or prompts.</p></article>
+      <article class="feature"><small class="mono">Rerun</small><h3>Rewrite until low</h3><p>Medium/high feedback means the local agent revises the real file and reruns the gate.</p></article>
+    </div></section>
+    <section class="section tech-shell"><div><div class="mono">Review boundary</div><h2 class="section-title">Private selected-text review.</h2><p class="section-copy">This diagram shows how final text leaves the local workspace only when the user or local agent deliberately sends it for review.</p></div><div class="tech-card scroll-x"><img src="/assets/private-checker-flow.svg" alt="Sequence diagram showing selected-text review between the candidate, local AI agent, local workspace, and MCP checker"></div></section>
+    <section class="section tech-shell"><div><div class="mono">Bootstrap</div><h2 class="section-title">How a human prompt creates the local foundation.</h2><p class="section-copy">The MCP returns generic kit files and structure. The local agent and SOP create, inspect, and retain the real candidate workspace.</p></div><div class="tech-card scroll-x"><img src="/assets/bootstrap-scaffolding-flow.svg" alt="Sequence diagram showing human request, public MCP kit retrieval, local workspace scaffolding, strict SOP boot, and privacy-safe manifest audit"></div></section>
+    <section class="section"><div class="mono">HTTP and MCP protocol</div><h2 class="section-title">What actually calls what.</h2><p class="section-copy">The human setup URL is <code>${PUBLIC_SITE_URL}</code>. The Streamable HTTP MCP transport endpoint is <code>${PUBLIC_MCP_ENDPOINT}</code>.</p>
+      <div class="protocol-grid" aria-label="HTTP endpoint and request contract">
+        <div class="method"><code>OPTIONS /mcp</code></div><div>Browser CORS preflight. The server responds <code>204</code> and allows <code>content-type</code>, <code>authorization</code>, and <code>mcp-session-id</code> headers.</div>
+        <div class="method"><code>POST /mcp</code></div><div>Streamable HTTP MCP transport. A compatible client sends JSON-RPC lifecycle requests such as <code>initialize</code> and <code>tools/list</code>, followed by <code>tools/call</code>.</div>
+        <div class="method"><code>tools/call</code></div><div>For setup, the local agent calls <code>get_workspace_template</code> or <code>get_application_kit_bundle</code>. For structure health, it calls <code>audit_workspace_manifest</code>.</div>
+        <div class="method"><code>tools/call</code></div><div>For writing review, it calls <code>check_writing_human_fit</code> with selected final reader-facing text and a writing mode.</div>
+        <div class="method"><code>GET /health</code></div><div>Service health and public-tool inventory. It is not a candidate-data API.</div>
+        <div class="method"><code>GET /assets/*.puml</code></div><div>Read-only canonical PlantUML source. Rendered SVG diagrams are served from matching <code>/assets/*.svg</code> routes.</div>
+      </div><p class="protocol-note">The public request body limit is 64 KiB. The endpoint is unauthenticated in this release, stateless, and does not persist candidate profiles or workspace files.</p>
+      <div class="actions"><a class="button secondary" href="/assets/private-checker-flow.puml">Review diagram source</a><a class="button secondary" href="/assets/bootstrap-scaffolding-flow.puml">Bootstrap diagram source</a></div></section>`,
+    "blue-page"
+  );
 }
 
 function isAuthorized(req: IncomingMessage): boolean {
@@ -1162,6 +1285,24 @@ async function handleHttp(req: IncomingMessage, res: ServerResponse): Promise<vo
     return;
   }
 
+  if (url.pathname === "/start") {
+    res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
+    res.end(renderStartPage());
+    return;
+  }
+
+  if (url.pathname === "/examples") {
+    res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
+    res.end(renderExamplesPage());
+    return;
+  }
+
+  if (url.pathname === "/docs") {
+    res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
+    res.end(renderDocsPage());
+    return;
+  }
+
   if (url.pathname === "/handout") {
     res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
     res.end(await renderMarkdownAsHtml(handout, "Student Application AI Helper"));
@@ -1169,29 +1310,14 @@ async function handleHttp(req: IncomingMessage, res: ServerResponse): Promise<vo
   }
 
   if (url.pathname === "/sample-prompts") {
-    res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
-    res.end(await renderMarkdownAsHtml(samplePrompts, "Student Application AI Helper Prompts"));
+    res.writeHead(301, { location: "/start" });
+    res.end();
     return;
   }
 
   if (url.pathname === "/privacy") {
     res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
-    res.end(
-      await renderMarkdownAsHtml(
-        [
-          "# Privacy",
-          "",
-          "The service is local-first. Your AI agent should keep your full workspace on your laptop.",
-          "",
-          "The writing checker receives only the text you intentionally submit for feedback. It returns issues and revision guidance. It does not need your CV, job folder, source files, or final documents.",
-          "",
-          "Do not use the checker for passwords, identity documents, medical records, bank records, or secrets.",
-          "",
-          "The checker is a writing-quality helper, not proof that text was or was not written by AI."
-        ].join("\n"),
-        "Student Application AI Helper Privacy"
-      )
-    );
+    res.end(renderPrivacyPage());
     return;
   }
 

@@ -75,32 +75,54 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
 
     const landing = await fetch(`http://127.0.0.1:${port}/`).then((response) => response.text());
     assert.match(landing, /Student Application AI Helper/);
-    assert.match(landing, /Turn your real experience into a stronger application/);
-    assert.match(landing, /CV \/ resume/);
-    assert.match(landing, /Three distinct loops/);
-    assert.match(landing, /Interview prep/);
-    assert.match(landing, /Two low-risk loops/);
-    assert.match(landing, /Other writing/);
-    assert.match(landing, /One to three loops/);
+    assert.match(landing, /Real evidence\. Stronger applications/);
+    assert.match(landing, /Draft local\. Review selected text/);
+    assert.match(landing, /Start setup/);
+    assert.match(landing, /See examples/);
+    assert.match(landing, /Useful feedback without sending the whole folder/);
     assert.match(landing, /final reader-facing text/);
-    assert.match(landing, /Why the checker helps/);
+    assert.match(landing, /One checker boundary\. Four useful outputs/);
+    assert.match(landing, /Code-style gate for writing/);
+    assert.match(landing, /Interview prep/);
+    assert.match(landing, /Long-form text/);
+    assert.match(landing, /Fast AI output is not the same as reader confidence/);
     assert.match(landing, /Local workspace \+ checker/);
-    assert.match(landing, /Four simple steps\. Your files never leave your laptop/);
     assert.doesNotMatch(landing, /local-first-human-flow\.svg/);
     assert.doesNotMatch(landing, /Classmate/i);
-    assert.match(landing, /For Germany/);
     assert.doesNotMatch(landing, /Full Kit Bundle/);
     assert.doesNotMatch(landing, /Client Skill JSON/);
     assert.doesNotMatch(landing, /No checker scripts returned/i);
-    assert.match(landing, /Open technical flow/);
-    assert.match(landing, /A German-style cover letter, built locally/);
-    assert.match(landing, /Interview prep/);
-    assert.match(landing, /Fictional demonstration only/);
     assert.match(landing, /https:\/\/jobmcp\.pmlecuong\.com\//);
-    assert.doesNotMatch(landing, /Start URL[^<]*\/mcp/);
+    assert.match(landing, /href="\/technical-flow"/);
     assert.match(landing, /Built by pmlecuong\.com/);
-    assert.match(landing, /href="\/cv-template\/english"/);
-    assert.match(landing, /href="\/cv-template\/german"/);
+    assert.doesNotMatch(landing, /CV \/ resume/);
+    assert.doesNotMatch(landing, /Three distinct loops/);
+
+    const startPage = await fetch(`http://127.0.0.1:${port}/start`).then((response) => response.text());
+    assert.match(startPage, /Create a clean project folder/);
+    assert.match(startPage, /Starter prompt/);
+    assert.match(startPage, /Keep my private files local/);
+    assert.match(startPage, /The prompt page is now part of start/);
+    assert.match(startPage, /Job application prompt/);
+    assert.match(startPage, /Writing check prompt/);
+
+    const docsPage = await fetch(`http://127.0.0.1:${port}/docs`).then((response) => response.text());
+    assert.match(docsPage, /Four supported use cases/);
+    assert.match(docsPage, /CV\/resume:<\/strong> one review loop/);
+    assert.match(docsPage, /Cover letter:<\/strong> three distinct review loops/);
+    assert.match(docsPage, /Interview prep:<\/strong> two low-risk review loops/);
+    assert.match(docsPage, /General writing:<\/strong> user-selected one to three loops/);
+    assert.match(docsPage, /Workspace drift and slow folders/);
+    assert.match(docsPage, /Academic and long-form writing/);
+
+    const examplesPage = await fetch(`http://127.0.0.1:${port}/examples`).then((response) => response.text());
+    assert.match(examplesPage, /href="\/cv-template\/english"/);
+    assert.match(examplesPage, /href="\/cv-template\/german"/);
+    assert.match(examplesPage, /Release-style writing gate/);
+    assert.match(examplesPage, /Interview prep answers/);
+    assert.match(examplesPage, /Research or long-form text/);
+    assert.match(examplesPage, /A German-style cover letter, built locally/);
+    assert.match(examplesPage, /Fictional demonstration only/);
 
     const englishCvPreview = await fetch(`http://127.0.0.1:${port}/cv-template/english`).then((response) => response.text());
     assert.match(englishCvPreview, /Professional Experience/);
@@ -349,21 +371,22 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.match(prompts.content, /Diagnose My Old Or Slow Workspace/);
     });
 
-    const promptsPage = await fetch(`http://127.0.0.1:${port}/sample-prompts`).then((response) => response.text());
-    assert.match(promptsPage, /Student Application AI Helper Prompts/);
-    assert.match(promptsPage, /Diagnose My Old Or Slow Workspace/);
-    assert.match(promptsPage, /three separate review and revision loops/i);
-    assert.doesNotMatch(promptsPage, /Germany/i);
+    const promptsPage = await fetch(`http://127.0.0.1:${port}/sample-prompts`, { redirect: "manual" });
+    assert.equal(promptsPage.status, 301);
+    assert.equal(promptsPage.headers.get("location"), "/start");
 
     const technicalFlow = await fetch(`http://127.0.0.1:${port}/technical-flow`).then((response) => response.text());
     assert.match(technicalFlow, /How the local workflow and review boundary work/);
     assert.match(technicalFlow, /private-checker-flow\.svg/);
-    assert.match(technicalFlow, /local-first-human-flow\.puml/);
-    assert.match(technicalFlow, /How a human prompt creates a safe local foundation/);
+    assert.doesNotMatch(technicalFlow, /local-first-human-flow\.puml/);
+    assert.match(technicalFlow, /bootstrap-scaffolding-flow\.puml/);
+    assert.match(technicalFlow, /How a human prompt creates the local foundation/);
     assert.match(technicalFlow, /bootstrap-scaffolding-flow\.svg/);
     assert.match(technicalFlow, /What actually calls what/);
     assert.match(technicalFlow, /POST \/mcp/);
     assert.match(technicalFlow, /audit_workspace_manifest/);
+    assert.match(technicalFlow, /Selected text/);
+    assert.match(technicalFlow, /Rewrite until low/);
     const technicalDiagram = await fetch(`http://127.0.0.1:${port}/assets/private-checker-flow.svg`);
     assert.equal(technicalDiagram.status, 200);
     assert.match(await technicalDiagram.text(), /Private Selected-Text Review/);
@@ -374,10 +397,6 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     const coverLetterPdf = await fetch(`http://127.0.0.1:${port}/assets/german-cover-letter-sample.pdf`);
     assert.equal(coverLetterPdf.status, 200);
     assert.equal(coverLetterPdf.headers.get("content-type"), "application/pdf");
-
-    const workflowSource = await fetch(`http://127.0.0.1:${port}/assets/local-first-human-flow.puml`);
-    assert.equal(workflowSource.status, 200);
-    assert.match(await workflowSource.text(), /Local-First Application Workflow/);
 
     const bootstrapSource = await fetch(`http://127.0.0.1:${port}/assets/bootstrap-scaffolding-flow.puml`);
     assert.equal(bootstrapSource.status, 200);
