@@ -15,9 +15,9 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-15T12:12:39+00:00`
+- updated_at: `2026-08-15T12:21:57+00:00`
 - current_phase: `postflight`
-- active_goal: Reduced oversized public page display headings across Student Application AI Helper pages while preserving Hermes-style blue visual system.
+- active_goal: Committed, pushed, and deployed Job MCP v0.2.14 blue site refresh to production. Production health and remote MCP smoke passed.
 - active_task_id: `None`
 - work_session: `WS-20260815-121038-689604` active=`False`
 
@@ -36,11 +36,11 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-08-15T12:12:37+00:00`
-- current: Reduced oversized public page display headings across Student Application AI Helper pages while preserving Hermes-style blue visual system.
-- next: Await user visual review before commit, push, or production deployment.
+- updated_at: `2026-08-15T12:21:56+00:00`
+- current: Committed, pushed, and deployed Job MCP v0.2.14 blue site refresh to production. Production health and remote MCP smoke passed.
+- next: Monitor user review; rollback tag rollback/jobmcp-20260815-141427-9e2812b is available on Franklee if needed.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: experimental/application-package-mcp/src/index.ts
+- files: experimental/application-package-mcp/src/index.ts, experimental/application-package-mcp/package.json
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
@@ -82,10 +82,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Latest Checkpoints
 
-- `2026-08-15T12:04:39+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
-  - commands_run: npm test
-- `2026-08-15T12:06:32+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
-  - commands_run: npm test
 - `2026-08-15T12:09:04+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
   - commands_run: python3 samples/local-kit-regression/run_regression.py
 - `2026-08-15T12:09:28+00:00` postflight: Completed local-only second Hermes-style blue redesign pass for Student Application AI Helper pages; removed standalone prompt page from nav via redirect, restored X/Y checker section, added four use-case surfaces, expanded docs, and validated local MCP/site behavior.
@@ -102,6 +98,13 @@ When an agent resumes after context compaction or a new session:
   - files_changed: experimental/application-package-mcp/src/index.ts
   - commands_run: python3 SOP.py postflight
 - `2026-08-15T12:12:39+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
+- `2026-08-15T12:21:56+00:00` postflight: Committed, pushed, and deployed Job MCP v0.2.14 blue site refresh to production. Production health and remote MCP smoke passed.
+  - next_steps: Monitor user review; rollback tag rollback/jobmcp-20260815-141427-9e2812b is available on Franklee if needed.
+  - files_changed: experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/package.json
+  - commands_run: python3 SOP.py postflight
+- `2026-08-15T12:21:57+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
   - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
   - commands_run: python3 SOP.py postflight
 
