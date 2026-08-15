@@ -1,5 +1,5 @@
 {
-  "active_goal": "Release local Job MCP UI refresh with ASCII section, copy buttons, brand rename, and cover-letter showcase to production.",
+  "active_goal": "Released Job MCP v0.2.15 UI refresh to production: brand rename, suitcase mark, ASCII landing section, copy buttons, and improved cover-letter showcase. Health, smoke, and browser checks passed.",
   "active_task_id": null,
   "checkpoints": [
     {
@@ -3900,6 +3900,37 @@
       "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-215006-687911.log",
       "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5948/mcp python3 samples/local-kit-regression/run_regression.py",
       "time": "2026-08-15T21:50:13+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "experimental/application-package-mcp/src/index.ts",
+        "experimental/application-package-mcp/package.json",
+        "experimental/application-package-mcp/tests/mcp-http.test.mjs"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "Monitor production pages; rollback tag rollback/jobmcp-20260815-235045-e35eb02 is available on Franklee if needed."
+      ],
+      "open_questions": [],
+      "summary": "Released Job MCP v0.2.15 UI refresh to production: brand rename, suitcase mark, ASCII landing section, copy buttons, and improved cover-letter showcase. Health, smoke, and browser checks passed.",
+      "time": "2026-08-15T21:52:21+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-15T21:52:23+00:00"
     }
   ],
   "command_log": [
@@ -4314,12 +4345,18 @@
     }
   ],
   "handoff": {
-    "commands": [],
-    "current": "Updated local Job MCP public UI: brand renamed to Job MCP by pmlecuong with suitcase mark; examples cover-letter sample redesigned as a polished showcase; copy buttons and ASCII section remain local.",
-    "files": [],
-    "next": "User reviews http://127.0.0.1:5948/ and http://127.0.0.1:5948/examples. If approved later, run full local regression, commit, push, and deploy in a separate release step.",
-    "risk": "Do not deploy or commit until user explicitly approves the local UI direction.",
-    "updated_at": "2026-08-15T21:43:07+00:00"
+    "commands": [
+      "python3 SOP.py postflight"
+    ],
+    "current": "Released Job MCP v0.2.15 UI refresh to production: brand rename, suitcase mark, ASCII landing section, copy buttons, and improved cover-letter showcase. Health, smoke, and browser checks passed.",
+    "files": [
+      "experimental/application-package-mcp/src/index.ts",
+      "experimental/application-package-mcp/package.json",
+      "experimental/application-package-mcp/tests/mcp-http.test.mjs"
+    ],
+    "next": "Monitor production pages; rollback tag rollback/jobmcp-20260815-235045-e35eb02 is available on Franklee if needed.",
+    "risk": "Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.",
+    "updated_at": "2026-08-15T21:52:21+00:00"
   },
   "kiro": {
     "active_spec": "resilient-application-mcp",
@@ -4436,11 +4473,12 @@
   "open_questions": [],
   "repo": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
   "repo_snapshot": {
-    "created_at": "2026-08-15T12:21:57+00:00",
+    "created_at": "2026-08-15T21:52:23+00:00",
     "directories": [
       ".github",
       ".github/workflows",
       ".playwright-cli",
+      ".playwright-mcp",
       "application-system",
       "application-system/data",
       "application-system/intakes",
@@ -4461,6 +4499,7 @@
       "experimental/application-package-mcp/output",
       "experimental/application-package-mcp/output/playwright",
       "experimental/application-package-mcp/output/playwright/mcp-cover-letter-example",
+      "experimental/application-package-mcp/prototypes",
       "experimental/application-package-mcp/resources",
       "experimental/application-package-mcp/resources/application-kit",
       "experimental/application-package-mcp/resources/application-kit/contracts",
@@ -4617,8 +4656,8 @@
       "src/lib",
       "tests"
     ],
-    "directory_count": 178,
-    "file_count": 748,
+    "directory_count": 180,
+    "file_count": 776,
     "files": {
       ".github/workflows/deploy.yml": {
         "mtime": 1756829608,
@@ -4731,6 +4770,62 @@
       ".playwright-cli/page-2026-08-14T21-46-24-801Z.yml": {
         "mtime": 1786743984,
         "size": 5944
+      },
+      ".playwright-mcp/console-2026-08-15T20-29-27-984Z.log": {
+        "mtime": 1786825768,
+        "size": 143
+      },
+      ".playwright-mcp/page-2026-08-15T20-29-28-240Z.yml": {
+        "mtime": 1786825768,
+        "size": 2630
+      },
+      ".playwright-mcp/page-2026-08-15T20-29-41-641Z.yml": {
+        "mtime": 1786825781,
+        "size": 2671
+      },
+      ".playwright-mcp/page-2026-08-15T20-30-40-791Z.yml": {
+        "mtime": 1786825840,
+        "size": 2589
+      },
+      ".playwright-mcp/page-2026-08-15T20-33-14-306Z.yml": {
+        "mtime": 1786825994,
+        "size": 4291
+      },
+      ".playwright-mcp/page-2026-08-15T20-40-00-257Z.yml": {
+        "mtime": 1786826400,
+        "size": 4484
+      },
+      ".playwright-mcp/page-2026-08-15T20-45-46-761Z.yml": {
+        "mtime": 1786826746,
+        "size": 13253
+      },
+      ".playwright-mcp/page-2026-08-15T20-49-33-947Z.yml": {
+        "mtime": 1786826973,
+        "size": 13050
+      },
+      ".playwright-mcp/page-2026-08-15T20-50-09-350Z.yml": {
+        "mtime": 1786827009,
+        "size": 12622
+      },
+      ".playwright-mcp/page-2026-08-15T21-36-40-777Z.yml": {
+        "mtime": 1786829800,
+        "size": 6287
+      },
+      ".playwright-mcp/page-2026-08-15T21-37-00-285Z.yml": {
+        "mtime": 1786829820,
+        "size": 12849
+      },
+      ".playwright-mcp/page-2026-08-15T21-42-11-261Z.yml": {
+        "mtime": 1786830131,
+        "size": 5694
+      },
+      ".playwright-mcp/page-2026-08-15T21-51-56-650Z.yml": {
+        "mtime": 1786830716,
+        "size": 12815
+      },
+      ".playwright-mcp/page-2026-08-15T21-52-06-094Z.yml": {
+        "mtime": 1786830726,
+        "size": 5694
       },
       "AGENTS.md": {
         "mtime": 1786777524,
@@ -5020,6 +5115,22 @@
         "mtime": 1786775152,
         "size": 6033
       },
+      "ascii-dragon-gate-demo-desktop.png": {
+        "mtime": 1786825784,
+        "size": 472034
+      },
+      "ascii-dragon-gate-demo-fixed.png": {
+        "mtime": 1786825844,
+        "size": 623689
+      },
+      "ascii-dragon-gate-demo-v2.png": {
+        "mtime": 1786825996,
+        "size": 714128
+      },
+      "ascii-dragon-gate-demo-v3-3d.png": {
+        "mtime": 1786826402,
+        "size": 720084
+      },
       "biome.json": {
         "mtime": 1756824088,
         "size": 4192
@@ -5121,7 +5232,7 @@
         "size": 4251
       },
       "experimental/application-package-mcp/dist/checker.js": {
-        "mtime": 1786795890,
+        "mtime": 1786830603,
         "size": 35695
       },
       "experimental/application-package-mcp/dist/docx.js": {
@@ -5133,15 +5244,15 @@
         "size": 14966
       },
       "experimental/application-package-mcp/dist/index.js": {
-        "mtime": 1786795890,
-        "size": 90456
+        "mtime": 1786830603,
+        "size": 108929
       },
       "experimental/application-package-mcp/dist/pdf.js": {
         "mtime": 1777492263,
         "size": 4638
       },
       "experimental/application-package-mcp/dist/resources.js": {
-        "mtime": 1786795890,
+        "mtime": 1786830603,
         "size": 2353
       },
       "experimental/application-package-mcp/dist/storage.js": {
@@ -5169,12 +5280,16 @@
         "size": 1673
       },
       "experimental/application-package-mcp/package-lock.json": {
-        "mtime": 1786794778,
+        "mtime": 1786830563,
         "size": 42609
       },
       "experimental/application-package-mcp/package.json": {
-        "mtime": 1786794778,
+        "mtime": 1786830563,
         "size": 657
+      },
+      "experimental/application-package-mcp/prototypes/ascii-dragon-gate-demo.html": {
+        "mtime": 1786826396,
+        "size": 18154
       },
       "experimental/application-package-mcp/resources/application-kit/contracts/cover-letter-contract.md": {
         "mtime": 1786777170,
@@ -5797,411 +5912,411 @@
         "size": 1142
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/candidate/evidence.md": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 8524
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/candidate/profile.json": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 8642
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/candidate/source-analysis.md": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 18486
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/candidate/tone.md": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 2104
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/mercedes-ipos/interview.json": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 296
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/mercedes-ipos/job.json": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 5250
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/sap-threat-modelling/interview.json": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 296
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/sap-threat-modelling/job.json": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 5884
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/vishay-controlling/interview.json": {
-        "mtime": 1786795743,
+        "mtime": 1786830611,
         "size": 304
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/vishay-controlling/job.json": {
-        "mtime": 1786795743,
+        "mtime": 1786830611,
         "size": 5340
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter-draft.json": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 2522
       },
-      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter-le-cuong-nguyen-working-student-product-owner-support-insurance-platform-of-services-20260815-140902.pdf": {
-        "mtime": 1786795742,
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter-le-cuong-nguyen-working-student-product-owner-support-insurance-platform-of-services-20260815-235008.pdf": {
+        "mtime": 1786830608,
         "size": 70047
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.aux": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 162
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.fdb_latexmk": {
-        "mtime": 1786795742,
-        "size": 8139
+        "mtime": 1786830608,
+        "size": 8140
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.fls": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 9923
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.html": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 4793
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.log": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 16443
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.md": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 2004
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.out": {
-        "mtime": 1786795742,
+        "mtime": 1786830607,
         "size": 0
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.tex": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 3168
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cv-input.json": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 1915
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cv-tailored.md": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 1775
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep-manifest.json": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 1540
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep-questions.md": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 509
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep-review-input-loop-1.json": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 2334
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep-review-input-loop-2.json": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 1354
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep-review-input.json": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 2334
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep-review-result-loop-1.json": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 1949
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep-review-result-loop-2.json": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 1403
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/interview-prep/interview-prep.md": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 15387
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/manifest.json": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 1601
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/validation.md": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 470
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter-draft.json": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 2541
       },
-      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter-le-cuong-nguyen-working-student-f-m-d-threat-modelling-service-operation-and-automation-20260815-140903.pdf": {
-        "mtime": 1786795743,
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter-le-cuong-nguyen-working-student-f-m-d-threat-modelling-service-operation-and-automation-20260815-235010.pdf": {
+        "mtime": 1786830610,
         "size": 71468
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.aux": {
-        "mtime": 1786795743,
+        "mtime": 1786830610,
         "size": 162
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.fdb_latexmk": {
-        "mtime": 1786795743,
-        "size": 8139
+        "mtime": 1786830610,
+        "size": 8137
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.fls": {
-        "mtime": 1786795743,
+        "mtime": 1786830610,
         "size": 9930
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.html": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 4812
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.log": {
-        "mtime": 1786795743,
+        "mtime": 1786830610,
         "size": 16443
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.md": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 2023
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.out": {
-        "mtime": 1786795743,
+        "mtime": 1786830610,
         "size": 0
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.tex": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 3187
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cv-input.json": {
-        "mtime": 1786795742,
+        "mtime": 1786830608,
         "size": 1878
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cv-tailored.md": {
-        "mtime": 1786795743,
+        "mtime": 1786830610,
         "size": 1738
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep-manifest.json": {
-        "mtime": 1786795743,
+        "mtime": 1786830610,
         "size": 1520
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep-questions.md": {
-        "mtime": 1786795743,
+        "mtime": 1786830610,
         "size": 509
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep-review-input-loop-1.json": {
-        "mtime": 1786795743,
+        "mtime": 1786830610,
         "size": 2268
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep-review-input-loop-2.json": {
-        "mtime": 1786795743,
+        "mtime": 1786830610,
         "size": 1306
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep-review-input.json": {
-        "mtime": 1786795743,
+        "mtime": 1786830610,
         "size": 2268
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep-review-result-loop-1.json": {
-        "mtime": 1786795743,
+        "mtime": 1786830611,
         "size": 1949
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep-review-result-loop-2.json": {
-        "mtime": 1786795743,
+        "mtime": 1786830611,
         "size": 1403
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/interview-prep/interview-prep.md": {
-        "mtime": 1786795743,
+        "mtime": 1786830610,
         "size": 15276
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/manifest.json": {
-        "mtime": 1786795743,
+        "mtime": 1786830610,
         "size": 1653
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/validation.md": {
-        "mtime": 1786795743,
+        "mtime": 1786830610,
         "size": 470
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter-draft.json": {
-        "mtime": 1786795743,
+        "mtime": 1786830611,
         "size": 2450
       },
-      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter-le-cuong-nguyen-werkstudent-m-w-d-controlling-20260815-140904.pdf": {
-        "mtime": 1786795744,
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter-le-cuong-nguyen-werkstudent-m-w-d-controlling-20260815-235012.pdf": {
+        "mtime": 1786830612,
         "size": 70267
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.aux": {
-        "mtime": 1786795744,
+        "mtime": 1786830612,
         "size": 162
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.fdb_latexmk": {
-        "mtime": 1786795744,
-        "size": 8139
+        "mtime": 1786830612,
+        "size": 8140
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.fls": {
-        "mtime": 1786795744,
+        "mtime": 1786830612,
         "size": 9928
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.html": {
-        "mtime": 1786795743,
+        "mtime": 1786830611,
         "size": 4721
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.log": {
-        "mtime": 1786795744,
+        "mtime": 1786830612,
         "size": 16443
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.md": {
-        "mtime": 1786795743,
+        "mtime": 1786830611,
         "size": 1932
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.out": {
-        "mtime": 1786795744,
+        "mtime": 1786830612,
         "size": 0
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.tex": {
-        "mtime": 1786795743,
+        "mtime": 1786830611,
         "size": 3096
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cv-input.json": {
-        "mtime": 1786795743,
+        "mtime": 1786830611,
         "size": 1835
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cv-tailored.md": {
-        "mtime": 1786795744,
+        "mtime": 1786830613,
         "size": 1695
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep-manifest.json": {
-        "mtime": 1786795744,
+        "mtime": 1786830613,
         "size": 1496
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep-questions.md": {
-        "mtime": 1786795744,
+        "mtime": 1786830613,
         "size": 509
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep-review-input-loop-1.json": {
-        "mtime": 1786795744,
+        "mtime": 1786830613,
         "size": 2360
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep-review-input-loop-2.json": {
-        "mtime": 1786795744,
+        "mtime": 1786830613,
         "size": 1342
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep-review-input.json": {
-        "mtime": 1786795744,
+        "mtime": 1786830613,
         "size": 2360
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep-review-result-loop-1.json": {
-        "mtime": 1786795744,
+        "mtime": 1786830613,
         "size": 1949
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep-review-result-loop-2.json": {
-        "mtime": 1786795744,
+        "mtime": 1786830613,
         "size": 1403
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/interview-prep/interview-prep.md": {
-        "mtime": 1786795744,
+        "mtime": 1786830613,
         "size": 15784
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/manifest.json": {
-        "mtime": 1786795744,
+        "mtime": 1786830613,
         "size": 1597
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/validation.md": {
-        "mtime": 1786795744,
+        "mtime": 1786830613,
         "size": 470
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/regression-report.json": {
-        "mtime": 1786795744,
+        "mtime": 1786830613,
         "size": 5775
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/regression-report.md": {
-        "mtime": 1786795744,
+        "mtime": 1786830613,
         "size": 4755
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/cover-letter/cover_letter.html": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 5682
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/cover-letter/cover_letter.tex": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 3168
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/cv/product_owner.json": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 8059
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/manifest.json": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 4373
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/notes.md": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 1087
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/skill-assessment/role_fit_snapshot.html": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 7446
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/skill-assessment/role_fit_snapshot.json": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 2853
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/skill-assessment/role_fit_snapshot.tex": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 4401
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/cover-letter/cover_letter.html": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 5698
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/cover-letter/cover_letter.tex": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 3187
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/cv/process_automation.json": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 8050
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/manifest.json": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 4346
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/notes.md": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 1112
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/skill-assessment/role_fit_snapshot.html": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 7413
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/skill-assessment/role_fit_snapshot.json": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 2823
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/skill-assessment/role_fit_snapshot.tex": {
-        "mtime": 1786795741,
+        "mtime": 1786830606,
         "size": 4361
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/cover-letter/cover_letter.html": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 5612
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/cover-letter/cover_letter.tex": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 3096
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/cv/workflow_operations_analyst.json": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 8056
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/manifest.json": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 4233
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/notes.md": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 1118
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/skill-assessment/role_fit_snapshot.html": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 7319
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/skill-assessment/role_fit_snapshot.json": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 2727
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/skill-assessment/role_fit_snapshot.tex": {
-        "mtime": 1786795741,
+        "mtime": 1786830607,
         "size": 4256
       },
       "experimental/application-package-mcp/src/checker.ts": {
@@ -6209,8 +6324,8 @@
         "size": 34405
       },
       "experimental/application-package-mcp/src/index.ts": {
-        "mtime": 1786795880,
-        "size": 89853
+        "mtime": 1786830563,
+        "size": 108340
       },
       "experimental/application-package-mcp/src/resources.ts": {
         "mtime": 1786748857,
@@ -6221,8 +6336,8 @@
         "size": 17781
       },
       "experimental/application-package-mcp/tests/mcp-http.test.mjs": {
-        "mtime": 1786794879,
-        "size": 27179
+        "mtime": 1786830595,
+        "size": 27170
       },
       "experimental/application-package-mcp/tests/smoke-remote.mjs": {
         "mtime": 1786779273,
@@ -7216,6 +7331,42 @@
         "mtime": 1784280635,
         "size": 2042
       },
+      "jobmcp-local-examples-cover-showcase.png": {
+        "mtime": 1786830136,
+        "size": 455513
+      },
+      "jobmcp-local-home-copy-button.png": {
+        "mtime": 1786829824,
+        "size": 120435
+      },
+      "jobmcp-local-landing-ascii-integrated-current.png": {
+        "mtime": 1786826758,
+        "size": 412910
+      },
+      "jobmcp-local-landing-ascii-integrated.png": {
+        "mtime": 1786826749,
+        "size": 878854
+      },
+      "jobmcp-local-landing-ascii-transparent-v2.png": {
+        "mtime": 1786827012,
+        "size": 765934
+      },
+      "jobmcp-local-landing-ascii-transparent.png": {
+        "mtime": 1786826977,
+        "size": 772055
+      },
+      "jobmcp-local-start-copy-buttons.png": {
+        "mtime": 1786829806,
+        "size": 354590
+      },
+      "jobmcp-prod-0.2.15-examples.png": {
+        "mtime": 1786830731,
+        "size": 455482
+      },
+      "jobmcp-prod-0.2.15-home.png": {
+        "mtime": 1786830721,
+        "size": 761133
+      },
       "kiro/specs/resilient-application-mcp/design.md": {
         "mtime": 1786742313,
         "size": 27383
@@ -7651,13 +7802,13 @@
       "updated_at": "2026-06-19T09:20:07+00:00"
     }
   ],
-  "updated_at": "2026-08-15T21:50:13+00:00",
+  "updated_at": "2026-08-15T21:52:23+00:00",
   "work_session": {
-    "active": true,
-    "ended_at": null,
+    "active": false,
+    "ended_at": "2026-08-15T21:52:21+00:00",
     "goal": "Release local Job MCP UI refresh with ASCII section, copy buttons, brand rename, and cover-letter showcase to production.",
     "id": "WS-20260815-204306-967966",
-    "last_update": "2026-08-15T21:49:15+00:00",
+    "last_update": "2026-08-15T21:52:21+00:00",
     "started_at": "2026-08-15T20:43:06+00:00",
     "task_id": "jobmcp-ui-refresh-prod"
   }

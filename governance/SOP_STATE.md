@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-15T21:50:13+00:00`
+- updated_at: `2026-08-15T21:52:23+00:00`
 - current_phase: `postflight`
-- active_goal: Release local Job MCP UI refresh with ASCII section, copy buttons, brand rename, and cover-letter showcase to production.
+- active_goal: Released Job MCP v0.2.15 UI refresh to production: brand rename, suitcase mark, ASCII landing section, copy buttons, and improved cover-letter showcase. Health, smoke, and browser checks passed.
 - active_task_id: `None`
-- work_session: `WS-20260815-204306-967966` active=`True`
+- work_session: `WS-20260815-204306-967966` active=`False`
 
 ## Required Resume Files
 
@@ -36,10 +36,12 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-08-15T21:43:07+00:00`
-- current: Updated local Job MCP public UI: brand renamed to Job MCP by pmlecuong with suitcase mark; examples cover-letter sample redesigned as a polished showcase; copy buttons and ASCII section remain local.
-- next: User reviews http://127.0.0.1:5948/ and http://127.0.0.1:5948/examples. If approved later, run full local regression, commit, push, and deploy in a separate release step.
-- risk: Do not deploy or commit until user explicitly approves the local UI direction.
+- updated_at: `2026-08-15T21:52:21+00:00`
+- current: Released Job MCP v0.2.15 UI refresh to production: brand rename, suitcase mark, ASCII landing section, copy buttons, and improved cover-letter showcase. Health, smoke, and browser checks passed.
+- next: Monitor production pages; rollback tag rollback/jobmcp-20260815-235045-e35eb02 is available on Franklee if needed.
+- risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
+- files: experimental/application-package-mcp/src/index.ts, experimental/application-package-mcp/package.json, experimental/application-package-mcp/tests/mcp-http.test.mjs
+- commands: python3 SOP.py postflight
 
 ## Kiro Execution State
 
@@ -80,10 +82,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Latest Checkpoints
 
-- `2026-08-15T21:36:26+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build
-  - commands_run: npm run build
-- `2026-08-15T21:41:58+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build
-  - commands_run: npm run build
 - `2026-08-15T21:42:46+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build
   - commands_run: npm run build
 - `2026-08-15T21:43:07+00:00` handoff: Handoff updated: Updated local Job MCP public UI: brand renamed to Job MCP by pmlecuong with suitcase mark; examples cover-letter sample redesigned as a polished showcase; copy buttons and ASCII section remain local.
@@ -97,6 +95,13 @@ When an agent resumes after context compaction or a new session:
   - commands_run: npm test
 - `2026-08-15T21:50:13+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5948/mcp python3 samples/local-kit-regression/run_regression.py
   - commands_run: env APPLICATION_MCP_URL=http://127.0.0.1:5948/mcp python3 samples/local-kit-regression/run_regression.py
+- `2026-08-15T21:52:21+00:00` postflight: Released Job MCP v0.2.15 UI refresh to production: brand rename, suitcase mark, ASCII landing section, copy buttons, and improved cover-letter showcase. Health, smoke, and browser checks passed.
+  - next_steps: Monitor production pages; rollback tag rollback/jobmcp-20260815-235045-e35eb02 is available on Franklee if needed.
+  - files_changed: experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/package.json; experimental/application-package-mcp/tests/mcp-http.test.mjs
+  - commands_run: python3 SOP.py postflight
+- `2026-08-15T21:52:23+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
 
 ## Decisions
 
