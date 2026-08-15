@@ -208,10 +208,12 @@ The master profile must keep exactly 7 core skills. Do not quietly add tool name
 
 ### Typography Contract
 
-- The public CV uses Inter. The PDF cover letter and role-fit snapshot use the portable
-  Helvetica-style TeX Gyre Heros family (`tgheros`) so they retain the same modern,
-  clean sans-serif appearance on any pdflatex-equipped machine.
-- Do not restore `lmodern`, serif fonts, or a system-only font as a template fallback.
+- The public CV site uses Inter, but application cover-letter PDFs follow the
+  historical LaTeX/pdfTeX application style used in existing output folders.
+- PDF cover letters and role-fit snapshots must use `lmodern`, producing
+  `LMRoman10-Regular` and `LMRoman10-Bold` in `pdffonts`.
+- Do not switch cover-letter PDFs to Inter, Chrome/Skia, Helvetica, Arial, or
+  TeX Gyre Heros unless the user explicitly changes the visual baseline again.
 - Treat the shared template typography as a hard layout contract. If a new local
   workspace was bootstrapped through the MCP, run its workspace audit before release;
   a changed managed template must be updated from the MCP kit, never improvised.

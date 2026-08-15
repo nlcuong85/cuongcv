@@ -11,11 +11,12 @@ from __future__ import annotations
 import argparse
 import html
 import json
-import os
 import re
 import shutil
 import subprocess
+import unicodedata
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -39,8 +40,9 @@ PARAGRAPH_LIMITS = {
 REQUIRED_TEMPLATE_MARKERS = [
     r"\documentclass[9pt,a4paper]{article}",
     r"\usepackage[a4paper,left=25mm,right=20mm,top=36mm,bottom=18mm]{geometry}",
-    r"\usepackage{fontspec}",
-    r"\setmainfont{Inter-Regular}[Path=fonts/,Extension=.ttf,BoldFont=Inter-Bold]",
+    r"\usepackage[T1]{fontenc}",
+    r"\usepackage[utf8]{inputenc}",
+    r"\usepackage{lmodern}",
     r"\pagestyle{empty}",
     "@@SENDER_BLOCK@@",
     "@@RECIPIENT_BLOCK@@",
@@ -56,8 +58,7 @@ REQUIRED_TEMPLATE_MARKERS = [
 ]
 
 REQUIRED_HTML_TEMPLATE_MARKERS = [
-    '@font-face',
-    'font-family: "Inter"',
+    'Georgia, "Times New Roman", serif',
     "@@SENDER_BLOCK@@",
     "@@RECIPIENT_BLOCK@@",
     "@@DATE_LINE@@",
@@ -304,37 +305,6 @@ def resolve_local_signature_path(draft: dict[str, Any], draft_path: Path) -> dic
     return draft
 
 
-def prepare_signature_image(draft: dict[str, Any], output_dir: Path) -> dict[str, Any]:
-    signature_path = str(draft.get("signature_path") or "").strip()
-    if not signature_path:
-        return draft
-    source = Path(signature_path)
-    if not source.is_file():
-        return draft
-    target = output_dir / "signature-rendered.png"
-    try:
-        from PIL import Image  # type: ignore
-
-        image = Image.open(source).convert("RGBA")
-        bbox = image.getbbox()
-        if bbox:
-            left = max(0, bbox[0] - 12)
-            top = max(0, bbox[1] - 12)
-            right = min(image.width, bbox[2] + 12)
-            bottom = min(image.height, bbox[3] + 12)
-            image = image.crop((left, top, right, bottom))
-        background = Image.new("RGBA", (900, 220), (255, 253, 248, 255))
-        x = max(0, (background.width - image.width) // 2)
-        y = max(0, (background.height - image.height) // 2)
-        background.alpha_composite(image, (x, y))
-        background.convert("RGB").save(target)
-        prepared = dict(draft)
-        prepared["signature_path"] = str(target.resolve())
-        return prepared
-    except Exception:
-        return draft
-
-
 def inline_signature_svg(path: str) -> str:
     try:
         resolved = Path(path).resolve()
@@ -359,20 +329,18 @@ def strip_signature_if_missing(tex: str, draft: dict[str, Any]) -> str:
     )
 
 
-def resolve_chrome() -> str | None:
-    candidates = [
-        os.environ.get("GOOGLE_CHROME_BIN"),
-        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-        "/Applications/Chromium.app/Contents/MacOS/Chromium",
-        shutil.which("google-chrome"),
-        shutil.which("google-chrome-stable"),
-        shutil.which("chromium"),
-        shutil.which("chromium-browser"),
-    ]
-    for candidate in candidates:
-        if candidate and Path(candidate).exists():
-            return str(candidate)
-    return None
+def slugify(value: str) -> str:
+    normalized = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
+    normalized = re.sub(r"^application for\s+", "", normalized.strip(), flags=re.IGNORECASE)
+    normalized = re.sub(r"[^a-zA-Z0-9]+", "-", normalized.lower()).strip("-")
+    return normalized or "application"
+
+
+def cover_pdf_filename(draft: dict[str, Any]) -> str:
+    candidate = slugify(str(draft.get("signature_name") or "candidate"))
+    role = slugify(str(draft.get("subject_line") or "cover-letter"))
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    return f"cover-letter-{candidate}-{role}-{timestamp}.pdf"
 
 
 def validate_draft(draft: dict[str, Any]) -> Validation:
@@ -411,28 +379,29 @@ def validate_draft(draft: dict[str, Any]) -> Validation:
     return Validation(errors, warnings)
 
 
-def print_html_pdf(html_path: Path, output_dir: Path) -> tuple[Path | None, list[str]]:
+def compile_pdf(tex_path: Path, output_dir: Path, draft: dict[str, Any]) -> tuple[Path | None, list[str]]:
     warnings: list[str] = []
-    chrome = resolve_chrome()
-    if not chrome:
-        warnings.append("Google Chrome or Chromium not found; install Chrome or set GOOGLE_CHROME_BIN to render the Inter PDF.")
+    compiler = shutil.which("latexmk")
+    if not compiler:
+        warnings.append("latexmk not found; install a TeX Live distribution to compile the LaTeX cover letter.")
         return None, warnings
-    pdf_path = output_dir / "cover-letter.pdf"
     cmd = [
-        chrome,
-        "--headless",
-        "--disable-gpu",
-        "--no-first-run",
-        "--no-pdf-header-footer",
-        "--virtual-time-budget=3000",
-        f"--print-to-pdf={pdf_path}",
-        html_path.resolve().as_uri(),
+        compiler,
+        "-pdf",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        tex_path.name,
     ]
-    proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=False)
+    proc = subprocess.run(cmd, cwd=output_dir, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=False)
     if proc.returncode != 0:
-        warnings.append("Chrome PDF rendering failed:\n" + proc.stdout[-2500:])
+        warnings.append("latexmk failed:\n" + proc.stdout[-2500:])
         return None, warnings
-    return pdf_path if pdf_path.exists() else None, warnings
+    compiled_pdf = output_dir / f"{tex_path.stem}.pdf"
+    if not compiled_pdf.exists():
+        return None, warnings
+    archived_pdf = output_dir / cover_pdf_filename(draft)
+    shutil.move(compiled_pdf, archived_pdf)
+    return archived_pdf, warnings
 
 
 def pdf_page_count(pdf_path: Path) -> int | None:
@@ -454,7 +423,7 @@ def validate_pdf(pdf_path: Path | None) -> Validation:
     errors: list[str] = []
     warnings: list[str] = []
     if not pdf_path:
-        errors.append("Hard typography gate cannot pass: Chrome did not produce an Inter PDF.")
+        errors.append("Hard typography gate cannot pass: LaTeX did not produce a cover-letter PDF.")
         return Validation(errors, warnings)
     pages = pdf_page_count(pdf_path)
     if pages is None:
@@ -463,14 +432,11 @@ def validate_pdf(pdf_path: Path | None) -> Validation:
         errors.append(f"PDF must be exactly 1 page, got {pages}.")
     pdffonts = shutil.which("pdffonts")
     if not pdffonts:
-        errors.append("Hard typography gate cannot run: install Poppler pdffonts to verify Inter is embedded.")
+        errors.append("Hard typography gate cannot run: install Poppler pdffonts to verify Latin Modern Roman is embedded.")
     else:
         output = subprocess.run([pdffonts, str(pdf_path)], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True, check=False).stdout
-        if "Inter-Regular" not in output or "Inter-Bold" not in output:
-            errors.append("Hard typography gate failed: cover-letter PDF does not embed Inter Regular and Inter Bold.")
-        for forbidden_font in ["LMRoman", "TeXGyre", "NimbusRomNo9", "Times-Roman"]:
-            if forbidden_font in output:
-                errors.append(f"Hard typography gate failed: forbidden non-Inter font detected: {forbidden_font}.")
+        if "LMRoman10-Regular" not in output or "LMRoman10-Bold" not in output:
+            errors.append("Hard typography gate failed: cover-letter PDF does not embed Latin Modern Roman regular and bold.")
     data = pdf_path.read_bytes()
     for token in [b"/OpenAction", b"/JavaScript", b"/JS"]:
         if token in data:
@@ -593,9 +559,8 @@ def main() -> int:
     html_template_path = script_root / "templates" / "cover_letter.html"
     output_dir = args.output_dir
     output_dir.mkdir(parents=True, exist_ok=True)
-    shutil.copytree(script_root / "fonts", output_dir / "fonts", dirs_exist_ok=True)
 
-    draft = prepare_signature_image(resolve_local_signature_path(read_json(args.draft), args.draft.resolve()), output_dir)
+    draft = resolve_local_signature_path(read_json(args.draft), args.draft.resolve())
     template = template_path.read_text(encoding="utf-8")
     html_template = html_template_path.read_text(encoding="utf-8")
     template_validation = Validation(validate_template(template), [])
@@ -611,7 +576,7 @@ def main() -> int:
     if html_template_validation.ok:
         html_path.write_text(render_template(html_template, build_html_mapping(draft)), encoding="utf-8")
 
-    pdf_path, compile_warnings = print_html_pdf(html_path, output_dir) if html_path.exists() else (None, [])
+    pdf_path, compile_warnings = compile_pdf(tex_path, output_dir, draft) if tex_path.exists() else (None, [])
     compile_validation = Validation([], compile_warnings)
     pdf_validation = validate_pdf(pdf_path)
 

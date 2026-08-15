@@ -139,7 +139,7 @@ For cover letters and CV helpers:
 3. Draft `outputs/<target>/cover-letter-draft.json` using `application-kit/contracts/cover-letter-contract.md`.
 4. Draft CV helper input or content using `application-kit/contracts/cv-markdown-contract.md`.
 5. Run `application-kit/scripts/local_application_generator.py`.
-6. Confirm these outputs exist under `outputs/<target>/`: `cover-letter.tex`, `cover-letter.pdf` when LaTeX is installed, `cover-letter.md`, `cv-tailored.md`, `validation.md`, and `manifest.json`.
+6. Confirm these outputs exist under `outputs/<target>/`: `cover-letter.tex`, one timestamped `cover-letter-<candidate-name>-<job-title>-<timestamp>.pdf` when LaTeX is installed, `cover-letter.md`, `cv-tailored.md`, `validation.md`, and `manifest.json`.
 7. Send only the final cover-letter text or selected CV overview to the MCP checker when requested.
 8. Revise locally and rerun the renderer until local validation passes.
 

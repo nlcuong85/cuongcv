@@ -2,22 +2,24 @@
 
 ## Required profile
 
-All local cover-letter PDFs generated from this kit must use Inter Regular and
-Inter Bold through the browser print path. The release PDF is rendered from
-`application-kit/templates/cover_letter.html`, not from TeX, because the main CV
-also uses the Chrome/HTML print pipeline.
+All local cover-letter PDFs generated from this kit must match the historical
+application-system cover-letter style used in existing output folders such as
+`schwarz-it-werkstudent-marketing-systeme-m-w-d/cover-letter`.
 
-The local workspace must have:
+The canonical PDF path is:
 
-- `application-kit/fonts/Inter-Regular.ttf`
-- `application-kit/fonts/Inter-Bold.ttf`
+- LaTeX source: `application-kit/templates/cover_letter.tex`
+- Compiler: `latexmk -pdf` / `pdfTeX`
+- Font package: `lmodern`
+- Expected PDF fonts: `LMRoman10-Regular` and `LMRoman10-Bold`
 
-Use `python3 application-kit/scripts/install_inter_fonts.py` to install the
-verified font files when they are missing.
+Do not switch cover-letter PDFs to Chrome/Skia, Inter, Helvetica, Arial, TeX
+Gyre Heros, or another browser/system font unless the user explicitly changes
+the visual baseline again.
 
 ## Agent rule
 
-Do not edit the typography CSS in a job-specific output. If a workspace audit
+Do not edit the typography package lines in a job-specific output. If a workspace audit
 reports a template hash mismatch or an old kit version, retrieve the current MCP
 application kit and update only MCP-managed files. Never overwrite profile,
 voice, source, job, asset, or application files to fix a typography update.
@@ -26,7 +28,7 @@ voice, source, job, asset, or application files to fix a typography update.
 
 Before calling a cover letter ready, the local agent must confirm:
 
-1. `application-kit/templates/cover_letter.html` contains `@font-face` rules for Inter.
+1. `application-kit/templates/cover_letter.tex` contains `fontenc`, `inputenc`, and `lmodern`.
 2. `python3 scripts/workspace_audit.py --root .` records the managed hashes.
 3. `audit_workspace_manifest` reports `workspace_current`.
-4. The generated PDF is one A4 page, embeds Inter Regular/Bold, and is visually legible after PNG rendering.
+4. The generated PDF is one A4 page, embeds Latin Modern Roman regular/bold, and visually matches the historical LaTeX cover-letter rhythm after PNG rendering.

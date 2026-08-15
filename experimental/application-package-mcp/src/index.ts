@@ -16,7 +16,7 @@ import {
   samplePromptsDocument
 } from "./resources.js";
 
-const VERSION = "0.2.3";
+const VERSION = "0.2.4";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
@@ -36,7 +36,7 @@ const PUBLIC_TOOLS = [
   "suggest_writing_revision"
 ];
 
-const WORKSPACE_KIT_VERSION = "2026.08.15-browser-inter-hard-gate.1";
+const WORKSPACE_KIT_VERSION = "2026.08.15-lmodern-latex-parity.1";
 const REQUIRED_WORKSPACE_PATHS = [
   "AGENTS.md",
   ".mcp/workspace-manifest.json",
@@ -56,7 +56,6 @@ const REQUIRED_WORKSPACE_PATHS = [
   "application-kit/templates/cover_letter.tex",
   "application-kit/contracts/typography-contract.md",
   "application-kit/scripts/local_application_generator.py"
-  ,"application-kit/fonts/Inter-Regular.ttf", "application-kit/fonts/Inter-Bold.ttf"
 ];
 
 const MANAGED_HASHED_PATHS = [
@@ -121,9 +120,9 @@ async function auditWorkspaceManifest(manifest: {
         }
       : { available: false },
     typography: {
-      profile: "inter-regular-and-bold",
+      profile: "latex-lmodern-roman",
       status: hashMismatches.some((path) => path.startsWith("application-kit/templates/cover_letter.")) ? "template_mismatch" : "verified_by_managed_hash",
-      message: "Cover letters must embed Inter Regular/Bold. No substitute font is allowed."
+      message: "Cover letters must match the historical pdfTeX/Latin Modern Roman application style."
     },
     reminders: {
       photo_question_required: !manifest.candidate_asset_status?.photo_question_answered,

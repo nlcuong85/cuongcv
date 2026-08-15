@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
+import { readdirSync } from "node:fs";
 import { copyFile, cp, mkdtemp, mkdir, readFile, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -82,6 +83,8 @@ test("local generator resolves a workspace-relative signature when compilation r
     ],
     { cwd: root, encoding: "utf8" },
   );
-  const pdfInfo = execFileSync("pdfinfo", [path.join(outputDir, "cover-letter.pdf")], { encoding: "utf8" });
+  const generated = readdirSync(outputDir).filter((name) => /^cover-letter-.*\.pdf$/.test(name));
+  assert.equal(generated.length, 1);
+  const pdfInfo = execFileSync("pdfinfo", [path.join(outputDir, generated[0])], { encoding: "utf8" });
   assert.match(pdfInfo, /^Pages:\s+1$/m);
 });

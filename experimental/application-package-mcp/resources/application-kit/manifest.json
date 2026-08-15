@@ -1,6 +1,6 @@
 {
   "kit_id": "application-kit",
-  "version": "2026.08.15-browser-inter-hard-gate.1",
+  "version": "2026.08.15-lmodern-latex-parity.1",
   "mode": "local-only",
   "privacy": {
     "remote_processing": "selected writing checks only through MCP tools",
@@ -11,15 +11,11 @@
   "resources": [
     {
       "path": "templates/cover_letter.tex",
-      "description": "Editable source template retained for review and migration compatibility."
+      "description": "Canonical strict one-page pdfTeX template matching the historical Latin Modern Roman application style."
     },
     {
       "path": "templates/cover_letter.html",
-      "description": "Canonical strict one-page browser-print template with Inter as a hard gate."
-    },
-    {
-      "path": "scripts/install_inter_fonts.py",
-      "description": "Fetches and verifies the required Inter Regular and Bold font assets locally."
+      "description": "Browser preview template matching the historical serif cover-letter rhythm."
     },
     {
       "path": "contracts/typography-contract.md",
@@ -70,7 +66,7 @@
     "cover-letter-draft.json",
     "cover-letter.html",
     "cover-letter.tex",
-    "cover-letter.pdf",
+    "cover-letter-<candidate-name>-<job-title>-<timestamp>.pdf",
     "cover-letter.md",
     "cv-tailored.md",
     "cv-tailored.html",

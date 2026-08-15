@@ -139,6 +139,8 @@ def parse_source_cover_letter(tex_path: Path) -> dict[str, object]:
     signature_name = latex_unescape(signature_name_match.group(1)) if signature_name_match else block_to_lines(sender_block)[0]
     signature_path_match = re.search(r"\\includegraphics\[width=9cm\]\{(.+?)\}", tex)
     signature_path = latex_unescape(signature_path_match.group(1)) if signature_path_match else ""
+    generated_pdfs = sorted(out.glob("cover-letter-*.pdf"))
+
     return {
         "sender_lines": block_to_lines(sender_block),
         "recipient_lines": block_to_lines(recipient_block),
@@ -491,7 +493,7 @@ def run_case(case: dict[str, object]) -> dict[str, object]:
         "layout_matches_contract": required_layout_lines(generated_tex),
         "source_layout_matches_contract": required_layout_lines(source_tex),
         "subject_matches_source": draft["subject_line"] in generated_tex,
-        "no_visible_latex_leak": no_latex_leak(out / "cover-letter.pdf") if (out / "cover-letter.pdf").exists() else False,
+        "no_visible_latex_leak": no_latex_leak(generated_pdfs[-1]) if generated_pdfs else False,
         "cv_skill_hits_against_source": generated_skill_hits,
         "source_skill_count": len(source_skills),
         "validation_path": str(out / "validation.md"),

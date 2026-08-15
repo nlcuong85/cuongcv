@@ -4,16 +4,6 @@
     <meta charset="utf-8" />
     <title>@@COMPANY_NAME@@ Cover Letter Preview</title>
     <style>
-      @font-face {
-        font-family: "Inter";
-        src: url("fonts/Inter-Regular.ttf") format("truetype");
-        font-weight: 400;
-      }
-      @font-face {
-        font-family: "Inter";
-        src: url("fonts/Inter-Bold.ttf") format("truetype");
-        font-weight: 700;
-      }
       :root {
         --ink: #1f2933;
         --muted: #52606d;
@@ -26,7 +16,7 @@
         margin: 0;
         background: linear-gradient(180deg, #f7f4ef 0%, #efebe4 100%);
         color: var(--ink);
-        font-family: Inter, Arial, Helvetica, sans-serif;
+        font-family: Georgia, "Times New Roman", serif;
       }
 
       .page {
@@ -94,7 +84,7 @@
 
       .signature-image {
         display: block;
-        width: 62mm;
+        width: 95mm;
         height: auto;
         margin: 6px 0 4px;
       }
@@ -147,7 +137,7 @@
       <div class="paragraph">@@MOTIVATION_PARAGRAPH@@</div>
       <div class="paragraph">@@CLOSING_PARAGRAPH@@</div>
       <div class="signature-block">Best regards,
-        @@SIGNATURE_IMAGE@@
+        <img class="signature-image" src="file://@@SIGNATURE_PATH@@" alt="Signature" />
     @@SIGNATURE_NAME@@</div>
       <div class="enclosure"><strong>Enclosure:</strong>
         <ul>

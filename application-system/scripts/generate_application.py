@@ -644,43 +644,6 @@ def signature_path() -> str:
     return str((APP_ROOT / "signature.png").resolve())
 
 
-def prepare_signature_image(output_dir: Path) -> str:
-    source = APP_ROOT / "signature.png"
-    target = output_dir / "signature-rendered.png"
-    try:
-        from PIL import Image  # type: ignore
-
-        image = Image.open(source).convert("RGBA")
-        bbox = image.getbbox()
-        if bbox:
-            left = max(0, bbox[0] - 12)
-            top = max(0, bbox[1] - 12)
-            right = min(image.width, bbox[2] + 12)
-            bottom = min(image.height, bbox[3] + 12)
-            image = image.crop((left, top, right, bottom))
-        background = Image.new("RGBA", (900, 220), (255, 253, 248, 255))
-        x = max(0, (background.width - image.width) // 2)
-        y = max(0, (background.height - image.height) // 2)
-        background.alpha_composite(image, (x, y))
-        background.convert("RGB").save(target)
-    except Exception:
-        shutil.copy2(source, target)
-    return str(target.resolve())
-
-
-def inline_signature_svg(path: str) -> str:
-    try:
-        resolved = Path(path).resolve()
-        if resolved.suffix.lower() != ".svg":
-            return f'<img class="signature-image" src="{html_escape(resolved.as_uri())}" alt="Signature" />'
-        svg = resolved.read_text(encoding="utf-8").strip()
-        if "<svg" not in svg:
-            return f'<img class="signature-image" src="{html_escape(resolved.as_uri())}" alt="Signature" />'
-        return re.sub(r"<svg\s+", '<svg class="signature-image" role="img" aria-label="Signature" ', svg, count=1)
-    except Exception:
-        return ""
-
-
 def next_available_start(today: date | None = None) -> date:
     current = today or date.today()
     return current + timedelta(days=14)
@@ -939,7 +902,6 @@ def build_cover_letter_html_context(
         "BODY_PARAGRAPH_TWO": html_escape(plain_body_two),
         "MOTIVATION_PARAGRAPH": html_escape(motivation),
         "CLOSING_PARAGRAPH": html_escape(plain_closing),
-        "SIGNATURE_IMAGE": inline_signature_svg(prepared_signature_path or signature_path()),
         "SIGNATURE_NAME": html_escape(profile["name"]),
         "SIGNATURE_PATH": html_escape(prepared_signature_path or signature_path()),
         "ENCLOSURES": html_escape(", ".join(enclosure_lines(intake))),
@@ -1335,7 +1297,7 @@ def compile_tex(tex_path: Path) -> None:
     result = subprocess.run(
         [
             "latexmk",
-            "-xelatex",
+            "-pdf",
             "-interaction=nonstopmode",
             "-halt-on-error",
             tex_path.name,
@@ -1555,10 +1517,10 @@ def get_pdf_page_count(pdf_path: Path) -> int:
     return int(match.group(1))
 
 
-def require_inter_font(pdf_path: Path) -> None:
+def require_lmodern_font(pdf_path: Path) -> None:
     result = subprocess.run(["pdffonts", str(pdf_path)], check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
-    if "Inter" not in result.stdout:
-        raise RuntimeError(f"Hard typography gate failed: `{pdf_path}` does not embed Inter.")
+    if "LMRoman10-Regular" not in result.stdout or "LMRoman10-Bold" not in result.stdout:
+        raise RuntimeError(f"Hard typography gate failed: `{pdf_path}` does not embed Latin Modern Roman regular/bold.")
 
 
 def build_notes(
@@ -1651,16 +1613,12 @@ def main() -> None:
     cover_letter_dir = output_root / "cover-letter"
     cv_dir = output_root / "cv"
     snapshot_dir = output_root / "skill-assessment"
-    for output_dir in (cover_letter_dir, snapshot_dir):
-        shutil.copytree(TEMPLATES_DIR / "fonts", output_dir / "fonts", dirs_exist_ok=True)
-
     selected_for_cover_letter = select_evidence(intake, primary_role, evidence_library, taxonomy)
-    prepared_signature_path = prepare_signature_image(cover_letter_dir)
     cover_letter_context = build_cover_letter_context(
-        profile, primary_role, intake, selected_for_cover_letter, authentic_voice, prepared_signature_path
+        profile, primary_role, intake, selected_for_cover_letter, authentic_voice
     )
     cover_letter_html_context = build_cover_letter_html_context(
-        profile, primary_role, intake, selected_for_cover_letter, authentic_voice, prepared_signature_path
+        profile, primary_role, intake, selected_for_cover_letter, authentic_voice
     )
     snapshot_payload = build_snapshot_payload(profile, primary_role, intake, selected_for_cover_letter, taxonomy)
     snapshot_tex_context = build_snapshot_context(profile, primary_role, intake, snapshot_payload, latex_mode=True)
@@ -1751,7 +1709,7 @@ def main() -> None:
         )
 
     if args.compile_pdf:
-        print_html_pdf(cover_letter_dir / "cover_letter.html", cover_letter_dir / "cover_letter.pdf")
+        compile_tex(cover_letter_dir / "cover_letter.tex")
         cover_letter_pdf = archive_generated_pdf(
             cover_letter_dir / "cover_letter.pdf",
             cover_letter_dir,
@@ -1760,14 +1718,15 @@ def main() -> None:
             intake,
             render_id,
         )
-        require_inter_font(cover_letter_pdf)
+        sanitize_cover_letter_pdf(cover_letter_pdf)
+        require_lmodern_font(cover_letter_pdf)
         cover_letter_pages = get_pdf_page_count(cover_letter_pdf)
         if cover_letter_pages > 1:
             raise SystemExit(
                 f"Generated cover letter PDF `{cover_letter_pdf}` is {cover_letter_pages} pages. "
                 "Cover letters must stay within 1 page."
             )
-        print_html_pdf(snapshot_dir / "role_fit_snapshot.html", snapshot_dir / "role_fit_snapshot.pdf")
+        compile_tex(snapshot_dir / "role_fit_snapshot.tex")
         snapshot_pdf = archive_generated_pdf(
             snapshot_dir / "role_fit_snapshot.pdf",
             snapshot_dir,
@@ -1776,7 +1735,7 @@ def main() -> None:
             intake,
             render_id,
         )
-        require_inter_font(snapshot_pdf)
+        require_lmodern_font(snapshot_pdf)
         snapshot_pages = get_pdf_page_count(snapshot_pdf)
         if snapshot_pages > 1:
             raise SystemExit(

@@ -12,7 +12,7 @@ Required local outputs:
 
 - `cover-letter-draft.json`
 - `cover-letter.tex`
-- `cover-letter.pdf`
+- `cover-letter-<candidate-name>-<job-title>-<timestamp>.pdf`
 - `cover-letter.md`
 - `validation.md`
 - `manifest.json`
@@ -32,10 +32,11 @@ The generated `cover-letter.tex` must use the provided `templates/cover_letter.t
 - signature area
 - enclosure list
 - `\pagestyle{empty}`
-- typography: `\usepackage{tgheros}` and
-  `\renewcommand{\familydefault}{\sfdefault}`. This is the required portable
-  Helvetica-style profile. Do not use Latin Modern, a serif fallback, or an
-  unbundled system font.
+- typography: `\usepackage[T1]{fontenc}`, `\usepackage[utf8]{inputenc}`, and
+  `\usepackage{lmodern}`. This is the required historical LaTeX/pdfTeX profile
+  used by existing application output folders. Do not switch to Inter,
+  Chrome/Skia, Helvetica, Arial, TeX Gyre Heros, or an unbundled system font
+  unless the user explicitly changes the visual baseline.
 
 ## Fixed Paragraph Order
 

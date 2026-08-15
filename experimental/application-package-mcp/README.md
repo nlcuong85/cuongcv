@@ -50,7 +50,7 @@ The local kit renders and validates basic application outputs:
 ```text
 cover-letter-draft.json
 cover-letter.tex
-cover-letter.pdf
+cover-letter-<candidate-name>-<job-title>-<timestamp>.pdf
 cover-letter.md
 cv-tailored.md
 validation.md
