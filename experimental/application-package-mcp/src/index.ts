@@ -16,7 +16,7 @@ import {
   samplePromptsDocument
 } from "./resources.js";
 
-const VERSION = "0.2.8";
+const VERSION = "0.2.12";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
@@ -37,7 +37,7 @@ const PUBLIC_TOOLS = [
   "suggest_writing_revision"
 ];
 
-const WORKSPACE_KIT_VERSION = "2026.08.15-english-cv-setup-guide.1";
+const WORKSPACE_KIT_VERSION = "2026.08.15-review-payload.1";
 const REQUIRED_WORKSPACE_PATHS = [
   "AGENTS.md",
   ".mcp/workspace-manifest.json",
@@ -55,11 +55,20 @@ const REQUIRED_WORKSPACE_PATHS = [
   "application-kit/manifest.json",
   "application-kit/templates/cover_letter.html",
   "application-kit/templates/cover_letter.tex",
+  "application-kit/templates/interview_prep.md",
   "application-kit/templates/cv_english_modern.html",
   "application-kit/templates/cv_german_rounded.html",
   "application-kit/contracts/typography-contract.md",
   "application-kit/contracts/cv-markdown-contract.md",
+  "application-kit/contracts/interview-prep-contract.md",
+  "application-kit/contracts/writing-review-contract.md",
+  "application-kit/contracts/mcp-review-payload-contract.md",
+  "application-kit/scripts/application_sop.py",
+  "application-kit/scripts/application_quality_loop.py",
+  "application-kit/scripts/mcp_check_client.mjs",
+  "application-kit/scripts/writing_review_loop.py",
   "application-kit/scripts/local_application_generator.py",
+  "application-kit/scripts/build_interview_prep.py",
   "application-kit/scripts/build_cv_html.py"
 ];
 
@@ -70,11 +79,20 @@ const MANAGED_HASHED_PATHS = [
   "application-kit/manifest.json",
   "application-kit/templates/cover_letter.html",
   "application-kit/templates/cover_letter.tex",
+  "application-kit/templates/interview_prep.md",
   "application-kit/templates/cv_english_modern.html",
   "application-kit/templates/cv_german_rounded.html",
   "application-kit/contracts/typography-contract.md",
   "application-kit/contracts/cv-markdown-contract.md",
+  "application-kit/contracts/interview-prep-contract.md",
+  "application-kit/contracts/writing-review-contract.md",
+  "application-kit/contracts/mcp-review-payload-contract.md",
+  "application-kit/scripts/application_sop.py",
+  "application-kit/scripts/application_quality_loop.py",
+  "application-kit/scripts/mcp_check_client.mjs",
+  "application-kit/scripts/writing_review_loop.py",
   "application-kit/scripts/local_application_generator.py",
+  "application-kit/scripts/build_interview_prep.py",
   "application-kit/scripts/build_cv_html.py"
 ];
 
@@ -975,7 +993,7 @@ section.privacy { width:100%; margin:0; padding:108px 0 116px; border-top:0; bac
     <div><div class="kicker">Local-first career coach + MCP</div><h1>Turn your real experience into a stronger application.</h1><p class="lead">Build an evidence-grounded CV and cover letter in your own local folder. You keep control of every file and final decision.</p><div class="actions"><a class="button primary" href="#start">Start setup</a><a class="button secondary" href="/sample-prompts">Copy prompts</a></div><p class="connection">Start URL for your AI agent: <code>${PUBLIC_SITE_URL}</code>. The page explains setup, prompts, privacy, and how the agent connects to the MCP service.</p></div>
     <aside class="hero-visual" aria-label="Four-stage application process"><div class="stack"><div class="stage"><span class="stage-num">1</span><div><h2>Check the workspace</h2><p>The local SOP boots, audits folder health, and identifies safe updates or drift.</p></div></div><div class="stage"><span class="stage-num">2</span><div><h2>Build your evidence</h2><p>Use your CV, job description, personal bullets, documents, and real writing samples.</p></div></div><div class="stage"><span class="stage-num">3</span><div><h2>Draft locally</h2><p>Create an editable HTML CV and a role-specific cover letter from verified material.</p></div></div><div class="stage"><span class="stage-num">4</span><div><h2>Review before release</h2><p>One CV review; three cover-letter review loops; then a local release receipt.</p></div></div></div></aside>
   </main>
-  <section id="how" class="section"><div class="eyebrow">What the helper does</div><h2>Clear preparation. Honest tailoring.</h2><p class="intro">The local AI agent explains the next useful action, asks for missing evidence, and flags a weak document before you send it.</p><div class="features"><div class="feature"><b>Workspace health</b><p>Audit folder drift and slow stages before changing an old workspace.</p></div><div class="feature"><b>Evidence into HTML</b><p>Turn verified CV material into an editable HTML CV for the target job.</p></div><div class="feature"><b>Safe review</b><p>Send only selected text for feedback; private checker rules stay on the server.</p></div></div></section>
+  <section id="how" class="section"><div class="eyebrow">What the helper does</div><h2>Clear preparation. Honest tailoring.</h2><p class="intro">The local AI agent explains the next useful action, asks for missing evidence, and flags a weak document before you send it.</p><div class="features"><div class="feature"><b>Workspace health</b><p>Audit folder drift and slow stages before changing an old workspace.</p></div><div class="feature"><b>Evidence into HTML</b><p>Turn verified CV material into an editable HTML CV for the target job.</p></div><div class="feature"><b>Interview prep</b><p>Optionally prepare likely questions, STAR stories, weaknesses, culture-fit answers, and questions to ask the team.</p></div></div></section>
   <section id="start" class="section"><div class="eyebrow">Start from an empty folder</div><h2>What you actually need to do first.</h2><p class="intro">Create a dedicated project folder, give your AI agent the root URL, then let the agent read the setup page and ask for missing source files one by one.</p><div class="setup-guide"><div class="setup-steps"><article class="setup-step"><strong>1</strong><div><h3>Create a clean project folder</h3><p>Use VS Code, Codex, Claude, or another local AI workspace. Name it something clear, for example <em>my-job-application</em>. Start empty so old files do not slow or confuse the setup.</p></div></article><article class="setup-step"><strong>2</strong><div><h3>Give the AI this URL</h3><p>Ask the local AI agent to read the root page, fetch the workspace template and kit, create the local folder structure, and ask questions whenever it needs your verification.</p></div></article><article class="setup-step"><strong>3</strong><div><h3>Provide your real source material</h3><p>Upload your CV or the best available profile source. Tell the AI whether you are doing a Bachelor, Master, Ausbildung/job training, or another path. Add human-written samples such as old emails, IELTS writing, user stories, PRDs, BRDs, reports, or notes. Pre-2022 writing is especially useful for learning your real tone.</p></div></article><article class="setup-step"><strong>4</strong><div><h3>Send a job description</h3><p>Find a job online and give the AI the job URL or pasted description. It checks fit against your verified CV evidence, then prepares a tailored English resume by default plus a cover letter when appropriate.</p></div></article></div><aside class="prompt-card"><h3>Copy this starter prompt</h3><p>Paste this into your local AI agent after opening your empty folder.</p><code>${PUBLIC_SITE_URL}</code><pre>Please read this Student Application AI Helper page and set up a local project folder for me to handle job applications.
 
 Ask me questions along the way if you need my verification or validation.
@@ -984,7 +1002,7 @@ If you need my picture, CV, cover letter, sample CV, sample cover letter, educat
 
 Keep my private files local. Use the MCP only for workspace setup, safe structure/version audit, and selected-text writing review.</pre></aside></div></section>
   <section class="section" aria-labelledby="checker-value-title"><div class="eyebrow">Why the checker helps</div><div class="comparison-layout"><div class="comparison-copy"><h3 id="checker-value-title">Fast drafting is not the same as a strong application.</h3><p>Your local sources make a draft more truthful. A selected-text check adds a final reader-focused review before you decide to release it.</p><div class="comparison-legend"><span><i class="legend-dot rose"></i><span><strong>Normal AI</strong> — quick, but often generic.</span></span><span><i class="legend-dot gold"></i><span><strong>Local workspace</strong> — grounded in your evidence.</span></span><span><i class="legend-dot green"></i><span><strong>Local workspace + checker</strong> — evidence plus a focused quality review.</span></span></div></div><div class="comparison-chart" role="img" aria-label="Comparison chart. Normal AI is low on evidence and reader confidence; local workspace is higher; local workspace plus selected-text checker is highest."><span class="axis y">Reader confidence</span><span class="axis x">Evidence and review depth</span><span class="chart-point ai"><b>Normal AI</b><p>Fast draft</p></span><span class="chart-point local"><b>Local workspace</b><p>Grounded draft</p></span><span class="chart-point checker"><b>Local + checker</b><p>Focused review</p></span></div></div></section>
-  <section class="section"><div class="eyebrow">The real workflow</div><h2>Four simple steps. Your files never leave your laptop.</h2><p class="intro">The local agent manages the work in your own folder. The public service cannot browse it; it only receives a privacy-safe structure check or text you actively choose to review.</p><div class="simple-flow" aria-label="Four-step application workflow"><article class="simple-step"><span class="simple-number">01</span><h3>Check the workspace</h3><p>The local SOP checks folder health, updates, and anything that may be making an old workspace slow.</p></article><article class="simple-step"><span class="simple-number">02</span><h3>Add your evidence</h3><p>Bring your CV, role or job description, personal work bullets, and any writing samples that sound like you.</p></article><article class="simple-step"><span class="simple-number">03</span><h3>Tailor locally</h3><p>The agent creates an editable HTML CV and a role-specific cover letter using only verified information.</p></article><article class="simple-step"><span class="simple-number">04</span><h3>Review before release</h3><p>Complete one CV review and three cover-letter loops. The local SOP then verifies the current files.</p></article></div><div class="flow-footer"><span><strong>Need the technical detail?</strong> The sequence diagram and PlantUML source live on the technical page.</span><a class="button secondary" href="/technical-flow">Open technical flow</a></div></section>
+  <section class="section"><div class="eyebrow">The real workflow</div><h2>Four simple steps. Your files never leave your laptop.</h2><p class="intro">The local agent manages the work in your own folder. The public service cannot browse it; it only receives a privacy-safe structure check or text you actively choose to review.</p><div class="simple-flow" aria-label="Four-step application workflow"><article class="simple-step"><span class="simple-number">01</span><h3>Check the workspace</h3><p>The local SOP checks folder health, updates, and anything that may be making an old workspace slow.</p></article><article class="simple-step"><span class="simple-number">02</span><h3>Add your evidence</h3><p>Bring your CV, role or job description, personal work bullets, and any writing samples that sound like you.</p></article><article class="simple-step"><span class="simple-number">03</span><h3>Tailor locally</h3><p>The agent creates an editable HTML CV and a role-specific cover letter using only verified information.</p></article><article class="simple-step"><span class="simple-number">04</span><h3>Review and prepare</h3><p>Complete the CV/cover-letter gates, then optionally build interview prep from the same verified evidence.</p></article></div><div class="flow-footer"><span><strong>Need the technical detail?</strong> The sequence diagram and PlantUML source live on the technical page.</span><a class="button secondary" href="/technical-flow">Open technical flow</a></div></section>
   <section id="gates" class="section"><div class="eyebrow">Hard local gates</div><h2>The documents do not become “ready” just because a chat says so.</h2><p class="intro">The local Application SOP records the current artifact, review history, and release state. It catches edits made after review instead of treating an old approval as permanent.</p><div class="gates"><article class="gate"><small>CV</small><h3>One review loop</h3><p>Review the editable CV against the job and visual structure. If you accept a known weakness, it is recorded clearly; otherwise the agent explains what needs fixing.</p></article><article class="gate"><small>Cover letter</small><h3>Three distinct loops</h3><p>Each loop requires a current draft and a real revision record. The local SOP releases the letter only after it can verify all three loops against the latest file.</p></article></div></section>
   <section id="letter-example" class="section"><div class="letter-example"><div><div class="eyebrow">Rendered local output</div><h2>A German-style cover letter, built locally.</h2><p>This one-page LaTeX sample follows the familiar German business-letter structure: sender and recipient blocks, date, bold subject, salutation, evidence-led body, signature area, and enclosures.</p><ul class="letter-points"><li><span><strong>For Germany:</strong> use this structured business-letter format when it fits the employer and role.</span></li><li><span><strong>For other markets:</strong> keep the verified evidence and review process, then adapt language and conventions locally.</span></li><li><span><strong>Your signature:</strong> the agent asks for your PNG/JPG and uses it only if you provide it.</span></li></ul><p class="demo-note"><strong>Fictional demonstration only.</strong> The writing is adapted from a candidate-authorized Mercedes-Benz example; Jane Doe, the recruiting team, Stuttgart Hbf, and the signature graphic are placeholders. Never copy another person's signature.</p><p class="sample-link"><a class="button secondary" href="/assets/german-cover-letter-sample.pdf">Open the sample PDF</a></p></div><figure class="letter-frame"><img src="/assets/german-cover-letter-sample.svg" alt="One-page fictional German-format Mercedes-Benz cover letter for Jane Doe, including a clearly labelled fictional sample signature."></figure></div></section>
   <section id="privacy" class="privacy"><div class="privacy-inner"><div class="eyebrow">Privacy boundary</div><h2>Useful feedback without uploading your whole career history.</h2><div class="privacy-grid"><div><strong>Stays on your device</strong><span>Source CV, evidence, profile, writing samples, job files, photos, signatures, drafts, outputs, and SOP history.</span></div><div><strong>Can be sent deliberately</strong><span>A privacy-safe folder manifest for update/audit guidance, or selected writing text for a quality review.</span></div><div><strong>Comes back from the MCP</strong><span>Workspace/version guidance and selected-text feedback: issues, risk labels, and practical revision direction.</span></div><div><strong>What it does not claim</strong><span>It is not an authorship verdict or an AI-detection bypass. It helps you make writing clearer, more evidenced, and more trustworthy.</span></div></div></div></section>

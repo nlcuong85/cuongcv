@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Run local-kit regression against existing CuongCV generated artifacts.
 
-This simulates a student laptop workspace. It does not call the remote MCP.
+This simulates a student laptop workspace. It calls the configured MCP endpoint
+only for selected interview-prep review packets.
 """
 
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -18,7 +20,9 @@ CUONGCV = Path("/Users/pmlecuong/Documents/CuongProjects/CuongCV")
 KIT = REPO / "resources" / "application-kit"
 WORKSPACE = REPO / "samples" / "local-kit-regression" / "workspace"
 GENERATOR = KIT / "scripts" / "local_application_generator.py"
+INTERVIEW_PREP_BUILDER = KIT / "scripts" / "build_interview_prep.py"
 CUONG_GENERATOR = CUONGCV / "application-system/scripts/generate_application.py"
+MCP_URL = os.environ.get("APPLICATION_MCP_URL", "http://127.0.0.1:5943/mcp")
 
 CASES = [
     {
@@ -448,6 +452,23 @@ def run_case(case: dict[str, object]) -> dict[str, object]:
     job_dir = WORKSPACE / "jobs" / slug
     job_dir.mkdir()
     (job_dir / "job.json").write_text(json.dumps(intake, indent=2) + "\n", encoding="utf-8")
+    (job_dir / "interview.json").write_text(
+        json.dumps(
+            {
+                "date": "Unknown - regression simulation",
+                "format": "Unknown - ask the candidate",
+                "duration": "Unknown",
+                "language": intake.get("language", "english"),
+                "concerns": [
+                    "Confirm current availability and work-authorization wording.",
+                    "Prepare a brief, honest answer if German level is relevant.",
+                ],
+            },
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
 
     source_output = Path(case["source_output"])  # type: ignore[arg-type]
     draft = parse_source_cover_letter(source_output / "cover-letter" / "cover_letter.tex")
@@ -476,6 +497,30 @@ def run_case(case: dict[str, object]) -> dict[str, object]:
         text=True,
         check=False,
     )
+    interview_proc = subprocess.run(
+        [
+            "python3",
+            str(WORKSPACE / "application-kit" / "scripts" / "build_interview_prep.py"),
+            "--root",
+            str(WORKSPACE),
+            "--job",
+            slug,
+            "--intake",
+            str(job_dir / "job.json"),
+            "--profile",
+            str(WORKSPACE / "candidate" / "profile.json"),
+            "--evidence",
+            str(WORKSPACE / "candidate" / "evidence.md"),
+            "--cover-letter",
+            str(out / "cover-letter.md"),
+            "--output-dir",
+            str(out / "interview-prep"),
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        check=False,
+    )
     manifest = json.loads((out / "manifest.json").read_text(encoding="utf-8"))
     generated_tex = (out / "cover-letter.tex").read_text(encoding="utf-8") if (out / "cover-letter.tex").exists() else ""
     generated_pdfs = sorted(out.glob("cover-letter-*.pdf"))
@@ -484,10 +529,46 @@ def run_case(case: dict[str, object]) -> dict[str, object]:
     source_cv = json.loads(Path(case["cv_json"]).read_text(encoding="utf-8"))  # type: ignore[arg-type]
     source_skills = set(source_cv.get("skills", []))
     generated_skill_hits = sum(1 for skill in source_skills if f"- {skill}" in generated_cv)
+    interview_prep_path = out / "interview-prep" / "interview-prep.md"
+    interview_questions_path = out / "interview-prep" / "interview-prep-questions.md"
+    interview_review_input_1_path = out / "interview-prep" / "interview-prep-review-input-loop-1.json"
+    interview_review_input_2_path = out / "interview-prep" / "interview-prep-review-input-loop-2.json"
+    interview_review_result_1_path = out / "interview-prep" / "interview-prep-review-result-loop-1.json"
+    interview_review_result_2_path = out / "interview-prep" / "interview-prep-review-result-loop-2.json"
+    interview_manifest_path = out / "interview-prep" / "interview-prep-manifest.json"
+    review_procs = []
+    for review_input_path, review_result_path in [
+        (interview_review_input_1_path, interview_review_result_1_path),
+        (interview_review_input_2_path, interview_review_result_2_path),
+    ]:
+        review_procs.append(
+            subprocess.run(
+                [
+                    "node",
+                    str(WORKSPACE / "application-kit" / "scripts" / "mcp_check_client.mjs"),
+                    "review",
+                    str(review_input_path),
+                    str(review_result_path),
+                ],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                check=False,
+                env={**os.environ, "APPLICATION_MCP_URL": MCP_URL},
+            )
+        )
+    interview_prep = interview_prep_path.read_text(encoding="utf-8") if interview_prep_path.exists() else ""
+    interview_questions = interview_questions_path.read_text(encoding="utf-8") if interview_questions_path.exists() else ""
+    interview_manifest = json.loads(interview_manifest_path.read_text(encoding="utf-8")) if interview_manifest_path.exists() else {}
+    interview_review_1 = json.loads(interview_review_result_1_path.read_text(encoding="utf-8")) if interview_review_result_1_path.exists() else {}
+    interview_review_2 = json.loads(interview_review_result_2_path.read_text(encoding="utf-8")) if interview_review_result_2_path.exists() else {}
 
     return {
         "slug": slug,
         "generator_exit": proc.returncode,
+        "interview_prep_exit": interview_proc.returncode,
+        "interview_review_1_exit": review_procs[0].returncode if review_procs else 99,
+        "interview_review_2_exit": review_procs[1].returncode if len(review_procs) > 1 else 99,
         "manifest_ok": manifest.get("ok"),
         "layout_matches_contract": required_layout_lines(generated_tex),
         "source_layout_matches_contract": required_layout_lines(source_tex),
@@ -495,6 +576,28 @@ def run_case(case: dict[str, object]) -> dict[str, object]:
         "no_visible_latex_leak": no_latex_leak(generated_pdfs[-1]) if generated_pdfs else False,
         "cv_skill_hits_against_source": generated_skill_hits,
         "source_skill_count": len(source_skills),
+        "interview_prep_ok": bool(
+            interview_manifest.get("ok")
+            and "Culture Fit: Who Are You Outside Work?" in interview_prep
+            and "Missing Information To Ask The Student" in interview_prep
+            and "Who are you outside work or study" in interview_prep
+            and "actual past incident stories" in interview_questions
+            and "Strong Answer Scripts" in interview_prep
+            and "Why likely:" in interview_prep
+            and "What They Are Likely Screening For" in interview_prep
+            and "Actual STAR incidents are missing" in interview_prep
+            and interview_manifest.get("review_gate", {}).get("loops_required") == 2
+            and interview_review_1.get("riskLevel") == "low"
+            and interview_review_1.get("privacy", {}).get("stored") is False
+            and interview_review_2.get("riskLevel") == "low"
+            and interview_review_2.get("privacy", {}).get("stored") is False
+        ),
+        "interview_review_1_risk": interview_review_1.get("riskLevel"),
+        "interview_review_2_risk": interview_review_2.get("riskLevel"),
+        "interview_prep_path": str(interview_prep_path),
+        "interview_questions_path": str(interview_questions_path),
+        "interview_review_result_1_path": str(interview_review_result_1_path),
+        "interview_review_result_2_path": str(interview_review_result_2_path),
         "validation_path": str(out / "validation.md"),
         "output_dir": str(out),
     }
@@ -512,6 +615,7 @@ def main() -> int:
         and item["subject_matches_source"]
         and item["no_visible_latex_leak"]
         and item["cv_skill_hits_against_source"] >= min(10, item["source_skill_count"])
+        and item["interview_prep_ok"]
         for item in results
     )
     report = {
@@ -527,12 +631,19 @@ def main() -> int:
                 f"## {item['slug']}",
                 "",
                 f"- Manifest OK: {item['manifest_ok']}",
+                f"- Interview prep OK: {item['interview_prep_ok']}",
+                f"- Interview review loop 1 risk: {item['interview_review_1_risk']}",
+                f"- Interview review loop 2 risk: {item['interview_review_2_risk']}",
                 f"- Layout matches contract: {item['layout_matches_contract']}",
                 f"- Source layout matches contract: {item['source_layout_matches_contract']}",
                 f"- Subject matches source: {item['subject_matches_source']}",
                 f"- No visible LaTeX leak: {item['no_visible_latex_leak']}",
                 f"- CV skill hits against source: {item['cv_skill_hits_against_source']} / {item['source_skill_count']}",
                 f"- Output dir: `{item['output_dir']}`",
+                f"- Interview prep: `{item['interview_prep_path']}`",
+                f"- Interview questions: `{item['interview_questions_path']}`",
+                f"- Interview review loop 1 result: `{item['interview_review_result_1_path']}`",
+                f"- Interview review loop 2 result: `{item['interview_review_result_2_path']}`",
                 f"- Validation: `{item['validation_path']}`",
                 "",
             ]

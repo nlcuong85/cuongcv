@@ -12,6 +12,8 @@ This folder stays on your computer. It helps your AI agent make a CV and cover l
 6. The AI will ask whether you want a photo. If you provide one, it will use it; saying no is fine.
 7. The AI will ask for a PNG/JPG signature for a cover letter. It can still make a letter without one.
 8. The AI will ask which enclosures to list in the cover letter. Your CV/Lebenslauf is required. A diploma/transcript or previous-employer reference makes the package stronger; if you cannot provide one, the agent will not list it.
+9. After the CV or cover letter is started, the AI will ask whether you want interview prep. You can skip it. If you say yes, it will ask for interview details, interviewer names, concerns, 3 to 5 actual past incident stories for STAR answers, and what you do outside work or study so the culture-fit answer sounds real. It then sends only selected prep sections to the MCP for two writing review loops before marking the prep ready.
+10. For normal writing, research papers, paragraphs, essays, work notes, blogs, or social posts, ask the AI to use the general writing review flow. You can choose 1, 2, or 3 review loops; the AI should never run more than 3.
 
 ## How the MCP works
 
@@ -23,8 +25,10 @@ Your files stay here. The public MCP gets only selected draft text for a writing
 - `profile/`: verified facts and evidence.
 - `voice/`: optional authentic writing samples.
 - `jobs/`: each job description and intake.
-- `applications/`: tailored CVs, cover letters, audits, and receipts.
+- `applications/`: tailored CVs, cover letters, interview prep, audits, and receipts.
 
 ## Honest quality process
 
-The CV receives one review loop. A cover letter receives three different review loops. The agent reports weak areas honestly. It cannot guarantee an interview or prove that a document bypasses an AI detector.
+The CV receives one review loop. A cover letter receives three different review loops. Interview prep receives two review loops. General writing can use one, two, or three loops. The agent reports weak areas honestly. It cannot guarantee an interview or prove that a document bypasses an AI detector.
+
+Interview prep is also evidence-bound. If your profile only has a CV and job description, the agent should create questions for you to answer instead of inventing STAR stories, STAR results, hobbies, values, or interviewer facts.

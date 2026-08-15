@@ -88,6 +88,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.doesNotMatch(landing, /No checker scripts returned/i);
     assert.match(landing, /Open technical flow/);
     assert.match(landing, /A German-style cover letter, built locally/);
+    assert.match(landing, /Interview prep/);
     assert.match(landing, /Fictional demonstration only/);
     assert.match(landing, /https:\/\/jobmcp\.pmlecuong\.com\//);
     assert.doesNotMatch(landing, /Start URL[^<]*\/mcp/);
@@ -154,8 +155,12 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.match(agentsTemplate.content, /suppresses all future unsolicited reminders/);
       assert.match(agentsTemplate.content, /enclosure list/i);
       assert.match(agentsTemplate.content, /cv_only_warned/);
+      assert.match(agentsTemplate.content, /Optional Interview Prep Flow/);
+      assert.match(agentsTemplate.content, /culture-fit question/);
+      assert.match(agentsTemplate.content, /healthy work-life balance/);
       assert.match(claudeTemplate.content, /never ask them again/i);
       assert.match(claudeTemplate.content, /Cover-Letter Enclosure Rule/);
+      assert.match(claudeTemplate.content, /Optional Interview Prep Rule/);
 
       const skillResult = await client.callTool({ name: "get_client_skill", arguments: {} });
       const skill = JSON.parse(skillResult.content[0].text);
@@ -175,10 +180,16 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.ok(kit.files.some((file) => file.path === "templates/cv_german_rounded.html"));
       assert.ok(kit.files.some((file) => file.path === "contracts/typography-contract.md"));
       assert.ok(kit.files.some((file) => file.path === "contracts/cv-markdown-contract.md"));
+      assert.ok(kit.files.some((file) => file.path === "contracts/interview-prep-contract.md"));
+      assert.ok(kit.files.some((file) => file.path === "contracts/writing-review-contract.md"));
+      assert.ok(kit.files.some((file) => file.path === "contracts/mcp-review-payload-contract.md"));
       assert.ok(kit.files.some((file) => file.path === "scripts/local_application_generator.py"));
       assert.ok(kit.files.some((file) => file.path === "scripts/build_cv_html.py"));
+      assert.ok(kit.files.some((file) => file.path === "scripts/build_interview_prep.py"));
+      assert.ok(kit.files.some((file) => file.path === "scripts/writing_review_loop.py"));
       assert.ok(kit.files.some((file) => file.path === "scripts/application_quality_loop.py"));
       assert.ok(kit.files.some((file) => file.path === "scripts/mcp_check_client.mjs"));
+      assert.ok(kit.files.some((file) => file.path === "templates/interview_prep.md"));
       assert.ok(kit.files.some((file) => file.path === "contracts/source-capture-contract.md"));
       assert.ok(!kit.files.some((file) => file.path.includes("ai-checker")));
       assert.ok(!kit.files.some((file) => file.path.includes("voice-safety")));
@@ -209,6 +220,24 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       const coverLetterContract = kit.files.find((file) => file.path === "contracts/cover-letter-contract.md");
       assert.ok(coverLetterContract.content.includes("CV/Lebenslauf is mandatory"));
       assert.match(coverLetterContract.content, /fewer than two enclosures/);
+      const interviewPrepContract = kit.files.find((file) => file.path === "contracts/interview-prep-contract.md");
+      assert.match(interviewPrepContract.content, /Who Are You Outside Work/i);
+      assert.match(interviewPrepContract.content, /Do not invent hobbies/);
+      assert.match(interviewPrepContract.content, /STAR stories are a hard gate/);
+      assert.match(interviewPrepContract.content, /actual incident stories/);
+      assert.match(interviewPrepContract.content, /Mercedes\/Acteno-grade coaching document/);
+      assert.match(interviewPrepContract.content, /Likely questions must include a short reason/);
+      assert.match(interviewPrepContract.content, /two MCP writing review loops/);
+      const writingReviewContract = kit.files.find((file) => file.path === "contracts/writing-review-contract.md");
+      assert.match(writingReviewContract.content, /1, 2, or 3 review loops/);
+      assert.match(writingReviewContract.content, /Never run more than 3 review loops/);
+      assert.match(writingReviewContract.content, /academic/i);
+      const reviewPayloadContract = kit.files.find((file) => file.path === "contracts/mcp-review-payload-contract.md");
+      assert.match(reviewPayloadContract.content, /final reader-facing text only/);
+      assert.match(reviewPayloadContract.content, /not just the review packet/);
+      const interviewPrepTemplate = kit.files.find((file) => file.path === "templates/interview_prep.md");
+      assert.match(interviewPrepTemplate.content, /Culture Fit/);
+      assert.match(interviewPrepTemplate.content, /What They Are Likely Screening For/);
 
       const checkResult = await client.callTool({
         name: "check_writing_human_fit",

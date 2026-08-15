@@ -1,6 +1,6 @@
 {
   "kit_id": "application-kit",
-  "version": "2026.08.15-english-cv-setup-guide.1",
+  "version": "2026.08.15-review-payload.1",
   "mode": "local-only",
   "privacy": {
     "remote_processing": "selected writing checks only through MCP tools",
@@ -16,6 +16,10 @@
     {
       "path": "templates/cover_letter.html",
       "description": "Browser preview template matching the historical serif cover-letter rhythm."
+    },
+    {
+      "path": "templates/interview_prep.md",
+      "description": "Structured interview-prep Markdown template based on the Mercedes/Acteno pattern with culture-fit and missing-info sections."
     },
     {
       "path": "templates/cv_german_rounded.html",
@@ -42,6 +46,18 @@
       "description": "Markdown CV helper contract for overview and skills tailoring."
     },
     {
+      "path": "contracts/interview-prep-contract.md",
+      "description": "Optional interview-prep workflow, user-question, weakness-answer, culture-fit, evidence-boundary, and two-loop MCP review contract."
+    },
+    {
+      "path": "contracts/writing-review-contract.md",
+      "description": "General paragraph, long-form, research, work, blog, social, and freestyle writing review workflow with one-to-three MCP loops."
+    },
+    {
+      "path": "contracts/mcp-review-payload-contract.md",
+      "description": "Mandatory selected-text review contract: send final reader-facing text only, never scaffolding, prompts, notes, placeholders, or keyword maps."
+    },
+    {
       "path": "contracts/retry-policy.md",
       "description": "Local retry loop when validation fails."
     },
@@ -51,11 +67,15 @@
     },
     {
       "path": "scripts/application_quality_loop.py",
-      "description": "Local gate recorder: one MCP-reviewed CV loop and three distinct MCP-reviewed cover-letter loops. Contains no checker rules."
+      "description": "Local gate recorder: one MCP-reviewed CV loop, three distinct MCP-reviewed cover-letter loops, two MCP-reviewed interview-prep loops, and configurable one-to-three general writing loops. Contains no checker rules."
     },
     {
       "path": "scripts/mcp_check_client.mjs",
       "description": "Small public-MCP client. Sends selected text only and contains no scoring logic."
+    },
+    {
+      "path": "scripts/writing_review_loop.py",
+      "description": "Local text extractor and chunker for paragraph, long-form, research, work, blog, and general writing review. Prepares one to three MCP review loops without containing checker logic."
     },
     {
       "path": "scripts/workspace_audit.py",
@@ -64,6 +84,10 @@
     {
       "path": "scripts/ingest_cv.py",
       "description": "Local Phase-1 PDF/DOCX/HTML CV source ingestion."
+    },
+    {
+      "path": "scripts/build_interview_prep.py",
+      "description": "Local builder for interview-prep.md, interview-prep-questions.md, two loop-specific review input packets, a legacy loop-1 alias, and interview-prep-manifest.json. The required writing review still runs through the MCP checker."
     },
     {
       "path": "scripts/build_cv_html.py",
@@ -79,6 +103,18 @@
     "cv-tailored.md",
     "cv-tailored.html",
     "cv-build-manifest.json",
+    "interview-prep.md",
+    "interview-prep-questions.md",
+    "interview-prep-review-input.json (legacy alias for loop 1)",
+    "interview-prep-review-input-loop-1.json",
+    "interview-prep-review-input-loop-2.json",
+    "interview-prep-review-result-loop-1.json",
+    "interview-prep-review-result-loop-2.json",
+    "interview-prep-manifest.json",
+    "writing-reviews/<target>/writing-review-manifest.json",
+    "writing-reviews/<target>/loop-<n>/chunk-<nnn>-input.json",
+    "writing-reviews/<target>/loop-<n>/chunk-<nnn>-result.json",
+    "writing-reviews/<target>/writing-review-report.md",
     "validation.md",
     "manifest.json"
   ]

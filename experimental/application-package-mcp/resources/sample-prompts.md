@@ -71,7 +71,40 @@ Record that I am choosing this shortcut and explain the likely tradeoff for role
 Still use only verified information, tailor the ordering and emphasis honestly, run the required CV review, and remind me later that a personal bullet inventory would improve future applications.
 ```
 
-## 7. Review Selected Text Only
+## 7. Create Interview Prep For This Role
+
+```text
+Please prepare interview prep for jobs/<job-folder>.
+First ask me for the interview date/time, format, duration, location or meeting link, interviewer names or email signatures, expected language, and my biggest concerns.
+Ask me for 3 to 5 actual past incident stories I personally experienced and can discuss in STAR format.
+Also ask me what I do outside work or study, how I recharge, and what values matter to me, so the culture-fit answer does not sound like a workaholic script.
+Use my local CV, cover letter, job description, evidence, communication log, and writing voice. Do not invent hobbies, interviewer facts, achievements, STAR stories, STAR results, language levels, visa details, or metrics. If my local profile has no actual incident stories, ask me for them instead of making them up from CV bullets.
+If my profile is too thin, create interview-prep-questions.md and ask me to fill it before polishing the final prep.
+After creating the prep, run two MCP writing review loops on interview-prep-review-input-loop-1.json and interview-prep-review-input-loop-2.json, save interview-prep-review-result-loop-1.json and interview-prep-review-result-loop-2.json, and record the review/finalize receipt through the local SOP. If you edit the prep afterward, repeat both review loops.
+```
+
+## 8. General Writing Review
+
+```text
+Please review this writing with the MCP checker.
+Mode: academic.
+Review loops: 2.
+
+Use application-kit/contracts/writing-review-contract.md.
+If the text is long, extract and chunk it locally with writing_review_loop.py.
+Send only selected text chunks to the MCP.
+Do not invent citations, sources, data, methods, personal stories, or claims.
+Give me a practical revision plan and rerun the selected number of loops, never more than three.
+```
+
+## 9. Skip Interview Prep
+
+```text
+For this job, skip interview prep for now.
+Record that I skipped it, but do not block the CV or cover-letter package.
+```
+
+## 10. Review Selected Text Only
 
 ```text
 Review this selected text with the MCP writing checker.
@@ -80,7 +113,7 @@ Tell me what is generic, unsupported, overly polished, unclear, or weak for a re
 Do not treat the result as proof of authorship or as a way to bypass AI detection. Revise the local file without inventing facts.
 ```
 
-## 8. Check For A Safe Kit Update
+## 10. Check For A Safe Kit Update
 
 ```text
 Run the privacy-safe workspace manifest audit before we start work.

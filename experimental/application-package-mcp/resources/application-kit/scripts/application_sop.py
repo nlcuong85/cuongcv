@@ -189,7 +189,7 @@ def receipt(state: dict[str, Any], command: str, inputs: list[str], outputs: lis
 
 def decision_gate(state: dict[str, Any], document: str) -> list[str]:
     missing = []
-    if state.get("decisions", {}).get("photo") not in {"provided", "declined", "not_available"}:
+    if document in {"cv", "cover-letter"} and state.get("decisions", {}).get("photo") not in {"provided", "declined", "not_available"}:
         missing.append("photo question has not been answered")
     if document == "cover-letter" and state.get("decisions", {}).get("signature") not in {"provided", "declined", "not_available", "not_answered_after_request"}:
         missing.append("signature has not been requested/recorded")
@@ -330,6 +330,12 @@ def cmd_review(args: argparse.Namespace) -> int:
         digest = sha256(artifact); prior = current_reviews(state, artifact_rel)
         if args.document == "cover-letter" and any(item.get("loop") == args.loop for item in prior):
             raise SystemExit(f"Cover-letter loop {args.loop} already recorded for this artifact.")
+        if args.document == "interview-prep" and args.loop not in {1, 2}:
+            raise SystemExit("Interview-prep review loops must be 1 or 2.")
+        if args.document == "interview-prep" and any(item.get("loop") == args.loop and item.get("artifact_sha256") == digest for item in prior):
+            raise SystemExit(f"Interview-prep loop {args.loop} already recorded for the current artifact.")
+        if args.document == "writing" and args.loop not in {1, 2, 3}:
+            raise SystemExit("Writing review loops must be 1, 2, or 3.")
         if args.document == "cover-letter" and prior and prior[-1].get("artifact_sha256") == digest:
             raise SystemExit("Cover-letter review requires a revised draft with a distinct hash.")
         result_path = root / safe_rel(args.result)
@@ -353,11 +359,22 @@ def cmd_finalize(args: argparse.Namespace) -> int:
         if args.document == "cv":
             required_reviews = matching
             if len(required_reviews) < 1: missing.append("1 current CV review record required")
-        else:
+        elif args.document == "cover-letter":
             by_loop = {item.get("loop"): item for item in reviews if item.get("loop") in {1, 2, 3}}
             required_reviews = [by_loop[loop] for loop in (1, 2, 3) if loop in by_loop]
             if len(required_reviews) != 3: missing.append("cover-letter loops 1, 2, and 3 are required")
             elif by_loop[3].get("artifact_sha256") != digest: missing.append("cover-letter loop 3 is stale for the current draft")
+        elif args.document == "interview-prep":
+            by_loop = {item.get("loop"): item for item in matching if item.get("loop") in {1, 2}}
+            required_reviews = [by_loop[loop] for loop in (1, 2) if loop in by_loop]
+            if len(required_reviews) != 2: missing.append("interview-prep loops 1 and 2 are required")
+        elif args.document == "writing":
+            required_loop_count = max(1, min(3, args.required_loops))
+            by_loop = {item.get("loop"): item for item in matching if item.get("loop") in {1, 2, 3}}
+            required_reviews = [by_loop[loop] for loop in range(1, required_loop_count + 1) if loop in by_loop]
+            if len(required_reviews) != required_loop_count: missing.append(f"writing loops 1 through {required_loop_count} are required")
+        else:
+            raise SystemExit(f"Unsupported document type: {args.document}")
         for item in required_reviews:
             if item.get("result", {}).get("riskLevel") not in {None, "low"}:
                 missing.append(f"unresolved {item.get('document')} review risk in loop {item.get('loop')}")
@@ -412,10 +429,10 @@ def parser() -> argparse.ArgumentParser:
     voice_status = commands.add_parser("voice-intake-status"); voice_status.set_defaults(func=cmd_voice_intake_status)
     voice_record = commands.add_parser("record-voice-intake"); voice_record.add_argument("--status", choices=["pending", "collecting", "revisit_later", "enough", "declined"], required=True); voice_record.add_argument("--source-count", type=int, default=0); voice_record.add_argument("--remind-after-days", type=int, default=45); voice_record.add_argument("--note", default=""); voice_record.set_defaults(func=cmd_record_voice_intake)
     manifest = commands.add_parser("record-manifest-audit"); manifest.add_argument("--report", required=True); manifest.set_defaults(func=cmd_record_manifest)
-    for name, document in (("review-cv", "cv"), ("review-cover", "cover-letter")):
+    for name, document in (("review-cv", "cv"), ("review-cover", "cover-letter"), ("review-interview-prep", "interview-prep"), ("review-writing", "writing")):
         review = commands.add_parser(name); review.add_argument("--artifact", required=True); review.add_argument("--result", required=True); review.add_argument("--loop", type=int, default=1); review.set_defaults(func=cmd_review, document=document)
-    for name, document in (("finalize-cv", "cv"), ("finalize-cover-letter", "cover-letter")):
-        final = commands.add_parser(name); final.add_argument("--artifact", required=True); final.set_defaults(func=cmd_finalize, document=document)
+    for name, document in (("finalize-cv", "cv"), ("finalize-cover-letter", "cover-letter"), ("finalize-interview-prep", "interview-prep"), ("finalize-writing", "writing")):
+        final = commands.add_parser(name); final.add_argument("--artifact", required=True); final.add_argument("--required-loops", type=int, default=1); final.set_defaults(func=cmd_finalize, document=document)
     diagnose = commands.add_parser("diagnose-workspace"); diagnose.add_argument("--legacy-root", required=True); diagnose.add_argument("--job", required=True); diagnose.set_defaults(func=cmd_diagnose)
     health = commands.add_parser("health"); health.set_defaults(func=cmd_health)
     return value

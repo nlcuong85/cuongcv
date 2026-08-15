@@ -438,6 +438,8 @@ export function checkWritingHumanFit(input: {
   const paragraphs = splitParagraphs(auditableRawText);
   const issues: CheckerIssue[] = [];
   const totalWords = wordCount(text);
+  const reviewContext = `${input.audience || ""} ${input.purpose || ""}`.toLowerCase();
+  const isInterviewPractice = /\binterview\b/.test(reviewContext);
 
   if (totalWords < 40) {
     addIssue(issues, {
@@ -467,11 +469,12 @@ export function checkWritingHumanFit(input: {
   }
 
   const repeats = repeatedStarts(sentences);
-  if (repeats.length) {
+  const materialRepeats = isInterviewPractice ? repeats.filter((repeat) => !repeat.startsWith("i=")) : repeats;
+  if (materialRepeats.length) {
     addIssue(issues, {
       code: "repeated_sentence_starts",
       severity: "warning",
-      message: `Several sentences start the same way: ${repeats.join(", ")}.`,
+      message: `Several sentences start the same way: ${materialRepeats.join(", ")}.`,
       suggestion: "Vary the sentence entry points by starting from context, evidence, reader need, limitation, or result."
     });
   }

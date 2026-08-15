@@ -9,7 +9,7 @@ import runpy
 import sys
 
 target = Path(__file__).with_name("application_sop.py")
-if len(sys.argv) < 2 or sys.argv[1] not in {"review-cv", "review-cover", "finalize-cv", "finalize-cover-letter"}:
-    raise SystemExit("Use application_quality_loop.py review-cv|review-cover|finalize-cv|finalize-cover-letter with Application SOP arguments.")
+if len(sys.argv) < 2 or sys.argv[1] not in {"review-cv", "review-cover", "review-interview-prep", "review-writing", "finalize-cv", "finalize-cover-letter", "finalize-interview-prep", "finalize-writing"}:
+    raise SystemExit("Use application_quality_loop.py review-cv|review-cover|review-interview-prep|review-writing|finalize-cv|finalize-cover-letter|finalize-interview-prep|finalize-writing with Application SOP arguments.")
 sys.argv[0] = str(target)
 runpy.run_path(str(target), run_name="__main__")

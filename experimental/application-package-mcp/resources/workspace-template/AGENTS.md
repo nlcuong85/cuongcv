@@ -158,15 +158,54 @@ For cover letters and CV helpers:
 11. Send only the final cover-letter text or selected CV overview to the MCP checker when requested.
 12. Revise locally and rerun the renderer until local validation passes.
 
+## Optional Interview Prep Flow
+
+After a CV or cover-letter package is started or completed, offer interview prep once:
+
+```text
+Would you like me to prepare an interview-prep file for this role as well?
+```
+
+If the student says no, record the skip in `jobs/<target>/notes.md` or local decision memory and continue. Do not block the application package.
+
+If the student says yes:
+
+1. Read `application-kit/contracts/interview-prep-contract.md`.
+2. Ask for interview date/time, format, duration, location or meeting link, interviewer names/titles/email signatures, expected language, concerns, and 3 to 5 actual past incident stories they personally experienced and are comfortable discussing in STAR format.
+3. Ask the culture-fit question explicitly: what does the student do outside work or study, how do they recharge, what values matter to them, and how do they show healthy work-life balance?
+4. Use local evidence from the job description, CV/source profile, cover letter, evidence library, writing samples, notes, and communication log.
+5. Run `python3 application-kit/scripts/build_interview_prep.py --root . --job <target>`.
+6. Run two MCP writing review loops on `interview-prep-review-input-loop-1.json` and `interview-prep-review-input-loop-2.json`, then record loops 1 and 2 with `review-interview-prep` and `finalize-interview-prep`. If the prep changes later, rerun both review loops.
+7. Save outputs under `applications/<target>/interview-prep/` or the approved output folder.
+8. If actual incident stories are missing, do not invent STAR answers from CV bullets, cover-letter text, job requirements, or generic responsibilities. Produce `interview-prep-questions.md` and ask the student to write or confirm the real incidents before polishing.
+
+The interview prep must follow the Mercedes/Acteno structure: process overview, company/team read, role needs, interviewer read, positioning, 60-second intro, likely questions with reasons, spoken answer scripts, strengths/weaknesses, STAR stories, culture fit, questions to ask, things to avoid, logistics, 24-hour checklist, screening logic, bottom line, and missing information. It must not read like a loose questionnaire; open questions belong mainly in `interview-prep-questions.md`.
+
 ## Writing Check Flow
 
 The private MCP checker lives on the server. The student's full workspace stays local.
 
-1. Draft or revise locally.
-2. Select only the paragraph, section, cover letter, thesis excerpt, overview, or post that needs feedback.
-3. Call the MCP checker with the selected text and mode: `application`, `academic`, `blog`, `work`, `social`, or `general`.
-4. Save the returned checker report under `outputs/<target>/` or `memory/benchmark-results.md`.
-5. Revise local files using the feedback.
+1. Read `application-kit/contracts/mcp-review-payload-contract.md`.
+2. Draft or revise locally.
+3. Select only final reader-facing text: the paragraph, section, cover letter, thesis excerpt, overview, post, or spoken answer that the human will actually see or practice.
+4. Do not send scaffolding, prompts, coaching notes, missing-information questions, keyword maps, raw requirements, placeholders, or internal planning text to the writing checker.
+5. Call the MCP checker with the selected text and mode: `application`, `academic`, `blog`, `work`, `social`, or `general`.
+6. If the result is `medium` or `high`, revise the real local artifact, regenerate the selected-text payload from that revised artifact, and rerun the checker.
+7. Save the returned checker report under `outputs/<target>/` or `memory/benchmark-results.md`.
+
+## General Writing Review Flow
+
+Use this when the student wants to check a paragraph, research-paper section, essay, article, work note, email, blog draft, social post, or long document.
+
+1. Read `application-kit/contracts/writing-review-contract.md` and `application-kit/contracts/mcp-review-payload-contract.md`.
+2. Ask the student to choose 1, 2, or 3 review loops. Do not run more than 3.
+3. Ask for the writing mode: `application`, `academic`, `blog`, `work`, `social`, or `general`.
+4. Extract and chunk locally with `python3 application-kit/scripts/writing_review_loop.py --root . prepare --input <file> --mode <mode> --loops <1-3> --output-dir writing-reviews/<target>`.
+5. Send only generated final-text chunk input JSON files to the MCP checker with `mcp_check_client.mjs`.
+6. Summarize results with `python3 application-kit/scripts/writing_review_loop.py --root . report --manifest writing-reviews/<target>/writing-review-manifest.json`.
+7. If the student asks for a readiness receipt, record `review-writing` loops and `finalize-writing --required-loops <1-3>` through the local SOP.
+
+For academic writing, do not invent citations, methods, data, findings, or references. Improve claim strength, limitation boundaries, evidence anchors, and reader clarity without weakening correctness. Revise local files using the feedback before generating the next loop payload.
 
 Do not upload full CV folders, source documents, identity documents, passwords, bank records, or secrets.
 

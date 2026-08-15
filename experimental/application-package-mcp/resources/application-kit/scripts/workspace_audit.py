@@ -13,14 +13,21 @@ import os
 import time
 from pathlib import Path
 
-KIT_VERSION = "2026.08.15-english-cv-setup-guide.1"
+KIT_VERSION = "2026.08.15-review-payload.1"
 MANAGED = [
     "AGENTS.md", "scripts/application_sop.py", "scripts/mcp_check_client.mjs",
     "application-kit/manifest.json", "application-kit/templates/cover_letter.html",
-    "application-kit/templates/cover_letter.tex", "application-kit/templates/cv_english_modern.html",
+    "application-kit/templates/cover_letter.tex", "application-kit/templates/interview_prep.md",
+    "application-kit/templates/cv_english_modern.html",
     "application-kit/templates/cv_german_rounded.html",
     "application-kit/contracts/typography-contract.md", "application-kit/contracts/cv-markdown-contract.md",
-    "application-kit/scripts/local_application_generator.py", "application-kit/scripts/build_cv_html.py",
+    "application-kit/contracts/interview-prep-contract.md", "application-kit/contracts/writing-review-contract.md",
+    "application-kit/contracts/mcp-review-payload-contract.md",
+    "application-kit/scripts/application_sop.py", "application-kit/scripts/application_quality_loop.py",
+    "application-kit/scripts/mcp_check_client.mjs",
+    "application-kit/scripts/writing_review_loop.py",
+    "application-kit/scripts/local_application_generator.py", "application-kit/scripts/build_interview_prep.py",
+    "application-kit/scripts/build_cv_html.py",
 ]
 REQUIRED = ["profile", "voice", "candidate/source", "jobs", "applications", ".mcp"]
 EXCLUDED = {".git", "node_modules", "__pycache__", ".application-sop", ".DS_Store"}
