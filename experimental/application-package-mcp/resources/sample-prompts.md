@@ -81,6 +81,7 @@ Also ask me what I do outside work or study, how I recharge, and what values mat
 Use my local CV, cover letter, job description, evidence, communication log, and writing voice. Do not invent hobbies, interviewer facts, achievements, STAR stories, STAR results, language levels, visa details, or metrics. If my local profile has no actual incident stories, ask me for them instead of making them up from CV bullets.
 If my profile is too thin, create interview-prep-questions.md and ask me to fill it before polishing the final prep.
 After creating the prep, run two MCP writing review loops on interview-prep-review-input-loop-1.json and interview-prep-review-input-loop-2.json, save interview-prep-review-result-loop-1.json and interview-prep-review-result-loop-2.json, and record the review/finalize receipt through the local SOP. If you edit the prep afterward, repeat both review loops.
+Send only final spoken answer text to the MCP checker. Do not send coaching notes, missing-info questions, raw job requirements, keyword maps, or planning scaffolding.
 ```
 
 ## 8. General Writing Review
@@ -90,11 +91,11 @@ Please review this writing with the MCP checker.
 Mode: academic.
 Review loops: 2.
 
-Use application-kit/contracts/writing-review-contract.md.
+Use application-kit/contracts/writing-review-contract.md and application-kit/contracts/mcp-review-payload-contract.md.
 If the text is long, extract and chunk it locally with writing_review_loop.py.
-Send only selected text chunks to the MCP.
+Send only selected final reader-facing text chunks to the MCP.
 Do not invent citations, sources, data, methods, personal stories, or claims.
-Give me a practical revision plan and rerun the selected number of loops, never more than three.
+Give me a practical revision plan and rerun the selected number of loops, never more than three. If any loop returns medium or high, revise the real local document before the next loop.
 ```
 
 ## 9. Skip Interview Prep
@@ -110,6 +111,7 @@ Record that I skipped it, but do not block the CV or cover-letter package.
 Review this selected text with the MCP writing checker.
 Mode: application.
 Tell me what is generic, unsupported, overly polished, unclear, or weak for a recruiter. Return a practical revision plan first.
+Use final reader-facing text only. Do not send scaffolding, prompt notes, hidden comments, keyword maps, or internal planning text.
 Do not treat the result as proof of authorship or as a way to bypass AI detection. Revise the local file without inventing facts.
 ```
 

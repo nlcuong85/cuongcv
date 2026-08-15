@@ -76,7 +76,13 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     const landing = await fetch(`http://127.0.0.1:${port}/`).then((response) => response.text());
     assert.match(landing, /Student Application AI Helper/);
     assert.match(landing, /Turn your real experience into a stronger application/);
-    assert.match(landing, /One CV review; three cover-letter review loops/);
+    assert.match(landing, /CV \/ resume/);
+    assert.match(landing, /Three distinct loops/);
+    assert.match(landing, /Interview prep/);
+    assert.match(landing, /Two low-risk loops/);
+    assert.match(landing, /Other writing/);
+    assert.match(landing, /One to three loops/);
+    assert.match(landing, /final reader-facing text/);
     assert.match(landing, /Why the checker helps/);
     assert.match(landing, /Local workspace \+ checker/);
     assert.match(landing, /Four simple steps\. Your files never leave your laptop/);
@@ -156,11 +162,14 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.match(agentsTemplate.content, /enclosure list/i);
       assert.match(agentsTemplate.content, /cv_only_warned/);
       assert.match(agentsTemplate.content, /Optional Interview Prep Flow/);
+      assert.match(agentsTemplate.content, /mcp-review-payload-contract/);
+      assert.match(agentsTemplate.content, /final reader-facing text/);
       assert.match(agentsTemplate.content, /culture-fit question/);
       assert.match(agentsTemplate.content, /healthy work-life balance/);
       assert.match(claudeTemplate.content, /never ask them again/i);
       assert.match(claudeTemplate.content, /Cover-Letter Enclosure Rule/);
       assert.match(claudeTemplate.content, /Optional Interview Prep Rule/);
+      assert.match(claudeTemplate.content, /mcp-review-payload-contract/);
 
       const skillResult = await client.callTool({ name: "get_client_skill", arguments: {} });
       const skill = JSON.parse(skillResult.content[0].text);
