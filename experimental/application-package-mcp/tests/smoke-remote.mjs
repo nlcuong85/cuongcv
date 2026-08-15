@@ -6,6 +6,7 @@ const mcpUrl = process.env.MCP_URL ?? "http://127.0.0.1:5920/mcp";
 const token = process.env.APPLICATION_MCP_TOKEN;
 
 const expectedTools = [
+  "audit_workspace_manifest",
   "check_writing_human_fit",
   "get_application_kit_bundle",
   "get_application_kit_manifest",

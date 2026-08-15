@@ -15,7 +15,7 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-15T07:02:06+00:00`
+- updated_at: `2026-08-15T07:03:58+00:00`
 - current_phase: `postflight`
 - active_goal: Add confirmed-enclosure intake and cover-letter rendering rules to Student Application MCP
 - active_task_id: `None`
@@ -63,14 +63,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Recent Commands
 
-- `2026-08-15T06:58:42+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065839-837696.log`
-- `2026-08-15T06:58:46+00:00` exit=1 `python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065846-157864.log`
-- `2026-08-15T06:58:59+00:00` exit=1 `python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065858-836858.log`
-- `2026-08-15T06:59:15+00:00` exit=2 `python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065912-964929.log`
 - `2026-08-15T06:59:37+00:00` exit=0 `npm test`
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065933-788579.log`
 - `2026-08-15T06:59:40+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
@@ -79,17 +71,17 @@ When an agent resumes after context compaction or a new session:
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070158-212541.log`
 - `2026-08-15T07:02:06+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070203-864261.log`
+- `2026-08-15T07:03:31+00:00` exit=1 `npm run smoke:remote`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070331-459397.log`
+- `2026-08-15T07:03:42+00:00` exit=1 `env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070340-847188.log`
+- `2026-08-15T07:03:56+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070353-357161.log`
+- `2026-08-15T07:03:58+00:00` exit=0 `env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070356-419759.log`
 
 ## Latest Checkpoints
 
-- `2026-08-15T06:58:42+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
-  - commands_run: npm test
-- `2026-08-15T06:58:46+00:00` run: Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
-  - commands_run: python3 samples/local-kit-regression/run_regression.py
-- `2026-08-15T06:58:59+00:00` run: Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
-  - commands_run: python3 samples/local-kit-regression/run_regression.py
-- `2026-08-15T06:59:15+00:00` run: Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
-  - commands_run: python3 samples/local-kit-regression/run_regression.py
 - `2026-08-15T06:59:37+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
   - commands_run: npm test
 - `2026-08-15T06:59:40+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
@@ -98,6 +90,14 @@ When an agent resumes after context compaction or a new session:
   - commands_run: npm test
 - `2026-08-15T07:02:06+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
   - commands_run: python3 samples/local-kit-regression/run_regression.py
+- `2026-08-15T07:03:31+00:00` run: Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run smoke:remote
+  - commands_run: npm run smoke:remote
+- `2026-08-15T07:03:42+00:00` run: Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote
+  - commands_run: env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote
+- `2026-08-15T07:03:56+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+  - commands_run: npm test
+- `2026-08-15T07:03:58+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote
+  - commands_run: env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote
 
 ## Decisions
 

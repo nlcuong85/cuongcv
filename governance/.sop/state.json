@@ -1979,41 +1979,57 @@
       "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070203-864261.log",
       "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
       "time": "2026-08-15T07:02:06+00:00"
+    },
+    {
+      "commands_run": [
+        "npm run smoke:remote"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070331-459397.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run smoke:remote",
+      "time": "2026-08-15T07:03:31+00:00"
+    },
+    {
+      "commands_run": [
+        "env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070340-847188.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote",
+      "time": "2026-08-15T07:03:42+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070353-357161.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T07:03:56+00:00"
+    },
+    {
+      "commands_run": [
+        "env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070356-419759.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote",
+      "time": "2026-08-15T07:03:58+00:00"
     }
   ],
   "command_log": [
-    {
-      "command": "python3 -m py_compile SOP.py tests/test_sop.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260619-091930-979827.log",
-      "started_at": "2026-06-19T09:19:30+00:00",
-      "time": "2026-06-19T09:19:31+00:00"
-    },
-    {
-      "command": "python3 -m unittest -v tests/test_sop.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260619-091934-873662.log",
-      "started_at": "2026-06-19T09:19:34+00:00",
-      "time": "2026-06-19T09:19:35+00:00"
-    },
-    {
-      "command": "git diff --check",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260629-131029-837169.log",
-      "started_at": "2026-06-29T13:10:29+00:00",
-      "time": "2026-06-29T13:10:29+00:00"
-    },
-    {
-      "command": "/Users/pmlecuong/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 tmp/docs/fill_lohtor_form.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260711-061932-418356.log",
-      "started_at": "2026-07-11T06:19:32+00:00",
-      "time": "2026-07-11T06:19:32+00:00"
-    },
     {
       "command": "/Users/pmlecuong/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 tmp/docs/fill_lohtor_form.py",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
@@ -2381,6 +2397,38 @@
       "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070203-864261.log",
       "started_at": "2026-08-15T07:02:03+00:00",
       "time": "2026-08-15T07:02:06+00:00"
+    },
+    {
+      "command": "npm run smoke:remote",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 1,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070331-459397.log",
+      "started_at": "2026-08-15T07:03:31+00:00",
+      "time": "2026-08-15T07:03:31+00:00"
+    },
+    {
+      "command": "env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 1,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070340-847188.log",
+      "started_at": "2026-08-15T07:03:40+00:00",
+      "time": "2026-08-15T07:03:42+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070353-357161.log",
+      "started_at": "2026-08-15T07:03:53+00:00",
+      "time": "2026-08-15T07:03:56+00:00"
+    },
+    {
+      "command": "env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070356-419759.log",
+      "started_at": "2026-08-15T07:03:56+00:00",
+      "time": "2026-08-15T07:03:58+00:00"
     }
   ],
   "created_at": "2026-06-19T09:19:21+00:00",
@@ -5497,7 +5545,7 @@
       "updated_at": "2026-06-19T09:20:07+00:00"
     }
   ],
-  "updated_at": "2026-08-15T07:02:06+00:00",
+  "updated_at": "2026-08-15T07:03:58+00:00",
   "work_session": {
     "active": true,
     "ended_at": null,
