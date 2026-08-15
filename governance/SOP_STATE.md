@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-15T06:31:12+00:00`
+- updated_at: `2026-08-15T06:51:47+00:00`
 - current_phase: `postflight`
-- active_goal: Restored cover-letter generation to historical pdfTeX/Latin Modern parity, updated MCP kit and production deployment to 0.2.4, and verified fresh-client bootstrap/audit.
+- active_goal: Add German rounded Lebenslauf fallback HTML CV template to Student Application MCP kit
 - active_task_id: `None`
-- work_session: `WS-20260815-061857-846269` active=`False`
+- work_session: `WS-20260815-064507-031514` active=`True`
 
 ## Required Resume Files
 
@@ -36,11 +36,11 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-08-15T06:31:11+00:00`
-- current: Restored cover-letter generation to historical pdfTeX/Latin Modern parity, updated MCP kit and production deployment to 0.2.4, and verified fresh-client bootstrap/audit.
-- next: If user requests generated job packages, produce them from a fresh MCP-bootstrapped workspace and verify pdffonts shows LMRoman10-Regular/Bold.
+- updated_at: `2026-08-15T06:43:10+00:00`
+- current: Ran three fresh-client production MCP application-kit tests with a fictional Minh Tran profile. Workspace audit and PDF hard gates passed for all three; remote writing checker returned revise on all three due thin fictional evidence/personality anchor.
+- next: If the goal is checker-ready output, rerun with a richer real client profile and personal writing samples, then use the MCP revision loop until releaseDecision improves.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: experimental/application-package-mcp/src/index.ts, application-system/scripts/generate_application.py, experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py
+- files: /var/folders/b9/x56871850pzc7rqg1w55x5w00000gn/T/jobmcp-fresh-client-3jobs-final-NgVJ2s/fresh-client-3-job-test-report.md
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
@@ -63,10 +63,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Recent Commands
 
-- `2026-08-15T06:22:30+00:00` exit=0 `python3 application-system/scripts/generate_application.py --intake application-system/intakes/schwarz-it-werkstudent-marketing-systeme.json --output /tmp/schwarz-style-parity --compile-pdf`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062225-739035.log`
-- `2026-08-15T06:22:48+00:00` exit=2 `python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-lmodern-demo`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062247-870870.log`
 - `2026-08-15T06:23:07+00:00` exit=0 `python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-lmodern-demo2`
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062306-948662.log`
 - `2026-08-15T06:26:10+00:00` exit=0 `latexmk -pdf -interaction=nonstopmode -halt-on-error cover-letter.tex`
@@ -79,19 +75,13 @@ When an agent resumes after context compaction or a new session:
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062629-122847.log`
 - `2026-08-15T06:27:24+00:00` exit=0 `npm test`
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062721-235371.log`
+- `2026-08-15T06:49:00+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-064857-099520.log`
+- `2026-08-15T06:51:47+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065144-842786.log`
 
 ## Latest Checkpoints
 
-- `2026-08-15T06:23:07+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-lmodern-demo2
-  - commands_run: python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-lmodern-demo2
-- `2026-08-15T06:26:10+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo: latexmk -pdf -interaction=nonstopmode -halt-on-error cover-letter.tex
-  - commands_run: latexmk -pdf -interaction=nonstopmode -halt-on-error cover-letter.tex
-- `2026-08-15T06:26:17+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
-  - commands_run: npm test
-- `2026-08-15T06:26:29+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/schwarz-it-werkstudent-marketing-systeme.json --output /tmp/schwarz-style-parity-final --compile-pdf
-  - commands_run: python3 application-system/scripts/generate_application.py --intake application-system/intakes/schwarz-it-werkstudent-marketing-systeme.json --output /tmp/schwarz-style-parity-final --compile-pdf
-- `2026-08-15T06:26:29+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 /Users/pmlecuong/.codex/skills/job-search-cuong/scripts/check_application_rules.py --resume-data /Users/pmlecuong/Documents/CuongProjects/CuongCV/src/data/resume-data.tsx --summary-versions /Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/summary_versions.json --intake application-system/intakes/schwarz-it-werkstudent-marketing-systeme.json --cover-letter /tmp/schwarz-style-parity-final/cover-letter/cover_letter.tex
-  - commands_run: python3 /Users/pmlecuong/.codex/skills/job-search-cuong/scripts/check_application_rules.py --resume-data /Users/pmlecuong/Documents/CuongProjects/CuongCV/src/data/resume-data.tsx --summary-versions /Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/summary_versions.json --intake application-system/intakes/schwarz-it-werkstudent-marketing-systeme.json --cover-letter /tmp/schwarz-style-parity-final/cover-letter/cover_letter.tex
 - `2026-08-15T06:27:24+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
   - commands_run: npm test
 - `2026-08-15T06:31:11+00:00` postflight: Restored cover-letter generation to historical pdfTeX/Latin Modern parity, updated MCP kit and production deployment to 0.2.4, and verified fresh-client bootstrap/audit.
@@ -101,6 +91,20 @@ When an agent resumes after context compaction or a new session:
 - `2026-08-15T06:31:12+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
   - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
   - commands_run: python3 SOP.py postflight
+- `2026-08-15T06:43:10+00:00` postflight: Ran three fresh-client production MCP application-kit tests with a fictional Minh Tran profile. Workspace audit and PDF hard gates passed for all three; remote writing checker returned revise on all three due thin fictional evidence/personality anchor.
+  - next_steps: If the goal is checker-ready output, rerun with a richer real client profile and personal writing samples, then use the MCP revision loop until releaseDecision improves.
+  - files_changed: /var/folders/b9/x56871850pzc7rqg1w55x5w00000gn/T/jobmcp-fresh-client-3jobs-final-NgVJ2s/fresh-client-3-job-test-report.md
+  - commands_run: python3 SOP.py postflight
+- `2026-08-15T06:43:11+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
+- `2026-08-15T06:43:45+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
+  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
+  - commands_run: python3 SOP.py preflight
+- `2026-08-15T06:49:00+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+  - commands_run: npm test
+- `2026-08-15T06:51:47+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+  - commands_run: npm test
 
 ## Decisions
 

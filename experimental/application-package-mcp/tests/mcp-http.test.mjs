@@ -155,8 +155,11 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.equal(kit.manifest.privacy.advanced_checker_rules_in_bundle, false);
       assert.ok(kit.files.some((file) => file.path === "templates/cover_letter.html"));
       assert.ok(kit.files.some((file) => file.path === "templates/cover_letter.tex"));
+      assert.ok(kit.files.some((file) => file.path === "templates/cv_german_rounded.html"));
       assert.ok(kit.files.some((file) => file.path === "contracts/typography-contract.md"));
+      assert.ok(kit.files.some((file) => file.path === "contracts/cv-markdown-contract.md"));
       assert.ok(kit.files.some((file) => file.path === "scripts/local_application_generator.py"));
+      assert.ok(kit.files.some((file) => file.path === "scripts/build_cv_html.py"));
       assert.ok(kit.files.some((file) => file.path === "scripts/application_quality_loop.py"));
       assert.ok(kit.files.some((file) => file.path === "scripts/mcp_check_client.mjs"));
       assert.ok(kit.files.some((file) => file.path === "contracts/source-capture-contract.md"));
@@ -173,6 +176,12 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.match(coverLetterTemplate.content, /usepackage\{lmodern\}/);
       const coverLetterHtmlTemplate = kit.files.find((file) => file.path === "templates/cover_letter.html");
       assert.match(coverLetterHtmlTemplate.content, /Georgia/);
+      const cvTemplate = kit.files.find((file) => file.path === "templates/cv_german_rounded.html");
+      assert.match(cvTemplate.content, /Berufliche Erfahrungen/);
+      assert.match(cvTemplate.content, /contact-bar/);
+      const cvContract = kit.files.find((file) => file.path === "contracts/cv-markdown-contract.md");
+      assert.match(cvContract.content, /preferred CV format/);
+      assert.match(cvContract.content, /Playwright/);
 
       const checkResult = await client.callTool({
         name: "check_writing_human_fit",

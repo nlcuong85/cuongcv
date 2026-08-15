@@ -16,7 +16,7 @@ import {
   samplePromptsDocument
 } from "./resources.js";
 
-const VERSION = "0.2.4";
+const VERSION = "0.2.5";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
@@ -36,7 +36,7 @@ const PUBLIC_TOOLS = [
   "suggest_writing_revision"
 ];
 
-const WORKSPACE_KIT_VERSION = "2026.08.15-lmodern-latex-parity.1";
+const WORKSPACE_KIT_VERSION = "2026.08.15-cv-html-fallback.1";
 const REQUIRED_WORKSPACE_PATHS = [
   "AGENTS.md",
   ".mcp/workspace-manifest.json",
@@ -54,8 +54,11 @@ const REQUIRED_WORKSPACE_PATHS = [
   "application-kit/manifest.json",
   "application-kit/templates/cover_letter.html",
   "application-kit/templates/cover_letter.tex",
+  "application-kit/templates/cv_german_rounded.html",
   "application-kit/contracts/typography-contract.md",
-  "application-kit/scripts/local_application_generator.py"
+  "application-kit/contracts/cv-markdown-contract.md",
+  "application-kit/scripts/local_application_generator.py",
+  "application-kit/scripts/build_cv_html.py"
 ];
 
 const MANAGED_HASHED_PATHS = [
@@ -65,8 +68,11 @@ const MANAGED_HASHED_PATHS = [
   "application-kit/manifest.json",
   "application-kit/templates/cover_letter.html",
   "application-kit/templates/cover_letter.tex",
+  "application-kit/templates/cv_german_rounded.html",
   "application-kit/contracts/typography-contract.md",
-  "application-kit/scripts/local_application_generator.py"
+  "application-kit/contracts/cv-markdown-contract.md",
+  "application-kit/scripts/local_application_generator.py",
+  "application-kit/scripts/build_cv_html.py"
 ];
 
 function sha256(value: string): string {

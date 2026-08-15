@@ -1,6 +1,6 @@
 {
   "kit_id": "application-kit",
-  "version": "2026.08.15-lmodern-latex-parity.1",
+  "version": "2026.08.15-cv-html-fallback.1",
   "mode": "local-only",
   "privacy": {
     "remote_processing": "selected writing checks only through MCP tools",
@@ -16,6 +16,10 @@
     {
       "path": "templates/cover_letter.html",
       "description": "Browser preview template matching the historical serif cover-letter rhythm."
+    },
+    {
+      "path": "templates/cv_german_rounded.html",
+      "description": "Default editable German Lebenslauf HTML fallback when the student does not provide a preferred CV format."
     },
     {
       "path": "contracts/typography-contract.md",
@@ -70,6 +74,7 @@
     "cover-letter.md",
     "cv-tailored.md",
     "cv-tailored.html",
+    "cv-build-manifest.json",
     "validation.md",
     "manifest.json"
   ]

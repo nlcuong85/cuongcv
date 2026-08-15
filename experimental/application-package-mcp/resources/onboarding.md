@@ -45,7 +45,9 @@ student-application-workspace/
 
 For CV and cover-letter work, use the local `application_sop.py` from the public application kit. It is a client-side hard gate: strict boot checks local workspace drift, work is recorded locally, and final documents need a local release receipt. The MCP does not read the workspace; it receives selected text or a privacy-safe structure manifest only.
 
-Ask the student for their target role/JD, current CV, optional supporting/voice material, photo decision, and optional signature. Recommend that they write 10 authentic bullets per employer (15 is better); use four or five verified bullets per employer for a tailored CV. A CV gets one review loop; a cover letter gets three distinct review loops.
+Ask the student for their target role/JD, current CV, preferred CV format, optional supporting/voice material, photo decision, and optional signature. Recommend that they write 10 authentic bullets per employer (15 is better); use four or five verified bullets per employer for a tailored CV. A CV gets one review loop; a cover letter gets three distinct review loops.
+
+For CV format, ask first whether the student already has a preferred PDF, DOCX, HTML, screenshot, or template. If yes, convert/extract it locally, rebuild it as editable HTML, and use browser/Playwright screenshots in a loop until the generated HTML matches the reference structure before calling it passed. If the student has no preferred format, suggest the bundled German rounded Lebenslauf fallback in `application-kit/templates/cv_german_rounded.html`.
 
 For optional voice material, offer authentic self-written examples such as past user stories, emails/letters, IELTS writing, work descriptions, personal statements, reports, notes, or previous applications. First query `voice-intake-status` through the local SOP. If the student says existing material is enough, record `record-voice-intake --status enough` and never prompt them again unless they explicitly reopen the topic. A deferred reminder is allowed only when they request one, and should be set no more frequently than every 45 days.
 
