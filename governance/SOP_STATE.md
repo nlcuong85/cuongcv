@@ -15,7 +15,7 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-15T07:30:49+00:00`
+- updated_at: `2026-08-15T07:34:40+00:00`
 - current_phase: `postflight`
 - active_goal: Deploy Student Application MCP root URL and CV template preview routes to production
 - active_task_id: `None`
@@ -63,8 +63,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Recent Commands
 
-- `2026-08-15T07:13:29+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071326-483262.log`
 - `2026-08-15T07:13:31+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071329-364100.log`
 - `2026-08-15T07:19:06+00:00` exit=0 `npm test`
@@ -79,13 +77,11 @@ When an agent resumes after context compaction or a new session:
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072858-719390.log`
 - `2026-08-15T07:29:08+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072906-063632.log`
+- `2026-08-15T07:34:40+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-073437-518269.log`
 
 ## Latest Checkpoints
 
-- `2026-08-15T07:22:16+00:00` postflight: Local Student Application MCP landing/setup update completed: English CV fallback template added, onboarding/setup instructions updated, active landing footer credit restored, and local tests/regression passed.
-  - next_steps: User reviews local MCP at http://127.0.0.1:5943/ and decides whether to deploy to production.
-  - files_changed: experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/resources/application-kit/templates/cv_english_modern.html
-  - commands_run: python3 SOP.py postflight
 - `2026-08-15T07:22:18+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
   - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
   - commands_run: python3 SOP.py postflight
@@ -106,6 +102,8 @@ When an agent resumes after context compaction or a new session:
 - `2026-08-15T07:30:49+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
   - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
   - commands_run: python3 SOP.py preflight
+- `2026-08-15T07:34:40+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+  - commands_run: npm test
 
 ## Decisions
 

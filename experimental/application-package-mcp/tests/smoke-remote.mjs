@@ -71,7 +71,8 @@ try {
   const promptsResult = await client.callTool({ name: "get_sample_prompts", arguments: {} });
   const prompts = JSON.parse(promptsResult.content[0].text);
   assert.match(prompts.content, /Student Application AI Helper Prompts/);
-  assert.match(prompts.content, /https:\/\/jobmcp\.pmlecuong\.com\/mcp/);
+  assert.match(prompts.content, /https:\/\/jobmcp\.pmlecuong\.com\//);
+  assert.doesNotMatch(prompts.content, /Connection address:\s*```text\s*https:\/\/jobmcp\.pmlecuong\.com\/mcp/s);
 
   console.log(
     JSON.stringify(
