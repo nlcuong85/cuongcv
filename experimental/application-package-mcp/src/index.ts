@@ -16,7 +16,7 @@ import {
   samplePromptsDocument
 } from "./resources.js";
 
-const VERSION = "0.2.5";
+const VERSION = "0.2.6";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
@@ -36,7 +36,7 @@ const PUBLIC_TOOLS = [
   "suggest_writing_revision"
 ];
 
-const WORKSPACE_KIT_VERSION = "2026.08.15-cv-html-fallback.1";
+const WORKSPACE_KIT_VERSION = "2026.08.15-enclosure-intake.1";
 const REQUIRED_WORKSPACE_PATHS = [
   "AGENTS.md",
   ".mcp/workspace-manifest.json",
@@ -926,6 +926,7 @@ After setup, show me the folder I should fill and the next action.</pre>
   </section>
   <footer class="footer">
     <p>For AI agents: use <a href="${PUBLIC_MCP_URL}">${PUBLIC_MCP_URL}</a>. Human prompts are at <a href="/sample-prompts">/sample-prompts</a>. Service status is at <a href="/health">/health</a>.</p>
+    <p>MCP v${VERSION} · workspace kit ${WORKSPACE_KIT_VERSION}</p>
     <a class="built-by" href="https://pmlecuong.com/" target="_blank" rel="noopener noreferrer">Built by pmlecuong.com ↗</a>
   </footer>
 </div>
@@ -977,7 +978,7 @@ section.privacy { width:100%; margin:0; padding:108px 0 116px; border-top:0; bac
   <section id="letter-example" class="section"><div class="letter-example"><div><div class="eyebrow">Rendered local output</div><h2>A German-style cover letter, built locally.</h2><p>This one-page LaTeX sample follows the familiar German business-letter structure: sender and recipient blocks, date, bold subject, salutation, evidence-led body, signature area, and enclosures.</p><ul class="letter-points"><li><span><strong>For Germany:</strong> use this structured business-letter format when it fits the employer and role.</span></li><li><span><strong>For other markets:</strong> keep the verified evidence and review process, then adapt language and conventions locally.</span></li><li><span><strong>Your signature:</strong> the agent asks for your PNG/JPG and uses it only if you provide it.</span></li></ul><p class="demo-note"><strong>Fictional demonstration only.</strong> The writing is adapted from a candidate-authorized Mercedes-Benz example; Jane Doe, the recruiting team, Stuttgart Hbf, and the signature graphic are placeholders. Never copy another person's signature.</p><p class="sample-link"><a class="button secondary" href="/assets/german-cover-letter-sample.pdf">Open the sample PDF</a></p></div><figure class="letter-frame"><img src="/assets/german-cover-letter-sample.svg" alt="One-page fictional German-format Mercedes-Benz cover letter for Jane Doe, including a clearly labelled fictional sample signature."></figure></div></section>
   <section id="privacy" class="privacy"><div class="privacy-inner"><div class="eyebrow">Privacy boundary</div><h2>Useful feedback without uploading your whole career history.</h2><div class="privacy-grid"><div><strong>Stays on your device</strong><span>Source CV, evidence, profile, writing samples, job files, photos, signatures, drafts, outputs, and SOP history.</span></div><div><strong>Can be sent deliberately</strong><span>A privacy-safe folder manifest for update/audit guidance, or selected writing text for a quality review.</span></div><div><strong>Comes back from the MCP</strong><span>Workspace/version guidance and selected-text feedback: issues, risk labels, and practical revision direction.</span></div><div><strong>What it does not claim</strong><span>It is not an authorship verdict or an AI-detection bypass. It helps you make writing clearer, more evidenced, and more trustworthy.</span></div></div></div></section>
   <section class="final"><div class="kicker" style="color:var(--sun)">Ready when you are</div><h2>Start with the files you already have. Improve the package one honest step at a time.</h2><p>The prompt page tells your AI agent exactly how to set up, audit, prepare, draft, and review the local workspace.</p><div class="actions"><a class="button primary" style="background:var(--sun);color:var(--deep)" href="/sample-prompts">Open guided prompts</a><a class="button secondary" style="border-color:#729489;color:#fff" href="/privacy">Read privacy details</a></div></section>
-  <footer class="footer"><span>Student Application AI Helper · local-first application workflow</span><span><a href="/health">Service health</a> · <a href="/sample-prompts">Sample prompts</a> · <a href="/technical-flow">Technical flow</a></span></footer>
+  <footer class="footer"><span>Student Application AI Helper · local-first application workflow · MCP v${VERSION} · kit ${WORKSPACE_KIT_VERSION}</span><span><a href="/health">Service health</a> · <a href="/sample-prompts">Sample prompts</a> · <a href="/technical-flow">Technical flow</a></span></footer>
 </div>
 </body>
 </html>`;

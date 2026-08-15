@@ -31,7 +31,7 @@ PARAGRAPH_KEYS = [
 
 PARAGRAPH_LIMITS = {
     "opening_paragraph": 390,
-    "body_paragraph_one": 430,
+    "body_paragraph_one": 450,
     "body_paragraph_two": 540,
     "motivation_paragraph": 390,
     "closing_paragraph": 360,
@@ -55,6 +55,7 @@ REQUIRED_TEMPLATE_MARKERS = [
     "@@MOTIVATION_PARAGRAPH@@",
     "@@CLOSING_PARAGRAPH@@",
     "@@SIGNATURE_NAME@@",
+    "@@ENCLOSURE_ITEMS@@",
 ]
 
 REQUIRED_HTML_TEMPLATE_MARKERS = [
@@ -209,6 +210,23 @@ def join_html_lines(lines: list[str]) -> str:
     return "<br>\n".join(html_escape(str(line).strip()) for line in lines if str(line).strip())
 
 
+def normalize_enclosures(draft: dict[str, Any]) -> list[str]:
+    return [str(item).strip() for item in list(draft.get("enclosures") or []) if str(item).strip()]
+
+
+def enclosure_has_cv(enclosures: list[str]) -> bool:
+    values = " ".join(enclosures).lower()
+    return any(token in values for token in ["curriculum vitae", "cv", "lebenslauf", "resume"])
+
+
+def latex_enclosure_items(enclosures: list[str]) -> str:
+    return "\n".join(f"\\item {latex_escape(item)}" for item in enclosures)
+
+
+def html_enclosure_items(enclosures: list[str]) -> str:
+    return "\n".join(f"<li>{html_escape(item)}</li>" for item in enclosures)
+
+
 def validate_template(template: str) -> list[str]:
     errors: list[str] = []
     for marker in REQUIRED_TEMPLATE_MARKERS:
@@ -226,12 +244,7 @@ def validate_html_template(template: str) -> list[str]:
 
 
 def build_mapping(draft: dict[str, Any]) -> dict[str, str]:
-    enclosures = draft.get("enclosures") or [
-        "Curriculum Vitae",
-        "Bachelor Degree Diploma",
-        "Reference letter from previous employers",
-    ]
-    _ = enclosures
+    enclosures = normalize_enclosures(draft)
     signature_path = str(draft.get("signature_path") or "").strip()
     mapping = {
         "SENDER_BLOCK": join_latex_lines(list(draft.get("sender_lines") or [])),
@@ -246,6 +259,7 @@ def build_mapping(draft: dict[str, Any]) -> dict[str, str]:
         "CLOSING_PARAGRAPH": latex_escape(str(draft.get("closing_paragraph") or "")),
         "SIGNATURE_PATH": latex_escape(signature_path),
         "SIGNATURE_NAME": latex_escape(str(draft.get("signature_name") or "")),
+        "ENCLOSURE_ITEMS": latex_enclosure_items(enclosures),
     }
     if not signature_path:
         mapping["SIGNATURE_PATH"] = "signature-placeholder-do-not-use.png"
@@ -253,15 +267,7 @@ def build_mapping(draft: dict[str, Any]) -> dict[str, str]:
 
 
 def build_html_mapping(draft: dict[str, Any]) -> dict[str, str]:
-    enclosures = [
-        f"<li>{html_escape(str(item).strip())}</li>"
-        for item in list(draft.get("enclosures") or [
-            "Curriculum Vitae",
-            "Bachelor Degree Diploma",
-            "Reference letter from previous employers",
-        ])
-        if str(item).strip()
-    ]
+    enclosures = normalize_enclosures(draft)
     signature_path = str(draft.get("signature_path") or "").strip()
     signature_image = ""
     if signature_path:
@@ -280,7 +286,7 @@ def build_html_mapping(draft: dict[str, Any]) -> dict[str, str]:
         "CLOSING_PARAGRAPH": html_escape(str(draft.get("closing_paragraph") or "")),
         "SIGNATURE_IMAGE": signature_image,
         "SIGNATURE_NAME": html_escape(str(draft.get("signature_name") or "")),
-        "ENCLOSURE_ITEMS": "\n".join(enclosures),
+        "ENCLOSURE_ITEMS": html_enclosure_items(enclosures),
     }
 
 
@@ -352,6 +358,13 @@ def validate_draft(draft: dict[str, Any]) -> Validation:
     for key in ["sender_lines", "recipient_lines", "date_line", "subject_line", "signature_name"]:
         if not draft.get(key):
             errors.append(f"Missing required draft field: {key}")
+    enclosures = normalize_enclosures(draft)
+    if not enclosures:
+        errors.append("Missing required draft field: enclosures. Ask the student which documents they will attach; CV/Lebenslauf is mandatory.")
+    elif not enclosure_has_cv(enclosures):
+        errors.append("Enclosure list must include the CV/Lebenslauf. Do not generate a cover letter package without it.")
+    elif len(enclosures) < 2:
+        warnings.append("Application package has fewer than two enclosures. Explain that this is weaker and ask whether the student can add a diploma/transcript or employer reference before final use.")
     scalar_fields = ["date_line", "subject_line", "salutation", "signature_name", *PARAGRAPH_KEYS]
     for key in scalar_fields:
         value = str(draft.get(key) or "")

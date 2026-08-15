@@ -4,6 +4,10 @@ Start with `AGENTS.md`, then `profile/student-profile-context.md`, then `memory/
 
 Keep the student's full workspace local. Use the MCP server only for selected writing text when the student asks for writing feedback.
 
+## Cover-Letter Enclosure Rule
+
+Before writing or reviewing a cover letter, ask which attachments the student can actually provide. CV/Lebenslauf is mandatory. Ask whether they can add a Bachelor degree diploma or transcript/certificate, and whether they can add a reference letter or employer certificate from a previous employer. Include only confirmed documents in the enclosure section. If they only have the CV, warn that fewer than two attachments makes the application package weaker, recommend adding one proof document, then continue without listing missing documents if they cannot provide them. Record the result with `record-decision --name enclosures`.
+
 ## Authentic Writing-Sample Consent Rule
 
 At the start of a serious application task, and only at a later meaningful intake boundary, run `python3 scripts/application_sop.py --root . voice-intake-status`.

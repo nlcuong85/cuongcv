@@ -33,6 +33,7 @@ test("local Application SOP requires decisions, current audit, and distinct cove
 
   sop(workspace, "record-decision", "--name", "photo", "--value", "declined");
   sop(workspace, "record-decision", "--name", "signature", "--value", "declined");
+  sop(workspace, "record-decision", "--name", "enclosures", "--value", "cv_plus_diploma");
   await writeFile(path.join(workspace, "audit.json"), JSON.stringify({ status: "workspace_current" }));
   sop(workspace, "record-manifest-audit", "--report", "audit.json");
 
@@ -69,6 +70,7 @@ test("local generator resolves a workspace-relative signature when compilation r
     "utf8",
   ));
   exampleDraft.signature_path = "candidate/signature.png";
+  exampleDraft.enclosures = ["Curriculum Vitae"];
   const draftPath = path.join(workspace, "applications/test-role/cover-letter-draft.json");
   await mkdir(path.dirname(draftPath), { recursive: true });
   await writeFile(draftPath, JSON.stringify(exampleDraft, null, 2));
@@ -83,6 +85,12 @@ test("local generator resolves a workspace-relative signature when compilation r
     ],
     { cwd: root, encoding: "utf8" },
   );
+  const tex = await readFile(path.join(outputDir, "cover-letter.tex"), "utf8");
+  assert.match(tex, /\\item Curriculum Vitae/);
+  assert.doesNotMatch(tex, /Bachelor Degree Diploma/);
+  assert.doesNotMatch(tex, /Reference letter from previous employers/);
+  const validation = await readFile(path.join(outputDir, "validation.md"), "utf8");
+  assert.match(validation, /fewer than two enclosures/i);
   const generated = readdirSync(outputDir).filter((name) => /^cover-letter-.*\.pdf$/.test(name));
   assert.equal(generated.length, 1);
   const pdfInfo = execFileSync("pdfinfo", [path.join(outputDir, generated[0])], { encoding: "utf8" });

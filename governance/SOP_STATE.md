@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-15T06:51:47+00:00`
+- updated_at: `2026-08-15T07:02:06+00:00`
 - current_phase: `postflight`
-- active_goal: Add German rounded Lebenslauf fallback HTML CV template to Student Application MCP kit
+- active_goal: Add confirmed-enclosure intake and cover-letter rendering rules to Student Application MCP
 - active_task_id: `None`
-- work_session: `WS-20260815-064507-031514` active=`True`
+- work_session: `WS-20260815-065431-842278` active=`True`
 
 ## Required Resume Files
 
@@ -63,48 +63,41 @@ When an agent resumes after context compaction or a new session:
 
 ## Recent Commands
 
-- `2026-08-15T06:23:07+00:00` exit=0 `python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-lmodern-demo2`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062306-948662.log`
-- `2026-08-15T06:26:10+00:00` exit=0 `latexmk -pdf -interaction=nonstopmode -halt-on-error cover-letter.tex`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062610-139313.log`
-- `2026-08-15T06:26:17+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062615-094450.log`
-- `2026-08-15T06:26:29+00:00` exit=0 `python3 application-system/scripts/generate_application.py --intake application-system/intakes/schwarz-it-werkstudent-marketing-systeme.json --output /tmp/schwarz-style-parity-final --compile-pdf`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062625-028789.log`
-- `2026-08-15T06:26:29+00:00` exit=0 `python3 /Users/pmlecuong/.codex/skills/job-search-cuong/scripts/check_application_rules.py --resume-data /Users/pmlecuong/Documents/CuongProjects/CuongCV/src/data/resume-data.tsx --summary-versions /Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/summary_versions.json --intake application-system/intakes/schwarz-it-werkstudent-marketing-systeme.json --cover-letter /tmp/schwarz-style-parity-final/cover-letter/cover_letter.tex`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062629-122847.log`
-- `2026-08-15T06:27:24+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-062721-235371.log`
-- `2026-08-15T06:49:00+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-064857-099520.log`
-- `2026-08-15T06:51:47+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065144-842786.log`
+- `2026-08-15T06:58:42+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065839-837696.log`
+- `2026-08-15T06:58:46+00:00` exit=1 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065846-157864.log`
+- `2026-08-15T06:58:59+00:00` exit=1 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065858-836858.log`
+- `2026-08-15T06:59:15+00:00` exit=2 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065912-964929.log`
+- `2026-08-15T06:59:37+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065933-788579.log`
+- `2026-08-15T06:59:40+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065937-519463.log`
+- `2026-08-15T07:02:03+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070158-212541.log`
+- `2026-08-15T07:02:06+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070203-864261.log`
 
 ## Latest Checkpoints
 
-- `2026-08-15T06:27:24+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+- `2026-08-15T06:58:42+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
   - commands_run: npm test
-- `2026-08-15T06:31:11+00:00` postflight: Restored cover-letter generation to historical pdfTeX/Latin Modern parity, updated MCP kit and production deployment to 0.2.4, and verified fresh-client bootstrap/audit.
-  - next_steps: If user requests generated job packages, produce them from a fresh MCP-bootstrapped workspace and verify pdffonts shows LMRoman10-Regular/Bold.
-  - files_changed: experimental/application-package-mcp/src/index.ts; application-system/scripts/generate_application.py; experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py
-  - commands_run: python3 SOP.py postflight
-- `2026-08-15T06:31:12+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
-- `2026-08-15T06:43:10+00:00` postflight: Ran three fresh-client production MCP application-kit tests with a fictional Minh Tran profile. Workspace audit and PDF hard gates passed for all three; remote writing checker returned revise on all three due thin fictional evidence/personality anchor.
-  - next_steps: If the goal is checker-ready output, rerun with a richer real client profile and personal writing samples, then use the MCP revision loop until releaseDecision improves.
-  - files_changed: /var/folders/b9/x56871850pzc7rqg1w55x5w00000gn/T/jobmcp-fresh-client-3jobs-final-NgVJ2s/fresh-client-3-job-test-report.md
-  - commands_run: python3 SOP.py postflight
-- `2026-08-15T06:43:11+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
-- `2026-08-15T06:43:45+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
-  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
-  - commands_run: python3 SOP.py preflight
-- `2026-08-15T06:49:00+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+- `2026-08-15T06:58:46+00:00` run: Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
+  - commands_run: python3 samples/local-kit-regression/run_regression.py
+- `2026-08-15T06:58:59+00:00` run: Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
+  - commands_run: python3 samples/local-kit-regression/run_regression.py
+- `2026-08-15T06:59:15+00:00` run: Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
+  - commands_run: python3 samples/local-kit-regression/run_regression.py
+- `2026-08-15T06:59:37+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
   - commands_run: npm test
-- `2026-08-15T06:51:47+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+- `2026-08-15T06:59:40+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
+  - commands_run: python3 samples/local-kit-regression/run_regression.py
+- `2026-08-15T07:02:03+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
   - commands_run: npm test
+- `2026-08-15T07:02:06+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
+  - commands_run: python3 samples/local-kit-regression/run_regression.py
 
 ## Decisions
 

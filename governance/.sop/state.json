@@ -1,5 +1,5 @@
 {
-  "active_goal": "Add German rounded Lebenslauf fallback HTML CV template to Student Application MCP kit",
+  "active_goal": "Add confirmed-enclosure intake and cover-letter rendering rules to Student Application MCP",
   "active_task_id": null,
   "checkpoints": [
     {
@@ -1871,6 +1871,114 @@
       "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065144-842786.log",
       "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
       "time": "2026-08-15T06:51:47+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065829-201264.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T06:58:31+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065839-837696.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T06:58:42+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065846-157864.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T06:58:46+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065858-836858.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T06:58:59+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065912-964929.log",
+      "summary": "Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T06:59:15+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065933-788579.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T06:59:37+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065937-519463.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T06:59:40+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070158-212541.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T07:02:03+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070203-864261.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T07:02:06+00:00"
     }
   ],
   "command_log": [
@@ -2201,6 +2309,78 @@
       "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065144-842786.log",
       "started_at": "2026-08-15T06:51:44+00:00",
       "time": "2026-08-15T06:51:47+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 1,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065829-201264.log",
+      "started_at": "2026-08-15T06:58:29+00:00",
+      "time": "2026-08-15T06:58:31+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065839-837696.log",
+      "started_at": "2026-08-15T06:58:39+00:00",
+      "time": "2026-08-15T06:58:42+00:00"
+    },
+    {
+      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 1,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065846-157864.log",
+      "started_at": "2026-08-15T06:58:46+00:00",
+      "time": "2026-08-15T06:58:46+00:00"
+    },
+    {
+      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 1,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065858-836858.log",
+      "started_at": "2026-08-15T06:58:58+00:00",
+      "time": "2026-08-15T06:58:59+00:00"
+    },
+    {
+      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 2,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065912-964929.log",
+      "started_at": "2026-08-15T06:59:12+00:00",
+      "time": "2026-08-15T06:59:15+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065933-788579.log",
+      "started_at": "2026-08-15T06:59:33+00:00",
+      "time": "2026-08-15T06:59:37+00:00"
+    },
+    {
+      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065937-519463.log",
+      "started_at": "2026-08-15T06:59:37+00:00",
+      "time": "2026-08-15T06:59:40+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070158-212541.log",
+      "started_at": "2026-08-15T07:01:58+00:00",
+      "time": "2026-08-15T07:02:03+00:00"
+    },
+    {
+      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070203-864261.log",
+      "started_at": "2026-08-15T07:02:03+00:00",
+      "time": "2026-08-15T07:02:06+00:00"
     }
   ],
   "created_at": "2026-06-19T09:19:21+00:00",
@@ -5317,14 +5497,14 @@
       "updated_at": "2026-06-19T09:20:07+00:00"
     }
   ],
-  "updated_at": "2026-08-15T06:51:47+00:00",
+  "updated_at": "2026-08-15T07:02:06+00:00",
   "work_session": {
     "active": true,
     "ended_at": null,
-    "goal": "Add German rounded Lebenslauf fallback HTML CV template to Student Application MCP kit",
-    "id": "WS-20260815-064507-031514",
-    "last_update": "2026-08-15T06:45:07+00:00",
-    "started_at": "2026-08-15T06:45:07+00:00",
-    "task_id": "mcp-cv-template-fallback"
+    "goal": "Add confirmed-enclosure intake and cover-letter rendering rules to Student Application MCP",
+    "id": "WS-20260815-065431-842278",
+    "last_update": "2026-08-15T06:54:31+00:00",
+    "started_at": "2026-08-15T06:54:31+00:00",
+    "task_id": "jobmcp-enclosure-intake"
   }
 }

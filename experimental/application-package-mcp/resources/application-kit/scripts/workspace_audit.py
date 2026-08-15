@@ -13,7 +13,7 @@ import os
 import time
 from pathlib import Path
 
-KIT_VERSION = "2026.08.15-cv-html-fallback.1"
+KIT_VERSION = "2026.08.15-enclosure-intake.1"
 MANAGED = [
     "AGENTS.md", "scripts/application_sop.py", "scripts/mcp_check_client.mjs",
     "application-kit/manifest.json", "application-kit/templates/cover_letter.html",
@@ -65,6 +65,7 @@ def audit(root: Path) -> tuple[dict, dict]:
         "candidate_asset_status": {
             "photo_question_answered": decisions.get("photo") in {"provided", "declined", "not_available"},
             "signature_question_answered": decisions.get("signature") in {"provided", "declined", "not_available", "not_answered_after_request"},
+            "enclosure_question_answered": decisions.get("enclosures") in {"cv_only_warned", "cv_plus_diploma", "cv_plus_reference", "cv_plus_two_or_more", "custom_confirmed"},
         },
     }
     report = {

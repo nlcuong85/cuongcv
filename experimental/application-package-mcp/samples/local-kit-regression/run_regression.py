@@ -139,8 +139,6 @@ def parse_source_cover_letter(tex_path: Path) -> dict[str, object]:
     signature_name = latex_unescape(signature_name_match.group(1)) if signature_name_match else block_to_lines(sender_block)[0]
     signature_path_match = re.search(r"\\includegraphics\[width=9cm\]\{(.+?)\}", tex)
     signature_path = latex_unescape(signature_path_match.group(1)) if signature_path_match else ""
-    generated_pdfs = sorted(out.glob("cover-letter-*.pdf"))
-
     return {
         "sender_lines": block_to_lines(sender_block),
         "recipient_lines": block_to_lines(recipient_block),
@@ -480,6 +478,7 @@ def run_case(case: dict[str, object]) -> dict[str, object]:
     )
     manifest = json.loads((out / "manifest.json").read_text(encoding="utf-8"))
     generated_tex = (out / "cover-letter.tex").read_text(encoding="utf-8") if (out / "cover-letter.tex").exists() else ""
+    generated_pdfs = sorted(out.glob("cover-letter-*.pdf"))
     source_tex = (source_output / "cover-letter" / "cover_letter.tex").read_text(encoding="utf-8")
     generated_cv = (out / "cv-tailored.md").read_text(encoding="utf-8") if (out / "cv-tailored.md").exists() else ""
     source_cv = json.loads(Path(case["cv_json"]).read_text(encoding="utf-8"))  # type: ignore[arg-type]

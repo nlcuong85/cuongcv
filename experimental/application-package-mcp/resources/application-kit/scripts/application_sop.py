@@ -193,6 +193,8 @@ def decision_gate(state: dict[str, Any], document: str) -> list[str]:
         missing.append("photo question has not been answered")
     if document == "cover-letter" and state.get("decisions", {}).get("signature") not in {"provided", "declined", "not_available", "not_answered_after_request"}:
         missing.append("signature has not been requested/recorded")
+    if document == "cover-letter" and state.get("decisions", {}).get("enclosures") not in {"cv_only_warned", "cv_plus_diploma", "cv_plus_reference", "cv_plus_two_or_more", "custom_confirmed"}:
+        missing.append("cover-letter enclosure choices have not been recorded")
     if not state.get("manifest_audit") or state["manifest_audit"].get("status") != "workspace_current":
         missing.append("current workspace audit is missing")
     return missing
@@ -395,7 +397,7 @@ def cmd_diagnose(args: argparse.Namespace) -> int:
 def cmd_health(args: argparse.Namespace) -> int:
     root = Path(args.root).resolve(); state = load(root)
     snapshot = bool(state.get("snapshot")); active = bool(state.get("active"))
-    status = {"snapshot_present": snapshot, "active_task": active, "photo_decision": state.get("decisions", {}).get("photo"), "signature_decision": state.get("decisions", {}).get("signature"), "voice_intake": voice_intake_status(state), "workspace_audit": (state.get("manifest_audit") or {}).get("status"), "review_records": len(state.get("review_records", [])), "release_receipts": len(list((root / STATE_DIR / "receipts").glob("*.json"))) if (root / STATE_DIR / "receipts").exists() else 0}
+    status = {"snapshot_present": snapshot, "active_task": active, "photo_decision": state.get("decisions", {}).get("photo"), "signature_decision": state.get("decisions", {}).get("signature"), "enclosure_decision": state.get("decisions", {}).get("enclosures"), "voice_intake": voice_intake_status(state), "workspace_audit": (state.get("manifest_audit") or {}).get("status"), "review_records": len(state.get("review_records", [])), "release_receipts": len(list((root / STATE_DIR / "receipts").glob("*.json"))) if (root / STATE_DIR / "receipts").exists() else 0}
     print(json.dumps(status, indent=2))
     return 0 if snapshot else 1
 
@@ -406,7 +408,7 @@ def parser() -> argparse.ArgumentParser:
     commands = value.add_subparsers(dest="command", required=True)
     boot = commands.add_parser("boot"); boot.add_argument("--strict", action="store_true"); boot.set_defaults(func=cmd_boot)
     start = commands.add_parser("start"); start.add_argument("--task-id", required=True); start.add_argument("--job", required=True); start.add_argument("--goal", required=True); start.set_defaults(func=cmd_start)
-    decision = commands.add_parser("record-decision"); decision.add_argument("--name", choices=["photo", "signature", "voice"], required=True); decision.add_argument("--value", required=True); decision.set_defaults(func=cmd_decision)
+    decision = commands.add_parser("record-decision"); decision.add_argument("--name", choices=["photo", "signature", "voice", "enclosures"], required=True); decision.add_argument("--value", required=True); decision.set_defaults(func=cmd_decision)
     voice_status = commands.add_parser("voice-intake-status"); voice_status.set_defaults(func=cmd_voice_intake_status)
     voice_record = commands.add_parser("record-voice-intake"); voice_record.add_argument("--status", choices=["pending", "collecting", "revisit_later", "enough", "declined"], required=True); voice_record.add_argument("--source-count", type=int, default=0); voice_record.add_argument("--remind-after-days", type=int, default=45); voice_record.add_argument("--note", default=""); voice_record.set_defaults(func=cmd_record_voice_intake)
     manifest = commands.add_parser("record-manifest-audit"); manifest.add_argument("--report", required=True); manifest.set_defaults(func=cmd_record_manifest)

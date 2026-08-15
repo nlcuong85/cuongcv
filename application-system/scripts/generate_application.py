@@ -683,6 +683,14 @@ def enclosure_lines(intake: dict[str, Any]) -> list[str]:
     return [str(item).strip() for item in values if str(item).strip()]
 
 
+def latex_enclosure_items(intake: dict[str, Any]) -> str:
+    return "\n".join(f"\\item {latex_escape(item)}" for item in enclosure_lines(intake))
+
+
+def html_enclosure_items(intake: dict[str, Any]) -> str:
+    return "\n".join(f"<li>{html_escape(item)}</li>" for item in enclosure_lines(intake))
+
+
 def summarize_evidence_for_cover_letter(selected: list[dict[str, Any]]) -> tuple[str, str]:
     first = selected[0]
     second = selected[1] if len(selected) > 1 else selected[0]
@@ -871,6 +879,7 @@ def build_cover_letter_context(
         "SIGNATURE_NAME": latex_escape(profile["name"]),
         "SIGNATURE_PATH": latex_escape(prepared_signature_path or signature_path()),
         "ENCLOSURES": latex_escape(", ".join(enclosure_lines(intake))),
+        "ENCLOSURE_ITEMS": latex_enclosure_items(intake),
         "ROLE_LABEL": latex_escape(role["label"]),
         "EVIDENCE_IDS": latex_escape(", ".join(item["id"] for item in selected_evidence)),
         "COMPANY_NAME": latex_escape(intake["company_name"]),
@@ -905,6 +914,7 @@ def build_cover_letter_html_context(
         "SIGNATURE_NAME": html_escape(profile["name"]),
         "SIGNATURE_PATH": html_escape(prepared_signature_path or signature_path()),
         "ENCLOSURES": html_escape(", ".join(enclosure_lines(intake))),
+        "ENCLOSURE_ITEMS_HTML": html_enclosure_items(intake),
         "ROLE_LABEL": html_escape(role["label"]),
         "EVIDENCE_IDS": html_escape(", ".join(item["id"] for item in selected_evidence)),
         "COMPANY_NAME": html_escape(intake["company_name"]),

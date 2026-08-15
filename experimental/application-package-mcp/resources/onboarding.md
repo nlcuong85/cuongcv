@@ -45,7 +45,9 @@ student-application-workspace/
 
 For CV and cover-letter work, use the local `application_sop.py` from the public application kit. It is a client-side hard gate: strict boot checks local workspace drift, work is recorded locally, and final documents need a local release receipt. The MCP does not read the workspace; it receives selected text or a privacy-safe structure manifest only.
 
-Ask the student for their target role/JD, current CV, preferred CV format, optional supporting/voice material, photo decision, and optional signature. Recommend that they write 10 authentic bullets per employer (15 is better); use four or five verified bullets per employer for a tailored CV. A CV gets one review loop; a cover letter gets three distinct review loops.
+Ask the student for their target role/JD, current CV, preferred CV format, optional supporting/voice material, photo decision, optional signature, and confirmed cover-letter enclosures. Recommend that they write 10 authentic bullets per employer (15 is better); use four or five verified bullets per employer for a tailored CV. A CV gets one review loop; a cover letter gets three distinct review loops.
+
+For enclosures, the CV/Lebenslauf is mandatory. Specifically ask whether the student can provide a Bachelor degree diploma or transcript/certificate, and whether they can provide a reference letter or employer certificate from a previous employer. Include only documents the student confirms they can attach. If the student only has the CV, warn plainly that the application package is weaker with fewer than two attachments and recommend adding at least one proof document; if they cannot provide it, do not mention it in the enclosure list.
 
 For CV format, ask first whether the student already has a preferred PDF, DOCX, HTML, screenshot, or template. If yes, convert/extract it locally, rebuild it as editable HTML, and use browser/Playwright screenshots in a loop until the generated HTML matches the reference structure before calling it passed. If the student has no preferred format, suggest the bundled German rounded Lebenslauf fallback in `application-kit/templates/cv_german_rounded.html`.
 

@@ -38,6 +38,20 @@ The generated `cover-letter.tex` must use the provided `templates/cover_letter.t
   Chrome/Skia, Helvetica, Arial, TeX Gyre Heros, or an unbundled system font
   unless the user explicitly changes the visual baseline.
 
+## Enclosure Intake Rule
+
+Ask the student what documents they will attach before rendering the cover letter. The CV/Lebenslauf is mandatory. Specifically ask whether they can provide a Bachelor degree diploma or transcript/certificate, and whether they can provide a reference letter or employer certificate from a previous employer.
+
+Only list confirmed attachments in `enclosures`. If the student cannot provide a diploma or reference, do not mention that document. If the list has fewer than two enclosures, warn the student that the package is weaker and recommend adding at least one proof document, then continue if they confirm they cannot provide one.
+
+Record this decision in the local SOP before review:
+
+```bash
+python3 scripts/application_sop.py --root . record-decision --name enclosures --value cv_plus_two_or_more
+```
+
+Use `cv_only_warned` only after the student confirms they only have a CV and the weakness warning has been given.
+
 ## Fixed Paragraph Order
 
 The cover letter body must contain exactly five paragraphs in this order:
@@ -88,7 +102,7 @@ Hard limits:
 
 - total body text: maximum 1,950 characters
 - opening paragraph: maximum 390 characters
-- body paragraph one: maximum 430 characters
+- body paragraph one: maximum 450 characters
 - body paragraph two: maximum 540 characters
 - motivation paragraph: maximum 390 characters
 - closing paragraph: maximum 360 characters
@@ -123,8 +137,7 @@ The local AI agent must create:
   "signature_path": "",
   "enclosures": [
     "Curriculum Vitae",
-    "Bachelor Degree Diploma",
-    "Reference letter from previous employers"
+    "Bachelor Degree Diploma"
   ]
 }
 ```
@@ -137,6 +150,7 @@ The local validator must fail when:
 - PDF has more than one page
 - generated `.tex` changes the fixed layout contract
 - any required paragraph is missing
+- enclosure list is missing or does not include the CV/Lebenslauf
 - paragraph count is not five
 - any paragraph exceeds its length budget
 - `/OpenAction`, `/AA`, `/JavaScript`, or `/JS` appears in the PDF bytes
@@ -147,6 +161,8 @@ The local validator must fail when:
 - applicant-facing text uses unsupported-looking overclaim language such as `perfect candidate`, `expert in`, or `proven track record`
 
 When validation fails, the local AI agent must revise `cover-letter-draft.json` and rerun the renderer. It must not manually edit the LaTeX template.
+
+When validation warns that the package has fewer than two enclosures, the agent must tell the student the package is weaker and ask once whether they can add a diploma/transcript or reference/employer certificate. If they cannot, keep only the confirmed enclosure items.
 
 ## Human Writing Validation
 

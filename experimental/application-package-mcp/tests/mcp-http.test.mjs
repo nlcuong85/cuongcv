@@ -139,7 +139,10 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.match(agentsTemplate.content, /voice-intake-status/);
       assert.match(agentsTemplate.content, /IELTS writing/);
       assert.match(agentsTemplate.content, /suppresses all future unsolicited reminders/);
+      assert.match(agentsTemplate.content, /enclosure list/i);
+      assert.match(agentsTemplate.content, /cv_only_warned/);
       assert.match(claudeTemplate.content, /never ask them again/i);
+      assert.match(claudeTemplate.content, /Cover-Letter Enclosure Rule/);
 
       const skillResult = await client.callTool({ name: "get_client_skill", arguments: {} });
       const skill = JSON.parse(skillResult.content[0].text);
@@ -174,6 +177,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       const coverLetterTemplate = kit.files.find((file) => file.path === "templates/cover_letter.tex");
       assert.match(coverLetterTemplate.content, /usepackage\[T1\]\{fontenc\}/);
       assert.match(coverLetterTemplate.content, /usepackage\{lmodern\}/);
+      assert.match(coverLetterTemplate.content, /@@ENCLOSURE_ITEMS@@/);
       const coverLetterHtmlTemplate = kit.files.find((file) => file.path === "templates/cover_letter.html");
       assert.match(coverLetterHtmlTemplate.content, /Georgia/);
       const cvTemplate = kit.files.find((file) => file.path === "templates/cv_german_rounded.html");
@@ -182,6 +186,9 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       const cvContract = kit.files.find((file) => file.path === "contracts/cv-markdown-contract.md");
       assert.match(cvContract.content, /preferred CV format/);
       assert.match(cvContract.content, /Playwright/);
+      const coverLetterContract = kit.files.find((file) => file.path === "contracts/cover-letter-contract.md");
+      assert.ok(coverLetterContract.content.includes("CV/Lebenslauf is mandatory"));
+      assert.match(coverLetterContract.content, /fewer than two enclosures/);
 
       const checkResult = await client.callTool({
         name: "check_writing_human_fit",

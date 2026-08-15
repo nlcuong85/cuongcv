@@ -37,6 +37,7 @@ Ask for my target role and job description or URL. Ask me to provide my current 
 For each company in my experience, list the employer and ask me to write at least 10 authentic achievement/work bullets myself (15 is even better). Remind me not to use AI to invent these bullets.
 Invite supporting documents and real writing samples, explain what they improve, and record if I choose a generic voice instead.
 Ask whether I want to provide a CV photo. Ask for a signature image for the cover letter, but continue if I do not have one.
+Ask which cover-letter enclosures I can attach. CV/Lebenslauf is mandatory. Ask whether I can provide a Bachelor diploma/transcript and a previous-employer reference/employer certificate. If I only have the CV, warn me that fewer than two attachments makes the application weaker, then do not list missing documents.
 ```
 
 ## 4. Create A Tailored Editable CV
@@ -54,6 +55,7 @@ Show me the HTML CV, any PDF derivative, and a clear quality report. Run the one
 ```text
 Create a one-page cover letter for jobs/<job-folder> from my verified local evidence and writing voice.
 Use my signature if I provided one; otherwise continue and record that no signature is available.
+Use only the enclosure documents I confirmed. Always include my CV/Lebenslauf; include diploma/transcript or employer reference only if I can attach them.
 Run three separate review and revision loops. In every loop, show the current draft, what changed, and any remaining weak or unsupported point.
 For any private writing check, submit only the selected cover-letter text, never my whole CV, workspace, or job folder.
 Do not call the cover letter ready until the local SOP verifies three distinct current review records and creates a release receipt.
