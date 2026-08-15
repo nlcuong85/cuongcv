@@ -15,9 +15,9 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-15T07:04:58+00:00`
+- updated_at: `2026-08-15T07:06:21+00:00`
 - current_phase: `postflight`
-- active_goal: Implemented confirmed-enclosure intake gate, dynamic cover-letter enclosure rendering, footer version tracking, tests, and production deployment for Student Application MCP.
+- active_goal: Captured Student Application MCP release lessons in AGENTS, MCP README, maintenance notes, and BuilderOps memory.
 - active_task_id: `None`
 - work_session: `WS-20260815-065431-842278` active=`False`
 
@@ -36,11 +36,11 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-08-15T07:04:25+00:00`
-- current: Implemented confirmed-enclosure intake gate, dynamic cover-letter enclosure rendering, footer version tracking, tests, and production deployment for Student Application MCP.
-- next: If needed, run browser screenshot QA of the landing footer and sample prompt page.
+- updated_at: `2026-08-15T07:06:19+00:00`
+- current: Captured Student Application MCP release lessons in AGENTS, MCP README, maintenance notes, and BuilderOps memory.
+- next: Use the documented release checklist before the next MCP production change.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: experimental/application-package-mcp/src/index.ts, experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py, experimental/application-package-mcp/resources/workspace-template/AGENTS.md
+- files: AGENTS.md, experimental/application-package-mcp/README.md, experimental/application-package-mcp/MAINTENANCE_NOTES.md
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
@@ -82,10 +82,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Latest Checkpoints
 
-- `2026-08-15T07:02:06+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
-  - commands_run: python3 samples/local-kit-regression/run_regression.py
-- `2026-08-15T07:03:31+00:00` run: Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run smoke:remote
-  - commands_run: npm run smoke:remote
 - `2026-08-15T07:03:42+00:00` run: Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote
   - commands_run: env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote
 - `2026-08-15T07:03:56+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
@@ -102,6 +98,13 @@ When an agent resumes after context compaction or a new session:
 - `2026-08-15T07:04:58+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
   - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
   - commands_run: python3 SOP.py preflight
+- `2026-08-15T07:06:19+00:00` postflight: Captured Student Application MCP release lessons in AGENTS, MCP README, maintenance notes, and BuilderOps memory.
+  - next_steps: Use the documented release checklist before the next MCP production change.
+  - files_changed: AGENTS.md; experimental/application-package-mcp/README.md; experimental/application-package-mcp/MAINTENANCE_NOTES.md
+  - commands_run: python3 SOP.py postflight
+- `2026-08-15T07:06:21+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
 
 ## Decisions
 

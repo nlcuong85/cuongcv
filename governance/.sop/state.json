@@ -1,5 +1,5 @@
 {
-  "active_goal": "Implemented confirmed-enclosure intake gate, dynamic cover-letter enclosure rendering, footer version tracking, tests, and production deployment for Student Application MCP.",
+  "active_goal": "Captured Student Application MCP release lessons in AGENTS, MCP README, maintenance notes, and BuilderOps memory.",
   "active_task_id": null,
   "checkpoints": [
     {
@@ -2071,6 +2071,37 @@
       "open_questions": [],
       "summary": "Preflight completed: status, resume brief, and audit check were run.",
       "time": "2026-08-15T07:04:58+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "AGENTS.md",
+        "experimental/application-package-mcp/README.md",
+        "experimental/application-package-mcp/MAINTENANCE_NOTES.md"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "Use the documented release checklist before the next MCP production change."
+      ],
+      "open_questions": [],
+      "summary": "Captured Student Application MCP release lessons in AGENTS, MCP README, maintenance notes, and BuilderOps memory.",
+      "time": "2026-08-15T07:06:19+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-15T07:06:21+00:00"
     }
   ],
   "command_log": [
@@ -2488,15 +2519,15 @@
     "commands": [
       "python3 SOP.py postflight"
     ],
-    "current": "Implemented confirmed-enclosure intake gate, dynamic cover-letter enclosure rendering, footer version tracking, tests, and production deployment for Student Application MCP.",
+    "current": "Captured Student Application MCP release lessons in AGENTS, MCP README, maintenance notes, and BuilderOps memory.",
     "files": [
-      "experimental/application-package-mcp/src/index.ts",
-      "experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py",
-      "experimental/application-package-mcp/resources/workspace-template/AGENTS.md"
+      "AGENTS.md",
+      "experimental/application-package-mcp/README.md",
+      "experimental/application-package-mcp/MAINTENANCE_NOTES.md"
     ],
-    "next": "If needed, run browser screenshot QA of the landing footer and sample prompt page.",
+    "next": "Use the documented release checklist before the next MCP production change.",
     "risk": "Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.",
-    "updated_at": "2026-08-15T07:04:25+00:00"
+    "updated_at": "2026-08-15T07:06:19+00:00"
   },
   "kiro": {
     "active_spec": "resilient-application-mcp",
@@ -2613,7 +2644,7 @@
   "open_questions": [],
   "repo": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
   "repo_snapshot": {
-    "created_at": "2026-08-15T07:04:26+00:00",
+    "created_at": "2026-08-15T07:06:21+00:00",
     "directories": [
       ".github",
       ".github/workflows",
@@ -2792,7 +2823,7 @@
       "tests"
     ],
     "directory_count": 175,
-    "file_count": 706,
+    "file_count": 707,
     "files": {
       ".github/workflows/deploy.yml": {
         "mtime": 1756829608,
@@ -2907,8 +2938,8 @@
         "size": 5944
       },
       "AGENTS.md": {
-        "mtime": 1786729208,
-        "size": 25763
+        "mtime": 1786777524,
+        "size": 27536
       },
       "DEUTSCH_B2_6_MONTH_PLAN_2026-03-31.md": {
         "mtime": 1774911223,
@@ -3286,9 +3317,13 @@
         "mtime": 1786729122,
         "size": 630
       },
+      "experimental/application-package-mcp/MAINTENANCE_NOTES.md": {
+        "mtime": 1786777557,
+        "size": 3042
+      },
       "experimental/application-package-mcp/README.md": {
-        "mtime": 1786775152,
-        "size": 2272
+        "mtime": 1786777557,
+        "size": 3534
       },
       "experimental/application-package-mcp/dist/checker.js": {
         "mtime": 1786777434,
@@ -5657,7 +5692,7 @@
       "updated_at": "2026-06-19T09:20:07+00:00"
     }
   ],
-  "updated_at": "2026-08-15T07:04:58+00:00",
+  "updated_at": "2026-08-15T07:06:21+00:00",
   "work_session": {
     "active": false,
     "ended_at": "2026-08-15T07:04:25+00:00",
