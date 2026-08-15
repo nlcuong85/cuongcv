@@ -1,5 +1,5 @@
 {
-  "active_goal": "Committed, pushed, and deployed Job MCP v0.2.14 blue site refresh to production. Production health and remote MCP smoke passed.",
+  "active_goal": "Release local Job MCP UI refresh with ASCII section, copy buttons, brand rename, and cover-letter showcase to production.",
   "active_task_id": null,
   "checkpoints": [
     {
@@ -3742,97 +3742,167 @@
       "open_questions": [],
       "summary": "Postflight recorded fresh repository snapshot.",
       "time": "2026-08-15T12:21:57+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-204531-678591.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T20:45:37+00:00"
+    },
+    {
+      "commands_run": [
+        "npm run build"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-204537-324273.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build",
+      "time": "2026-08-15T20:45:38+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py handoff"
+      ],
+      "files_changed": [],
+      "label": "handoff",
+      "next_steps": [
+        "User reviews local landing page; if approved, run full local regression, commit, push, and deploy separately."
+      ],
+      "open_questions": [],
+      "summary": "Handoff updated: Integrated animated Dragon Gate ASCII section into local Student Application AI Helper landing page source and validated local render at http://127.0.0.1:5948/.",
+      "time": "2026-08-15T20:46:16+00:00"
+    },
+    {
+      "commands_run": [
+        "npm run build"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-204921-778706.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build",
+      "time": "2026-08-15T20:49:24+00:00"
+    },
+    {
+      "commands_run": [
+        "npm run build"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-204954-954153.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build",
+      "time": "2026-08-15T20:49:56+00:00"
+    },
+    {
+      "commands_run": [
+        "npm run build"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-213624-984564.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build",
+      "time": "2026-08-15T21:36:26+00:00"
+    },
+    {
+      "commands_run": [
+        "npm run build"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-214157-469183.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build",
+      "time": "2026-08-15T21:41:58+00:00"
+    },
+    {
+      "commands_run": [
+        "npm run build"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-214245-381522.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build",
+      "time": "2026-08-15T21:42:46+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py handoff"
+      ],
+      "files_changed": [],
+      "label": "handoff",
+      "next_steps": [
+        "User reviews http://127.0.0.1:5948/ and http://127.0.0.1:5948/examples. If approved later, run full local regression, commit, push, and deploy in a separate release step."
+      ],
+      "open_questions": [],
+      "summary": "Handoff updated: Updated local Job MCP public UI: brand renamed to Job MCP by pmlecuong with suitcase mark; examples cover-letter sample redesigned as a polished showcase; copy buttons and ASCII section remain local.",
+      "time": "2026-08-15T21:43:07+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-214929-249029.log",
+      "summary": "Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T21:49:33+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-214933-909078.log",
+      "summary": "Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T21:49:37+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-215001-943093.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T21:50:06+00:00"
+    },
+    {
+      "commands_run": [
+        "env APPLICATION_MCP_URL=http://127.0.0.1:5948/mcp python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-215006-687911.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5948/mcp python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T21:50:13+00:00"
     }
   ],
   "command_log": [
-    {
-      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 2,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100546-063273.log",
-      "started_at": "2026-08-15T10:05:46+00:00",
-      "time": "2026-08-15T10:05:49+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100611-551044.log",
-      "started_at": "2026-08-15T10:06:11+00:00",
-      "time": "2026-08-15T10:06:14+00:00"
-    },
-    {
-      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100622-958475.log",
-      "started_at": "2026-08-15T10:06:22+00:00",
-      "time": "2026-08-15T10:06:25+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100739-711657.log",
-      "started_at": "2026-08-15T10:07:39+00:00",
-      "time": "2026-08-15T10:07:43+00:00"
-    },
-    {
-      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100755-738770.log",
-      "started_at": "2026-08-15T10:07:55+00:00",
-      "time": "2026-08-15T10:07:58+00:00"
-    },
-    {
-      "command": "env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-100758-797725.log",
-      "started_at": "2026-08-15T10:07:58+00:00",
-      "time": "2026-08-15T10:07:59+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 1,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-101857-296730.log",
-      "started_at": "2026-08-15T10:18:57+00:00",
-      "time": "2026-08-15T10:19:01+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 1,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-101908-874388.log",
-      "started_at": "2026-08-15T10:19:08+00:00",
-      "time": "2026-08-15T10:19:12+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-101920-412666.log",
-      "started_at": "2026-08-15T10:19:20+00:00",
-      "time": "2026-08-15T10:19:24+00:00"
-    },
-    {
-      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 2,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-101934-885955.log",
-      "started_at": "2026-08-15T10:19:34+00:00",
-      "time": "2026-08-15T10:19:38+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102037-459678.log",
-      "started_at": "2026-08-15T10:20:37+00:00",
-      "time": "2026-08-15T10:20:41+00:00"
-    },
     {
       "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
@@ -4144,6 +4214,94 @@
       "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-121129-475313.log",
       "started_at": "2026-08-15T12:11:29+00:00",
       "time": "2026-08-15T12:11:33+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-204531-678591.log",
+      "started_at": "2026-08-15T20:45:31+00:00",
+      "time": "2026-08-15T20:45:37+00:00"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-204537-324273.log",
+      "started_at": "2026-08-15T20:45:37+00:00",
+      "time": "2026-08-15T20:45:38+00:00"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-204921-778706.log",
+      "started_at": "2026-08-15T20:49:21+00:00",
+      "time": "2026-08-15T20:49:24+00:00"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-204954-954153.log",
+      "started_at": "2026-08-15T20:49:54+00:00",
+      "time": "2026-08-15T20:49:56+00:00"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-213624-984564.log",
+      "started_at": "2026-08-15T21:36:24+00:00",
+      "time": "2026-08-15T21:36:26+00:00"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-214157-469183.log",
+      "started_at": "2026-08-15T21:41:57+00:00",
+      "time": "2026-08-15T21:41:58+00:00"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-214245-381522.log",
+      "started_at": "2026-08-15T21:42:45+00:00",
+      "time": "2026-08-15T21:42:46+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 1,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-214929-249029.log",
+      "started_at": "2026-08-15T21:49:29+00:00",
+      "time": "2026-08-15T21:49:33+00:00"
+    },
+    {
+      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 2,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-214933-909078.log",
+      "started_at": "2026-08-15T21:49:33+00:00",
+      "time": "2026-08-15T21:49:37+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-215001-943093.log",
+      "started_at": "2026-08-15T21:50:01+00:00",
+      "time": "2026-08-15T21:50:06+00:00"
+    },
+    {
+      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5948/mcp python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-215006-687911.log",
+      "started_at": "2026-08-15T21:50:06+00:00",
+      "time": "2026-08-15T21:50:13+00:00"
     }
   ],
   "created_at": "2026-06-19T09:19:21+00:00",
@@ -4156,17 +4314,12 @@
     }
   ],
   "handoff": {
-    "commands": [
-      "python3 SOP.py postflight"
-    ],
-    "current": "Committed, pushed, and deployed Job MCP v0.2.14 blue site refresh to production. Production health and remote MCP smoke passed.",
-    "files": [
-      "experimental/application-package-mcp/src/index.ts",
-      "experimental/application-package-mcp/package.json"
-    ],
-    "next": "Monitor user review; rollback tag rollback/jobmcp-20260815-141427-9e2812b is available on Franklee if needed.",
-    "risk": "Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.",
-    "updated_at": "2026-08-15T12:21:56+00:00"
+    "commands": [],
+    "current": "Updated local Job MCP public UI: brand renamed to Job MCP by pmlecuong with suitcase mark; examples cover-letter sample redesigned as a polished showcase; copy buttons and ASCII section remain local.",
+    "files": [],
+    "next": "User reviews http://127.0.0.1:5948/ and http://127.0.0.1:5948/examples. If approved later, run full local regression, commit, push, and deploy in a separate release step.",
+    "risk": "Do not deploy or commit until user explicitly approves the local UI direction.",
+    "updated_at": "2026-08-15T21:43:07+00:00"
   },
   "kiro": {
     "active_spec": "resilient-application-mcp",
@@ -7498,14 +7651,14 @@
       "updated_at": "2026-06-19T09:20:07+00:00"
     }
   ],
-  "updated_at": "2026-08-15T12:21:57+00:00",
+  "updated_at": "2026-08-15T21:50:13+00:00",
   "work_session": {
-    "active": false,
-    "ended_at": "2026-08-15T12:12:37+00:00",
-    "goal": "Reduce oversized Job MCP page display headings globally for blue Hermes-style pages",
-    "id": "WS-20260815-121038-689604",
-    "last_update": "2026-08-15T12:12:37+00:00",
-    "started_at": "2026-08-15T12:10:38+00:00",
-    "task_id": "jobmcp-heading-scale-tuning"
+    "active": true,
+    "ended_at": null,
+    "goal": "Release local Job MCP UI refresh with ASCII section, copy buttons, brand rename, and cover-letter showcase to production.",
+    "id": "WS-20260815-204306-967966",
+    "last_update": "2026-08-15T21:49:15+00:00",
+    "started_at": "2026-08-15T20:43:06+00:00",
+    "task_id": "jobmcp-ui-refresh-prod"
   }
 }

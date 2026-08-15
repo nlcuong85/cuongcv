@@ -74,7 +74,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.equal(health.persistentProfiles, false);
 
     const landing = await fetch(`http://127.0.0.1:${port}/`).then((response) => response.text());
-    assert.match(landing, /Student Application AI Helper/);
+    assert.match(landing, /Job MCP by pmlecuong/);
     assert.match(landing, /Real evidence\. Stronger applications/);
     assert.match(landing, /Draft local\. Review selected text/);
     assert.match(landing, /Start setup/);

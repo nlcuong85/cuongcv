@@ -16,7 +16,7 @@ import {
   samplePromptsDocument
 } from "./resources.js";
 
-const VERSION = "0.2.14";
+const VERSION = "0.2.15";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
@@ -472,7 +472,7 @@ async function renderMarkdownAsHtml(markdown: string, title: string): Promise<st
     "<main>",
     '<section class="hero">',
     '<div class="status">LOCAL-FIRST APPLICATION WORKSPACE</div>',
-    "<h1>Student Application AI Helper</h1>",
+    "<h1>Job MCP by pmlecuong</h1>",
     "<p>A guided local workflow for preparing evidence, an editable CV, and a reviewed cover letter. The MCP supplies safe kit guidance and optional selected-text feedback; the private application workspace stays on the candidate laptop.</p>",
     '<div class="kit">',
     `<div><strong>Kit version</strong>${escapeHtml(String(kitManifest.version))}</div>`,
@@ -963,7 +963,7 @@ function renderSiteNav(active = ""): string {
     ["/technical-flow", "Technical"]
   ];
   return `<nav class="site-nav" aria-label="Main navigation">
-    <a class="brand" href="/"><span class="brand-mark">◇</span><span>Student Application<br>AI Helper</span></a>
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M8 8V6.6C8 5.7 8.7 5 9.6 5h4.8c.9 0 1.6.7 1.6 1.6V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M4.8 8h14.4c.9 0 1.6.7 1.6 1.6v7.8c0 .9-.7 1.6-1.6 1.6H4.8c-.9 0-1.6-.7-1.6-1.6V9.6c0-.9.7-1.6 1.6-1.6Z" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 13h17M10 13v1.1h4V13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span>Job MCP<em>by pmlecuong</em></span></a>
     <div class="navlinks">${items
       .map(([href, label]) => `<a${active === href ? ' aria-current="page"' : ""} href="${href}">${label}</a>`)
       .join("")}</div>
@@ -989,14 +989,14 @@ function renderSiteChrome(title: string, active: string, body: string, bodyClass
 * { box-sizing:border-box; } html { scroll-behavior:smooth; overflow-x:hidden; } body { margin:0; overflow-x:hidden; color:var(--ink); background:var(--paper); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
 a { color:inherit; } code, pre { font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; } .blue-page { background:var(--blue); color:white; }
 .site-nav { position:relative; z-index:5; min-height:84px; width:min(1220px, calc(100% - 44px)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:22px; }
-.brand { display:flex; align-items:center; gap:11px; color:inherit; text-decoration:none; font-weight:900; line-height:.92; letter-spacing:-.04em; } .brand-mark { display:grid; place-items:center; width:34px; height:34px; border:1px solid currentColor; border-radius:50%; font-size:16px; }
+.brand { display:flex; align-items:center; gap:12px; color:inherit; text-decoration:none; font-weight:900; line-height:.92; letter-spacing:-.04em; } .brand-mark { display:grid; place-items:center; width:38px; height:34px; border:1px solid currentColor; border-radius:10px; font-size:16px; } .brand-mark svg { width:22px; height:22px; display:block; } .brand em { display:block; margin-top:2px; font-style:normal; font-size:11px; letter-spacing:.04em; opacity:.82; }
 .navlinks { display:flex; gap:24px; align-items:center; flex-wrap:wrap; font-size:13px; font-weight:850; letter-spacing:.08em; text-transform:uppercase; } .navlinks a { text-decoration:none; opacity:.82; } .navlinks a:hover, .navlinks a[aria-current="page"] { opacity:1; text-decoration:underline; text-underline-offset:5px; }
 .home-hero { min-height:calc(100svh - 84px); width:min(1220px, calc(100% - 44px)); margin:0 auto; display:grid; grid-template-columns:minmax(0,.86fr) minmax(390px,.78fr); gap:82px; align-items:center; padding:54px 0 86px; }
 .mono { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; text-transform:uppercase; letter-spacing:.22em; font-size:12px; font-weight:800; }
 h1 { margin:18px 0 22px; max-width:660px; font-family:Georgia,"Times New Roman",serif; font-size:clamp(48px,6.1vw,82px); line-height:.88; letter-spacing:-.06em; font-weight:400; text-transform:uppercase; }
 .lead { max-width:660px; margin:0; color:var(--muted); font-size:clamp(18px,2vw,24px); line-height:1.45; } .blue-panel .lead, .blue-page .lead { color:rgba(255,255,255,.82); }
 .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:32px; } .button { display:inline-flex; min-height:48px; align-items:center; justify-content:center; padding:0 20px; border:1px solid currentColor; text-decoration:none; font-weight:900; font-size:13px; letter-spacing:.08em; text-transform:uppercase; transition:transform .16s ease, background .16s ease; } .button:hover { transform:translateY(-2px); } .button.primary { background:var(--yellow); color:var(--blue); border-color:var(--yellow); } .button.secondary { background:transparent; color:inherit; }
-.command { margin-top:26px; width:min(100%,620px); background:var(--white); color:var(--blue); border:1px solid rgba(255,255,255,.52); box-shadow:0 26px 80px rgba(0,0,0,.22); } .command-tabs { display:flex; gap:18px; padding:14px 17px 0; color:rgba(0,0,242,.62); font-size:12px; font-weight:900; } .command pre { margin:0; padding:17px; white-space:pre-wrap; line-height:1.5; font-size:13px; }
+.command { margin-top:26px; width:min(100%,620px); background:var(--white); color:var(--blue); border:1px solid rgba(255,255,255,.52); box-shadow:0 26px 80px rgba(0,0,0,.22); } .command-tabs { display:flex; justify-content:space-between; align-items:center; gap:18px; padding:14px 17px 0; color:rgba(0,0,242,.62); font-size:12px; font-weight:900; } .command-labels { display:flex; gap:18px; flex-wrap:wrap; } .command pre { margin:0; padding:17px; white-space:pre-wrap; line-height:1.5; font-size:13px; }
 .blue-panel { margin:0 max(22px, calc((100% - 1320px)/2)); background:var(--blue); color:white; border:1px solid rgba(9,11,16,.1); box-shadow:0 36px 90px rgba(7,29,255,.18); } .blue-panel .home-hero { min-height:calc(100svh - 120px); } .blue-page .blue-panel { margin:0; background:transparent; border:0; box-shadow:none; } .blue-page .blue-panel .home-hero { min-height:calc(100svh - 84px); }
 .signal-card { position:relative; min-height:560px; padding:32px; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.32); box-shadow:0 40px 90px rgba(0,0,0,.18); } .signal-card:before { content:""; position:absolute; inset:-18%; background:radial-gradient(circle at 72% 16%, rgba(237,255,69,.95) 0 13%, transparent 14%), repeating-linear-gradient(90deg, rgba(255,255,255,.35) 0 1px, transparent 1px 32px), repeating-linear-gradient(0deg, rgba(255,255,255,.22) 0 1px, transparent 1px 32px); opacity:.55; } .signal-card > * { position:relative; z-index:1; }
 .signal-card h2 { margin:0; max-width:390px; font-family:Georgia,"Times New Roman",serif; font-weight:400; font-size:clamp(34px,3.8vw,54px); line-height:.92; letter-spacing:-.052em; text-transform:uppercase; } .signal-list { display:grid; gap:15px; margin:0; padding:0; list-style:none; } .signal-list li { display:grid; grid-template-columns:36px 1fr; gap:13px; align-items:start; padding-top:15px; border-top:1px solid rgba(255,255,255,.28); } .signal-list b { color:var(--yellow); } .signal-list span { color:rgba(255,255,255,.82); line-height:1.42; }
@@ -1010,25 +1010,236 @@ h1 { margin:18px 0 22px; max-width:660px; font-family:Georgia,"Times New Roman",
 .site-footer { width:min(1220px, calc(100% - 44px)); margin:0 auto; padding:26px 0 42px; display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; color:var(--muted); font-size:13px; } .blue-page .site-footer { color:rgba(255,255,255,.76); } .site-footer a { font-weight:850; }
 .page-hero { width:min(1220px, calc(100% - 44px)); margin:0 auto; padding:74px 0 48px; } .page-hero h1 { max-width:820px; color:inherit; font-size:clamp(50px,6.5vw,88px); } .page-hero .lead { color:var(--muted); } .blue-page .page-hero .lead { color:rgba(255,255,255,.82); }
 .steps { display:grid; gap:1px; margin-top:32px; background:var(--line); border:1px solid var(--line); } .blue-page .steps { background:rgba(255,255,255,.34); border-color:rgba(255,255,255,.34); } .step { display:grid; grid-template-columns:92px 1fr; gap:22px; padding:28px; background:var(--white); } .blue-page .step { background:rgba(255,253,246,.96); color:var(--ink); } .step-number { font-family:Georgia,"Times New Roman",serif; font-size:46px; line-height:1; color:var(--blue); } .step h2 { margin:0 0 8px; font-size:26px; } .step p { margin:0; color:var(--muted); line-height:1.55; }
-.prompt-panel { margin-top:32px; padding:26px; background:var(--dark); color:white; } .prompt-panel pre { white-space:pre-wrap; line-height:1.5; font-size:13px; }
+.copy-button { display:inline-flex; align-items:center; justify-content:center; min-height:32px; padding:0 11px; border:1px solid currentColor; background:transparent; color:inherit; font:inherit; font-size:11px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; opacity:.84; transition:opacity .16s ease, transform .16s ease, background .16s ease, color .16s ease; } .copy-button:hover { opacity:1; transform:translateY(-1px); } .copy-button.copied { background:var(--yellow); color:var(--blue); border-color:var(--yellow); opacity:1; }
+.prompt-panel { margin-top:32px; padding:26px; background:var(--dark); color:white; } .prompt-header { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:16px; } .prompt-panel pre { margin:0; white-space:pre-wrap; line-height:1.5; font-size:13px; }
+.ascii-ritual { display:grid; grid-template-columns:minmax(280px,.42fr) minmax(0,1.08fr); gap:34px; align-items:center; } .ascii-ritual-copy { max-width:430px; } .ascii-terminal { position:relative; overflow:visible; border:0; border-radius:0; background:transparent; box-shadow:none; } .ascii-terminal:before { content:""; position:absolute; inset:6% 0 2%; background:radial-gradient(circle at 48% 50%,rgba(184,255,240,.18),transparent 35%),radial-gradient(circle at 55% 54%,rgba(237,255,69,.16),transparent 24%); filter:blur(2px); animation:ascii-pulse 5.8s ease-in-out infinite; pointer-events:none; } .ascii-terminal-inner { position:relative; padding:0; } .ascii-terminal-bar { display:none; } .ascii-lights { display:none; } .ascii-terminal pre { margin:0; min-height:550px; padding:0; border:0; border-radius:0; background:transparent; color:#d8fff8; text-shadow:0 0 12px rgba(184,255,240,.62),0 0 34px rgba(173,255,95,.24); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:clamp(8px,.9vw,11.5px); line-height:1.16; letter-spacing:-.045em; white-space:pre; overflow:visible; filter:drop-shadow(0 28px 52px rgba(0,0,0,.26)); transform:translateZ(0); } .ascii-caption { display:flex; justify-content:center; gap:18px; padding:12px 0 0; color:rgba(245,251,255,.68); font-size:13px; line-height:1.4; } .ascii-caption span:last-child { display:none; } .ascii-caption strong { color:var(--yellow); } .ascii-bg { color:rgba(158,211,255,.48); } .ascii-water { color:#8feeff; text-shadow:0 0 12px rgba(143,238,255,.28); } .ascii-foam { color:#f5fffd; text-shadow:0 0 18px rgba(236,255,251,.82),0 0 34px rgba(143,238,255,.26); } .ascii-stone-dark { color:#6f89be; } .ascii-stone { color:#c4d6f2; } .ascii-stone-light { color:#fffef0; text-shadow:0 0 18px rgba(184,255,240,.52),0 0 34px rgba(237,255,69,.16); } .ascii-fish { color:#ffe08a; text-shadow:0 0 14px rgba(255,224,138,.86),0 0 34px rgba(173,255,95,.28); } .ascii-dragon { color:#adff5f; text-shadow:0 0 14px rgba(173,255,95,.88),0 0 42px rgba(184,255,240,.36); } @keyframes ascii-pulse { 0%,100% { opacity:.62; transform:scale(.98); } 50% { opacity:1; transform:scale(1.03); } }
 .example-grid.showcase { grid-template-columns:minmax(0,.8fr) minmax(280px,.6fr); align-items:start; } .example-grid.showcase .example-card { min-height:auto; } .sample-frame { padding:18px; background:#eef4ee; border:1px solid #c7d5ca; } .blue-page .sample-frame { background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.28); } .sample-frame img { display:block; width:100%; height:auto; background:white; box-shadow:0 18px 42px rgba(0,0,0,.15); }
+.cover-showcase { display:grid; grid-template-columns:minmax(300px,.48fr) minmax(420px,1fr); gap:0; margin-top:42px; border:1px solid rgba(255,255,255,.32); background:rgba(255,255,255,.08); box-shadow:0 34px 100px rgba(0,0,0,.22); overflow:hidden; } .cover-notes { padding:34px; background:rgba(255,253,246,.97); color:var(--ink); display:flex; flex-direction:column; justify-content:space-between; gap:34px; } .cover-notes .mono { color:var(--blue); } .cover-notes h3 { margin:16px 0 12px; font-size:clamp(34px,3.4vw,52px); line-height:.92; letter-spacing:-.06em; } .cover-notes p { margin:0; color:var(--muted); font-size:17px; line-height:1.55; } .cover-checks { display:grid; gap:12px; margin:22px 0 0; padding:0; list-style:none; } .cover-checks li { display:grid; grid-template-columns:28px 1fr; gap:12px; align-items:start; color:#323846; line-height:1.42; } .cover-checks b { color:var(--blue); } .cover-actions { display:flex; flex-wrap:wrap; gap:10px; } .cover-stage { position:relative; min-height:680px; display:grid; place-items:center; padding:34px; background:radial-gradient(circle at 50% 24%,rgba(237,255,69,.2),transparent 20rem),linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.04)); } .cover-stage:before { content:""; position:absolute; inset:36px; border:1px solid rgba(255,255,255,.28); } .cover-stage:after { content:""; position:absolute; width:420px; height:420px; border-radius:50%; background:rgba(237,255,69,.16); filter:blur(80px); transform:translate(24%, -16%); } .cover-paper-link { position:relative; z-index:1; display:block; width:min(520px,100%); padding:16px; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.32); box-shadow:0 30px 90px rgba(0,0,0,.28); transition:transform .18s ease, box-shadow .18s ease; } .cover-paper-link:hover { transform:translateY(-4px) rotate(.35deg); box-shadow:0 42px 120px rgba(0,0,0,.34); } .cover-paper-link img { display:block; width:100%; height:auto; background:white; box-shadow:0 12px 34px rgba(0,0,0,.18); }
 .doc-layout { width:min(1220px, calc(100% - 44px)); margin:0 auto; display:grid; grid-template-columns:260px minmax(0,1fr); gap:52px; padding:44px 0 86px; } .side { position:sticky; top:24px; align-self:start; display:grid; gap:10px; } .side a { padding:10px 0; color:var(--muted); text-decoration:none; border-bottom:1px solid var(--line); font-weight:800; } .doc-main h1 { margin-top:0; font-family:Inter,ui-sans-serif,system-ui,sans-serif; font-size:clamp(42px,5vw,68px); text-transform:none; letter-spacing:-.06em; } .doc-main h2 { margin:42px 0 12px; font-size:32px; letter-spacing:-.04em; } .doc-main p, .doc-main li { color:var(--muted); line-height:1.65; } .doc-main code { color:var(--blue); font-weight:850; }
 @media (max-width:1100px) { .feature-grid.four-grid, .example-grid.four-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-@media (max-width:900px) { .home-hero, .doc-layout, .checker-layout { grid-template-columns:1fr; } .blue-panel { margin:0; } .signal-card { min-height:420px; } .door-grid, .feature-grid, .example-grid, .privacy-grid, .example-grid.showcase, .doc-grid { grid-template-columns:1fr 1fr; } .feature-grid.four-grid, .example-grid.four-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .site-nav { align-items:flex-start; padding-top:18px; } }
-@media (max-width:560px) { .site-nav, .section, .page-hero, .site-footer, .home-hero, .doc-layout { width:min(100% - 32px,1220px); } .site-nav { display:grid; gap:18px; } .navlinks { gap:13px; font-size:11px; } h1 { font-size:clamp(38px,10.2vw,46px); line-height:.92; letter-spacing:-.042em; overflow-wrap:normal; } .home-hero { padding-top:42px; gap:38px; } .signal-card { min-height:360px; padding:22px; } .signal-card h2 { font-size:clamp(30px,8.6vw,38px); } .section-title { font-size:clamp(29px,8.2vw,38px); line-height:1; letter-spacing:-.048em; } .button { width:100%; } .door-grid, .feature-grid, .feature-grid.four-grid, .example-grid, .example-grid.four-grid, .privacy-grid, .example-grid.showcase, .doc-grid { grid-template-columns:1fr; } .step { grid-template-columns:1fr; gap:10px; } .section { padding:58px 0; } .side { position:static; } .xy-chart { min-height:340px; } .point.checked { left:70%; } .point.checked b,.point.checked p { left:-116px; text-align:right; } .protocol-grid { grid-template-columns:1fr; } }
+@media (max-width:900px) { .home-hero, .doc-layout, .checker-layout, .ascii-ritual, .cover-showcase { grid-template-columns:1fr; } .blue-panel { margin:0; } .signal-card { min-height:420px; } .door-grid, .feature-grid, .example-grid, .privacy-grid, .example-grid.showcase, .doc-grid { grid-template-columns:1fr 1fr; } .feature-grid.four-grid, .example-grid.four-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .site-nav { align-items:flex-start; padding-top:18px; } .ascii-terminal pre { font-size:9px; min-height:440px; } .cover-stage { min-height:auto; } }
+@media (max-width:560px) { .site-nav, .section, .page-hero, .site-footer, .home-hero, .doc-layout { width:min(100% - 32px,1220px); } .site-nav { display:grid; gap:18px; } .navlinks { gap:13px; font-size:11px; } h1 { font-size:clamp(38px,10.2vw,46px); line-height:.92; letter-spacing:-.042em; overflow-wrap:normal; } .home-hero { padding-top:42px; gap:38px; } .signal-card { min-height:360px; padding:22px; } .signal-card h2 { font-size:clamp(30px,8.6vw,38px); } .section-title { font-size:clamp(29px,8.2vw,38px); line-height:1; letter-spacing:-.048em; } .button { width:100%; } .door-grid, .feature-grid, .feature-grid.four-grid, .example-grid, .example-grid.four-grid, .privacy-grid, .example-grid.showcase, .doc-grid { grid-template-columns:1fr; } .step { grid-template-columns:1fr; gap:10px; } .section { padding:58px 0; } .side { position:static; } .xy-chart { min-height:340px; } .point.checked { left:70%; } .point.checked b,.point.checked p { left:-116px; text-align:right; } .protocol-grid { grid-template-columns:1fr; } .ascii-terminal pre { min-height:350px; font-size:5.6px; } .ascii-caption { display:grid; } .cover-notes, .cover-stage { padding:22px; } .cover-paper-link { padding:10px; } }
 </style>
 </head>
 <body class="${bodyClass}">
 ${renderSiteNav(active)}
 ${body}
 ${renderSiteFooter()}
+${renderCopyButtonsScript()}
 </body>
 </html>`;
 }
 
+function renderCopyButtonsScript(): string {
+  return `<script>
+(function () {
+  function fallbackCopy(text) {
+    var area = document.createElement("textarea");
+    area.value = text;
+    area.setAttribute("readonly", "");
+    area.style.position = "fixed";
+    area.style.left = "-9999px";
+    document.body.appendChild(area);
+    area.select();
+    try { document.execCommand("copy"); } finally { document.body.removeChild(area); }
+  }
+  async function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    fallbackCopy(text);
+  }
+  document.addEventListener("click", function (event) {
+    var button = event.target instanceof Element ? event.target.closest("[data-copy-target]") : null;
+    if (!button) return;
+    var selector = button.getAttribute("data-copy-target");
+    if (!selector) return;
+    var scope = button.closest("[data-copy-scope]") || document;
+    var target = scope.querySelector(selector);
+    if (!target) return;
+    var text = target.textContent || "";
+    copyText(text.trim()).then(function () {
+      var original = button.getAttribute("data-copy-label") || button.textContent || "Copy";
+      button.setAttribute("data-copy-label", original);
+      button.textContent = "Copied";
+      button.classList.add("copied");
+      window.setTimeout(function () {
+        button.textContent = original;
+        button.classList.remove("copied");
+      }, 1400);
+    }).catch(function () {
+      button.textContent = "Copy failed";
+      window.setTimeout(function () { button.textContent = button.getAttribute("data-copy-label") || "Copy"; }, 1600);
+    });
+  });
+})();
+</script>`;
+}
+
+function renderDragonGateAsciiScript(): string {
+  return `<script>
+(function () {
+  var canvas = document.getElementById("ascii-dragon-gate");
+  if (!canvas) return;
+  var width = 92;
+  var height = 39;
+  var chars = {
+    lowerWater: ["~", "≈", "˷", "﹏", "∿"],
+    upperWater: ["╌", "─", "≈", "﹏"],
+    spray: ["·", "˙", "˚", "°", "✧"],
+    sparks: ["·", "✦", "✧", "˚"]
+  };
+  function esc(value) {
+    return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  function cell(grid, x, y, ch, cls) {
+    if (y < 0 || y >= height || x < 0 || x >= width) return;
+    grid[y][x] = { ch: ch, cls: cls || "" };
+  }
+  function put(grid, x, y, text, cls) {
+    if (y < 0 || y >= height) return;
+    for (var i = 0; i < text.length; i += 1) {
+      var px = x + i;
+      if (px >= 0 && px < width) cell(grid, px, y, text[i], cls || "");
+    }
+  }
+  function renderGrid(grid) {
+    return grid.map(function (row) {
+      var html = "";
+      var activeClass = null;
+      for (var i = 0; i < row.length; i += 1) {
+        var item = row[i];
+        var cls = item.cls || "";
+        if (cls !== activeClass) {
+          if (activeClass !== null) html += "</span>";
+          html += cls ? "<span class=\\"" + cls + "\\">" : "<span>";
+          activeClass = cls;
+        }
+        html += esc(item.ch);
+      }
+      if (activeClass !== null) html += "</span>";
+      return html;
+    }).join("\\n");
+  }
+  function drawRidge(grid, t) {
+    put(grid, 1, 5, "       ╱╲          ╱╲             ╱╲        distant ridge", "ascii-bg");
+    put(grid, 5, 6, "______/  ╲________/  ╲___________/  ╲____________________", "ascii-bg");
+    put(grid, 4, 8, "                 ╭──────────────────── UPPER RIVER ────────────────────╮", "ascii-stone");
+    for (var y = 6; y <= 10; y += 1) {
+      for (var x = 20; x < 88; x += 1) {
+        if ((x + y + Math.floor(t * 4)) % 4 === 0) cell(grid, x, y + 3, chars.upperWater[(x + y + Math.floor(t * 2)) % chars.upperWater.length], "ascii-water");
+      }
+    }
+    put(grid, 18, 14, "╰──────────────────────────────────────────────────────────────────────╯", "ascii-stone");
+  }
+  function drawDragonGate(grid, t) {
+    var arch = [
+      "              ▄████████▄              ",
+      "          ▄▄██▓▓▒▒░░▒▒▓▓██▄▄          ",
+      "       ▄██▓▒░  ╭────────╮  ░▒▓██▄     ",
+      "     ▄█▓▒░    ╱  VŨ MÔN  ╲    ░▒▓█▄   ",
+      "   ▄█▓▒░     ╱  REVIEW    ╲     ░▒▓█▄ ",
+      "  ██▓▒░     ╱    GATE      ╲     ░▒▓██",
+      "  ██▓▒░    ╱                ╲    ░▒▓██",
+      "  ██▓▒░    ╲                ╱    ░▒▓██",
+      "   ▀█▓▒░    ╲              ╱    ░▒▓█▀ ",
+      "     ▀██▓▒░  ╲____________╱  ░▒▓██▀   ",
+      "        ▀██▓▓▒▒░░░░░░░░▒▒▓▓██▀       ",
+      "           ▀▀████████████▀▀          "
+    ];
+    arch.forEach(function (line, i) {
+      var cls = i < 2 || i > 9 ? "ascii-stone-light" : i < 6 ? "ascii-stone" : "ascii-stone-dark";
+      put(grid, 34, 14 + i, line, cls);
+    });
+    var side = ["                         ╲", "                          ╲▒", "                           ╲▓▒", "                            ╲▓▒░", "                             ╲▓▒░", "                              ╲▓▒", "                               ╲▓", "                                ╲"];
+    side.forEach(function (line, i) { put(grid, 61, 16 + i, line, "ascii-stone-dark"); });
+    for (var y = 14; y < 32; y += 1) {
+      var sway = Math.round(Math.sin(t * 5 + y * 0.45) * 1);
+      put(grid, 50 + sway, y, "┃┃┃", "ascii-foam");
+      put(grid, 54 + sway, y, "╏╏", "ascii-water");
+      put(grid, 58 + sway, y, "│", "ascii-foam");
+      if ((y + Math.floor(t * 10)) % 3 === 0) put(grid, 47 + sway, y, "˚", "ascii-foam");
+      if ((y + Math.floor(t * 7)) % 4 === 0) put(grid, 62 + sway, y, "✧", "ascii-foam");
+    }
+    put(grid, 35, 28, "near face", "ascii-stone");
+    put(grid, 64, 28, "shadow face", "ascii-stone-dark");
+  }
+  function drawLowerRiver(grid, t) {
+    put(grid, 2, 28, "╭──────────────────── LOWER RIVER: raw draft, real effort, first attempt ─────────╮", "ascii-stone");
+    for (var y = 29; y < height; y += 1) {
+      for (var x = 0; x < width; x += 1) {
+        var density = y > 35 ? 2 : y > 32 ? 3 : 4;
+        if ((x + y + Math.floor(t * 6)) % density === 0) cell(grid, x, y, chars.lowerWater[(x + y + Math.floor(t * 3)) % chars.lowerWater.length], "ascii-water");
+      }
+    }
+    put(grid, 2, 34, "╲        ╲          ╲             ╲                 ╲", "ascii-bg");
+    put(grid, 8, 36, "╲          ╲             ╲                 ╲", "ascii-bg");
+  }
+  function drawMist(grid, t) {
+    for (var i = 0; i < 70; i += 1) {
+      var angle = i * 1.77 + t * 1.7;
+      var radiusX = 8 + ((i * 5) % 24);
+      var radiusY = 3 + ((i * 7) % 10);
+      var sx = Math.round(56 + Math.cos(angle) * radiusX);
+      var sy = Math.round(18 + Math.sin(angle * 0.9) * radiusY);
+      if (sx >= 0 && sx < width && sy >= 0 && sy < height) cell(grid, sx, sy, chars.spray[(i + Math.floor(t * 6)) % chars.spray.length], "ascii-foam");
+    }
+  }
+  function carpFrame(phase) {
+    if (phase > 0.72) return { cls: "ascii-dragon", lines: ["        ╭╲╱╮       ", "  ╭─────╯ 龍╰────╮  ", "≋≋╯  ╭╮      ╭╮  ╰≋", "     ╰╯╲____╱╰╯    ", "       ╱╲  ╱╲      "] };
+    if (phase > 0.49) return { cls: "ascii-fish", lines: ["       ╱╲        ", "  ><(((º >))     ", "     ╱▓▒╲        ", "    ╱_╱╲_╲       "] };
+    return { cls: "ascii-fish", lines: ["      __", "><(((º >", "  ░▒▓))", "    ╲╲"] };
+  }
+  function render(time) {
+    var t = time / 1000;
+    var loop = (t % 9.5) / 9.5;
+    var grid = Array.from({ length: height }, function () { return Array.from({ length: width }, function () { return { ch: " ", cls: "" }; }); });
+    drawRidge(grid, t);
+    drawDragonGate(grid, t);
+    drawMist(grid, t);
+    drawLowerRiver(grid, t);
+    var lowerProgress = Math.min(1, loop / 0.44);
+    var leapProgress = Math.min(1, Math.max(0, (loop - 0.36) / 0.28));
+    var upperProgress = Math.min(1, Math.max(0, (loop - 0.68) / 0.28));
+    var pathX;
+    var pathY;
+    if (loop < 0.62) {
+      pathX = Math.round(4 + lowerProgress * 43 + leapProgress * 10);
+      pathY = Math.round(32 - Math.sin(leapProgress * Math.PI) * 18 - leapProgress * 9);
+    } else {
+      pathX = Math.round(60 + upperProgress * 22);
+      pathY = Math.round(9 - Math.sin(upperProgress * Math.PI) * 1.4);
+    }
+    var fish = carpFrame(loop);
+    fish.lines.forEach(function (line, i) { put(grid, pathX, pathY + i, line, fish.cls); });
+    var sparkCount = loop > 0.45 ? 32 : 10;
+    for (var i = 0; i < sparkCount; i += 1) {
+      var angle = i * 1.9 + t * 2.2;
+      var radius = 5 + ((i * 7) % 13);
+      var sx = Math.round(57 + Math.cos(angle) * radius);
+      var sy = Math.round(15 + Math.sin(angle) * radius * 0.48);
+      if (sx >= 0 && sx < width && sy >= 0 && sy < height) cell(grid, sx, sy, chars.sparks[(i + Math.floor(t * 5)) % chars.sparks.length], "ascii-foam");
+    }
+    put(grid, 7, 1, "selected text only", "ascii-stone-light");
+    put(grid, 7, 2, "local draft  →  structure/evidence gate  →  higher-level application", "ascii-stone-light");
+    put(grid, 5, 17, "not magic", "ascii-foam");
+    put(grid, 5, 19, "earned by loops", "ascii-foam");
+    put(grid, 70, 17, "3x cover", "ascii-foam");
+    put(grid, 70, 19, "1x CV", "ascii-foam");
+    put(grid, 70, 21, "2x interview", "ascii-foam");
+    put(grid, 70, 23, "1-3x long text", "ascii-foam");
+    canvas.innerHTML = renderGrid(grid);
+    requestAnimationFrame(render);
+  }
+  requestAnimationFrame(render);
+})();
+</script>`;
+}
+
 function renderCurrentLandingPage(): string {
   return renderSiteChrome(
-    "Student Application AI Helper",
+    "Job MCP by pmlecuong",
     "/",
     `<div class="blue-panel"><main class="home-hero">
       <section>
@@ -1036,7 +1247,7 @@ function renderCurrentLandingPage(): string {
         <h1>Real evidence. Stronger applications.</h1>
         <p class="lead">Set up a local AI workspace that turns your CV, job description, writing samples, and documents into job-ready packages without uploading your whole career history.</p>
         <div class="actions"><a class="button primary" href="/start">Start setup</a><a class="button secondary" href="/examples">See examples</a></div>
-        <div class="command" aria-label="Starter URL for local AI agent"><div class="command-tabs"><span>Agent URL</span><span>Copy into Codex / Claude</span></div><pre>${PUBLIC_SITE_URL}</pre></div>
+        <div class="command" aria-label="Starter URL for local AI agent" data-copy-scope><div class="command-tabs"><span class="command-labels"><span>Agent URL</span><span>Copy into Codex / Claude</span></span><button class="copy-button" type="button" data-copy-target="pre">Copy</button></div><pre>${PUBLIC_SITE_URL}</pre></div>
       </section>
       <aside class="signal-card" aria-label="Local application workflow summary">
         <h2>Draft local. Review selected text.</h2>
@@ -1047,6 +1258,22 @@ function renderCurrentLandingPage(): string {
         </ul>
       </aside>
     </main></div>
+    <section class="section compact ascii-ritual-section" aria-labelledby="dragon-gate-title">
+      <div class="ascii-ritual">
+        <div class="ascii-ritual-copy">
+          <div class="mono">Cá chép vượt Vũ Môn</div>
+          <h2 class="section-title" id="dragon-gate-title">The draft must cross the gate.</h2>
+          <p class="section-copy">The document does not become ready because an AI says so. It moves from raw draft, through structure and evidence checks, into a stronger version the user can actually trust.</p>
+        </div>
+        <div class="ascii-terminal" aria-label="Animated ASCII Dragon Gate review loop">
+          <div class="ascii-terminal-inner">
+            <div class="ascii-terminal-bar"><div class="ascii-lights" aria-hidden="true"><i></i><i></i><i></i></div><span>review-loop://vu-mon-transform</span></div>
+            <pre id="ascii-dragon-gate" aria-live="off"></pre>
+            <div class="ascii-caption"><span><strong>status:</strong> draft → review → revise → rise</span><span>selected text only · local files stay local</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="section compact"><div class="mono">Four use cases</div><h2 class="section-title">One checker boundary. Four useful outputs.</h2><p class="section-copy">The local agent drafts from your private files. The MCP reviews only the selected reader-facing text or a safe structure manifest.</p>
       <div class="feature-grid four-grid">
         <a class="feature" href="/technical-flow"><small class="mono">Validator</small><h3>Code-style gate for writing</h3><p>The SOP treats review like a release check: current file, recorded loop, risk result, then revise if needed.</p></a>
@@ -1076,7 +1303,7 @@ function renderCurrentLandingPage(): string {
         <div><strong>Writing check is deliberate</strong><span>You send selected final text only: cover letter, CV section, interview answer, or writing paragraph.</span></div>
         <div><strong>No fake promise</strong><span>It improves clarity and human rhythm. It is not an authorship verdict.</span></div>
       </div></div></section>
-    <section class="final-cta"><div class="section"><div class="mono">Ready when you are</div><h2 class="section-title">Open an empty folder. Give the AI this URL. Let it ask properly.</h2><p class="section-copy">The start page now includes the setup prompt, source-material checklist, and agent instructions.</p><div class="actions"><a class="button primary" href="/start">Open start page</a><a class="button secondary" href="/docs">Read docs</a></div></div></section>`,
+    <section class="final-cta"><div class="section"><div class="mono">Ready when you are</div><h2 class="section-title">Open an empty folder. Give the AI this URL. Let it ask properly.</h2><p class="section-copy">The start page now includes the setup prompt, source-material checklist, and agent instructions.</p><div class="actions"><a class="button primary" href="/start">Open start page</a><a class="button secondary" href="/docs">Read docs</a></div></div></section>${renderDragonGateAsciiScript()}`,
     "blue-page"
   );
 }
@@ -1099,7 +1326,7 @@ Create or update the editable HTML CV if needed. Create a German-style cover let
 Send only the final reader-facing text, not my folder, notes, prompts, PDFs, images, or private source documents.`;
 
   return renderSiteChrome(
-    "Start Setup - Student Application AI Helper",
+    "Start Setup - Job MCP by pmlecuong",
     "/start",
     `<header class="page-hero"><div class="mono">Start from an empty folder</div><h1>Give your local AI a clean place to work.</h1><p class="lead">Old scattered folders make the process slow. Start fresh, then let the MCP kit scaffold the right structure.</p></header>
     <section class="section compact"><div class="steps">
@@ -1108,7 +1335,7 @@ Send only the final reader-facing text, not my folder, notes, prompts, PDFs, ima
       <article class="step"><div class="step-number">03</div><div><h2>Provide source material</h2><p>CV or profile source is mandatory. Add job descriptions, education track, certificates, writing samples, role preference, photo if you want one, and signature if you want cover letters signed.</p></div></article>
       <article class="step"><div class="step-number">04</div><div><h2>Send a job description</h2><p>The local agent checks fit, drafts locally, then runs the required review loops before saying a document is ready.</p></div></article>
     </div>
-    <div class="prompt-panel"><div class="mono">Starter prompt</div><pre>${starterPrompt}</pre></div></section>
+    <div class="prompt-panel" data-copy-scope><div class="prompt-header"><div class="mono">Starter prompt</div><button class="copy-button" type="button" data-copy-target="pre">Copy prompt</button></div><pre>${starterPrompt}</pre></div></section>
     <section class="section"><div class="mono">What to prepare</div><h2 class="section-title">The agent can only be strong if the source material is real.</h2><p class="section-copy">The setup conversation should feel like a careful career coach, not a generic chatbot. It should ask for missing evidence, explain why the evidence matters, and stop before inventing facts.</p>
       <div class="feature-grid">
         <article class="feature"><small class="mono">Required</small><h3>CV or profile source</h3><p>PDF, DOCX, HTML, Markdown, LinkedIn export, or structured notes. If there is no old resume, the agent asks for education and work history.</p></article>
@@ -1116,15 +1343,15 @@ Send only the final reader-facing text, not my folder, notes, prompts, PDFs, ima
         <article class="feature"><small class="mono">Optional</small><h3>Photo and signature</h3><p>Photo is asked for CV use. Signature is asked for cover letters. If the user does not provide them, the agent continues without inventing assets.</p></article>
       </div></section>
     <section class="section"><div class="mono">Copy prompts</div><h2 class="section-title">The prompt page is now part of start.</h2><p class="section-copy">Use these when the workspace already exists and you want to trigger a specific flow.</p>
-      <div class="prompt-panel"><div class="mono">Job application prompt</div><pre>${applicationPrompt}</pre></div>
-      <div class="prompt-panel"><div class="mono">Writing check prompt</div><pre>${writingPrompt}</pre></div></section>`,
+      <div class="prompt-panel" data-copy-scope><div class="prompt-header"><div class="mono">Job application prompt</div><button class="copy-button" type="button" data-copy-target="pre">Copy prompt</button></div><pre>${applicationPrompt}</pre></div>
+      <div class="prompt-panel" data-copy-scope><div class="prompt-header"><div class="mono">Writing check prompt</div><button class="copy-button" type="button" data-copy-target="pre">Copy prompt</button></div><pre>${writingPrompt}</pre></div></section>`,
     "blue-page"
   );
 }
 
 function renderExamplesPage(): string {
   return renderSiteChrome(
-    "Examples - Student Application AI Helper",
+    "Examples - Job MCP by pmlecuong",
     "/examples",
     `<header class="page-hero"><div class="mono">Output examples</div><h1>Templates and samples stay separate from the setup story.</h1><p class="lead">Use these only as references. The local agent still has to tailor every document to the actual person and job.</p></header>
     <section class="section compact"><div class="mono">Four use cases</div><h2 class="section-title">Examples are organized by the thing the user wants checked.</h2>
@@ -1140,9 +1367,23 @@ function renderExamplesPage(): string {
       <a class="example-card" href="/assets/german-cover-letter-sample.pdf"><small class="mono">Cover letter</small><h3>German business letter PDF</h3><p>One-page sample with sender, recipient, date, subject, body, signature, and enclosures.</p></a>
     </div></section>
     <section class="section"><div class="mono">Rendered sample</div><h2 class="section-title">A German-style cover letter, built locally.</h2><p class="section-copy">Fictional demonstration only. Jane Doe, Stuttgart Hbf, the recruiting team, and the signature graphic are placeholders.</p>
-      <div class="example-grid showcase">
-        <div class="example-card"><small class="mono">Rules shown</small><h3>Structure over decoration</h3><p>Sender block, recipient block, date, bold subject, concise evidence-led body, signature area, and enclosure list.</p></div>
-        <figure class="sample-frame"><img src="/assets/german-cover-letter-sample.svg" alt="One-page fictional German-format cover letter sample"></figure>
+      <div class="cover-showcase">
+        <div class="cover-notes">
+          <div>
+            <div class="mono">Rules shown</div>
+            <h3>German structure. Real document feel.</h3>
+            <p>The preview shows the exact document discipline the local kit enforces: clean sender block, recipient block, date, bold subject, concise evidence-led body, signature area, and enclosure list.</p>
+            <ul class="cover-checks">
+              <li><b>01</b><span>One-page A4 letter with business structure.</span></li>
+              <li><b>02</b><span>Signature area and enclosure list are visible.</span></li>
+              <li><b>03</b><span>Rendered locally before a user sends anything.</span></li>
+            </ul>
+          </div>
+          <div class="cover-actions"><a class="button primary" href="/assets/german-cover-letter-sample.pdf">Open PDF</a><a class="button secondary" href="/docs">Read rules</a></div>
+        </div>
+        <div class="cover-stage">
+          <a class="cover-paper-link" href="/assets/german-cover-letter-sample.pdf" aria-label="Open fictional German-format cover letter PDF"><img src="/assets/german-cover-letter-sample.svg" alt="One-page fictional German-format cover letter sample"></a>
+        </div>
       </div></section>`,
     "blue-page"
   );
@@ -1150,11 +1391,11 @@ function renderExamplesPage(): string {
 
 function renderDocsPage(): string {
   return renderSiteChrome(
-    "Docs - Student Application AI Helper",
+    "Docs - Job MCP by pmlecuong",
     "/docs",
     `<div class="doc-layout"><aside class="side"><a href="#overview">Overview</a><a href="#use-cases">Use cases</a><a href="#inputs">Inputs</a><a href="#agent-behavior">Agent behavior</a><a href="#gates">Review gates</a><a href="#interview-prep">Interview prep</a><a href="#long-writing">Long writing</a><a href="#workspace">Workspace drift</a><a href="#privacy">Privacy</a><a href="#routes">Routes</a></aside>
     <main class="doc-main">
-      <h1 id="overview">Student Application AI Helper docs</h1>
+      <h1 id="overview">Job MCP by pmlecuong docs</h1>
       <p>This service gives local AI agents a workspace kit, prompt rules, folder-audit guidance, and selected-text writing review. It is designed for students and early-career candidates who need practical help preparing job documents without turning their private career folder into a server-side profile.</p>
       <div class="doc-callout"><strong>Core model</strong><p>The local agent does the private work. The MCP supplies generic structure, public instructions, version checks, and selected-text feedback. The MCP cannot browse the user's machine.</p></div>
       <h2 id="use-cases">Four supported use cases</h2>
@@ -1194,7 +1435,7 @@ function renderDocsPage(): string {
 
 function renderPrivacyPage(): string {
   return renderSiteChrome(
-    "Privacy - Student Application AI Helper",
+    "Privacy - Job MCP by pmlecuong",
     "/privacy",
     `<header class="page-hero"><div class="mono">Privacy boundary</div><h1>Your career folder is not the product.</h1><p class="lead">The service supports local work. It does not need to browse, upload, or store your full application workspace.</p></header>
     <section class="section compact"><div class="feature-grid">
@@ -1208,7 +1449,7 @@ function renderPrivacyPage(): string {
 
 function renderTechnicalFlowPage(): string {
   return renderSiteChrome(
-    "Technical Flow - Student Application AI Helper",
+    "Technical Flow - Job MCP by pmlecuong",
     "/technical-flow",
     `<header class="page-hero"><div class="mono">Technical flow</div><h1>How the local workflow and review boundary work.</h1><p class="lead">The local Application SOP checks workspace health, records release evidence, and keeps private files on the laptop. The MCP sees only a safe manifest or selected final text.</p></header>
     <section class="section compact"><div class="feature-grid">
@@ -1305,7 +1546,7 @@ async function handleHttp(req: IncomingMessage, res: ServerResponse): Promise<vo
 
   if (url.pathname === "/handout") {
     res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
-    res.end(await renderMarkdownAsHtml(handout, "Student Application AI Helper"));
+    res.end(await renderMarkdownAsHtml(handout, "Job MCP by pmlecuong"));
     return;
   }
 

@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-15T12:21:57+00:00`
+- updated_at: `2026-08-15T21:50:13+00:00`
 - current_phase: `postflight`
-- active_goal: Committed, pushed, and deployed Job MCP v0.2.14 blue site refresh to production. Production health and remote MCP smoke passed.
+- active_goal: Release local Job MCP UI refresh with ASCII section, copy buttons, brand rename, and cover-letter showcase to production.
 - active_task_id: `None`
-- work_session: `WS-20260815-121038-689604` active=`False`
+- work_session: `WS-20260815-204306-967966` active=`True`
 
 ## Required Resume Files
 
@@ -36,12 +36,10 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-08-15T12:21:56+00:00`
-- current: Committed, pushed, and deployed Job MCP v0.2.14 blue site refresh to production. Production health and remote MCP smoke passed.
-- next: Monitor user review; rollback tag rollback/jobmcp-20260815-141427-9e2812b is available on Franklee if needed.
-- risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: experimental/application-package-mcp/src/index.ts, experimental/application-package-mcp/package.json
-- commands: python3 SOP.py postflight
+- updated_at: `2026-08-15T21:43:07+00:00`
+- current: Updated local Job MCP public UI: brand renamed to Job MCP by pmlecuong with suitcase mark; examples cover-letter sample redesigned as a polished showcase; copy buttons and ASCII section remain local.
+- next: User reviews http://127.0.0.1:5948/ and http://127.0.0.1:5948/examples. If approved later, run full local regression, commit, push, and deploy in a separate release step.
+- risk: Do not deploy or commit until user explicitly approves the local UI direction.
 
 ## Kiro Execution State
 
@@ -63,50 +61,42 @@ When an agent resumes after context compaction or a new session:
 
 ## Recent Commands
 
-- `2026-08-15T11:41:28+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-114124-789659.log`
-- `2026-08-15T11:53:11+00:00` exit=1 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-115307-811569.log`
-- `2026-08-15T11:54:49+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-115446-326511.log`
-- `2026-08-15T11:59:48+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-115944-238561.log`
-- `2026-08-15T12:04:39+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-120435-410693.log`
-- `2026-08-15T12:06:32+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-120628-488820.log`
-- `2026-08-15T12:09:04+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-120901-054917.log`
-- `2026-08-15T12:11:33+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-121129-475313.log`
+- `2026-08-15T20:49:56+00:00` exit=0 `npm run build`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-204954-954153.log`
+- `2026-08-15T21:36:26+00:00` exit=0 `npm run build`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-213624-984564.log`
+- `2026-08-15T21:41:58+00:00` exit=0 `npm run build`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-214157-469183.log`
+- `2026-08-15T21:42:46+00:00` exit=0 `npm run build`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-214245-381522.log`
+- `2026-08-15T21:49:33+00:00` exit=1 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-214929-249029.log`
+- `2026-08-15T21:49:37+00:00` exit=2 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-214933-909078.log`
+- `2026-08-15T21:50:06+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-215001-943093.log`
+- `2026-08-15T21:50:13+00:00` exit=0 `env APPLICATION_MCP_URL=http://127.0.0.1:5948/mcp python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-215006-687911.log`
 
 ## Latest Checkpoints
 
-- `2026-08-15T12:09:04+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
-  - commands_run: python3 samples/local-kit-regression/run_regression.py
-- `2026-08-15T12:09:28+00:00` postflight: Completed local-only second Hermes-style blue redesign pass for Student Application AI Helper pages; removed standalone prompt page from nav via redirect, restored X/Y checker section, added four use-case surfaces, expanded docs, and validated local MCP/site behavior.
-  - next_steps: Await user visual review at http://127.0.0.1:5944/ before commit, push, or production deployment.
-  - files_changed: experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/tests/mcp-http.test.mjs; experimental/application-package-mcp/package.json; experimental/application-package-mcp/package-lock.json
-  - commands_run: python3 SOP.py postflight
-- `2026-08-15T12:09:30+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
-- `2026-08-15T12:11:33+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+- `2026-08-15T21:36:26+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build
+  - commands_run: npm run build
+- `2026-08-15T21:41:58+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build
+  - commands_run: npm run build
+- `2026-08-15T21:42:46+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run build
+  - commands_run: npm run build
+- `2026-08-15T21:43:07+00:00` handoff: Handoff updated: Updated local Job MCP public UI: brand renamed to Job MCP by pmlecuong with suitcase mark; examples cover-letter sample redesigned as a polished showcase; copy buttons and ASCII section remain local.
+  - next_steps: User reviews http://127.0.0.1:5948/ and http://127.0.0.1:5948/examples. If approved later, run full local regression, commit, push, and deploy in a separate release step.
+  - commands_run: python3 SOP.py handoff
+- `2026-08-15T21:49:33+00:00` run: Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
   - commands_run: npm test
-- `2026-08-15T12:12:37+00:00` postflight: Reduced oversized public page display headings across Student Application AI Helper pages while preserving Hermes-style blue visual system.
-  - next_steps: Await user visual review before commit, push, or production deployment.
-  - files_changed: experimental/application-package-mcp/src/index.ts
-  - commands_run: python3 SOP.py postflight
-- `2026-08-15T12:12:39+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
-- `2026-08-15T12:21:56+00:00` postflight: Committed, pushed, and deployed Job MCP v0.2.14 blue site refresh to production. Production health and remote MCP smoke passed.
-  - next_steps: Monitor user review; rollback tag rollback/jobmcp-20260815-141427-9e2812b is available on Franklee if needed.
-  - files_changed: experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/package.json
-  - commands_run: python3 SOP.py postflight
-- `2026-08-15T12:21:57+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
+- `2026-08-15T21:49:37+00:00` run: Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
+  - commands_run: python3 samples/local-kit-regression/run_regression.py
+- `2026-08-15T21:50:06+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+  - commands_run: npm test
+- `2026-08-15T21:50:13+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env APPLICATION_MCP_URL=http://127.0.0.1:5948/mcp python3 samples/local-kit-regression/run_regression.py
+  - commands_run: env APPLICATION_MCP_URL=http://127.0.0.1:5948/mcp python3 samples/local-kit-regression/run_regression.py
 
 ## Decisions
 
