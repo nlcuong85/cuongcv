@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-15T06:27:24+00:00`
+- updated_at: `2026-08-15T06:31:12+00:00`
 - current_phase: `postflight`
-- active_goal: Restore cover-letter visual parity with historical LaTeX Latin Modern Schwarz output and deploy MCP
+- active_goal: Restored cover-letter generation to historical pdfTeX/Latin Modern parity, updated MCP kit and production deployment to 0.2.4, and verified fresh-client bootstrap/audit.
 - active_task_id: `None`
-- work_session: `WS-20260815-061857-846269` active=`True`
+- work_session: `WS-20260815-061857-846269` active=`False`
 
 ## Required Resume Files
 
@@ -36,11 +36,11 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-08-14T23:26:18+00:00`
-- current: Fixed cover-letter PDF rendering by using Chrome HTML with Inter, safe-canvas PNG signatures, no qpdf rewrite; deployed MCP v0.2.3; bootstrapped fresh client from public MCP and validated three cover letters with remote audit/checker.
-- next: User reviews fresh-client PDFs under /tmp/jobmcp-fresh-client.Ufao4Y/applications/.
+- updated_at: `2026-08-15T06:31:11+00:00`
+- current: Restored cover-letter generation to historical pdfTeX/Latin Modern parity, updated MCP kit and production deployment to 0.2.4, and verified fresh-client bootstrap/audit.
+- next: If user requests generated job packages, produce them from a fresh MCP-bootstrapped workspace and verify pdffonts shows LMRoman10-Regular/Bold.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: application-system/scripts/generate_application.py, experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py, experimental/application-package-mcp/resources/application-kit/templates/cover_letter.html
+- files: experimental/application-package-mcp/src/index.ts, application-system/scripts/generate_application.py, experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
@@ -82,10 +82,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Latest Checkpoints
 
-- `2026-08-15T06:22:30+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 application-system/scripts/generate_application.py --intake application-system/intakes/schwarz-it-werkstudent-marketing-systeme.json --output /tmp/schwarz-style-parity --compile-pdf
-  - commands_run: python3 application-system/scripts/generate_application.py --intake application-system/intakes/schwarz-it-werkstudent-marketing-systeme.json --output /tmp/schwarz-style-parity --compile-pdf
-- `2026-08-15T06:22:48+00:00` run: Ran command with exit code 2 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-lmodern-demo
-  - commands_run: python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-lmodern-demo
 - `2026-08-15T06:23:07+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV: python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-lmodern-demo2
   - commands_run: python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-lmodern-demo2
 - `2026-08-15T06:26:10+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo: latexmk -pdf -interaction=nonstopmode -halt-on-error cover-letter.tex
@@ -98,6 +94,13 @@ When an agent resumes after context compaction or a new session:
   - commands_run: python3 /Users/pmlecuong/.codex/skills/job-search-cuong/scripts/check_application_rules.py --resume-data /Users/pmlecuong/Documents/CuongProjects/CuongCV/src/data/resume-data.tsx --summary-versions /Users/pmlecuong/Documents/CuongProjects/CuongCV/application-system/data/summary_versions.json --intake application-system/intakes/schwarz-it-werkstudent-marketing-systeme.json --cover-letter /tmp/schwarz-style-parity-final/cover-letter/cover_letter.tex
 - `2026-08-15T06:27:24+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
   - commands_run: npm test
+- `2026-08-15T06:31:11+00:00` postflight: Restored cover-letter generation to historical pdfTeX/Latin Modern parity, updated MCP kit and production deployment to 0.2.4, and verified fresh-client bootstrap/audit.
+  - next_steps: If user requests generated job packages, produce them from a fresh MCP-bootstrapped workspace and verify pdffonts shows LMRoman10-Regular/Bold.
+  - files_changed: experimental/application-package-mcp/src/index.ts; application-system/scripts/generate_application.py; experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py
+  - commands_run: python3 SOP.py postflight
+- `2026-08-15T06:31:12+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
 
 ## Decisions
 
