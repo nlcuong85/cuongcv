@@ -1,5 +1,5 @@
 {
-  "active_goal": "Captured Student Application MCP release lessons in AGENTS, MCP README, maintenance notes, and BuilderOps memory.",
+  "active_goal": "Make German rounded CV template previewable with realistic sample content and photo",
   "active_task_id": null,
   "checkpoints": [
     {
@@ -2102,73 +2102,105 @@
       "open_questions": [],
       "summary": "Postflight recorded fresh repository snapshot.",
       "time": "2026-08-15T07:06:21+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071003-420651.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T07:10:06+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071024-881677.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T07:10:27+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071133-822882.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T07:11:36+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071136-833543.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T07:11:39+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071238-321712.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T07:12:41+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071241-322470.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T07:12:43+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071326-483262.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T07:13:29+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071329-364100.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T07:13:31+00:00"
     }
   ],
   "command_log": [
-    {
-      "command": "/Users/pmlecuong/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 tmp/docs/fill_lohtor_form.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260711-062034-607577.log",
-      "started_at": "2026-07-11T06:20:34+00:00",
-      "time": "2026-07-11T06:20:34+00:00"
-    },
-    {
-      "command": "ssh -o BatchMode=yes -o ConnectTimeout=12 root@62.171.139.42 'cd /DATA/AppData/application-package-mcp && find . -maxdepth 3 -type f -not -path \"./node_modules/*\" -not -path \"./data/*\" -printf \"%p\\n\" | sort && echo \"-- compose files --\" && find . -maxdepth 2 -iname \"*compose*.yml\" -o -iname \"*compose*.yaml\"'",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173736-190732.log",
-      "started_at": "2026-08-14T17:37:36+00:00",
-      "time": "2026-08-14T17:37:38+00:00"
-    },
-    {
-      "command": "ssh -o BatchMode=yes -o ConnectTimeout=12 root@62.171.139.42 'cd /DATA/AppData/application-package-mcp && sed -E \"s/(APPLICATION_MCP_TOKEN[=:])[[:graph:]]+/\\1<redacted>/g; s/(TOKEN[=:])[[:graph:]]+/\\1<redacted>/g\" docker-compose.yml && printf \"\\n-- ignore rules --\\n\" && sed -n \"1,160p\" .gitignore && sed -n \"1,160p\" .dockerignore'",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173744-782971.log",
-      "started_at": "2026-08-14T17:37:44+00:00",
-      "time": "2026-08-14T17:37:45+00:00"
-    },
-    {
-      "command": "rsync -av --delete --exclude data/ --exclude node_modules/ --exclude tmp/ --exclude .DS_Store -e 'ssh -o BatchMode=yes -o ConnectTimeout=12' root@62.171.139.42:/DATA/AppData/application-package-mcp/ experimental/application-package-mcp/",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173757-362757.log",
-      "started_at": "2026-08-14T17:37:57+00:00",
-      "time": "2026-08-14T17:37:58+00:00"
-    },
-    {
-      "command": "find experimental/application-package-mcp -type d -name __pycache__ -prune -exec rm -rf '{}' +",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173818-568863.log",
-      "started_at": "2026-08-14T17:38:18+00:00",
-      "time": "2026-08-14T17:38:18+00:00"
-    },
-    {
-      "command": "rm -rf experimental/application-package-mcp/samples/classmate-workspace",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173818-647921.log",
-      "started_at": "2026-08-14T17:38:18+00:00",
-      "time": "2026-08-14T17:38:18+00:00"
-    },
-    {
-      "command": "npm ci",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173823-667556.log",
-      "started_at": "2026-08-14T17:38:23+00:00",
-      "time": "2026-08-14T17:38:26+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173826-262738.log",
-      "started_at": "2026-08-14T17:38:26+00:00",
-      "time": "2026-08-14T17:38:27+00:00"
-    },
     {
       "command": "python3 samples/local-kit-regression/run_regression.py",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
@@ -2504,6 +2536,70 @@
       "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070356-419759.log",
       "started_at": "2026-08-15T07:03:56+00:00",
       "time": "2026-08-15T07:03:58+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071003-420651.log",
+      "started_at": "2026-08-15T07:10:03+00:00",
+      "time": "2026-08-15T07:10:06+00:00"
+    },
+    {
+      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071024-881677.log",
+      "started_at": "2026-08-15T07:10:24+00:00",
+      "time": "2026-08-15T07:10:27+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071133-822882.log",
+      "started_at": "2026-08-15T07:11:33+00:00",
+      "time": "2026-08-15T07:11:36+00:00"
+    },
+    {
+      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071136-833543.log",
+      "started_at": "2026-08-15T07:11:36+00:00",
+      "time": "2026-08-15T07:11:39+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071238-321712.log",
+      "started_at": "2026-08-15T07:12:38+00:00",
+      "time": "2026-08-15T07:12:41+00:00"
+    },
+    {
+      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071241-322470.log",
+      "started_at": "2026-08-15T07:12:41+00:00",
+      "time": "2026-08-15T07:12:43+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071326-483262.log",
+      "started_at": "2026-08-15T07:13:26+00:00",
+      "time": "2026-08-15T07:13:29+00:00"
+    },
+    {
+      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071329-364100.log",
+      "started_at": "2026-08-15T07:13:29+00:00",
+      "time": "2026-08-15T07:13:31+00:00"
     }
   ],
   "created_at": "2026-06-19T09:19:21+00:00",
@@ -5692,14 +5788,14 @@
       "updated_at": "2026-06-19T09:20:07+00:00"
     }
   ],
-  "updated_at": "2026-08-15T07:06:21+00:00",
+  "updated_at": "2026-08-15T07:13:31+00:00",
   "work_session": {
-    "active": false,
-    "ended_at": "2026-08-15T07:04:25+00:00",
-    "goal": "Add confirmed-enclosure intake and cover-letter rendering rules to Student Application MCP",
-    "id": "WS-20260815-065431-842278",
-    "last_update": "2026-08-15T07:04:25+00:00",
-    "started_at": "2026-08-15T06:54:31+00:00",
-    "task_id": "jobmcp-enclosure-intake"
+    "active": true,
+    "ended_at": null,
+    "goal": "Make German rounded CV template previewable with realistic sample content and photo",
+    "id": "WS-20260815-070836-475977",
+    "last_update": "2026-08-15T07:08:36+00:00",
+    "started_at": "2026-08-15T07:08:36+00:00",
+    "task_id": "jobmcp-cv-template-preview"
   }
 }

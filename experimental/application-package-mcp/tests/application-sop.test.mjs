@@ -96,3 +96,62 @@ test("local generator resolves a workspace-relative signature when compilation r
   const pdfInfo = execFileSync("pdfinfo", [path.join(outputDir, generated[0])], { encoding: "utf8" });
   assert.match(pdfInfo, /^Pages:\s+1$/m);
 });
+
+test("CV HTML builder strips raw-template preview sample from generated output", async () => {
+  const workspace = await mkdtemp(path.join(os.tmpdir(), "cv-html-builder-"));
+  await mkdir(path.join(workspace, "application-kit"));
+  await cp(path.join(root, "resources/application-kit"), path.join(workspace, "application-kit"), { recursive: true });
+  await mkdir(path.join(workspace, "candidate/extracted"), { recursive: true });
+  await writeFile(
+    path.join(workspace, "candidate/extracted/cv-source.md"),
+    [
+      "# Real Candidate",
+      "",
+      "## Summary",
+      "",
+      "Requirements-focused student with practical experience in process notes and stakeholder follow-up.",
+      "",
+      "## Experience",
+      "",
+      "### Working Student - Operations Support",
+      "Demo Company · 2024 - Present",
+      "- Wrote user stories and acceptance criteria.",
+      "- Maintained process documentation for recurring service cases.",
+      "",
+      "## Skills",
+      "",
+      "- Requirements analysis",
+      "- Process mapping",
+      "",
+      "## Education",
+      "",
+      "- B.Sc. Business Informatics, Demo University, 2021 - 2026",
+      "",
+      "## Languages",
+      "",
+      "- German - B2",
+      "- English - C1",
+      "",
+    ].join("\n"),
+  );
+
+  execFileSync(
+    "python3",
+    [
+      path.join(workspace, "application-kit/scripts/build_cv_html.py"),
+      "--root", workspace,
+      "--job", "sample",
+      "--name", "Real Candidate",
+      "--email", "real@example.com",
+      "--phone", "+49 170 7654321",
+      "--linkedin", "linkedin.com/in/real-candidate",
+    ],
+    { cwd: root, encoding: "utf8" },
+  );
+  const generated = await readFile(path.join(workspace, "applications/sample/cv/cv-tailored.html"), "utf8");
+  assert.match(generated, /Real Candidate/);
+  assert.doesNotMatch(generated, /@@NAME@@/);
+  assert.doesNotMatch(generated, /Jane Schneider/);
+  assert.doesNotMatch(generated, /TEMPLATE_PREVIEW_START/);
+  assert.doesNotMatch(generated, /samplePhotoSvg/);
+});

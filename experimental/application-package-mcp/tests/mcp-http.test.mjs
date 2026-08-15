@@ -183,6 +183,8 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       const cvTemplate = kit.files.find((file) => file.path === "templates/cv_german_rounded.html");
       assert.match(cvTemplate.content, /Berufliche Erfahrungen/);
       assert.match(cvTemplate.content, /contact-bar/);
+      assert.match(cvTemplate.content, /Jane Schneider/);
+      assert.match(cvTemplate.content, /TEMPLATE_PREVIEW_START/);
       const cvContract = kit.files.find((file) => file.path === "contracts/cv-markdown-contract.md");
       assert.match(cvContract.content, /preferred CV format/);
       assert.match(cvContract.content, /Playwright/);

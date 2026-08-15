@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-15T07:06:21+00:00`
+- updated_at: `2026-08-15T07:13:31+00:00`
 - current_phase: `postflight`
-- active_goal: Captured Student Application MCP release lessons in AGENTS, MCP README, maintenance notes, and BuilderOps memory.
+- active_goal: Make German rounded CV template previewable with realistic sample content and photo
 - active_task_id: `None`
-- work_session: `WS-20260815-065431-842278` active=`False`
+- work_session: `WS-20260815-070836-475977` active=`True`
 
 ## Required Resume Files
 
@@ -63,48 +63,41 @@ When an agent resumes after context compaction or a new session:
 
 ## Recent Commands
 
-- `2026-08-15T06:59:37+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065933-788579.log`
-- `2026-08-15T06:59:40+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-065937-519463.log`
-- `2026-08-15T07:02:03+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070158-212541.log`
-- `2026-08-15T07:02:06+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070203-864261.log`
-- `2026-08-15T07:03:31+00:00` exit=1 `npm run smoke:remote`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070331-459397.log`
-- `2026-08-15T07:03:42+00:00` exit=1 `env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070340-847188.log`
-- `2026-08-15T07:03:56+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070353-357161.log`
-- `2026-08-15T07:03:58+00:00` exit=0 `env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-070356-419759.log`
+- `2026-08-15T07:10:06+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071003-420651.log`
+- `2026-08-15T07:10:27+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071024-881677.log`
+- `2026-08-15T07:11:36+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071133-822882.log`
+- `2026-08-15T07:11:39+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071136-833543.log`
+- `2026-08-15T07:12:41+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071238-321712.log`
+- `2026-08-15T07:12:43+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071241-322470.log`
+- `2026-08-15T07:13:29+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071326-483262.log`
+- `2026-08-15T07:13:31+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071329-364100.log`
 
 ## Latest Checkpoints
 
-- `2026-08-15T07:03:42+00:00` run: Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote
-  - commands_run: env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote
-- `2026-08-15T07:03:56+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+- `2026-08-15T07:10:06+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
   - commands_run: npm test
-- `2026-08-15T07:03:58+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote
-  - commands_run: env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote
-- `2026-08-15T07:04:25+00:00` postflight: Implemented confirmed-enclosure intake gate, dynamic cover-letter enclosure rendering, footer version tracking, tests, and production deployment for Student Application MCP.
-  - next_steps: If needed, run browser screenshot QA of the landing footer and sample prompt page.
-  - files_changed: experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py; experimental/application-package-mcp/resources/workspace-template/AGENTS.md
-  - commands_run: python3 SOP.py postflight
-- `2026-08-15T07:04:26+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
-- `2026-08-15T07:04:58+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
-  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
-  - commands_run: python3 SOP.py preflight
-- `2026-08-15T07:06:19+00:00` postflight: Captured Student Application MCP release lessons in AGENTS, MCP README, maintenance notes, and BuilderOps memory.
-  - next_steps: Use the documented release checklist before the next MCP production change.
-  - files_changed: AGENTS.md; experimental/application-package-mcp/README.md; experimental/application-package-mcp/MAINTENANCE_NOTES.md
-  - commands_run: python3 SOP.py postflight
-- `2026-08-15T07:06:21+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
+- `2026-08-15T07:10:27+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
+  - commands_run: python3 samples/local-kit-regression/run_regression.py
+- `2026-08-15T07:11:36+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+  - commands_run: npm test
+- `2026-08-15T07:11:39+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
+  - commands_run: python3 samples/local-kit-regression/run_regression.py
+- `2026-08-15T07:12:41+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+  - commands_run: npm test
+- `2026-08-15T07:12:43+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
+  - commands_run: python3 samples/local-kit-regression/run_regression.py
+- `2026-08-15T07:13:29+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+  - commands_run: npm test
+- `2026-08-15T07:13:31+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
+  - commands_run: python3 samples/local-kit-regression/run_regression.py
 
 ## Decisions
 

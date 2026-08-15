@@ -50,4 +50,4 @@ Durable lessons from the August 2026 enclosure/version release.
 - Do not expose private checker rules, thresholds, profile data, candidate files, or generated packages in the public kit.
 - Do not let local kit defaults invent user documents. Ask, record, validate, and render only confirmed user-provided attachments.
 - If a rule is a hard gate, enforce it in `application_sop.py` or the local renderer, not only in Markdown instructions.
-
+- Public templates should be previewable when opened directly. If a template uses `@@TOKEN@@` placeholders, include safe demo fallback content without putting literal replaceable tokens inside scripts that survive into generated output.

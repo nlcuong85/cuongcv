@@ -161,6 +161,12 @@ def build_html(args: argparse.Namespace) -> tuple[str, dict[str, Any]]:
     document = template
     for key, value in mapping.items():
         document = document.replace(f"@@{key}@@", value)
+    document = re.sub(
+        r"\n\s*<!-- TEMPLATE_PREVIEW_START -->.*?<!-- TEMPLATE_PREVIEW_END -->",
+        "",
+        document,
+        flags=re.DOTALL,
+    )
     manifest = {
         "source": "candidate/extracted/cv-source.md",
         "template": str(template_path),
