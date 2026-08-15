@@ -89,6 +89,19 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.match(landing, /Open technical flow/);
     assert.match(landing, /A German-style cover letter, built locally/);
     assert.match(landing, /Fictional demonstration only/);
+    assert.match(landing, /https:\/\/jobmcp\.pmlecuong\.com\//);
+    assert.doesNotMatch(landing, /Start URL[^<]*\/mcp/);
+    assert.match(landing, /Built by pmlecuong\.com/);
+    assert.match(landing, /href="\/cv-template\/english"/);
+    assert.match(landing, /href="\/cv-template\/german"/);
+
+    const englishCvPreview = await fetch(`http://127.0.0.1:${port}/cv-template/english`).then((response) => response.text());
+    assert.match(englishCvPreview, /Professional Experience/);
+    assert.match(englishCvPreview, /Jane Miller/);
+
+    const germanCvPreview = await fetch(`http://127.0.0.1:${port}/cv-template/german`).then((response) => response.text());
+    assert.match(germanCvPreview, /Berufliche Erfahrungen/);
+    assert.match(germanCvPreview, /Jane Schneider/);
 
     await withClient(port, async (client) => {
       const tools = await client.listTools();
@@ -158,6 +171,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.equal(kit.manifest.privacy.advanced_checker_rules_in_bundle, false);
       assert.ok(kit.files.some((file) => file.path === "templates/cover_letter.html"));
       assert.ok(kit.files.some((file) => file.path === "templates/cover_letter.tex"));
+      assert.ok(kit.files.some((file) => file.path === "templates/cv_english_modern.html"));
       assert.ok(kit.files.some((file) => file.path === "templates/cv_german_rounded.html"));
       assert.ok(kit.files.some((file) => file.path === "contracts/typography-contract.md"));
       assert.ok(kit.files.some((file) => file.path === "contracts/cv-markdown-contract.md"));
@@ -180,6 +194,10 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.match(coverLetterTemplate.content, /@@ENCLOSURE_ITEMS@@/);
       const coverLetterHtmlTemplate = kit.files.find((file) => file.path === "templates/cover_letter.html");
       assert.match(coverLetterHtmlTemplate.content, /Georgia/);
+      const englishCvTemplate = kit.files.find((file) => file.path === "templates/cv_english_modern.html");
+      assert.match(englishCvTemplate.content, /Professional Experience/);
+      assert.match(englishCvTemplate.content, /Jane Miller/);
+      assert.match(englishCvTemplate.content, /TEMPLATE_PREVIEW_START/);
       const cvTemplate = kit.files.find((file) => file.path === "templates/cv_german_rounded.html");
       assert.match(cvTemplate.content, /Berufliche Erfahrungen/);
       assert.match(cvTemplate.content, /contact-bar/);

@@ -8,10 +8,10 @@ Open the website:
 https://jobmcp.pmlecuong.com/
 ```
 
-Connection address for AI agents:
+Start URL for students and AI agents:
 
 ```text
-https://jobmcp.pmlecuong.com/mcp
+https://jobmcp.pmlecuong.com/
 ```
 
 ## What It Does

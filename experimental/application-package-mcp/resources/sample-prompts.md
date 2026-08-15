@@ -2,10 +2,10 @@
 
 Use these prompts with your local AI agent. Your private sources remain on your own computer; the MCP provides the workspace kit, safe structure/version advice, and optional selected-text feedback.
 
-Connection address:
+Start URL:
 
 ```text
-https://jobmcp.pmlecuong.com/mcp
+https://jobmcp.pmlecuong.com/
 ```
 
 ## 1. Start A New Application Workspace
@@ -33,9 +33,10 @@ Do not delete, overwrite, move, or migrate anything until I approve the plan.
 
 ```text
 Help me prepare an honest application profile before drafting.
-Ask for my target role and job description or URL. Ask me to provide my current CV as PDF, DOCX, or HTML; keep the original in candidate/source.
+Ask for my target role and job description or URL. Ask me to provide my current CV as PDF, DOCX, or HTML; keep the original in candidate/source. If I do not have an old resume, ask me for a LinkedIn export, profile notes, or structured education/work history so you can build the first CV source locally.
+Ask whether I am doing a Bachelor, Master, Ausbildung/job training, school program, or another path, and use that answer in my education section.
 For each company in my experience, list the employer and ask me to write at least 10 authentic achievement/work bullets myself (15 is even better). Remind me not to use AI to invent these bullets.
-Invite supporting documents and real writing samples, explain what they improve, and record if I choose a generic voice instead.
+Invite supporting documents and real writing samples, explain what they improve, and record if I choose a generic voice instead. Recommend human-written material from before ChatGPT became common, such as old emails, IELTS writing, user stories, PRDs, BRDs, reports, or notes I wrote myself.
 Ask whether I want to provide a CV photo. Ask for a signature image for the cover letter, but continue if I do not have one.
 Ask which cover-letter enclosures I can attach. CV/Lebenslauf is mandatory. Ask whether I can provide a Bachelor diploma/transcript and a previous-employer reference/employer certificate. If I only have the CV, warn me that fewer than two attachments makes the application weaker, then do not list missing documents.
 ```
@@ -45,6 +46,7 @@ Ask which cover-letter enclosures I can attach. CV/Lebenslauf is mandatory. Ask 
 ```text
 Create a tailored CV for jobs/<job-folder> using only verified local evidence.
 Preserve my original CV source and inspect its visual structure before generating an editable HTML CV.
+Use the English resume template by default unless I ask for a German Lebenslauf format or the job clearly needs one.
 Use four or five of my verified bullets per employer that best match this job description. Do not add skills or achievements I cannot prove.
 Put unsupported JD requirements into a gap report, not into my CV.
 Show me the HTML CV, any PDF derivative, and a clear quality report. Run the one mandatory CV review loop and tell me exactly what is still weak before I decide to proceed.

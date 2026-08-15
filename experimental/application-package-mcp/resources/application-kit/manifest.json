@@ -1,6 +1,6 @@
 {
   "kit_id": "application-kit",
-  "version": "2026.08.15-cv-template-preview.1",
+  "version": "2026.08.15-english-cv-setup-guide.1",
   "mode": "local-only",
   "privacy": {
     "remote_processing": "selected writing checks only through MCP tools",
@@ -19,7 +19,11 @@
     },
     {
       "path": "templates/cv_german_rounded.html",
-      "description": "Default editable German Lebenslauf HTML fallback when the student does not provide a preferred CV format."
+      "description": "Editable German Lebenslauf HTML fallback when the student targets the German-market format."
+    },
+    {
+      "path": "templates/cv_english_modern.html",
+      "description": "Default editable English resume HTML fallback when the student does not provide a preferred CV format."
     },
     {
       "path": "contracts/typography-contract.md",

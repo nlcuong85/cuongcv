@@ -13,11 +13,12 @@ import os
 import time
 from pathlib import Path
 
-KIT_VERSION = "2026.08.15-cv-template-preview.1"
+KIT_VERSION = "2026.08.15-english-cv-setup-guide.1"
 MANAGED = [
     "AGENTS.md", "scripts/application_sop.py", "scripts/mcp_check_client.mjs",
     "application-kit/manifest.json", "application-kit/templates/cover_letter.html",
-    "application-kit/templates/cover_letter.tex", "application-kit/templates/cv_german_rounded.html",
+    "application-kit/templates/cover_letter.tex", "application-kit/templates/cv_english_modern.html",
+    "application-kit/templates/cv_german_rounded.html",
     "application-kit/contracts/typography-contract.md", "application-kit/contracts/cv-markdown-contract.md",
     "application-kit/scripts/local_application_generator.py", "application-kit/scripts/build_cv_html.py",
 ]

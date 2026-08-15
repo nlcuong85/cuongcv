@@ -150,6 +150,8 @@ test("CV HTML builder strips raw-template preview sample from generated output",
   );
   const generated = await readFile(path.join(workspace, "applications/sample/cv/cv-tailored.html"), "utf8");
   assert.match(generated, /Real Candidate/);
+  assert.match(generated, /Professional Experience/);
+  assert.match(generated, /Education/);
   assert.doesNotMatch(generated, /@@NAME@@/);
   assert.doesNotMatch(generated, /Jane Schneider/);
   assert.doesNotMatch(generated, /TEMPLATE_PREVIEW_START/);

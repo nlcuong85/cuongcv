@@ -40,12 +40,14 @@ student-application-workspace/
 3. Create missing folders and files.
 4. If old `candidate/`, `jobs/`, or `outputs/` folders already exist, preserve them.
 5. Run `python3 scripts/migrate_legacy_workspace.py .`.
-6. Build or update `profile/master_profile.json`, `profile/evidence_library.json`, `profile/voice_dna.md`, and `memory/skill_memory.md`.
-7. Check `python3 scripts/application_sop.py --root . voice-intake-status`. Invite authentic self-written samples only when it returns `ask_now`; record `enough` or `declined` so the student is not asked again.
-8. For cover letters, ask and record which enclosures the student can actually attach. CV/Lebenslauf is mandatory; ask about Bachelor diploma/transcript and previous-employer reference/employer certificate. Warn if fewer than two attachments are available.
-9. Run `python3 scripts/build_context_pack.py . --out context_pack.md` when the profile has useful content.
-10. Run `python3 application-kit/scripts/application_sop.py --root . boot --strict` before any material application action.
-11. Run `python3 application-kit/scripts/workspace_audit.py --root .`, then send only `.mcp/workspace-manifest.json` to `audit_workspace_manifest`.
+6. Require a CV source. If the student has no old resume, ask for a current draft, LinkedIn export, profile notes, or structured education/work history before building the first local CV source.
+7. Ask whether the student is doing a Bachelor, Master, Ausbildung/job training, school program, or another path; use this to populate education accurately.
+8. Build or update `profile/master_profile.json`, `profile/evidence_library.json`, `profile/voice_dna.md`, and `memory/skill_memory.md`.
+9. Check `python3 scripts/application_sop.py --root . voice-intake-status`. Invite authentic self-written samples only when it returns `ask_now`; record `enough` or `declined` so the student is not asked again.
+10. For cover letters, ask and record which enclosures the student can actually attach. CV/Lebenslauf is mandatory; ask about Bachelor diploma/transcript and previous-employer reference/employer certificate. Warn if fewer than two attachments are available.
+11. Run `python3 scripts/build_context_pack.py . --out context_pack.md` when the profile has useful content.
+12. Run `python3 application-kit/scripts/application_sop.py --root . boot --strict` before any material application action.
+13. Run `python3 application-kit/scripts/workspace_audit.py --root .`, then send only `.mcp/workspace-manifest.json` to `audit_workspace_manifest`.
 
 ## Intake Sources
 
@@ -62,7 +64,7 @@ Store job and writing targets under `jobs/<target>/`. Save URLs as `source-url.t
 
 ## Workflow
 
-1. Explain the local-first process and ask for role/JD, CV, optional voice material, photo decision, signature request, and cover-letter enclosures. For voice material, offer past user stories, self-written emails/letters, IELTS writing, work descriptions, personal statements, reports, notes, or previous applications; never ask again after the student records that the existing material is enough or declines.
+1. Explain the local-first process and ask for role/JD, CV source, education track, preferred CV language/format, optional voice material, photo decision, signature request, and cover-letter enclosures. For voice material, offer past user stories, self-written emails/letters, IELTS writing, work descriptions, personal statements, reports, notes, or previous applications; recommend pre-2022 human-written samples when available and never ask again after the student records that the existing material is enough or declines.
 2. Ask the student to write 10 authentic bullets for each employer (15 recommended); allow a recorded skip.
 3. For cover letters, record the enclosure decision with `record-decision --name enclosures`; never list a diploma or reference that the student cannot attach.
 4. Run the Application SOP strict boot and workspace audit before a material action.

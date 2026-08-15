@@ -23,7 +23,15 @@ The HTML CV is the editable final-format layer. It lets a local AI agent tailor 
 
 ## Format Selection Rule
 
-Before rendering a CV, ask the student whether they already have a preferred CV format.
+Before rendering a CV, ask the student whether they already have a preferred CV format. A CV source is mandatory: if the student does not have an old resume, ask for the best available draft, LinkedIn export, profile notes, or structured education/work history before building the first local source.
+
+Also ask the education track before populating the education section:
+
+- Bachelor
+- Master
+- Ausbildung / job training
+- school program
+- other current path
 
 1. If they have a preferred PDF, DOCX, HTML, screenshot, or template, use that as the visual reference.
 2. Convert/extract the CV locally first. Do not upload the full CV or template to the MCP server.
@@ -31,7 +39,11 @@ Before rendering a CV, ask the student whether they already have a preferred CV 
 4. Use Playwright/browser screenshots to compare the generated HTML against the reference and iterate until the structure, spacing, hierarchy, photo placement, and section order match closely.
 5. Only then call the CV layout `passed`.
 
-If the student does not have a preferred format, recommend the bundled German rounded Lebenslauf fallback:
+If the student does not have a preferred format, use the bundled English resume fallback by default:
+
+- `templates/cv_english_modern.html`
+
+Use the German rounded Lebenslauf fallback when the student prefers German or the target market needs German formatting:
 
 - `templates/cv_german_rounded.html`
 

@@ -143,20 +143,27 @@ def build_html(args: argparse.Namespace) -> tuple[str, dict[str, Any]]:
     email = args.email or profile.get("email") or "email@example.com"
     phone = args.phone or profile.get("phone") or "+49 ..."
     linkedin = args.linkedin or profile.get("linkedin") or "linkedin.com/in/..."
-    photo_html = '<div class="photo-frame" aria-label="Kein Foto"></div>'
+    language = args.language
+    is_german = language == "german"
+    photo_html = f'<div class="photo-frame" aria-label="{"Kein Foto" if is_german else "No photo"}"></div>'
     if args.photo:
         photo = root / args.photo
         if not photo.exists():
             raise SystemExit("Provided photo path does not exist.")
         photo_html = f'<figure class="photo-frame"><img src="{escape(photo.resolve().as_uri())}" alt="Candidate photo"></figure>'
-    template_path = Path(args.template).resolve() if args.template else Path(__file__).resolve().parents[1] / "templates" / "cv_german_rounded.html"
+    default_template = "cv_german_rounded.html" if is_german else "cv_english_modern.html"
+    template_path = Path(args.template).resolve() if args.template else Path(__file__).resolve().parents[1] / "templates" / default_template
     template = template_path.read_text(encoding="utf-8")
+    fallback_experience = "Berufserfahrung ergänzen" if is_german else "Add professional experience"
+    fallback_skills = "Kenntnisse ergänzen" if is_german else "Add knowledge and skills"
+    fallback_education = "Ausbildung ergänzen" if is_german else "Add education"
+    fallback_languages = "Sprachen ergänzen" if is_german else "Add languages"
     mapping = {
         "NAME": escape(name), "SUMMARY": escape(summary), "PHONE": escape(phone), "EMAIL": escape(email), "LINKEDIN": escape(linkedin), "PHOTO_HTML": photo_html,
-        "EXPERIENCE_HTML": render_experience(source_data["experience"]) or '<article class="entry"><h3 class="entry-title" contenteditable="true">Berufserfahrung ergänzen</h3></article>',
-        "SKILLS_HTML": render_items(source_data["skills"]) or '<li contenteditable="true">Kenntnisse ergänzen</li>',
-        "EDUCATION_HTML": render_education(source_data["education"]) or '<p class="education-line" contenteditable="true">Ausbildung ergänzen</p>',
-        "LANGUAGES_HTML": render_items(source_data["languages"]) or '<li contenteditable="true">Sprachen ergänzen</li>',
+        "EXPERIENCE_HTML": render_experience(source_data["experience"]) or f'<article class="entry"><h3 class="entry-title" contenteditable="true">{fallback_experience}</h3></article>',
+        "SKILLS_HTML": render_items(source_data["skills"]) or f'<li contenteditable="true">{fallback_skills}</li>',
+        "EDUCATION_HTML": render_education(source_data["education"]) or f'<p class="education-line" contenteditable="true">{fallback_education}</p>',
+        "LANGUAGES_HTML": render_items(source_data["languages"]) or f'<li contenteditable="true">{fallback_languages}</li>',
     }
     document = template
     for key, value in mapping.items():
@@ -170,7 +177,7 @@ def build_html(args: argparse.Namespace) -> tuple[str, dict[str, Any]]:
     manifest = {
         "source": "candidate/extracted/cv-source.md",
         "template": str(template_path),
-        "template_style": "german-rounded-fallback",
+        "template_style": "german-rounded-fallback" if is_german else "english-modern-fallback",
         "photo": args.photo or None,
         "requires_playwright_visual_gate": True,
         "pass_rule": "Do not mark as passed until the generated HTML is rendered and visually checked. If a user-provided PDF/DOCX format exists, compare against that reference and iterate until the structure matches.",
@@ -184,6 +191,7 @@ def main() -> int:
     parser.add_argument("--job", required=True)
     parser.add_argument("--photo")
     parser.add_argument("--template")
+    parser.add_argument("--language", choices=["english", "german"], default="english")
     parser.add_argument("--name")
     parser.add_argument("--email")
     parser.add_argument("--phone")

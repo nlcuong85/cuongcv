@@ -1,5 +1,5 @@
 {
-  "active_goal": "Make German rounded CV template previewable with realistic sample content and photo",
+  "active_goal": "Deploy Student Application MCP root URL and CV template preview routes to production",
   "active_task_id": null,
   "checkpoints": [
     {
@@ -2198,57 +2198,167 @@
       "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071329-364100.log",
       "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
       "time": "2026-08-15T07:13:31+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071903-510872.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T07:19:06+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071913-154167.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T07:19:15+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072156-269015.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T07:21:59+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072203-100390.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T07:22:05+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "experimental/application-package-mcp/src/index.ts",
+        "experimental/application-package-mcp/resources/application-kit/templates/cv_english_modern.html"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "User reviews local MCP at http://127.0.0.1:5943/ and decides whether to deploy to production."
+      ],
+      "open_questions": [],
+      "summary": "Local Student Application MCP landing/setup update completed: English CV fallback template added, onboarding/setup instructions updated, active landing footer credit restored, and local tests/regression passed.",
+      "time": "2026-08-15T07:22:16+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-15T07:22:18+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-08-15T07:27:22+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072858-719390.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T07:29:01+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 samples/local-kit-regression/run_regression.py"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072906-063632.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py",
+      "time": "2026-08-15T07:29:08+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "experimental/application-package-mcp/src/index.ts",
+        "experimental/application-package-mcp/tests/mcp-http.test.mjs"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "User reviews local root page and CV template preview URLs; deploy only after explicit approval."
+      ],
+      "open_questions": [],
+      "summary": "Updated Student Application MCP locally so user-facing setup uses root URL, added direct English/German CV template preview routes, kept /mcp as technical transport endpoint, and verified local routes/tests/regression.",
+      "time": "2026-08-15T07:29:40+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-08-15T07:29:42+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-08-15T07:30:49+00:00"
     }
   ],
   "command_log": [
-    {
-      "command": "python3 samples/local-kit-regression/run_regression.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173827-966974.log",
-      "started_at": "2026-08-14T17:38:27+00:00",
-      "time": "2026-08-14T17:38:29+00:00"
-    },
-    {
-      "command": "rm -rf experimental/application-package-mcp/samples/local-kit-regression/workspace",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-173847-872526.log",
-      "started_at": "2026-08-14T17:38:47+00:00",
-      "time": "2026-08-14T17:38:47+00:00"
-    },
-    {
-      "command": "git diff --check",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-174017-865009.log",
-      "started_at": "2026-08-14T17:40:17+00:00",
-      "time": "2026-08-14T17:40:17+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-174017-952957.log",
-      "started_at": "2026-08-14T17:40:17+00:00",
-      "time": "2026-08-14T17:40:19+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-223506-890649.log",
-      "started_at": "2026-08-14T22:35:06+00:00",
-      "time": "2026-08-14T22:35:09+00:00"
-    },
-    {
-      "command": "python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-browser-inter-demo",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
-      "exit_code": 2,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260814-230934-694818.log",
-      "started_at": "2026-08-14T23:09:34+00:00",
-      "time": "2026-08-14T23:09:37+00:00"
-    },
     {
       "command": "python3 experimental/application-package-mcp/resources/application-kit/scripts/local_application_generator.py --draft experimental/application-package-mcp/resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json --output-dir /tmp/jobmcp-kit-browser-inter-demo",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
@@ -2600,6 +2710,54 @@
       "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071329-364100.log",
       "started_at": "2026-08-15T07:13:29+00:00",
       "time": "2026-08-15T07:13:31+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071903-510872.log",
+      "started_at": "2026-08-15T07:19:03+00:00",
+      "time": "2026-08-15T07:19:06+00:00"
+    },
+    {
+      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071913-154167.log",
+      "started_at": "2026-08-15T07:19:13+00:00",
+      "time": "2026-08-15T07:19:15+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072156-269015.log",
+      "started_at": "2026-08-15T07:21:56+00:00",
+      "time": "2026-08-15T07:21:59+00:00"
+    },
+    {
+      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072203-100390.log",
+      "started_at": "2026-08-15T07:22:03+00:00",
+      "time": "2026-08-15T07:22:05+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072858-719390.log",
+      "started_at": "2026-08-15T07:28:58+00:00",
+      "time": "2026-08-15T07:29:01+00:00"
+    },
+    {
+      "command": "python3 samples/local-kit-regression/run_regression.py",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072906-063632.log",
+      "started_at": "2026-08-15T07:29:06+00:00",
+      "time": "2026-08-15T07:29:08+00:00"
     }
   ],
   "created_at": "2026-06-19T09:19:21+00:00",
@@ -2615,15 +2773,14 @@
     "commands": [
       "python3 SOP.py postflight"
     ],
-    "current": "Captured Student Application MCP release lessons in AGENTS, MCP README, maintenance notes, and BuilderOps memory.",
+    "current": "Updated Student Application MCP locally so user-facing setup uses root URL, added direct English/German CV template preview routes, kept /mcp as technical transport endpoint, and verified local routes/tests/regression.",
     "files": [
-      "AGENTS.md",
-      "experimental/application-package-mcp/README.md",
-      "experimental/application-package-mcp/MAINTENANCE_NOTES.md"
+      "experimental/application-package-mcp/src/index.ts",
+      "experimental/application-package-mcp/tests/mcp-http.test.mjs"
     ],
-    "next": "Use the documented release checklist before the next MCP production change.",
+    "next": "User reviews local root page and CV template preview URLs; deploy only after explicit approval.",
     "risk": "Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.",
-    "updated_at": "2026-08-15T07:06:19+00:00"
+    "updated_at": "2026-08-15T07:29:40+00:00"
   },
   "kiro": {
     "active_spec": "resilient-application-mcp",
@@ -2740,7 +2897,7 @@
   "open_questions": [],
   "repo": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
   "repo_snapshot": {
-    "created_at": "2026-08-15T07:06:21+00:00",
+    "created_at": "2026-08-15T07:29:42+00:00",
     "directories": [
       ".github",
       ".github/workflows",
@@ -2919,7 +3076,7 @@
       "tests"
     ],
     "directory_count": 175,
-    "file_count": 707,
+    "file_count": 709,
     "files": {
       ".github/workflows/deploy.yml": {
         "mtime": 1756829608,
@@ -3414,15 +3571,15 @@
         "size": 630
       },
       "experimental/application-package-mcp/MAINTENANCE_NOTES.md": {
-        "mtime": 1786777557,
-        "size": 3042
+        "mtime": 1786777883,
+        "size": 3278
       },
       "experimental/application-package-mcp/README.md": {
-        "mtime": 1786777557,
-        "size": 3534
+        "mtime": 1786778916,
+        "size": 3820
       },
       "experimental/application-package-mcp/dist/checker.js": {
-        "mtime": 1786777434,
+        "mtime": 1786778939,
         "size": 35406
       },
       "experimental/application-package-mcp/dist/docx.js": {
@@ -3434,15 +3591,15 @@
         "size": 14966
       },
       "experimental/application-package-mcp/dist/index.js": {
-        "mtime": 1786777434,
-        "size": 77384
+        "mtime": 1786778939,
+        "size": 82096
       },
       "experimental/application-package-mcp/dist/pdf.js": {
         "mtime": 1777492263,
         "size": 4638
       },
       "experimental/application-package-mcp/dist/resources.js": {
-        "mtime": 1786777434,
+        "mtime": 1786778939,
         "size": 2353
       },
       "experimental/application-package-mcp/dist/storage.js": {
@@ -3466,15 +3623,15 @@
         "size": 35113
       },
       "experimental/application-package-mcp/handout/student-application-ai-helper.md": {
-        "mtime": 1777830863,
-        "size": 1672
+        "mtime": 1786778910,
+        "size": 1673
       },
       "experimental/application-package-mcp/package-lock.json": {
-        "mtime": 1786777046,
+        "mtime": 1786778182,
         "size": 42607
       },
       "experimental/application-package-mcp/package.json": {
-        "mtime": 1786777046,
+        "mtime": 1786778182,
         "size": 656
       },
       "experimental/application-package-mcp/resources/application-kit/contracts/cover-letter-contract.md": {
@@ -3482,8 +3639,8 @@
         "size": 6710
       },
       "experimental/application-package-mcp/resources/application-kit/contracts/cv-markdown-contract.md": {
-        "mtime": 1786776516,
-        "size": 3949
+        "mtime": 1786778230,
+        "size": 4474
       },
       "experimental/application-package-mcp/resources/application-kit/contracts/retry-policy.md": {
         "mtime": 1777830902,
@@ -3574,8 +3731,8 @@
         "size": 324820
       },
       "experimental/application-package-mcp/resources/application-kit/manifest.json": {
-        "mtime": 1786777046,
-        "size": 2890
+        "mtime": 1786778182,
+        "size": 3071
       },
       "experimental/application-package-mcp/resources/application-kit/scripts/application_quality_loop.py": {
         "mtime": 1786735039,
@@ -3586,8 +3743,8 @@
         "size": 22402
       },
       "experimental/application-package-mcp/resources/application-kit/scripts/build_cv_html.py": {
-        "mtime": 1786776675,
-        "size": 8537
+        "mtime": 1786778200,
+        "size": 9370
       },
       "experimental/application-package-mcp/resources/application-kit/scripts/ingest_cv.py": {
         "mtime": 1786735239,
@@ -3602,8 +3759,8 @@
         "size": 1882
       },
       "experimental/application-package-mcp/resources/application-kit/scripts/workspace_audit.py": {
-        "mtime": 1786777088,
-        "size": 4618
+        "mtime": 1786778182,
+        "size": 4680
       },
       "experimental/application-package-mcp/resources/application-kit/templates/cover_letter.html": {
         "mtime": 1786774918,
@@ -3613,13 +3770,17 @@
         "mtime": 1786776945,
         "size": 1269
       },
+      "experimental/application-package-mcp/resources/application-kit/templates/cv_english_modern.html": {
+        "mtime": 1786778152,
+        "size": 8206
+      },
       "experimental/application-package-mcp/resources/application-kit/templates/cv_german_rounded.html": {
-        "mtime": 1786776675,
-        "size": 3736
+        "mtime": 1786777944,
+        "size": 8231
       },
       "experimental/application-package-mcp/resources/client-skill/SKILL.md": {
-        "mtime": 1786777088,
-        "size": 4754
+        "mtime": 1786778265,
+        "size": 5222
       },
       "experimental/application-package-mcp/resources/diagrams/bootstrap-scaffolding-flow.puml": {
         "mtime": 1786737863,
@@ -3646,12 +3807,12 @@
         "size": 16635
       },
       "experimental/application-package-mcp/resources/onboarding.md": {
-        "mtime": 1786777030,
-        "size": 5470
+        "mtime": 1786778230,
+        "size": 6062
       },
       "experimental/application-package-mcp/resources/sample-prompts.md": {
-        "mtime": 1786777088,
-        "size": 5383
+        "mtime": 1786778906,
+        "size": 5957
       },
       "experimental/application-package-mcp/resources/workspace-template/.github/copilot-instructions.md": {
         "mtime": 1777833937,
@@ -3670,8 +3831,8 @@
         "size": 115
       },
       "experimental/application-package-mcp/resources/workspace-template/AGENTS.md": {
-        "mtime": 1786777030,
-        "size": 11237
+        "mtime": 1786778230,
+        "size": 11650
       },
       "experimental/application-package-mcp/resources/workspace-template/CHANGELOG.md": {
         "mtime": 1786738792,
@@ -3694,8 +3855,8 @@
         "size": 1035
       },
       "experimental/application-package-mcp/resources/workspace-template/README.md": {
-        "mtime": 1786777088,
-        "size": 2029
+        "mtime": 1786778265,
+        "size": 2387
       },
       "experimental/application-package-mcp/resources/workspace-template/applications/.gitkeep": {
         "mtime": 1786735105,
@@ -3906,8 +4067,8 @@
         "size": 6710
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/contracts/cv-markdown-contract.md": {
-        "mtime": 1786776516,
-        "size": 3949
+        "mtime": 1786778230,
+        "size": 4474
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/contracts/retry-policy.md": {
         "mtime": 1777830902,
@@ -3998,8 +4159,8 @@
         "size": 324820
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/manifest.json": {
-        "mtime": 1786777046,
-        "size": 2890
+        "mtime": 1786778182,
+        "size": 3071
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/scripts/application_quality_loop.py": {
         "mtime": 1786735039,
@@ -4010,8 +4171,8 @@
         "size": 22402
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/scripts/build_cv_html.py": {
-        "mtime": 1786776675,
-        "size": 8537
+        "mtime": 1786778200,
+        "size": 9370
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/scripts/ingest_cv.py": {
         "mtime": 1786735239,
@@ -4026,8 +4187,8 @@
         "size": 1882
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/scripts/workspace_audit.py": {
-        "mtime": 1786777088,
-        "size": 4618
+        "mtime": 1786778182,
+        "size": 4680
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/templates/cover_letter.html": {
         "mtime": 1786774918,
@@ -4037,308 +4198,312 @@
         "mtime": 1786776945,
         "size": 1269
       },
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/templates/cv_english_modern.html": {
+        "mtime": 1786778152,
+        "size": 8206
+      },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/application-kit/templates/cv_german_rounded.html": {
-        "mtime": 1786776675,
-        "size": 3736
+        "mtime": 1786777944,
+        "size": 8231
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/candidate/evidence.md": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 8524
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/candidate/profile.json": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 8642
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/candidate/source-analysis.md": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 18486
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/candidate/tone.md": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 2104
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/mercedes-ipos/job.json": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 5250
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/sap-threat-modelling/job.json": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 5884
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/jobs/vishay-controlling/job.json": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 5340
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter-draft.json": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 2522
       },
-      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter-le-cuong-nguyen-working-student-product-owner-support-insurance-platform-of-services-20260815-090205.pdf": {
-        "mtime": 1786777325,
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter-le-cuong-nguyen-working-student-product-owner-support-insurance-platform-of-services-20260815-092907.pdf": {
+        "mtime": 1786778947,
         "size": 70047
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.aux": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 162
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.fdb_latexmk": {
-        "mtime": 1786777325,
-        "size": 8139
+        "mtime": 1786778947,
+        "size": 8140
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.fls": {
-        "mtime": 1786777325,
+        "mtime": 1786778946,
         "size": 9923
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.html": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 4793
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.log": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 16443
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.md": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 2004
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.out": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 0
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cover-letter.tex": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 3168
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cv-input.json": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 1915
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/cv-tailored.md": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 1775
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/manifest.json": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 1601
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/mercedes-ipos/validation.md": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 470
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter-draft.json": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 2541
       },
-      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter-le-cuong-nguyen-working-student-f-m-d-threat-modelling-service-operation-and-automation-20260815-090205.pdf": {
-        "mtime": 1786777325,
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter-le-cuong-nguyen-working-student-f-m-d-threat-modelling-service-operation-and-automation-20260815-092907.pdf": {
+        "mtime": 1786778947,
         "size": 71468
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.aux": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 162
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.fdb_latexmk": {
-        "mtime": 1786777325,
-        "size": 8139
+        "mtime": 1786778947,
+        "size": 8140
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.fls": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 9930
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.html": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 4812
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.log": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 16443
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.md": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 2023
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.out": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 0
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cover-letter.tex": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 3187
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cv-input.json": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 1878
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/cv-tailored.md": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 1738
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/manifest.json": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 1653
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/sap-threat-modelling/validation.md": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 470
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter-draft.json": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 2450
       },
-      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter-le-cuong-nguyen-werkstudent-m-w-d-controlling-20260815-090206.pdf": {
-        "mtime": 1786777326,
+      "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter-le-cuong-nguyen-werkstudent-m-w-d-controlling-20260815-092908.pdf": {
+        "mtime": 1786778948,
         "size": 70267
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.aux": {
-        "mtime": 1786777326,
+        "mtime": 1786778948,
         "size": 162
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.fdb_latexmk": {
-        "mtime": 1786777326,
+        "mtime": 1786778948,
         "size": 8140
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.fls": {
-        "mtime": 1786777326,
+        "mtime": 1786778948,
         "size": 9928
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.html": {
-        "mtime": 1786777326,
+        "mtime": 1786778947,
         "size": 4721
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.log": {
-        "mtime": 1786777326,
+        "mtime": 1786778948,
         "size": 16443
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.md": {
-        "mtime": 1786777326,
+        "mtime": 1786778947,
         "size": 1932
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.out": {
-        "mtime": 1786777326,
+        "mtime": 1786778948,
         "size": 0
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cover-letter.tex": {
-        "mtime": 1786777326,
+        "mtime": 1786778947,
         "size": 3096
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cv-input.json": {
-        "mtime": 1786777325,
+        "mtime": 1786778947,
         "size": 1835
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/cv-tailored.md": {
-        "mtime": 1786777326,
+        "mtime": 1786778948,
         "size": 1695
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/manifest.json": {
-        "mtime": 1786777326,
+        "mtime": 1786778948,
         "size": 1597
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/outputs/vishay-controlling/validation.md": {
-        "mtime": 1786777326,
+        "mtime": 1786778948,
         "size": 470
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/regression-report.json": {
-        "mtime": 1786777326,
+        "mtime": 1786778948,
         "size": 2283
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/regression-report.md": {
-        "mtime": 1786777326,
+        "mtime": 1786778948,
         "size": 1734
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/cover-letter/cover_letter.html": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 5682
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/cover-letter/cover_letter.tex": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 3168
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/cv/product_owner.json": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 8059
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/manifest.json": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 4373
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/notes.md": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 1087
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/skill-assessment/role_fit_snapshot.html": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 7446
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/skill-assessment/role_fit_snapshot.json": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 2853
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/mercedes-ipos/skill-assessment/role_fit_snapshot.tex": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 4401
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/cover-letter/cover_letter.html": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 5698
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/cover-letter/cover_letter.tex": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 3187
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/cv/process_automation.json": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 8050
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/manifest.json": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 4346
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/notes.md": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 1112
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/skill-assessment/role_fit_snapshot.html": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 7413
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/skill-assessment/role_fit_snapshot.json": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 2823
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/sap-threat-modelling/skill-assessment/role_fit_snapshot.tex": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 4361
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/cover-letter/cover_letter.html": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 5612
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/cover-letter/cover_letter.tex": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 3096
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/cv/workflow_operations_analyst.json": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 8056
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/manifest.json": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 4233
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/notes.md": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 1118
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/skill-assessment/role_fit_snapshot.html": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 7319
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/skill-assessment/role_fit_snapshot.json": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 2727
       },
       "experimental/application-package-mcp/samples/local-kit-regression/workspace/source-generated/vishay-controlling/skill-assessment/role_fit_snapshot.tex": {
-        "mtime": 1786777324,
+        "mtime": 1786778946,
         "size": 4256
       },
       "experimental/application-package-mcp/src/checker.ts": {
@@ -4346,20 +4511,20 @@
         "size": 34122
       },
       "experimental/application-package-mcp/src/index.ts": {
-        "mtime": 1786777311,
-        "size": 76784
+        "mtime": 1786778903,
+        "size": 81430
       },
       "experimental/application-package-mcp/src/resources.ts": {
         "mtime": 1786748857,
         "size": 2446
       },
       "experimental/application-package-mcp/tests/application-sop.test.mjs": {
-        "mtime": 1786777098,
-        "size": 5591
+        "mtime": 1786778338,
+        "size": 7710
       },
       "experimental/application-package-mcp/tests/mcp-http.test.mjs": {
-        "mtime": 1786777116,
-        "size": 21663
+        "mtime": 1786778928,
+        "size": 22972
       },
       "experimental/application-package-mcp/tests/smoke-remote.mjs": {
         "mtime": 1786777429,
@@ -5788,14 +5953,14 @@
       "updated_at": "2026-06-19T09:20:07+00:00"
     }
   ],
-  "updated_at": "2026-08-15T07:13:31+00:00",
+  "updated_at": "2026-08-15T07:30:49+00:00",
   "work_session": {
     "active": true,
     "ended_at": null,
-    "goal": "Make German rounded CV template previewable with realistic sample content and photo",
-    "id": "WS-20260815-070836-475977",
-    "last_update": "2026-08-15T07:08:36+00:00",
-    "started_at": "2026-08-15T07:08:36+00:00",
-    "task_id": "jobmcp-cv-template-preview"
+    "goal": "Deploy Student Application MCP root URL and CV template preview routes to production",
+    "id": "WS-20260815-073049-884064",
+    "last_update": "2026-08-15T07:30:49+00:00",
+    "started_at": "2026-08-15T07:30:49+00:00",
+    "task_id": "jobmcp-root-url-cv-preview-prod"
   }
 }

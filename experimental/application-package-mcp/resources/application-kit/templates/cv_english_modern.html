@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>@@NAME@@ - Resume</title>
+    <style>
+      @page { size: A4; margin: 0; }
+      :root { --ink:#101010; --muted:#e7e7e7; --bar:#242424; --paper:#fff; --accent:#8f8f8f; }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #f4f4f4; color: var(--ink); font-family: Georgia, "Times New Roman", serif; }
+      .page { width: 210mm; min-height: 297mm; margin: 0 auto; padding: 13mm 14mm 15mm; background: var(--paper); }
+      .name { margin: 0 0 -3.5mm; text-align: center; font-size: 34pt; line-height: 1; font-weight: 400; letter-spacing: -0.02em; }
+      .hero { display: grid; grid-template-columns: 1fr 31mm; gap: 10mm; align-items: center; min-height: 39mm; margin-top: 0; padding: 11mm 12mm 10mm; border-radius: 8mm; background: var(--muted); }
+      .summary { margin: 0; font-size: 11.4pt; line-height: 1.28; text-align: justify; }
+      .summary strong { font-weight: 700; }
+      .photo-frame { width: 31mm; height: 31mm; border: 1.1mm solid #fff; border-radius: 50%; overflow: hidden; background: #d4d4d4; margin: 0; }
+      .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .contact-bar { width: 168mm; min-height: 10.5mm; margin: -4.4mm auto 9mm; padding: 2.6mm 7mm; border-radius: 2mm; display: grid; grid-template-columns: .9fr 1.45fr 1.45fr; gap: 4mm; background: var(--bar); color: #fff; text-align: center; font-size: 9.8pt; line-height: 1.15; }
+      .contact-bar span { min-width: 0; overflow-wrap: normal; word-break: keep-all; }
+      .contact-bar a { color: #fff; text-decoration: underline; text-underline-offset: 1.5px; }
+      .section { margin-top: 4.5mm; }
+      .section-title { margin: 0 0 3.8mm; padding-bottom: 1.3mm; border-bottom: 0.35mm solid var(--ink); text-align: center; font-size: 21pt; line-height: 1; font-weight: 400; }
+      .entry { margin: 0 0 2.6mm; }
+      .entry-title { margin: 0; font-size: 11.7pt; line-height: 1.15; font-weight: 700; text-transform: uppercase; }
+      .entry-subtitle { margin: 0.4mm 0 0.8mm; font-size: 11.7pt; line-height: 1.15; font-weight: 700; text-transform: uppercase; }
+      ul { margin: 0 0 0 9mm; padding: 0; }
+      li { margin: 0.45mm 0; padding-left: 3mm; font-size: 10.4pt; line-height: 1.2; }
+      .skills-list, .language-list { margin-left: 0; list-style-position: inside; }
+      .education-line { margin: 0; font-size: 11.5pt; line-height: 1.25; }
+      .template-preview-note { display: none; position: fixed; right: 16px; bottom: 16px; max-width: 270px; padding: 10px 12px; border-radius: 9px; background: rgba(36,36,36,.88); color: #fff; font: 12px/1.35 system-ui, sans-serif; box-shadow: 0 10px 30px rgba(0,0,0,.2); }
+      body.template-preview .template-preview-note { display: block; }
+      @media screen { .page { box-shadow: 0 18px 45px rgba(0,0,0,.12); } }
+      @media print { body { background: #fff; } .page { margin: 0; box-shadow: none; } .template-preview-note { display: none !important; } }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <h1 class="name" contenteditable="true">@@NAME@@</h1>
+      <section class="hero" aria-label="Profile">
+        <p class="summary" contenteditable="true">@@SUMMARY@@</p>
+        @@PHOTO_HTML@@
+      </section>
+      <section class="contact-bar" aria-label="Contact">
+        <span contenteditable="true">@@PHONE@@</span>
+        <span contenteditable="true">@@EMAIL@@</span>
+        <span contenteditable="true">@@LINKEDIN@@</span>
+      </section>
+      <section class="section">
+        <h2 class="section-title">Professional Experience</h2>
+        @@EXPERIENCE_HTML@@
+      </section>
+      <section class="section">
+        <h2 class="section-title">Knowledge &amp; Skills</h2>
+        <ul class="skills-list">@@SKILLS_HTML@@</ul>
+      </section>
+      <section class="section">
+        <h2 class="section-title">Education</h2>
+        @@EDUCATION_HTML@@
+      </section>
+      <section class="section">
+        <h2 class="section-title">Languages</h2>
+        <ul class="language-list">@@LANGUAGES_HTML@@</ul>
+      </section>
+    </main>
+    <!-- TEMPLATE_PREVIEW_START -->
+    <div class="template-preview-note">Sample preview only. The local generator replaces this demo content with the user's verified CV data and photo.</div>
+    <script>
+      (() => {
+        const hasTemplateTokens = document.body.textContent.includes("@@" + "NAME" + "@@");
+        if (!hasTemplateTokens) return;
+        const samplePhotoSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+          <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d7d7d7"/><stop offset="1" stop-color="#9f9f9f"/></linearGradient></defs>
+          <rect width="240" height="240" fill="url(#g)"/>
+          <circle cx="120" cy="92" r="42" fill="#f4f0ea"/>
+          <path d="M44 218c10-55 43-86 76-86s66 31 76 86" fill="#2c2c2c"/>
+          <path d="M86 93c8 18 21 27 38 27 16 0 28-9 34-27 4-31-11-51-36-53-28-2-43 18-36 53z" fill="#f4f0ea"/>
+        </svg>`;
+        const samplePhoto = `<figure class="photo-frame"><img src="data:image/svg+xml,${encodeURIComponent(samplePhotoSvg)}" alt="Sample candidate photo"></figure>`;
+        const sample = {
+          NAME: "Jane Miller",
+          SUMMARY: "<strong>Business and technology student profile</strong> with practical experience in requirements clarification, process documentation, stakeholder follow-up, and structured reporting. Comfortable turning unclear input into readable notes, user stories, decisions, and handover material for business and technical teams.",
+          PHOTO_HTML: samplePhoto,
+          PHONE: "+49 170 1234567",
+          EMAIL: "jane.miller@example.com",
+          LINKEDIN: "linkedin.com/in/jane-miller",
+          EXPERIENCE_HTML: `
+            <article class="entry">
+              <h3 class="entry-title">Working Student - Product &amp; Process Support</h3>
+              <p class="entry-subtitle">NOVA Systems GmbH · Stuttgart · 2024 - Present</p>
+              <ul>
+                <li>Documented user stories, acceptance criteria, and workflow notes for an internal service portal.</li>
+                <li>Supported sprint preparation by clarifying open requirements with operations and development teams.</li>
+                <li>Built Excel and dashboard summaries that helped the team track recurring ticket patterns.</li>
+              </ul>
+            </article>
+            <article class="entry">
+              <h3 class="entry-title">Intern - Business Operations</h3>
+              <p class="entry-subtitle">Rhein Digital Services · Karlsruhe · 2023 - 2024</p>
+              <ul>
+                <li>Mapped onboarding and approval processes, then turned findings into practical handover material.</li>
+                <li>Checked source documents before status updates so managers could separate facts from assumptions.</li>
+              </ul>
+            </article>`,
+          SKILLS_HTML: `
+            <li>Requirements analysis, user stories, acceptance criteria, process mapping</li>
+            <li>Excel, PowerPoint, Jira, Confluence, basic SQL, dashboard documentation</li>
+            <li>Stakeholder coordination, meeting notes, QA support, structured follow-up</li>`,
+          EDUCATION_HTML: `
+            <p class="education-line"><strong>B.Sc. Business Informatics</strong>, Hochschule Stuttgart, Germany · 2021 - 2026</p>
+            <p class="education-line"><strong>Exchange semester</strong>, Digital Business and Data Analytics · 2024</p>`,
+          LANGUAGES_HTML: `
+            <li>German - B2 working proficiency</li>
+            <li>English - professional working proficiency</li>
+            <li>Vietnamese - native</li>`
+        };
+        let html = document.body.innerHTML;
+        for (const [key, value] of Object.entries(sample)) {
+          html = html.replace(new RegExp("@@" + key + "@@", "g"), value);
+        }
+        document.body.innerHTML = html;
+        document.body.classList.add("template-preview");
+        document.title = `${sample.NAME} - Resume sample`;
+      })();
+    </script>
+    <!-- TEMPLATE_PREVIEW_END -->
+  </body>
+</html>

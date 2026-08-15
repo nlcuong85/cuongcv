@@ -8,11 +8,15 @@ The public website explains the workflow in plain language. The MCP endpoint giv
 
 ```text
 https://jobmcp.pmlecuong.com/
+https://jobmcp.pmlecuong.com/cv-template/english
+https://jobmcp.pmlecuong.com/cv-template/german
 https://jobmcp.pmlecuong.com/sample-prompts
 https://jobmcp.pmlecuong.com/privacy
 https://jobmcp.pmlecuong.com/mcp
 https://jobmcp.pmlecuong.com/health
 ```
+
+Use the root URL (`https://jobmcp.pmlecuong.com/`) in user-facing setup prompts. Keep `/mcp` as the technical Streamable HTTP transport endpoint for compatible AI clients and smoke tests.
 
 ## Privacy Model
 

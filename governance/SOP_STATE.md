@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-15T07:13:31+00:00`
+- updated_at: `2026-08-15T07:30:49+00:00`
 - current_phase: `postflight`
-- active_goal: Make German rounded CV template previewable with realistic sample content and photo
+- active_goal: Deploy Student Application MCP root URL and CV template preview routes to production
 - active_task_id: `None`
-- work_session: `WS-20260815-070836-475977` active=`True`
+- work_session: `WS-20260815-073049-884064` active=`True`
 
 ## Required Resume Files
 
@@ -36,11 +36,11 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-08-15T07:06:19+00:00`
-- current: Captured Student Application MCP release lessons in AGENTS, MCP README, maintenance notes, and BuilderOps memory.
-- next: Use the documented release checklist before the next MCP production change.
+- updated_at: `2026-08-15T07:29:40+00:00`
+- current: Updated Student Application MCP locally so user-facing setup uses root URL, added direct English/German CV template preview routes, kept /mcp as technical transport endpoint, and verified local routes/tests/regression.
+- next: User reviews local root page and CV template preview URLs; deploy only after explicit approval.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: AGENTS.md, experimental/application-package-mcp/README.md, experimental/application-package-mcp/MAINTENANCE_NOTES.md
+- files: experimental/application-package-mcp/src/index.ts, experimental/application-package-mcp/tests/mcp-http.test.mjs
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
@@ -63,41 +63,49 @@ When an agent resumes after context compaction or a new session:
 
 ## Recent Commands
 
-- `2026-08-15T07:10:06+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071003-420651.log`
-- `2026-08-15T07:10:27+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071024-881677.log`
-- `2026-08-15T07:11:36+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071133-822882.log`
-- `2026-08-15T07:11:39+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071136-833543.log`
-- `2026-08-15T07:12:41+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071238-321712.log`
-- `2026-08-15T07:12:43+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071241-322470.log`
 - `2026-08-15T07:13:29+00:00` exit=0 `npm test`
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071326-483262.log`
 - `2026-08-15T07:13:31+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
   - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071329-364100.log`
+- `2026-08-15T07:19:06+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071903-510872.log`
+- `2026-08-15T07:19:15+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-071913-154167.log`
+- `2026-08-15T07:21:59+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072156-269015.log`
+- `2026-08-15T07:22:05+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072203-100390.log`
+- `2026-08-15T07:29:01+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072858-719390.log`
+- `2026-08-15T07:29:08+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-072906-063632.log`
 
 ## Latest Checkpoints
 
-- `2026-08-15T07:10:06+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+- `2026-08-15T07:22:16+00:00` postflight: Local Student Application MCP landing/setup update completed: English CV fallback template added, onboarding/setup instructions updated, active landing footer credit restored, and local tests/regression passed.
+  - next_steps: User reviews local MCP at http://127.0.0.1:5943/ and decides whether to deploy to production.
+  - files_changed: experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/resources/application-kit/templates/cv_english_modern.html
+  - commands_run: python3 SOP.py postflight
+- `2026-08-15T07:22:18+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
+- `2026-08-15T07:27:22+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
+  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
+  - commands_run: python3 SOP.py preflight
+- `2026-08-15T07:29:01+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
   - commands_run: npm test
-- `2026-08-15T07:10:27+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
+- `2026-08-15T07:29:08+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
   - commands_run: python3 samples/local-kit-regression/run_regression.py
-- `2026-08-15T07:11:36+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
-  - commands_run: npm test
-- `2026-08-15T07:11:39+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
-  - commands_run: python3 samples/local-kit-regression/run_regression.py
-- `2026-08-15T07:12:41+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
-  - commands_run: npm test
-- `2026-08-15T07:12:43+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
-  - commands_run: python3 samples/local-kit-regression/run_regression.py
-- `2026-08-15T07:13:29+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
-  - commands_run: npm test
-- `2026-08-15T07:13:31+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
-  - commands_run: python3 samples/local-kit-regression/run_regression.py
+- `2026-08-15T07:29:40+00:00` postflight: Updated Student Application MCP locally so user-facing setup uses root URL, added direct English/German CV template preview routes, kept /mcp as technical transport endpoint, and verified local routes/tests/regression.
+  - next_steps: User reviews local root page and CV template preview URLs; deploy only after explicit approval.
+  - files_changed: experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/tests/mcp-http.test.mjs
+  - commands_run: python3 SOP.py postflight
+- `2026-08-15T07:29:42+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
+- `2026-08-15T07:30:49+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
+  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
+  - commands_run: python3 SOP.py preflight
 
 ## Decisions
 

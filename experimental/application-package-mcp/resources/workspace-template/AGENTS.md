@@ -147,14 +147,16 @@ For cover letters and CV helpers:
 
 1. Read `profile/`, `memory/`, and the target folder under `jobs/<target>/`.
 2. Confirm which job requirements are supported by student evidence.
-3. Confirm and record the enclosure decision; CV/Lebenslauf is required and diploma/reference entries must only appear when the student can attach them.
-4. Draft `outputs/<target>/cover-letter-draft.json` using `application-kit/contracts/cover-letter-contract.md`.
-5. Draft CV helper input or content using `application-kit/contracts/cv-markdown-contract.md`.
-6. For rendered CVs, ask whether the student has a preferred CV format. If yes, use the provided PDF/DOCX/HTML/screenshot as the local visual reference and iterate the editable HTML with Playwright/browser screenshots until it matches. If no preferred format exists, recommend and use `application-kit/templates/cv_german_rounded.html`.
-7. Run `application-kit/scripts/local_application_generator.py`.
-8. Confirm these outputs exist under `outputs/<target>/`: `cover-letter.tex`, one timestamped `cover-letter-<candidate-name>-<job-title>-<timestamp>.pdf` when LaTeX is installed, `cover-letter.md`, `cv-tailored.md`, `validation.md`, and `manifest.json`.
-9. Send only the final cover-letter text or selected CV overview to the MCP checker when requested.
-10. Revise locally and rerun the renderer until local validation passes.
+3. Require a CV source. If the student has no old resume, ask for the best available CV draft, LinkedIn export, profile notes, or structured education/work history before building the first source file.
+4. Ask the education track before filling the CV: Bachelor, Master, Ausbildung/job training, school program, or other path.
+5. Confirm and record the enclosure decision; CV/Lebenslauf is required and diploma/reference entries must only appear when the student can attach them.
+6. Draft `outputs/<target>/cover-letter-draft.json` using `application-kit/contracts/cover-letter-contract.md`.
+7. Draft CV helper input or content using `application-kit/contracts/cv-markdown-contract.md`.
+8. For rendered CVs, ask whether the student has a preferred CV format. If yes, use the provided PDF/DOCX/HTML/screenshot as the local visual reference and iterate the editable HTML with Playwright/browser screenshots until it matches. If no preferred format exists, use `application-kit/templates/cv_english_modern.html` by default; use `application-kit/templates/cv_german_rounded.html` for German-format applications.
+9. Run `application-kit/scripts/local_application_generator.py`.
+10. Confirm these outputs exist under `outputs/<target>/`: `cover-letter.tex`, one timestamped `cover-letter-<candidate-name>-<job-title>-<timestamp>.pdf` when LaTeX is installed, `cover-letter.md`, `cv-tailored.md`, `validation.md`, and `manifest.json`.
+11. Send only the final cover-letter text or selected CV overview to the MCP checker when requested.
+12. Revise locally and rerun the renderer until local validation passes.
 
 ## Writing Check Flow
 
