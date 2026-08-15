@@ -386,6 +386,23 @@ Handle it by:
 5. Preserve the privacy contract: student files remain on the student's local machine; the remote checker receives only selected text for transient writing feedback. Do not add server-side profile persistence, file upload, or raw-text logging without explicit user approval and a privacy/design review.
 6. Run `npm ci`, `npm test`, and `python3 samples/local-kit-regression/run_regression.py` locally before shipping. Do not commit `node_modules/`, `dist/`, `data/`, candidate data, generated packages, or tokens.
 7. The current public health contract reports `tokenRequired: false`. Treat any change to public exposure or authentication as a security-sensitive MCP change: inspect origin validation, authentication, and Cloudflare/Tailscale routing before deployment.
+8. Treat MCP release verification as a three-surface gate:
+   - local bundle behavior: `npm test` and `python3 samples/local-kit-regression/run_regression.py`
+   - remote MCP protocol behavior: `env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote`
+   - public browser/HTTP behavior: `/health`, landing footer version, and any changed public page content
+9. The `smoke:remote` script defaults to `http://127.0.0.1:5920/mcp`; always set `MCP_URL=https://jobmcp.pmlecuong.com/mcp` when validating production. A local connection failure from that script is not production proof.
+10. Keep service version and workspace-kit version synchronized across:
+    - `experimental/application-package-mcp/package.json`
+    - `experimental/application-package-mcp/package-lock.json`
+    - `experimental/application-package-mcp/src/index.ts`
+    - `experimental/application-package-mcp/resources/application-kit/manifest.json`
+    - `experimental/application-package-mcp/resources/application-kit/scripts/workspace_audit.py`
+    - the visible landing-page footer
+11. When a generated-output rule changes, check both source-of-truth layers:
+    - public MCP kit templates/scripts under `experimental/application-package-mcp/resources/application-kit/`
+    - Cuong private generator templates/scripts under `application-system/`
+    Public-kit defaults must not invent student documents. Cuong private defaults may preserve his known standard documents when that is intentional.
+12. Before production deployment, create a rollback tag in `/DATA/AppData/application-package-mcp`, then deploy by `git fetch`, `git checkout main`, and `git pull --ff-only origin main`. After rebuild/restart, pull any final governance-only commit too so Franklee remains a Git checkout on latest.
 
 ## Application Workflow Contract
 

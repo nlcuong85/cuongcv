@@ -15,7 +15,7 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-15T07:04:26+00:00`
+- updated_at: `2026-08-15T07:04:58+00:00`
 - current_phase: `postflight`
 - active_goal: Implemented confirmed-enclosure intake gate, dynamic cover-letter enclosure rendering, footer version tracking, tests, and production deployment for Student Application MCP.
 - active_task_id: `None`
@@ -82,8 +82,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Latest Checkpoints
 
-- `2026-08-15T07:02:03+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
-  - commands_run: npm test
 - `2026-08-15T07:02:06+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
   - commands_run: python3 samples/local-kit-regression/run_regression.py
 - `2026-08-15T07:03:31+00:00` run: Ran command with exit code 1 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm run smoke:remote
@@ -101,6 +99,9 @@ When an agent resumes after context compaction or a new session:
 - `2026-08-15T07:04:26+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
   - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
   - commands_run: python3 SOP.py postflight
+- `2026-08-15T07:04:58+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
+  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
+  - commands_run: python3 SOP.py preflight
 
 ## Decisions
 

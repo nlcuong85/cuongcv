@@ -64,8 +64,9 @@ The local kit includes workflow gates and a public client, but **not** checker l
 ## Development
 
 ```bash
-npm install
+npm ci
 npm test
+python3 samples/local-kit-regression/run_regression.py
 npm run start:http
 ```
 
@@ -74,6 +75,29 @@ Local endpoint:
 ```text
 http://127.0.0.1:5920/mcp
 ```
+
+## Release And Maintenance Lessons
+
+Version tracking is part of the product. Keep the visible landing footer aligned with:
+
+- service version in `package.json`, `package-lock.json`, and `src/index.ts`
+- workspace kit version in `src/index.ts`, `resources/application-kit/manifest.json`, and `resources/application-kit/scripts/workspace_audit.py`
+
+Before production deploy, run:
+
+```bash
+npm test
+python3 samples/local-kit-regression/run_regression.py
+env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote
+```
+
+Notes for future agents:
+
+- `npm run smoke:remote` defaults to `http://127.0.0.1:5920/mcp`; set `MCP_URL` explicitly for production.
+- The local-kit regression is a real release gate. If it fails, inspect the generated `validation.md` files before loosening rules.
+- Do not hardcode application documents in templates when they depend on user confirmation. Use placeholders rendered from validated draft JSON.
+- Validate three separate surfaces after deployment: internal `/health`, public `/health`, and the public landing/footer text.
+- Production should stay a Git checkout of the latest pushed commit. Use a rollback tag before pulling and rebuild/restart from the canonical checkout.
 
 ## Franklee Deployment
 
