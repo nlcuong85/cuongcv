@@ -2,6 +2,22 @@
 
 Use this service to help a student build a local AI writing workspace.
 
+## Automatic Workspace Update Rule
+
+Whenever a local AI agent connects to this MCP, it must treat the first contact as a workspace setup/update checkpoint. The student should not need to paste a special setup prompt every time.
+
+Before drafting, editing, reviewing, or finalizing application documents, the local agent must:
+
+1. Fetch or refresh `get_workspace_template` when starter files are missing.
+2. Fetch `get_application_kit_bundle` and update MCP-managed files only.
+3. Preserve all student-owned content: profile, memory, voice samples, candidate files, jobs, applications, outputs, photos, signatures, and source documents.
+4. Run `scripts/workspace_audit.py` locally.
+5. Send only the privacy-safe `.mcp/workspace-manifest.json` to `audit_workspace_manifest`.
+6. Run `python3 scripts/application_sop.py --root . boot --strict`.
+7. For every CV/JD edit, run the ATS check and record it before `finalize-cv`.
+
+Every major MCP response also includes a machine-readable `workspace_update_required` block so compatible local agents can perform this automatically.
+
 The current workspace follows the digital-twin structure:
 
 ```text

@@ -13,7 +13,7 @@ import os
 import time
 from pathlib import Path
 
-KIT_VERSION = "2026.08.17-ats-local.1"
+KIT_VERSION = "2026.08.17-auto-update.1"
 MANAGED = [
     "AGENTS.md", "scripts/application_sop.py", "scripts/mcp_check_client.mjs", "scripts/ats_text_extract.py",
     "application-kit/manifest.json", "application-kit/templates/cover_letter.html",

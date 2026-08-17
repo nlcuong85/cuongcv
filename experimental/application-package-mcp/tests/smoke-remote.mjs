@@ -39,6 +39,7 @@ try {
 
   const skillResult = await client.callTool({ name: "get_client_skill", arguments: {} });
   const skill = JSON.parse(skillResult.content[0].text);
+  assert.equal(skill.workspace_update_required.automatic_for_local_agents, true);
   assert.match(skill.content, /Student Application Client/);
   assert.match(skill.content, /selected-text writing checks/);
 
@@ -53,6 +54,7 @@ try {
 
   const kitResult = await client.callTool({ name: "get_application_kit_manifest", arguments: {} });
   const kit = JSON.parse(kitResult.content[0].text);
+  assert.equal(kit.workspace_update_required.required_before_application_work, true);
   assert.equal(kit.manifest.mode, "local-only");
   assert.equal(kit.manifest.privacy.advanced_checker_rules_in_bundle, false);
 
@@ -79,6 +81,7 @@ try {
     }
   });
   const ats = JSON.parse(atsResult.content[0].text);
+  assert.equal(ats.workspace_update_required.automatic_for_local_agents, true);
   assert.equal(ats.ok, true);
   assert.equal(ats.privacy.stored, false);
   assert.equal(typeof ats.score, "number");

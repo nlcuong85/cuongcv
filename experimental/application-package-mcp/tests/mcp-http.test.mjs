@@ -73,6 +73,9 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.equal(health.service, "student-application-ai-helper");
     assert.equal(health.mode, "local-kit-plus-private-writing-checker");
     assert.equal(health.persistentProfiles, false);
+    assert.equal(health.workspace_update_required.automatic_for_local_agents, true);
+    assert.equal(health.workspace_update_required.required_before_application_work, true);
+    assert.ok(health.workspace_update_required.next_actions.some((action) => action.includes("audit_workspace_manifest")));
 
     const landing = await fetch(`http://127.0.0.1:${port}/`).then((response) => response.text());
     assert.match(landing, /Job MCP by pmlecuong/);
@@ -152,12 +155,15 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       });
       const workspaceAudit = JSON.parse(workspaceAuditResult.content[0].text);
       assert.equal(workspaceAudit.status, "action_required");
+      assert.equal(workspaceAudit.workspace_update_required.status, "action_required");
+      assert.equal(workspaceAudit.workspace_update_required.safe_only, true);
       assert.ok(workspaceAudit.missing_paths.includes("scripts/application_quality_loop.py"));
       assert.equal(workspaceAudit.reminders.photo_question_required, true);
       assert.match(workspaceAudit.checker_boundary, /does not expose/i);
 
       const templateResult = await client.callTool({ name: "get_workspace_template", arguments: {} });
       const template = JSON.parse(templateResult.content[0].text);
+      assert.equal(template.workspace_update_required.automatic_for_local_agents, true);
       assert.equal(template.root, "student-application-workspace");
       assert.ok(template.files.some((file) => file.path === "profile/master_profile.json"));
       assert.ok(template.files.some((file) => file.path === "profile/evidence_library.json"));
@@ -204,6 +210,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
 
       const kitResult = await client.callTool({ name: "get_application_kit_bundle", arguments: {} });
       const kit = JSON.parse(kitResult.content[0].text);
+      assert.equal(kit.workspace_update_required.required_before_application_work, true);
       assert.equal(kit.root, "application-kit");
       assert.equal(kit.manifest.mode, "local-only");
       assert.equal(kit.manifest.privacy.advanced_checker_rules_in_bundle, false);
@@ -287,6 +294,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
         }
       });
       const check = JSON.parse(checkResult.content[0].text);
+      assert.equal(check.workspace_update_required.automatic_for_local_agents, true);
       assert.equal(check.mode, "application");
       assert.equal(check.privacy.stored, false);
       assert.ok(check.issues.some((issue) => issue.code === "generic_ai_phrase"));
@@ -306,6 +314,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
         }
       });
       const ats = JSON.parse(atsResult.content[0].text);
+      assert.equal(ats.workspace_update_required.required_before_application_work, true);
       assert.equal(ats.ok, true);
       assert.equal(ats.privacy.stored, false);
       assert.equal(ats.calibration.profile, "mercedes_process_development");

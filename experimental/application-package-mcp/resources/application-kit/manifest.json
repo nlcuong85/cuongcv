@@ -1,6 +1,6 @@
 {
   "kit_id": "application-kit",
-  "version": "2026.08.17-ats-local.1",
+  "version": "2026.08.17-auto-update.1",
   "mode": "local-only",
   "privacy": {
     "remote_processing": "selected writing checks and ATS CV/JD text checks only through MCP tools",
