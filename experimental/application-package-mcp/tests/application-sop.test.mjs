@@ -72,6 +72,51 @@ test("local Application SOP requires decisions, current audit, and distinct cove
   assert.match(stalePrep, /NOT READY/);
   assert.match(stalePrep, /interview-prep loops 1 and 2 are required/);
 
+  const cv = path.join(workspace, "applications/test-role/cv/cv-tailored.md");
+  await mkdir(path.dirname(cv), { recursive: true });
+  await writeFile(cv, "CV with requirements analysis, documentation, stakeholder communication, and product support.");
+  const cvResult = path.join(workspace, "cv-review.json");
+  await writeFile(cvResult, JSON.stringify({ riskLevel: "low", issues: [], privacy: { stored: false } }));
+  sop(workspace, "review-cv", "--loop", "1", "--artifact", "applications/test-role/cv/cv-tailored.md", "--result", "cv-review.json");
+  const noAtsCv = (() => { try { sop(workspace, "finalize-cv", "--artifact", "applications/test-role/cv/cv-tailored.md"); } catch (error) { return error.stdout; } })();
+  assert.match(noAtsCv, /NOT READY/);
+  assert.match(noAtsCv, /current ATS CV\/JD report required/);
+  await mkdir(path.join(workspace, "applications/test-role/validation"), { recursive: true });
+  await writeFile(path.join(workspace, "jobs/test-role.md"), "Job description requiring documentation and communication.");
+  await writeFile(
+    path.join(workspace, "applications/test-role/validation/ats-report.json"),
+    JSON.stringify({
+      ok: true,
+      score: 57,
+      targetScore: 70,
+      readiness_label: "needs_revision",
+      matched_keywords: [{ term: "Documentation" }],
+      missing_keywords: [{ term: "MS Office" }],
+      privacy: { stored: false }
+    }),
+  );
+  sop(
+    workspace,
+    "record-ats-cv",
+    "--artifact",
+    "applications/test-role/cv/cv-tailored.md",
+    "--result",
+    "applications/test-role/validation/ats-report.json",
+    "--job-description",
+    "jobs/test-role.md",
+  );
+  const cvReceiptOutput = sop(workspace, "finalize-cv", "--artifact", "applications/test-role/cv/cv-tailored.md").trim();
+  const cvReceipt = JSON.parse(await readFile(path.join(workspace, cvReceiptOutput), "utf8"));
+  assert.equal(cvReceipt.status, "ready");
+  assert.equal(cvReceipt.document, "cv");
+  assert.equal(cvReceipt.ats_records.length, 1);
+  assert.equal(cvReceipt.ats_records[0].score, 57);
+  await writeFile(cv, "CV changed after ATS report.");
+  const staleAtsCv = (() => { try { sop(workspace, "finalize-cv", "--artifact", "applications/test-role/cv/cv-tailored.md"); } catch (error) { return error.stdout; } })();
+  assert.match(staleAtsCv, /NOT READY/);
+  assert.match(staleAtsCv, /1 current CV review record required/);
+  assert.match(staleAtsCv, /current ATS CV\/JD report required/);
+
   const writing = path.join(workspace, "writing-reviews/sample/revised.md");
   await mkdir(path.dirname(writing), { recursive: true });
   await writeFile(writing, "A revised academic paragraph with a scoped claim, method boundary, and practical limitation.");

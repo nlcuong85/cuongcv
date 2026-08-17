@@ -83,6 +83,25 @@ If fewer than 14 supported skills exist, list only supported skills and explain 
 
 Never add a skill only because it appears in the job description. The skill must also be present in the candidate profile, evidence file, source CV, or writing samples.
 
+## ATS Advisory Gate
+
+Use `ats-checker-contract.md` when a job description is available.
+
+The ATS checker is a separate advisory check between the current CV/resume text and the current job description. It does not replace the CV writing review loop and it does not block producing a CV or cover letter.
+
+Required behavior:
+
+1. Build or update the CV locally first.
+2. Extract the current CV/resume text locally.
+3. Send the current job description text and current CV/resume text to the MCP ATS checker.
+4. Save the ATS report under the local job validation folder.
+5. Explain the score, matched keywords, and missing keywords to the student.
+6. Ask for confirmation before adding any missing skill, tool, language level, education field, credential, or domain experience that is not already proven in local evidence.
+7. If the student confirms and the claim is truthful, update the CV locally and rerun the ATS check.
+8. If the student does not confirm, record the gap and keep the CV factually safe.
+
+The CV can still be produced when the ATS score is below the target threshold. In that case, report the weakness clearly instead of silently calling the CV strong.
+
 ## Evidence Alignment Rules
 
 Use 3-5 bullets. Each bullet should connect:

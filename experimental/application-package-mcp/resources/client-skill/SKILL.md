@@ -71,10 +71,35 @@ Store job and writing targets under `jobs/<target>/`. Save URLs as `source-url.t
 4. Run the Application SOP strict boot and workspace audit before a material action.
 5. Read verified local profile/evidence/voice files and the local job goal.
 6. Draft and render locally. PDF/DOCX/HTML CVs are Phase-1 inputs; `.doc` and scan-only PDFs are deferred.
-7. Read `application-kit/contracts/mcp-review-payload-contract.md`, then send only selected final reader-facing current draft text to the checker through the local client. Do not send scaffolding, prompts, coaching notes, missing-info questions, keyword maps, raw requirements, placeholders, or internal planning text.
-8. Record one CV review, three distinct cover-letter review loops, two interview-prep review loops, or one-to-three general writing loops through `application_sop.py` as applicable.
-9. Ask once whether the student wants interview prep. If yes, generate `interview-prep.md`, `interview-prep-questions.md`, `interview-prep-review-input-loop-1.json`, `interview-prep-review-input-loop-2.json`, `interview-prep-review-result-loop-1.json`, `interview-prep-review-result-loop-2.json`, and `interview-prep-manifest.json`; if no, record the skip without blocking release.
-10. Do not call an output ready until `finalize-cv` or `finalize-cover-letter` creates a local release receipt.
+7. Read `application-kit/contracts/ats-checker-contract.md`, then run the ATS check as a separate advisory gate for the current CV/resume text and current job description. The CV/resume and cover letter are still produced even when the ATS score is low.
+8. Explain the ATS score to the student in plain language. For each missing keyword, decide whether it is already supported, needs user confirmation, is learning/exposure only, or must not be added. Never add a skill, tool, language level, field of study, credential, employer, or domain keyword only because the ATS checker suggests it.
+9. If the student confirms a truthful missing keyword and wants improvement, revise the local CV/resume and rerun the ATS check with the updated CV/resume text. Save the report, revision notes, and user confirmations locally.
+10. Read `application-kit/contracts/mcp-review-payload-contract.md`, then send only selected final reader-facing current draft text to the writing/human-fit checker through the local client. Do not send scaffolding, prompts, coaching notes, missing-info questions, internal keyword maps, placeholders, or internal planning text.
+11. Record one CV writing review, three distinct cover-letter writing review loops, two interview-prep review loops, or one-to-three general writing loops through `application_sop.py` as applicable.
+12. Ask once whether the student wants interview prep. If yes, generate `interview-prep.md`, `interview-prep-questions.md`, `interview-prep-review-input-loop-1.json`, `interview-prep-review-input-loop-2.json`, `interview-prep-review-result-loop-1.json`, `interview-prep-review-result-loop-2.json`, and `interview-prep-manifest.json`; if no, record the skip without blocking release.
+13. Do not call an output ready until `finalize-cv` or `finalize-cover-letter` creates a local release receipt.
+
+## ATS Checker
+
+Use `application-kit/contracts/ats-checker-contract.md`.
+
+The ATS checker compares the current CV/resume text against the current job description. It is not the same as the writing/human-fit checker.
+
+Simple process:
+
+1. The student gives a JD.
+2. The local AI creates or updates the CV/resume and cover letter locally.
+3. The local AI extracts the latest CV/resume text locally.
+4. The local AI sends the JD text and current CV/resume text to the MCP ATS checker.
+5. The MCP returns a score, matched keywords, missing keywords, and safe revision advice.
+6. The local AI explains the result to the student.
+7. The local AI asks the student to confirm any missing keyword that is not already proven in the local profile.
+8. If the student confirms, the local AI updates the CV/resume locally and calls the ATS checker again.
+9. If the student does not confirm, the local AI records the gap and does not add the keyword.
+
+The ATS score is advisory. It should not block document generation. It should block unsupported claims and hidden weaknesses.
+
+Never say "ATS passed" or "CV is strong for this JD" unless the latest ATS report matches the latest CV/resume and job description. If the score remains below the target threshold, tell the student clearly what is still weak.
 
 ## Interview Prep
 

@@ -1,6 +1,8 @@
 # MCP Review Payload Contract
 
-This contract applies to every selected-text MCP review: CV, resume, cover letter, interview prep, academic writing, work writing, blog/social writing, and freestyle paragraphs.
+This contract applies to every selected-text MCP writing/human-fit review: CV, resume, cover letter, interview prep, academic writing, work writing, blog/social writing, and freestyle paragraphs.
+
+It does not define the ATS checker payload. ATS checking is a separate JD-to-CV fit workflow; use `ats-checker-contract.md` for that flow.
 
 The MCP checker must receive final reader-facing text only.
 

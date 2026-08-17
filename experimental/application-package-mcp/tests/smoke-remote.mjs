@@ -7,6 +7,7 @@ const token = process.env.APPLICATION_MCP_TOKEN;
 
 const expectedTools = [
   "audit_workspace_manifest",
+  "check_ats_resume_fit",
   "check_writing_human_fit",
   "get_application_kit_bundle",
   "get_application_kit_manifest",
@@ -67,6 +68,22 @@ try {
   assert.equal(check.mode, "academic");
   assert.equal(check.privacy.stored, false);
   assert.ok(check.issues.length > 0);
+
+  const atsResult = await client.callTool({
+    name: "check_ats_resume_fit",
+    arguments: {
+      company_name: "Mercedes-Benz AG",
+      job_title: "Working Student Requirements Engineering",
+      job_description: "Requirements engineering, software development, technical documentation, communication, analytical work, and computer science background.",
+      resume_text: "Business informatics student with requirements analysis, documentation, stakeholder communication, technical coordination, and software project support."
+    }
+  });
+  const ats = JSON.parse(atsResult.content[0].text);
+  assert.equal(ats.ok, true);
+  assert.equal(ats.privacy.stored, false);
+  assert.equal(typeof ats.score, "number");
+  assert.ok(Array.isArray(ats.matched_keywords));
+  assert.ok(Array.isArray(ats.missing_keywords));
 
   const promptsResult = await client.callTool({ name: "get_sample_prompts", arguments: {} });
   const prompts = JSON.parse(promptsResult.content[0].text);

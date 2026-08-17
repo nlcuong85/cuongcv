@@ -11,6 +11,7 @@ const root = path.resolve(new URL("..", import.meta.url).pathname);
 
 const expectedTools = [
   "audit_workspace_manifest",
+  "check_ats_resume_fit",
   "check_writing_human_fit",
   "get_application_kit_bundle",
   "get_application_kit_manifest",
@@ -173,6 +174,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.ok(template.files.some((file) => file.path === "scripts/workspace_audit.py"));
       assert.ok(template.files.some((file) => file.path === "scripts/application_quality_loop.py"));
       assert.ok(template.files.some((file) => file.path === "scripts/mcp_check_client.mjs"));
+      assert.ok(template.files.some((file) => file.path === "scripts/ats_text_extract.py"));
       assert.ok(template.files.some((file) => file.path === "candidate/profile.example.json"));
       assert.ok(template.files.some((file) => file.path === "jobs/sample-product-analyst/job.md"));
       assert.ok(!template.files.some((file) => file.path.includes("audit_human_fit")));
@@ -210,6 +212,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.ok(kit.files.some((file) => file.path === "templates/cv_english_modern.html"));
       assert.ok(kit.files.some((file) => file.path === "templates/cv_german_rounded.html"));
       assert.ok(kit.files.some((file) => file.path === "contracts/typography-contract.md"));
+      assert.ok(kit.files.some((file) => file.path === "contracts/ats-checker-contract.md"));
       assert.ok(kit.files.some((file) => file.path === "contracts/cv-markdown-contract.md"));
       assert.ok(kit.files.some((file) => file.path === "contracts/interview-prep-contract.md"));
       assert.ok(kit.files.some((file) => file.path === "contracts/writing-review-contract.md"));
@@ -220,6 +223,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.ok(kit.files.some((file) => file.path === "scripts/writing_review_loop.py"));
       assert.ok(kit.files.some((file) => file.path === "scripts/application_quality_loop.py"));
       assert.ok(kit.files.some((file) => file.path === "scripts/mcp_check_client.mjs"));
+      assert.ok(kit.files.some((file) => file.path === "scripts/ats_text_extract.py"));
       assert.ok(kit.files.some((file) => file.path === "templates/interview_prep.md"));
       assert.ok(kit.files.some((file) => file.path === "contracts/source-capture-contract.md"));
       assert.ok(!kit.files.some((file) => file.path.includes("ai-checker")));
@@ -266,6 +270,10 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       const reviewPayloadContract = kit.files.find((file) => file.path === "contracts/mcp-review-payload-contract.md");
       assert.match(reviewPayloadContract.content, /final reader-facing text only/);
       assert.match(reviewPayloadContract.content, /not just the review packet/);
+      const atsContract = kit.files.find((file) => file.path === "contracts/ats-checker-contract.md");
+      assert.match(atsContract.content, /check_ats_resume_fit/);
+      assert.match(atsContract.content, /Human-In-The-Loop Rule/);
+      assert.match(atsContract.content, /Rerun the ATS checker after any meaningful CV\/resume change/);
       const interviewPrepTemplate = kit.files.find((file) => file.path === "templates/interview_prep.md");
       assert.match(interviewPrepTemplate.content, /Culture Fit/);
       assert.match(interviewPrepTemplate.content, /What They Are Likely Screening For/);
@@ -285,6 +293,25 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.equal(check.styleReview.releaseDecision, "revise");
       assert.ok(check.styleReview.prioritySignals.includes("generic_ai_phrase"));
       assert.match(check.styleReview.limitations, /not an authorship verdict/i);
+
+      const atsResult = await client.callTool({
+        name: "check_ats_resume_fit",
+        arguments: {
+          company_name: "Mercedes-Benz AG",
+          job_title: "Working Student Process Development for CDCC2.0 Baselayer Software",
+          job_description:
+            "Process development for CDCC2.0 Baselayer Software. Support ASPICE-compliant process documentation, integration, analytical work, MS Office, communication, written English and German, and computer science or electrical engineering studies.",
+          resume_text:
+            "Business informatics and software engineering student with requirements analysis, process mapping, documentation, stakeholder communication, software project support, and workflow improvement experience."
+        }
+      });
+      const ats = JSON.parse(atsResult.content[0].text);
+      assert.equal(ats.ok, true);
+      assert.equal(ats.privacy.stored, false);
+      assert.equal(ats.calibration.profile, "mercedes_process_development");
+      assert.equal(typeof ats.score, "number");
+      assert.ok(ats.matched_keywords.some((keyword) => keyword.term === "Documentation"));
+      assert.ok(ats.missing_keywords.some((keyword) => keyword.term === "ASPICE"));
 
       const academicResult = await client.callTool({
         name: "check_writing_human_fit",

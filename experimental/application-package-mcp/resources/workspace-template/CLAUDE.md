@@ -4,6 +4,12 @@ Start with `AGENTS.md`, then `profile/student-profile-context.md`, then `memory/
 
 Keep the student's full workspace local. Use the MCP server only for selected writing text when the student asks for writing feedback. Before any selected-text writing check, read `application-kit/contracts/mcp-review-payload-contract.md` and send final reader-facing text only. Never send scaffolding, prompts, checklists, coaching notes, missing-info questions, keyword maps, raw job requirements, placeholders, or internal planning text as the writing-review payload.
 
+## ATS CV/JD Gate
+
+For every CV/resume edit tied to a job description, read `application-kit/contracts/ats-checker-contract.md`. Extract the latest CV/resume text locally with `scripts/ats_text_extract.py`, call the MCP tool `check_ats_resume_fit` through `mcp_check_client.mjs ats`, save `ats-report.json`, then record it with `application_sop.py record-ats-cv`. Do this before `finalize-cv`.
+
+If the CV/resume changes after the ATS report, the report is stale. Rerun extraction, the MCP ATS check, and `record-ats-cv`. Never say the CV is strong for the JD or ATS-ready unless `finalize-cv` creates a release receipt for the latest artifact. The ATS score is advisory, but the existence of a current ATS report is mandatory for readiness.
+
 ## Cover-Letter Enclosure Rule
 
 Before writing or reviewing a cover letter, ask which attachments the student can actually provide. CV/Lebenslauf is mandatory. Ask whether they can add a Bachelor degree diploma or transcript/certificate, and whether they can add a reference letter or employer certificate from a previous employer. Include only confirmed documents in the enclosure section. If they only have the CV, warn that fewer than two attachments makes the application package weaker, recommend adding one proof document, then continue without listing missing documents if they cannot provide them. Record the result with `record-decision --name enclosures`.

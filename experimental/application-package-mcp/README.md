@@ -44,6 +44,7 @@ Private checker rules, voice DNA, AI-checker guardrails, and audit scripts are n
 - `get_application_kit_bundle`
 - `audit_workspace_manifest`
 - `get_sample_prompts`
+- `check_ats_resume_fit`
 - `check_writing_human_fit`
 - `suggest_writing_revision`
 
@@ -63,7 +64,7 @@ validation.md
 manifest.json
 ```
 
-Advanced tone, reader, convention, and AI-like-pattern feedback is handled by the remote checker tools for selected text only.
+Advanced tone, reader, convention, and AI-like-pattern feedback is handled by the remote checker tools for selected text only. ATS fit checks are handled by `check_ats_resume_fit`, which receives only the current extracted CV/resume text and the current JD text, returns an advisory score and safe revision guidance, and stores no submitted text.
 
 The local kit includes workflow gates, optional interview prep, general writing review, and a public client, but **not** checker logic: one recorded CV review loop, three distinct cover-letter review loops, and two interview-prep review loops are required before an agent describes those artifacts as ready. General writing can use one, two, or three review loops. Interview prep is optional; if accepted, the local agent asks for interview details, culture-fit/outside-work context, concerns, and real examples before creating `interview-prep.md`, then sends only selected prep sections to the MCP checker. The public `audit_workspace_manifest` tool receives only a structure/version manifest; it cannot read a student's disk or document content.
 

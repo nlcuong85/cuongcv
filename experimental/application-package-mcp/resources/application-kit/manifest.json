@@ -1,9 +1,9 @@
 {
   "kit_id": "application-kit",
-  "version": "2026.08.15-review-payload.1",
+  "version": "2026.08.17-ats-local.1",
   "mode": "local-only",
   "privacy": {
-    "remote_processing": "selected writing checks only through MCP tools",
+    "remote_processing": "selected writing checks and ATS CV/JD text checks only through MCP tools",
     "send_candidate_data_to_mcp": false,
     "local_agent_reads_private_files": true,
     "advanced_checker_rules_in_bundle": false
@@ -42,6 +42,10 @@
       "description": "Mandatory local-only source analysis and candidate memory capture contract."
     },
     {
+      "path": "contracts/ats-checker-contract.md",
+      "description": "ATS CV/JD fit-check workflow, human-in-the-loop keyword confirmation, rerun, and stale-report contract."
+    },
+    {
       "path": "contracts/cv-markdown-contract.md",
       "description": "Markdown CV helper contract for overview and skills tailoring."
     },
@@ -71,7 +75,11 @@
     },
     {
       "path": "scripts/mcp_check_client.mjs",
-      "description": "Small public-MCP client. Sends selected text only and contains no scoring logic."
+      "description": "Small public-MCP client. Sends selected text or ATS CV/JD text only and contains no scoring logic."
+    },
+    {
+      "path": "scripts/ats_text_extract.py",
+      "description": "Local PDF/DOCX/HTML/Markdown text extractor that prepares ATS input JSON without uploading source files."
     },
     {
       "path": "scripts/writing_review_loop.py",
@@ -115,6 +123,11 @@
     "writing-reviews/<target>/loop-<n>/chunk-<nnn>-input.json",
     "writing-reviews/<target>/loop-<n>/chunk-<nnn>-result.json",
     "writing-reviews/<target>/writing-review-report.md",
+    "applications/<target>/validation/ats-input.json",
+    "applications/<target>/validation/ats-report.json",
+    "applications/<target>/validation/ats-report.md",
+    "applications/<target>/validation/ats-revision-notes.md",
+    "applications/<target>/validation/user-confirmations.md",
     "validation.md",
     "manifest.json"
   ]

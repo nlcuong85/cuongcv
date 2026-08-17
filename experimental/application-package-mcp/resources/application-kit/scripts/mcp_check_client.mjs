@@ -5,11 +5,20 @@ import fs from "node:fs/promises";
 const endpoint = process.env.APPLICATION_MCP_URL ?? "https://jobmcp.pmlecuong.com/mcp";
 const [command, inputPath, outputPath] = process.argv.slice(2);
 if (!command || !inputPath || !outputPath) {
-  console.error("Usage: mcp_check_client.mjs <review|audit> <input.json> <output.json>");
+  console.error("Usage: mcp_check_client.mjs <review|audit|ats> <input.json> <output.json>");
   process.exit(2);
 }
 const input = JSON.parse(await fs.readFile(inputPath, "utf8"));
-const tool = command === "audit" ? "audit_workspace_manifest" : "check_writing_human_fit";
+const toolByCommand = {
+  audit: "audit_workspace_manifest",
+  review: "check_writing_human_fit",
+  ats: "check_ats_resume_fit"
+};
+const tool = toolByCommand[command];
+if (!tool) {
+  console.error("Unknown command. Use review, audit, or ats.");
+  process.exit(2);
+}
 const controller = new AbortController();
 const timer = setTimeout(() => controller.abort(), 20_000);
 try {

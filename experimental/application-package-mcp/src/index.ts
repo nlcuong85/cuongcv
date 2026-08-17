@@ -6,6 +6,7 @@ import * as z from "zod/v4";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { checkAtsResumeFit } from "./ats_checker.js";
 import { checkWritingHumanFit } from "./checker.js";
 import {
   handoutDocument,
@@ -16,7 +17,7 @@ import {
   samplePromptsDocument
 } from "./resources.js";
 
-const VERSION = "0.2.15";
+const VERSION = "0.2.16";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
@@ -33,11 +34,12 @@ const PUBLIC_TOOLS = [
   "get_application_kit_bundle",
   "audit_workspace_manifest",
   "get_sample_prompts",
+  "check_ats_resume_fit",
   "check_writing_human_fit",
   "suggest_writing_revision"
 ];
 
-const WORKSPACE_KIT_VERSION = "2026.08.15-review-payload.1";
+const WORKSPACE_KIT_VERSION = "2026.08.17-ats-local.1";
 const REQUIRED_WORKSPACE_PATHS = [
   "AGENTS.md",
   ".mcp/workspace-manifest.json",
@@ -52,6 +54,7 @@ const REQUIRED_WORKSPACE_PATHS = [
   "scripts/workspace_audit.py",
   "scripts/application_quality_loop.py",
   "scripts/mcp_check_client.mjs",
+  "scripts/ats_text_extract.py",
   "application-kit/manifest.json",
   "application-kit/templates/cover_letter.html",
   "application-kit/templates/cover_letter.tex",
@@ -59,6 +62,7 @@ const REQUIRED_WORKSPACE_PATHS = [
   "application-kit/templates/cv_english_modern.html",
   "application-kit/templates/cv_german_rounded.html",
   "application-kit/contracts/typography-contract.md",
+  "application-kit/contracts/ats-checker-contract.md",
   "application-kit/contracts/cv-markdown-contract.md",
   "application-kit/contracts/interview-prep-contract.md",
   "application-kit/contracts/writing-review-contract.md",
@@ -66,6 +70,7 @@ const REQUIRED_WORKSPACE_PATHS = [
   "application-kit/scripts/application_sop.py",
   "application-kit/scripts/application_quality_loop.py",
   "application-kit/scripts/mcp_check_client.mjs",
+  "application-kit/scripts/ats_text_extract.py",
   "application-kit/scripts/writing_review_loop.py",
   "application-kit/scripts/local_application_generator.py",
   "application-kit/scripts/build_interview_prep.py",
@@ -76,6 +81,7 @@ const MANAGED_HASHED_PATHS = [
   "AGENTS.md",
   "scripts/application_sop.py",
   "scripts/mcp_check_client.mjs",
+  "scripts/ats_text_extract.py",
   "application-kit/manifest.json",
   "application-kit/templates/cover_letter.html",
   "application-kit/templates/cover_letter.tex",
@@ -83,6 +89,7 @@ const MANAGED_HASHED_PATHS = [
   "application-kit/templates/cv_english_modern.html",
   "application-kit/templates/cv_german_rounded.html",
   "application-kit/contracts/typography-contract.md",
+  "application-kit/contracts/ats-checker-contract.md",
   "application-kit/contracts/cv-markdown-contract.md",
   "application-kit/contracts/interview-prep-contract.md",
   "application-kit/contracts/writing-review-contract.md",
@@ -90,6 +97,7 @@ const MANAGED_HASHED_PATHS = [
   "application-kit/scripts/application_sop.py",
   "application-kit/scripts/application_quality_loop.py",
   "application-kit/scripts/mcp_check_client.mjs",
+  "application-kit/scripts/ats_text_extract.py",
   "application-kit/scripts/writing_review_loop.py",
   "application-kit/scripts/local_application_generator.py",
   "application-kit/scripts/build_interview_prep.py",
@@ -226,7 +234,7 @@ async function createServer(): Promise<McpServer> {
         mode: "local-kit-plus-private-writing-checker",
         workspaceKitVersion: WORKSPACE_KIT_VERSION,
         persistentProfiles: false,
-        remoteProcessing: "transient writing checks only",
+        remoteProcessing: "transient writing checks and ATS CV/JD checks only",
         tokenRequired: Boolean(TOKEN),
         tools: PUBLIC_TOOLS,
         resources: [
@@ -327,6 +335,31 @@ async function createServer(): Promise<McpServer> {
         path: "sample-prompts.md",
         content: await samplePromptsDocument()
       })
+  );
+
+  server.registerTool(
+    "check_ats_resume_fit",
+    {
+      title: "Check ATS Resume Fit",
+      description:
+        "Compare the current CV/resume text with a job description and return an ATS-style score, matched keywords, missing keywords, risks, and human-in-the-loop revision guidance. Submitted text is processed transiently and not stored.",
+      inputSchema: {
+        document_kind: z.enum(["cv", "resume"]).default("cv").optional(),
+        market: z.string().max(80).optional(),
+        language: z.string().max(40).optional(),
+        role_family: z.string().max(120).optional(),
+        company_name: z.string().max(200).optional(),
+        job_title: z.string().max(220).optional(),
+        job_description: z.string().min(1).max(24000).describe("Current job description text. Do not send unrelated private files."),
+        resume_text: z.string().min(1).max(24000).describe("Current extracted CV/resume text."),
+        resume_sections: z.record(z.string().max(80), z.string().max(8000)).optional(),
+        known_evidence_terms: z.array(z.string().min(1).max(120)).max(200).optional(),
+        protected_facts: z.array(z.string().min(1).max(160)).max(100).optional(),
+        target_score: z.number().int().min(40).max(95).default(70).optional(),
+        max_new_terms: z.number().int().min(1).max(20).default(12).optional()
+      }
+    },
+    async (input) => jsonText(checkAtsResumeFit(input))
   );
 
   server.registerTool(
@@ -1667,7 +1700,7 @@ async function handleHttp(req: IncomingMessage, res: ServerResponse): Promise<vo
       mode: "local-kit-plus-private-writing-checker",
       workspaceKitVersion: WORKSPACE_KIT_VERSION,
       persistentProfiles: false,
-      remoteProcessing: "transient writing checks only",
+      remoteProcessing: "transient writing checks and ATS CV/JD checks only",
       tokenRequired: Boolean(TOKEN),
       tools: PUBLIC_TOOLS
     });

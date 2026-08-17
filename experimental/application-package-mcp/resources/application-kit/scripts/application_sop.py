@@ -63,6 +63,7 @@ def default_state(root: Path) -> dict[str, Any]:
         "evidence": {},
         "manifest_audit": None,
         "review_records": [],
+        "ats_records": [],
         "command_receipts": [],
         "snapshot": {},
         "handoff": {},
@@ -202,6 +203,10 @@ def decision_gate(state: dict[str, Any], document: str) -> list[str]:
 
 def current_reviews(state: dict[str, Any], artifact_rel: str) -> list[dict[str, Any]]:
     return [record for record in state.get("review_records", []) if record.get("artifact") == artifact_rel]
+
+
+def current_ats_records(state: dict[str, Any], artifact_rel: str) -> list[dict[str, Any]]:
+    return [record for record in state.get("ats_records", []) if record.get("artifact") == artifact_rel]
 
 
 def cmd_boot(args: argparse.Namespace) -> int:
@@ -348,6 +353,56 @@ def cmd_review(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_record_ats(args: argparse.Namespace) -> int:
+    root = Path(args.root).resolve()
+    artifact_rel = safe_rel(args.artifact)
+    result_rel = safe_rel(args.result)
+    artifact = root / artifact_rel
+    result_path = root / result_rel
+    if not artifact.exists():
+        raise SystemExit(f"CV/resume artifact not found: {artifact_rel}")
+    if not result_path.exists():
+        raise SystemExit(f"ATS result not found: {result_rel}")
+    result = json.loads(result_path.read_text(encoding="utf-8"))
+    score = result.get("score")
+    if not isinstance(score, int):
+        raise SystemExit("ATS result is invalid: integer score is required.")
+    if not isinstance(result.get("matched_keywords"), list) or not isinstance(result.get("missing_keywords"), list):
+        raise SystemExit("ATS result is invalid: matched_keywords and missing_keywords are required.")
+    if result.get("privacy", {}).get("stored") is not False:
+        raise SystemExit("ATS result is invalid: privacy.stored must be false.")
+    jd_rel = safe_rel(args.job_description) if args.job_description else None
+    jd_digest = None
+    if jd_rel:
+        jd_path = root / jd_rel
+        if not jd_path.exists():
+            raise SystemExit(f"Job description file not found: {jd_rel}")
+        jd_digest = sha256(jd_path)
+    _, _, lock_path, _ = paths(root)
+    with state_lock(lock_path):
+        state = load(root)
+        require_active(state)
+        record = {
+            "at": now(),
+            "document": "cv",
+            "artifact": artifact_rel,
+            "artifact_sha256": sha256(artifact),
+            "job_description": jd_rel,
+            "job_description_sha256": jd_digest,
+            "score": score,
+            "targetScore": result.get("targetScore", 70),
+            "readiness_label": result.get("readiness_label"),
+            "result_path": result_rel,
+            "must_ask_user": result.get("must_ask_user", []),
+        }
+        state.setdefault("ats_records", []).append(record)
+        state["ats_records"] = state["ats_records"][-100:]
+        receipt(state, "record-ats-cv", [artifact_rel, result_rel] + ([jd_rel] if jd_rel else []), [], detail=f"score={score}")
+        save(root, state)
+    print(json.dumps({"status": "recorded", "artifact": artifact_rel, "score": score}, indent=2))
+    return 0
+
+
 def cmd_finalize(args: argparse.Namespace) -> int:
     root = Path(args.root).resolve(); artifact_rel = safe_rel(args.artifact); artifact = root / artifact_rel
     if not artifact.exists(): raise SystemExit(f"Artifact not found: {artifact_rel}")
@@ -359,6 +414,9 @@ def cmd_finalize(args: argparse.Namespace) -> int:
         if args.document == "cv":
             required_reviews = matching
             if len(required_reviews) < 1: missing.append("1 current CV review record required")
+            ats_records = [item for item in current_ats_records(state, artifact_rel) if item.get("artifact_sha256") == digest]
+            if not ats_records:
+                missing.append("current ATS CV/JD report required; run MCP ATS check and record-ats-cv after the latest CV edit")
         elif args.document == "cover-letter":
             by_loop = {item.get("loop"): item for item in reviews if item.get("loop") in {1, 2, 3}}
             required_reviews = [by_loop[loop] for loop in (1, 2, 3) if loop in by_loop]
@@ -381,7 +439,7 @@ def cmd_finalize(args: argparse.Namespace) -> int:
         if missing:
             print(json.dumps({"status": "NOT READY", "artifact": artifact_rel, "missing": missing}, indent=2)); return 1
         receipt_dir = root / STATE_DIR / "receipts"; receipt_dir.mkdir(parents=True, exist_ok=True)
-        payload = {"receipt_schema": 1, "status": "ready", "artifact": artifact_rel, "artifact_sha256": digest, "document": args.document, "task_id": active["task_id"], "created_at": now(), "reviews": required_reviews, "decisions": state.get("decisions", {}), "manifest_audit": state.get("manifest_audit")}
+        payload = {"receipt_schema": 1, "status": "ready", "artifact": artifact_rel, "artifact_sha256": digest, "document": args.document, "task_id": active["task_id"], "created_at": now(), "reviews": required_reviews, "ats_records": [item for item in current_ats_records(state, artifact_rel) if item.get("artifact_sha256") == digest] if args.document == "cv" else [], "decisions": state.get("decisions", {}), "manifest_audit": state.get("manifest_audit")}
         target = receipt_dir / f"{args.document}-{digest[:12]}.json"; target.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
         receipt(state, f"finalize-{args.document}", [artifact_rel], [target.relative_to(root).as_posix()])
         save(root, state)
@@ -414,7 +472,7 @@ def cmd_diagnose(args: argparse.Namespace) -> int:
 def cmd_health(args: argparse.Namespace) -> int:
     root = Path(args.root).resolve(); state = load(root)
     snapshot = bool(state.get("snapshot")); active = bool(state.get("active"))
-    status = {"snapshot_present": snapshot, "active_task": active, "photo_decision": state.get("decisions", {}).get("photo"), "signature_decision": state.get("decisions", {}).get("signature"), "enclosure_decision": state.get("decisions", {}).get("enclosures"), "voice_intake": voice_intake_status(state), "workspace_audit": (state.get("manifest_audit") or {}).get("status"), "review_records": len(state.get("review_records", [])), "release_receipts": len(list((root / STATE_DIR / "receipts").glob("*.json"))) if (root / STATE_DIR / "receipts").exists() else 0}
+    status = {"snapshot_present": snapshot, "active_task": active, "photo_decision": state.get("decisions", {}).get("photo"), "signature_decision": state.get("decisions", {}).get("signature"), "enclosure_decision": state.get("decisions", {}).get("enclosures"), "voice_intake": voice_intake_status(state), "workspace_audit": (state.get("manifest_audit") or {}).get("status"), "review_records": len(state.get("review_records", [])), "ats_records": len(state.get("ats_records", [])), "release_receipts": len(list((root / STATE_DIR / "receipts").glob("*.json"))) if (root / STATE_DIR / "receipts").exists() else 0}
     print(json.dumps(status, indent=2))
     return 0 if snapshot else 1
 
@@ -429,6 +487,7 @@ def parser() -> argparse.ArgumentParser:
     voice_status = commands.add_parser("voice-intake-status"); voice_status.set_defaults(func=cmd_voice_intake_status)
     voice_record = commands.add_parser("record-voice-intake"); voice_record.add_argument("--status", choices=["pending", "collecting", "revisit_later", "enough", "declined"], required=True); voice_record.add_argument("--source-count", type=int, default=0); voice_record.add_argument("--remind-after-days", type=int, default=45); voice_record.add_argument("--note", default=""); voice_record.set_defaults(func=cmd_record_voice_intake)
     manifest = commands.add_parser("record-manifest-audit"); manifest.add_argument("--report", required=True); manifest.set_defaults(func=cmd_record_manifest)
+    ats = commands.add_parser("record-ats-cv"); ats.add_argument("--artifact", required=True); ats.add_argument("--result", required=True); ats.add_argument("--job-description"); ats.set_defaults(func=cmd_record_ats)
     for name, document in (("review-cv", "cv"), ("review-cover", "cover-letter"), ("review-interview-prep", "interview-prep"), ("review-writing", "writing")):
         review = commands.add_parser(name); review.add_argument("--artifact", required=True); review.add_argument("--result", required=True); review.add_argument("--loop", type=int, default=1); review.set_defaults(func=cmd_review, document=document)
     for name, document in (("finalize-cv", "cv"), ("finalize-cover-letter", "cover-letter"), ("finalize-interview-prep", "interview-prep"), ("finalize-writing", "writing")):

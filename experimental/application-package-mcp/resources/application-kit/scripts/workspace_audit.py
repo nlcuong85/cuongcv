@@ -13,18 +13,19 @@ import os
 import time
 from pathlib import Path
 
-KIT_VERSION = "2026.08.15-review-payload.1"
+KIT_VERSION = "2026.08.17-ats-local.1"
 MANAGED = [
-    "AGENTS.md", "scripts/application_sop.py", "scripts/mcp_check_client.mjs",
+    "AGENTS.md", "scripts/application_sop.py", "scripts/mcp_check_client.mjs", "scripts/ats_text_extract.py",
     "application-kit/manifest.json", "application-kit/templates/cover_letter.html",
     "application-kit/templates/cover_letter.tex", "application-kit/templates/interview_prep.md",
     "application-kit/templates/cv_english_modern.html",
     "application-kit/templates/cv_german_rounded.html",
-    "application-kit/contracts/typography-contract.md", "application-kit/contracts/cv-markdown-contract.md",
+    "application-kit/contracts/typography-contract.md", "application-kit/contracts/ats-checker-contract.md",
+    "application-kit/contracts/cv-markdown-contract.md",
     "application-kit/contracts/interview-prep-contract.md", "application-kit/contracts/writing-review-contract.md",
     "application-kit/contracts/mcp-review-payload-contract.md",
     "application-kit/scripts/application_sop.py", "application-kit/scripts/application_quality_loop.py",
-    "application-kit/scripts/mcp_check_client.mjs",
+    "application-kit/scripts/mcp_check_client.mjs", "application-kit/scripts/ats_text_extract.py",
     "application-kit/scripts/writing_review_loop.py",
     "application-kit/scripts/local_application_generator.py", "application-kit/scripts/build_interview_prep.py",
     "application-kit/scripts/build_cv_html.py",
@@ -67,6 +68,15 @@ def audit(root: Path) -> tuple[dict, dict]:
         except json.JSONDecodeError:
             pass
     paths.extend([".mcp/workspace-manifest.json", ".mcp/local-workspace-audit.json"])
+    ats_findings = []
+    applications_root = root / "applications"
+    if applications_root.exists():
+        for cv in sorted(applications_root.glob("*/cv/*")):
+            if cv.suffix.lower() not in {".md", ".html", ".pdf", ".txt"}:
+                continue
+            validation = cv.parents[1] / "validation"
+            if not (validation / "ats-report.json").exists():
+                ats_findings.append({"artifact": cv.relative_to(root).as_posix(), "status": "missing_ats_report"})
     manifest = {
         "schema_version": "1.0", "kit_version": KIT_VERSION,
         "paths": sorted(set(paths)), "managed_file_hashes": hashes,
@@ -83,6 +93,7 @@ def audit(root: Path) -> tuple[dict, dict]:
             "missing_required_roots": [item for item in REQUIRED if not (root / item).exists()],
             "large_files": sorted(large, key=lambda item: item["bytes"], reverse=True)[:20],
             "duplicate_file_names": sorted(name for name, count in duplicate_names.items() if count > 1)[:50],
+            "ats_gates": ats_findings[:50],
         },
         "inference": "This audit identifies structural risk only. Use application_sop.py diagnose-workspace timing spans before attributing a slow run to folder size.",
     }
