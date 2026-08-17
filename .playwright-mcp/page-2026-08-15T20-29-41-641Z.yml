@@ -1,0 +1,24 @@
+- main [ref=f1e2]:
+  - region [ref=f1e3]:
+    - generic [ref=f1e4]: ASCII ritual concept
+    - heading "Cá chép vượt Vũ Môn." [level=1] [ref=f1e5]
+    - paragraph [ref=f1e6]: "A lightweight animated ASCII symbol for the product: the candidate starts as a draft, crosses evidence and review gates, then becomes a stronger application."
+    - generic "Animation meaning" [ref=f1e7]:
+      - generic [ref=f1e8]:
+        - generic [ref=f1e10]: "Carp:"
+        - text: the first AI draft is only the beginning.
+      - generic [ref=f1e11]:
+        - generic [ref=f1e13]: "Vũ Môn gate:"
+        - text: structure, evidence, tone, and MCP review loops.
+      - generic [ref=f1e14]:
+        - generic [ref=f1e16]: "Dragon:"
+        - text: a document that has earned readiness, not just claimed it.
+  - region "Animated ASCII carp crossing Dragon Gate" [ref=f1e17]:
+    - generic [ref=f1e18]:
+      - generic [ref=f1e19]: review-loop://vu-mon-transform
+      - generic [ref=f1e25]: \n \n ┌─ selected text only ───────────────────────────────────────────────┐ \n │ local draft → MCP review gate → stronger revision │ \n └────────────────────────────────────────────────────────────────────┘ \n \n \n / \ * \n / \ \n / \ \n /* \ 3x cover \n ╔════════════════════╗ \n ║ ✦ ║ 1x CV \n ║ · ║ \n ║ VŨ MÔN ║ 2x interview \n ║ ║ \n ║ ║ 1-3x long text \n ~ ≈ ˷ ﹏ ~ ╚══════════════════˚═╝ ˷ ﹏ ~ ≈ ˷\n ~ ≈ ˷ ﹏ ~ ≈ /✦ ﹏ · \ ≈ ˷ ﹏ ~ ≈ ˷ \n ~ ≈ ˷ ﹏ ~ ≈ structure ~ \ ≈ ˷ ﹏ ~ ≈ ˷ \n~ ≈ ˷ ﹏ ~ ≈ / ﹏ ~ \≈ ˷ ﹏ ~ ≈ ˷ \n ≈ ˷ ﹏ ~ ≈ /evidence ~ ≈\ ˷ ﹏ ~ ≈ ˷ \n ≈ ><(((º> ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏\n ≈ \\ ~ ≈ ˷ human-fit ≈ ˷ ﹏ ~ ≈ ˷ ﹏ \n ≈ \\ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ \n≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ \n ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ \n ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~\n ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ \n ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ \n˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~
+      - generic [ref=f1e26]:
+        - generic [ref=f1e27]:
+          - strong [ref=f1e28]: "status:"
+          - text: draft → review → revise → rise
+        - generic [ref=f1e29]: original ASCII animation, no external image assets

@@ -1,0 +1,97 @@
+- generic [active] [ref=f11e1]:
+  - navigation "Main navigation" [ref=f11e2]:
+    - link "◇ Student Application AI Helper" [ref=f11e3] [cursor=pointer]:
+      - /url: /
+      - generic [ref=f11e4]: ◇
+      - generic [ref=f11e5]: Student ApplicationAI Helper
+    - generic [ref=f11e6]:
+      - link "Start" [ref=f11e7] [cursor=pointer]:
+        - /url: /start
+      - link "Examples" [ref=f11e8] [cursor=pointer]:
+        - /url: /examples
+      - link "Docs" [ref=f11e9] [cursor=pointer]:
+        - /url: /docs
+      - link "Technical" [ref=f11e10] [cursor=pointer]:
+        - /url: /technical-flow
+  - banner [ref=f11e11]:
+    - generic [ref=f11e12]: Start from an empty folder
+    - heading "Give your local AI a clean place to work." [level=1] [ref=f11e13]
+    - paragraph [ref=f11e14]: Old scattered folders make the process slow. Start fresh, then let the MCP kit scaffold the right structure.
+  - generic [ref=f11e15]:
+    - generic [ref=f11e16]:
+      - article [ref=f11e17]:
+        - generic [ref=f11e18]: "01"
+        - generic [ref=f11e19]:
+          - heading "Create a clean project folder" [level=2] [ref=f11e20]
+          - paragraph [ref=f11e21]:
+            - text: Use Codex, VS Code, Claude, or another local AI workspace. Name it clearly, for example
+            - code [ref=f11e22]: my-job-application
+            - text: .
+      - article [ref=f11e23]:
+        - generic [ref=f11e24]: "02"
+        - generic [ref=f11e25]:
+          - heading "Give the AI this URL" [level=2] [ref=f11e26]
+          - paragraph [ref=f11e27]:
+            - text: Ask the agent to read
+            - code [ref=f11e28]: https://jobmcp.pmlecuong.com/
+            - text: ", fetch the workspace template, create the local structure, and ask before making uncertain decisions."
+      - article [ref=f11e29]:
+        - generic [ref=f11e30]: "03"
+        - generic [ref=f11e31]:
+          - heading "Provide source material" [level=2] [ref=f11e32]
+          - paragraph [ref=f11e33]: CV or profile source is mandatory. Add job descriptions, education track, certificates, writing samples, role preference, photo if you want one, and signature if you want cover letters signed.
+      - article [ref=f11e34]:
+        - generic [ref=f11e35]: "04"
+        - generic [ref=f11e36]:
+          - heading "Send a job description" [level=2] [ref=f11e37]
+          - paragraph [ref=f11e38]: The local agent checks fit, drafts locally, then runs the required review loops before saying a document is ready.
+    - generic [ref=f11e39]:
+      - generic [ref=f11e40]:
+        - generic [ref=f11e41]: Starter prompt
+        - button "Copy prompt" [ref=f11e42] [cursor=pointer]
+      - generic [ref=f11e43]: Please read https://jobmcp.pmlecuong.com/ and set up a local project folder for me to handle job applications. Ask me questions along the way if you need my verification. If you need my picture, CV, cover letter, sample CV, sample cover letter, education track, writing samples, or job description, ask me and I will provide them. Keep my private files local. Use the MCP only for workspace setup, safe structure/version audit, and selected final reader-facing text review.
+  - generic [ref=f11e44]:
+    - generic [ref=f11e45]: What to prepare
+    - heading "The agent can only be strong if the source material is real." [level=2] [ref=f11e46]
+    - paragraph [ref=f11e47]: The setup conversation should feel like a careful career coach, not a generic chatbot. It should ask for missing evidence, explain why the evidence matters, and stop before inventing facts.
+    - generic [ref=f11e48]:
+      - article [ref=f11e49]:
+        - generic [ref=f11e50]: Required
+        - heading "CV or profile source" [level=3] [ref=f11e51]
+        - paragraph [ref=f11e52]: PDF, DOCX, HTML, Markdown, LinkedIn export, or structured notes. If there is no old resume, the agent asks for education and work history.
+      - article [ref=f11e53]:
+        - generic [ref=f11e54]: Recommended
+        - heading "Real writing samples" [level=3] [ref=f11e55]
+        - paragraph [ref=f11e56]: Old emails, IELTS writing, reports, PRDs, BRDs, user stories, or pre-2022 documents help the agent learn authentic tone.
+      - article [ref=f11e57]:
+        - generic [ref=f11e58]: Optional
+        - heading "Photo and signature" [level=3] [ref=f11e59]
+        - paragraph [ref=f11e60]: Photo is asked for CV use. Signature is asked for cover letters. If the user does not provide them, the agent continues without inventing assets.
+  - generic [ref=f11e61]:
+    - generic [ref=f11e62]: Copy prompts
+    - heading "The prompt page is now part of start." [level=2] [ref=f11e63]
+    - paragraph [ref=f11e64]: Use these when the workspace already exists and you want to trigger a specific flow.
+    - generic [ref=f11e65]:
+      - generic [ref=f11e66]:
+        - generic [ref=f11e67]: Job application prompt
+        - button "Copy prompt" [ref=f11e68] [cursor=pointer]
+      - generic [ref=f11e69]: I want to apply for this job. Please read the job description, check fit against my verified CV evidence, and tell me what is missing before drafting. Create or update the editable HTML CV if needed. Create a German-style cover letter only when appropriate. Run the required review loops before saying anything is ready.
+    - generic [ref=f11e70]:
+      - generic [ref=f11e71]:
+        - generic [ref=f11e72]: Writing check prompt
+        - button "Copy prompt" [ref=f11e73] [cursor=pointer]
+      - generic [ref=f11e74]: "Please review this selected text with the MCP writing checker. Use the correct mode: application, interview_prep, academic, work, blog, social, or general. Send only the final reader-facing text, not my folder, notes, prompts, PDFs, images, or private source documents."
+  - contentinfo [ref=f11e75]:
+    - generic [ref=f11e76]: MCP v0.2.14 · kit 2026.08.15-review-payload.1
+    - generic [ref=f11e77]:
+      - link "Health" [ref=f11e78] [cursor=pointer]:
+        - /url: /health
+      - text: ·
+      - link "Privacy" [ref=f11e79] [cursor=pointer]:
+        - /url: /privacy
+      - text: ·
+      - link "MCP endpoint" [ref=f11e80] [cursor=pointer]:
+        - /url: /mcp
+      - text: ·
+      - link "Built by pmlecuong.com ↗" [ref=f11e81] [cursor=pointer]:
+        - /url: https://pmlecuong.com/

@@ -1,0 +1,24 @@
+- main [ref=f4e2]:
+  - region [ref=f4e3]:
+    - generic [ref=f4e4]: ASCII ritual concept
+    - heading "Cá chép vượt Vũ Môn." [level=1] [ref=f4e5]
+    - paragraph [ref=f4e6]: "A lightweight animated ASCII symbol for the product: the candidate starts as a draft, crosses evidence and review gates, then becomes a stronger application."
+    - generic "Animation meaning" [ref=f4e7]:
+      - generic [ref=f4e8]:
+        - generic [ref=f4e10]: "Carp:"
+        - text: the first AI draft is only the beginning.
+      - generic [ref=f4e11]:
+        - generic [ref=f4e13]: "Vũ Môn gate:"
+        - text: structure, evidence, tone, and MCP review loops.
+      - generic [ref=f4e14]:
+        - generic [ref=f4e16]: "Dragon:"
+        - text: a document that has earned readiness, not just claimed it.
+  - region "Animated ASCII carp crossing Dragon Gate" [ref=f4e17]:
+    - generic [ref=f4e18]:
+      - generic [ref=f4e19]: review-loop://vu-mon-transform
+      - generic [ref=f4e25]: "┌─ selected text only ───────────────────────────────────────────────────────────┐ │ local draft → structure/evidence gate → higher-level application │ └───────────────────────────────────────────────────────────────────────────────┘ ╱╲ ╱╲ ╱╲ distant ridge ______/ ╲________/ ╲___________/ ╲____________________ ˚ ✦ ✧ ╭──────────────────── UPPER RIVER ────────────────────╮ ╌ ╌ ╌ ╌ ╌˚ ╌ ╌ ° ╌ ╌ ╌ ╌˙ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ✧╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ˚ ╌ ╌ ╌ ╌ ╌ ╌ °╌ ˙· ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ✧ ╌ ╌ ˚ ˚ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌✧˙ ╌ ╌ ╌ ╌ ✧╌˚ ╌ ╌ ╌· ╌ ╌ ╌ ╌ ╌ ╰─────────────── ✦ ▄█┃┃┃█╏╏█▄│ ˚ °──────˙──────✧───╯ ° ˙ ▄▄˙█˚▓▒┃┃┃▒╏╏▓█│▄▄· ✧ · · ▄·█▓▒░ ╭─┃┃┃─╏╏─╮│ ✧ ° ╲ not magic ▄˚▓▒░ ✧ ╱· ┃˙┃M╏╏ │ · 3x cover ╲▒ ▄█▓✧░ ·╱˚ R┃┃┃E╏╏°·│╲ · ˚ ╲▓▒ earned by loops ██▓▒░ ╱ ┃┃┃E╏╏ │ ˙° 1x CV ╲▓▒ ██▓▒˙ ╱ ·┃┃✦·╏╏ │ ✧ ˚ ✧ ╲▓ ██▓▒░ ° ˚ ┃┃┃ ╏╏ │ 2x interview˚ ╲ ▀█▓▒░ °╲ ┃·┃ ╏╏ │ ✧ ˙ ˙ ▀██▓▒░ ╲_┃┃┃_╏╏__│__╱ ˙ 1-3x long text ✧ ▀██▓˚▒▒┃┃┃░╏╏░░✧▒▓▓✧█▀ · ° ˚ ˚ ▀▀██┃┃┃█╏╏██│█▀▀ °┃┃┃ ╏╏ │ ˙ ˚ ┃┃┃ ╏╏ │ ° ╭──────────────────── LOWER RIVER: raw draft, real effort, first attempt ─────────╮ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~┃┃ ∿╏ ﹏ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ˚ ~┃┃┃∿╏╏ ﹏│ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ┃┃∿ ╏╏﹏ │ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ˷ ≈ __ ﹏ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ﹏ ≈ ><(((º > ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ╲ ░▒▓)) ╲ ╲ ╲ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ╲╲ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ≈ ﹏ ~ ˷ ╲ ╲ ╲ ╲﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏"
+      - generic [ref=f4e26]:
+        - generic [ref=f4e27]:
+          - strong [ref=f4e28]: "status:"
+          - text: draft → review → revise → rise
+        - generic [ref=f4e29]: original ASCII animation, no external image assets

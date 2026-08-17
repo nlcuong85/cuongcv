@@ -1,0 +1,98 @@
+- generic [active] [ref=f15e1]:
+  - navigation "Main navigation" [ref=f15e2]:
+    - link [ref=f15e3] [cursor=pointer]:
+      - /url: /
+      - generic [ref=f15e9]:
+        - text: Job MCP
+        - emphasis [ref=f15e10]: by pmlecuong
+    - generic [ref=f15e11]:
+      - link "Start" [ref=f15e12] [cursor=pointer]:
+        - /url: /start
+      - link "Examples" [ref=f15e13] [cursor=pointer]:
+        - /url: /examples
+      - link "Docs" [ref=f15e14] [cursor=pointer]:
+        - /url: /docs
+      - link "Technical" [ref=f15e15] [cursor=pointer]:
+        - /url: /technical-flow
+  - banner [ref=f15e16]:
+    - generic [ref=f15e17]: Output examples
+    - heading "Templates and samples stay separate from the setup story." [level=1] [ref=f15e18]
+    - paragraph [ref=f15e19]: Use these only as references. The local agent still has to tailor every document to the actual person and job.
+  - generic [ref=f15e20]:
+    - generic [ref=f15e21]: Four use cases
+    - heading "Examples are organized by the thing the user wants checked." [level=2] [ref=f15e22]
+    - generic [ref=f15e23]:
+      - article [ref=f15e24]:
+        - generic [ref=f15e25]: Validator
+        - heading "Release-style writing gate" [level=3] [ref=f15e26]
+        - paragraph [ref=f15e27]: The local SOP checks that the reviewed text is the current artifact and reruns when the file changes.
+      - article [ref=f15e28]:
+        - generic [ref=f15e29]: CV
+        - heading "Editable resume package" [level=3] [ref=f15e30]
+        - paragraph [ref=f15e31]: HTML CV first, visual review with browser screenshots, then PDF or export when the structure is right.
+      - article [ref=f15e32]:
+        - generic [ref=f15e33]: Interview
+        - heading "Interview prep answers" [level=3] [ref=f15e34]
+        - paragraph [ref=f15e35]: Likely questions, STAR prompts, weakness answers, culture-fit answers, and two selected-text review loops.
+      - article [ref=f15e36]:
+        - generic [ref=f15e37]: Writing
+        - heading "Research or long-form text" [level=3] [ref=f15e38]
+        - paragraph [ref=f15e39]: Academic, work, blog, social, or general text can run one to three selected-text review loops.
+  - generic [ref=f15e41]:
+    - link "CV English HTML resume Editable HTML template for users who do not already have a usable resume format." [ref=f15e42] [cursor=pointer]:
+      - /url: /cv-template/english
+      - generic [ref=f15e43]: CV
+      - heading "English HTML resume" [level=3] [ref=f15e44]
+      - paragraph [ref=f15e45]: Editable HTML template for users who do not already have a usable resume format.
+    - link "Lebenslauf German HTML CV German-style structure with photo area and real-content placeholders." [ref=f15e46] [cursor=pointer]:
+      - /url: /cv-template/german
+      - generic [ref=f15e47]: Lebenslauf
+      - heading "German HTML CV" [level=3] [ref=f15e48]
+      - paragraph [ref=f15e49]: German-style structure with photo area and real-content placeholders.
+    - link "Cover letter German business letter PDF One-page sample with sender, recipient, date, subject, body, signature, and enclosures." [ref=f15e50] [cursor=pointer]:
+      - /url: /assets/german-cover-letter-sample.pdf
+      - generic [ref=f15e51]: Cover letter
+      - heading "German business letter PDF" [level=3] [ref=f15e52]
+      - paragraph [ref=f15e53]: One-page sample with sender, recipient, date, subject, body, signature, and enclosures.
+  - generic [ref=f15e54]:
+    - generic [ref=f15e55]: Rendered sample
+    - heading "A German-style cover letter, built locally." [level=2] [ref=f15e56]
+    - paragraph [ref=f15e57]: Fictional demonstration only. Jane Doe, Stuttgart Hbf, the recruiting team, and the signature graphic are placeholders.
+    - generic [ref=f15e58]:
+      - generic [ref=f15e59]:
+        - generic [ref=f15e60]:
+          - generic [ref=f15e61]: Rules shown
+          - heading "German structure. Real document feel." [level=3] [ref=f15e62]
+          - paragraph [ref=f15e63]: "The preview shows the exact document discipline the local kit enforces: clean sender block, recipient block, date, bold subject, concise evidence-led body, signature area, and enclosure list."
+          - list [ref=f15e64]:
+            - listitem [ref=f15e65]:
+              - generic [ref=f15e66]: "01"
+              - generic [ref=f15e67]: One-page A4 letter with business structure.
+            - listitem [ref=f15e68]:
+              - generic [ref=f15e69]: "02"
+              - generic [ref=f15e70]: Signature area and enclosure list are visible.
+            - listitem [ref=f15e71]:
+              - generic [ref=f15e72]: "03"
+              - generic [ref=f15e73]: Rendered locally before a user sends anything.
+        - generic [ref=f15e74]:
+          - link "Open PDF" [ref=f15e75] [cursor=pointer]:
+            - /url: /assets/german-cover-letter-sample.pdf
+          - link "Read rules" [ref=f15e76] [cursor=pointer]:
+            - /url: /docs
+      - link "Open fictional German-format cover letter PDF" [ref=f15e78] [cursor=pointer]:
+        - /url: /assets/german-cover-letter-sample.pdf
+        - img "One-page fictional German-format cover letter sample" [ref=f15e79]
+  - contentinfo [ref=f15e80]:
+    - generic [ref=f15e81]: MCP v0.2.15 · kit 2026.08.15-review-payload.1
+    - generic [ref=f15e82]:
+      - link "Health" [ref=f15e83] [cursor=pointer]:
+        - /url: /health
+      - text: ·
+      - link "Privacy" [ref=f15e84] [cursor=pointer]:
+        - /url: /privacy
+      - text: ·
+      - link "MCP endpoint" [ref=f15e85] [cursor=pointer]:
+        - /url: /mcp
+      - text: ·
+      - link "Built by pmlecuong.com ↗" [ref=f15e86] [cursor=pointer]:
+        - /url: https://pmlecuong.com/

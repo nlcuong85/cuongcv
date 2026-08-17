@@ -1,0 +1,24 @@
+- main [ref=f2e2]:
+  - region [ref=f2e3]:
+    - generic [ref=f2e4]: ASCII ritual concept
+    - heading "Cá chép vượt Vũ Môn." [level=1] [ref=f2e5]
+    - paragraph [ref=f2e6]: "A lightweight animated ASCII symbol for the product: the candidate starts as a draft, crosses evidence and review gates, then becomes a stronger application."
+    - generic "Animation meaning" [ref=f2e7]:
+      - generic [ref=f2e8]:
+        - generic [ref=f2e10]: "Carp:"
+        - text: the first AI draft is only the beginning.
+      - generic [ref=f2e11]:
+        - generic [ref=f2e13]: "Vũ Môn gate:"
+        - text: structure, evidence, tone, and MCP review loops.
+      - generic [ref=f2e14]:
+        - generic [ref=f2e16]: "Dragon:"
+        - text: a document that has earned readiness, not just claimed it.
+  - region "Animated ASCII carp crossing Dragon Gate" [ref=f2e17]:
+    - generic [ref=f2e18]:
+      - generic [ref=f2e19]: review-loop://vu-mon-transform
+      - generic [ref=f2e25]: ┌─ selected text only ───────────────────────────────────────────────┐ │ local draft → MCP review gate → stronger revision │ └────────────────────────────────────────────────────────────────────┘ / \ / \ * / \ /* \ 3x cover ╔════════════════════╗ ˚ ║ ✦ ║ 1x CV ║ ║ ║ VŨ MÔN · ║ 2x interview ║ ║ ║ ║ 1-3x long text ~ ≈ ˷ ﹏ ~ ╚═════════════════˚══╝ ˷ ﹏ ~ ≈ ˷ ~ ≈ ˷ ﹏ ~ ≈ ✦ ﹏ · \ ≈ ˷ ﹏ ~ ≈ ˷ ~ ≈ ˷ ﹏ ~ ≈ structure ~ \ ≈ ˷ ﹏ ~ ≈ ˷ ~ ≈ ˷ ﹏ ~ ≈ / ﹏ ~ \≈ ˷ ﹏ ~ ≈ ˷ ≈ ˷ ﹏ ~ ≈ /evidence ~ ≈\ ˷ ﹏ ~ ≈ ˷ ≈ ><(((º> ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ≈ \\ ~ ≈ ˷ human-fit ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ≈ \\ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~
+      - generic [ref=f2e26]:
+        - generic [ref=f2e27]:
+          - strong [ref=f2e28]: "status:"
+          - text: draft → review → revise → rise
+        - generic [ref=f2e29]: original ASCII animation, no external image assets

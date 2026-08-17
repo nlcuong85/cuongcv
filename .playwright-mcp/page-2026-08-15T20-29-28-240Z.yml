@@ -1,0 +1,24 @@
+- main [ref=e2]:
+  - region [ref=e3]:
+    - generic [ref=e4]: ASCII ritual concept
+    - heading "Cá chép vượt Vũ Môn." [level=1] [ref=e5]
+    - paragraph [ref=e6]: "A lightweight animated ASCII symbol for the product: the candidate starts as a draft, crosses evidence and review gates, then becomes a stronger application."
+    - generic "Animation meaning" [ref=e7]:
+      - generic [ref=e8]:
+        - generic [ref=e10]: "Carp:"
+        - text: the first AI draft is only the beginning.
+      - generic [ref=e11]:
+        - generic [ref=e13]: "Vũ Môn gate:"
+        - text: structure, evidence, tone, and MCP review loops.
+      - generic [ref=e14]:
+        - generic [ref=e16]: "Dragon:"
+        - text: a document that has earned readiness, not just claimed it.
+  - region "Animated ASCII carp crossing Dragon Gate" [ref=e17]:
+    - generic [ref=e18]:
+      - generic [ref=e19]: review-loop://vu-mon-transform
+      - generic [ref=e25]: \n \n ┌─ selected text only ───────────────────────────────────────────────┐ \n │ local draft → MCP review gate → stronger revision │ \n └────────────────────────────────────────────────────────────────────┘ \n \n \n / \ * \n / \ \n / \ \n /* \ 3x cover \n ╔════════════════════╗ \n ║ ✦ ║ 1x CV \n ║ ║ \n ║ VŨ MÔN · ║ 2x interview \n ║ ║ \n ║ ║ 1-3x long text \n ~ ≈ ˷ ﹏ ~ ╚═════════════════˚══╝ ˷ ﹏ ~ ≈ ˷\n ~ ≈ ˷ ﹏ ~ ≈ ✦ ﹏ · \ ≈ ˷ ﹏ ~ ≈ ˷ \n ~ ≈ ˷ ﹏ ~ ≈ structure ~ \ ≈ ˷ ﹏ ~ ≈ ˷ \n~ ≈ ˷ ﹏ ~ ≈ / ﹏ ~ \≈ ˷ ﹏ ~ ≈ ˷ \n ≈ ˷ ﹏ ~ ≈ /evidence ~ ≈\ ˷ ﹏ ~ ≈ ˷ \n ≈ ><(((º> ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏\n ≈ \\ ~ ≈ ˷ human-fit ≈ ˷ ﹏ ~ ≈ ˷ ﹏ \n ≈ \\ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ \n≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ \n ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ \n ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~\n ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ \n ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ \n˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~ ≈ ˷ ﹏ ~
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - strong [ref=e28]: "status:"
+          - text: draft → review → revise → rise
+        - generic [ref=e29]: original ASCII animation, no external image assets

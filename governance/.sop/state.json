@@ -1,5 +1,5 @@
 {
-  "active_goal": "Released Job MCP v0.2.15 UI refresh to production: brand rename, suitcase mark, ASCII landing section, copy buttons, and improved cover-letter showcase. Health, smoke, and browser checks passed.",
+  "active_goal": "Update Job MCP landing ASCII art locally",
   "active_task_id": null,
   "checkpoints": [
     {
@@ -3931,41 +3931,83 @@
       "open_questions": [],
       "summary": "Postflight recorded fresh repository snapshot.",
       "time": "2026-08-15T21:52:23+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py preflight"
+      ],
+      "files_changed": [],
+      "label": "preflight",
+      "next_steps": [
+        "Set or verify active task, update handoff, then use SOP.py run for commands where practical."
+      ],
+      "open_questions": [],
+      "summary": "Preflight completed: status, resume brief, and audit check were run.",
+      "time": "2026-08-15T22:02:09+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-220446-186942.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T22:04:50+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-220622-364764.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T22:06:30+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-220711-973899.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T22:07:18+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py handoff"
+      ],
+      "files_changed": [],
+      "label": "handoff",
+      "next_steps": [
+        "User review at http://127.0.0.1:5960/; deploy only if approved."
+      ],
+      "open_questions": [],
+      "summary": "Handoff updated: Updated Job MCP landing ASCII Dragon Gate locally with transparent page-integrated, larger 3D-style scene; tests and screenshots passed on local 5960.",
+      "time": "2026-08-15T22:07:19+00:00"
+    },
+    {
+      "commands_run": [
+        "npm test"
+      ],
+      "files_changed": [],
+      "label": "run",
+      "next_steps": [],
+      "open_questions": [],
+      "run_log": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-220816-596515.log",
+      "summary": "Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test",
+      "time": "2026-08-15T22:08:23+00:00"
     }
   ],
   "command_log": [
-    {
-      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 2,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102046-324790.log",
-      "started_at": "2026-08-15T10:20:46+00:00",
-      "time": "2026-08-15T10:20:49+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102147-700543.log",
-      "started_at": "2026-08-15T10:21:47+00:00",
-      "time": "2026-08-15T10:21:51+00:00"
-    },
-    {
-      "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 2,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102202-820029.log",
-      "started_at": "2026-08-15T10:22:02+00:00",
-      "time": "2026-08-15T10:22:06+00:00"
-    },
-    {
-      "command": "npm test",
-      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
-      "exit_code": 0,
-      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-102308-439909.log",
-      "started_at": "2026-08-15T10:23:08+00:00",
-      "time": "2026-08-15T10:23:12+00:00"
-    },
     {
       "command": "env APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py",
       "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
@@ -4333,6 +4375,38 @@
       "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-215006-687911.log",
       "started_at": "2026-08-15T21:50:06+00:00",
       "time": "2026-08-15T21:50:13+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-220446-186942.log",
+      "started_at": "2026-08-15T22:04:46+00:00",
+      "time": "2026-08-15T22:04:50+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-220622-364764.log",
+      "started_at": "2026-08-15T22:06:22+00:00",
+      "time": "2026-08-15T22:06:30+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-220711-973899.log",
+      "started_at": "2026-08-15T22:07:11+00:00",
+      "time": "2026-08-15T22:07:18+00:00"
+    },
+    {
+      "command": "npm test",
+      "cwd": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp",
+      "exit_code": 0,
+      "log_path": "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-220816-596515.log",
+      "started_at": "2026-08-15T22:08:16+00:00",
+      "time": "2026-08-15T22:08:23+00:00"
     }
   ],
   "created_at": "2026-06-19T09:19:21+00:00",
@@ -4345,18 +4419,12 @@
     }
   ],
   "handoff": {
-    "commands": [
-      "python3 SOP.py postflight"
-    ],
-    "current": "Released Job MCP v0.2.15 UI refresh to production: brand rename, suitcase mark, ASCII landing section, copy buttons, and improved cover-letter showcase. Health, smoke, and browser checks passed.",
-    "files": [
-      "experimental/application-package-mcp/src/index.ts",
-      "experimental/application-package-mcp/package.json",
-      "experimental/application-package-mcp/tests/mcp-http.test.mjs"
-    ],
-    "next": "Monitor production pages; rollback tag rollback/jobmcp-20260815-235045-e35eb02 is available on Franklee if needed.",
-    "risk": "Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.",
-    "updated_at": "2026-08-15T21:52:21+00:00"
+    "commands": [],
+    "current": "Updated Job MCP landing ASCII Dragon Gate locally with transparent page-integrated, larger 3D-style scene; tests and screenshots passed on local 5960.",
+    "files": [],
+    "next": "User review at http://127.0.0.1:5960/; deploy only if approved.",
+    "risk": "Do not judge stale http://127.0.0.1:5948 because it is still serving an older local process.",
+    "updated_at": "2026-08-15T22:07:19+00:00"
   },
   "kiro": {
     "active_spec": "resilient-application-mcp",
@@ -7802,14 +7870,14 @@
       "updated_at": "2026-06-19T09:20:07+00:00"
     }
   ],
-  "updated_at": "2026-08-15T21:52:23+00:00",
+  "updated_at": "2026-08-15T22:08:23+00:00",
   "work_session": {
-    "active": false,
-    "ended_at": "2026-08-15T21:52:21+00:00",
-    "goal": "Release local Job MCP UI refresh with ASCII section, copy buttons, brand rename, and cover-letter showcase to production.",
-    "id": "WS-20260815-204306-967966",
-    "last_update": "2026-08-15T21:52:21+00:00",
-    "started_at": "2026-08-15T20:43:06+00:00",
-    "task_id": "jobmcp-ui-refresh-prod"
+    "active": true,
+    "ended_at": null,
+    "goal": "Update Job MCP landing ASCII art locally",
+    "id": "WS-20260815-220209-488253",
+    "last_update": "2026-08-15T22:02:09+00:00",
+    "started_at": "2026-08-15T22:02:09+00:00",
+    "task_id": "jobmcp-ascii-art-upgrade"
   }
 }

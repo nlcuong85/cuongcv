@@ -1,0 +1,169 @@
+- generic [active] [ref=f5e1]:
+  - navigation "Main navigation" [ref=f5e2]:
+    - link "◇ Student Application AI Helper" [ref=f5e3] [cursor=pointer]:
+      - /url: /
+      - generic [ref=f5e4]: ◇
+      - generic [ref=f5e5]: Student ApplicationAI Helper
+    - generic [ref=f5e6]:
+      - link "Start" [ref=f5e7] [cursor=pointer]:
+        - /url: /start
+      - link "Examples" [ref=f5e8] [cursor=pointer]:
+        - /url: /examples
+      - link "Docs" [ref=f5e9] [cursor=pointer]:
+        - /url: /docs
+      - link "Technical" [ref=f5e10] [cursor=pointer]:
+        - /url: /technical-flow
+  - main [ref=f5e12]:
+    - generic [ref=f5e13]:
+      - generic [ref=f5e14]: Local-first career coach · MCP
+      - heading "Real evidence. Stronger applications." [level=1] [ref=f5e15]
+      - paragraph [ref=f5e16]: Set up a local AI workspace that turns your CV, job description, writing samples, and documents into job-ready packages without uploading your whole career history.
+      - generic [ref=f5e17]:
+        - link "Start setup" [ref=f5e18] [cursor=pointer]:
+          - /url: /start
+        - link "See examples" [ref=f5e19] [cursor=pointer]:
+          - /url: /examples
+      - generic "Starter URL for local AI agent" [ref=f5e20]:
+        - generic [ref=f5e21]:
+          - generic [ref=f5e22]: Agent URL
+          - generic [ref=f5e23]: Copy into Codex / Claude
+        - generic [ref=f5e24]: https://jobmcp.pmlecuong.com/
+    - complementary "Local application workflow summary" [ref=f5e25]:
+      - heading "Draft local. Review selected text." [level=2] [ref=f5e26]
+      - list [ref=f5e27]:
+        - listitem [ref=f5e28]:
+          - generic [ref=f5e29]: "01"
+          - generic [ref=f5e30]: Workspace kit and SOP create the folder foundation.
+        - listitem [ref=f5e31]:
+          - generic [ref=f5e32]: "02"
+          - generic [ref=f5e33]: Your CV, JD, voice samples, photo, and evidence stay on your machine.
+        - listitem [ref=f5e34]:
+          - generic [ref=f5e35]: "03"
+          - generic [ref=f5e36]: Only final reader-facing text is sent to the MCP checker when you choose.
+  - region [ref=f5e37]:
+    - generic [ref=f5e38]:
+      - generic [ref=f5e39]:
+        - generic [ref=f5e40]: Cá chép vượt Vũ Môn
+        - heading "The draft must cross the gate." [level=2] [ref=f5e41]
+        - paragraph [ref=f5e42]: The document does not become ready because an AI says so. It moves from raw draft, through structure and evidence checks, into a stronger version the user can actually trust.
+      - generic "Animated ASCII Dragon Gate review loop" [ref=f5e43]:
+        - generic [ref=f5e44]:
+          - generic [ref=f5e45]: review-loop://vu-mon-transform
+          - generic [ref=f5e51]: "┌─ selected text only ───────────────────────────────────────────────────────────┐ │ local draft → structure/evidence gate → higher-level application │ └───────────────────────────────────────────────────────────────────────────────┘ ╱╲ ╱╲ ╱╲ distant ridge ______/ ╲________/ ╲___________/ ╲____________________ ✧ ✦ ˚ ╭──────────────────── UPPER RIVER ────────────────────╮ ╌ ╌ ╌ ╌ ╌ ╌ ╌ °╌ ╌ ╌ ╌ ˙╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌˚ ╌ ╌ ╌ °╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ˚ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ·╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌ ╌✦ ╌ ╌ ╌ ˙ ✧ ╌ ╌ ˚╌ ╌ ╌ ✧╌ ╌ ╌ ╌✧ ╌ ╌˙ ╌ ╌ ╌ ✧ ˚╌ ╌ ╌ ╌ ╌ ° ˙ ╌ ╌ ╰─────────────── ˙ ˚██┃┃┃█╏╏▄ │ · ˚ ──°──────────────╯ ° ▄▄██▓▓˚┃┃┃▒╏╏▓█│▄▄ ✧ ✧· ˙ ▄·█▓▒░ ·╭─┃┃┃─˙╏─╮│ · ╲ not magic ·✧█▓▒· ˚ ┃┃┃M╏╏ │ · 3x cover ╲▒ ▄█▓▒░ ╱✧ ┃┃┃I╏╏· │°˙ ╲▓▒ earned by loops ██▓▒░ ╱ ✦┃┃┃T╏╏ │ ✧✧·° 1x CV ˚ ╲▓▒ ██▓▒° ╱ ˚ ┃·┃ ╏╏ │ ˚ ╲▓ ██˚▒░˙ ╲ °·┃ ·╏ │ ˚ 2x interview ╲ ▀█˙▒░ ╲ °┃┃ ╏╏ │✧ ˙ ✧ ✧ ▀██▓▒░ ˚╲_┃┃┃_╏╏__│__╱✧ ˙ 1-3x long text ˚ ▀██▓▓▒▒┃┃┃░╏╏░░│▒▓▓██▀ · ˚ ▀˚·██┃┃┃█╏╏██│▀▀ ° ˚ ┃┃┃ ╏╏ │✧ ˙ °┃┃┃ ╏╏ │ ° ✧ ╭──────────────────── LOWER RIVER: raw draft, real effort, first attempt ─────────╮ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ∿ ﹏ ˷ ≈˚ ~┃┃ ∿╏ ﹏ ˷ ≈ ✧~ ∿ ﹏ ˷ ≈ ~ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~┃┃┃∿╏╏ ﹏│ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ┃┃∿ ╏╏﹏ │ ˷ ✧ ≈ ~ ∿ ﹏ ˷ ≈ ~ ˷ ≈ __ ﹏ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ∿ ﹏ ˷ ≈ ~ ﹏ ≈ ><(((º > ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ╲ ░▒▓)) ╲ ╲ ╲ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ╲╲ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ∿ ˷ ~ ﹏ ≈ ≈ ﹏ ~ ˷ ╲ ╲ ╲ ╲﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏ ~ ˷ ∿ ≈ ﹏"
+          - generic [ref=f5e52]:
+            - generic [ref=f5e53]:
+              - strong [ref=f5e54]: "status:"
+              - text: draft → review → revise → rise
+            - generic [ref=f5e55]: selected text only · local files stay local
+  - generic [ref=f5e56]:
+    - generic [ref=f5e57]: Four use cases
+    - heading "One checker boundary. Four useful outputs." [level=2] [ref=f5e58]
+    - paragraph [ref=f5e59]: The local agent drafts from your private files. The MCP reviews only the selected reader-facing text or a safe structure manifest.
+    - generic [ref=f5e60]:
+      - 'link "Validator Code-style gate for writing The SOP treats review like a release check: current file, recorded loop, risk result, then revise if needed." [ref=f5e61] [cursor=pointer]':
+        - /url: /technical-flow
+        - generic [ref=f5e62]: Validator
+        - heading "Code-style gate for writing" [level=3] [ref=f5e63]
+        - paragraph [ref=f5e64]: "The SOP treats review like a release check: current file, recorded loop, risk result, then revise if needed."
+      - link "CV Editable HTML CV Build or adapt an English/German CV from verified profile material and visual-check it locally." [ref=f5e65] [cursor=pointer]:
+        - /url: /examples
+        - generic [ref=f5e66]: CV
+        - heading "Editable HTML CV" [level=3] [ref=f5e67]
+        - paragraph [ref=f5e68]: Build or adapt an English/German CV from verified profile material and visual-check it locally.
+      - link "Interview Interview prep Create likely questions, STAR story prompts, weaknesses, culture-fit answers, and two review loops." [ref=f5e69] [cursor=pointer]:
+        - /url: /docs#interview-prep
+        - generic [ref=f5e70]: Interview
+        - heading "Interview prep" [level=3] [ref=f5e71]
+        - paragraph [ref=f5e72]: Create likely questions, STAR story prompts, weaknesses, culture-fit answers, and two review loops.
+      - link "Writing Long-form text Review research, academic, work, blog, or social writing in one to three selected-text loops." [ref=f5e73] [cursor=pointer]:
+        - /url: /docs#long-writing
+        - generic [ref=f5e74]: Writing
+        - heading "Long-form text" [level=3] [ref=f5e75]
+        - paragraph [ref=f5e76]: Review research, academic, work, blog, or social writing in one to three selected-text loops.
+  - generic [ref=f5e77]:
+    - generic [ref=f5e78]: Why the checker helps
+    - heading "Fast AI output is not the same as reader confidence." [level=2] [ref=f5e79]
+    - generic [ref=f5e80]:
+      - generic [ref=f5e81]:
+        - paragraph [ref=f5e82]: "The strongest result comes from a local workspace plus a selected-text checker: private evidence stays local, but the final text still gets a release-style review before the user sends it."
+        - generic [ref=f5e83]:
+          - generic [ref=f5e86]:
+            - strong [ref=f5e87]: Normal AI
+            - text: — fast, but often generic.
+          - generic [ref=f5e90]:
+            - strong [ref=f5e91]: Local workspace
+            - text: — grounded in user evidence.
+          - generic [ref=f5e94]:
+            - strong [ref=f5e95]: Local workspace + checker
+            - text: — evidence plus final quality gate.
+      - img "X Y comparison chart showing normal AI, local workspace, and local workspace plus checker" [ref=f5e96]:
+        - generic [ref=f5e97]: Reader confidence
+        - generic [ref=f5e98]: Evidence and review depth
+        - generic [ref=f5e99]:
+          - generic [ref=f5e100]: Normal AI
+          - paragraph [ref=f5e101]: Fast draft
+        - generic [ref=f5e102]:
+          - generic [ref=f5e103]: Local workspace
+          - paragraph [ref=f5e104]: Grounded draft
+        - generic [ref=f5e105]:
+          - generic [ref=f5e106]: Local + checker
+          - paragraph [ref=f5e107]: Release gate
+  - generic [ref=f5e108]:
+    - generic [ref=f5e109]: Where to go
+    - heading "Use the menu. Keep the homepage light." [level=2] [ref=f5e110]
+    - paragraph [ref=f5e111]: Detailed setup, examples, docs, and technical flow live in focused pages.
+    - generic [ref=f5e112]:
+      - link "Start Set up a fresh workspace Create the local folder, install the kit, and let the agent ask for missing files." [ref=f5e113] [cursor=pointer]:
+        - /url: /start
+        - generic [ref=f5e114]: Start
+        - heading "Set up a fresh workspace" [level=3] [ref=f5e115]
+        - paragraph [ref=f5e116]: Create the local folder, install the kit, and let the agent ask for missing files.
+      - link "Examples See CV and cover-letter outputs Open English/German CV templates and the German-style cover letter sample." [ref=f5e117] [cursor=pointer]:
+        - /url: /examples
+        - generic [ref=f5e118]: Examples
+        - heading "See CV and cover-letter outputs" [level=3] [ref=f5e119]
+        - paragraph [ref=f5e120]: Open English/German CV templates and the German-style cover letter sample.
+      - link "Technical Check the safety boundary See the MCP calls, diagrams, and exact data that can cross the boundary." [ref=f5e121] [cursor=pointer]:
+        - /url: /technical-flow
+        - generic [ref=f5e122]: Technical
+        - heading "Check the safety boundary" [level=3] [ref=f5e123]
+        - paragraph [ref=f5e124]: See the MCP calls, diagrams, and exact data that can cross the boundary.
+  - generic [ref=f5e126]:
+    - generic [ref=f5e127]: Privacy boundary
+    - heading "Useful feedback without sending the whole folder." [level=2] [ref=f5e128]
+    - generic [ref=f5e129]:
+      - generic [ref=f5e130]:
+        - strong [ref=f5e131]: Local files stay local
+        - text: CVs, notes, job folders, photos, signatures, drafts, PDFs, and outputs.
+      - generic [ref=f5e132]:
+        - strong [ref=f5e133]: Structure check is safe
+        - text: The MCP can receive relative paths, version state, and managed-file hashes.
+      - generic [ref=f5e134]:
+        - strong [ref=f5e135]: Writing check is deliberate
+        - text: "You send selected final text only: cover letter, CV section, interview answer, or writing paragraph."
+      - generic [ref=f5e136]:
+        - strong [ref=f5e137]: No fake promise
+        - text: It improves clarity and human rhythm. It is not an authorship verdict.
+  - generic [ref=f5e139]:
+    - generic [ref=f5e140]: Ready when you are
+    - heading "Open an empty folder. Give the AI this URL. Let it ask properly." [level=2] [ref=f5e141]
+    - paragraph [ref=f5e142]: The start page now includes the setup prompt, source-material checklist, and agent instructions.
+    - generic [ref=f5e143]:
+      - link "Open start page" [ref=f5e144] [cursor=pointer]:
+        - /url: /start
+      - link "Read docs" [ref=f5e145] [cursor=pointer]:
+        - /url: /docs
+  - contentinfo [ref=f5e146]:
+    - generic [ref=f5e147]: MCP v0.2.14 · kit 2026.08.15-review-payload.1
+    - generic [ref=f5e148]:
+      - link "Health" [ref=f5e149] [cursor=pointer]:
+        - /url: /health
+      - text: ·
+      - link "Privacy" [ref=f5e150] [cursor=pointer]:
+        - /url: /privacy
+      - text: ·
+      - link "MCP endpoint" [ref=f5e151] [cursor=pointer]:
+        - /url: /mcp
+      - text: ·
+      - link "Built by pmlecuong.com ↗" [ref=f5e152] [cursor=pointer]:
+        - /url: https://pmlecuong.com/

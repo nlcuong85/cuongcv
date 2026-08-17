@@ -1,0 +1,104 @@
+- main [ref=e2]:
+  - navigation "Technical flow navigation" [ref=e3]:
+    - link "🧭 Student Application AI Helper" [ref=e4] [cursor=pointer]:
+      - /url: /
+    - link "Prompts" [ref=e5] [cursor=pointer]:
+      - /url: /sample-prompts
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - generic [ref=e8]: Technical sequence diagram
+      - heading "How the local workflow and review boundary work." [level=1] [ref=e9]
+      - paragraph [ref=e10]: The local Application SOP checks workspace health, records release evidence, and keeps private files on the laptop. The MCP sees only a privacy-safe folder manifest or writing text the candidate deliberately selects for review.
+    - paragraph [ref=e11]: The service returns guidance, not private checker implementation details. It cannot browse the candidate's local workspace.
+  - region "Technical sequence diagram" [ref=e12]:
+    - img "Sequence diagram showing selected-text review between the candidate, local AI agent, local workspace, and MCP checker" [ref=e13]
+  - region "Flow notes" [ref=e14]:
+    - generic [ref=e15]:
+      - heading "Local SOP gate" [level=2] [ref=e16]
+      - paragraph [ref=e17]: The local controller records a strict boot, current artifact hashes, one CV review, and three distinct cover-letter loops before release.
+    - generic [ref=e18]:
+      - heading "Selected text only" [level=2] [ref=e19]
+      - paragraph [ref=e20]: The candidate or local agent chooses a paragraph or cover letter to send. It never uploads the CV, workspace, job folder, or output PDFs.
+    - generic [ref=e21]:
+      - heading "Feedback returns" [level=2] [ref=e22]
+      - paragraph [ref=e23]: The service returns high-level issue labels, risk, and revision guidance. The local agent applies edits and verifies readiness on the laptop.
+  - region [ref=e24]:
+    - generic [ref=e25]: Bootstrap and scaffolding
+    - heading "How a human prompt creates a safe local foundation." [level=2] [ref=e26]
+    - paragraph [ref=e27]: "This diagram shows the one-time setup path: the MCP returns only generic kit files and structure, while the local agent and local SOP create, inspect, and retain the real candidate workspace."
+    - generic "Bootstrap and local scaffolding sequence diagram" [ref=e28]:
+      - img "Sequence diagram showing human request, public MCP kit retrieval, local workspace scaffolding, strict SOP boot, and privacy-safe manifest audit" [ref=e29]
+  - region [ref=e30]:
+    - generic [ref=e31]: HTTP and MCP protocol
+    - heading "What actually calls what." [level=2] [ref=e32]
+    - paragraph [ref=e33]:
+      - text: The public MCP endpoint is
+      - code [ref=e34]: https://jobmcp.pmlecuong.com/mcp
+      - text: . A compatible AI client uses the Streamable HTTP transport and sends JSON-RPC requests to this one endpoint; it does not receive shell or filesystem access to the candidate computer.
+    - generic "HTTP endpoint and request contract" [ref=e35]:
+      - code [ref=e37]: OPTIONS /mcp
+      - generic [ref=e38]:
+        - text: Browser CORS preflight. The server responds
+        - code [ref=e39]: "204"
+        - text: and allows
+        - code [ref=e40]: content-type
+        - text: ","
+        - code [ref=e41]: authorization
+        - text: ", and"
+        - code [ref=e42]: mcp-session-id
+        - text: headers.
+      - code [ref=e44]: POST /mcp
+      - generic [ref=e45]:
+        - text: The MCP transport endpoint. Send
+        - code [ref=e46]: "content-type: application/json"
+        - text: and an
+        - code [ref=e47]: Accept
+        - text: header that includes
+        - code [ref=e48]: application/json
+        - text: or
+        - code [ref=e49]: text/event-stream
+        - text: . The client then sends JSON-RPC lifecycle requests such as
+        - code [ref=e50]: initialize
+        - text: and
+        - code [ref=e51]: tools/list
+        - text: ", followed by JSON-RPC"
+        - code [ref=e52]: tools/call
+        - text: requests.
+      - code [ref=e54]: tools/call
+      - generic [ref=e55]:
+        - text: For setup, the local agent calls
+        - code [ref=e56]: get_workspace_template
+        - text: or
+        - code [ref=e57]: get_application_kit_bundle
+        - text: . For structure health, it calls
+        - code [ref=e58]: audit_workspace_manifest
+        - text: with relative paths and managed-file hashes only.
+      - code [ref=e60]: tools/call
+      - generic [ref=e61]:
+        - text: For writing review, it calls
+        - code [ref=e62]: check_writing_human_fit
+        - text: with selected text and a mode. It does not send the CV, local folder, images, signature, or generated PDF.
+      - code [ref=e64]: GET /health
+      - generic [ref=e65]: Simple service health and public-tool inventory for local diagnosis; it is not a candidate-data API.
+      - code [ref=e67]: GET /assets/*.puml
+      - generic [ref=e68]:
+        - text: Read-only canonical PlantUML source for the public technical diagrams. Rendered SVG diagrams are served from matching
+        - code [ref=e69]: /assets/*.svg
+        - text: routes.
+    - paragraph [ref=e70]:
+      - text: The HTTP handler permits only
+      - code [ref=e71]: POST
+      - text: "on"
+      - code [ref=e72]: /mcp
+      - text: ; other methods receive
+      - code [ref=e73]: "405"
+      - text: . Public request bodies are limited to 64 KiB. The endpoint is intentionally unauthenticated in this release, but it is stateless and does not persist candidate profiles or workspace files.
+  - generic [ref=e74]:
+    - link "Back to main page" [ref=e75] [cursor=pointer]:
+      - /url: /
+    - link "Open review-diagram source" [ref=e76] [cursor=pointer]:
+      - /url: /assets/private-checker-flow.puml
+    - link "Open full-workflow source" [ref=e77] [cursor=pointer]:
+      - /url: /assets/local-first-human-flow.puml
+    - link "Open bootstrap-diagram source" [ref=e78] [cursor=pointer]:
+      - /url: /assets/bootstrap-scaffolding-flow.puml
