@@ -49,10 +49,21 @@ Preserve my original CV source and inspect its visual structure before generatin
 Use the English resume template by default unless I ask for a German Lebenslauf format or the job clearly needs one.
 Use four or five of my verified bullets per employer that best match this job description. Do not add skills or achievements I cannot prove.
 Put unsupported JD requirements into a gap report, not into my CV.
+Run the ATS resume-to-job-description check after every meaningful CV edit. Show me the score, matched keywords, suggested missing keywords, and what I must confirm before anything is added.
 Show me the HTML CV, any PDF derivative, and a clear quality report. Run the one mandatory CV review loop and tell me exactly what is still weak before I decide to proceed.
 ```
 
-## 5. Create A Cover Letter With The Three-Loop Gate
+## 5. Check ATS Match Between My Resume And A Job Description
+
+```text
+Please run the MCP ATS check for my current resume/CV and this job description.
+Extract the CV text locally and send only the extracted CV text plus the job description text to the MCP.
+Return the ATS score, matched keywords, suggested missing keywords, and the exact user confirmations needed before any missing keyword can be added.
+Do not add unsupported skills, tools, degrees, language levels, domain experience, or achievements just to improve the score.
+If I confirm a suggested keyword is true, revise the CV locally and rerun the ATS check.
+```
+
+## 6. Create A Cover Letter With The Three-Loop Gate
 
 ```text
 Create a one-page cover letter for jobs/<job-folder> from my verified local evidence and writing voice.
@@ -63,15 +74,15 @@ For any private writing check, submit only the selected cover-letter text, never
 Do not call the cover letter ready until the local SOP verifies three distinct current review records and creates a release receipt.
 ```
 
-## 6. Use My Current CV Without Extra Curation
+## 7. Use My Current CV Without Extra Curation
 
 ```text
 I want to proceed using my current CV instead of writing a new employer bullet inventory.
 Record that I am choosing this shortcut and explain the likely tradeoff for role matching.
-Still use only verified information, tailor the ordering and emphasis honestly, run the required CV review, and remind me later that a personal bullet inventory would improve future applications.
+Still use only verified information, tailor the ordering and emphasis honestly, run the required CV review and ATS check, and remind me later that a personal bullet inventory would improve future applications.
 ```
 
-## 7. Create Interview Prep For This Role
+## 8. Create Interview Prep For This Role
 
 ```text
 Please prepare interview prep for jobs/<job-folder>.
@@ -84,7 +95,7 @@ After creating the prep, run two MCP writing review loops on interview-prep-revi
 Send only final spoken answer text to the MCP checker. Do not send coaching notes, missing-info questions, raw job requirements, keyword maps, or planning scaffolding.
 ```
 
-## 8. General Writing Review
+## 9. General Writing Review
 
 ```text
 Please review this writing with the MCP checker.
@@ -98,14 +109,14 @@ Do not invent citations, sources, data, methods, personal stories, or claims.
 Give me a practical revision plan and rerun the selected number of loops, never more than three. If any loop returns medium or high, revise the real local document before the next loop.
 ```
 
-## 9. Skip Interview Prep
+## 10. Skip Interview Prep
 
 ```text
 For this job, skip interview prep for now.
 Record that I skipped it, but do not block the CV or cover-letter package.
 ```
 
-## 10. Review Selected Text Only
+## 11. Review Selected Text Only
 
 ```text
 Review this selected text with the MCP writing checker.
@@ -115,7 +126,7 @@ Use final reader-facing text only. Do not send scaffolding, prompt notes, hidden
 Do not treat the result as proof of authorship or as a way to bypass AI detection. Revise the local file without inventing facts.
 ```
 
-## 10. Check For A Safe Kit Update
+## 12. Check For A Safe Kit Update
 
 ```text
 Run the privacy-safe workspace manifest audit before we start work.
@@ -127,6 +138,6 @@ If an update is available, show me exactly which generic kit files would change.
 
 ```text
 My application evidence stays local.
-The MCP sees only a privacy-safe folder manifest or text I deliberately select for review.
-The local SOP—not a chat promise—records whether CV and cover-letter gates are complete.
+The MCP sees only a privacy-safe folder manifest, selected text I deliberately select for writing review, or extracted CV/JD text for ATS matching.
+The local SOP—not a chat promise—records whether CV, ATS, cover-letter, interview-prep, and writing gates are complete.
 ```

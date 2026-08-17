@@ -1,6 +1,6 @@
 {
   "name": "application-package-mcp",
-  "version": "0.2.17",
+  "version": "0.2.18",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,7 +11,8 @@
     "test": "npm run build && node --test tests/*.test.mjs",
     "smoke:remote": "node tests/smoke-remote.mjs",
     "sample:generate": "python3 samples/local-kit-regression/run_regression.py",
-    "ats:benchmark": "node scripts/run_ats_benchmark.mjs"
+    "ats:benchmark": "node scripts/run_ats_benchmark.mjs",
+    "ats:benchmark:second": "node scripts/run_ats_benchmark_second_batch.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",

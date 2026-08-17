@@ -84,11 +84,12 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.match(landing, /Start setup/);
     assert.match(landing, /See examples/);
     assert.match(landing, /Useful feedback without sending the whole folder/);
-    assert.match(landing, /final reader-facing text/);
-    assert.match(landing, /One checker boundary\. Four useful outputs/);
+    assert.match(landing, /CV\/JD text for ATS matching/);
+    assert.match(landing, /One checker boundary\. Five useful outputs/);
     assert.match(landing, /Code-style gate for writing/);
     assert.match(landing, /Interview prep/);
     assert.match(landing, /Long-form text/);
+    assert.match(landing, /Resume-to-JD matching/);
     assert.match(landing, /Fast AI output is not the same as reader confidence/);
     assert.match(landing, /Local workspace \+ checker/);
     assert.doesNotMatch(landing, /local-first-human-flow\.svg/);
@@ -108,11 +109,14 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.match(startPage, /Keep my private files local/);
     assert.match(startPage, /The prompt page is now part of start/);
     assert.match(startPage, /Job application prompt/);
+    assert.match(startPage, /ATS check prompt/);
     assert.match(startPage, /Writing check prompt/);
 
     const docsPage = await fetch(`http://127.0.0.1:${port}/docs`).then((response) => response.text());
-    assert.match(docsPage, /Four supported use cases/);
-    assert.match(docsPage, /CV\/resume:<\/strong> one review loop/);
+    assert.match(docsPage, /Five supported use cases/);
+    assert.match(docsPage, /CV\/resume:<\/strong> one writing review loop/);
+    assert.match(docsPage, /ATS check:<\/strong> run after every CV edit/);
+    assert.match(docsPage, /ATS resume\/JD check/);
     assert.match(docsPage, /Cover letter:<\/strong> three distinct review loops/);
     assert.match(docsPage, /Interview prep:<\/strong> two low-risk review loops/);
     assert.match(docsPage, /General writing:<\/strong> user-selected one to three loops/);
@@ -123,6 +127,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.match(examplesPage, /href="\/cv-template\/english"/);
     assert.match(examplesPage, /href="\/cv-template\/german"/);
     assert.match(examplesPage, /Release-style writing gate/);
+    assert.match(examplesPage, /Resume\/JD match report/);
     assert.match(examplesPage, /Interview prep answers/);
     assert.match(examplesPage, /Research or long-form text/);
     assert.match(examplesPage, /A German-style cover letter, built locally/);

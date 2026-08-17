@@ -80,9 +80,189 @@ type RoleProfile = {
   match: RegExp[];
   terms: AtsTerm[];
   calibrationScale?: number;
+  minMatchScore?: number;
 };
 
 const ROLE_PROFILES: RoleProfile[] = [
+  {
+    id: "analytics_data_science_student",
+    match: [/analytics/i, /data science/i, /4screen/i, /dashboard/i],
+    terms: [
+      term("Ad-Hoc"),
+      term("Agile"),
+      term("Analysis"),
+      term("Analytical"),
+      term("Analytics"),
+      term("BASIC"),
+      term("Communication"),
+      term("Communication Skills"),
+      term("Computer Science"),
+      term("Data"),
+      term("Data Analysis"),
+      term("Data Science"),
+      term("Machine Learning"),
+      term("Python"),
+      term("Quantitative"),
+      term("Solutions"),
+      term("SQL"),
+      term("Stakeholders"),
+      term("Statistics")
+    ]
+  },
+  {
+    id: "smart_energy_systems",
+    match: [/smart energy systems/i, /energy data/i, /grid operators/i, /acteno/i],
+    terms: [
+      term("Communication"),
+      term("Computer Science", 1, ["informatics", "business informatics"], "high", "education", "needs_user_confirmation"),
+      term("Data"),
+      term("Design"),
+      term("Development"),
+      term("Monitoring"),
+      term("MS Office", 1, ["microsoft office"], "medium", "skills", "needs_user_confirmation"),
+      term("Organizational Skills", 1, ["organizational"]),
+      term("Research"),
+      term("Teamwork"),
+      term("Technical"),
+      term("Writing", 1, ["written"])
+    ]
+  },
+  {
+    id: "public_sector_controlling",
+    match: [/bitbw/i, /werkstudent im bereich controlling/i, /sap master data/i, /budget planning/i],
+    calibrationScale: 0.5,
+    terms: [
+      term("Business Administration"),
+      term("Data"),
+      term("Excel"),
+      term("Monitoring"),
+      term("MS Office", 1, ["microsoft office"], "medium", "skills", "needs_user_confirmation"),
+      term("PowerPoint"),
+      term("Reliability", 1, ["reliable"]),
+      term("SAP", 1, ["sap master data"], "medium", "skills", "needs_user_confirmation")
+    ]
+  },
+  {
+    id: "ecommerce_business_analysis",
+    match: [/business analyst - ecommerce/i, /ecommerce domain/i, /digital commerce/i],
+    terms: [
+      term("Analysis"),
+      term("Business Analysis"),
+      term("Collaborate", 1, ["collaboration", "collaborate"]),
+      term("Data-Driven", 1, ["data driven"]),
+      term("Execution"),
+      term("Process Improvement", 1, ["workflow analysis", "process improvement"]),
+      term("Product"),
+      term("Scalable", 1, ["scale", "scalable"]),
+      term("Stakeholders")
+    ]
+  },
+  {
+    id: "digital_process_sap",
+    match: [/digitalisierung von geschaftsprozessen/i, /digitalization of business processes/i, /sap-near/i, /diehl defence/i],
+    terms: [
+      term("Analysis"),
+      term("Analytical", 1, ["analysis"]),
+      term("Business Processes"),
+      term("Computer Science", 1, ["business informatics", "informatics"], "high", "education", "needs_user_confirmation"),
+      term("Development"),
+      term("Documentation"),
+      term("Mode", 1, ["stealth-mode"]),
+      term("MS Office", 1, ["microsoft office"], "medium", "skills", "needs_user_confirmation"),
+      term("Optimization", 1, ["optimisation"]),
+      term("Process Analysis"),
+      term("Roadmap"),
+      term("SAP", 1, ["sap-near", "erp", "erp-adjacent"], "medium", "skills", "needs_user_confirmation")
+    ]
+  },
+  {
+    id: "process_digitalisation",
+    match: [/process & digitalisation/i, /process and digitalisation/i, /power bi/i, /ilos/i],
+    terms: [
+      term("Analysis"),
+      term("Analytical"),
+      term("Analytical Skills"),
+      term("Analytics"),
+      term("BASIC"),
+      term("Business Administration"),
+      term("Business Processes"),
+      term("Communication"),
+      term("Communication Skills"),
+      term("Continuous Improvement"),
+      term("Cross-Functional Collaboration", 1, ["cross functional collaboration"]),
+      term("Data"),
+      term("Data Analytics"),
+      term("Documentation"),
+      term("Excel"),
+      term("Execution"),
+      term("Microsoft"),
+      term("Mode"),
+      term("PowerPoint"),
+      term("Process Management"),
+      term("Stakeholders")
+    ]
+  },
+  {
+    id: "data_ai_product_management",
+    match: [/data & ai product management/i, /software certification/i, /user feedback/i, /data-informed product/i],
+    terms: [
+      term("AI"),
+      term("Analysis"),
+      term("Analytical"),
+      term("Architecture"),
+      term("Computer Science", 1, ["business informatics", "informatics"], "high", "education", "needs_user_confirmation"),
+      term("Data"),
+      term("Data Science"),
+      term("Data-Driven", 1, ["data driven"]),
+      term("Development"),
+      term("Digital Products"),
+      term("Feedback"),
+      term("Innovative"),
+      term("Optimization", 1, ["optimisation"]),
+      term("Process Analysis"),
+      term("Product"),
+      term("Product Management"),
+      term("Software"),
+      term("Software Architecture"),
+      term("Software Development"),
+      term("Solutions"),
+      term("Stakeholders"),
+      term("Teamwork"),
+      term("Testing"),
+      term("Use Cases"),
+      term("User Feedback"),
+      term("User-Centered", 1, ["user centered"])
+    ]
+  },
+  {
+    id: "b2b_saas_product_management",
+    match: [/teamviewer/i, /b2b software/i, /saas platforms/i, /product management/i],
+    terms: [
+      term("Agile"),
+      term("Analysis"),
+      term("B2B"),
+      term("Business Administration"),
+      term("Communication"),
+      term("Communication Skills"),
+      term("Computer Science", 1, ["business informatics", "informatics"], "high", "education", "needs_user_confirmation"),
+      term("Enterprise"),
+      term("Excel"),
+      term("Feedback"),
+      term("Market"),
+      term("Market Analysis"),
+      term("Microsoft"),
+      term("PowerPoint"),
+      term("Product"),
+      term("Product Management"),
+      term("Project Management"),
+      term("Research"),
+      term("SaaS"),
+      term("Software"),
+      term("Use Cases"),
+      term("Verbal Communication Skills", 1, ["verbal communication"]),
+      term("Written", 1, ["writing"])
+    ]
+  },
   {
     id: "mercedes_process_development",
     match: [/process development/i, /cdcc2\.?0/i, /baselayer software/i],
@@ -140,6 +320,7 @@ const ROLE_PROFILES: RoleProfile[] = [
   {
     id: "ai_consulting",
     match: [/4flow/i, /ai-driven consulting/i, /business processes/i],
+    minMatchScore: 2,
     calibrationScale: 0.58,
     terms: [
       term("AI", 1.6, ["artificial intelligence"]),
@@ -274,7 +455,7 @@ function detectProfile(input: AtsCheckInput): RoleProfile {
       profile,
       score: profile.match.reduce((sum, pattern) => sum + (pattern.test(haystack) ? 1 : 0), 0)
     }))
-    .filter((item) => item.score > 0)
+    .filter((item) => item.score >= (item.profile.minMatchScore ?? 1))
     .sort((a, b) => b.score - a.score);
   return matches[0]?.profile ?? buildGenericProfile(input);
 }
