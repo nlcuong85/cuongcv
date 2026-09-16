@@ -6,6 +6,7 @@ services:
     environment:
       HOST: 0.0.0.0
       PORT: 5920
+      APPLICATION_MCP_ANALYTICS_SALT: ${APPLICATION_MCP_ANALYTICS_SALT:-local-development-analytics-salt}
       # Optional second layer when exposing beyond Tailscale/Cloudflare Access.
       # APPLICATION_MCP_TOKEN: change-me
     ports:

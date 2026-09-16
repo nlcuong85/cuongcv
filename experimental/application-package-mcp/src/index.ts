@@ -21,6 +21,9 @@ const VERSION = "0.2.18";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
+const ANALYTICS_HASH_SALT = process.env.APPLICATION_MCP_ANALYTICS_SALT
+  ?? process.env.APPLICATION_MCP_TOKEN
+  ?? "local-development-analytics-salt";
 const PUBLIC_SITE_URL = "https://jobmcp.pmlecuong.com/";
 const PUBLIC_MCP_ENDPOINT = "https://jobmcp.pmlecuong.com/mcp";
 const MAX_HTTP_BODY_BYTES = 64 * 1024;
@@ -1023,6 +1026,7 @@ After setup, show me the folder I should fill and the next action.</pre>
       <div class="privacy-item"><strong>Stays on your laptop:</strong> CV files, personal notes, job posts, drafts, PDFs, and final outputs.</div>
       <div class="privacy-item"><strong>Sent only when you ask:</strong> selected text for writing feedback, plus a writing mode such as application or academic.</div>
       <div class="privacy-item"><strong>Returned to you:</strong> clear feedback, risk level, and practical revision guidance for the selected text.</div>
+      <div class="privacy-item"><strong>Operational analytics:</strong> route/tool counts, salted visitor hashes, and coarse country/city headers when available; no raw IPs or document text.</div>
       <div class="privacy-item"><strong>Not promised:</strong> a fake detector bypass. The goal is clearer, more trustworthy, more human writing.</div>
     </div>
   </section>
@@ -1383,7 +1387,7 @@ function renderCurrentLandingPage(): string {
         <div><strong>Local files stay local</strong><span>CVs, notes, job folders, photos, signatures, drafts, PDFs, and outputs.</span></div>
         <div><strong>Structure check is safe</strong><span>The MCP can receive relative paths, version state, and managed-file hashes.</span></div>
         <div><strong>Checks are deliberate</strong><span>You send selected final text only, or CV/JD text for ATS matching. Full folders stay local.</span></div>
-        <div><strong>No fake promise</strong><span>It improves clarity and human rhythm. It is not an authorship verdict.</span></div>
+        <div><strong>Aggregate analytics</strong><span>Salted unique visitors and coarse countries/cities can be counted. Raw IPs, bodies, CVs, and writing text are not stored.</span></div>
       </div></div></section>
     <section class="final-cta"><div class="section"><div class="mono">Ready when you are</div><h2 class="section-title">Open an empty folder. Give the AI this URL. Let it ask properly.</h2><p class="section-copy">The start page now includes the setup prompt, source-material checklist, and agent instructions.</p><div class="actions"><a class="button primary" href="/start">Open start page</a><a class="button secondary" href="/docs">Read docs</a></div></div></section>${renderDragonGateAsciiScript()}`,
     "blue-page"
@@ -1526,7 +1530,7 @@ function renderDocsPage(): string {
       <h2 id="workspace">Workspace drift and slow folders</h2>
       <p>Old candidate folders can become slow because outputs, drafts, PDFs, screenshots, and generated artifacts pile up. The local SOP should audit folder structure and compare it to the current MCP kit. If drift is detected, it should propose safe cleanup or migration without deleting private data automatically.</p>
       <h2 id="privacy">Privacy contract</h2>
-      <p>The MCP can receive a privacy-safe folder manifest or selected final text. It must not receive raw folders, private PDFs, photos, signatures, prompts, coaching notes, or full profile archives.</p>
+      <p>The MCP can receive a privacy-safe folder manifest or selected final text. It must not receive raw folders, private PDFs, photos, signatures, prompts, coaching notes, or full profile archives. Operational analytics may store route/tool counts, salted visitor hashes, and coarse country/city headers when the edge provides them; it must not store raw IP addresses or submitted document text.</p>
       <h2 id="routes">Useful routes</h2>
       <ul><li><code>/start</code> setup instructions and copyable prompts.</li><li><code>/examples</code> CV, cover-letter, interview, and writing use-case examples.</li><li><code>/technical-flow</code> diagrams and HTTP/MCP details.</li><li><code>/privacy</code> privacy boundary.</li><li><code>/health</code> service status.</li><li><code>/mcp</code> Streamable HTTP MCP endpoint.</li></ul>
     </main></div>`
@@ -1605,8 +1609,112 @@ function writeJson(res: ServerResponse, status: number, body: unknown): void {
   res.end(`${JSON.stringify(body)}\n`);
 }
 
+type McpMetricDimensions = {
+  rpcMethod: string;
+  tool?: string;
+};
+
+function mcpMetricDimensions(body: unknown): McpMetricDimensions {
+  if (!body || typeof body !== "object" || Array.isArray(body)) return { rpcMethod: "invalid" };
+  const request = body as { method?: unknown; params?: { name?: unknown } };
+  const rpcMethod = typeof request.method === "string" ? request.method.slice(0, 120) : "invalid";
+  const tool = rpcMethod === "tools/call" && typeof request.params?.name === "string"
+    ? request.params.name.slice(0, 120)
+    : undefined;
+  return { rpcMethod, tool };
+}
+
+function recordMcpMetric(dimensions: McpMetricDimensions, status: number, startedAt: number): void {
+  // Deliberately omit IP addresses, session IDs, request bodies, and response bodies.
+  // This is aggregate operational telemetry only; application material remains transient.
+  console.log(`MCP_METRIC ${JSON.stringify({
+    timestamp: new Date().toISOString(),
+    rpcMethod: dimensions.rpcMethod,
+    tool: dimensions.tool,
+    status,
+    durationMs: Date.now() - startedAt
+  })}`);
+}
+
+function firstHeader(req: IncomingMessage, name: string): string {
+  const value = req.headers[name.toLowerCase()];
+  if (Array.isArray(value)) return value[0] ?? "";
+  return value ?? "";
+}
+
+function safeHeaderValue(value: string, fallback = "unknown"): string {
+  const decoded = (() => {
+    try {
+      return decodeURIComponent(value);
+    } catch {
+      return value;
+    }
+  })();
+  const cleaned = decoded
+    .replace(/[^\p{L}\p{N}\s,._:/+-]/gu, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 80);
+  return cleaned || fallback;
+}
+
+function clientAddressHint(req: IncomingMessage): string {
+  const cfConnectingIp = firstHeader(req, "cf-connecting-ip");
+  const forwardedFor = firstHeader(req, "x-forwarded-for").split(",")[0]?.trim() ?? "";
+  const realIp = firstHeader(req, "x-real-ip");
+  return cfConnectingIp || forwardedFor || realIp || req.socket.remoteAddress || "unknown";
+}
+
+function visitorHash(req: IncomingMessage): string {
+  const userAgent = firstHeader(req, "user-agent").slice(0, 220);
+  const acceptLanguage = firstHeader(req, "accept-language").slice(0, 80);
+  const addressHint = clientAddressHint(req);
+  return sha256(`${ANALYTICS_HASH_SALT}|${addressHint}|${userAgent}|${acceptLanguage}`).slice(0, 24);
+}
+
+function userAgentClass(req: IncomingMessage): string {
+  const ua = firstHeader(req, "user-agent").toLowerCase();
+  if (!ua) return "unknown";
+  if (/(bot|crawl|spider|preview|monitor|uptime|healthcheck)/.test(ua)) return "bot_or_monitor";
+  if (/(claude|codex|openai|mcp|python|node|curl|wget|httpie|postman)/.test(ua)) return "agent_or_api";
+  if (/(mozilla|chrome|safari|firefox|edge|edg|opera|mobile)/.test(ua)) return "browser";
+  return "other";
+}
+
+function routeGroup(pathname: string): string {
+  if (pathname === "/mcp") return "mcp";
+  if (pathname === "/health") return "health";
+  if (pathname === "/" || pathname === "") return "landing";
+  if (pathname === "/start" || pathname === "/sample-prompts") return "start";
+  if (pathname.startsWith("/cv-template/")) return "cv-template";
+  if (pathname.startsWith("/assets/")) return "asset";
+  if (pathname.startsWith("/application-kit") || pathname.startsWith("/workspace-template")) return "kit";
+  if (pathname.endsWith(".json")) return "api";
+  const segment = pathname.split("/").filter(Boolean)[0] ?? "other";
+  return segment.slice(0, 40) || "other";
+}
+
+function recordVisitMetric(req: IncomingMessage, url: URL, status: number): void {
+  // Privacy boundary: this metric intentionally stores a salted hash, not an IP address.
+  // It also omits request bodies, response bodies, authorization, cookies, and MCP session ids.
+  console.log(`MCP_VISIT ${JSON.stringify({
+    timestamp: new Date().toISOString(),
+    method: req.method ?? "UNKNOWN",
+    routeGroup: routeGroup(url.pathname),
+    status,
+    visitorHash: visitorHash(req),
+    country: safeHeaderValue(firstHeader(req, "cf-ipcountry"), "unknown").toUpperCase(),
+    region: safeHeaderValue(firstHeader(req, "cf-ipregion")),
+    city: safeHeaderValue(firstHeader(req, "cf-ipcity")),
+    timezone: safeHeaderValue(firstHeader(req, "cf-timezone")),
+    colo: safeHeaderValue(firstHeader(req, "cf-ray").split("-")[1] ?? ""),
+    client: userAgentClass(req)
+  })}`);
+}
+
 async function handleHttp(req: IncomingMessage, res: ServerResponse): Promise<void> {
   const url = new URL(req.url ?? "/", `http://${req.headers.host ?? "localhost"}`);
+  res.once("finish", () => recordVisitMetric(req, url, res.statusCode));
   const handout = await handoutDocument();
   const samplePrompts = await samplePromptsDocument();
 
@@ -1831,7 +1939,11 @@ async function handleHttp(req: IncomingMessage, res: ServerResponse): Promise<vo
     return;
   }
 
+  const startedAt = Date.now();
+  let dimensions: McpMetricDimensions = { rpcMethod: "invalid" };
+  res.once("finish", () => recordMcpMetric(dimensions, res.statusCode, startedAt));
   const body = await parseJsonBody(req);
+  dimensions = mcpMetricDimensions(body);
   const server = await createServer();
   const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
   try {
