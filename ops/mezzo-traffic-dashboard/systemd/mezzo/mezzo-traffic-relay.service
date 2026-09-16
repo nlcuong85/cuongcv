@@ -1,0 +1,12 @@
+[Unit]
+Description=Local Mezzo relay for the private Franklee traffic dashboard
+Wants=network-online.target
+After=network-online.target tailscaled.service
+
+[Service]
+ExecStart=/usr/bin/socat TCP-LISTEN:3031,bind=127.0.0.1,reuseaddr,fork TCP:100.124.166.95:3030
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

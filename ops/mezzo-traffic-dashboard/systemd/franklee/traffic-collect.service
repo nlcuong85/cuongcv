@@ -1,0 +1,7 @@
+[Unit]
+Description=Collect Franklee web and Invidious traffic for Mezzo
+After=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/lib/mezzo-traffic/traffic_dashboard.py

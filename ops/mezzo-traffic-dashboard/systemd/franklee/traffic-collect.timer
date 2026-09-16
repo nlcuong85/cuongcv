@@ -1,0 +1,10 @@
+[Unit]
+Description=Collect Mezzo traffic each minute
+
+[Timer]
+OnBootSec=30s
+OnUnitActiveSec=1min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

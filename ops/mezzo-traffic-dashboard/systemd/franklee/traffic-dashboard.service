@@ -1,0 +1,9 @@
+[Unit]
+Description=Mezzo traffic dashboard on Franklee
+After=docker.service
+
+[Service]
+# Tailnet-only: Mezzo proxies this address; it is never bound publicly.
+ExecStart=/usr/local/lib/mezzo-traffic/traffic_dashboard.py --serve --host 100.124.166.95
+Restart=always
+RestartSec=5
