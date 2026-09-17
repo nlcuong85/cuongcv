@@ -51,3 +51,8 @@ output/playwright/
 # SOP runtime artifacts; durable state and its Markdown mirror remain tracked
 governance/.sop/state.lock
 governance/.sop/run_logs/
+
+# PMLECUONG SOP generated/local artifacts
+._*
+.playwright-cli/
+test-results/
