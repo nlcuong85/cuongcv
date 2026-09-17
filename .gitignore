@@ -28,6 +28,7 @@ yarn-debug.log*
 yarn-error.log*
 __pycache__/
 *.py[cod]
+.playwright-mcp/
 
 # local env files
 .env*.local
