@@ -1,0 +1,202 @@
+{
+  "generated_at": "2026-08-17T15:46:40.362Z",
+  "tolerance": 8,
+  "results": [
+    {
+      "id": "mercedes-process-development",
+      "expected": 21,
+      "actual": 21,
+      "delta": 0,
+      "tolerance": 8,
+      "profile": "mercedes_process_development",
+      "matched": [
+        "Development",
+        "Documentation",
+        "Software",
+        "Analytical",
+        "Strategic"
+      ],
+      "missing": [
+        "ASPICE",
+        "Computer Science",
+        "BASIC",
+        "Communication",
+        "Integration",
+        "MS Office",
+        "Process Improvement",
+        "Written"
+      ],
+      "readiness_label": "blocked"
+    },
+    {
+      "id": "mercedes-requirements-engineering",
+      "expected": 45,
+      "actual": 50,
+      "delta": 5,
+      "tolerance": 8,
+      "profile": "mercedes_requirements_engineering",
+      "matched": [
+        "Analysis",
+        "Development",
+        "Documentation",
+        "Software",
+        "Technical",
+        "Analytical"
+      ],
+      "missing": [
+        "Computer Science",
+        "Collaborate",
+        "Communication",
+        "Software Development",
+        "Written"
+      ],
+      "readiness_label": "needs_revision"
+    },
+    {
+      "id": "realworld-one-solution-delivery",
+      "expected": 66,
+      "actual": 66,
+      "delta": 0,
+      "tolerance": 8,
+      "profile": "solution_delivery",
+      "matched": [
+        "Consulting",
+        "Design",
+        "Documentation",
+        "Product",
+        "Software",
+        "Stakeholders",
+        "Project Plans",
+        "Solutions"
+      ],
+      "missing": [
+        "Status"
+      ],
+      "readiness_label": "near_ready"
+    },
+    {
+      "id": "4flow-ai-consulting",
+      "expected": 35,
+      "actual": 35,
+      "delta": 0,
+      "tolerance": 8,
+      "profile": "ai_consulting",
+      "matched": [
+        "AI",
+        "Communication",
+        "Consulting",
+        "Design",
+        "Market",
+        "Project Management",
+        "Analytical",
+        "Communication Skills",
+        "Market Trends",
+        "Solutions",
+        "Strategic",
+        "Technical"
+      ],
+      "missing": [
+        "Data",
+        "Best Practices",
+        "Business Models",
+        "Business Processes",
+        "Complex Issues",
+        "Data Science",
+        "MS Office"
+      ],
+      "readiness_label": "blocked"
+    },
+    {
+      "id": "appliedai-instructional-design",
+      "expected": 66,
+      "actual": 66,
+      "delta": 0,
+      "tolerance": 8,
+      "profile": "instructional_design",
+      "matched": [
+        "AI",
+        "Communication",
+        "Design",
+        "Communication Skills"
+      ],
+      "missing": [
+        "Feedback",
+        "Scalable"
+      ],
+      "readiness_label": "near_ready"
+    },
+    {
+      "id": "sap-technical-writing",
+      "expected": 30,
+      "actual": 30,
+      "delta": 0,
+      "tolerance": 8,
+      "profile": "technical_writing",
+      "matched": [
+        "Communication",
+        "Documentation",
+        "Product",
+        "Stakeholders",
+        "Teamwork",
+        "Technical",
+        "Writing",
+        "Written"
+      ],
+      "missing": [
+        "Computer Science",
+        "Organizational Ability",
+        "Programming",
+        "Programming Language",
+        "SAP"
+      ],
+      "readiness_label": "blocked"
+    },
+    {
+      "id": "schwarz-it-marketing-systems",
+      "expected": 42,
+      "actual": 42,
+      "delta": 0,
+      "tolerance": 8,
+      "profile": "ecommerce_marketing_systems",
+      "matched": [
+        "Business Administration",
+        "Communication",
+        "Execution",
+        "Market",
+        "Stakeholders",
+        "Strategy",
+        "Communication Skills",
+        "E-commerce"
+      ],
+      "missing": [
+        "Business Models",
+        "Collaborative",
+        "Customer Journey",
+        "Digital Marketing",
+        "Implement",
+        "Teamwork"
+      ],
+      "readiness_label": "blocked"
+    },
+    {
+      "id": "vishay-controlling",
+      "expected": 57,
+      "actual": 57,
+      "delta": 0,
+      "tolerance": 8,
+      "profile": "controlling",
+      "matched": [
+        "Analytical",
+        "Business Administration",
+        "Excel",
+        "Stakeholders"
+      ],
+      "missing": [
+        "MS Office",
+        "SAP",
+        "R"
+      ],
+      "readiness_label": "needs_revision"
+    }
+  ]
+}

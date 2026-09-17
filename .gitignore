@@ -46,6 +46,7 @@ application-system/outputs/*
 !application-system/outputs/.gitkeep
 public/generated-cv-data/*
 !public/generated-cv-data/.gitkeep
+output/playwright/
 
 # SOP runtime artifacts; durable state and its Markdown mirror remain tracked
 governance/.sop/state.lock

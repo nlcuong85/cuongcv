@@ -1,0 +1,6 @@
+Error in fopenReadStream: failed to open locally with tail IMG_4884.png for filename /tmp/img4884-doc.DVQdql/IMG_4884.png
+Leptonica Error in findFileFormat: image file not found: /tmp/img4884-doc.DVQdql/IMG_4884.png
+Error in fopenReadStream: failed to open locally with tail ‰PNG for filename ‰PNG
+Leptonica Error in pixRead: image file not found: ‰PNG
+Image file ‰PNG cannot be read!
+Error during processing.

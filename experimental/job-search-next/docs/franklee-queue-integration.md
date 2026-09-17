@@ -45,6 +45,8 @@ Current visible report contract:
 - no-date jobs are allowed and render as `Posted: Date not found`
 - dated stale jobs are still rejected
 - one bad URL must become a row-level `fetch_failed`, not a whole-run failure
+- a LinkedIn `/jobs/view/` URL that is blocked from automated checking is retained only as a clearly labelled `LinkedIn discovery-only` manual-review lead; it renders `Open manually`, never `Apply`, and must not be treated as URL-live or application-open
+- the student discovery vocabulary is broader than the full-time vocabulary: four focused role groups—business/product, data/AI, software engineering, and Scrum/agile/IT delivery—run across five source families (20 queries total). This avoids one oversized OR query crowding out a role family. Student geography covers the central/southern corridor—Baden-Württemberg, Bavaria, Hesse, Rhineland-Palatinate, Saarland, and North Rhine-Westphalia—and excludes Berlin, Hamburg, northern, and eastern states.
 
 ## What is implemented in this repo
 

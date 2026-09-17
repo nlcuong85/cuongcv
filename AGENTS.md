@@ -358,6 +358,8 @@ Handle it by:
    - catch partial reads such as `http.client.IncompleteRead`
    - report format has exactly two sections: working-student/internship/part-time and full-time
    - jobs without dates render as `Posted: Date not found`; stale rejection applies only when a date exists
+   - LinkedIn `/jobs/view/` URLs that cannot be checked automatically may be retained only as clearly labelled `LinkedIn discovery-only` manual-review leads; they must never be represented as URL-live/application-open, and LinkedIn redirect/search URLs remain rejected
+   - the working-student discovery pass is deliberately broader than the full-time pass: run four focused groups (business/product, data/AI, software engineering, and Scrum/agile/IT delivery) across five source families, while retaining the working-student/internship/part-time employment gate and central/southern-Germany geography (Baden-Württemberg, Bavaria, Hesse, Rhineland-Palatinate, Saarland, and North Rhine-Westphalia); Berlin, Hamburg, northern, and eastern states remain excluded. The resulting 20 student queries are intentional and must not broaden the full-time pass
 8. If this contract changes, update this file, `experimental/job-search-next/docs/franklee-queue-integration.md`, the `job-search-cuong` skill, and durable memory in the same work session
 
 ### 9. Student Application AI Helper MCP on Franklee

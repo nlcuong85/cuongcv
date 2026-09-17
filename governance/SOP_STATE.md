@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-08-15T22:08:23+00:00`
+- updated_at: `2026-09-16T19:20:26+00:00`
 - current_phase: `postflight`
-- active_goal: Update Job MCP landing ASCII art locally
+- active_goal: Packaged and pushed Mezzo traffic dashboard disaster recovery kit
 - active_task_id: `None`
-- work_session: `WS-20260815-220209-488253` active=`True`
+- work_session: `WS-20260916-185303-668252` active=`True`
 
 ## Required Resume Files
 
@@ -36,10 +36,12 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-08-15T22:07:19+00:00`
-- current: Updated Job MCP landing ASCII Dragon Gate locally with transparent page-integrated, larger 3D-style scene; tests and screenshots passed on local 5960.
-- next: User review at http://127.0.0.1:5960/; deploy only if approved.
-- risk: Do not judge stale http://127.0.0.1:5948 because it is still serving an older local process.
+- updated_at: `2026-09-16T19:20:24+00:00`
+- current: Packaged and pushed Mezzo traffic dashboard disaster recovery kit
+- next: Run backup-db.sh periodically or before risky host maintenance; use README for cold rebuild.
+- risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
+- files: ops/mezzo-traffic-dashboard/README.md, ops/mezzo-traffic-dashboard/traffic_dashboard.py
+- commands: python3 SOP.py postflight
 
 ## Kiro Execution State
 
@@ -61,46 +63,51 @@ When an agent resumes after context compaction or a new session:
 
 ## Recent Commands
 
-- `2026-08-15T21:49:33+00:00` exit=1 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-214929-249029.log`
-- `2026-08-15T21:49:37+00:00` exit=2 `python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-214933-909078.log`
-- `2026-08-15T21:50:06+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-215001-943093.log`
-- `2026-08-15T21:50:13+00:00` exit=0 `env APPLICATION_MCP_URL=http://127.0.0.1:5948/mcp python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-215006-687911.log`
-- `2026-08-15T22:04:50+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-220446-186942.log`
-- `2026-08-15T22:06:30+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-220622-364764.log`
-- `2026-08-15T22:07:18+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-220711-973899.log`
-- `2026-08-15T22:08:23+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260815-220816-596515.log`
+- `2026-08-17T15:42:18+00:00` exit=0 `npm run ats:benchmark:second`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154217-763287.log`
+- `2026-08-17T15:46:21+00:00` exit=1 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154617-871763.log`
+- `2026-08-17T15:46:39+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154635-080963.log`
+- `2026-08-17T15:46:40+00:00` exit=0 `npm run ats:benchmark`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154639-951165.log`
+- `2026-08-17T15:46:40+00:00` exit=0 `npm run ats:benchmark:second`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154640-457164.log`
+- `2026-08-17T15:46:48+00:00` exit=2 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154645-116195.log`
+- `2026-08-17T15:47:01+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154658-826629.log`
+- `2026-08-17T15:47:10+00:00` exit=0 `env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154710-321866.log`
 
 ## Latest Checkpoints
 
-- `2026-08-15T21:52:21+00:00` postflight: Released Job MCP v0.2.15 UI refresh to production: brand rename, suitcase mark, ASCII landing section, copy buttons, and improved cover-letter showcase. Health, smoke, and browser checks passed.
-  - next_steps: Monitor production pages; rollback tag rollback/jobmcp-20260815-235045-e35eb02 is available on Franklee if needed.
-  - files_changed: experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/package.json; experimental/application-package-mcp/tests/mcp-http.test.mjs
+- `2026-09-16T19:08:05+00:00` postflight: Deployed Job MCP visitor analytics and Mezzo dashboard country/city lists
+  - next_steps: Check /traffic after real users arrive; if city remains unknown, enable Cloudflare visitor-location headers.
+  - files_changed: experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/docker-compose.yml
   - commands_run: python3 SOP.py postflight
-- `2026-08-15T21:52:23+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+- `2026-09-16T19:08:07+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
   - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
   - commands_run: python3 SOP.py postflight
-- `2026-08-15T22:02:09+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
-  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
-  - commands_run: python3 SOP.py preflight
-- `2026-08-15T22:04:50+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
-  - commands_run: npm test
-- `2026-08-15T22:06:30+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
-  - commands_run: npm test
-- `2026-08-15T22:07:18+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
-  - commands_run: npm test
-- `2026-08-15T22:07:19+00:00` handoff: Handoff updated: Updated Job MCP landing ASCII Dragon Gate locally with transparent page-integrated, larger 3D-style scene; tests and screenshots passed on local 5960.
-  - next_steps: User review at http://127.0.0.1:5960/; deploy only if approved.
+- `2026-09-16T19:15:33+00:00` handoff: Handoff updated: Enabled Cloudflare Managed Transform Add visitor location headers for pmlecuong.com and verified Job MCP receives cf-ipcity/cf-ipcountry/cf-timezone through Cloudflare.
+  - next_steps: Monitor real traffic in Mezzo dashboard; old unknown rows are expected from before the Cloudflare transform was enabled.
   - commands_run: python3 SOP.py handoff
-- `2026-08-15T22:08:23+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
-  - commands_run: npm test
+- `2026-09-16T19:15:33+00:00` postflight: Enabled Cloudflare visitor location headers and verified city aggregation on Mezzo traffic dashboard
+  - next_steps: Monitor /traffic for real user city distribution; no further action unless city values disappear.
+  - commands_run: python3 SOP.py postflight
+- `2026-09-16T19:15:35+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
+- `2026-09-16T19:20:24+00:00` handoff: Handoff updated: Added repo-backed Mezzo traffic dashboard DR kit under ops/mezzo-traffic-dashboard and pushed commit 194a9d1.
+  - next_steps: Use ops/mezzo-traffic-dashboard/README.md plus install-franklee.sh/install-mezzo.sh to rebuild if Mezzo or Franklee dashboard service is lost.
+  - commands_run: python3 SOP.py handoff
+- `2026-09-16T19:20:24+00:00` postflight: Packaged and pushed Mezzo traffic dashboard disaster recovery kit
+  - next_steps: Run backup-db.sh periodically or before risky host maintenance; use README for cold rebuild.
+  - files_changed: ops/mezzo-traffic-dashboard/README.md; ops/mezzo-traffic-dashboard/traffic_dashboard.py
+  - commands_run: python3 SOP.py postflight
+- `2026-09-16T19:20:26+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
 
 ## Decisions
 
