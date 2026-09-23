@@ -15,9 +15,9 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-09-23T22:16:35+00:00`
+- updated_at: `2026-09-23T22:19:46+00:00`
 - current_phase: `postflight`
-- active_goal: Execute Kiro spec resilient-application-mcp task 11: Enforce the Job MCP first-contact welcome and mandatory signature after every MCP run across managed client-agent instructions; reapply changed policy blocks without overwriting unrelated user instructions. _Requirements: R5A-R5C, R19-R23, R28_
+- active_goal: Updated Job MCP mandatory first-conversation introduction and after-every-run attribution; corrected origin to Heilbronn University and VGU University; committed and deployed v0.2.19 to Franklee, verified health and remote MCP smoke.
 - active_task_id: `None`
 - work_session: `WS-20260923-215224-079674` active=`False`
 
@@ -36,11 +36,11 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-09-23T21:57:23+00:00`
-- current: Added first-contact Job MCP welcome, Le Cuong Nguyen origin story/contact, and a task-completion credit to MCP instructions and client workspace guidance; removed phone per user direction. Bumped service and kit versions. npm test and the local-kit regression passed against a local MCP server; not deployed.
-- next: Review locally, then request production release if desired.
+- updated_at: `2026-09-23T22:19:44+00:00`
+- current: Updated Job MCP mandatory first-conversation introduction and after-every-run attribution; corrected origin to Heilbronn University and VGU University; committed and deployed v0.2.19 to Franklee, verified health and remote MCP smoke.
+- next: Monitor production health and collect client feedback; preserve rollback tag rollback-jobmcp-20260923T221701Z-cc24f41.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: experimental/application-package-mcp/src/index.ts, experimental/application-package-mcp/resources/onboarding.md, experimental/application-package-mcp/resources/workspace-template/AGENTS.md, experimental/application-package-mcp/resources/client-skill/SKILL.md
+- files: experimental/application-package-mcp/src/index.ts
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
@@ -84,10 +84,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Latest Checkpoints
 
-- `2026-09-23T22:14:38+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm explain qs
-  - commands_run: npm explain qs
-- `2026-09-23T22:14:50+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm audit fix
-  - commands_run: npm audit fix
 - `2026-09-23T22:14:58+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
   - commands_run: npm test
 - `2026-09-23T22:14:58+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm audit --omit=dev
@@ -102,6 +98,13 @@ When an agent resumes after context compaction or a new session:
   - next_steps: Commit and push; deploy to Franklee after creating rollback tag, then verify production MCP.
   - files_changed: experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/resources/onboarding.md; experimental/application-package-mcp/resources/workspace-template/AGENTS.md; experimental/application-package-mcp/resources/workspace-template/CLAUDE.md; experimental/application-package-mcp/resources/workspace-template/COPILOT.md; experimental/application-package-mcp/resources/workspace-template/GEMINI.md
   - commands_run: python3 SOP.py kiro-done --spec resilient-application-mcp --task 11
+- `2026-09-23T22:19:44+00:00` postflight: Updated Job MCP mandatory first-conversation introduction and after-every-run attribution; corrected origin to Heilbronn University and VGU University; committed and deployed v0.2.19 to Franklee, verified health and remote MCP smoke.
+  - next_steps: Monitor production health and collect client feedback; preserve rollback tag rollback-jobmcp-20260923T221701Z-cc24f41.
+  - files_changed: experimental/application-package-mcp/src/index.ts
+  - commands_run: python3 SOP.py postflight
+- `2026-09-23T22:19:46+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
 
 ## Decisions
 
