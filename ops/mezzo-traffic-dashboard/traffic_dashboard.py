@@ -150,7 +150,7 @@ def payload():
     visits_hour=c.execute(f"select coalesce(sum(hits),0) from mcp_visits where bucket>=? and {human_where}",(hour,)).fetchone()[0]
     visits_day=c.execute(f"select coalesce(sum(hits),0) from mcp_visits where bucket>=? and {human_where}",(day,)).fetchone()[0]
     tools=[]
-    for tool, calls_hour, errors_hour, calls_day in c.execute('select mt.tool,coalesce(sum(mt.calls),0),coalesce(sum(mt.errors),0),(select coalesce(sum(x.calls),0) from mcp_tools x where x.tool=mt.tool and x.bucket>=?) from mcp_tools mt where mt.bucket>=? group by mt.tool order by 2 desc,1',(day,hour)):
+    for tool, calls_hour, errors_hour, calls_day in c.execute('select mt.tool,(select coalesce(sum(h.calls),0) from mcp_tools h where h.tool=mt.tool and h.bucket>=?),(select coalesce(sum(h.errors),0) from mcp_tools h where h.tool=mt.tool and h.bucket>=?),coalesce(sum(mt.calls),0) from mcp_tools mt where mt.bucket>=? group by mt.tool order by 4 desc,1',(hour,hour,day)):
         tools.append({'tool':tool,'callsHour':calls_hour,'errorsHour':errors_hour,'callsDay':calls_day})
     countries=[]
     for country, uniques, hits in c.execute(f"select country,count(distinct visitor_hash),sum(hits) from mcp_visits where bucket>=? and {human_where} group by country order by 2 desc,3 desc limit 12",(day,)):

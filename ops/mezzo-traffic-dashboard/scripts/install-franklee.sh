@@ -21,7 +21,7 @@ ssh "${target}" 'set -e
 chmod 0755 /usr/local/lib/mezzo-traffic/traffic_dashboard.py
 python3 -m py_compile /usr/local/lib/mezzo-traffic/traffic_dashboard.py
 systemctl daemon-reload
-systemctl enable --now traffic-dashboard.service
+systemctl restart traffic-dashboard.service
 systemctl enable --now traffic-collect.timer
 systemctl start traffic-collect.service || true
 sleep 1
@@ -31,4 +31,3 @@ curl -fsS http://100.124.166.95:3030/traffic/api/summary >/dev/null
 '
 
 echo "Franklee traffic dashboard install complete."
-
