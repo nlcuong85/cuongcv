@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-09-16T19:20:26+00:00`
+- updated_at: `2026-09-23T21:45:40+00:00`
 - current_phase: `postflight`
-- active_goal: Packaged and pushed Mezzo traffic dashboard disaster recovery kit
+- active_goal: Fixed Mezzo traffic dashboard MCP tool metrics listing; deployed to Franklee; verified live /traffic shows tool/protocol rows; committed and pushed 5b4be98.
 - active_task_id: `None`
-- work_session: `WS-20260916-185303-668252` active=`True`
+- work_session: `WS-20260916-185303-668252` active=`False`
 
 ## Required Resume Files
 
@@ -36,11 +36,11 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-09-16T19:20:24+00:00`
-- current: Packaged and pushed Mezzo traffic dashboard disaster recovery kit
-- next: Run backup-db.sh periodically or before risky host maintenance; use README for cold rebuild.
+- updated_at: `2026-09-23T21:45:39+00:00`
+- current: Fixed Mezzo traffic dashboard MCP tool metrics listing; deployed to Franklee; verified live /traffic shows tool/protocol rows; committed and pushed 5b4be98.
+- next: If needed, investigate city-name mojibake such as DÃ¼sseldorf separately.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: ops/mezzo-traffic-dashboard/README.md, ops/mezzo-traffic-dashboard/traffic_dashboard.py
+- files: ops/mezzo-traffic-dashboard/traffic_dashboard.py, ops/mezzo-traffic-dashboard/scripts/install-franklee.sh
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
@@ -82,13 +82,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Latest Checkpoints
 
-- `2026-09-16T19:08:05+00:00` postflight: Deployed Job MCP visitor analytics and Mezzo dashboard country/city lists
-  - next_steps: Check /traffic after real users arrive; if city remains unknown, enable Cloudflare visitor-location headers.
-  - files_changed: experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/docker-compose.yml
-  - commands_run: python3 SOP.py postflight
-- `2026-09-16T19:08:07+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
 - `2026-09-16T19:15:33+00:00` handoff: Handoff updated: Enabled Cloudflare Managed Transform Add visitor location headers for pmlecuong.com and verified Job MCP receives cf-ipcity/cf-ipcountry/cf-timezone through Cloudflare.
   - next_steps: Monitor real traffic in Mezzo dashboard; old unknown rows are expected from before the Cloudflare transform was enabled.
   - commands_run: python3 SOP.py handoff
@@ -106,6 +99,13 @@ When an agent resumes after context compaction or a new session:
   - files_changed: ops/mezzo-traffic-dashboard/README.md; ops/mezzo-traffic-dashboard/traffic_dashboard.py
   - commands_run: python3 SOP.py postflight
 - `2026-09-16T19:20:26+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
+- `2026-09-23T21:45:39+00:00` postflight: Fixed Mezzo traffic dashboard MCP tool metrics listing; deployed to Franklee; verified live /traffic shows tool/protocol rows; committed and pushed 5b4be98.
+  - next_steps: If needed, investigate city-name mojibake such as DÃ¼sseldorf separately.
+  - files_changed: ops/mezzo-traffic-dashboard/traffic_dashboard.py; ops/mezzo-traffic-dashboard/scripts/install-franklee.sh
+  - commands_run: python3 SOP.py postflight
+- `2026-09-23T21:45:40+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
   - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
   - commands_run: python3 SOP.py postflight
 

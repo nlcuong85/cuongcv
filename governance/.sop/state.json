@@ -1,5 +1,5 @@
 {
-  "active_goal": "Packaged and pushed Mezzo traffic dashboard disaster recovery kit",
+  "active_goal": "Fixed Mezzo traffic dashboard MCP tool metrics listing; deployed to Franklee; verified live /traffic shows tool/protocol rows; committed and pushed 5b4be98.",
   "active_task_id": null,
   "checkpoints": [
     {
@@ -5044,6 +5044,36 @@
       "open_questions": [],
       "summary": "Postflight recorded fresh repository snapshot.",
       "time": "2026-09-16T19:20:26+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "ops/mezzo-traffic-dashboard/traffic_dashboard.py",
+        "ops/mezzo-traffic-dashboard/scripts/install-franklee.sh"
+      ],
+      "label": "postflight",
+      "next_steps": [
+        "If needed, investigate city-name mojibake such as D\u00c3\u00bcsseldorf separately."
+      ],
+      "open_questions": [],
+      "summary": "Fixed Mezzo traffic dashboard MCP tool metrics listing; deployed to Franklee; verified live /traffic shows tool/protocol rows; committed and pushed 5b4be98.",
+      "time": "2026-09-23T21:45:39+00:00"
+    },
+    {
+      "commands_run": [
+        "python3 SOP.py postflight"
+      ],
+      "files_changed": [
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json",
+        "/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md"
+      ],
+      "label": "postflight-snapshot",
+      "next_steps": [],
+      "open_questions": [],
+      "summary": "Postflight recorded fresh repository snapshot.",
+      "time": "2026-09-23T21:45:40+00:00"
     }
   ],
   "command_log": [
@@ -5461,14 +5491,14 @@
     "commands": [
       "python3 SOP.py postflight"
     ],
-    "current": "Packaged and pushed Mezzo traffic dashboard disaster recovery kit",
+    "current": "Fixed Mezzo traffic dashboard MCP tool metrics listing; deployed to Franklee; verified live /traffic shows tool/protocol rows; committed and pushed 5b4be98.",
     "files": [
-      "ops/mezzo-traffic-dashboard/README.md",
-      "ops/mezzo-traffic-dashboard/traffic_dashboard.py"
+      "ops/mezzo-traffic-dashboard/traffic_dashboard.py",
+      "ops/mezzo-traffic-dashboard/scripts/install-franklee.sh"
     ],
-    "next": "Run backup-db.sh periodically or before risky host maintenance; use README for cold rebuild.",
+    "next": "If needed, investigate city-name mojibake such as D\u00c3\u00bcsseldorf separately.",
     "risk": "Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.",
-    "updated_at": "2026-09-16T19:20:24+00:00"
+    "updated_at": "2026-09-23T21:45:39+00:00"
   },
   "kiro": {
     "active_spec": "resilient-application-mcp",
@@ -5585,7 +5615,7 @@
   "open_questions": [],
   "repo": "/Users/pmlecuong/Documents/CuongProjects/CuongCV",
   "repo_snapshot": {
-    "created_at": "2026-09-16T19:20:26+00:00",
+    "created_at": "2026-09-23T21:45:40+00:00",
     "directories": [
       ".github",
       ".github/workflows",
@@ -5786,15 +5816,15 @@
       "tests"
     ],
     "directory_count": 197,
-    "file_count": 906,
+    "file_count": 857,
     "files": {
       ".github/workflows/deploy.yml": {
         "mtime": 1756829608,
         "size": 1162
       },
       ".gitignore": {
-        "mtime": 1781860757,
-        "size": 699
+        "mtime": 1789677906,
+        "size": 813
       },
       ".playwright-cli/console-2026-08-14T22-45-04-773Z.log": {
         "mtime": 1786747652,
@@ -5904,42 +5934,6 @@
         "mtime": 1786825768,
         "size": 143
       },
-      ".playwright-mcp/console-2026-08-17T14-36-13-411Z.log": {
-        "mtime": 1786977406,
-        "size": 5406
-      },
-      ".playwright-mcp/console-2026-08-17T14-37-05-077Z.log": {
-        "mtime": 1786977994,
-        "size": 325
-      },
-      ".playwright-mcp/console-2026-08-17T14-45-14-306Z.log": {
-        "mtime": 1786978068,
-        "size": 325
-      },
-      ".playwright-mcp/console-2026-08-17T14-46-31-264Z.log": {
-        "mtime": 1786977991,
-        "size": 180
-      },
-      ".playwright-mcp/console-2026-08-17T14-47-34-767Z.log": {
-        "mtime": 1786978055,
-        "size": 776
-      },
-      ".playwright-mcp/console-2026-08-17T14-49-03-677Z.log": {
-        "mtime": 1786978144,
-        "size": 180
-      },
-      ".playwright-mcp/console-2026-08-17T14-49-45-285Z.log": {
-        "mtime": 1786978186,
-        "size": 180
-      },
-      ".playwright-mcp/console-2026-08-17T15-26-49-012Z.log": {
-        "mtime": 1786980409,
-        "size": 180
-      },
-      ".playwright-mcp/console-2026-08-17T15-28-58-850Z.log": {
-        "mtime": 1786981094,
-        "size": 5748
-      },
       ".playwright-mcp/page-2026-08-15T20-29-28-240Z.yml": {
         "mtime": 1786825768,
         "size": 2630
@@ -5991,170 +5985,6 @@
       ".playwright-mcp/page-2026-08-15T21-52-06-094Z.yml": {
         "mtime": 1786830726,
         "size": 5694
-      },
-      ".playwright-mcp/page-2026-08-17T14-36-17-754Z.yml": {
-        "mtime": 1786977377,
-        "size": 27834
-      },
-      ".playwright-mcp/page-2026-08-17T14-37-06-891Z.yml": {
-        "mtime": 1786977426,
-        "size": 28822
-      },
-      ".playwright-mcp/page-2026-08-17T14-37-30-329Z.yml": {
-        "mtime": 1786977450,
-        "size": 0
-      },
-      ".playwright-mcp/page-2026-08-17T14-37-39-177Z.yml": {
-        "mtime": 1786977459,
-        "size": 40014
-      },
-      ".playwright-mcp/page-2026-08-17T14-37-54-077Z.yml": {
-        "mtime": 1786977474,
-        "size": 44542
-      },
-      ".playwright-mcp/page-2026-08-17T14-38-12-101Z.yml": {
-        "mtime": 1786977492,
-        "size": 41043
-      },
-      ".playwright-mcp/page-2026-08-17T14-38-25-029Z.yml": {
-        "mtime": 1786977505,
-        "size": 0
-      },
-      ".playwright-mcp/page-2026-08-17T14-38-32-929Z.yml": {
-        "mtime": 1786977512,
-        "size": 41094
-      },
-      ".playwright-mcp/page-2026-08-17T14-38-43-541Z.yml": {
-        "mtime": 1786977523,
-        "size": 44026
-      },
-      ".playwright-mcp/page-2026-08-17T14-38-55-105Z.yml": {
-        "mtime": 1786977535,
-        "size": 39697
-      },
-      ".playwright-mcp/page-2026-08-17T14-39-01-745Z.yml": {
-        "mtime": 1786977541,
-        "size": 0
-      },
-      ".playwright-mcp/page-2026-08-17T14-39-09-126Z.yml": {
-        "mtime": 1786977549,
-        "size": 39648
-      },
-      ".playwright-mcp/page-2026-08-17T14-39-19-673Z.yml": {
-        "mtime": 1786977559,
-        "size": 42398
-      },
-      ".playwright-mcp/page-2026-08-17T14-44-06-061Z.yml": {
-        "mtime": 1786977846,
-        "size": 40054
-      },
-      ".playwright-mcp/page-2026-08-17T14-44-23-933Z.yml": {
-        "mtime": 1786977863,
-        "size": 0
-      },
-      ".playwright-mcp/page-2026-08-17T14-44-35-610Z.yml": {
-        "mtime": 1786977875,
-        "size": 39902
-      },
-      ".playwright-mcp/page-2026-08-17T14-44-48-464Z.yml": {
-        "mtime": 1786977888,
-        "size": 44185
-      },
-      ".playwright-mcp/page-2026-08-17T14-45-02-536Z.yml": {
-        "mtime": 1786977902,
-        "size": 40158
-      },
-      ".playwright-mcp/page-2026-08-17T14-45-18-599Z.yml": {
-        "mtime": 1786977918,
-        "size": 47020
-      },
-      ".playwright-mcp/page-2026-08-17T14-45-38-211Z.yml": {
-        "mtime": 1786977938,
-        "size": 0
-      },
-      ".playwright-mcp/page-2026-08-17T14-45-49-554Z.yml": {
-        "mtime": 1786977949,
-        "size": 46873
-      },
-      ".playwright-mcp/page-2026-08-17T14-46-02-892Z.yml": {
-        "mtime": 1786977962,
-        "size": 50373
-      },
-      ".playwright-mcp/page-2026-08-17T14-46-20-772Z.yml": {
-        "mtime": 1786977980,
-        "size": 48290
-      },
-      ".playwright-mcp/page-2026-08-17T14-46-33-131Z.yml": {
-        "mtime": 1786977993,
-        "size": 37691
-      },
-      ".playwright-mcp/page-2026-08-17T14-46-53-478Z.yml": {
-        "mtime": 1786978013,
-        "size": 0
-      },
-      ".playwright-mcp/page-2026-08-17T14-47-03-896Z.yml": {
-        "mtime": 1786978023,
-        "size": 37544
-      },
-      ".playwright-mcp/page-2026-08-17T14-47-18-247Z.yml": {
-        "mtime": 1786978038,
-        "size": 42212
-      },
-      ".playwright-mcp/page-2026-08-17T14-47-36-483Z.yml": {
-        "mtime": 1786978056,
-        "size": 44811
-      },
-      ".playwright-mcp/page-2026-08-17T14-47-42-256Z.yml": {
-        "mtime": 1786978062,
-        "size": 0
-      },
-      ".playwright-mcp/page-2026-08-17T14-47-52-915Z.yml": {
-        "mtime": 1786978072,
-        "size": 44664
-      },
-      ".playwright-mcp/page-2026-08-17T14-48-08-994Z.yml": {
-        "mtime": 1786978088,
-        "size": 46063
-      },
-      ".playwright-mcp/page-2026-08-17T14-49-05-741Z.yml": {
-        "mtime": 1786978145,
-        "size": 44794
-      },
-      ".playwright-mcp/page-2026-08-17T14-49-22-248Z.yml": {
-        "mtime": 1786978162,
-        "size": 49191
-      },
-      ".playwright-mcp/page-2026-08-17T14-49-47-109Z.yml": {
-        "mtime": 1786978187,
-        "size": 44812
-      },
-      ".playwright-mcp/page-2026-08-17T14-49-57-256Z.yml": {
-        "mtime": 1786978197,
-        "size": 0
-      },
-      ".playwright-mcp/page-2026-08-17T14-50-04-817Z.yml": {
-        "mtime": 1786978204,
-        "size": 44788
-      },
-      ".playwright-mcp/page-2026-08-17T14-50-17-400Z.yml": {
-        "mtime": 1786978217,
-        "size": 48330
-      },
-      ".playwright-mcp/page-2026-08-17T15-26-54-932Z.yml": {
-        "mtime": 1786980414,
-        "size": 46559
-      },
-      ".playwright-mcp/page-2026-08-17T15-29-04-610Z.yml": {
-        "mtime": 1786980544,
-        "size": 41292
-      },
-      ".playwright-mcp/page-2026-08-17T15-47-16-058Z.yml": {
-        "mtime": 1786981636,
-        "size": 12850
-      },
-      ".playwright-mcp/page-2026-08-17T15-48-56-518Z.yml": {
-        "mtime": 1786981736,
-        "size": 12862
       },
       "AGENTS.md": {
         "mtime": 1786978646,
@@ -8812,13 +8642,17 @@
         "mtime": 1789586392,
         "size": 3751936
       },
+      "ops/mezzo-traffic-dashboard/backups/traffic-20260923T214334Z.sqlite": {
+        "mtime": 1790199817,
+        "size": 8028160
+      },
       "ops/mezzo-traffic-dashboard/scripts/backup-db.sh": {
         "mtime": 1789586372,
         "size": 877
       },
       "ops/mezzo-traffic-dashboard/scripts/install-franklee.sh": {
-        "mtime": 1789586346,
-        "size": 1396
+        "mtime": 1790199842,
+        "size": 1390
       },
       "ops/mezzo-traffic-dashboard/scripts/install-mezzo.sh": {
         "mtime": 1789586346,
@@ -8845,8 +8679,8 @@
         "size": 327
       },
       "ops/mezzo-traffic-dashboard/traffic_dashboard.py": {
-        "mtime": 1789586267,
-        "size": 18889
+        "mtime": 1790199807,
+        "size": 18956
       },
       "output/ats-benchmark/ats-benchmark-results.json": {
         "mtime": 1786981600,
@@ -9451,14 +9285,14 @@
       "updated_at": "2026-06-19T09:20:07+00:00"
     }
   ],
-  "updated_at": "2026-09-16T19:20:26+00:00",
+  "updated_at": "2026-09-23T21:45:40+00:00",
   "work_session": {
-    "active": true,
-    "ended_at": null,
-    "goal": "Package Mezzo traffic dashboard disaster recovery files into repo",
+    "active": false,
+    "ended_at": "2026-09-23T21:45:39+00:00",
+    "goal": "Fix Mezzo traffic dashboard Job MCP tool metrics",
     "id": "WS-20260916-185303-668252",
-    "last_update": "2026-09-16T19:17:37+00:00",
+    "last_update": "2026-09-23T21:45:39+00:00",
     "started_at": "2026-09-16T18:53:03+00:00",
-    "task_id": "mezzo-traffic-dashboard-dr"
+    "task_id": "mezzo-tool-metrics-fix"
   }
 }
