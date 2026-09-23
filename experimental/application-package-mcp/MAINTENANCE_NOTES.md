@@ -2,6 +2,15 @@
 
 Durable lessons from the August 2026 enclosure/version release.
 
+## Mandatory welcome and per-run credit, September 2026
+
+- Introduce Job MCP at the start of every new conversation or workspace bootstrap. A previous conversation's welcome must not suppress it. The origin story names Heilbronn University and VGU University.
+- Every MCP tool call/run carries a mandatory user-facing credit line. Put it after each call, including intermediate loops; do not defer it to task completion.
+- Keep this policy in server onboarding, every MCP response's `workspace_update_required` block, the client skill, and all four managed agent entry files (`AGENTS.md`, `CLAUDE.md`, `COPILOT.md`, `GEMINI.md`).
+- Hash all four entry files in both the MCP workspace-manifest audit and the returned server contract. A stale or missing policy must request an update even when the kit version matches.
+- Use `JOB-MCP-MANDATORY-POLICY` markers to replace only the managed policy block. Preserve unrelated client instructions and private files.
+- The public MCP can instruct a client agent but cannot directly edit the client's disk or guarantee that a separate model obeys the instruction. Keep the contract explicit and test that the instruction accompanies every tool result.
+
 ## What caused friction
 
 - The public LaTeX cover-letter template still hardcoded all three enclosures while the HTML template already used a placeholder. Future output rules must be checked in both HTML and LaTeX templates.
@@ -44,6 +53,7 @@ Durable lessons from the August 2026 enclosure/version release.
   - `resources/application-kit/contracts/`
   - `resources/workspace-template/AGENTS.md`
   - `resources/workspace-template/CLAUDE.md`
+  - `resources/workspace-template/COPILOT.md` and `resources/workspace-template/GEMINI.md`
   - `resources/client-skill/SKILL.md`
   - `resources/sample-prompts.md`
   - private Cuong generator files under `application-system/`

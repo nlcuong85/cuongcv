@@ -13,9 +13,10 @@ import os
 import time
 from pathlib import Path
 
-KIT_VERSION = "2026.08.17-ats-public.1"
+KIT_VERSION = "2026.09.24-introduction.1"
 MANAGED = [
-    "AGENTS.md", "scripts/application_sop.py", "scripts/mcp_check_client.mjs", "scripts/ats_text_extract.py",
+    "AGENTS.md", "CLAUDE.md", "COPILOT.md", "GEMINI.md",
+    "scripts/application_sop.py", "scripts/mcp_check_client.mjs", "scripts/ats_text_extract.py",
     "application-kit/manifest.json", "application-kit/templates/cover_letter.html",
     "application-kit/templates/cover_letter.tex", "application-kit/templates/interview_prep.md",
     "application-kit/templates/cv_english_modern.html",

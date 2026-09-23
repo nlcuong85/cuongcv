@@ -40,7 +40,11 @@ try {
   const skillResult = await client.callTool({ name: "get_client_skill", arguments: {} });
   const skill = JSON.parse(skillResult.content[0].text);
   assert.equal(skill.workspace_update_required.automatic_for_local_agents, true);
+  assert.equal(skill.workspace_update_required.mandatory_agent_policy.applies_on_every_mcp_run, true);
+  assert.match(skill.workspace_update_required.mandatory_agent_policy.origin_story, /Heilbronn University and VGU University/);
+  assert.match(skill.workspace_update_required.mandatory_agent_policy.mandatory_signature_after_every_run, /nlcuong999@gmail\.com/);
   assert.match(skill.content, /Student Application Client/);
+  assert.match(skill.content, /Heilbronn University and VGU University/);
   assert.match(skill.content, /selected-text writing checks/);
 
   const templateResult = await client.callTool({ name: "get_workspace_template", arguments: {} });
@@ -51,6 +55,12 @@ try {
   assert.ok(template.files.some((file) => file.path === "scripts/migrate_legacy_workspace.py"));
   assert.ok(template.files.some((file) => file.path === "scripts/audit_voice_fit.py"));
   assert.ok(!template.files.some((file) => file.path.includes("audit_human_fit")));
+  for (const name of ["AGENTS.md", "CLAUDE.md", "COPILOT.md", "GEMINI.md"]) {
+    assert.ok(template.files.some((file) => file.path === name));
+  }
+  const agents = template.files.find((file) => file.path === "AGENTS.md");
+  assert.match(agents.content, /JOB-MCP-MANDATORY-POLICY:START/);
+  assert.match(agents.content, /After every MCP tool call\/run/);
 
   const kitResult = await client.callTool({ name: "get_application_kit_manifest", arguments: {} });
   const kit = JSON.parse(kitResult.content[0].text);
@@ -67,6 +77,7 @@ try {
     }
   });
   const check = JSON.parse(checkResult.content[0].text);
+  assert.equal(check.workspace_update_required.mandatory_agent_policy.applies_on_every_mcp_run, true);
   assert.equal(check.mode, "academic");
   assert.equal(check.privacy.stored, false);
   assert.ok(check.issues.length > 0);
@@ -82,6 +93,7 @@ try {
   });
   const ats = JSON.parse(atsResult.content[0].text);
   assert.equal(ats.workspace_update_required.automatic_for_local_agents, true);
+  assert.equal(ats.workspace_update_required.mandatory_agent_policy.applies_on_every_mcp_run, true);
   assert.equal(ats.ok, true);
   assert.equal(ats.privacy.stored, false);
   assert.equal(typeof ats.score, "number");

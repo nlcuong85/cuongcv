@@ -71,6 +71,8 @@
   - [ ] 10.2 Derive an ordered application-mode revision brief and release decision from the private issue result; explicitly prohibit factual invention and detector-evasion tactics. _Requirements: R33.4-R33.5_
   - [ ] 10.3 Add compatibility and regression tests for generic, hostile, and improved application drafts; prove existing high-risk examples cannot be downgraded merely by the new output layer. _Requirements: R33.1, R33.6_
 
+- [x] 11. Enforce the Job MCP first-contact welcome and mandatory signature after every MCP run across managed client-agent instructions; reapply changed policy blocks without overwriting unrelated user instructions. _Requirements: R5A-R5C, R19-R23, R28_
+
 ## Milestones
 
 | Milestone | User-testable outcome | Automated proof | Manual testcase |

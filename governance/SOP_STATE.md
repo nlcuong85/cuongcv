@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-09-23T21:45:40+00:00`
+- updated_at: `2026-09-23T22:16:35+00:00`
 - current_phase: `postflight`
-- active_goal: Fixed Mezzo traffic dashboard MCP tool metrics listing; deployed to Franklee; verified live /traffic shows tool/protocol rows; committed and pushed 5b4be98.
+- active_goal: Execute Kiro spec resilient-application-mcp task 11: Enforce the Job MCP first-contact welcome and mandatory signature after every MCP run across managed client-agent instructions; reapply changed policy blocks without overwriting unrelated user instructions. _Requirements: R5A-R5C, R19-R23, R28_
 - active_task_id: `None`
-- work_session: `WS-20260916-185303-668252` active=`False`
+- work_session: `WS-20260923-215224-079674` active=`False`
 
 ## Required Resume Files
 
@@ -36,11 +36,11 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-09-23T21:45:39+00:00`
-- current: Fixed Mezzo traffic dashboard MCP tool metrics listing; deployed to Franklee; verified live /traffic shows tool/protocol rows; committed and pushed 5b4be98.
-- next: If needed, investigate city-name mojibake such as DÃ¼sseldorf separately.
+- updated_at: `2026-09-23T21:57:23+00:00`
+- current: Added first-contact Job MCP welcome, Le Cuong Nguyen origin story/contact, and a task-completion credit to MCP instructions and client workspace guidance; removed phone per user direction. Bumped service and kit versions. npm test and the local-kit regression passed against a local MCP server; not deployed.
+- next: Review locally, then request production release if desired.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: ops/mezzo-traffic-dashboard/traffic_dashboard.py, ops/mezzo-traffic-dashboard/scripts/install-franklee.sh
+- files: experimental/application-package-mcp/src/index.ts, experimental/application-package-mcp/resources/onboarding.md, experimental/application-package-mcp/resources/workspace-template/AGENTS.md, experimental/application-package-mcp/resources/client-skill/SKILL.md
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
@@ -52,6 +52,8 @@ When an agent resumes after context compaction or a new session:
   - task `10` [done] 3 Add compatibility and regression tests for generic, hostile, and improved application drafts; prove existing high-risk examples cannot be downgraded merely by the new output layer. _Requirements: R33.1, R33.6_
     - evidence: Added the backward-compatible styleReview contract to selected-text checker responses, retained every existing signal and threshold, and passed npm test including hostile, revise, and ready-for-human-review MCP paths.
     - risk: Style feedback is advisory, not an authorship verdict or detector-bypass guarantee.
+  - task `11` [done] Enforce the Job MCP first-contact welcome and mandatory signature after every MCP run across managed client-agent instructions; reapply changed policy blocks without overwriting unrelated user instructions. _Requirements: R5A-R5C, R19-R23, R28_
+    - evidence: MCP server injects mandatory_agent_policy into every JSON tool response and initialization onboarding; local workspace audit hashes and requires AGENTS.md, CLAUDE.md, COPILOT.md, and GEMINI.md, triggering updates for missing or stale policy blocks.; Updated first-contact story to Heilbronn University and VGU University; signature is required after every MCP tool call/run; marked policy blocks preserve unrelated instructions.; npm test passed (6 tests); three-job local-kit regression passed; npm audit --omit=dev reported zero vulnerabilities.
   - task `2` [pending] 4 Add unit tests for lock contention, interrupted write recovery, state/schema corruption, snapshot drift, handoff recovery, receipt evidence verification, and direct-artifact-without-receipt `NOT READY` handling. _Requirements: R18A-R18F, R27_
   - task `3` [pending] 5 Add regression fixtures/tests that prove read-only diagnosis, no migration without approval, protected-source preservation, and before/after timing reports. _Requirements: R29-R32, R27_
   - task `4` [pending] 5 Add tests for generic-voice consent, sparse-evidence reminder suppression after deferral, employer-bullet skip, unsupported JD skill handling, photo decision, and non-blocking signature absence. _Requirements: R6-R11, R7A-R7C, R27_
@@ -63,51 +65,43 @@ When an agent resumes after context compaction or a new session:
 
 ## Recent Commands
 
-- `2026-08-17T15:42:18+00:00` exit=0 `npm run ats:benchmark:second`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154217-763287.log`
-- `2026-08-17T15:46:21+00:00` exit=1 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154617-871763.log`
-- `2026-08-17T15:46:39+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154635-080963.log`
-- `2026-08-17T15:46:40+00:00` exit=0 `npm run ats:benchmark`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154639-951165.log`
-- `2026-08-17T15:46:40+00:00` exit=0 `npm run ats:benchmark:second`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154640-457164.log`
-- `2026-08-17T15:46:48+00:00` exit=2 `python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154645-116195.log`
-- `2026-08-17T15:47:01+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154658-826629.log`
-- `2026-08-17T15:47:10+00:00` exit=0 `env MCP_URL=http://127.0.0.1:5943/mcp npm run smoke:remote`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260817-154710-321866.log`
+- `2026-09-23T22:14:38+00:00` exit=0 `npm explain hono`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221438-559812.log`
+- `2026-09-23T22:14:38+00:00` exit=0 `npm explain qs`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221438-756204.log`
+- `2026-09-23T22:14:50+00:00` exit=0 `npm audit fix`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221449-934333.log`
+- `2026-09-23T22:14:58+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221454-291876.log`
+- `2026-09-23T22:14:58+00:00` exit=0 `npm audit --omit=dev`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221458-411239.log`
+- `2026-09-23T22:15:09+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221506-568075.log`
+- `2026-09-23T22:15:42+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221538-105295.log`
+- `2026-09-23T22:15:42+00:00` exit=0 `node --check tests/smoke-remote.mjs`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221542-611207.log`
 
 ## Latest Checkpoints
 
-- `2026-09-16T19:15:33+00:00` handoff: Handoff updated: Enabled Cloudflare Managed Transform Add visitor location headers for pmlecuong.com and verified Job MCP receives cf-ipcity/cf-ipcountry/cf-timezone through Cloudflare.
-  - next_steps: Monitor real traffic in Mezzo dashboard; old unknown rows are expected from before the Cloudflare transform was enabled.
-  - commands_run: python3 SOP.py handoff
-- `2026-09-16T19:15:33+00:00` postflight: Enabled Cloudflare visitor location headers and verified city aggregation on Mezzo traffic dashboard
-  - next_steps: Monitor /traffic for real user city distribution; no further action unless city values disappear.
-  - commands_run: python3 SOP.py postflight
-- `2026-09-16T19:15:35+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
-- `2026-09-16T19:20:24+00:00` handoff: Handoff updated: Added repo-backed Mezzo traffic dashboard DR kit under ops/mezzo-traffic-dashboard and pushed commit 194a9d1.
-  - next_steps: Use ops/mezzo-traffic-dashboard/README.md plus install-franklee.sh/install-mezzo.sh to rebuild if Mezzo or Franklee dashboard service is lost.
-  - commands_run: python3 SOP.py handoff
-- `2026-09-16T19:20:24+00:00` postflight: Packaged and pushed Mezzo traffic dashboard disaster recovery kit
-  - next_steps: Run backup-db.sh periodically or before risky host maintenance; use README for cold rebuild.
-  - files_changed: ops/mezzo-traffic-dashboard/README.md; ops/mezzo-traffic-dashboard/traffic_dashboard.py
-  - commands_run: python3 SOP.py postflight
-- `2026-09-16T19:20:26+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
-- `2026-09-23T21:45:39+00:00` postflight: Fixed Mezzo traffic dashboard MCP tool metrics listing; deployed to Franklee; verified live /traffic shows tool/protocol rows; committed and pushed 5b4be98.
-  - next_steps: If needed, investigate city-name mojibake such as DÃ¼sseldorf separately.
-  - files_changed: ops/mezzo-traffic-dashboard/traffic_dashboard.py; ops/mezzo-traffic-dashboard/scripts/install-franklee.sh
-  - commands_run: python3 SOP.py postflight
-- `2026-09-23T21:45:40+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
+- `2026-09-23T22:14:38+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm explain qs
+  - commands_run: npm explain qs
+- `2026-09-23T22:14:50+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm audit fix
+  - commands_run: npm audit fix
+- `2026-09-23T22:14:58+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+  - commands_run: npm test
+- `2026-09-23T22:14:58+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm audit --omit=dev
+  - commands_run: npm audit --omit=dev
+- `2026-09-23T22:15:09+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
+  - commands_run: python3 samples/local-kit-regression/run_regression.py
+- `2026-09-23T22:15:42+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
+  - commands_run: npm test
+- `2026-09-23T22:15:42+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: node --check tests/smoke-remote.mjs
+  - commands_run: node --check tests/smoke-remote.mjs
+- `2026-09-23T22:16:35+00:00` kiro-done: Completed Kiro task resilient-application-mcp#11: Enforce the Job MCP first-contact welcome and mandatory signature after every MCP run across managed client-agent instructions; reapply changed policy blocks without overwriting unrelated user instructions. _Requirements: R5A-R5C, R19-R23, R28_
+  - next_steps: Commit and push; deploy to Franklee after creating rollback tag, then verify production MCP.
+  - files_changed: experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/resources/onboarding.md; experimental/application-package-mcp/resources/workspace-template/AGENTS.md; experimental/application-package-mcp/resources/workspace-template/CLAUDE.md; experimental/application-package-mcp/resources/workspace-template/COPILOT.md; experimental/application-package-mcp/resources/workspace-template/GEMINI.md
+  - commands_run: python3 SOP.py kiro-done --spec resilient-application-mcp --task 11
 
 ## Decisions
 

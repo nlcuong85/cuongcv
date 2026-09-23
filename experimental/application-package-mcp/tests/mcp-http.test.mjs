@@ -76,6 +76,12 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.equal(health.workspace_update_required.automatic_for_local_agents, true);
     assert.equal(health.workspace_update_required.required_before_application_work, true);
     assert.ok(health.workspace_update_required.next_actions.some((action) => action.includes("audit_workspace_manifest")));
+    assert.equal(health.workspace_update_required.mandatory_agent_policy.applies_on_every_mcp_run, true);
+    assert.equal(health.workspace_update_required.mandatory_agent_policy.maker, "Le Cuong Nguyen");
+    assert.match(health.workspace_update_required.mandatory_agent_policy.mandatory_signature_after_every_run, /nlcuong999@gmail\.com/);
+    assert.match(health.workspace_update_required.mandatory_agent_policy.origin_story, /Heilbronn University and VGU University/);
+    assert.doesNotMatch(JSON.stringify(health.workspace_update_required.mandatory_agent_policy), /Hanoi University|\+49 163/);
+    assert.match(health.workspace_update_required.mandatory_agent_policy.local_instruction_update, /JOB-MCP-MANDATORY-POLICY markers/);
 
     const landing = await fetch(`http://127.0.0.1:${port}/`).then((response) => response.text());
     assert.match(landing, /Job MCP by pmlecuong/);
@@ -162,7 +168,12 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.equal(workspaceAudit.status, "action_required");
       assert.equal(workspaceAudit.workspace_update_required.status, "action_required");
       assert.equal(workspaceAudit.workspace_update_required.safe_only, true);
+      assert.equal(workspaceAudit.workspace_update_required.mandatory_agent_policy.applies_on_every_mcp_run, true);
       assert.ok(workspaceAudit.missing_paths.includes("scripts/application_quality_loop.py"));
+      assert.ok(workspaceAudit.missing_paths.includes("CLAUDE.md"));
+      for (const path of ["AGENTS.md", "CLAUDE.md", "COPILOT.md", "GEMINI.md"]) {
+        assert.ok(workspaceAudit.managed_hash_mismatches.includes(path));
+      }
       assert.equal(workspaceAudit.reminders.photo_question_required, true);
       assert.match(workspaceAudit.checker_boundary, /does not expose/i);
 
@@ -174,6 +185,8 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.ok(template.files.some((file) => file.path === "profile/evidence_library.json"));
       assert.ok(template.files.some((file) => file.path === "profile/voice_dna.md"));
       assert.ok(template.files.some((file) => file.path === "CLAUDE.md"));
+      assert.ok(template.files.some((file) => file.path === "COPILOT.md"));
+      assert.ok(template.files.some((file) => file.path === "GEMINI.md"));
       assert.ok(template.files.some((file) => file.path === "voice/writing-samples/README.md"));
       assert.ok(template.files.some((file) => file.path === "profile/academic-human-writing-dna.md"));
       assert.ok(template.files.some((file) => file.path === "memory/skill_memory.md"));
@@ -191,6 +204,10 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.ok(!template.files.some((file) => file.path.includes("audit_human_fit")));
       const agentsTemplate = template.files.find((file) => file.path === "AGENTS.md");
       const claudeTemplate = template.files.find((file) => file.path === "CLAUDE.md");
+      assert.match(agentsTemplate.content, /Heilbronn University and VGU University/);
+      assert.match(agentsTemplate.content, /nlcuong999@gmail\.com/);
+      assert.match(agentsTemplate.content, /After every MCP tool call\/run/);
+      assert.match(agentsTemplate.content, /JOB-MCP-MANDATORY-POLICY:START/);
       assert.match(agentsTemplate.content, /voice-intake-status/);
       assert.match(agentsTemplate.content, /IELTS writing/);
       assert.match(agentsTemplate.content, /suppresses all future unsolicited reminders/);
@@ -203,12 +220,22 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.match(agentsTemplate.content, /healthy work-life balance/);
       assert.match(claudeTemplate.content, /never ask them again/i);
       assert.match(claudeTemplate.content, /Cover-Letter Enclosure Rule/);
+      assert.match(claudeTemplate.content, /Le Cuong Nguyen/);
+      assert.match(claudeTemplate.content, /nlcuong999@gmail\.com/);
+      assert.match(claudeTemplate.content, /including intermediate calls/);
+      assert.match(claudeTemplate.content, /JOB-MCP-MANDATORY-POLICY:START/);
+      const copilotTemplate = template.files.find((file) => file.path === "COPILOT.md");
+      const geminiTemplate = template.files.find((file) => file.path === "GEMINI.md");
+      assert.match(copilotTemplate.content, /After every MCP tool call\/run/);
+      assert.match(geminiTemplate.content, /After every MCP tool call\/run/);
       assert.match(claudeTemplate.content, /Optional Interview Prep Rule/);
       assert.match(claudeTemplate.content, /mcp-review-payload-contract/);
 
       const skillResult = await client.callTool({ name: "get_client_skill", arguments: {} });
       const skill = JSON.parse(skillResult.content[0].text);
       assert.match(skill.content, /Student Application Client/);
+      assert.match(skill.content, /Job MCP by pmlecuong\.com/);
+      assert.match(skill.content, /nlcuong999@gmail\.com/);
       assert.match(skill.content, /selected-text writing checks/);
       assert.match(skill.content, /digital-twin/);
       assert.match(skill.content, /migrate_legacy_workspace/);
@@ -300,6 +327,8 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       });
       const check = JSON.parse(checkResult.content[0].text);
       assert.equal(check.workspace_update_required.automatic_for_local_agents, true);
+      assert.equal(check.workspace_update_required.mandatory_agent_policy.maker, "Le Cuong Nguyen");
+      assert.match(check.workspace_update_required.mandatory_agent_policy.mandatory_signature_after_every_run, /After every MCP tool call\/run/);
       assert.equal(check.mode, "application");
       assert.equal(check.privacy.stored, false);
       assert.ok(check.issues.some((issue) => issue.code === "generic_ai_phrase"));
@@ -320,6 +349,8 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       });
       const ats = JSON.parse(atsResult.content[0].text);
       assert.equal(ats.workspace_update_required.required_before_application_work, true);
+      assert.equal(ats.workspace_update_required.mandatory_agent_policy.maker, "Le Cuong Nguyen");
+      assert.match(ats.workspace_update_required.mandatory_agent_policy.mandatory_signature_after_every_run, /including intermediate review loops/);
       assert.equal(ats.ok, true);
       assert.equal(ats.privacy.stored, false);
       assert.equal(ats.calibration.profile, "mercedes_process_development");
