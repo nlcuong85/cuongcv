@@ -4,8 +4,7 @@ import { mkdtemp } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
+import { Client, StreamableHTTPClientTransport } from "@modelcontextprotocol/client";
 
 const root = path.resolve(new URL("..", import.meta.url).pathname);
 
@@ -37,8 +36,11 @@ async function waitForHealth(port) {
   throw new Error("Timed out waiting for MCP health endpoint.");
 }
 
-async function withClient(port, fn) {
-  const client = new Client({ name: "student-application-ai-helper-test", version: "0.1.0" });
+async function withClient(port, fn, mode = "legacy") {
+  const client = new Client(
+    { name: "student-application-ai-helper-test", version: "0.1.0" },
+    { versionNegotiation: { mode } }
+  );
   const transport = new StreamableHTTPClientTransport(new URL(`http://127.0.0.1:${port}/mcp`));
   await client.connect(transport);
   try {
@@ -442,6 +444,16 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.match(prompts.content, /Create A Cover Letter With The Three-Loop Gate/);
       assert.match(prompts.content, /Diagnose My Old Or Slow Workspace/);
     });
+
+    await withClient(port, async (client) => {
+      assert.equal(client.getProtocolEra(), "modern");
+      const tools = await client.listTools();
+      assert.deepEqual(tools.tools.map((tool) => tool.name).sort(), expectedTools);
+      const healthResult = await client.callTool({ name: "health", arguments: {} });
+      const health = JSON.parse(healthResult.content[0].text);
+      assert.equal(health.ok, true);
+      assert.equal(health.version, "0.2.20");
+    }, "auto");
 
     const promptsPage = await fetch(`http://127.0.0.1:${port}/sample-prompts`, { redirect: "manual" });
     assert.equal(promptsPage.status, 301);

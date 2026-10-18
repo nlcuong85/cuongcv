@@ -3,9 +3,9 @@ import { createHash } from "node:crypto";
 import { URL } from "node:url";
 import process from "node:process";
 import * as z from "zod/v4";
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { createMcpHandler, McpServer } from "@modelcontextprotocol/server";
+import { serveStdio } from "@modelcontextprotocol/server/stdio";
+import { toNodeHandler } from "@modelcontextprotocol/node";
 import { checkAtsResumeFit } from "./ats_checker.js";
 import { checkWritingHumanFit } from "./checker.js";
 import {
@@ -17,7 +17,7 @@ import {
   samplePromptsDocument
 } from "./resources.js";
 
-const VERSION = "0.2.19";
+const VERSION = "0.2.20";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
@@ -1605,21 +1605,6 @@ function isAuthorized(req: IncomingMessage): boolean {
   return authorization === `Bearer ${TOKEN}`;
 }
 
-async function parseJsonBody(req: IncomingMessage): Promise<unknown> {
-  const chunks: Buffer[] = [];
-  let totalBytes = 0;
-  for await (const chunk of req) {
-    const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
-    totalBytes += buffer.length;
-    if (totalBytes > MAX_HTTP_BODY_BYTES) {
-      throw new Error("Request body exceeds the public MCP size limit.");
-    }
-    chunks.push(buffer);
-  }
-  if (!chunks.length) return undefined;
-  return JSON.parse(Buffer.concat(chunks).toString("utf8"));
-}
-
 function writeJson(res: ServerResponse, status: number, body: unknown): void {
   res.writeHead(status, {
     "content-type": "application/json; charset=utf-8",
@@ -1963,20 +1948,23 @@ async function handleHttp(req: IncomingMessage, res: ServerResponse): Promise<vo
   const startedAt = Date.now();
   let dimensions: McpMetricDimensions = { rpcMethod: "invalid" };
   res.once("finish", () => recordMcpMetric(dimensions, res.statusCode, startedAt));
-  const body = await parseJsonBody(req);
-  dimensions = mcpMetricDimensions(body);
-  const server = await createServer();
-  const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
-  try {
-    await server.connect(transport);
-    await transport.handleRequest(req, res, body);
-  } finally {
-    res.on("close", () => {
-      void transport.close();
-      void server.close();
-    });
-  }
+  const nodeHandler = toNodeHandler({
+    fetch: async (request) => {
+      try {
+        dimensions = mcpMetricDimensions(await request.clone().json());
+      } catch {
+        // Keep malformed or oversized requests privacy-safe and classify them as invalid.
+      }
+      return mcpHandler.fetch(request);
+    }
+  }, { maxRequestBodySize: MAX_HTTP_BODY_BYTES });
+  await nodeHandler(req, res);
 }
+
+const mcpHandler = createMcpHandler(() => createServer(), {
+  maxRequestBodySize: MAX_HTTP_BODY_BYTES,
+  onerror: (error) => console.error(error)
+});
 
 async function startHttp(): Promise<void> {
   const httpServer = http.createServer((req, res) => {
@@ -1996,8 +1984,7 @@ async function startHttp(): Promise<void> {
 }
 
 async function startStdio(): Promise<void> {
-  const server = await createServer();
-  await server.connect(new StdioServerTransport());
+  await serveStdio(() => createServer(), { onerror: (error) => console.error(error) });
 }
 
 const args = new Set(process.argv.slice(2));

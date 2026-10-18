@@ -1,6 +1,5 @@
 import assert from "node:assert/strict";
-import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
+import { Client, StreamableHTTPClientTransport } from "@modelcontextprotocol/client";
 
 const mcpUrl = process.env.MCP_URL ?? "http://127.0.0.1:5920/mcp";
 const token = process.env.APPLICATION_MCP_TOKEN;
@@ -106,11 +105,34 @@ try {
   assert.match(prompts.content, /https:\/\/jobmcp\.pmlecuong\.com\//);
   assert.doesNotMatch(prompts.content, /Connection address:\s*```text\s*https:\/\/jobmcp\.pmlecuong\.com\/mcp/s);
 
+  const modernClient = new Client(
+    { name: "student-application-ai-helper-modern-smoke", version: "0.1.0" },
+    { versionNegotiation: { mode: "auto" } }
+  );
+  const modernTransport = new StreamableHTTPClientTransport(new URL(mcpUrl), {
+    requestInit: token
+      ? {
+          headers: {
+            authorization: `Bearer ${token}`
+          }
+        }
+      : undefined
+  });
+  await modernClient.connect(modernTransport);
+  try {
+    assert.equal(modernClient.getProtocolEra(), "modern");
+    const modernTools = await modernClient.listTools();
+    assert.deepEqual(modernTools.tools.map((tool) => tool.name).sort(), expectedTools);
+  } finally {
+    await modernClient.close();
+  }
+
   console.log(
     JSON.stringify(
       {
         ok: true,
         mcpUrl,
+        protocolEras: ["legacy", "modern"],
         mode: "local-kit-plus-private-writing-checker",
         kitVersion: kit.manifest.version,
         tools: names

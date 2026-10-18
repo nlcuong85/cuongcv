@@ -16,7 +16,7 @@ https://jobmcp.pmlecuong.com/mcp
 https://jobmcp.pmlecuong.com/health
 ```
 
-Use the root URL (`https://jobmcp.pmlecuong.com/`) in user-facing setup prompts. Keep `/mcp` as the technical Streamable HTTP transport endpoint for compatible AI clients and smoke tests.
+Use the root URL (`https://jobmcp.pmlecuong.com/`) in user-facing setup prompts. Keep `/mcp` as the technical Streamable HTTP transport endpoint for compatible AI clients and smoke tests. It now accepts both the modern 2026 `server/discover` protocol and older clients that begin with `initialize`.
 
 ## Privacy Model
 
@@ -73,7 +73,8 @@ The local kit includes workflow gates, optional interview prep, general writing 
 ```bash
 npm ci
 npm test
-python3 samples/local-kit-regression/run_regression.py
+# Start the local service on port 5943 in another terminal before this regression.
+APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py
 npm run start:http
 ```
 
@@ -94,13 +95,14 @@ Before production deploy, run:
 
 ```bash
 npm test
-python3 samples/local-kit-regression/run_regression.py
+# Start the local service on port 5943 in another terminal before this regression.
+APPLICATION_MCP_URL=http://127.0.0.1:5943/mcp python3 samples/local-kit-regression/run_regression.py
 env MCP_URL=https://jobmcp.pmlecuong.com/mcp npm run smoke:remote
 ```
 
 Notes for future agents:
 
-- `npm run smoke:remote` defaults to `http://127.0.0.1:5920/mcp`; set `MCP_URL` explicitly for production.
+- `npm run smoke:remote` defaults to `http://127.0.0.1:5920/mcp`; set `MCP_URL` explicitly for production. It verifies both legacy `initialize` and modern `server/discover` negotiation.
 - The local-kit regression is a real release gate. If it fails, inspect the generated `validation.md` files before loosening rules.
 - Do not hardcode application documents in templates when they depend on user confirmation. Use placeholders rendered from validated draft JSON.
 - Validate three separate surfaces after deployment: internal `/health`, public `/health`, and the public landing/footer text.
