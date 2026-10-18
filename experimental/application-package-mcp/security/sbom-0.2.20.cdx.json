@@ -1,0 +1,222 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:***",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-10-18T15:55:14.233Z",
+    "lifecycles": [
+      {
+        "phase": "build"
+      }
+    ],
+    "tools": [
+      {
+        "vendor": "npm",
+        "name": "cli",
+        "version": "11.7.0"
+      }
+    ],
+    "component": {
+      "bom-ref": "application-package-mcp@0.2.20",
+      "type": "library",
+      "name": "application-package-mcp",
+      "version": "0.2.20",
+      "scope": "required",
+      "purl": "pkg:npm/application-package-mcp@0.2.20",
+      "properties": [
+        {
+          "name": "cdx:npm:package:private",
+          "value": "true"
+        }
+      ],
+      "externalReferences": []
+    }
+  },
+  "components": [
+    {
+      "bom-ref": "@hono/node-server@1.19.17",
+      "type": "library",
+      "name": "@hono/node-server",
+      "version": "1.19.17",
+      "scope": "required",
+      "author": "Yusuke Wada <yusuke@kamawada.com> (https://github.com/yusukebe)",
+      "description": "Node.js Adapter for Hono",
+      "purl": "pkg:npm/%40hono/node-server@1.19.17",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/@hono/node-server/-/node-server-1.19.17.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/honojs/node-server.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/honojs/node-server"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "7529de4b9aa189ab995860c278ae28ebde5777d9d4363be249908c42b8f5d1e7adafc5259f5b9c9fa6dba6138ce94ca700c32d348cd9352a4bf6f9c0489c2b3d"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "@modelcontextprotocol/node@2.1.1",
+      "type": "library",
+      "name": "@modelcontextprotocol/node",
+      "version": "2.1.1",
+      "scope": "required",
+      "author": "Anthropic, PBC (https://anthropic.com)",
+      "description": "Model Context Protocol implementation for TypeScript - Node.js middleware",
+      "purl": "pkg:npm/%40modelcontextprotocol/node@2.1.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/@modelcontextprotocol/node/-/node-2.1.1.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git+https://github.com/modelcontextprotocol/typescript-sdk.git"
+        },
+        {
+          "type": "website",
+          "url": "https://modelcontextprotocol.io"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "118f763805cddb160beed352fcc56c5895b5bfc54700fc25f41e026b7a42ae39afab20be4b50bfe941ec3311761a814fada4b9632839eaf173f5bad5a45a2330"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "@modelcontextprotocol/server@2.3.1",
+      "type": "library",
+      "name": "@modelcontextprotocol/server",
+      "version": "2.3.1",
+      "scope": "required",
+      "author": "Anthropic, PBC (https://anthropic.com)",
+      "description": "Model Context Protocol implementation for TypeScript - Server package",
+      "purl": "pkg:npm/%40modelcontextprotocol/server@2.3.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/@modelcontextprotocol/server/-/server-2.3.1.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git+https://github.com/modelcontextprotocol/typescript-sdk.git"
+        },
+        {
+          "type": "website",
+          "url": "https://modelcontextprotocol.io"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "7b9f4c7d6b92b2c8fa0e843de89093a9d5b50174f9fd7b674e5d1659de8c53529ae37e1f154186a2c08b25b18dc920e11c6bf1416a1158ad77ec55d816460d5b"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "hono@4.13.13",
+      "type": "library",
+      "name": "hono",
+      "version": "4.13.13",
+      "scope": "required",
+      "author": "Yusuke Wada <yusuke@kamawada.com> (https://github.com/yusukebe)",
+      "description": "Web framework built on Web Standards",
+      "purl": "pkg:npm/hono@4.13.13",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/hono/-/hono-4.13.13.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git+https://github.com/honojs/hono.git"
+        },
+        {
+          "type": "website",
+          "url": "https://hono.dev"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "090e3a53466400699b4ffe14c5dcf3189a5a70fd8878a818e1ae7fb4e23d00005ba4e31f2bbdfdc1f0d79afd6eb0293edd190a8f5850cb8fdf8e18b06b6c65ac"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "application-package-mcp@0.2.20",
+      "dependsOn": [
+        "@modelcontextprotocol/node@2.1.1",
+        "@modelcontextprotocol/server@2.3.1"
+      ]
+    },
+    {
+      "ref": "@hono/node-server@1.19.17",
+      "dependsOn": [
+        "hono@4.13.13"
+      ]
+    },
+    {
+      "ref": "@modelcontextprotocol/node@2.1.1",
+      "dependsOn": [
+        "@modelcontextprotocol/server@2.3.1",
+        "@hono/node-server@1.19.17",
+        "hono@4.13.13"
+      ]
+    },
+    {
+      "ref": "@modelcontextprotocol/server@2.3.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "hono@4.13.13",
+      "dependsOn": []
+    }
+  ]
+}
