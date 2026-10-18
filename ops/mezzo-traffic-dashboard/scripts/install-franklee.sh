@@ -13,6 +13,7 @@ install -d -m 0755 /etc/systemd/system
 '
 
 scp "${kit_dir}/traffic_dashboard.py" "${target}:/usr/local/lib/mezzo-traffic/traffic_dashboard.py"
+scp "${kit_dir}/traffic_dashboard.html" "${target}:/usr/local/lib/mezzo-traffic/traffic_dashboard.html"
 scp "${kit_dir}/systemd/franklee/traffic-dashboard.service" "${target}:/etc/systemd/system/traffic-dashboard.service"
 scp "${kit_dir}/systemd/franklee/traffic-collect.service" "${target}:/etc/systemd/system/traffic-collect.service"
 scp "${kit_dir}/systemd/franklee/traffic-collect.timer" "${target}:/etc/systemd/system/traffic-collect.timer"
@@ -21,6 +22,7 @@ ssh "${target}" 'set -e
 chmod 0755 /usr/local/lib/mezzo-traffic/traffic_dashboard.py
 python3 -m py_compile /usr/local/lib/mezzo-traffic/traffic_dashboard.py
 systemctl daemon-reload
+systemctl enable traffic-dashboard.service
 systemctl restart traffic-dashboard.service
 systemctl enable --now traffic-collect.timer
 systemctl start traffic-collect.service || true

@@ -63,6 +63,7 @@ Older DB rows from before the transform was enabled may still show city as `unkn
 ## Files in this kit
 
 - `traffic_dashboard.py` — canonical dashboard/collector script.
+- `traffic_dashboard.html` — responsive light-only UI with date controls, tooltips, and city chart served by the script; the MCP operation table also explains each protocol operation and tool in plain English; mobile tables retain their column layout and scroll horizontally within the page.
 - `systemd/franklee/traffic-dashboard.service` — serves the dashboard on Franklee tailnet IP.
 - `systemd/franklee/traffic-collect.service` — one-shot collector.
 - `systemd/franklee/traffic-collect.timer` — every-minute collector timer.
@@ -92,6 +93,7 @@ Then verify:
 
 ```bash
 ssh root@100.124.166.95 'systemctl status traffic-dashboard.service --no-pager'
+ssh root@100.124.166.95 'systemctl is-enabled traffic-dashboard.service'
 ssh root@100.124.166.95 'systemctl status traffic-collect.timer --no-pager'
 ssh root@100.124.166.95 'curl -fsS http://100.124.166.95:3030/traffic/api/summary | python3 -m json.tool | head'
 ```
@@ -166,10 +168,24 @@ After rebuild:
 
 1. `python3 -m py_compile /usr/local/lib/mezzo-traffic/traffic_dashboard.py` passes on Franklee.
 2. `traffic-dashboard.service` is running.
-3. `traffic-collect.timer` is active.
-4. `curl http://100.124.166.95:3030/traffic/api/summary` returns JSON.
-5. `mezzo-traffic-relay.service` is running on Mezzo.
-6. `curl http://127.0.0.1:3031/traffic/api/summary` works on Mezzo.
-7. `curl http://mezzo.phoenix-scala.ts.net/traffic/api/summary` works from this Mac.
-8. Browser dashboard shows `Job MCP`, `Countries today`, and `Cities today`.
+3. `traffic-dashboard.service` is enabled so it starts after a Franklee reboot.
+4. `traffic-collect.timer` is active.
+5. `curl http://100.124.166.95:3030/traffic/api/summary` returns JSON.
+6. `mezzo-traffic-relay.service` is running on Mezzo.
+7. `curl http://127.0.0.1:3031/traffic/api/summary` works on Mezzo.
+8. `curl http://mezzo.phoenix-scala.ts.net/traffic/api/summary` works from this Mac.
+9. Browser dashboard shows the populated Job MCP panels and city chart.
+
+The dashboard defaults to the rolling last 1 day and offers quick ranges for
+1 day, 7 days, 1, 3, 6, or 9 months, 1 year, custom inclusive local dates, and
+all time. Month and year presets subtract calendar months from the current
+date, clamping to the last valid day when needed. The server receives Unix
+timestamps in seconds and applies a half-open time range
+(`bucket >= from`, `bucket < day-after-to`) to WordPress, Invidious, MCP event,
+tool, and visitor-location aggregates. **All time** sends no bounds. Health is
+a current live status and is intentionally not historical. The city pie shows
+recorded eligible Job MCP visits by location; its slice percentages use visit
+counts, while the city table separately reports distinct salted visitor hashes
+per city. Invidious values sum per-minute counter deltas, so the history begins
+with collection and a container counter reset can affect a delta.
 

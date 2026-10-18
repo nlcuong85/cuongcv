@@ -2,12 +2,13 @@
 """Private, low-overhead traffic dashboard for the Mezzo control plane."""
 from __future__ import annotations
 
-import argparse, json, re, sqlite3, subprocess, time
+import argparse, json, os, re, sqlite3, subprocess, time
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.parse import parse_qs, urlsplit
 
-DB = Path('/var/lib/mezzo-traffic/traffic.sqlite')
+DB = Path(os.environ.get('MEZZO_TRAFFIC_DB', '/var/lib/mezzo-traffic/traffic.sqlite'))
 LOGS = {
     'pmlecuong.com': Path('/DATA/AppData/nginxproxymanager/data/logs/proxy-host-2_access.log'),
     'maytrevannguyen.com': Path('/DATA/AppData/nginxproxymanager/data/logs/proxy-host-3_access.log'),
@@ -128,54 +129,132 @@ def mcp_healthy():
 def collect():
     c=db(); collect_web(c); collect_containers(c); collect_mcp(c); c.commit(); c.close()
 
-def payload():
-    c=db(); now=int(time.time()); hour=now-3600; day=now-86400
-    sites=[]
-    for site in LOGS:
-        r=c.execute('select coalesce(sum(requests),0),coalesce(sum(bytes),0),coalesce(sum(errors),0) from web where site=? and bucket>=?',(site,hour)).fetchone()
-        d=c.execute('select coalesce(sum(requests),0),coalesce(sum(bytes),0) from web where site=? and bucket>=?',(site,day)).fetchone()
-        sites.append({'site':site,'requestsHour':r[0],'bytesHour':r[1],'errorsHour':r[2],'requestsDay':d[0],'bytesDay':d[1]})
-    inv=[]
-    for name in ('invidious','invidious-companion'):
-        r=c.execute('select coalesce(sum(rx),0),coalesce(sum(tx),0) from containers where name=? and bucket>=?',(name,hour)).fetchone()
-        total=c.execute('select rx,tx from counters where name=?',(name,)).fetchone() or (0,0)
-        inv.append({'name':name,'receivedHour':r[0],'sentHour':r[1],'receivedTotal':total[0],'sentTotal':total[1]})
-    mcp_hour=c.execute('select coalesce(sum(calls),0),coalesce(sum(initializations),0),coalesce(sum(errors),0),coalesce(sum(latency_ms),0) from mcp where bucket>=?',(hour,)).fetchone()
-    mcp_day=c.execute('select coalesce(sum(calls),0),coalesce(sum(initializations),0),coalesce(sum(errors),0),coalesce(sum(latency_ms),0) from mcp where bucket>=?',(day,)).fetchone()
-    mcp_all=c.execute('select min(bucket),coalesce(sum(calls),0),coalesce(sum(initializations),0),coalesce(sum(errors),0) from mcp').fetchone()
-    human_where = "route_group not in ('health','asset') and client != 'bot_or_monitor'"
-    unique_hour=c.execute(f"select count(distinct visitor_hash) from mcp_visits where bucket>=? and {human_where}",(hour,)).fetchone()[0]
-    unique_day=c.execute(f"select count(distinct visitor_hash) from mcp_visits where bucket>=? and {human_where}",(day,)).fetchone()[0]
-    unique_all=c.execute(f"select count(distinct visitor_hash) from mcp_visits where {human_where}").fetchone()[0]
-    visits_hour=c.execute(f"select coalesce(sum(hits),0) from mcp_visits where bucket>=? and {human_where}",(hour,)).fetchone()[0]
-    visits_day=c.execute(f"select coalesce(sum(hits),0) from mcp_visits where bucket>=? and {human_where}",(day,)).fetchone()[0]
-    tools=[]
-    for tool, calls_hour, errors_hour, calls_day in c.execute('select mt.tool,(select coalesce(sum(h.calls),0) from mcp_tools h where h.tool=mt.tool and h.bucket>=?),(select coalesce(sum(h.errors),0) from mcp_tools h where h.tool=mt.tool and h.bucket>=?),coalesce(sum(mt.calls),0) from mcp_tools mt where mt.bucket>=? group by mt.tool order by 4 desc,1',(hour,hour,day)):
-        tools.append({'tool':tool,'callsHour':calls_hour,'errorsHour':errors_hour,'callsDay':calls_day})
-    countries=[]
-    for country, uniques, hits in c.execute(f"select country,count(distinct visitor_hash),sum(hits) from mcp_visits where bucket>=? and {human_where} group by country order by 2 desc,3 desc limit 12",(day,)):
-        countries.append({'country':country,'uniqueDay':uniques,'hitsDay':hits})
-    cities=[]
-    for city, region, country, uniques, hits in c.execute(f"select city,region,country,count(distinct visitor_hash),sum(hits) from mcp_visits where bucket>=? and {human_where} group by city,region,country order by 4 desc,5 desc limit 15",(day,)):
-        cities.append({'city':city,'region':region,'country':country,'uniqueDay':uniques,'hitsDay':hits})
-    routes=[]
-    for route_group, uniques, hits in c.execute(f"select route_group,count(distinct visitor_hash),sum(hits) from mcp_visits where bucket>=? and {human_where} group by route_group order by 3 desc limit 12",(day,)):
-        routes.append({'routeGroup':route_group,'uniqueDay':uniques,'hitsDay':hits})
-    clients=[]
-    for client, uniques, hits in c.execute(f"select client,count(distinct visitor_hash),sum(hits) from mcp_visits where bucket>=? and {human_where} group by client order by 3 desc limit 8",(day,)):
-        clients.append({'client':client,'uniqueDay':uniques,'hitsDay':hits})
-    c.close(); return {'updatedAt':datetime.now(timezone.utc).isoformat(),'sites':sites,'invidious':inv,'mcp':{'healthy':mcp_healthy(),'callsHour':mcp_hour[0],'initializationsHour':mcp_hour[1],'errorsHour':mcp_hour[2],'avgLatencyHour':round(mcp_hour[3]/mcp_hour[0]) if mcp_hour[0] else 0,'callsDay':mcp_day[0],'initializationsDay':mcp_day[1],'errorsDay':mcp_day[2],'callsAll':mcp_all[1],'initializationsAll':mcp_all[2],'errorsAll':mcp_all[3],'metricsSince':datetime.fromtimestamp(mcp_all[0], timezone.utc).isoformat() if mcp_all[0] else None,'uniqueHour':unique_hour,'uniqueDay':unique_day,'uniqueAll':unique_all,'visitsHour':visits_hour,'visitsDay':visits_day,'countries':countries,'cities':cities,'routes':routes,'clients':clients,'tools':tools}}
+def bounded_where(start, end, expression='bucket'):
+    clauses, values = [], []
+    if start is not None:
+        clauses.append(f'{expression} >= ?')
+        values.append(start)
+    if end is not None:
+        clauses.append(f'{expression} < ?')
+        values.append(end)
+    return (' where ' + ' and '.join(clauses) if clauses else ''), values
 
-HTML = '''<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mezzo Traffic</title><style>body{font:16px system-ui;background:#101828;color:#eef2f7;margin:0;padding:28px}h1{margin:0 0 8px}p{color:#aeb9c7}section{background:#182435;border-radius:12px;padding:18px;margin:18px 0}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;border-bottom:1px solid #2a3a4e}.ok{color:#53d58b}.bad{color:#ff6b6b}.muted{color:#aeb9c7}.stats{display:flex;flex-wrap:wrap;gap:18px}.stats div{min-width:130px}.stats b{display:block;font-size:24px;color:#eef2f7}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.panel{background:#111b2b;border:1px solid #26374c;border-radius:10px;padding:14px}small{color:#93a4b8}</style><h1>Mezzo Traffic</h1><p>Private traffic view. Refreshes every minute.</p><section><h2>Job MCP</h2><div id="mcp"></div><div class="grid"><div class="panel"><h3>Countries today</h3><table><thead><tr><th>Country</th><th>Unique</th><th>Hits</th></tr></thead><tbody id="countries"></tbody></table></div><div class="panel"><h3>Cities today</h3><table><thead><tr><th>City</th><th>Country</th><th>Unique</th><th>Hits</th></tr></thead><tbody id="cities"></tbody></table><small>City appears only when Cloudflare visitor-location headers are enabled.</small></div></div><div class="grid"><div class="panel"><h3>Routes today</h3><table><thead><tr><th>Route</th><th>Unique</th><th>Hits</th></tr></thead><tbody id="routes"></tbody></table></div><div class="panel"><h3>Client mix today</h3><table><thead><tr><th>Client</th><th>Unique</th><th>Hits</th></tr></thead><tbody id="clients"></tbody></table></div></div><table><thead><tr><th>Tool / protocol operation</th><th>Calls (1h)</th><th>Errors (1h)</th><th>Calls (24h)</th></tr></thead><tbody id="mcpTools"></tbody></table><p class="muted">Unique visitors are salted hashes from request metadata. No raw IPs, request bodies, response bodies, CVs, or writing text are stored. City/country are coarse edge headers when available.</p></section><section><h2>YouTube / Invidious</h2><div id="inv"></div></section><section><h2>WordPress traffic</h2><table><thead><tr><th>Site</th><th>Requests (1h)</th><th>Data (1h)</th><th>Errors (1h)</th><th>Requests (24h)</th><th>Data (24h)</th></tr></thead><tbody id="sites"></tbody></table></section><p class="muted" id="updated"></p><script>const b=n=>{for(const u of['B','KB','MB','GB','TB']){if(n<1024)return n.toFixed(n<10&&u!='B'?1:0)+' '+u;n/=1024}return n.toFixed(1)+' PB'};const rows=(arr,cols,empty)=>arr&&arr.length?arr.map(x=>`<tr>${cols.map(c=>`<td>${c(x)}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="9" class="muted">${empty}</td></tr>`;async function load(){let d=await fetch(location.pathname.replace(/\\/$/,'')+'/api/summary').then(r=>r.json());let m=d.mcp;mcp.innerHTML=`<p class="${m.healthy?'ok':'bad'}"><b>${m.healthy?'Healthy':'Unavailable'}</b></p><div class="stats"><div><span>Unique visitors (1h)</span><b>${m.uniqueHour}</b></div><div><span>Unique visitors (24h)</span><b>${m.uniqueDay}</b></div><div><span>Unique since tracking</span><b>${m.uniqueAll}</b></div><div><span>Visits (24h)</span><b>${m.visitsDay}</b></div><div><span>MCP calls (24h)</span><b>${m.callsDay}</b></div><div><span>Sessions started (24h)</span><b>${m.initializationsDay}</b></div><div><span>Failures (24h)</span><b>${m.errorsDay}</b></div><div><span>Avg response</span><b>${m.avgLatencyHour} ms</b></div></div><p class="muted">Metric history since ${m.metricsSince?new Date(m.metricsSince).toLocaleString():'now'} · ${m.callsAll} total MCP events</p>`;countries.innerHTML=rows(m.countries,[x=>x.country,x=>x.uniqueDay,x=>x.hitsDay],'No country data yet.');cities.innerHTML=rows(m.cities,[x=>x.city,x=>[x.region,x.country].filter(v=>v&&v!='unknown').join(', ')||x.country,x=>x.uniqueDay,x=>x.hitsDay],'No city data yet. Enable Cloudflare visitor-location headers.');routes.innerHTML=rows(m.routes,[x=>x.routeGroup,x=>x.uniqueDay,x=>x.hitsDay],'No route visits yet.');clients.innerHTML=rows(m.clients,[x=>x.client,x=>x.uniqueDay,x=>x.hitsDay],'No client data yet.');mcpTools.innerHTML=m.tools.map(x=>`<tr><td>${x.tool}</td><td>${x.callsHour}</td><td class="${x.errorsHour?'bad':'ok'}">${x.errorsHour}</td><td>${x.callsDay}</td></tr>`).join('')||'<tr><td colspan="4" class="muted">No tool metrics yet.</td></tr>';inv.innerHTML=d.invidious.map(x=>`<p><b>${x.name}</b>: last hour ↓ ${b(x.receivedHour)} ↑ ${b(x.sentHour)} <span class=muted>· cumulative ↓ ${b(x.receivedTotal)} ↑ ${b(x.sentTotal)}</span></p>`).join('');sites.innerHTML=d.sites.map(x=>`<tr><td class=ok>${x.site}</td><td>${x.requestsHour}</td><td>${b(x.bytesHour)}</td><td>${x.errorsHour}</td><td>${x.requestsDay}</td><td>${b(x.bytesDay)}</td></tr>`).join('');updated.textContent='Updated '+new Date(d.updatedAt).toLocaleString()}load();setInterval(load,60000)</script>'''
+
+def payload(start=None, end=None):
+    where, bounds = bounded_where(start, end)
+    range_clause = where.strip()[6:] if where else ''
+    human_where = "route_group not in ('health','asset') and client != 'bot_or_monitor'"
+    visit_where = f' where {human_where}' + (f' and {range_clause}' if range_clause else '')
+    c = db()
+
+    sites = []
+    for site in LOGS:
+        row = c.execute(
+            'select coalesce(sum(requests),0),coalesce(sum(bytes),0),coalesce(sum(errors),0) '
+            'from web where site=?' + (f' and {range_clause}' if range_clause else ''),
+            [site, *bounds],
+        ).fetchone()
+        sites.append({'site': site, 'requests': row[0], 'bytes': row[1], 'errors': row[2]})
+
+    invidious = []
+    for name in ('invidious', 'invidious-companion'):
+        row = c.execute(
+            'select coalesce(sum(rx),0),coalesce(sum(tx),0) from containers where name=?'
+            + (f' and {range_clause}' if range_clause else ''),
+            [name, *bounds],
+        ).fetchone()
+        invidious.append({'name': name, 'received': row[0], 'sent': row[1]})
+
+    metrics = c.execute(
+        'select coalesce(sum(calls),0),coalesce(sum(initializations),0),'
+        'coalesce(sum(errors),0),coalesce(sum(latency_ms),0) from mcp' + where,
+        bounds,
+    ).fetchone()
+    metrics_since = c.execute('select min(bucket) from mcp' + where, bounds).fetchone()[0]
+    visit_totals = c.execute(
+        f'select count(distinct visitor_hash),coalesce(sum(hits),0) from mcp_visits{visit_where}',
+        bounds,
+    ).fetchone()
+    tools = [
+        {'tool': tool, 'calls': calls, 'errors': errors}
+        for tool, calls, errors in c.execute(
+            'select tool,coalesce(sum(calls),0),coalesce(sum(errors),0) from mcp_tools'
+            + where + ' group by tool order by 2 desc,1', bounds,
+        )
+    ]
+    countries = [
+        {'country': country, 'uniqueVisitors': unique_visitors, 'visits': hits}
+        for country, unique_visitors, hits in c.execute(
+            f'select country,count(distinct visitor_hash),sum(hits) from mcp_visits{visit_where} '
+            'group by country order by 3 desc,2 desc', bounds,
+        )
+    ]
+    cities = [
+        {'city': city, 'region': region, 'country': country,
+         'uniqueVisitors': unique_visitors, 'visits': hits}
+        for city, region, country, unique_visitors, hits in c.execute(
+            f'select city,region,country,count(distinct visitor_hash),sum(hits) '
+            f'from mcp_visits{visit_where} group by city,region,country order by 5 desc,4 desc', bounds,
+        )
+    ]
+    routes = [
+        {'routeGroup': route, 'uniqueVisitors': unique_visitors, 'visits': hits}
+        for route, unique_visitors, hits in c.execute(
+            f'select route_group,count(distinct visitor_hash),sum(hits) from mcp_visits{visit_where} '
+            'group by route_group order by 3 desc', bounds,
+        )
+    ]
+    clients = [
+        {'client': client, 'uniqueVisitors': unique_visitors, 'visits': hits}
+        for client, unique_visitors, hits in c.execute(
+            f'select client,count(distinct visitor_hash),sum(hits) from mcp_visits{visit_where} '
+            'group by client order by 3 desc', bounds,
+        )
+    ]
+    c.close()
+    return {
+        'updatedAt': datetime.now(timezone.utc).isoformat(),
+        'range': {'from': start, 'to': end}, 'sites': sites, 'invidious': invidious,
+        'mcp': {
+            'healthy': mcp_healthy(), 'calls': metrics[0], 'sessionsStarted': metrics[1],
+            'failures': metrics[2], 'averageResponseMs': round(metrics[3] / metrics[0]) if metrics[0] else 0,
+            'uniqueVisitorHashes': visit_totals[0], 'visits': visit_totals[1],
+            'metricsSince': datetime.fromtimestamp(metrics_since, timezone.utc).isoformat() if metrics_since else None,
+            'countries': countries, 'cities': cities, 'routes': routes, 'clients': clients, 'tools': tools,
+        },
+    }
+
+HTML = Path(__file__).with_name('traffic_dashboard.html').read_text()
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        if self.path.rstrip('/').endswith('/api/summary'):
-            body=json.dumps(payload()).encode(); self.send_response(200); self.send_header('Content-Type','application/json'); self.send_header('Content-Length',str(len(body))); self.end_headers(); self.wfile.write(body); return
-        body=HTML.encode(); self.send_response(200); self.send_header('Content-Type','text/html; charset=utf-8'); self.send_header('Content-Length',str(len(body))); self.end_headers(); self.wfile.write(body)
+        parsed = urlsplit(self.path)
+        if parsed.path.rstrip('/').endswith('/api/summary'):
+            query = parse_qs(parsed.query)
+            try:
+                start = int(query['from'][0]) if query.get('from') else None
+                end = int(query['to'][0]) if query.get('to') else None
+                if start is not None and end is not None and start >= end:
+                    raise ValueError('The start date must be before the end date.')
+                body = json.dumps(payload(start, end)).encode()
+                self.send_response(200)
+            except ValueError as error:
+                body = json.dumps({'error': str(error) or 'Dates must be Unix timestamps in seconds.'}).encode()
+                self.send_response(400)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Content-Length', str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
+        body = HTML.encode()
+        self.send_response(200)
+        self.send_header('Content-Type', 'text/html; charset=utf-8')
+        self.send_header('Content-Length', str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
     def log_message(self,*args): pass
 
 if __name__ == '__main__':
-    p=argparse.ArgumentParser(); p.add_argument('--serve',action='store_true'); p.add_argument('--host',default='127.0.0.1'); a=p.parse_args()
-    if a.serve: ThreadingHTTPServer((a.host,3030),Handler).serve_forever()
+    p=argparse.ArgumentParser(); p.add_argument('--serve',action='store_true'); p.add_argument('--host',default='127.0.0.1'); p.add_argument('--port',type=int,default=3030); a=p.parse_args()
+    if a.serve: ThreadingHTTPServer((a.host,a.port),Handler).serve_forever()
     else: collect()

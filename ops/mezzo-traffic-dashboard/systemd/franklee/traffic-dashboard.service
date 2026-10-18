@@ -7,3 +7,6 @@ After=docker.service
 ExecStart=/usr/local/lib/mezzo-traffic/traffic_dashboard.py --serve --host 100.124.166.95
 Restart=always
 RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
