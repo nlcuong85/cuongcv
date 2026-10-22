@@ -9,6 +9,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
 DB = Path(os.environ.get('MEZZO_TRAFFIC_DB', '/var/lib/mezzo-traffic/traffic.sqlite'))
+PUBLIC_SUMMARY_DIR = Path(os.environ.get('MEZZO_PUBLIC_SUMMARY_DIR', '/var/lib/mezzo-traffic/public'))
 LOGS = {
     'pmlecuong.com': Path('/DATA/AppData/nginxproxymanager/data/logs/proxy-host-2_access.log'),
     'maytrevannguyen.com': Path('/DATA/AppData/nginxproxymanager/data/logs/proxy-host-3_access.log'),
@@ -127,7 +128,66 @@ def mcp_healthy():
     return result.returncode == 0
 
 def collect():
-    c=db(); collect_web(c); collect_containers(c); collect_mcp(c); c.commit(); c.close()
+    c=db(); collect_web(c); collect_containers(c); collect_mcp(c); c.commit()
+    write_public_usage_summary(c)
+    c.close()
+
+
+def public_usage_summary(c, now=None):
+    """Return only small, privacy-filtered public homepage activity counts."""
+    now = int(now if now is not None else time.time())
+    start = now - 30 * 24 * 60 * 60
+    page_routes = ('landing', 'start', 'docs', 'examples', 'technical-flow', 'privacy', 'cv-template', 'handout')
+    route_slots = ','.join('?' for _ in page_routes)
+    where = f"bucket >= ? and bucket < ? and route_group in ({route_slots}) and client != 'bot_or_monitor'"
+    params = [start, now, *page_routes]
+    totals = c.execute(
+        f'select count(distinct visitor_hash),coalesce(sum(hits),0) from mcp_visits where {where}',
+        params,
+    ).fetchone()
+    last_mcp_bucket = c.execute(
+        'select max(bucket) from mcp where calls > 0 and bucket <= ?', (now,)
+    ).fetchone()[0]
+    last_mcp_call_at = (
+        datetime.fromtimestamp(last_mcp_bucket, timezone.utc).isoformat().replace('+00:00', 'Z')
+        if last_mcp_bucket is not None else None
+    )
+    cities = [
+        {'city': city, 'region': region, 'country': country,
+         'estimatedVisitors': ((visitors + 2) // 5) * 5, 'visits': ((visits + 2) // 5) * 5}
+        for city, region, country, visitors, visits in c.execute(
+            f"select city,region,country,count(distinct visitor_hash),sum(hits) from mcp_visits "
+            f"where {where} and city != 'unknown' group by city,region,country "
+            'having count(distinct visitor_hash) >= 10 order by 5 desc,4 desc limit 3',
+            params,
+        )
+    ]
+    city_count = c.execute(
+        f"select count(*) from (select city,region,country from mcp_visits where {where} "
+        "and city != 'unknown' group by city,region,country having count(distinct visitor_hash) >= 10)",
+        params,
+    ).fetchone()[0]
+    return {
+        'generatedAt': datetime.now(timezone.utc).isoformat(),
+        # Only the latest minute bucket is published; no method, tool, or identity is included.
+        'lastMcpCallAt': last_mcp_call_at,
+        'windowDays': 30,
+        # Coarse increments make the public display less useful as a traffic fingerprint.
+        'estimatedVisitors': ((totals[0] + 2) // 5) * 5,
+        'visits': ((totals[1] + 2) // 5) * 5,
+        'citiesReached': city_count,
+        'topCities': cities,
+    }
+
+
+def write_public_usage_summary(c):
+    """Atomically publish the minimized summary for the public MCP container."""
+    PUBLIC_SUMMARY_DIR.mkdir(parents=True, exist_ok=True)
+    destination = PUBLIC_SUMMARY_DIR / 'jobmcp-usage.json'
+    temporary = PUBLIC_SUMMARY_DIR / '.jobmcp-usage.json.tmp'
+    temporary.write_text(json.dumps(public_usage_summary(c), ensure_ascii=False) + '\n', encoding='utf-8')
+    os.chmod(temporary, 0o644)
+    os.replace(temporary, destination)
 
 def bounded_where(start, end, expression='bucket'):
     clauses, values = [], []

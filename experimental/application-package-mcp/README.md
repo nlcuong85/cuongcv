@@ -48,6 +48,12 @@ Private checker rules, voice DNA, AI-checker guardrails, and audit scripts are n
 - `check_writing_human_fit`
 - `suggest_writing_revision`
 
+## Public Homepage Activity Summary
+
+The homepage may show approximate activity from the previous 30 days, including visits, estimated visitors, and a few city names. It also shows the most recent MCP request rounded down to the collector's one-minute bucket; a green pulse is shown only when that request was within 15 minutes. The Franklee traffic collector writes this minimized snapshot to `/var/lib/mezzo-traffic/public/jobmcp-usage.json`; Compose mounts that directory read-only into the MCP container. The `/` handler reads it server-side and includes only the small summary in the HTML. There is no public analytics JSON route, and the private traffic dashboard/API remains tailnet-only.
+
+Privacy limits: public counters are rounded to increments of five; a city is eligible only after at least 10 estimated visitors; only the top three eligible cities are shown. The public summary omits visitor hashes, IP addresses, request details, MCP tool names, and text. The rounded last-call time can reveal when the service was used, so it is disclosed as public activity and contains no user identity. Missing/stale/malformed snapshots fail closed to a short “temporarily unavailable” message. Because these values are visible on a public webpage, they can still be copied or scraped; this design minimizes detail but cannot make visible information unextractable. Counts are approximate activity, not job outcomes.
+
 ## Local Kit Role
 
 The local kit renders and validates basic application outputs:
@@ -121,3 +127,24 @@ Container:
 ```text
 application-package-mcp
 ```
+
+## Free-User Onboarding Specification
+
+The normal entry is agent-led: the user opens a dedicated folder and pastes one request; the agent retrieves `/agent-setup.md` over ordinary HTTPS, configures a supported client with required approval, verifies tools after loading, and prepares the local kit. Manual client settings are fallback. The optional `/agent-setup/configure_codex_mcp.py` helper plans by default and changes only approved project MCP configuration. It cannot grant permissions or reload a client. The three-node user diagram is native HTML/CSS with vector icons, matching the site's blue/cream/yellow palette.
+
+The onboarding update is implemented locally: clearer client connection, a dedicated local folder, a shorter first-run path, honest device support, dependency recovery, and synchronized diagram sources/SVGs. Local evidence and remaining actual-client/device checks are recorded in the acceptance report; this does not indicate a production deployment.
+
+- [Audit and improvement proposal](docs/free-user-onboarding-proposal.md)
+- [Kiro requirements](../../kiro/specs/free-user-onboarding/requirements.md)
+- [Kiro design](../../kiro/specs/free-user-onboarding/design.md)
+- [Test specification and acceptance cases](../../kiro/specs/free-user-onboarding/tests.md)
+- [Local implementation and three-loop acceptance report](../../kiro/specs/free-user-onboarding/acceptance.md)
+
+Local verification: `npm test`; start the rebuilt HTTP service on loopback port 5943, then run `npm run test:browser`, `npm run test:onboarding-workspace` and the local-kit regression with the explicit local MCP URL. `npm run test:browser:ui` opens interactive browser-test review. Test artifacts are ignored under `output/`. Public technical diagrams are rendered static SVGs with editable PlantUML source links.
+
+## Proposed Optional Google Sign-In Path
+
+The current anonymous `/mcp` route and free tools remain unchanged. A separate Google-authenticated account route and dashboard are documented as a proposal only; no authentication or production behavior has been implemented from that plan.
+
+- [Optional Google OAuth account path plan](docs/optional-google-oauth-account-path-plan.md)
+- [Editable PlantUML diagrams](docs/diagrams/optional-auth/)

@@ -9,6 +9,7 @@ echo "Installing Mezzo traffic dashboard on ${target}"
 ssh "${target}" 'set -e
 install -d -m 0755 /usr/local/lib/mezzo-traffic
 install -d -m 0755 /var/lib/mezzo-traffic
+install -d -m 0755 /var/lib/mezzo-traffic/public
 install -d -m 0755 /etc/systemd/system
 '
 

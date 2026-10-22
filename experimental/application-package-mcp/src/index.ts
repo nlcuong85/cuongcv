@@ -1,5 +1,6 @@
 import http, { IncomingMessage, ServerResponse } from "node:http";
 import { createHash } from "node:crypto";
+import { readFile } from "node:fs/promises";
 import { URL } from "node:url";
 import process from "node:process";
 import * as z from "zod/v4";
@@ -18,7 +19,7 @@ import {
   samplePromptsDocument
 } from "./resources.js";
 
-const VERSION = "0.2.22";
+const VERSION = "0.2.23";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
@@ -28,6 +29,108 @@ const ANALYTICS_HASH_SALT = process.env.APPLICATION_MCP_ANALYTICS_SALT
 const PUBLIC_SITE_URL = "https://jobmcp.pmlecuong.com/";
 const PUBLIC_MCP_ENDPOINT = "https://jobmcp.pmlecuong.com/mcp";
 const MAX_HTTP_BODY_BYTES = 64 * 1024;
+const PUBLIC_USAGE_SNAPSHOT_PATH = process.env.PUBLIC_USAGE_SNAPSHOT_PATH ?? "/app/public-data/jobmcp-usage.json";
+const BRAND_FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Job MCP pink suitcase</title>
+  <rect width="64" height="64" rx="15" fill="#071dff"/>
+  <path d="M23 20v-4.5a4.5 4.5 0 0 1 4.5-4.5h9a4.5 4.5 0 0 1 4.5 4.5V20" fill="none" stroke="#ff79b5" stroke-width="4" stroke-linecap="round"/>
+  <rect x="13" y="19" width="38" height="34" rx="7" fill="#ff79b5" stroke="#fffdf6" stroke-width="2.5"/>
+  <path d="M21 21v30m22-30v30" stroke="#d93b82" stroke-width="2" opacity=".8"/>
+  <path d="M13 31h38" stroke="#fffdf6" stroke-width="2"/>
+  <rect x="28" y="29" width="8" height="5" rx="1.5" fill="#edff45" stroke="#071dff" stroke-width="1.5"/>
+</svg>`;
+
+type PublicUsageSnapshot = {
+  generatedAt: string;
+  lastMcpCallAt: string | null;
+  windowDays: 30;
+  estimatedVisitors: number;
+  visits: number;
+  citiesReached: number;
+  topCities: Array<{ city: string; region: string; country: string; estimatedVisitors: number; visits: number }>;
+};
+
+async function readPublicUsageSnapshot(): Promise<PublicUsageSnapshot | null> {
+  try {
+    const raw = JSON.parse(await readFile(PUBLIC_USAGE_SNAPSHOT_PATH, "utf8")) as Partial<PublicUsageSnapshot>;
+    const nonNegativeInteger = (value: unknown): value is number => Number.isSafeInteger(value) && Number(value) >= 0;
+    const generatedAt = Date.parse(raw.generatedAt ?? "");
+    if (
+      !Number.isFinite(generatedAt) || Date.now() - generatedAt > 48 * 60 * 60 * 1000 || generatedAt - Date.now() > 5 * 60 * 1000 ||
+      raw.windowDays !== 30 || !nonNegativeInteger(raw.estimatedVisitors) ||
+      !nonNegativeInteger(raw.visits) || !nonNegativeInteger(raw.citiesReached) ||
+      !Array.isArray(raw.topCities)
+    ) return null;
+    const topCities = raw.topCities.slice(0, 3).filter((city) =>
+      city && typeof city.city === "string" && city.city.length <= 64 && typeof city.region === "string" && typeof city.country === "string" &&
+      nonNegativeInteger(city.estimatedVisitors) && city.estimatedVisitors >= 10 && nonNegativeInteger(city.visits)
+    );
+    const lastMcpCallTimestamp = Date.parse(typeof raw.lastMcpCallAt === "string" ? raw.lastMcpCallAt : "");
+    const lastMcpCallAt = Number.isFinite(lastMcpCallTimestamp) && lastMcpCallTimestamp <= Date.now()
+      ? raw.lastMcpCallAt as string
+      : null;
+    return {
+      generatedAt: raw.generatedAt!,
+      lastMcpCallAt,
+      windowDays: 30,
+      estimatedVisitors: raw.estimatedVisitors,
+      visits: raw.visits,
+      citiesReached: raw.citiesReached,
+      topCities
+    };
+  } catch {
+    return null;
+  }
+}
+
+function formatPublicActivity(snapshot: PublicUsageSnapshot | null): string {
+  if (!snapshot) {
+    return `<section class="public-activity is-unavailable" aria-label="Recent Job MCP activity" data-testid="public-activity"><strong>Job MCP activity</strong><span>Numbers are temporarily unavailable.</span></section>`;
+  }
+  const number = (value: number) => new Intl.NumberFormat("en").format(value);
+  const rounded = (value: number) => Math.round(value / 5) * 5;
+  const cities = snapshot.topCities.map((city) => ({
+    place: city.city,
+    visits: rounded(city.visits)
+  }));
+  const otherVisits = Math.max(0, rounded(snapshot.visits) - cities.reduce((sum, city) => sum + city.visits, 0));
+  const slices = [...cities.map((city, index) => ({ ...city, color: ["#edff45", "#63dcff", "#ff9bb4"][index] })),
+    ...(otherVisits > 0 ? [{ place: "Other", visits: otherVisits, color: "#b7a4ff" }] : [])];
+  const chartTotal = Math.max(snapshot.visits, slices.reduce((sum, slice) => sum + slice.visits, 0));
+  let cursor = 0;
+  const stops = slices.map((slice) => {
+    const start = cursor;
+    cursor += chartTotal > 0 ? slice.visits / chartTotal * 100 : 0;
+    return `${slice.color} ${start.toFixed(1)}% ${cursor.toFixed(1)}%`;
+  });
+  const chartStyle = `background:conic-gradient(${stops.length ? stops.join(",") : "#63dcff 0% 100%"})`;
+  const cityLegend = slices.length
+    ? `<ul class="activity-legend">${slices.map((slice) => `<li><i style="--slice:${slice.color}" aria-hidden="true"></i><span>${escapeHtml(slice.place)}</span><strong>${number(slice.visits)}</strong></li>`).join("")}</ul>`
+    : `<p class="activity-empty">City details appear when enough people visit.</p>`;
+  const lastCallTime = snapshot.lastMcpCallAt ? Date.parse(snapshot.lastMcpCallAt) : Number.NaN;
+  const lastCallAgeMs = Number.isFinite(lastCallTime) ? Math.max(0, Date.now() - lastCallTime) : Number.NaN;
+  const lastCallRecent = Number.isFinite(lastCallAgeMs) && lastCallAgeMs <= 15 * 60 * 1000;
+  const lastCallText = Number.isFinite(lastCallAgeMs)
+    ? lastCallAgeMs < 60 * 1000 ? "just now"
+      : lastCallAgeMs < 60 * 60 * 1000 ? `${Math.floor(lastCallAgeMs / 60_000)} min ago`
+        : lastCallAgeMs < 24 * 60 * 60 * 1000 ? `${Math.floor(lastCallAgeMs / 3_600_000)} hr ago`
+          : `${Math.floor(lastCallAgeMs / 86_400_000)} days ago`
+    : "No calls recorded";
+  const lastCallTitle = Number.isFinite(lastCallTime)
+    ? `Last recorded MCP request: ${new Intl.DateTimeFormat("en-GB", {
+      day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit",
+      timeZone: "Europe/Berlin", timeZoneName: "short"
+    }).format(lastCallTime)} (rounded to the minute)`
+    : "No MCP calls have been recorded";
+  const lastCallMarkup = `<span class="activity-last-call${Number.isFinite(lastCallTime) ? " has-recorded-call" : ""}${lastCallRecent ? " is-recent" : ""}" role="status" aria-label="Last MCP call: ${escapeHtml(lastCallText)}" title="${escapeHtml(lastCallTitle)}"><i aria-hidden="true"></i><span>Last MCP call · ${escapeHtml(lastCallText)}</span></span>`;
+  return `<section class="public-activity" aria-label="Job MCP activity in the last 30 days" data-testid="public-activity">
+    <div class="activity-topline"><strong>Job MCP activity</strong><div class="activity-meta"><span class="activity-window">LAST 30 DAYS</span>${lastCallMarkup}</div></div>
+    <div class="activity-main"><div class="activity-number"><strong>${number(snapshot.visits)}</strong><span>visits</span><small>About ${number(snapshot.estimatedVisitors)} people · ${number(snapshot.citiesReached)} cities</small></div>
+      <div class="activity-breakdown"><div class="activity-pie" role="img" aria-label="Approximate visits by city" style="${chartStyle}"></div>${cityLegend}</div>
+    </div>
+    <p class="activity-footnote">Approximate counts</p>
+  </section>`;
+}
 
 const PUBLIC_TOOLS = [
   "health",
@@ -553,6 +656,7 @@ async function renderMarkdownAsHtml(markdown: string, title: string): Promise<st
     '<meta charset="utf-8">',
     `<title>${escapeHtml(title)}</title>`,
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
+    '<link rel="icon" type="image/svg+xml" href="/favicon.svg">',
     "<style>",
     ":root { color-scheme: light; --ink:#171717; --muted:#5f6368; --line:#dedbd2; --paper:#fffaf0; --accent:#1f7a68; --accent2:#b74b35; }",
     "body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; background: #fffaf0; color: var(--ink); }",
@@ -604,6 +708,7 @@ function renderLandingPage(): string {
 <meta charset="utf-8">
 <title>Student Application AI Helper</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <style>
 :root {
   --paper: #fff8ea;
@@ -1048,7 +1153,6 @@ After setup, show me the folder I should fill and the next action.</pre>
       <div class="privacy-item"><strong>Stays on your laptop:</strong> CV files, personal notes, job posts, drafts, PDFs, and final outputs.</div>
       <div class="privacy-item"><strong>Sent only when you ask:</strong> selected text for writing feedback, plus a writing mode such as application or academic.</div>
       <div class="privacy-item"><strong>Returned to you:</strong> clear feedback, risk level, and practical revision guidance for the selected text.</div>
-      <div class="privacy-item"><strong>Operational analytics:</strong> route/tool counts, salted visitor hashes, and coarse country/city headers when available; no raw IPs or document text.</div>
       <div class="privacy-item"><strong>Not promised:</strong> a fake detector bypass. The goal is clearer, more trustworthy, more human writing.</div>
     </div>
   </section>
@@ -1092,6 +1196,7 @@ function renderSiteChrome(title: string, active: string, body: string, bodyClass
 <title>${title}</title>
 <link rel="help" type="text/markdown" href="/agent-setup.md">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <style>
 :root { --blue:#071dff; --blue-soft:#1737ff; --paper:#f6f2e8; --white:#fffdf6; --ink:#090b10; --muted:#5e6470; --line:rgba(9,11,16,.16); --yellow:#edff45; --green:#0a4c3f; --mint:#dcf5e6; --dark:#04050d; }
 * { box-sizing:border-box; } html { scroll-behavior:smooth; overflow-x:hidden; } body { margin:0; overflow-x:hidden; color:var(--ink); background:var(--paper); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
@@ -1100,6 +1205,32 @@ a { color:inherit; } code, pre { font-family:ui-monospace,SFMono-Regular,Menlo,M
 .brand { display:flex; align-items:center; gap:12px; color:inherit; text-decoration:none; font-weight:900; line-height:.92; letter-spacing:-.04em; } .brand-mark { display:grid; place-items:center; width:38px; height:34px; border:1px solid currentColor; border-radius:10px; font-size:16px; } .brand-mark svg { width:22px; height:22px; display:block; } .brand em { display:block; margin-top:2px; font-style:normal; font-size:11px; letter-spacing:.04em; opacity:.82; }
 .navlinks { display:flex; gap:24px; align-items:center; flex-wrap:wrap; font-size:13px; font-weight:850; letter-spacing:.08em; text-transform:uppercase; } .navlinks a { text-decoration:none; opacity:.82; } .navlinks a:hover, .navlinks a[aria-current="page"] { opacity:1; text-decoration:underline; text-underline-offset:5px; }
 .home-hero { min-height:calc(100svh - 84px); width:min(1220px, calc(100% - 44px)); margin:0 auto; display:grid; grid-template-columns:minmax(0,.86fr) minmax(390px,.78fr); gap:82px; align-items:center; padding:54px 0 86px; }
+.public-activity { width:min(100%,620px); margin:10px 0 18px; padding:17px 19px 14px; color:#f8f9ff; background:#09164d; border:1px solid rgba(255,255,255,.2); border-top:4px solid var(--yellow); box-shadow:0 14px 38px rgba(0,0,45,.22); }
+.activity-topline { display:flex; justify-content:space-between; align-items:center; gap:10px; color:var(--yellow); font-size:15px; }
+.activity-meta { display:grid; justify-items:end; gap:7px; min-width:0; }
+.activity-window { color:#c5d3ff; font:800 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.1em; }
+.activity-last-call { display:flex; align-items:center; gap:9px; color:#c5d3ff; font:600 13px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:0; white-space:nowrap; }
+.activity-last-call i { width:14px; height:14px; flex:0 0 14px; border-radius:50%; background:#8792b3; }
+.activity-last-call.has-recorded-call i { background:#53e28c; box-shadow:0 0 0 0 rgba(83,226,140,.34); animation:activity-last-call-breathe 2.4s ease-in-out infinite; }
+@keyframes activity-last-call-breathe { 0%,100% { transform:scale(1); box-shadow:0 0 0 0 rgba(83,226,140,.28); } 50% { transform:scale(1.16); box-shadow:0 0 0 5px rgba(83,226,140,.12); } }
+@media (prefers-reduced-motion: reduce) { .activity-last-call.has-recorded-call i { animation:none; transform:none; box-shadow:0 0 0 4px rgba(83,226,140,.16); } }
+.activity-main { display:grid; grid-template-columns:minmax(150px,.8fr) minmax(0,1.2fr); gap:16px; align-items:center; margin-top:13px; }
+.activity-number { display:grid; grid-template-columns:auto 1fr; align-items:baseline; column-gap:6px; }
+.activity-number strong { color:#fff; font-size:clamp(42px,4.2vw,52px); line-height:.95; letter-spacing:-.06em; }
+.activity-number > span { color:#d1dcff; font-size:14px; }
+.activity-number small { grid-column:1 / -1; margin-top:7px; color:#d1dcff; font-size:13px; }
+.activity-breakdown { display:grid; grid-template-columns:88px minmax(0,1fr); gap:14px; align-items:center; min-width:0; }
+.activity-pie { width:88px; aspect-ratio:1; border:2px solid rgba(255,255,255,.18); border-radius:50%; }
+.activity-legend { display:grid; gap:7px; margin:0; padding:0; list-style:none; min-width:0; }
+.activity-legend li { display:grid; grid-template-columns:10px minmax(0,1fr) auto; gap:8px; align-items:center; min-width:0; color:#e2e8ff; font-size:13px; line-height:1.25; }
+.activity-legend li i { width:9px; height:9px; border-radius:50%; background:var(--slice); }
+.activity-legend li span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.activity-legend li strong { color:#fff; font-size:13px; }
+.activity-footnote { margin:9px 0 0; color:#b9c8ff; font-size:11px; line-height:1.3; }
+.activity-empty { margin:0; color:#d1dcff; font-size:12px; }
+.public-activity.is-unavailable { display:flex; align-items:center; gap:10px; padding:16px 19px; color:#f8f9ff; font-size:14px; }
+.public-activity.is-unavailable strong { color:var(--yellow); }
+.public-activity.is-unavailable span { color:#d1dcff; font-size:13px; }
 .mono { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; text-transform:uppercase; letter-spacing:.22em; font-size:12px; font-weight:800; }
 h1 { margin:18px 0 22px; max-width:660px; font-family:Georgia,"Times New Roman",serif; font-size:clamp(48px,6.1vw,82px); line-height:.88; letter-spacing:-.06em; font-weight:400; text-transform:uppercase; }
 .lead { max-width:660px; margin:0; color:var(--muted); font-size:clamp(18px,2vw,24px); line-height:1.45; } .blue-panel .lead, .blue-page .lead { color:rgba(255,255,255,.82); }
@@ -1115,6 +1246,17 @@ h1 { margin:18px 0 22px; max-width:660px; font-family:Georgia,"Times New Roman",
 .checker-layout { display:grid; grid-template-columns:minmax(280px,.76fr) minmax(0,1fr); gap:54px; align-items:center; margin-top:36px; } .checker-legend { display:grid; gap:14px; margin-top:24px; color:var(--muted); } .blue-page .checker-legend { color:rgba(255,255,255,.78); } .checker-legend > span { display:grid; grid-template-columns:18px 1fr; gap:12px; align-items:start; } .checker-legend strong { color:var(--ink); } .blue-page .checker-legend strong { color:white; } .dot { width:15px; height:15px; margin-top:4px; border-radius:50%; background:var(--blue); } .dot.fast { background:#de745f; } .dot.local { background:#e0b843; } .dot.checked { background:var(--green); } .xy-chart { position:relative; min-height:360px; border:1px solid var(--line); background:linear-gradient(rgba(9,11,16,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(9,11,16,.06) 1px,transparent 1px),var(--white); background-size:64px 64px; } .xy-chart:before,.xy-chart:after { content:""; position:absolute; background:#65716c; } .xy-chart:before { left:62px; right:30px; bottom:55px; height:1px; } .xy-chart:after { left:62px; top:32px; bottom:55px; width:1px; } .axis { position:absolute; color:var(--muted); font-size:11px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; } .axis.x { right:30px; bottom:22px; } .axis.y { left:18px; top:32px; writing-mode:vertical-rl; transform:rotate(180deg); } .point { position:absolute; width:22px; height:22px; border-radius:50%; border:3px solid var(--white); box-shadow:0 8px 20px rgba(0,0,0,.18); } .point b { position:absolute; left:23px; bottom:18px; width:155px; color:var(--ink); font-size:13px; line-height:1.2; } .point p { position:absolute; left:23px; top:20px; width:170px; margin:0; color:var(--muted); font-size:12px; line-height:1.35; } .point.fast { left:25%; bottom:25%; background:#de745f; } .point.local { left:51%; bottom:51%; background:#e0b843; } .point.checked { left:75%; bottom:74%; background:var(--green); }
 .tech-shell { display:grid; gap:28px; min-width:0; } .tech-card { background:var(--white); border:1px solid var(--line); padding:24px; min-width:0; max-width:100%; } .tech-card img { display:block; width:100%; min-width:720px; height:auto; } .scroll-x { overflow:auto; } .protocol-grid { display:grid; grid-template-columns:190px minmax(0,1fr); border-top:1px solid var(--line); border-left:1px solid var(--line); background:var(--white); } .protocol-grid div { padding:16px 18px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted); line-height:1.55; overflow-wrap:anywhere; } .protocol-grid .method { color:var(--blue); font-weight:900; background:#f8f4e8; } .protocol-note { margin-top:18px; padding-left:16px; border-left:4px solid var(--yellow); color:var(--muted); line-height:1.55; } .blue-page .protocol-note { color:rgba(255,255,255,.78); }
 .doc-callout { margin:24px 0; padding:22px; background:var(--dark); color:white; } .doc-callout p { color:rgba(255,255,255,.78) !important; margin:8px 0 0; } .doc-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; margin:22px 0; background:var(--line); border:1px solid var(--line); } .doc-tile { background:var(--white); padding:20px; } .doc-tile strong { display:block; margin-bottom:8px; } .doc-tile p { margin:0; }
+.docs-diagram { --diagram-line:#d7defd; margin:28px 0 34px; padding:16px 18px 13px; overflow:hidden; background:linear-gradient(135deg,#edf0ff 0%,#fffdf6 72%); border:1px solid var(--diagram-line); border-left:5px solid var(--blue); }
+.docs-diagram--privacy { --diagram-line:#ffc3d2; background:linear-gradient(135deg,#fff0f5 0%,#fffdf6 72%); border-left-color:#e85b87; }
+.docs-diagram--package { --diagram-line:#b8e8cd; background:linear-gradient(135deg,#e9f8ef 0%,#fffdf6 72%); border-left-color:#36a86c; }
+.docs-diagram--ats { --diagram-line:#bfeaf5; background:linear-gradient(135deg,#e7f8fc 0%,#fffdf6 72%); border-left-color:#168aac; }
+.docs-diagram--activity { --diagram-line:#eadb8b; background:linear-gradient(135deg,#fff9d7 0%,#fffdf6 72%); border-left-color:#c3a900; }
+.docs-diagram-art { width:100%; min-width:0; }
+.docs-diagram-art svg { display:block; width:100%; height:auto; }
+.docs-diagram-mobile-steps { display:none; }
+.docs-diagram figcaption { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 10px; padding:10px 3px 0; color:#46506a; font-size:13px; line-height:1.4; }
+.docs-diagram figcaption strong { color:#09164d; font-size:14px; }
+@media (max-width:560px) { .docs-diagram { padding:12px 10px 11px; } .docs-diagram svg text { display:none; } .docs-diagram-mobile-steps { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 12px; margin:2px 2px 0; padding:0; list-style:none; } .docs-diagram-mobile-steps li { display:grid; grid-template-columns:25px minmax(0,1fr); gap:7px; align-items:start; color:#46506a; font-size:12px; line-height:1.35; } .docs-diagram-mobile-steps b { color:var(--blue); font:800 11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; } .docs-diagram figcaption { font-size:12px; } .docs-diagram figcaption strong { font-size:13px; } }
 .site-footer { width:min(1220px, calc(100% - 44px)); margin:0 auto; padding:26px 0 42px; display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; color:var(--muted); font-size:13px; } .blue-page .site-footer { color:rgba(255,255,255,.76); } .site-footer a { font-weight:850; }
 .page-hero { width:min(1220px, calc(100% - 44px)); margin:0 auto; padding:74px 0 48px; } .page-hero h1 { max-width:820px; color:inherit; font-size:clamp(50px,6.5vw,88px); } .page-hero .lead { color:var(--muted); } .blue-page .page-hero .lead { color:rgba(255,255,255,.82); }
 .steps { display:grid; gap:1px; margin-top:32px; background:var(--line); border:1px solid var(--line); } .blue-page .steps { background:rgba(255,255,255,.34); border-color:rgba(255,255,255,.34); } .step { display:grid; grid-template-columns:92px 1fr; gap:22px; padding:28px; background:var(--white); } .blue-page .step { background:rgba(255,253,246,.96); color:var(--ink); } .step-number { font-family:Georgia,"Times New Roman",serif; font-size:46px; line-height:1; color:var(--blue); } .step h2 { margin:0 0 8px; font-size:26px; } .step p { margin:0; color:var(--muted); line-height:1.55; }
@@ -1126,7 +1268,8 @@ h1 { margin:18px 0 22px; max-width:660px; font-family:Georgia,"Times New Roman",
 .doc-layout { width:min(1220px, calc(100% - 44px)); margin:0 auto; display:grid; grid-template-columns:260px minmax(0,1fr); gap:52px; padding:44px 0 86px; } .side { position:sticky; top:24px; align-self:start; display:grid; gap:10px; } .side a { padding:10px 0; color:var(--muted); text-decoration:none; border-bottom:1px solid var(--line); font-weight:800; } .doc-main h1 { margin-top:0; font-family:Inter,ui-sans-serif,system-ui,sans-serif; font-size:clamp(42px,5vw,68px); text-transform:none; letter-spacing:-.06em; } .doc-main h2 { margin:42px 0 12px; font-size:32px; letter-spacing:-.04em; } .doc-main p, .doc-main li { color:var(--muted); line-height:1.65; } .doc-main code { color:var(--blue); font-weight:850; }
 @media (max-width:1100px) { .feature-grid.four-grid, .example-grid.four-grid, .feature-grid.usecase-grid, .example-grid.usecase-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media (max-width:900px) { .home-hero, .doc-layout, .checker-layout, .ascii-ritual, .cover-showcase { grid-template-columns:1fr; } .blue-panel { margin:0; } .signal-card { min-height:420px; } .door-grid, .feature-grid, .example-grid, .privacy-grid, .example-grid.showcase, .doc-grid { grid-template-columns:1fr 1fr; } .feature-grid.four-grid, .example-grid.four-grid, .feature-grid.usecase-grid, .example-grid.usecase-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .site-nav { align-items:flex-start; padding-top:18px; } .ascii-terminal pre { font-size:9px; min-height:440px; } .cover-stage { min-height:auto; } }
-@media (max-width:560px) { .site-nav, .section, .page-hero, .site-footer, .home-hero, .doc-layout { width:min(100% - 32px,1220px); } .site-nav { display:grid; gap:18px; } .navlinks { gap:13px; font-size:11px; } h1 { font-size:clamp(38px,10.2vw,46px); line-height:.92; letter-spacing:-.042em; overflow-wrap:normal; } .home-hero { padding-top:42px; gap:38px; } .signal-card { min-height:360px; padding:22px; } .signal-card h2 { font-size:clamp(30px,8.6vw,38px); } .section-title { font-size:clamp(29px,8.2vw,38px); line-height:1; letter-spacing:-.048em; } .button { width:100%; } .door-grid, .feature-grid, .feature-grid.four-grid, .feature-grid.usecase-grid, .example-grid, .example-grid.four-grid, .example-grid.usecase-grid, .privacy-grid, .example-grid.showcase, .doc-grid { grid-template-columns:1fr; } .step { grid-template-columns:1fr; gap:10px; } .section { padding:58px 0; } .side { position:static; } .xy-chart { min-height:340px; } .point.checked { left:70%; } .point.checked b,.point.checked p { left:-116px; text-align:right; } .protocol-grid { grid-template-columns:1fr; } .ascii-terminal pre { min-height:350px; font-size:5.6px; } .ascii-caption { display:grid; } .cover-notes, .cover-stage { padding:22px; } .cover-paper-link { padding:10px; } }
+@media (max-width:560px) { .site-nav, .section, .page-hero, .site-footer, .home-hero, .doc-layout { width:min(100% - 32px,1220px); } .site-nav { display:grid; gap:18px; } .navlinks { gap:13px; font-size:11px; } h1 { font-size:clamp(38px,10.2vw,46px); line-height:.92; letter-spacing:-.042em; overflow-wrap:normal; } .home-hero { padding-top:42px; gap:38px; } .signal-card { min-height:360px; padding:22px; } .signal-card h2 { font-size:clamp(30px,8.6vw,38px); } .section-title { font-size:clamp(29px,8.2vw,38px); line-height:1; letter-spacing:-.048em; } .button { width:100%; } .door-grid, .feature-grid, .feature-grid.four-grid, .feature-grid.usecase-grid, .example-grid, .example-grid.four-grid, .example-grid.usecase-grid, .privacy-grid, .example-grid.showcase, .doc-grid { grid-template-columns:1fr; } .step { grid-template-columns:1fr; gap:10px; } .section { padding:58px 0; } .side { position:static; } .xy-chart { min-height:340px; } .point.checked { left:70%; } .point.checked b,.point.checked p,.point.local b,.point.local p { left:-170px; text-align:right; } .protocol-grid { grid-template-columns:1fr; } .ascii-terminal pre { min-height:350px; font-size:5.6px; } .ascii-caption { display:grid; } .cover-notes, .cover-stage { padding:22px; } .cover-paper-link { padding:10px; } }
+@media (max-width:560px) { .public-activity { padding:15px 15px 12px; margin:8px 0 15px; } .activity-topline { font-size:14px; } .activity-window { font-size:10px; } .activity-last-call { font-size:11px; gap:8px; } .activity-main { grid-template-columns:minmax(120px,.82fr) minmax(0,1.18fr); gap:9px; margin-top:11px; } .activity-number strong { font-size:clamp(38px,11vw,46px); } .activity-number > span { font-size:13px; } .activity-number small { font-size:12px; } .activity-breakdown { grid-template-columns:70px minmax(0,1fr); gap:9px; } .activity-pie { width:70px; } .activity-legend { gap:6px; } .activity-legend li { grid-template-columns:9px minmax(0,1fr) auto; gap:6px; font-size:12px; } .activity-legend li i { width:8px; height:8px; } .activity-legend li strong { font-size:12px; } .activity-footnote { margin-top:7px; font-size:10px; } }
 </style>
 </head>
 <body class="${bodyClass}">
@@ -1406,13 +1549,14 @@ function renderDragonGateAsciiScript(): string {
 </script>`;
 }
 
-function renderCurrentLandingPage(): string {
+function renderCurrentLandingPage(snapshot: PublicUsageSnapshot | null): string {
   return renderSiteChrome(
     "Job MCP by pmlecuong",
     "/",
     `<div class="blue-panel"><main class="home-hero">
       <section>
         <div class="mono">Local-first career coach · MCP</div>
+        ${formatPublicActivity(snapshot)}
         <h1>Real evidence. Stronger applications.</h1>
         <p class="lead">Set up a local AI workspace that turns your CV, job description, writing samples, and documents into job-ready packages without uploading your whole career history.</p>
         <div class="actions"><a class="button primary" href="/start">Start setup</a><a class="button secondary" href="/examples">See examples</a></div>
@@ -1472,7 +1616,6 @@ function renderCurrentLandingPage(): string {
         <div><strong>Local files stay local</strong><span>CVs, notes, job folders, photos, signatures, drafts, PDFs, and outputs.</span></div>
         <div><strong>Structure check is safe</strong><span>The MCP can receive relative paths, version state, and managed-file hashes.</span></div>
         <div><strong>Checks are deliberate</strong><span>You send selected final text only, or CV/JD text for ATS matching. Full folders stay local.</span></div>
-        <div><strong>Aggregate analytics</strong><span>Salted unique visitors and coarse countries/cities can be counted. Raw IPs, bodies, CVs, and writing text are not stored.</span></div>
       </div></div></section>
     <section class="final-cta"><div class="section"><div class="mono">Ready when you are</div><h2 class="section-title">Open an empty folder. Give the AI this URL. Let it ask properly.</h2><p class="section-copy">The start page now includes the setup prompt, source-material checklist, and agent instructions.</p><div class="actions"><a class="button primary" href="/start">Open start page</a><a class="button secondary" href="/docs">Read docs</a></div></div></section>${renderDragonGateAsciiScript()}`,
     "blue-page"
@@ -1523,24 +1666,74 @@ function renderExamplesPage(): string {
   );
 }
 
+function renderDocsDiagram(key: string, title: string, summary: string, svg: string, mobileSteps: string[]): string {
+  return `<figure class="docs-diagram docs-diagram--${key}" data-testid="docs-diagram-${key}">
+    <div class="docs-diagram-art">${svg}</div>
+    <ol class="docs-diagram-mobile-steps" aria-label="${escapeHtml(title)} steps">${mobileSteps.map((step, index) => `<li><b>${String(index + 1).padStart(2, "0")}</b><span>${escapeHtml(step)}</span></li>`).join("")}</ol>
+    <figcaption><strong>${escapeHtml(title)}</strong><span>${escapeHtml(summary)}</span></figcaption>
+  </figure>`;
+}
+
 function renderDocsPage(): string {
+  const setupDiagram = renderDocsDiagram("setup", "One folder, one guided setup", "You open the workspace; your AI app connects to Job MCP and prepares the local kit.", `<svg viewBox="0 0 720 230" role="img" aria-label="Setup flow: open a private folder, ask the AI agent to set up Job MCP, then review client permission prompts.">
+    <path d="M194 103h66m194 0h66" stroke="#4055cf" stroke-width="5" stroke-linecap="round"/><path d="m247 91 14 12-14 12m193-24 14 12-14 12" fill="none" stroke="#4055cf" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="20" y="40" width="174" height="126" rx="18" fill="#fffdf6" stroke="#8294ff" stroke-width="3"/><path d="M45 65h45l13 13h64v43H45z" fill="#edff45" stroke="#09164d" stroke-width="3" stroke-linejoin="round"/><text x="107" y="147" text-anchor="middle" fill="#09164d" font-size="18" font-weight="800" font-family="Arial,sans-serif">YOUR FOLDER</text><text x="107" y="188" text-anchor="middle" fill="#45506a" font-size="16" font-family="Arial,sans-serif">You open it</text>
+    <rect x="270" y="40" width="174" height="126" rx="18" fill="#09164d"/><circle cx="357" cy="84" r="24" fill="#63dcff"/><path d="M344 84h26m-13-13v26" stroke="#09164d" stroke-width="5" stroke-linecap="round"/><text x="357" y="133" text-anchor="middle" fill="#fffdf6" font-size="19" font-weight="800" font-family="Arial,sans-serif">AI AGENT</text><text x="357" y="188" text-anchor="middle" fill="#45506a" font-size="16" font-family="Arial,sans-serif">Follows the setup guide</text>
+    <rect x="526" y="40" width="174" height="126" rx="18" fill="#e1f7ec" stroke="#4fbb83" stroke-width="3"/><circle cx="613" cy="83" r="24" fill="#53e28c"/><path d="m602 83 8 8 15-18" fill="none" stroke="#09164d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><text x="613" y="133" text-anchor="middle" fill="#09164d" font-size="19" font-weight="800" font-family="Arial,sans-serif">JOB MCP</text><text x="613" y="188" text-anchor="middle" fill="#45506a" font-size="16" font-family="Arial,sans-serif">You approve prompts</text>
+  </svg>`, ["Open your folder", "Ask your AI agent", "Approve client prompts"]);
+  const privacyDiagram = renderDocsDiagram("privacy", "Your files stay with you", "Only the text you choose for a check is sent; the MCP cannot browse your computer.", `<svg viewBox="0 0 720 230" role="img" aria-label="Privacy boundary: your documents remain in your local folder; selected text is sent to the checker and feedback returns to your agent.">
+    <rect x="14" y="24" width="290" height="176" rx="22" fill="#e9edff" stroke="#637bff" stroke-width="3"/><text x="159" y="55" text-anchor="middle" fill="#09164d" font-size="19" font-weight="800" font-family="Arial,sans-serif">ON YOUR COMPUTER</text><rect x="44" y="76" width="98" height="80" rx="10" fill="#fffdf6" stroke="#d8deed" stroke-width="2"/><path d="M66 97h52M66 111h43M66 125h48" stroke="#7182be" stroke-width="5" stroke-linecap="round"/><text x="93" y="181" text-anchor="middle" fill="#45506a" font-size="15" font-family="Arial,sans-serif">CV + job details</text><rect x="166" y="76" width="108" height="80" rx="10" fill="#09164d"/><circle cx="220" cy="102" r="14" fill="#63dcff"/><path d="M199 134q21-25 42 0" fill="none" stroke="#edff45" stroke-width="6" stroke-linecap="round"/><text x="220" y="181" text-anchor="middle" fill="#45506a" font-size="15" font-family="Arial,sans-serif">Your AI agent</text>
+    <path d="M312 111h89m-18-14 18 14-18 14" fill="none" stroke="#4055cf" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><text x="356" y="169" text-anchor="middle" fill="#45506a" font-size="12" font-weight="700" font-family="Arial,sans-serif">CHOSEN TEXT</text>
+    <rect x="414" y="24" width="292" height="176" rx="22" fill="#fff1f6" stroke="#ff9bb4" stroke-width="3"/><text x="560" y="55" text-anchor="middle" fill="#09164d" font-size="19" font-weight="800" font-family="Arial,sans-serif">JOB MCP CHECKER</text><rect x="448" y="79" width="224" height="75" rx="14" fill="#fffdf6" stroke="#ffc3d2" stroke-width="2"/><circle cx="481" cy="116" r="17" fill="#ff9bb4"/><path d="m473 116 6 6 11-14" fill="none" stroke="#09164d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><text x="575" y="111" text-anchor="middle" fill="#09164d" font-size="17" font-weight="700" font-family="Arial,sans-serif">Review the text</text><text x="575" y="134" text-anchor="middle" fill="#45506a" font-size="15" font-family="Arial,sans-serif">Return feedback only</text><text x="560" y="181" text-anchor="middle" fill="#45506a" font-size="15" font-family="Arial,sans-serif">No folder upload</text>
+  </svg>`, ["Files stay on your computer", "Choose text for a check", "Review returned feedback"]);
+  const packageDiagram = renderDocsDiagram("package", "Build the application package", "Start with real evidence, then review each local document before you use it.", `<svg viewBox="0 0 720 230" role="img" aria-label="Application workflow: personal evidence and job description go through tailoring and local checks, then the user reviews the CV and cover letter.">
+    <path d="M140 111h50M320 111h30M480 111h30" stroke="#4055cf" stroke-width="5" stroke-linecap="round"/><path d="M180 99l14 12-14 12M340 99l14 12-14 12M500 99l14 12-14 12" fill="none" stroke="#4055cf" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="78" cy="106" r="55" fill="#63dcff"/><text x="78" y="101" text-anchor="middle" fill="#09164d" font-size="18" font-weight="800" font-family="Arial,sans-serif">YOUR</text><text x="78" y="124" text-anchor="middle" fill="#09164d" font-size="18" font-weight="800" font-family="Arial,sans-serif">EVIDENCE</text><text x="78" y="180" text-anchor="middle" fill="#45506a" font-size="15" font-family="Arial,sans-serif">CV, stories, facts</text>
+    <rect x="200" y="55" width="120" height="112" rx="20" fill="#09164d"/><path d="M234 87h52m-52 15h52m-52 15h34" stroke="#fffdf6" stroke-width="6" stroke-linecap="round"/><text x="260" y="151" text-anchor="middle" fill="#edff45" font-size="16" font-weight="800" font-family="Arial,sans-serif">TAILOR</text><text x="260" y="190" text-anchor="middle" fill="#45506a" font-size="15" font-family="Arial,sans-serif">For this role</text>
+    <rect x="360" y="55" width="120" height="112" rx="20" fill="#fff1f6" stroke="#ff9bb4" stroke-width="3"/><circle cx="420" cy="91" r="21" fill="#ff9bb4"/><path d="m410 91 7 7 14-17" fill="none" stroke="#09164d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><text x="420" y="148" text-anchor="middle" fill="#09164d" font-size="16" font-weight="800" font-family="Arial,sans-serif">CHECK</text><text x="420" y="190" text-anchor="middle" fill="#45506a" font-size="15" font-family="Arial,sans-serif">Quality + fit</text>
+    <rect x="520" y="55" width="120" height="112" rx="20" fill="#e1f7ec" stroke="#4fbb83" stroke-width="3"/><path d="M556 78h48v50h-48z" fill="#fffdf6" stroke="#4fbb83" stroke-width="3"/><path d="M565 91h30m-30 10h30m-30 10h21" stroke="#4fbb83" stroke-width="4" stroke-linecap="round"/><text x="580" y="151" text-anchor="middle" fill="#09164d" font-size="16" font-weight="800" font-family="Arial,sans-serif">REVIEW</text><text x="580" y="190" text-anchor="middle" fill="#45506a" font-size="15" font-family="Arial,sans-serif">You decide</text>
+  </svg>`, ["Gather real evidence", "Tailor and run checks", "Review your documents"]);
+  const atsDiagram = renderDocsDiagram("ats", "A match report—not an automatic rewrite", "The check shows matches and gaps; you confirm every suggested fact before changing your CV.", `<svg viewBox="0 0 720 230" role="img" aria-label="ATS matching: selected CV and job description text are compared; matches and possible gaps are reported; the user verifies suggestions before editing.">
+    <rect x="16" y="42" width="174" height="130" rx="18" fill="#e9edff" stroke="#8294ff" stroke-width="3"/><text x="103" y="76" text-anchor="middle" fill="#09164d" font-size="18" font-weight="800" font-family="Arial,sans-serif">COMPARE</text><rect x="43" y="94" width="54" height="58" rx="8" fill="#fffdf6" stroke="#8294ff" stroke-width="2"/><path d="M54 108h30m-30 11h26m-26 11h28" stroke="#637bff" stroke-width="4" stroke-linecap="round"/><rect x="109" y="94" width="54" height="58" rx="8" fill="#fffdf6" stroke="#8294ff" stroke-width="2"/><path d="M120 108h30m-30 11h26m-26 11h28" stroke="#637bff" stroke-width="4" stroke-linecap="round"/><text x="103" y="194" text-anchor="middle" fill="#45506a" font-size="15" font-family="Arial,sans-serif">CV + job ad text</text>
+    <path d="M202 107h45m-16-14 16 14-16 14" fill="none" stroke="#4055cf" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="260" y="42" width="196" height="130" rx="18" fill="#09164d"/><circle cx="358" cy="91" r="28" fill="#edff45"/><path d="M345 91h26m-13-13v26" stroke="#09164d" stroke-width="5" stroke-linecap="round"/><text x="358" y="143" text-anchor="middle" fill="#fffdf6" font-size="18" font-weight="800" font-family="Arial,sans-serif">MATCH REPORT</text><text x="358" y="194" text-anchor="middle" fill="#45506a" font-size="15" font-family="Arial,sans-serif">Evidence, matches, gaps</text>
+    <path d="M468 107h45m-16-14 16 14-16 14" fill="none" stroke="#4055cf" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="526" y="42" width="178" height="130" rx="18" fill="#e1f7ec" stroke="#4fbb83" stroke-width="3"/><circle cx="615" cy="87" r="25" fill="#53e28c"/><path d="m604 87 8 8 15-18" fill="none" stroke="#09164d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><text x="615" y="140" text-anchor="middle" fill="#09164d" font-size="18" font-weight="800" font-family="Arial,sans-serif">YOU CONFIRM</text><text x="615" y="194" text-anchor="middle" fill="#45506a" font-size="15" font-family="Arial,sans-serif">No invented skills</text>
+  </svg>`, ["Compare CV and job ad", "Read matches and gaps", "Confirm facts yourself"]);
+  const interviewPrepDiagram = renderDocsDiagram("interview-prep", "Build answers from your real experience", "Use the role as a prompt, choose truthful examples, and practise answers you can stand behind.", `<svg viewBox="0 0 720 230" role="img" aria-label="Interview preparation: understand the role, choose a real example from your experience, then practise your own answer.">
+    <rect x="20" y="38" width="190" height="126" rx="18" fill="#e9edff" stroke="#8294ff" stroke-width="3"/><text x="115" y="69" text-anchor="middle" fill="#09164d" font-size="16" font-weight="800" font-family="Arial,sans-serif">ROLE CONTEXT</text><path d="M79 94h72v45H79zM96 94v-9h38v9M79 108h72" fill="#fffdf6" stroke="#637bff" stroke-width="4" stroke-linejoin="round"/><text x="115" y="190" text-anchor="middle" fill="#45506a" font-size="15" font-family="Arial,sans-serif">Job + experience</text>
+    <path d="M218 101h36m-14-12 14 12-14 12" fill="none" stroke="#4055cf" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="265" y="38" width="190" height="126" rx="18" fill="#09164d"/><text x="360" y="69" text-anchor="middle" fill="#fffdf6" font-size="16" font-weight="800" font-family="Arial,sans-serif">REAL EXAMPLE</text><path d="M321 91h78v47h-78zM334 104h51m-51 12h43m-43 12h33" fill="none" stroke="#63dcff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="397" cy="135" r="12" fill="#edff45"/><path d="m391 135 5 5 8-10" fill="none" stroke="#09164d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="360" y="190" text-anchor="middle" fill="#45506a" font-size="15" font-family="Arial,sans-serif">Your true story</text>
+    <path d="M463 101h36m-14-12 14 12-14 12" fill="none" stroke="#4055cf" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="510" y="38" width="190" height="126" rx="18" fill="#e1f7ec" stroke="#4fbb83" stroke-width="3"/><text x="605" y="69" text-anchor="middle" fill="#09164d" font-size="16" font-weight="800" font-family="Arial,sans-serif">YOUR ANSWER</text><circle cx="605" cy="109" r="22" fill="#53e28c"/><path d="M595 109q10-14 20 0m-16 9q6-7 12 0m-20 22h40" fill="none" stroke="#09164d" stroke-width="4" stroke-linecap="round"/><text x="605" y="190" text-anchor="middle" fill="#45506a" font-size="15" font-family="Arial,sans-serif">Practise aloud</text>
+  </svg>`, ["Understand the role", "Choose a real example", "Practise your own answer"]);
   return renderSiteChrome(
     "Docs - Job MCP by pmlecuong",
     "/docs",
-    `<div class="doc-layout"><aside class="side"><a href="#overview">Overview</a><a href="#use-cases">Use cases</a><a href="#inputs">Inputs</a><a href="#agent-behavior">Agent behavior</a><a href="#gates">Review gates</a><a href="#ats-check">ATS check</a><a href="#interview-prep">Interview prep</a><a href="#long-writing">Long writing</a><a href="#workspace">Workspace drift</a><a href="#privacy">Privacy</a><a href="#routes">Routes</a></aside>
+    `<div class="doc-layout"><aside class="side"><a href="#overview">Overview</a><a href="#latest-updates">Latest updates</a><a href="#setup">Setup</a><a href="#use-cases">Use cases</a><a href="#local-kit">Local kit</a><a href="#tools">MCP tools</a><a href="#inputs">Inputs</a><a href="#agent-behavior">Agent behavior</a><a href="#gates">Review gates</a><a href="#ats-check">ATS check</a><a href="#interview-prep">Interview prep</a><a href="#long-writing">Long writing</a><a href="#dependencies">Requirements</a><a href="#privacy">Privacy</a><a href="#routes">Routes</a></aside>
     <main class="doc-main">
       <h1 id="overview">Job MCP by pmlecuong docs</h1>
-      <p><strong>New here?</strong> <a href="/start">Follow the four-step setup guide</a>: <a href="/start#codex-computer">Codex on a computer</a>, <a href="/start#chatgpt-browser">ChatGPT browser</a>, <a href="/start#phone-remote">phone/Remote</a>, or <a href="/start#other-client">another client</a>. The guide URL explains the process; <code>https://jobmcp.pmlecuong.com/mcp</code> is the connection address.</p>
+      <p><strong>New here?</strong> <a href="/start">Follow the setup guide</a> for <a href="/start#codex-computer">Codex on a computer</a>, <a href="/start#chatgpt-browser">ChatGPT browser</a>, <a href="/start#phone-remote">phone/Remote</a>, or <a href="/start#other-client">another client</a>. The guide URL explains the process; <code>https://jobmcp.pmlecuong.com/mcp</code> is the connection address.</p>
       <p>This service gives local AI agents a workspace kit, prompt rules, folder-audit guidance, selected-text writing review, and ATS-style resume/job-description matching. It is designed for students and early-career candidates who need practical help preparing job documents without turning their private career folder into a server-side profile.</p>
       <div class="doc-callout"><strong>Core model</strong><p>The local agent does the private work. The MCP supplies generic structure, public instructions, version checks, and selected-text feedback. The MCP cannot browse the user's machine.</p></div>
-      <h2 id="use-cases">Five supported use cases</h2>
+      <h2 id="latest-updates">Latest product updates</h2>
+      <p><strong>Current local build:</strong> MCP 0.2.23 · workspace kit 2026.10.22-onboarding.2.</p>
+      <ul><li><strong>Agent-led first setup:</strong> open one private folder, paste one setup request, and let the agent read the setup guide and configure the MCP where the client permits. Approve client prompts yourself. Manual settings are a fallback, not the first step.</li><li><strong>Safer folder access:</strong> the agent should work inside the folder you opened, preserve existing files, and request only the access needed there. Job MCP cannot grant operating-system permissions or silently enable full-disk access.</li><li><strong>Task-specific recovery:</strong> connecting the remote MCP is separate from tools needed for local PDF, DOCX, or LaTeX work. The kit checks the capability needed for the selected task and explains missing tools instead of treating every optional converter as a setup prerequisite.</li></ul>
+      <h2 id="setup">Start with your folder; the agent handles connection</h2>
+      <ol><li>On a computer, create or choose one private, writable job-application folder and open it in an AI app that can access local files and connect to remote MCP.</li><li>Paste the <a href="/start#run-setup">setup prompt from the Start page</a>. It points the agent to <a href="/agent-setup.md">the automatic setup guide</a> and asks it to configure Job MCP and prepare the workspace.</li><li>Review and approve client permission prompts. The agent should report whether tools are available and ask for your CV or confirmed work/education facts.</li></ol>
+      <p>The website URL is the human guide; <code>https://jobmcp.pmlecuong.com/mcp</code> is the remote Streamable HTTP connection address. You normally do not need to add it manually before trying the agent-led setup. Use <a href="/start#connect-tools">manual connection help</a> only if the client cannot configure it.</p>
+      <p><strong>Phone note:</strong> a phone can continue a supported remote desktop task, but that does not itself give a phone browser access to files on your computer. Use the setup guide's client-specific instructions and limitations.</p>
+      ${setupDiagram}
+      <h2 id="use-cases">What you can do with Job MCP</h2>
       <div class="doc-grid">
-        <div class="doc-tile"><strong>1. Code-validator style writing gate</strong><p>The local SOP treats writing readiness like a release gate: it checks the current artifact, records the loop, and blocks stale approvals.</p></div>
-        <div class="doc-tile"><strong>2. CV / resume</strong><p>The agent converts the user's CV source into editable HTML, preserves or recreates the preferred structure, and runs one review loop.</p></div>
-        <div class="doc-tile"><strong>3. ATS resume/JD check</strong><p>The agent sends extracted CV text and job-description text to get an ATS-style score, matched keywords, missing keywords, and safe revision guidance.</p></div>
-        <div class="doc-tile"><strong>4. Interview prep</strong><p>The agent can prepare likely questions, STAR story prompts, weakness answers, culture-fit answers, and candidate questions for the employer.</p></div>
-        <div class="doc-tile"><strong>5. Long-form writing</strong><p>Academic, work, blog, social, or general writing can be checked in one to three loops, selected by the user.</p></div>
+        <div class="doc-tile"><strong>Application package</strong><p>Prepare an evidence-based CV and cover letter locally, with editable HTML/Markdown and optional PDF output.</p></div>
+        <div class="doc-tile"><strong>ATS resume/JD match</strong><p>Compare the current CV with a job description; review the score, matched terms, gaps, and risks before making changes.</p></div>
+        <div class="doc-tile"><strong>Interview preparation</strong><p>Build role questions, real STAR stories, weakness and culture-fit answers, and questions for the employer.</p></div>
+        <div class="doc-tile"><strong>Writing review</strong><p>Review selected academic, application, work, blog, social, or general writing while preserving the writer's intent and voice.</p></div>
+        <div class="doc-tile"><strong>Workspace checks</strong><p>Audit a privacy-safe relative-path manifest and managed-file hashes; the MCP does not inspect the user's disk.</p></div>
       </div>
+      <h2 id="local-kit">What the local application kit prepares</h2>
+      <p>The AI agent reads and edits files in the selected workspace. The kit provides templates and deterministic local checks; the advanced writing and ATS checker rules remain on the service.</p>
+      <ul><li><strong>CV:</strong> editable English or German HTML plus a Markdown tailoring summary and local validation records.</li><li><strong>Cover letter:</strong> draft data, editable HTML/TeX/Markdown, and a one-page PDF when the required local renderer is installed.</li><li><strong>ATS:</strong> a local input packet and readable report for each target job, including user confirmations and revision notes.</li><li><strong>Interview:</strong> optional interview-prep notes, questions, evidence prompts, and loop-specific review records.</li><li><strong>General writing:</strong> selected-text review packets and a report; longer writing can be chunked and reviewed in one to three loops.</li><li><strong>Workspace:</strong> managed instructions, templates, a manifest, validation notes, and a privacy-safe structure audit.</li></ul>
+      ${packageDiagram}
+      <h2 id="tools">Available MCP tools</h2>
+      <ul><li><code>health</code> — check service/build status and discover the current public capabilities.</li><li><code>get_onboarding_instructions</code> — retrieve the agent's setup and safety instructions.</li><li><code>get_client_skill</code> — retrieve the optional local client skill.</li><li><code>get_workspace_template</code> — retrieve starter folders and managed instruction files.</li><li><code>get_application_kit_manifest</code> / <code>get_application_kit_bundle</code> — check the kit version or retrieve its local templates, contracts, scripts, and examples.</li><li><code>audit_workspace_manifest</code> — compare relative paths/version/hashes with the kit contract; never reads the caller's files.</li><li><code>get_sample_prompts</code> — retrieve example user prompts and expected outputs.</li><li><code>check_ats_resume_fit</code> — compare only submitted CV/resume text and job-description text.</li><li><code>check_writing_human_fit</code> — review selected text for reader fit, evidence risk, conventions, and AI-like patterns.</li><li><code>suggest_writing_revision</code> — return a practical revision plan for selected text.</li></ul>
       <h2 id="inputs">What the user should provide</h2>
       <p>The agent should ask for enough material to avoid a half-baked profile. If the user cannot provide something, it should adapt; it must not invent facts.</p>
       <ul><li><strong>CV or best available profile source:</strong> PDF, DOCX, HTML, Markdown, LinkedIn export, or structured notes.</li><li><strong>Job description or job URL:</strong> needed for tailoring and role-fit decisions.</li><li><strong>Education path:</strong> Bachelor, Master, Ausbildung/job training, working student, internship, or another path.</li><li><strong>Human-written samples:</strong> old emails, IELTS writing, user stories, PRDs, BRDs, reports, notes, or pre-2022 documents.</li><li><strong>Company bullet bank:</strong> ideally 10–15 user-written bullet points per past company, so the agent can select the best 4–5 for a job.</li><li><strong>Optional assets:</strong> CV photo and PNG/JPG signature for cover letters.</li><li><strong>Enclosures:</strong> CV is mandatory; degree diploma/transcript and employer reference letters should be requested if available.</li></ul>
@@ -1550,6 +1743,7 @@ function renderDocsPage(): string {
       <ul><li><strong>CV/resume:</strong> one writing review loop. The payload must be the actual CV text the reader will see.</li><li><strong>ATS check:</strong> run after every CV edit for a job. The local agent must report the ATS score and ask the user before adding any missing keyword that is not already verified.</li><li><strong>Cover letter:</strong> three distinct review loops. Each loop must refer to the current file and record what changed.</li><li><strong>Interview prep:</strong> two low-risk review loops for final spoken answer text, not private notes or coaching scaffolding.</li><li><strong>General writing:</strong> user-selected one to three loops. Do not exceed three unless a future release explicitly changes the contract.</li></ul>
       <h2 id="ats-check">ATS resume/JD check</h2>
       <p>The ATS checker is available for everyone. A local agent can compare a resume or CV against a job description and return a practical match report before the user applies.</p>
+      ${atsDiagram}
       <div class="doc-grid">
         <div class="doc-tile"><strong>Score</strong><p>Returns an ATS-style score out of 100 and a readiness label, calibrated against observed NodeFlair behavior.</p></div>
         <div class="doc-tile"><strong>Matched keywords</strong><p>Shows the terms already visible in the current CV so the user can see what is working.</p></div>
@@ -1559,6 +1753,7 @@ function renderDocsPage(): string {
       <p>For privacy, the ATS call should send only extracted CV/resume text and job-description text. It should not send photos, signatures, full folders, private notes, or unrelated source files.</p>
       <h2 id="interview-prep">Interview prep workflow</h2>
       <p>Interview prep is optional. If the user accepts it, the local agent should ask for real stories and not hallucinate STAR examples. If it cannot find a story in the profile, it must ask the user for a real incident.</p>
+      ${interviewPrepDiagram}
       <div class="doc-grid">
         <div class="doc-tile"><strong>Role questions</strong><p>Likely questions based on job description, company, role family, and user profile.</p></div>
         <div class="doc-tile"><strong>STAR bank</strong><p>Real situation, task, action, result stories drawn from profile evidence or user-provided incidents.</p></div>
@@ -1570,10 +1765,16 @@ function renderDocsPage(): string {
       <ul><li>Academic writing should preserve claims, citations, and argument structure.</li><li>Work writing should stay clear, useful, and decision-oriented.</li><li>Blog/social writing should preserve voice and story rhythm.</li><li>The checker should not receive raw sources, private folders, notes, or full PDFs.</li></ul>
       <h2 id="workspace">Workspace drift and slow folders</h2>
       <p>Old candidate folders can become slow because outputs, drafts, PDFs, screenshots, and generated artifacts pile up. The local SOP should audit folder structure and compare it to the current MCP kit. If drift is detected, it should propose safe cleanup or migration without deleting private data automatically.</p>
+      <h2 id="dependencies">Local computer requirements</h2>
+      <p>The remote MCP connection itself does not require you to install Python or Node just to connect. The local application kit needs a compatible Python environment; its supplied JavaScript wrapper needs Node.js. Other tools are task-specific:</p>
+      <ul><li><strong>PDF reading/conversion:</strong> Poppler may be needed for text extraction.</li><li><strong>DOCX text extraction:</strong> the active Python environment may need <code>python-docx</code>.</li><li><strong>PDF creation:</strong> the selected LaTeX path may need a TeX distribution, <code>latexmk</code>, and the configured engine.</li></ul>
+      <p>Run the kit's capability check for the task first. Ask your agent to explain a missing dependency and its OS-specific install option; approve installation yourself. A missing optional tool should not block unrelated MCP checks. See <a href="/start#dependencies">dependency help and recovery</a>.</p>
       <h2 id="privacy">Privacy contract</h2>
-      <p>The MCP can receive a privacy-safe folder manifest or selected final text. It must not receive raw folders, private PDFs, photos, signatures, prompts, coaching notes, or full profile archives. Operational analytics may store route/tool counts, salted visitor hashes, and coarse country/city headers when the edge provides them; it must not store raw IP addresses or submitted document text.</p>
+      <p>CVs, job folders, photos, signatures, source documents, and drafts stay in your selected local workspace. The MCP cannot browse your machine. For ATS matching, only the current extracted CV/resume text and job-description text are sent. For writing tools, only the text you choose to submit is sent. These checks are processed transiently; submitted content is not stored as a profile. A workspace audit may send relative paths, kit version, and hashes of managed files only—never document contents or absolute paths.</p>
+      ${privacyDiagram}
       <h2 id="routes">Useful routes</h2>
-      <ul><li><code>/start</code> setup instructions and copyable prompts.</li><li><code>/examples</code> CV, cover-letter, interview, and writing use-case examples.</li><li><code>/technical-flow</code> diagrams and HTTP/MCP details.</li><li><code>/privacy</code> privacy boundary.</li><li><code>/health</code> service status.</li><li><code>/mcp</code> Streamable HTTP MCP endpoint.</li></ul>
+      <ul><li><code>/</code> product overview and setup options.</li><li><code>/start</code> agent-led setup, copyable prompt, client guidance, manual fallback, and recovery help.</li><li><code>/agent-setup.md</code> machine-readable setup instructions for the local agent.</li><li><code>/examples</code> CV templates, cover-letter sample, and use-case examples.</li><li><code>/docs</code> this full product and workflow guide.</li><li><code>/sample-prompts</code> prompt examples.</li><li><code>/cv-template/english</code> and <code>/cv-template/german</code> editable CV templates.</li><li><code>/technical-flow</code> diagrams and HTTP/MCP data-boundary details.</li><li><code>/privacy</code> privacy summary.</li><li><code>/health</code> service health and version information.</li><li><code>/mcp</code> remote Streamable HTTP MCP endpoint for compatible clients.</li></ul>
+      <p>See also: <a href="/technical-flow">technical diagrams</a> · <a href="/privacy">privacy</a> · <a href="/start">setup</a> · <a href="/examples">examples</a> · <a href="/health">service health</a>.</p>
     </main></div>`
   );
 }
@@ -1740,12 +1941,23 @@ function recordVisitMetric(req: IncomingMessage, url: URL, status: number): void
 
 async function handleHttp(req: IncomingMessage, res: ServerResponse): Promise<void> {
   const url = new URL(req.url ?? "/", `http://${req.headers.host ?? "localhost"}`);
-  res.once("finish", () => recordVisitMetric(req, url, res.statusCode));
+  res.once("finish", () => {
+    if (!/^\/favicon\.(?:ico|svg)$/.test(url.pathname)) recordVisitMetric(req, url, res.statusCode);
+  });
   const handout = await handoutDocument();
   const samplePrompts = await samplePromptsDocument();
 
   if (req.method === "OPTIONS") {
     writeJson(res, 204, {});
+    return;
+  }
+
+  if (url.pathname === "/favicon.svg") {
+    res.writeHead(200, {
+      "content-type": "image/svg+xml; charset=utf-8",
+      "cache-control": "public, max-age=86400"
+    });
+    res.end(BRAND_FAVICON_SVG);
     return;
   }
 
@@ -1757,7 +1969,7 @@ async function handleHttp(req: IncomingMessage, res: ServerResponse): Promise<vo
 
   if (url.pathname === "/") {
     res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
-    res.end(renderCurrentLandingPage());
+    res.end(renderCurrentLandingPage(await readPublicUsageSnapshot()));
     return;
   }
 

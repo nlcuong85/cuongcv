@@ -42,6 +42,8 @@ It aggregates:
 - Docker network counters for Invidious containers.
 - Job MCP `MCP_METRIC` and `MCP_VISIT` container log lines.
 
+The collector also writes a privacy-minimized Job MCP homepage snapshot to `/var/lib/mezzo-traffic/public/jobmcp-usage.json`. The public MCP container receives this directory as a read-only mount and renders the summary only inside `/` HTML; it does not expose the dashboard API or a separate public analytics endpoint. Counts are limited to the last 30 days, rounded to five, and city details require at least 10 estimated visitors. The snapshot includes only the latest MCP call's one-minute timestamp bucket; the public page adds a green pulse only for activity within 15 minutes. No visitor hashes, raw IPs, tool names, or request text are included. The visible time can reveal recent service use and can be copied or scraped, so this is disclosure minimization, not a guarantee against extraction.
+
 ## Privacy boundary
 
 Preserve this boundary when changing the dashboard:
@@ -72,6 +74,7 @@ Older DB rows from before the transform was enabled may still show city as `unkn
 - `scripts/install-mezzo.sh` — install/update relay and Tailscale Serve route on Mezzo.
 - `scripts/backup-db.sh` — copy Franklee SQLite DB into a timestamped local backup.
 - `scripts/restore-db.sh` — restore a selected backup to Franklee.
+- `tests/test_public_usage_summary.py` — privacy and date-window tests for the public aggregate snapshot.
 
 ## Current live hosts
 

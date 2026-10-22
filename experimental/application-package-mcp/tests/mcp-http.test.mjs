@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { mkdtemp } from "node:fs/promises";
+import { mkdtemp, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -59,7 +59,8 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       ...process.env,
       HOST: "127.0.0.1",
       PORT: String(port),
-      APPLICATION_MCP_DATA_DIR: dataDir
+      APPLICATION_MCP_DATA_DIR: dataDir,
+      PUBLIC_USAGE_SNAPSHOT_PATH: path.join(dataDir, "public-usage.json")
     },
     stdio: ["ignore", "pipe", "pipe"]
   });
@@ -86,6 +87,10 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.match(health.workspace_update_required.mandatory_agent_policy.local_instruction_update, /JOB-MCP-MANDATORY-POLICY markers/);
 
     const landing = await fetch(`http://127.0.0.1:${port}/`).then((response) => response.text());
+    assert.match(landing, /<link rel="icon" type="image\/svg\+xml" href="\/favicon\.svg">/);
+    assert.match(landing, /data-testid="public-activity"/);
+    assert.match(landing, /Numbers are temporarily unavailable/);
+    assert.doesNotMatch(landing, /About 185 visitors/);
     assert.match(landing, /Job MCP by pmlecuong/);
     assert.match(landing, /Real evidence\. Stronger applications/);
     assert.match(landing, /Draft local\. Review selected text/);
@@ -111,6 +116,55 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.doesNotMatch(landing, /CV \/ resume/);
     assert.doesNotMatch(landing, /Three distinct loops/);
 
+    const faviconResponse = await fetch(`http://127.0.0.1:${port}/favicon.svg`);
+    assert.equal(faviconResponse.status, 200);
+    assert.match(faviconResponse.headers.get("content-type"), /image\/svg\+xml/);
+    assert.match(faviconResponse.headers.get("cache-control"), /max-age=86400/);
+    const favicon = await faviconResponse.text();
+    assert.match(favicon, /Job MCP pink suitcase/);
+    assert.match(favicon, /#ff79b5/i);
+    assert.match(favicon, /<rect x="13" y="19" width="38" height="34"/);
+
+    await writeFile(path.join(dataDir, "public-usage.json"), JSON.stringify({
+      generatedAt: new Date().toISOString(), lastMcpCallAt: new Date(Date.now() - 4 * 60 * 1000).toISOString(), windowDays: 30, estimatedVisitors: 25, visits: 45, citiesReached: 2,
+      topCities: [
+        { city: "Heilbronn", region: "Baden-Württemberg", country: "DE", estimatedVisitors: 15, visits: 25 },
+        { city: "<script>alert(1)</script>", region: "Test", country: "DE", estimatedVisitors: 10, visits: 20 },
+        { city: "HiddenTown", region: "Test", country: "DE", estimatedVisitors: 5, visits: 10 }
+      ]
+    }));
+    const populatedLanding = await fetch(`http://127.0.0.1:${port}/`).then((response) => response.text());
+    assert.match(populatedLanding, /Job MCP activity/);
+    assert.match(populatedLanding, /LAST 30 DAYS/);
+    assert.match(populatedLanding, /Last MCP call · 4 min ago/);
+    assert.match(populatedLanding, /activity-last-call has-recorded-call is-recent/);
+    assert.match(populatedLanding, /activity-last-call\.has-recorded-call i \{ background:#53e28c/);
+    assert.match(populatedLanding, /Last recorded MCP request: .* \(rounded to the minute\)/);
+    assert.match(populatedLanding, />45</);
+    assert.match(populatedLanding, /About 25 people · 2 cities/);
+    assert.match(populatedLanding, /Heilbronn/);
+    assert.match(populatedLanding, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
+    assert.doesNotMatch(populatedLanding, /<script>alert\(1\)<\/script>/);
+    assert.doesNotMatch(populatedLanding, /HiddenTown/);
+    assert.doesNotMatch(populatedLanding, /data\.json|public-usage\.json|\/api\/public-usage/);
+    assert.equal((await fetch(`http://127.0.0.1:${port}/api/public-usage`)).status, 404);
+    await writeFile(path.join(dataDir, "public-usage.json"), JSON.stringify({
+      generatedAt: new Date().toISOString(), lastMcpCallAt: new Date(Date.now() - 25 * 60 * 1000).toISOString(),
+      windowDays: 30, estimatedVisitors: 25, visits: 45, citiesReached: 2, topCities: []
+    }));
+    const quietLanding = await fetch(`http://127.0.0.1:${port}/`).then((response) => response.text());
+    assert.match(quietLanding, /Last MCP call · 25 min ago/);
+    assert.match(quietLanding, /activity-last-call has-recorded-call/);
+    assert.doesNotMatch(quietLanding, /activity-last-call has-recorded-call is-recent/);
+    const startWithoutPublicMetrics = await fetch(`http://127.0.0.1:${port}/start`).then((response) => response.text());
+    assert.doesNotMatch(startWithoutPublicMetrics, /People are trying Job MCP/);
+    await writeFile(path.join(dataDir, "public-usage.json"), JSON.stringify({
+      generatedAt: new Date(Date.now() - 49 * 60 * 60 * 1000).toISOString(), windowDays: 30,
+      estimatedVisitors: 25, visits: 45, citiesReached: 2, topCities: []
+    }));
+    const staleLanding = await fetch(`http://127.0.0.1:${port}/`).then((response) => response.text());
+    assert.match(staleLanding, /Numbers are temporarily unavailable/);
+
     const startPage = await fetch(`http://127.0.0.1:${port}/start`).then((response) => response.text());
     assert.match(startPage, /Open one private folder/);
     assert.match(startPage, /Setup prompt/);
@@ -135,7 +189,16 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.match(await helper.text(), /approval_required/);
 
     const docsPage = await fetch(`http://127.0.0.1:${port}/docs`).then((response) => response.text());
-    assert.match(docsPage, /Five supported use cases/);
+    assert.match(docsPage, /href="\/favicon\.svg"/);
+    assert.match(docsPage, /Latest product updates/);
+    assert.match(docsPage, /Agent-led first setup/);
+    assert.match(docsPage, /Current local build:[\s\S]*2026\.10\.22-onboarding\.2/);
+    assert.match(docsPage, /Start with your folder; the agent handles connection/);
+    assert.match(docsPage, /What the local application kit prepares/);
+    assert.match(docsPage, /Available MCP tools/);
+    assert.match(docsPage, /get_application_kit_bundle/);
+    assert.match(docsPage, /check_writing_human_fit/);
+    assert.match(docsPage, /Local computer requirements/);
     assert.match(docsPage, /CV\/resume:<\/strong> one writing review loop/);
     assert.match(docsPage, /ATS check:<\/strong> run after every CV edit/);
     assert.match(docsPage, /ATS resume\/JD check/);
@@ -144,6 +207,14 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.match(docsPage, /General writing:<\/strong> user-selected one to three loops/);
     assert.match(docsPage, /Workspace drift and slow folders/);
     assert.match(docsPage, /Academic and long-form writing/);
+    assert.doesNotMatch(docsPage, /homepage activity summary|one-minute bucket|salted visitor hashes|coarse country\/city headers|public usage\/analytics JSON route|rounded to increments of five|Aggregate analytics/i);
+    for (const diagram of ["setup", "privacy", "package", "ats", "interview-prep"]) {
+      assert.match(docsPage, new RegExp(`data-testid="docs-diagram-${diagram}"`));
+    }
+    assert.equal((docsPage.match(/data-testid="docs-diagram-/g) ?? []).length, 5);
+    assert.doesNotMatch(docsPage, /optional Google sign-in|account\/dashboard path|Planned, not live|no account or Google login/i);
+    assert.match(docsPage, /href="\/agent-setup\.md"/);
+    assert.match(docsPage, /<code>\/sample-prompts<\/code>/);
 
     const examplesPage = await fetch(`http://127.0.0.1:${port}/examples`).then((response) => response.text());
     assert.match(examplesPage, /href="\/cv-template\/english"/);
@@ -466,7 +537,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       const healthResult = await client.callTool({ name: "health", arguments: {} });
       const health = JSON.parse(healthResult.content[0].text);
       assert.equal(health.ok, true);
-      assert.equal(health.version, "0.2.22");
+      assert.equal(health.version, "0.2.23");
     }, "auto");
 
     const promptsPage = await fetch(`http://127.0.0.1:${port}/sample-prompts`, { redirect: "manual" });

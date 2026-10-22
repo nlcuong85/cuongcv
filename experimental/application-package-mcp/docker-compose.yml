@@ -6,11 +6,14 @@ services:
     environment:
       HOST: 0.0.0.0
       PORT: 5920
+      PUBLIC_USAGE_SNAPSHOT_PATH: /app/public-data/jobmcp-usage.json
       APPLICATION_MCP_ANALYTICS_SALT: ${APPLICATION_MCP_ANALYTICS_SALT:-local-development-analytics-salt}
       # Optional second layer when exposing beyond Tailscale/Cloudflare Access.
       # APPLICATION_MCP_TOKEN: change-me
     ports:
       - "5920:5920"
+    volumes:
+      - /var/lib/mezzo-traffic/public:/app/public-data:ro
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://127.0.0.1:5920/health"]
       interval: 30s
