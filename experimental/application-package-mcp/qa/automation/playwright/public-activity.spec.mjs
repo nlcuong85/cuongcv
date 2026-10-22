@@ -25,7 +25,11 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1366, height: 768 
       await expect(lastCall).toBeVisible();
       await expect(lastCall).toContainText(/Last MCP call · (?:No calls recorded|just now|\d+ min ago|\d+ hr ago|\d+ days ago)/);
       await expect(lastCall).toHaveClass(/has-recorded-call/);
-      await expect(lastCall).not.toHaveClass(/is-recent/);
+      const lastCallText = await lastCall.innerText();
+      if (/just now|(?:[0-9]|1[0-4]) min ago/.test(lastCallText)) await expect(lastCall).toHaveClass(/is-recent/);
+      if (/No calls recorded|(?:1[6-9]|[2-9][0-9]) min ago|\d+ hr ago|\d+ days ago/.test(lastCallText)) {
+        await expect(lastCall).not.toHaveClass(/is-recent/);
+      }
       await expect(activity.getByText(/Heilbronn/)).toBeVisible();
       await expect(activity.getByRole('img', { name: 'Approximate visits by city' })).toBeVisible();
     }
