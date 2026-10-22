@@ -1,6 +1,6 @@
 {
   "name": "application-package-mcp",
-  "version": "0.2.20",
+  "version": "0.2.22",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,6 +9,9 @@
     "start:http": "node dist/index.js --http",
     "start:stdio": "node dist/index.js --stdio",
     "test": "npm run build && node --test tests/*.test.mjs",
+    "test:browser": "playwright test --config qa/automation/playwright/playwright.config.mjs",
+    "test:browser:ui": "playwright test --config qa/automation/playwright/playwright.config.mjs --ui",
+    "test:onboarding-workspace": "node scripts/check_onboarding_workspace.mjs",
     "smoke:remote": "node tests/smoke-remote.mjs",
     "sample:generate": "python3 samples/local-kit-regression/run_regression.py",
     "ats:benchmark": "node scripts/run_ats_benchmark.mjs",
@@ -21,6 +24,7 @@
   },
   "devDependencies": {
     "@modelcontextprotocol/client": "2.3.1",
+    "@playwright/test": "1.64.1",
     "@types/node": "^24.0.0",
     "typescript": "^5.9.3"
   }

@@ -27,8 +27,12 @@ participant "MCP checker\nserver" as Checker
 Candidate -> Agent: Ask for an application package or writing review
 Agent -> Local: Read verified local sources and draft locally
 Agent --> Candidate: Show draft, evidence gaps, and next review action
-Candidate -> Agent: Approve a selected passage for review
-Agent -> Checker: Send selected text + writing mode
+Candidate -> Agent: Request a check under selected-text permissions
+alt Writing review
+  Agent -> Checker: Send selected text + writing mode
+else ATS match
+  Agent -> Checker: Send selected CV text + current JD text
+end
 Checker -> Checker: Apply private safety and quality checks
 Checker --> Agent: Return issue categories, risk, and revision guidance
 Agent -> Local: Revise locally; record the review loop
@@ -46,7 +50,10 @@ end
 
 legend right
 Full workspace remains local: CV, notes, job files, drafts, PDFs, photos, and signatures.
-Only selected text is submitted. The server returns feedback, never its private checker logic.
+Only selected writing, CV/JD text, or an allowed structure manifest is submitted.
+Your AI client processes local sources under its own policy.
+Missing required conversion/visual/review evidence blocks the affected release.
+The server returns feedback, never its private checker logic.
 endlegend
 
 @enduml

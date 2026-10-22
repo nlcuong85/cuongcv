@@ -8,3 +8,6 @@ __pycache__/
 *.py[cod]
 samples/classmate-workspace/
 samples/local-kit-regression/workspace/
+output/
+test-results/
+playwright-report/

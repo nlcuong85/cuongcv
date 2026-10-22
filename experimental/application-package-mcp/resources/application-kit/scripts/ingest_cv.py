@@ -47,13 +47,23 @@ def main() -> int:
     if not source.is_file(): raise SystemExit("CV source file does not exist.")
     suffix = source.suffix.lower()
     if suffix == ".doc": raise SystemExit("Legacy .doc conversion is Phase 2. Please provide PDF-with-text, DOCX, or HTML.")
-    target_dir = root / "candidate" / "source"; target_dir.mkdir(parents=True, exist_ok=True)
-    target = target_dir / f"cv-original{suffix}"; shutil.copy2(source, target)
+    if suffix not in {".pdf", ".docx", ".html", ".htm"}: raise SystemExit("Supported Phase-1 formats: PDF, DOCX, HTML.")
+    target_dir = root / "candidate" / "source"
+    extracted = root / "candidate" / "extracted"
+    for directory in (target_dir, extracted):
+        if not directory.resolve().is_relative_to(root): raise SystemExit("Source/extraction folder points outside the selected workspace. Choose an in-scope folder.")
+    target = target_dir / f"cv-original{suffix}"
+    for output in (target, extracted / "cv-source.md", extracted / "cv-structure.json"):
+        if output.is_symlink(): raise SystemExit("Output is a symbolic link. No files changed; choose an in-scope regular output path.")
+    if target.exists() and target.resolve() != source and target.read_bytes() != source.read_bytes():
+        raise SystemExit("An original CV already exists. Preserve it and choose a separate workspace/source before retrying; no files changed.")
     if suffix == ".pdf": text = read_pdf(source)
     elif suffix == ".docx": text = read_docx(source)
     elif suffix in {".html", ".htm"}: text = html_to_text(source.read_text(encoding="utf-8", errors="ignore"))
     else: raise SystemExit("Supported Phase-1 formats: PDF, DOCX, HTML.")
-    extracted = root / "candidate" / "extracted"; extracted.mkdir(parents=True, exist_ok=True)
+    target_dir.mkdir(parents=True, exist_ok=True)
+    if target.resolve() != source: shutil.copy2(source, target)
+    extracted.mkdir(parents=True, exist_ok=True)
     (extracted / "cv-source.md").write_text(f"# Extracted CV Source\n\n{text}\n", encoding="utf-8")
     headings = [line.strip() for line in text.splitlines() if 2 < len(line.strip()) < 70 and line.strip().upper() == line.strip()][:30]
     (extracted / "cv-structure.json").write_text(__import__("json").dumps({"source": target.relative_to(root).as_posix(), "headings": headings, "format": suffix}, indent=2) + "\n", encoding="utf-8")

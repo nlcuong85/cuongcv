@@ -5,6 +5,7 @@
 title Local-First Application Workflow
 
 skinparam backgroundColor #FFFFFF
+skinparam defaultFontColor #0F172A
 skinparam sequence {
   ArrowColor #0F766E
   LifeLineBorderColor #CBD5E1
@@ -27,6 +28,7 @@ end box
 participant "Public MCP\nkit + selected-text review" as MCP
 
 Candidate -> Agent: Start or resume an application
+Agent --> Candidate: Verify connected MCP tools and selected writable folder
 Agent -> SOP: Strict boot and workspace health check
 SOP -> Local: Read privacy-safe inventory and timing data
 SOP -> MCP: Audit manifest + check kit version
@@ -54,8 +56,9 @@ end
 SOP --> Candidate: HTML/PDF outputs, readiness report, and receipt
 
 legend right
-Private local files never leave the candidate workspace.
-MCP receives a privacy-safe manifest or text deliberately selected for review.
+Original files stay local; your AI client processes them under its own policy.
+MCP receives only an allowed manifest, selected writing, or selected CV/JD text for ATS.
+Missing required conversion/visual/review evidence blocks the affected release.
 The service returns guidance; it does not expose private checker rules.
 endlegend
 

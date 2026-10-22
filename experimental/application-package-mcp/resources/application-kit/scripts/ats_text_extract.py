@@ -21,7 +21,7 @@ def read_text_file(path: Path) -> str:
 def extract_pdf(path: Path) -> str:
     pdftotext = shutil.which("pdftotext")
     if not pdftotext:
-        raise SystemExit("pdftotext is required for PDF ATS extraction. Install poppler first.")
+        raise SystemExit("PDF ATS text extraction is blocked: pdftotext (Poppler) is missing. Your original is unchanged. Provide confirmed selectable text or approve OS-specific install help at https://jobmcp.pmlecuong.com/start#dependencies, then retry this step. Other text checks remain available; no release check has passed.")
     result = subprocess.run([pdftotext, "-layout", str(path), "-"], text=True, capture_output=True, check=False)
     if result.returncode != 0:
         raise SystemExit(result.stderr.strip() or f"pdftotext failed for {path}")
@@ -32,7 +32,7 @@ def extract_docx(path: Path) -> str:
     try:
         import docx  # type: ignore
     except ImportError as error:
-        raise SystemExit("python-docx is required for DOCX ATS extraction. Install python-docx first.") from error
+        raise SystemExit("DOCX ATS text extraction is blocked: python-docx is missing in this Python environment. Your original is unchanged. Use confirmed text or approve installation help at https://jobmcp.pmlecuong.com/start#dependencies, then retry this step. Other text checks remain available; no release check has passed.") from error
     document = docx.Document(str(path))
     return "\n".join(paragraph.text for paragraph in document.paragraphs)
 

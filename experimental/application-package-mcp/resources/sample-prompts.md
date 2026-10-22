@@ -11,12 +11,9 @@ https://jobmcp.pmlecuong.com/
 ## 1. Start A New Application Workspace
 
 ```text
-Set up my Student Application AI Helper workspace and explain the process as a practical career coach.
-First fetch the latest workspace and application kit from the MCP.
-Run the strict local SOP boot and create a privacy-safe workspace manifest.
-Ask the MCP to audit that manifest and tell me whether the workspace is current.
-Then show me a short checklist of what I already have, what is missing, and the single best next action.
-Keep my CV, job files, evidence, photos, signatures, drafts, and final outputs local.
+Set up this folder for job applications using https://jobmcp.pmlecuong.com/.
+Read https://jobmcp.pmlecuong.com/agent-setup.md and handle connection and workspace setup for me. Request approval when required; preserve existing files and permission settings.
+Then ask for my CV or work and education facts.
 ```
 
 ## 2. Diagnose My Old Or Slow Workspace

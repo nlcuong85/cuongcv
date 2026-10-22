@@ -7,6 +7,7 @@ import { createMcpHandler, McpServer } from "@modelcontextprotocol/server";
 import { serveStdio } from "@modelcontextprotocol/server/stdio";
 import { toNodeHandler } from "@modelcontextprotocol/node";
 import { checkAtsResumeFit } from "./ats_checker.js";
+import { onboardingBody } from "./onboarding.js";
 import { checkWritingHumanFit } from "./checker.js";
 import {
   handoutDocument,
@@ -17,7 +18,7 @@ import {
   samplePromptsDocument
 } from "./resources.js";
 
-const VERSION = "0.2.20";
+const VERSION = "0.2.22";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
@@ -42,7 +43,7 @@ const PUBLIC_TOOLS = [
   "suggest_writing_revision"
 ];
 
-const WORKSPACE_KIT_VERSION = "2026.09.24-introduction.1";
+const WORKSPACE_KIT_VERSION = "2026.10.22-onboarding.2";
 const REQUIRED_WORKSPACE_PATHS = [
   "AGENTS.md",
   "CLAUDE.md",
@@ -1089,6 +1090,7 @@ function renderSiteChrome(title: string, active: string, body: string, bodyClass
 <head>
 <meta charset="utf-8">
 <title>${title}</title>
+<link rel="help" type="text/markdown" href="/agent-setup.md">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 :root { --blue:#071dff; --blue-soft:#1737ff; --paper:#f6f2e8; --white:#fffdf6; --ink:#090b10; --muted:#5e6470; --line:rgba(9,11,16,.16); --yellow:#edff45; --green:#0a4c3f; --mint:#dcf5e6; --dark:#04050d; }
@@ -1111,7 +1113,7 @@ h1 { margin:18px 0 22px; max-width:660px; font-family:Georgia,"Times New Roman",
 .privacy-strip { width:100%; background:var(--mint); color:var(--ink); } .blue-page .privacy-strip { background:var(--blue); color:white; border-top:1px solid rgba(255,255,255,.28); } .privacy-strip .section { border-top:0; } .privacy-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:22px; margin-top:36px; } .privacy-grid div { padding-top:18px; border-top:2px solid var(--green); } .blue-page .privacy-grid div { border-top-color:var(--yellow); } .privacy-grid strong { display:block; margin-bottom:9px; } .privacy-grid span { color:#395a52; line-height:1.5; } .blue-page .privacy-grid span { color:rgba(255,255,255,.78); }
 .final-cta { width:100%; background:var(--dark); color:white; } .final-cta .section { border-top:0; } .final-cta .section-copy { color:rgba(255,255,255,.75); }
 .checker-layout { display:grid; grid-template-columns:minmax(280px,.76fr) minmax(0,1fr); gap:54px; align-items:center; margin-top:36px; } .checker-legend { display:grid; gap:14px; margin-top:24px; color:var(--muted); } .blue-page .checker-legend { color:rgba(255,255,255,.78); } .checker-legend > span { display:grid; grid-template-columns:18px 1fr; gap:12px; align-items:start; } .checker-legend strong { color:var(--ink); } .blue-page .checker-legend strong { color:white; } .dot { width:15px; height:15px; margin-top:4px; border-radius:50%; background:var(--blue); } .dot.fast { background:#de745f; } .dot.local { background:#e0b843; } .dot.checked { background:var(--green); } .xy-chart { position:relative; min-height:360px; border:1px solid var(--line); background:linear-gradient(rgba(9,11,16,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(9,11,16,.06) 1px,transparent 1px),var(--white); background-size:64px 64px; } .xy-chart:before,.xy-chart:after { content:""; position:absolute; background:#65716c; } .xy-chart:before { left:62px; right:30px; bottom:55px; height:1px; } .xy-chart:after { left:62px; top:32px; bottom:55px; width:1px; } .axis { position:absolute; color:var(--muted); font-size:11px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; } .axis.x { right:30px; bottom:22px; } .axis.y { left:18px; top:32px; writing-mode:vertical-rl; transform:rotate(180deg); } .point { position:absolute; width:22px; height:22px; border-radius:50%; border:3px solid var(--white); box-shadow:0 8px 20px rgba(0,0,0,.18); } .point b { position:absolute; left:23px; bottom:18px; width:155px; color:var(--ink); font-size:13px; line-height:1.2; } .point p { position:absolute; left:23px; top:20px; width:170px; margin:0; color:var(--muted); font-size:12px; line-height:1.35; } .point.fast { left:25%; bottom:25%; background:#de745f; } .point.local { left:51%; bottom:51%; background:#e0b843; } .point.checked { left:75%; bottom:74%; background:var(--green); }
-.tech-shell { display:grid; gap:28px; } .tech-card { background:var(--white); border:1px solid var(--line); padding:24px; } .tech-card img { display:block; width:100%; min-width:720px; height:auto; } .scroll-x { overflow:auto; } .protocol-grid { display:grid; grid-template-columns:190px minmax(0,1fr); border-top:1px solid var(--line); border-left:1px solid var(--line); background:var(--white); } .protocol-grid div { padding:16px 18px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted); line-height:1.55; } .protocol-grid .method { color:var(--blue); font-weight:900; background:#f8f4e8; } .protocol-note { margin-top:18px; padding-left:16px; border-left:4px solid var(--yellow); color:var(--muted); line-height:1.55; } .blue-page .protocol-note { color:rgba(255,255,255,.78); }
+.tech-shell { display:grid; gap:28px; min-width:0; } .tech-card { background:var(--white); border:1px solid var(--line); padding:24px; min-width:0; max-width:100%; } .tech-card img { display:block; width:100%; min-width:720px; height:auto; } .scroll-x { overflow:auto; } .protocol-grid { display:grid; grid-template-columns:190px minmax(0,1fr); border-top:1px solid var(--line); border-left:1px solid var(--line); background:var(--white); } .protocol-grid div { padding:16px 18px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted); line-height:1.55; overflow-wrap:anywhere; } .protocol-grid .method { color:var(--blue); font-weight:900; background:#f8f4e8; } .protocol-note { margin-top:18px; padding-left:16px; border-left:4px solid var(--yellow); color:var(--muted); line-height:1.55; } .blue-page .protocol-note { color:rgba(255,255,255,.78); }
 .doc-callout { margin:24px 0; padding:22px; background:var(--dark); color:white; } .doc-callout p { color:rgba(255,255,255,.78) !important; margin:8px 0 0; } .doc-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; margin:22px 0; background:var(--line); border:1px solid var(--line); } .doc-tile { background:var(--white); padding:20px; } .doc-tile strong { display:block; margin-bottom:8px; } .doc-tile p { margin:0; }
 .site-footer { width:min(1220px, calc(100% - 44px)); margin:0 auto; padding:26px 0 42px; display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; color:var(--muted); font-size:13px; } .blue-page .site-footer { color:rgba(255,255,255,.76); } .site-footer a { font-weight:850; }
 .page-hero { width:min(1220px, calc(100% - 44px)); margin:0 auto; padding:74px 0 48px; } .page-hero h1 { max-width:820px; color:inherit; font-size:clamp(50px,6.5vw,88px); } .page-hero .lead { color:var(--muted); } .blue-page .page-hero .lead { color:rgba(255,255,255,.82); }
@@ -1128,6 +1130,51 @@ h1 { margin:18px 0 22px; max-width:660px; font-family:Georgia,"Times New Roman",
 </style>
 </head>
 <body class="${bodyClass}">
+<style>
+.onboarding-page .setup-hero { padding:38px 0 30px; }
+.onboarding-page .setup-hero h1 { font-size:clamp(42px,5.4vw,68px); max-width:780px; line-height:.98; }
+.onboarding-page .setup-hero .button { text-transform:none; letter-spacing:0; font-size:16px; white-space:normal; text-align:center; padding:12px 20px; }
+.client-choices { display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:14px; }
+.client-choices a { display:inline-flex; align-items:center; min-height:44px; }
+.setup-section { max-width:1000px; }
+.setup-section h2 { font-size:clamp(26px,4vw,38px); letter-spacing:-.04em; margin:0 0 24px; }
+.setup-section p,.help-body li { line-height:1.65; }
+.setup-section li { margin-bottom:12px; }
+.setup-section pre,.setup-section code { overflow-wrap:anywhere; white-space:pre-wrap; max-width:100%; }
+.agent-map { margin:0 0 28px; background:var(--white); color:var(--blue); padding:32px; border:1px solid var(--white); }
+.map-heading { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; font-size:11px; letter-spacing:.1em; font-weight:850; }
+.map-live { background:var(--yellow); padding:5px 9px; }
+.agent-map h3 { font-family:Georgia,serif; font-size:clamp(26px,3vw,38px); font-weight:400; line-height:1.1; margin:20px 0 30px; letter-spacing:-.035em; }
+.setup-flow { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); list-style:none; gap:40px; padding:0; margin:0 0 28px; }
+.setup-flow li { position:relative; padding:18px; margin:0; border:1px solid rgba(7,29,255,.25); background:#f4f3ed; }
+.setup-flow li:not(:last-child)::after { content:"→"; position:absolute; right:-35px; top:55px; font-size:30px; color:var(--blue); }
+.setup-flow span { display:block; font-size:11px; font-weight:850; letter-spacing:.08em; margin:14px 0 4px; color:var(--blue); }
+.setup-flow a { display:inline-flex; align-items:center; min-height:44px; font-size:18px; font-weight:800; line-height:1.25; text-decoration:none; }
+.setup-flow a:hover { text-decoration:underline; }
+.setup-flow p { font-size:14px; color:#454d6d; margin:8px 0 0; }
+.flow-icon { width:58px; height:58px; display:grid; place-items:center; background:var(--yellow); border-radius:50%; }
+.flow-icon svg { width:42px; height:42px; fill:none; stroke:currentColor; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+.agent-work { display:flex; gap:16px; align-items:center; background:var(--blue); color:white; padding:20px; }
+.approval-symbol { display:grid; place-items:center; flex:0 0 36px; height:36px; background:var(--yellow); color:var(--blue); font-size:24px; border-radius:50%; }
+.agent-work p { font-size:14px; margin:4px 0 0; color:white; }
+.agent-map figcaption { font-size:13px; line-height:1.5; margin-top:18px; color:#454d6d; }
+.setup-help { border-top:1px solid rgba(255,255,255,.35); padding:0; scroll-margin-top:24px; }
+.setup-help summary { padding:20px 4px; min-height:54px; cursor:pointer; font-size:18px; font-weight:750; }
+.setup-help[open] { padding-bottom:24px; }
+.help-body { max-width:840px; }
+.help-body ol,.help-body ul { padding-left:24px; }
+.verification { font-size:14px; color:rgba(255,255,255,.85); border-left:2px solid var(--yellow); padding-left:14px; }
+.address-block { border:1px solid rgba(255,255,255,.45); padding:20px; }
+.setup-section .copy-button { min-height:44px; min-width:44px; font-size:12px; padding:10px 14px; cursor:pointer; }
+.copy-status { min-height:1.5em; margin:8px 0 0; font-size:14px; }
+.setup-section .prompt-panel h3 { margin:0; font-size:18px; }
+.setup-section .prompt-panel pre { font-size:14px; line-height:1.6; }
+.setup-section .prompt-panel .copy-status { color:inherit; padding:0 18px 12px; }
+:focus-visible { outline:3px solid #ff9d00; outline-offset:4px; }
+[id] { scroll-margin-top:24px; }
+@media(max-width:700px) { .agent-map { padding:20px; } .setup-flow { grid-template-columns:1fr; gap:32px; } .setup-flow li { display:grid; grid-template-columns:58px 1fr; gap:0 16px; align-items:center; padding:16px; } .flow-icon { grid-row:1 / 4; } .setup-flow span { margin:0; } .setup-flow p { margin-top:4px; } .setup-flow li:not(:last-child)::after { content:"↓"; top:auto; bottom:-32px; left:40px; right:auto; font-size:26px; } .agent-work { align-items:flex-start; padding:16px; } .onboarding-page .setup-hero { padding-top:28px; } .onboarding-page .setup-hero h1 { font-size:42px; } .onboarding-page .mono { letter-spacing:.1em; } .setup-section .prompt-header { flex-wrap:wrap; gap:12px; } }
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none !important; transition:none !important; } }
+</style>
 ${renderSiteNav(active)}
 ${body}
 ${renderSiteFooter()}
@@ -1139,7 +1186,17 @@ ${renderCopyButtonsScript()}
 function renderCopyButtonsScript(): string {
   return `<script>
 (function () {
+  function revealFragment() {
+    var target; try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch (_) { return; }
+    if (!target) return;
+    var parent = target;
+    while (parent) { if (parent.tagName === "DETAILS") parent.open = true; parent = parent.parentElement; }
+    target.scrollIntoView();
+  }
+  window.addEventListener("hashchange", revealFragment);
+  revealFragment();
   function fallbackCopy(text) {
+    var active = document.activeElement;
     var area = document.createElement("textarea");
     area.value = text;
     area.setAttribute("readonly", "");
@@ -1147,12 +1204,12 @@ function renderCopyButtonsScript(): string {
     area.style.left = "-9999px";
     document.body.appendChild(area);
     area.select();
-    try { document.execCommand("copy"); } finally { document.body.removeChild(area); }
+    try { if (!document.execCommand("copy")) throw new Error("Copy unavailable"); }
+    finally { document.body.removeChild(area); if (active instanceof HTMLElement) active.focus(); }
   }
   async function copyText(text) {
     if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(text);
-      return;
+      try { await navigator.clipboard.writeText(text); return; } catch (_) { /* Try legacy copy, then manual selection. */ }
     }
     fallbackCopy(text);
   }
@@ -1165,19 +1222,25 @@ function renderCopyButtonsScript(): string {
     var target = scope.querySelector(selector);
     if (!target) return;
     var text = target.textContent || "";
+    var original = button.getAttribute("data-copy-label") || button.textContent || "Copy";
+    button.setAttribute("data-copy-label", original);
+    var status = scope.querySelector('[role="status"]');
+    if (!status) { status = document.createElement("p"); status.className = "copy-status"; status.setAttribute("role", "status"); status.setAttribute("aria-live", "polite"); scope.appendChild(status); }
+    button.disabled = true;
     copyText(text.trim()).then(function () {
-      var original = button.getAttribute("data-copy-label") || button.textContent || "Copy";
       button.setAttribute("data-copy-label", original);
-      button.textContent = "Copied";
+      status.textContent = "Copied. Paste it into your AI app.";
       button.classList.add("copied");
       window.setTimeout(function () {
         button.textContent = original;
         button.classList.remove("copied");
       }, 1400);
     }).catch(function () {
-      button.textContent = "Copy failed";
-      window.setTimeout(function () { button.textContent = button.getAttribute("data-copy-label") || "Copy"; }, 1600);
-    });
+      status.textContent = "Could not copy. Select and copy the text below.";
+      target.setAttribute("tabindex", "0");
+      target.focus();
+      var selection = window.getSelection(); var range = document.createRange(); range.selectNodeContents(target); if (selection) { selection.removeAllRanges(); selection.addRange(range); }
+    }).finally(function () { button.disabled = false; });
   });
 })();
 </script>`;
@@ -1353,7 +1416,8 @@ function renderCurrentLandingPage(): string {
         <h1>Real evidence. Stronger applications.</h1>
         <p class="lead">Set up a local AI workspace that turns your CV, job description, writing samples, and documents into job-ready packages without uploading your whole career history.</p>
         <div class="actions"><a class="button primary" href="/start">Start setup</a><a class="button secondary" href="/examples">See examples</a></div>
-        <div class="command" aria-label="Starter URL for local AI agent" data-copy-scope><div class="command-tabs"><span class="command-labels"><span>Agent URL</span><span>Copy into Codex / Claude</span></span><button class="copy-button" type="button" data-copy-target="pre">Copy</button></div><pre>${PUBLIC_SITE_URL}</pre></div>
+        <div class="command" aria-label="Setup guide address" data-copy-scope><div class="command-tabs"><span class="command-labels"><span>Setup guide</span><span>Your agent handles connection</span></span><button class="copy-button" type="button" data-copy-target="pre">Copy guide address</button></div><pre>${PUBLIC_SITE_URL}</pre></div>
+        <p>For your AI agent: <a href="/agent-setup.md">read the automatic setup instructions</a>.</p>
       </section>
       <aside class="signal-card" aria-label="Local application workflow summary">
         <h2>Draft local. Review selected text.</h2>
@@ -1398,7 +1462,7 @@ function renderCurrentLandingPage(): string {
     </section>
     <section class="section compact"><div class="mono">Where to go</div><h2 class="section-title">Use the menu. Keep the homepage light.</h2><p class="section-copy">Detailed setup, examples, docs, and technical flow live in focused pages.</p>
       <div class="door-grid">
-        <a class="door" href="/start"><small class="mono">Start</small><h3>Set up a fresh workspace</h3><p>Create the local folder, install the kit, and let the agent ask for missing files.</p></a>
+        <a class="door" href="/start"><small class="mono">Start</small><h3>Set up your workspace</h3><p>Connect Job MCP, open one private folder, and let the agent guide your first step.</p></a>
         <a class="door" href="/examples"><small class="mono">Examples</small><h3>See CV and cover-letter outputs</h3><p>Open English/German CV templates and the German-style cover letter sample.</p></a>
         <a class="door" href="/technical-flow"><small class="mono">Technical</small><h3>Check the safety boundary</h3><p>See the MCP calls, diagrams, and exact data that can cross the boundary.</p></a>
       </div>
@@ -1416,53 +1480,8 @@ function renderCurrentLandingPage(): string {
 }
 
 function renderStartPage(): string {
-  const starterPrompt = `Please read ${PUBLIC_SITE_URL} and set up a local project folder for me to handle job applications.
-
-Ask me questions along the way if you need my verification.
-
-If you need my picture, CV, cover letter, sample CV, sample cover letter, education track, writing samples, or job description, ask me and I will provide them.
-
-Keep my private files local. Use the MCP only for workspace setup, safe structure/version audit, and selected final reader-facing text review.`;
-
-  const applicationPrompt = `I want to apply for this job. Please read the job description, check fit against my verified CV evidence, and tell me what is missing before drafting.
-
-Create or update the editable HTML CV if needed. Run the ATS resume-to-job-description check after every CV edit and report the score before calling the CV strong for this job.
-
-Create a German-style cover letter only when appropriate. Run the required review loops before saying anything is ready.`;
-
-  const atsPrompt = `Please run the MCP ATS check for this resume/CV and job description.
-
-Send only the extracted CV text and the job description text. Return the ATS score, matched keywords, suggested missing keywords, and what I should confirm before any keyword is added to my resume.`;
-
-  const writingPrompt = `Please review this selected text with the MCP writing checker. Use the correct mode: application, interview_prep, academic, work, blog, social, or general.
-
-Send only the final reader-facing text, not my folder, notes, prompts, PDFs, images, or private source documents.`;
-
-  return renderSiteChrome(
-    "Start Setup - Job MCP by pmlecuong",
-    "/start",
-    `<header class="page-hero"><div class="mono">Start from an empty folder</div><h1>Give your local AI a clean place to work.</h1><p class="lead">Old scattered folders make the process slow. Start fresh, then let the MCP kit scaffold the right structure.</p></header>
-    <section class="section compact"><div class="steps">
-      <article class="step"><div class="step-number">01</div><div><h2>Create a clean project folder</h2><p>Use Codex, VS Code, Claude, or another local AI workspace. Name it clearly, for example <code>my-job-application</code>.</p></div></article>
-      <article class="step"><div class="step-number">02</div><div><h2>Give the AI this URL</h2><p>Ask the agent to read <code>${PUBLIC_SITE_URL}</code>, fetch the workspace template, create the local structure, and ask before making uncertain decisions.</p></div></article>
-      <article class="step"><div class="step-number">03</div><div><h2>Provide source material</h2><p>CV or profile source is mandatory. Add job descriptions, education track, certificates, writing samples, role preference, photo if you want one, and signature if you want cover letters signed.</p></div></article>
-      <article class="step"><div class="step-number">04</div><div><h2>Send a job description</h2><p>The local agent checks fit, runs ATS matching for the CV/JD pair, drafts locally, then runs the required review loops before saying a document is ready.</p></div></article>
-    </div>
-    <div class="prompt-panel" data-copy-scope><div class="prompt-header"><div class="mono">Starter prompt</div><button class="copy-button" type="button" data-copy-target="pre">Copy prompt</button></div><pre>${starterPrompt}</pre></div></section>
-    <section class="section"><div class="mono">What to prepare</div><h2 class="section-title">The agent can only be strong if the source material is real.</h2><p class="section-copy">The setup conversation should feel like a careful career coach, not a generic chatbot. It should ask for missing evidence, explain why the evidence matters, and stop before inventing facts.</p>
-      <div class="feature-grid">
-        <article class="feature"><small class="mono">Required</small><h3>CV or profile source</h3><p>PDF, DOCX, HTML, Markdown, LinkedIn export, or structured notes. If there is no old resume, the agent asks for education and work history.</p></article>
-        <article class="feature"><small class="mono">Recommended</small><h3>Real writing samples</h3><p>Old emails, IELTS writing, reports, PRDs, BRDs, user stories, or pre-2022 documents help the agent learn authentic tone.</p></article>
-        <article class="feature"><small class="mono">Optional</small><h3>Photo and signature</h3><p>Photo is asked for CV use. Signature is asked for cover letters. If the user does not provide them, the agent continues without inventing assets.</p></article>
-      </div></section>
-    <section class="section"><div class="mono">Copy prompts</div><h2 class="section-title">The prompt page is now part of start.</h2><p class="section-copy">Use these when the workspace already exists and you want to trigger a specific flow.</p>
-      <div class="prompt-panel" data-copy-scope><div class="prompt-header"><div class="mono">Job application prompt</div><button class="copy-button" type="button" data-copy-target="pre">Copy prompt</button></div><pre>${applicationPrompt}</pre></div>
-      <div class="prompt-panel" data-copy-scope><div class="prompt-header"><div class="mono">ATS check prompt</div><button class="copy-button" type="button" data-copy-target="pre">Copy prompt</button></div><pre>${atsPrompt}</pre></div>
-      <div class="prompt-panel" data-copy-scope><div class="prompt-header"><div class="mono">Writing check prompt</div><button class="copy-button" type="button" data-copy-target="pre">Copy prompt</button></div><pre>${writingPrompt}</pre></div></section>`,
-    "blue-page"
-  );
+  return renderSiteChrome("Start Setup - Job MCP by pmlecuong", "/start", `<main>${onboardingBody()}</main>`, "blue-page onboarding-page");
 }
-
 function renderExamplesPage(): string {
   return renderSiteChrome(
     "Examples - Job MCP by pmlecuong",
@@ -1511,6 +1530,7 @@ function renderDocsPage(): string {
     `<div class="doc-layout"><aside class="side"><a href="#overview">Overview</a><a href="#use-cases">Use cases</a><a href="#inputs">Inputs</a><a href="#agent-behavior">Agent behavior</a><a href="#gates">Review gates</a><a href="#ats-check">ATS check</a><a href="#interview-prep">Interview prep</a><a href="#long-writing">Long writing</a><a href="#workspace">Workspace drift</a><a href="#privacy">Privacy</a><a href="#routes">Routes</a></aside>
     <main class="doc-main">
       <h1 id="overview">Job MCP by pmlecuong docs</h1>
+      <p><strong>New here?</strong> <a href="/start">Follow the four-step setup guide</a>: <a href="/start#codex-computer">Codex on a computer</a>, <a href="/start#chatgpt-browser">ChatGPT browser</a>, <a href="/start#phone-remote">phone/Remote</a>, or <a href="/start#other-client">another client</a>. The guide URL explains the process; <code>https://jobmcp.pmlecuong.com/mcp</code> is the connection address.</p>
       <p>This service gives local AI agents a workspace kit, prompt rules, folder-audit guidance, selected-text writing review, and ATS-style resume/job-description matching. It is designed for students and early-career candidates who need practical help preparing job documents without turning their private career folder into a server-side profile.</p>
       <div class="doc-callout"><strong>Core model</strong><p>The local agent does the private work. The MCP supplies generic structure, public instructions, version checks, and selected-text feedback. The MCP cannot browse the user's machine.</p></div>
       <h2 id="use-cases">Five supported use cases</h2>
@@ -1582,12 +1602,12 @@ function renderTechnicalFlowPage(): string {
       <article class="feature"><small class="mono">Selected text</small><h3>Boundary</h3><p>The MCP receives exact reader-facing text or CV/JD ATS text only, not private folders, PDFs, signatures, images, notes, or prompts.</p></article>
       <article class="feature"><small class="mono">Rerun</small><h3>Rewrite until low</h3><p>Medium/high feedback means the local agent revises the real file and reruns the gate.</p></article>
     </div></section>
-    <section class="section tech-shell"><div><div class="mono">Review boundary</div><h2 class="section-title">Private selected-text review.</h2><p class="section-copy">This diagram shows how final text leaves the local workspace only when the user or local agent deliberately sends it for review.</p></div><div class="tech-card scroll-x"><img src="/assets/private-checker-flow.svg" alt="Sequence diagram showing selected-text review between the candidate, local AI agent, local workspace, and MCP checker"></div></section>
-    <section class="section tech-shell"><div><div class="mono">Bootstrap</div><h2 class="section-title">How a human prompt creates the local foundation.</h2><p class="section-copy">The MCP returns generic kit files and structure. The local agent and SOP create, inspect, and retain the real candidate workspace.</p></div><div class="tech-card scroll-x"><img src="/assets/bootstrap-scaffolding-flow.svg" alt="Sequence diagram showing human request, public MCP kit retrieval, local workspace scaffolding, strict SOP boot, and privacy-safe manifest audit"></div></section>
+    <section class="section tech-shell"><div><div class="mono">Review boundary</div><h2 class="section-title">Private selected-text review.</h2><p class="section-copy">The agent sends selected writing or CV/JD text for a requested check, receives feedback, then verifies local review and release evidence. Your AI client processes local sources under its own policy.</p><p><a href="/assets/private-checker-flow.svg" target="_blank" rel="noopener noreferrer">Open review diagram full size ↗</a> · Scroll inside the diagram on a small screen.</p></div><div class="tech-card scroll-x" role="region" aria-label="Review diagram, horizontally scrollable" tabindex="0"><img src="/assets/private-checker-flow.svg" alt="Writing or ATS review sends selected text to MCP; feedback returns to local revision and release gates"></div></section>
+    <section class="section tech-shell"><div><div class="mono">Bootstrap</div><h2 class="section-title">How a human prompt creates the local foundation.</h2><p class="section-copy">First connect the client and verify tools, then select a writable folder. Only then does the local agent scaffold the generic kit, run strict checks and send a permitted manifest. Missing prerequisites return you to connection or folder help.</p><p><a href="/assets/bootstrap-scaffolding-flow.svg" target="_blank" rel="noopener noreferrer">Open bootstrap diagram full size ↗</a> · <a href="/start">Follow the beginner setup steps</a>.</p></div><div class="tech-card scroll-x" role="region" aria-label="Bootstrap diagram, horizontally scrollable" tabindex="0"><img src="/assets/bootstrap-scaffolding-flow.svg" alt="Client connection and folder permission precede local kit retrieval, scaffolding, strict SOP checks and manifest audit"></div></section>
     <section class="section"><div class="mono">HTTP and MCP protocol</div><h2 class="section-title">What actually calls what.</h2><p class="section-copy">The human setup URL is <code>${PUBLIC_SITE_URL}</code>. The Streamable HTTP MCP transport endpoint is <code>${PUBLIC_MCP_ENDPOINT}</code>.</p>
       <div class="protocol-grid" aria-label="HTTP endpoint and request contract">
         <div class="method"><code>OPTIONS /mcp</code></div><div>Browser CORS preflight. The server responds <code>204</code> and allows <code>content-type</code>, <code>authorization</code>, and <code>mcp-session-id</code> headers.</div>
-        <div class="method"><code>POST /mcp</code></div><div>Streamable HTTP MCP transport. A compatible client sends JSON-RPC lifecycle requests such as <code>initialize</code> and <code>tools/list</code>, followed by <code>tools/call</code>.</div>
+        <div class="method"><code>POST /mcp</code></div><div>Streamable HTTP MCP transport. Modern clients can use <code>server/discover</code>; legacy clients use <code>initialize</code> and <code>tools/list</code>, followed by <code>tools/call</code>. Client registration and local folder access must be established separately.</div>
         <div class="method"><code>tools/call</code></div><div>For setup, the local agent calls <code>get_workspace_template</code> or <code>get_application_kit_bundle</code>. For structure health, it calls <code>audit_workspace_manifest</code>.</div>
         <div class="method"><code>tools/call</code></div><div>For ATS matching, it calls <code>check_ats_resume_fit</code> with extracted CV/resume text and job-description text. The response includes score, matched keywords, missing keywords, risks, and user-confirmation actions.</div>
         <div class="method"><code>tools/call</code></div><div>For writing review, it calls <code>check_writing_human_fit</code> with selected final reader-facing text and a writing mode.</div>
@@ -1744,6 +1764,18 @@ async function handleHttp(req: IncomingMessage, res: ServerResponse): Promise<vo
   if (url.pathname === "/start") {
     res.writeHead(200, { "content-type": "text/html; charset=utf-8" });
     res.end(renderStartPage());
+    return;
+  }
+
+  if (url.pathname === "/agent-setup.md") {
+    res.writeHead(200, { "content-type": "text/markdown; charset=utf-8" });
+    res.end(await readResource("agent-setup.md"));
+    return;
+  }
+
+  if (url.pathname === "/agent-setup/configure_codex_mcp.py") {
+    res.writeHead(200, { "content-type": "text/plain; charset=utf-8" });
+    res.end(await readResource("bootstrap/configure_codex_mcp.py"));
     return;
   }
 

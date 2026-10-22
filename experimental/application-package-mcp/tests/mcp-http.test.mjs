@@ -112,13 +112,27 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.doesNotMatch(landing, /Three distinct loops/);
 
     const startPage = await fetch(`http://127.0.0.1:${port}/start`).then((response) => response.text());
-    assert.match(startPage, /Create a clean project folder/);
-    assert.match(startPage, /Starter prompt/);
-    assert.match(startPage, /Keep my private files local/);
-    assert.match(startPage, /The prompt page is now part of start/);
-    assert.match(startPage, /Job application prompt/);
-    assert.match(startPage, /ATS check prompt/);
-    assert.match(startPage, /Writing check prompt/);
+    assert.match(startPage, /Open one private folder/);
+    assert.match(startPage, /Setup prompt/);
+    assert.match(startPage, /source files stay in your workspace/);
+    assert.match(startPage, /Already set up\?/);
+    assert.match(startPage, /Application prompt/);
+    assert.match(startPage, /ATS prompt/);
+    assert.match(startPage, /Writing prompt/);
+    assert.match(startPage, /agent reads the instructions and handles connection/);
+    assert.match(startPage, /MCP connection address/);
+    assert.match(startPage, /OneDrive/);
+    assert.match(startPage, /not yet independently verified/);
+
+    const agentGuide = await fetch(`http://127.0.0.1:${port}/agent-setup.md`);
+    assert.match(agentGuide.headers.get("content-type"), /text\/markdown/);
+    const agentText = await agentGuide.text();
+    assert.match(agentText, /codex mcp add jobmcp/);
+    assert.match(agentText, /Default|ordinary HTTPS|ordinary web\/HTTP/);
+    assert.match(agentText, /Never broaden host permissions/);
+    const helper = await fetch(`http://127.0.0.1:${port}/agent-setup/configure_codex_mcp.py`);
+    assert.match(helper.headers.get("content-type"), /text\/plain/);
+    assert.match(await helper.text(), /approval_required/);
 
     const docsPage = await fetch(`http://127.0.0.1:${port}/docs`).then((response) => response.text());
     assert.match(docsPage, /Five supported use cases/);
@@ -452,7 +466,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       const healthResult = await client.callTool({ name: "health", arguments: {} });
       const health = JSON.parse(healthResult.content[0].text);
       assert.equal(health.ok, true);
-      assert.equal(health.version, "0.2.20");
+      assert.equal(health.version, "0.2.22");
     }, "auto");
 
     const promptsPage = await fetch(`http://127.0.0.1:${port}/sample-prompts`, { redirect: "manual" });

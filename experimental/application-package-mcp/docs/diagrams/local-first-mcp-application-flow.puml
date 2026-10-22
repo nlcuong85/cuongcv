@@ -1,5 +1,5 @@
 @startuml
-title Local-first application package flow
+title HISTORICAL: early distribution-only application flow\nSuperseded: /technical-flow and resources/diagrams/bootstrap-scaffolding-flow.puml
 
 autonumber
 hide footbox

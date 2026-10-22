@@ -26,14 +26,35 @@ database "Local application workspace" as Workspace
 end box
 participant "Public MCP" as MCP
 
-Human -> Agent: "Set up my application workspace"
-Agent -> MCP: initialize + tools/list
+Human -> Agent: Open dedicated folder; paste setup request / guide link
+Agent -> Agent: Read public /agent-setup.md over HTTPS
+Agent --> Human: Request configuration approval when required
+Human -> Agent: Approve within client permission controls
+Agent -> Agent: Configure supported MCP client; preserve other settings
+opt Client needs reload
+  Agent --> Human: Request only required reload; verify after loading
+end
+alt Modern client
+  Agent -> MCP: server/discover
+else Legacy client
+  Agent -> MCP: initialize + tools/list
+end
 MCP --> Agent: Public tool contract
+break Tools missing or endpoint unreachable
+  Agent --> Human: Correct connection address / client settings; retry
+end
+Agent -> MCP: health
+MCP --> Agent: Service identity
+Agent -> Workspace: Verify selected writable folder scope (no writes yet)
+break Folder missing, read-only or outside selected scope
+  Agent --> Human: Open an in-scope folder before local writes
+end
+Human -> Agent: Run setup prompt after prerequisites pass
 Agent -> MCP: Get latest workspace template and application kit
 MCP --> Agent: Generic folders, scripts, contracts, version
 
-Agent -> SOP: strict boot
-SOP -> Workspace: Create generic local scaffold
+Agent -> Workspace: Safely scaffold selected root; preserve existing files
+Agent -> SOP: strict boot (now executable exists)
 note right of Workspace
 AGENTS.md, candidate/source,
 profile, voice, jobs, applications,
@@ -41,7 +62,7 @@ scripts, local SOP state
 end note
 SOP -> Workspace: Write local state and managed-file hashes
 SOP --> Agent: Ready checklist + missing candidate inputs
-Agent --> Human: Explain folders and request CV, role/JD, evidence
+Agent --> Human: Report readiness; ask for CV or confirmed profile facts
 
 Human -> Workspace: Add private CV, evidence, voice, job files
 Agent -> SOP: run local workspace audit
@@ -52,7 +73,8 @@ SOP --> Agent: Safe next action; no private file content sent
 
 legend right
 MCP supplies generic public resources and reads only the manifest supplied by the local SOP.
-Private CVs, profile evidence, photos, signatures, job files, and outputs remain on the candidate computer.
+Original files remain local; selected writing or CV/JD text can be sent for requested checks later.
+Client registration and folder permissions are separate; unresolved prerequisites stop setup.
 endlegend
 
 @enduml
