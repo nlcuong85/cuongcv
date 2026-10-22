@@ -14,7 +14,22 @@ A prominent cream/blue/yellow diagram now has folder/chat/shield icons, connecti
 
 The optional Python project-config helper was tested only in isolated temporary projects: no writes before approval, backup/preservation, idempotence, malformed/conflicting/disabled configuration and symlink escape rejection. It never changes global trust, sandbox or approval settings and reports awaiting-load rather than connected. The helper does not prove that a real client has loaded the new configuration.
 
-Latest checks: **13 code/API tests passed**, **14 browser tests passed**, modern/legacy smoke passed with kit .2, and revised bootstrap PlantUML parsed/rendered. Logs: `/tmp/jobmcp-agentled-tests.log`, `/tmp/jobmcp-agentled-browser.log`. Screenshots: local ignored `output/playwright/free-user-onboarding/artifacts/onboarding-diagrams-T21-pu-1cb36-er-carry-corrected-boundary/agent-map-desktop.png` and `agent-map-mobile.png` beneath the service checkout.
+## Production release and two verification rounds
+
+Deployed on 2026-10-22 after the owner authorized production release and two test rounds. Release commit: `408f111775dcd92be9f6a3186fd6e6324ff68f0f` (`Release Job MCP agent-led onboarding`). Production source path: `/DATA/AppData/application-package-mcp`; compose service/container: `application-package-mcp`; public site: `https://jobmcp.pmlecuong.com/`. The running image is `sha256:c419534cfef4227f16e0fa4ce3f5c3a682d6ad83270ae1cee43477f4bfbb557e`. Runtime reports service `0.2.22`, kit `2026.10.22-onboarding.2`, anonymous access (`tokenRequired: false`), and zero restarts after release.
+
+Rollback was prepared before pulling the release: production tag `rollback-jobmcp-before-onboarding-20261022T2105Z-043d050` points to prior source `043d0507ba1a7ed42991871c5b40c19af7ae8b7d`; active Compose backup is `/root/jobmcp-release-backups/20261022T2105Z/docker-compose.yml` (SHA-256 `c2d5e1fba00e7c9fa76d609baa19ff586c158b82cdf0d7e1b3d1b01a0a9befdf`). No schema, persistent application data, environment values or proxy routes were changed.
+
+| Production round | Checks | Result |
+| --- | --- | --- |
+| 1 — service, web resources and protocol | Franklee loopback `/health`; public `/health` version/kit/privacy fields; `/start`; `/agent-setup.md`; helper MIME and endpoint; current SVG diagram; remote MCP smoke for legacy `initialize` and modern `server/discover`, including tool discovery | Passed. Both protocol eras reported kit `.2`; all expected user-facing resources matched. |
+| 2 — browser UX against the public site | `BASE_URL=https://jobmcp.pmlecuong.com npm run test:browser`; 14 journeys covering diagram, prompt-copy success/fallback, keyboard/focus/disclosures, phone widths 390/430, desktop widths 1366/1920, no-JavaScript, zoom and page errors | 14/14 passed. Artifacts are under `experimental/application-package-mcp/output/playwright/free-user-onboarding/artifacts/`. |
+
+Final runtime recheck: source SHA matches the release commit, container is running the recorded image with restart count `0`, public and internal health both report `.2`, and no recent error-level application log lines were found. Production checkout had pre-existing untracked `.env` and `deploy-backups/` paths; these were left untouched. No rollback was needed.
+
+This release verifies the website and exposed resources. The separate real-client registration/reload and physical-device journeys remain unverified; passing browser tests do not prove a user's AI client will accept project-scoped configuration or that every phone workflow is supported.
+
+Latest local checks before release: **13 code/API tests passed**, **14 browser tests passed**, modern/legacy smoke passed with kit .2, and revised bootstrap PlantUML parsed/rendered. Logs: `/tmp/jobmcp-agentled-tests.log`, `/tmp/jobmcp-agentled-browser.log`. Screenshots: local ignored `output/playwright/free-user-onboarding/artifacts/onboarding-diagrams-T21-pu-1cb36-er-carry-corrected-boundary/agent-map-desktop.png` and `agent-map-mobile.png` beneath the service checkout.
 
 Requirements ONB-01.2/04.1/10.1 were revised, ONB-11 and T22 added, and sample/managed instruction entrypoints synchronized. Real fresh-client registration/reload and physical-device acceptance remain unverified as before. Production has not been updated: the canonical public URLs in copied prompts will serve this new guide only after deployment. The local endpoint is available for inspecting/testing the new guide now.
 
@@ -61,8 +76,8 @@ Manual intent remains [tests.md](tests.md). Every criterion is covered by its ex
 | ONB-06.1-.4 | Capability absence/restoration tests; missing-Poppler operation leaves source untouched; text alternative works; existing local release gates pass regression | Real user-authorized package installation on each OS not performed; no gates bypassed |
 | ONB-07.1-.4 | Named 4 viewport sizes, first-action bounds, readable screenshots, keyboard/disclosure/copy statuses, no-JS and direct links, doubled CSS layout zoom | CSS zoom is a local reflow approximation, not physical-device or native browser UI zoom/screen-reader certification |
 | ONB-08.1-.4 | Anonymous health/tools/protocol contracts; unchanged analytics scope; no new POST tracking from browser flows; public privacy copy reviewed | Anonymous visits remain event estimates; no claim of exact users or measured onboarding conversion |
-| ONB-09.1-.4 | Owner map/docs, tests, runtime restart, evidence ledger and defect repairs | Production checks not run because this request was local implementation |
-| ONB-10.1-.5 | Beginner HTML visual; canonical source syntax/SVG generation; four PNG inspections; browser image decode/MIME/routes, scoped scrolling and source links | Current public site changes only after a later deployment |
+| ONB-09.1-.4 | Owner map/docs, tests, runtime restart, evidence ledger and defect repairs; release commit, rollback reference, two production verification rounds | Real-client/device journeys remain pending |
+| ONB-10.1-.5 | Beginner HTML visual; canonical source syntax/SVG generation; four PNG inspections; browser image decode/MIME/routes, scoped scrolling and source links; deployed page and SVG verified publicly | Physical-device accessibility and supported-client pairing remain pending |
 
 | Manual cases | Execution status |
 | --- | --- |
@@ -70,7 +85,7 @@ Manual intent remains [tests.md](tests.md). Every criterion is covered by its ex
 | T02-T05 | SDK/CLI/source parts passed; actual fresh-client UI and Windows portions pending |
 | T06-T07 | Guide/limitation UI passed; actual hosted account and physical-phone portions pending |
 | T09,T13-T15,T17,T19 | Applicable local script/API/content portions passed; full user/OS/client journeys pending where specified |
-| T20 | Local privacy/runtime checks passed; production portion not run |
+| T20 | Local privacy/runtime checks and public production health/privacy contract passed; no candidate text or user data was submitted during verification |
 
 ## Evidence and reproducibility
 
@@ -91,4 +106,4 @@ Diagram PNG inspection previews: `/tmp/jobmcp-bootstrap-final.png`, `/tmp/jobmcp
 
 ## Review handoff
 
-Open the local `/start` page, choose a client branch, inspect the four-step visual, copy the address/setup prompt, expand materials and dependency help, then open `/technical-flow` at phone width and use a full-size diagram link. The local application is reviewable now. Full all-device acceptance is not asserted; the pending real-client/device checks and subsequent authorized release are explicit follow-up work.
+Open the public `/start` page, choose a client branch, inspect the three-step visual, copy the setup prompt, expand materials and dependency help, then open `/technical-flow` at phone width and use a full-size diagram link. The public web release is live and passed both production rounds. Full all-device acceptance is not asserted; the pending real-client/device checks remain follow-up work.
