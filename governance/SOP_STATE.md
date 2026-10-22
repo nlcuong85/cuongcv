@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-09-23T22:19:46+00:00`
+- updated_at: `2026-10-22T21:02:54+00:00`
 - current_phase: `postflight`
-- active_goal: Updated Job MCP mandatory first-conversation introduction and after-every-run attribution; corrected origin to Heilbronn University and VGU University; committed and deployed v0.2.19 to Franklee, verified health and remote MCP smoke.
-- active_task_id: `None`
-- work_session: `WS-20260923-215224-079674` active=`False`
+- active_goal: Released Job MCP onboarding 0.2.22/kit onboarding.2 to Franklee at commit 408f111775dcd92be9f6a3186fd6e6324ff68f0f. Pre-release rollback tag and Compose backup captured. Both production rounds passed: internal/public health and pages/resources plus modern/legacy MCP smoke; then 14/14 Playwright journeys against public site. Container healthy with zero restarts; acceptance report committed and synced. No rollback needed; real client/device journey remains qualified.
+- active_task_id: `jobmcp-modern-protocol-20261018`
+- work_session: `WS-20261022-205940-304435` active=`False`
 
 ## Required Resume Files
 
@@ -33,14 +33,22 @@ When an agent resumes after context compaction or a new session:
 - `T-0001` [done] Create the CuongCV SOP.py durable governance harness
   - evidence: python3 -m py_compile SOP.py tests/test_sop.py: exit 0; python3 -m unittest -v tests/test_sop.py: 5 tests passed; Concurrent mutation regression: 12 parallel add-task commands persisted without lost updates; python3 SOP.py validate: passed
   - notes: Requested by the user on 2026-06-19 to bring the hardened Focalboard SOP workflow into CuongCV.; CuongCV adaptation includes repository-contained command execution and transaction-wide fcntl locking.
+- `mezzo-dashboard-presets-20261018` [done] Add requested traffic dashboard date presets
+  - evidence: Source validation passed. Local and live Playwright checks confirmed the 1-day default, all requested options, the singular 1-month label, and no horizontal overflow at 320px. Franklee API returned HTTP 200; traffic-dashboard.service is active/enabled, collector timer active, listener remains on 100.124.166.95:3030. Live backup: /var/backups/mezzo-traffic-dashboard/20261018T1736Z-month-label.
+  - notes: Set rolling quick ranges: default 1 day; 7 days, 1/3/6/9 months, 1 year, custom dates, all time. Check narrow phone width and update live dashboard.; User requested default 1 day plus 7-day, 1/3/6/9-month, 1-year and all-time selections; preserve custom dates.
+- `mezzo-dashboard-mobile-tables-20261018` [done] Keep traffic dashboard tables as tables on mobile
+  - evidence: At 320px and 390px, live Franklee tables render with display:table, visible headers, and normal table rows. At 320px, wide tables scroll inside their wrapper (540px table in 262px container) while document width remains 320px. API responds; traffic-dashboard.service and traffic-collect.timer active. Live backup: /var/backups/mezzo-traffic-dashboard/20261018T1740Z-mobile-tables.
+  - notes: Keep tables in semantic table layout on mobile; enable contained horizontal scrolling for wide columns. Update docs and deploy after narrow viewport validation.; User explicitly prefers table layout on mobile instead of card-style rows.
+- `jobmcp-modern-protocol-20261018` [in_progress] Support modern MCP server/discover protocol
+  - notes: Upgrade Job MCP to speak 2026-07-28 protocol while preserving 2025 clients; security-review SDK v2, test both eras locally, back up/tag production, deploy and verify.; User requested fix for failed server/discover requests.
 
 ## Current Handoff
 
-- updated_at: `2026-09-23T22:19:44+00:00`
-- current: Updated Job MCP mandatory first-conversation introduction and after-every-run attribution; corrected origin to Heilbronn University and VGU University; committed and deployed v0.2.19 to Franklee, verified health and remote MCP smoke.
-- next: Monitor production health and collect client feedback; preserve rollback tag rollback-jobmcp-20260923T221701Z-cc24f41.
+- updated_at: `2026-10-22T21:02:52+00:00`
+- current: Released Job MCP onboarding 0.2.22/kit onboarding.2 to Franklee at commit 408f111775dcd92be9f6a3186fd6e6324ff68f0f. Pre-release rollback tag and Compose backup captured. Both production rounds passed: internal/public health and pages/resources plus modern/legacy MCP smoke; then 14/14 Playwright journeys against public site. Container healthy with zero restarts; acceptance report committed and synced. No rollback needed; real client/device journey remains qualified.
+- next: Observe user onboarding feedback and schedule actual fresh-client/physical-device validation when available.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: experimental/application-package-mcp/src/index.ts
+- files: experimental/application-package-mcp/src/onboarding.ts, experimental/application-package-mcp/resources/agent-setup.md, kiro/specs/free-user-onboarding/acceptance.md
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
@@ -65,44 +73,50 @@ When an agent resumes after context compaction or a new session:
 
 ## Recent Commands
 
-- `2026-09-23T22:14:38+00:00` exit=0 `npm explain hono`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221438-559812.log`
-- `2026-09-23T22:14:38+00:00` exit=0 `npm explain qs`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221438-756204.log`
-- `2026-09-23T22:14:50+00:00` exit=0 `npm audit fix`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221449-934333.log`
-- `2026-09-23T22:14:58+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221454-291876.log`
-- `2026-09-23T22:14:58+00:00` exit=0 `npm audit --omit=dev`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221458-411239.log`
-- `2026-09-23T22:15:09+00:00` exit=0 `python3 samples/local-kit-regression/run_regression.py`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221506-568075.log`
-- `2026-09-23T22:15:42+00:00` exit=0 `npm test`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221538-105295.log`
-- `2026-09-23T22:15:42+00:00` exit=0 `node --check tests/smoke-remote.mjs`
-  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20260923-221542-611207.log`
+- `2026-10-18T15:54:28+00:00` exit=0 `npm test`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20261018-155423-712524.log`
+- `2026-10-18T15:55:20+00:00` exit=0 `git commit -m 'fix job MCP modern protocol discovery'`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20261018-155520-175681.log`
+- `2026-10-18T15:55:36+00:00` exit=0 `git commit -m 'explain traffic dashboard MCP operations'`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20261018-155536-378270.log`
+- `2026-10-18T15:59:07+00:00` exit=0 `git commit -m 'record Job MCP protocol release security intake'`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20261018-155907-760741.log`
+- `2026-10-22T18:19:59+00:00` exit=0 `git diff --check`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20261022-181958-980553.log`
+- `2026-10-22T18:20:00+00:00` exit=0 `python3 /Users/pmlecuong/.codex/skills/blog-writer/scripts/run_voice_harness.py docs/optional-google-oauth-account-path-plan.md --mode work`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20261022-182000-859768.log`
+- `2026-10-22T18:35:37+00:00` exit=0 `git diff --check`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20261022-183537-304483.log`
+- `2026-10-22T18:35:39+00:00` exit=0 `python3 /Users/pmlecuong/.codex/skills/blog-writer/scripts/run_voice_harness.py docs/optional-google-oauth-account-path-plan.md --mode work`
+  - log: `/Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/run_logs/20261022-183539-157858.log`
 
 ## Latest Checkpoints
 
-- `2026-09-23T22:14:58+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
-  - commands_run: npm test
-- `2026-09-23T22:14:58+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm audit --omit=dev
-  - commands_run: npm audit --omit=dev
-- `2026-09-23T22:15:09+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: python3 samples/local-kit-regression/run_regression.py
-  - commands_run: python3 samples/local-kit-regression/run_regression.py
-- `2026-09-23T22:15:42+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: npm test
-  - commands_run: npm test
-- `2026-09-23T22:15:42+00:00` run: Ran command with exit code 0 in /Users/pmlecuong/Documents/CuongProjects/CuongCV/experimental/application-package-mcp: node --check tests/smoke-remote.mjs
-  - commands_run: node --check tests/smoke-remote.mjs
-- `2026-09-23T22:16:35+00:00` kiro-done: Completed Kiro task resilient-application-mcp#11: Enforce the Job MCP first-contact welcome and mandatory signature after every MCP run across managed client-agent instructions; reapply changed policy blocks without overwriting unrelated user instructions. _Requirements: R5A-R5C, R19-R23, R28_
-  - next_steps: Commit and push; deploy to Franklee after creating rollback tag, then verify production MCP.
-  - files_changed: experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/resources/onboarding.md; experimental/application-package-mcp/resources/workspace-template/AGENTS.md; experimental/application-package-mcp/resources/workspace-template/CLAUDE.md; experimental/application-package-mcp/resources/workspace-template/COPILOT.md; experimental/application-package-mcp/resources/workspace-template/GEMINI.md
-  - commands_run: python3 SOP.py kiro-done --spec resilient-application-mcp --task 11
-- `2026-09-23T22:19:44+00:00` postflight: Updated Job MCP mandatory first-conversation introduction and after-every-run attribution; corrected origin to Heilbronn University and VGU University; committed and deployed v0.2.19 to Franklee, verified health and remote MCP smoke.
-  - next_steps: Monitor production health and collect client feedback; preserve rollback tag rollback-jobmcp-20260923T221701Z-cc24f41.
-  - files_changed: experimental/application-package-mcp/src/index.ts
+- `2026-10-22T19:49:52+00:00` postflight: Implemented Job MCP onboarding locally at 127.0.0.1:5943/start in three review/repair loops. Final 11 Node tests and 14 Playwright tests passed; kit regression and modern/legacy MCP smoke passed; fresh SDK workspace strict boot and manifest audit returned workspace_current. Four diagram source/SVG pairs updated/rendered/visually inspected; npm audit zero vulnerabilities. Actual fresh desktop UI, Windows/phone/hosted account acceptance remains qualified in acceptance.md; no production deployment.
+  - next_steps: User review local setup and technical diagrams at localhost:5943. Actual-client/device journeys remain pending before universal support or production release is claimed.
+  - files_changed: kiro/specs/free-user-onboarding/acceptance.md; experimental/application-package-mcp/src/onboarding.ts; experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/qa/automation/playwright/playwright.config.mjs
   - commands_run: python3 SOP.py postflight
-- `2026-09-23T22:19:46+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+- `2026-10-22T19:49:53+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
+- `2026-10-22T20:44:16+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
+  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
+  - commands_run: python3 SOP.py preflight
+- `2026-10-22T20:53:17+00:00` postflight: Revised local Job MCP onboarding to folder -> three-line request -> approval-controlled agent setup. Added public preconnection agent guide and project-scoped Codex helper with no-write plan, backup/conflict/symlink tests and no trust/permission escalation. Added prominent blue/cream/yellow diagram; inspected desktop/mobile screenshots. Version 0.2.22/kit onboarding.2. 13 code/API and 14 browser tests passed; fresh SDK workspace current; modern/legacy smoke and spec validation passed. Local only, real client reload/device proof remains qualified.
+  - next_steps: Review agent-led local page at 127.0.0.1:5943/start?revision=agent-led. Production deployment is separate; actual fresh-client configuration loading and physical-device acceptance remain pending.
+  - files_changed: experimental/application-package-mcp/src/onboarding.ts; experimental/application-package-mcp/resources/agent-setup.md; experimental/application-package-mcp/resources/bootstrap/configure_codex_mcp.py; kiro/specs/free-user-onboarding/acceptance.md
+  - commands_run: python3 SOP.py postflight
+- `2026-10-22T20:53:18+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
+- `2026-10-22T20:59:29+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
+  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
+  - commands_run: python3 SOP.py preflight
+- `2026-10-22T21:02:52+00:00` postflight: Released Job MCP onboarding 0.2.22/kit onboarding.2 to Franklee at commit 408f111775dcd92be9f6a3186fd6e6324ff68f0f. Pre-release rollback tag and Compose backup captured. Both production rounds passed: internal/public health and pages/resources plus modern/legacy MCP smoke; then 14/14 Playwright journeys against public site. Container healthy with zero restarts; acceptance report committed and synced. No rollback needed; real client/device journey remains qualified.
+  - next_steps: Observe user onboarding feedback and schedule actual fresh-client/physical-device validation when available.
+  - files_changed: experimental/application-package-mcp/src/onboarding.ts; experimental/application-package-mcp/resources/agent-setup.md; kiro/specs/free-user-onboarding/acceptance.md
+  - commands_run: python3 SOP.py postflight
+- `2026-10-22T21:02:54+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
   - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
   - commands_run: python3 SOP.py postflight
 
