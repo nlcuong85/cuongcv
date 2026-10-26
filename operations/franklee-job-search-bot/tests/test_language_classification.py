@@ -44,6 +44,7 @@ class LanguageClassificationTests(unittest.TestCase):
             ("At least a B1 level of German proficiency is required.", "B1"),
             ("German at B1+ level is mandatory.", "B1+"),
             ("Fluent English; German C1 minimum.", "C1"),
+            ("Fluent German (C1 minimum) and English.", "C1"),
             ("Deutschkenntnisse auf Niveau B2 erforderlich.", "B2"),
         )
         for text, expected in cases:
@@ -51,6 +52,14 @@ class LanguageClassificationTests(unittest.TestCase):
                 result = self.classify(text)
                 self.assertEqual(result["german"]["requirement"], "required")
                 self.assertEqual(result["german"]["cefr_level"], expected)
+
+    def test_confident_english_communication_is_a_requirement(self):
+        result = self.classify(
+            "Communicate clearly and confidently in English and have at least a B1 level of German proficiency."
+        )
+        self.assertEqual(result["english"]["requirement"], "required")
+        self.assertEqual(result["german"]["requirement"], "required")
+        self.assertEqual(result["german"]["cefr_level"], "B1")
 
     def test_vague_good_german_is_required_without_inventing_a_cefr_level(self):
         result = self.classify("Good German skills are important for this role.")

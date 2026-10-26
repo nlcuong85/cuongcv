@@ -1282,8 +1282,8 @@ CEFR_PATTERN = re.compile(
     r"(?:\s+(?:language\s+)?(?:level|niveau))?(?:\s+of)?\s+(?:the\s+)?"
     r"(?P<language>german|deutsch|english|englisch)\b"
     r"|\b(?P<language_after>german|deutschkenntnisse|deutsch|english|englisch)\s*"
-    r"(?:language\s*|level\s*|proficiency\s*|at\s+|auf\s+niveau\s+|auf\s+|niveau\s*)?(?:at\s+least\s+)?"
-    r"(?P<level_after>a1|a2|b1|b2|c1|c2)\b\s*(?P<plus_after>\+|plus)?",
+    r"(?:\s*[\(\[]\s*)?(?:language\s*|level\s*|proficiency\s*|at\s+|auf\s+niveau\s+|auf\s+|niveau\s*)?(?:at\s+least\s+)?"
+    r"(?P<level_after>a1|a2|b1|b2|c1|c2)\b\s*(?P<plus_after>\+|plus)?\s*[\)\]]?",
     re.I,
 )
 LANGUAGE_OPTIONAL_CUES = (
@@ -1302,6 +1302,7 @@ LANGUAGE_NOT_REQUIRED_CUES = (
 )
 LANGUAGE_REQUIRED_CUES = (
     "required", "requirement", "must have", "must speak", "must be able", "working language",
+    "communicate clearly", "communicate confidently", "communicate effectively", "able to communicate", "communication skills",
     "mandatory", "essential", "minimum", "at least", "fluent", "business fluent",
     "very good", "excellent", "good knowledge", "good command", "strong command",
     "proficient", "verhandlungssicher", "fließend", "sehr gute kenntnisse",
