@@ -1,0 +1,31 @@
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam ArrowColor #1F4E79
+title Google sign-in and the Job MCP account page
+actor "Student" as User
+participant "Job MCP website\n/account" as Web
+participant "Auth0 Universal Login" as Auth0
+participant Google
+database "Account database" as DB
+User -> Web: Click Sign in with Google
+Web -> Auth0: Redirect to hosted login
+Auth0 -> Google: OIDC sign-in (openid/email/profile only)
+Google --> Auth0: Verified identity result
+Auth0 --> Web: Return browser session (secure cookie)
+Web -> DB: Find/create account by issuer + subject
+DB --> Web: Account + allowed display fields
+Web --> User: Account dashboard
+User -> Web: View profile / usage / tool preferences
+Web -> DB: Read only this account's records
+DB --> Web: Profile + aggregate usage + preferences
+Web --> User: Dashboard (no CV or checker text)
+User -> Web: Click Connect Codex
+Web --> User: Instructions to add /mcp/account
+note right of Web
+  Browser login does not silently
+  configure Codex. MCP performs its
+  own OAuth authorization flow.
+end note
+@enduml

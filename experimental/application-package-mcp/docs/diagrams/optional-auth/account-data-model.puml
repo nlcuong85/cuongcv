@@ -1,0 +1,50 @@
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam ArrowColor #1F4E79
+title Minimal identity, preference, and privacy-safe usage records
+hide methods
+hide stereotypes
+entity "ACCOUNT" as account {
+  * account_id : opaque UUID
+  --
+  issuer : URL
+  subject : provider subject
+  display_email : optional
+  display_name : optional
+  status : active / disabled
+  created_at : timestamp
+}
+entity "TOOL_PREFERENCE" as pref {
+  * account_id : FK
+  * tool_key : string
+  --
+  enabled : boolean
+  updated_at : timestamp
+}
+entity "USAGE_DAILY" as usage {
+  * account_id : FK or anonymous
+  * date_bucket : date
+  * tool_key : string
+  --
+  success_count : integer
+  failure_count : integer
+  latency_bucket : optional
+}
+entity "QUOTA_POLICY" as quota {
+  * plan_key : string
+  * tool_key : string
+  --
+  allowance : owner-defined
+  window : owner-defined
+  effective_at : timestamp
+}
+account ||--o{ pref : configures
+account ||--o{ usage : aggregates
+quota ..> account : applies only after policy decision
+note bottom
+  Never persist CV/JD/checker text, token/JWT, Google password,
+  prompt, or checker response in these records.
+end note
+@enduml

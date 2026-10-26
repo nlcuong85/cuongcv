@@ -1,0 +1,33 @@
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam ArrowColor #1F4E79
+title Job MCP: preserve free access, add optional account path
+actor User
+participant "Codex / MCP client" as Client
+participant "Job MCP public route\n/mcp (existing)" as Public
+participant "Job MCP account route\n/mcp/account (proposed)" as Private
+participant "Auth0\nGoogle sign-in + token issuer" as Auth
+database "Account + privacy-safe usage" as DB
+User -> Client: Choose free connection
+Client -> Public: Call public tool (no login)
+Public --> Client: Existing free response
+User -> Client: Or choose account connection
+Client -> Private: Start discovery / request protected tool
+Private --> Client: 401 + resource metadata
+Client -> Auth: OAuth code + PKCE (browser login)
+Auth -> User: Continue with Google / consent
+User --> Auth: Approve basic identity + Job MCP access
+Auth --> Client: Authorization code to client callback
+Client -> Auth: Exchange code + PKCE verifier
+Auth --> Client: Job MCP access token
+Client -> Private: Call tool + Bearer token
+Private -> Private: Verify issuer, audience, expiry, scope
+Private -> DB: Store account mapping + usage metadata only
+Private --> Client: Same checker output; no content retained
+note right of Public
+  The existing anonymous path stays
+  independently available. No login wall.
+end note
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam ArrowColor #1F4E79
+title Account connection lifecycle and safe recovery
+start
+:MCP client sends protected request;
+if (Bearer token valid for Job MCP?) then (yes)
+  if (Account active and tool enabled?) then (yes)
+    :Run checker with selected text transiently;
+    :Record tool/time/outcome metadata only;
+    :Return result;
+  else (no)
+    :Deny protected action safely;
+    :Explain disabled tool or account state;
+  endif
+else (no)
+  :Return 401 + protected-resource metadata;
+  :Client starts authorization-code + PKCE;
+  if (User completes Google sign-in and consent?) then (yes)
+    :Auth0 issues Job MCP token;
+    :Client retries with token;
+  else (no)
+    :Leave account path disconnected;
+    :User may continue via anonymous /mcp;
+  endif
+endif
+:If user disconnects, revoke grant / disable account;
+:Explain any short access-token revocation delay;
+stop
+@enduml

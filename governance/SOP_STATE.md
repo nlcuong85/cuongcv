@@ -15,11 +15,11 @@ When an agent resumes after context compaction or a new session:
 ## Current State
 
 - repo: `/Users/pmlecuong/Documents/CuongProjects/CuongCV`
-- updated_at: `2026-10-22T21:02:54+00:00`
+- updated_at: `2026-10-22T23:28:53+00:00`
 - current_phase: `postflight`
-- active_goal: Released Job MCP onboarding 0.2.22/kit onboarding.2 to Franklee at commit 408f111775dcd92be9f6a3186fd6e6324ff68f0f. Pre-release rollback tag and Compose backup captured. Both production rounds passed: internal/public health and pages/resources plus modern/legacy MCP smoke; then 14/14 Playwright journeys against public site. Container healthy with zero restarts; acceptance report committed and synced. No rollback needed; real client/device journey remains qualified.
+- active_goal: Released Job MCP 0.2.23 to production; public browser validation passed 19/19 and health confirms 0.2.23.
 - active_task_id: `jobmcp-modern-protocol-20261018`
-- work_session: `WS-20261022-205940-304435` active=`False`
+- work_session: `WS-20261022-232231-125095` active=`False`
 
 ## Required Resume Files
 
@@ -44,11 +44,11 @@ When an agent resumes after context compaction or a new session:
 
 ## Current Handoff
 
-- updated_at: `2026-10-22T21:02:52+00:00`
-- current: Released Job MCP onboarding 0.2.22/kit onboarding.2 to Franklee at commit 408f111775dcd92be9f6a3186fd6e6324ff68f0f. Pre-release rollback tag and Compose backup captured. Both production rounds passed: internal/public health and pages/resources plus modern/legacy MCP smoke; then 14/14 Playwright journeys against public site. Container healthy with zero restarts; acceptance report committed and synced. No rollback needed; real client/device journey remains qualified.
-- next: Observe user onboarding feedback and schedule actual fresh-client/physical-device validation when available.
+- updated_at: `2026-10-22T23:28:51+00:00`
+- current: Released Job MCP 0.2.23 to production; public browser validation passed 19/19 and health confirms 0.2.23.
+- next: Monitor production health and activity snapshot; rollback to pre-jobmcp-public-activity-20261023 (f467f45) if regression appears.
 - risk: Do not resume from stale chat context; run SOP preflight/status/resume and verify filesystem drift first.
-- files: experimental/application-package-mcp/src/onboarding.ts, experimental/application-package-mcp/resources/agent-setup.md, kiro/specs/free-user-onboarding/acceptance.md
+- files: experimental/application-package-mcp/src/index.ts
 - commands: python3 SOP.py postflight
 
 ## Kiro Execution State
@@ -92,23 +92,6 @@ When an agent resumes after context compaction or a new session:
 
 ## Latest Checkpoints
 
-- `2026-10-22T19:49:52+00:00` postflight: Implemented Job MCP onboarding locally at 127.0.0.1:5943/start in three review/repair loops. Final 11 Node tests and 14 Playwright tests passed; kit regression and modern/legacy MCP smoke passed; fresh SDK workspace strict boot and manifest audit returned workspace_current. Four diagram source/SVG pairs updated/rendered/visually inspected; npm audit zero vulnerabilities. Actual fresh desktop UI, Windows/phone/hosted account acceptance remains qualified in acceptance.md; no production deployment.
-  - next_steps: User review local setup and technical diagrams at localhost:5943. Actual-client/device journeys remain pending before universal support or production release is claimed.
-  - files_changed: kiro/specs/free-user-onboarding/acceptance.md; experimental/application-package-mcp/src/onboarding.ts; experimental/application-package-mcp/src/index.ts; experimental/application-package-mcp/qa/automation/playwright/playwright.config.mjs
-  - commands_run: python3 SOP.py postflight
-- `2026-10-22T19:49:53+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
-- `2026-10-22T20:44:16+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
-  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
-  - commands_run: python3 SOP.py preflight
-- `2026-10-22T20:53:17+00:00` postflight: Revised local Job MCP onboarding to folder -> three-line request -> approval-controlled agent setup. Added public preconnection agent guide and project-scoped Codex helper with no-write plan, backup/conflict/symlink tests and no trust/permission escalation. Added prominent blue/cream/yellow diagram; inspected desktop/mobile screenshots. Version 0.2.22/kit onboarding.2. 13 code/API and 14 browser tests passed; fresh SDK workspace current; modern/legacy smoke and spec validation passed. Local only, real client reload/device proof remains qualified.
-  - next_steps: Review agent-led local page at 127.0.0.1:5943/start?revision=agent-led. Production deployment is separate; actual fresh-client configuration loading and physical-device acceptance remain pending.
-  - files_changed: experimental/application-package-mcp/src/onboarding.ts; experimental/application-package-mcp/resources/agent-setup.md; experimental/application-package-mcp/resources/bootstrap/configure_codex_mcp.py; kiro/specs/free-user-onboarding/acceptance.md
-  - commands_run: python3 SOP.py postflight
-- `2026-10-22T20:53:18+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
-  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
-  - commands_run: python3 SOP.py postflight
 - `2026-10-22T20:59:29+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
   - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
   - commands_run: python3 SOP.py preflight
@@ -117,6 +100,23 @@ When an agent resumes after context compaction or a new session:
   - files_changed: experimental/application-package-mcp/src/onboarding.ts; experimental/application-package-mcp/resources/agent-setup.md; kiro/specs/free-user-onboarding/acceptance.md
   - commands_run: python3 SOP.py postflight
 - `2026-10-22T21:02:54+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
+- `2026-10-22T21:57:56+00:00` preflight: Preflight completed: status, resume brief, and audit check were run.
+  - next_steps: Set or verify active task, update handoff, then use SOP.py run for commands where practical.
+  - commands_run: python3 SOP.py preflight
+- `2026-10-22T22:07:49+00:00` jobmcp-public-usage-metrics: Implemented local-only Job MCP public homepage activity metrics using a privacy-minimized 30-day aggregate snapshot; refreshed the compact pie-chart UX after user feedback. No production deployment performed. 13/13 MCP tests, dashboard aggregation unittest, and 2/2 mobile/desktop Playwright checks passed.
+  - next_steps: If explicitly requested, deploy with Franklee volume mount and collector installer, then verify public homepage and private dashboard; metrics can be scraped from visible HTML, so retain only coarse aggregates.
+  - files_changed: experimental/application-package-mcp/src/index.ts; ops/mezzo-traffic-dashboard/traffic_dashboard.py; experimental/application-package-mcp/qa/automation/playwright/public-activity.spec.mjs
+  - commands_run: python3 SOP.py postflight
+- `2026-10-22T22:07:51+00:00` jobmcp-public-usage-metrics-snapshot: Postflight recorded fresh repository snapshot.
+  - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
+  - commands_run: python3 SOP.py postflight
+- `2026-10-22T23:28:51+00:00` postflight: Released Job MCP 0.2.23 to production; public browser validation passed 19/19 and health confirms 0.2.23.
+  - next_steps: Monitor production health and activity snapshot; rollback to pre-jobmcp-public-activity-20261023 (f467f45) if regression appears.
+  - files_changed: experimental/application-package-mcp/src/index.ts
+  - commands_run: python3 SOP.py postflight
+- `2026-10-22T23:28:53+00:00` postflight-snapshot: Postflight recorded fresh repository snapshot.
   - files_changed: /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/.sop/state.json; /Users/pmlecuong/Documents/CuongProjects/CuongCV/governance/SOP_STATE.md
   - commands_run: python3 SOP.py postflight
 
