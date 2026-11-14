@@ -34,6 +34,20 @@ try {
   if(auditResult.isError) throw new Error(auditResult.content[0].text);
   const audit=JSON.parse(auditResult.content[0].text);
   if(audit.status!=='workspace_current') throw new Error(`Incomplete kit after bootstrap: ${JSON.stringify({missing:audit.missing_paths, mismatches:audit.managed_hash_mismatches})}`);
+  const agentsPath=path.join(root,'AGENTS.md');
+  await writeFile(agentsPath,`${await readFile(agentsPath,'utf8')}\n## Candidate-owned note\nPlease keep my draft files local.\n`);
+  const reinstall=spawnSync('python3',[installer,'--root',root,'--base-url',baseUrl.href,'--expected-sha256',bootstrap.archive_sha256,'--approve-workspace'],{encoding:'utf8'});
+  if(reinstall.status!==0) throw new Error(`Safe kit reinstall failed: ${reinstall.stderr}\n${reinstall.stdout}`);
+  if(!(await readFile(agentsPath,'utf8')).includes('Candidate-owned note')) throw new Error('Safe kit reinstall removed candidate-owned agent guidance');
+  run(['application-kit/scripts/workspace_audit.py','--root','.']);
+  const customizedManifest=JSON.parse(await readFile(path.join(root,'.mcp/workspace-manifest.json'),'utf8'));
+  const customizedAudit=JSON.parse((await client.callTool({name:'audit_workspace_manifest',arguments:customizedManifest})).content[0].text);
+  if(customizedAudit.status!=='workspace_current') throw new Error(`Candidate-owned agent note caused false managed drift: ${JSON.stringify(customizedAudit.managed_hash_mismatches)}`);
+  await writeFile(agentsPath,(await readFile(agentsPath,'utf8')).replace('<!-- JOB-MCP-MANDATORY-POLICY:START -->','<!-- JOB-MCP-MANDATORY-POLICY:STALE -->'));
+  run(['application-kit/scripts/workspace_audit.py','--root','.']);
+  const tamperedManifest=JSON.parse(await readFile(path.join(root,'.mcp/workspace-manifest.json'),'utf8'));
+  const tamperedAudit=JSON.parse((await client.callTool({name:'audit_workspace_manifest',arguments:tamperedManifest})).content[0].text);
+  if(tamperedAudit.status!=='action_required'||!tamperedAudit.managed_hash_mismatches.includes('AGENTS.md')) throw new Error('Changed mandatory agent policy was not rejected');
   // Fresh generic setup need not have candidate decisions answered yet.
-  console.log(JSON.stringify({ok:true,endpoint,workspace:root,proof:'SDK connection, generic scaffold, local strict boot and safe manifest audit',auditStatus:audit.status,limitation:'Does not prove client UI registration, user account eligibility or physical phone access.'},null,2));
+  console.log(JSON.stringify({ok:true,endpoint,workspace:root,proof:'SDK connection, generic scaffold, local strict boot and safe manifest audit',auditStatus:audit.status,candidateAgentNotePreserved:true,tamperedPolicyRejected:true,limitation:'Does not prove client UI registration, user account eligibility or physical phone access.'},null,2));
 } finally { await client.close(); }

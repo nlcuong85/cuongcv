@@ -13,7 +13,7 @@ import os
 import time
 from pathlib import Path
 
-KIT_VERSION = "2026.11.14-doc.1"
+KIT_VERSION = "2026.11.14-policy.1"
 MANAGED = [
     "AGENTS.md", "CLAUDE.md", "COPILOT.md", "GEMINI.md",
     "scripts/application_sop.py", "scripts/mcp_check_client.mjs", "scripts/ats_text_extract.py",
@@ -39,6 +39,9 @@ MANAGED = sorted(set(MANAGED) | {
 })
 REQUIRED = ["profile", "voice", "candidate/source", "jobs", "applications", ".mcp"]
 EXCLUDED = {".git", "node_modules", "__pycache__", ".application-sop", ".DS_Store"}
+AGENT_FILES = {"AGENTS.md", "CLAUDE.md", "COPILOT.md", "GEMINI.md"}
+POLICY_START = "<!-- JOB-MCP-MANDATORY-POLICY:START -->"
+POLICY_END = "<!-- JOB-MCP-MANDATORY-POLICY:END -->"
 
 
 def digest(path: Path) -> str:
@@ -47,6 +50,17 @@ def digest(path: Path) -> str:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             value.update(block)
     return value.hexdigest()
+
+
+def managed_digest(path: Path, relative: str) -> str:
+    if relative not in AGENT_FILES:
+        return digest(path)
+    content = path.read_text(encoding="utf-8")
+    start = content.find(POLICY_START)
+    end = content.find(POLICY_END, start)
+    if start < 0 or end < 0:
+        return digest(path)
+    return hashlib.sha256(content[start:end + len(POLICY_END)].encode("utf-8")).hexdigest()
 
 
 def audit(root: Path) -> tuple[dict, dict]:
@@ -66,7 +80,7 @@ def audit(root: Path) -> tuple[dict, dict]:
             duplicate_names[name] = duplicate_names.get(name, 0) + 1
             if stat.st_size > 5 * 1024 * 1024:
                 large.append({"path": relative, "bytes": stat.st_size})
-    hashes = {item: digest(root / item) for item in MANAGED if (root / item).is_file()}
+    hashes = {item: managed_digest(root / item, item) for item in MANAGED if (root / item).is_file()}
     decisions = {}
     state_path = root / ".application-sop" / "state.json"
     if state_path.exists():

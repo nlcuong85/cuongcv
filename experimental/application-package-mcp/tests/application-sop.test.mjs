@@ -50,6 +50,14 @@ test("local Application SOP requires decisions, current audit, and distinct cove
   await mkdir(path.join(workspace, "candidate"), { recursive: true });
   await writeFile(path.join(workspace, "candidate/notes.txt"), "Candidate-added evidence after setup.");
   assert.match(sop(workspace, "boot", "--strict"), /"status": "ready"/);
+  const agentFile = path.join(workspace, "AGENTS.md");
+  const canonicalAgentText = await readFile(agentFile, "utf8");
+  await writeFile(agentFile, `${canonicalAgentText}\n## Candidate-owned note\nPreserve my files.\n`);
+  assert.match(sop(workspace, "boot", "--strict"), /"status": "ready"/);
+  await writeFile(agentFile, (await readFile(agentFile, "utf8")).replace("<!-- JOB-MCP-MANDATORY-POLICY:START -->", "<!-- JOB-MCP-MANDATORY-POLICY:STALE -->"));
+  const alteredPolicyBoot = spawnSync("python3", [path.join(workspace, "application-kit/scripts/application_sop.py"), "--root", workspace, "boot", "--strict"], { encoding: "utf8" });
+  assert.notEqual(alteredPolicyBoot.status, 0);
+  await writeFile(agentFile, `${canonicalAgentText}\n## Candidate-owned note\nPreserve my files.\n`);
   const template = path.join(workspace, "application-kit/templates/cv_english_modern.html");
   await writeFile(template, `${await readFile(template, "utf8")}\n<!-- verified kit update -->\n`);
   const staleManagedBoot = spawnSync("python3", [path.join(workspace, "application-kit/scripts/application_sop.py"), "--root", workspace, "boot", "--strict"], { encoding: "utf8" });

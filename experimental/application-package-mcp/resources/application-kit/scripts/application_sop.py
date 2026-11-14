@@ -30,6 +30,9 @@ STATE_SCHEMA = 1
 STATE_DIR = ".application-sop"
 PROTECTED_PREFIXES = ("candidate/", "profile/", "voice/", "jobs/", "applications/")
 ALLOWED_SUFFIXES = {".md", ".html", ".pdf", ".json", ".txt", ".jpg", ".jpeg", ".png", ".docx", ".py", ".mjs", ".tex", ".ttf", ".svg"}
+AGENT_FILES = {"AGENTS.md", "CLAUDE.md", "COPILOT.md", "GEMINI.md"}
+POLICY_START = "<!-- JOB-MCP-MANDATORY-POLICY:START -->"
+POLICY_END = "<!-- JOB-MCP-MANDATORY-POLICY:END -->"
 
 
 def now() -> str:
@@ -49,6 +52,17 @@ def sha256(path: Path) -> str:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def managed_sha256(path: Path, relative: str) -> str:
+    if relative not in AGENT_FILES:
+        return sha256(path)
+    content = path.read_text(encoding="utf-8")
+    start = content.find(POLICY_START)
+    end = content.find(POLICY_END, start)
+    if start < 0 or end < 0:
+        return sha256(path)
+    return hashlib.sha256(content[start:end + len(POLICY_END)].encode("utf-8")).hexdigest()
 
 
 def default_state(root: Path) -> dict[str, Any]:
@@ -158,7 +172,7 @@ def inventory(root: Path) -> dict[str, dict[str, Any]]:
             if path.suffix.lower() not in ALLOWED_SUFFIXES or rel.startswith(".mcp/"):
                 continue
             stat = path.stat()
-            values[rel] = {"size": stat.st_size, "sha256": sha256(path)}
+            values[rel] = {"size": stat.st_size, "sha256": managed_sha256(path, rel)}
     return values
 
 
@@ -412,7 +426,7 @@ def cmd_record_manifest(args: argparse.Namespace) -> int:
         recorded_hashes = {}
         for relative, digest in expected.items():
             path = root / safe_rel(relative)
-            if not managed_path(relative) or not path.is_file() or path.is_symlink() or sha256(path) != digest:
+            if not managed_path(relative) or not path.is_file() or path.is_symlink() or managed_sha256(path, relative) != digest:
                 raise SystemExit("Managed files changed since the workspace manifest was built; audit again.")
             recorded_hashes[relative] = digest
     _, _, lock_path, _ = paths(root)

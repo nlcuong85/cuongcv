@@ -75,6 +75,8 @@ Advanced tone, reader, convention, and AI-like-pattern feedback is handled by th
 
 The local kit includes workflow gates, optional interview prep, general writing review, and a public client, but **not** checker logic: one recorded CV review loop, three distinct cover-letter review loops, and two interview-prep review loops are required before an agent describes those artifacts as ready. General writing can use one, two, or three review loops. Interview prep is optional; if accepted, the local agent asks for interview details, culture-fit/outside-work context, concerns, and real examples before creating `interview-prep.md`, then sends only selected prep sections to the MCP checker. The public `audit_workspace_manifest` tool receives only a structure/version manifest; it cannot read a student's disk or document content.
 
+The four local agent instruction files have a marked mandatory Job MCP policy block. Kit updates preserve candidate-owned instructions outside that block; remote audit and local SOP hash only the mandatory block for those files. Scripts and templates remain whole-file managed.
+
 For a fresh or stale workspace, call `get_complete_bootstrap`. It returns the installer URL and SHA-256 of the complete public archive, including fonts and visual assets. The installer writes only inside a user-approved dedicated folder, preserves candidate data, and produces a privacy-safe manifest. Require `workspace_current` from `audit_workspace_manifest` before application work; the older text-only template and kit calls are not complete-install proof. For every new JD, the local SOP prints a mandatory employment-type question and refuses to record the decision without the user's answer tied to the current JD hash.
 
 ## Development

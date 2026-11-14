@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-14 Safe agent-file updates
+
+- Workspace audits and the local SOP now hash only the mandatory Job MCP policy block in `AGENTS.md`, `CLAUDE.md`, `COPILOT.md`, and `GEMINI.md`.
+- Candidate-owned instructions outside that block survive kit updates and do not create false managed-file drift. Changes to the mandatory block still fail the audit.
+
 ## 2026-11-14 CV writing-review routing
 
 - Application writing packets now identify CV/resume versus cover letter, so CVs are not judged by cover-letter story and paragraph rules.
