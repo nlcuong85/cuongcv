@@ -193,7 +193,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.match(docsPage, /href="\/favicon\.svg"/);
     assert.match(docsPage, /Latest product updates/);
     assert.match(docsPage, /Agent-led first setup/);
-    assert.match(docsPage, /Current local build:[\s\S]*2026\.11\.14-sop\.1/);
+    assert.match(docsPage, /Current local build:[\s\S]*2026\.11\.14-doc\.1/);
     assert.match(docsPage, /Start with your folder; the agent handles connection/);
     assert.match(docsPage, /What the local application kit prepares/);
     assert.match(docsPage, /Available MCP tools/);
@@ -428,11 +428,24 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.equal(check.workspace_update_required.mandatory_agent_policy.maker, "Le Cuong Nguyen");
       assert.match(check.workspace_update_required.mandatory_agent_policy.mandatory_signature_after_every_run, /After every MCP tool call\/run/);
       assert.equal(check.mode, "application");
+      assert.equal(check.documentKind, "cover_letter");
       assert.equal(check.privacy.stored, false);
       assert.ok(check.issues.some((issue) => issue.code === "generic_ai_phrase"));
       assert.equal(check.styleReview.releaseDecision, "revise");
       assert.ok(check.styleReview.prioritySignals.includes("generic_ai_phrase"));
       assert.match(check.styleReview.limitations, /not an authorship verdict/i);
+
+      const cvCheckResult = await client.callTool({
+        name: "check_writing_human_fit",
+        arguments: {
+          mode: "application",
+          document_kind: "cv",
+          text: "Information Systems student. Documented a four-step intake guide, checked an unclear handoff with a peer reviewer, and revised the guide. This was a university class exercise, not professional SAP experience."
+        }
+      });
+      const cvCheck = JSON.parse(cvCheckResult.content[0].text);
+      assert.equal(cvCheck.documentKind, "cv");
+      assert.ok(!cvCheck.issues.some((issue) => issue.code === "missing_personal_work_anchor"));
 
       const atsResult = await client.callTool({
         name: "check_ats_resume_fit",
@@ -548,7 +561,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       const healthResult = await client.callTool({ name: "health", arguments: {} });
       const health = JSON.parse(healthResult.content[0].text);
       assert.equal(health.ok, true);
-      assert.equal(health.version, "0.2.28");
+      assert.equal(health.version, "0.2.29");
     }, "auto");
 
     const promptsPage = await fetch(`http://127.0.0.1:${port}/sample-prompts`, { redirect: "manual" });

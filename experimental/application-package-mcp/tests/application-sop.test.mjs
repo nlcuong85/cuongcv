@@ -460,4 +460,13 @@ test("writing review loop prepares chunked MCP packets and report", async () => 
   assert.equal(reportOutput, "writing-reviews/academic-test/writing-review-report.md");
   const report = await readFile(path.join(workspace, reportOutput), "utf8");
   assert.match(report, /ready_for_human_review/);
+  await writeFile(path.join(workspace, "drafts/cv.md"), "# Candidate\n\n## Experience\n\n- Documented a four-step guide and checked an unclear handoff with a peer reviewer.\n");
+  execFileSync("python3", [
+    path.join(workspace, "application-kit/scripts/writing_review_loop.py"), "--root", workspace,
+    "prepare", "--input", "drafts/cv.md", "--mode", "application", "--document-kind", "cv",
+    "--loops", "1", "--output-dir", "writing-reviews/cv-test",
+  ], { cwd: root, encoding: "utf8" });
+  const cvPacket = JSON.parse(await readFile(path.join(workspace, "writing-reviews/cv-test/loop-1/chunk-001-input.json"), "utf8"));
+  assert.equal(cvPacket.document_kind, "cv");
+  assert.equal(cvPacket.mode, "application");
 });

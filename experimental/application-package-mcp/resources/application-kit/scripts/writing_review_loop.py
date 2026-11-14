@@ -143,6 +143,9 @@ def cmd_prepare(args: argparse.Namespace) -> int:
     mode = args.mode.lower()
     if mode not in VALID_MODES:
         raise SystemExit(f"Unsupported mode: {args.mode}")
+    if args.document_kind and mode != "application":
+        raise SystemExit("--document-kind is only valid with --mode application.")
+    document_kind = (args.document_kind or "cover_letter") if mode == "application" else None
     loops = max(1, min(MAX_LOOPS, args.loops))
     text = normalize(read_input(source))
     if not text:
@@ -162,6 +165,8 @@ def cmd_prepare(args: argparse.Namespace) -> int:
                 "purpose": f"General writing MCP review loop {loop}/{loops}: {args.purpose}",
                 "text": chunk,
             }
+            if document_kind:
+                payload["document_kind"] = document_kind
             filename = f"chunk-{index:03d}-input.json"
             (loop_dir / filename).write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
             chunk_records.append({
@@ -176,6 +181,7 @@ def cmd_prepare(args: argparse.Namespace) -> int:
         "created_at": now(),
         "source": args.input,
         "mode": mode,
+        "document_kind": document_kind,
         "loops_requested": loops,
         "chunk_count": len(chunks),
         "max_words": args.max_words,
@@ -209,6 +215,7 @@ def cmd_report(args: argparse.Namespace) -> int:
         "",
         f"- Source: `{manifest['source']}`",
         f"- Mode: `{manifest['mode']}`",
+        f"- Document kind: `{manifest.get('document_kind') or 'not applicable'}`",
         f"- Loops requested: {manifest['loops_requested']}",
         f"- Chunks: {manifest['chunk_count']}",
         "",
@@ -252,6 +259,7 @@ def parser() -> argparse.ArgumentParser:
     prepare = commands.add_parser("prepare")
     prepare.add_argument("--input", required=True)
     prepare.add_argument("--mode", choices=sorted(VALID_MODES), default="general")
+    prepare.add_argument("--document-kind", choices=["cover_letter", "cv", "resume", "other"])
     prepare.add_argument("--loops", type=int, default=1)
     prepare.add_argument("--max-words", type=int, default=DEFAULT_CHUNK_WORDS)
     prepare.add_argument("--audience", default="human reader")

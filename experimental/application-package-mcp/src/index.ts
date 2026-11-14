@@ -22,7 +22,7 @@ import {
   samplePromptsDocument
 } from "./resources.js";
 
-const VERSION = "0.2.28";
+const VERSION = "0.2.29";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
@@ -159,7 +159,7 @@ const PUBLIC_TOOLS = [
   "suggest_writing_revision"
 ];
 
-const WORKSPACE_KIT_VERSION = "2026.11.14-sop.1";
+const WORKSPACE_KIT_VERSION = "2026.11.14-doc.1";
 const REQUIRED_WORKSPACE_PATHS = [
   "AGENTS.md",
   "CLAUDE.md",
@@ -588,15 +588,18 @@ async function createServer(): Promise<McpServer> {
           .enum(["application", "academic", "blog", "work", "social", "general"])
           .default("general")
           .describe("Writing mode to evaluate."),
+        document_kind: z.enum(["cover_letter", "cv", "resume", "other"]).optional()
+          .describe("For application mode, identify whether the selected text is a cover letter or CV/resume. Defaults to cover_letter for older clients."),
         audience: z.string().max(200).optional().describe("Optional target reader, such as recruiter, professor, supervisor, or public reader."),
         purpose: z.string().max(300).optional().describe("Optional purpose of the text.")
       }
     },
-    async ({ text, mode, audience, purpose }) =>
+    async ({ text, mode, document_kind, audience, purpose }) =>
       jsonText(
         checkWritingHumanFit({
           text,
           mode,
+          document_kind,
           audience,
           purpose
         })
@@ -615,14 +618,17 @@ async function createServer(): Promise<McpServer> {
           .enum(["application", "academic", "blog", "work", "social", "general"])
           .default("general")
           .describe("Writing mode to evaluate."),
+        document_kind: z.enum(["cover_letter", "cv", "resume", "other"]).optional()
+          .describe("For application mode, select cover_letter or cv/resume. Defaults to cover_letter."),
         audience: z.string().max(200).optional().describe("Optional target reader."),
         purpose: z.string().max(300).optional().describe("Optional purpose of the text.")
       }
     },
-    async ({ text, mode, audience, purpose }) => {
-      const result = checkWritingHumanFit({ text, mode, audience, purpose });
+    async ({ text, mode, document_kind, audience, purpose }) => {
+      const result = checkWritingHumanFit({ text, mode, document_kind, audience, purpose });
       return jsonText({
         mode: result.mode,
+        documentKind: result.documentKind,
         riskLevel: result.riskLevel,
         summary: result.summary,
         styleReview: result.styleReview,
@@ -1751,7 +1757,7 @@ function renderDocsPage(): string {
       <p>This service gives local AI agents a workspace kit, prompt rules, folder-audit guidance, selected-text writing review, and ATS-style resume/job-description matching. It is designed for students and early-career candidates who need practical help preparing job documents without turning their private career folder into a server-side profile.</p>
       <div class="doc-callout"><strong>Core model</strong><p>The local agent does the private work. The MCP supplies generic structure, public instructions, version checks, and selected-text feedback. The MCP cannot browse the user's machine.</p></div>
       <h2 id="latest-updates">Latest product updates</h2>
-      <p><strong>Current local build:</strong> MCP 0.2.28 · workspace kit 2026.11.14-sop.1.</p>
+      <p><strong>Current local build:</strong> MCP 0.2.29 · workspace kit 2026.11.14-doc.1.</p>
       <ul><li><strong>Agent-led first setup:</strong> open one private folder, paste one setup request, and let the agent read the setup guide and configure the MCP where the client permits. Approve client prompts yourself. Manual settings are a fallback, not the first step.</li><li><strong>Safer folder access:</strong> the agent should work inside the folder you opened, preserve existing files, and request only the access needed there. Job MCP cannot grant operating-system permissions or silently enable full-disk access.</li><li><strong>Task-specific recovery:</strong> connecting the remote MCP is separate from tools needed for local PDF, DOCX, or LaTeX work. The kit checks the capability needed for the selected task and explains missing tools instead of treating every optional converter as a setup prerequisite.</li></ul>
       <h2 id="setup">Start with your folder; the agent handles connection</h2>
       <ol><li>On a computer, create or choose one private, writable job-application folder and open it in an AI app that can access local files and connect to remote MCP.</li><li>Paste the <a href="/start#run-setup">setup prompt from the Start page</a>. It points the agent to <a href="/agent-setup.md">the automatic setup guide</a> and asks it to configure Job MCP and prepare the workspace.</li><li>Review and approve client permission prompts. The agent should report whether tools are available and ask for your CV or confirmed work/education facts.</li></ol>

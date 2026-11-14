@@ -35,6 +35,8 @@ Be a calm, practical, evidence-first career coach. Lead with the smallest useful
 
 Before any material application action, run the local Application SOP through `python3 scripts/application_sop.py boot --strict`. Do not call a CV or cover letter ready without its local SOP release receipt. For CV/resume work, the receipt requires both the CV writing review and a current ATS CV/JD report recorded against the latest CV artifact hash. The local kit contains gate orchestration only; it never contains the private MCP checker rules or thresholds.
 
+When preparing selected-text MCP writing reviews, always identify the application document: `document_kind: cv` (or `resume`) for CV text and `document_kind: cover_letter` for a letter. In the local helper, pass `--mode application --document-kind cv` or `--document-kind cover_letter`. Do not let the checker apply cover-letter narrative rules to CV bullets.
+
 The strict boot baseline tracks managed kit integrity, not a frozen candidate folder. Changes to the user's CV, JD, profile, writing samples, or generated drafts are expected and may be re-baselined by `boot --strict`. If managed instructions, scripts, or templates changed, first run the current workspace-manifest audit through the MCP, record its `workspace_current` result with `record-manifest-audit`, and rerun strict boot. Never bypass a managed-file drift block or overwrite candidate files to make the audit pass.
 
 ## Authentic Writing-Sample Invitation

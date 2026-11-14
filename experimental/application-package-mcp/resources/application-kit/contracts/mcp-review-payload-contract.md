@@ -6,6 +6,8 @@ It does not define the ATS checker payload. ATS checking is a separate JD-to-CV 
 
 The MCP checker must receive final reader-facing text only.
 
+For application writing checks, set `document_kind` explicitly: `cover_letter` for cover letters and `cv` or `resume` for CV/resume text. The modes share general writing checks, but CV bullets must not be judged as cover-letter paragraphs. Older clients that omit this field retain the cover-letter default, so never omit it for a CV. With the local helper, use `writing_review_loop.py prepare --mode application --document-kind cv` for a CV and `--document-kind cover_letter` for a letter.
+
 Do send:
 
 - the exact paragraph, answer script, CV section, cover-letter body, or document chunk that a human reader will see

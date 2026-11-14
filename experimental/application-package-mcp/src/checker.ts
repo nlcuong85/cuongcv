@@ -1,4 +1,5 @@
 export type WritingMode = "application" | "academic" | "blog" | "work" | "social" | "general";
+export type ApplicationDocumentKind = "cover_letter" | "cv" | "resume" | "other";
 
 export type CheckerIssue = {
   code: string;
@@ -10,6 +11,7 @@ export type CheckerIssue = {
 export type CheckerResult = {
   ok: boolean;
   mode: WritingMode;
+  documentKind?: ApplicationDocumentKind;
   riskLevel: "low" | "medium" | "high";
   summary: string;
   issues: CheckerIssue[];
@@ -425,12 +427,15 @@ export function parseWritingMode(mode: string | undefined): WritingMode {
 export function checkWritingHumanFit(input: {
   text: string;
   mode?: string;
+  document_kind?: ApplicationDocumentKind;
   audience?: string;
   purpose?: string;
 }): CheckerResult {
   const mode = parseWritingMode(input.mode);
+  const documentKind = mode === "application" ? input.document_kind ?? "cover_letter" : undefined;
+  const isCv = documentKind === "cv" || documentKind === "resume";
   const rawText = input.text || "";
-  const auditableRawText = mode === "application" ? applicationBody(rawText) : rawText;
+  const auditableRawText = mode === "application" && !isCv ? applicationBody(rawText) : rawText;
   const text = normalizeText(auditableRawText);
   const lowered = text.toLowerCase();
   const sentences = splitSentences(text);
@@ -541,7 +546,7 @@ export function checkWritingHumanFit(input: {
     });
   }
 
-  if (mode === "application") {
+  if (mode === "application" && !isCv) {
     if (!/\b(role|position|team|work|project|requirement|company|mission|posting)\b/i.test(text)) {
       addIssue(issues, {
         code: "missing_role_trigger",
@@ -791,6 +796,7 @@ export function checkWritingHumanFit(input: {
   return {
     ok: hardFailures === 0,
     mode,
+    documentKind,
     riskLevel,
     summary:
       riskLevel === "low"
@@ -799,8 +805,8 @@ export function checkWritingHumanFit(input: {
           ? "The writing has some generic or mechanically polished signals. Revise the highlighted areas before final use."
           : "The writing needs revision before final use. Fix errors first, then reduce generic rhythm and unsupported claims.",
     issues,
-    revisionPlan: buildRevisionPlan(mode, issues),
-    styleReview: buildStyleReview(mode, riskLevel, issues),
+    revisionPlan: buildRevisionPlan(isCv ? "general" : mode, issues),
+    styleReview: buildStyleReview(isCv ? "general" : mode, riskLevel, issues),
     doNotDo: [
       "Do not add fake stories, fake metrics, or deliberate grammar mistakes.",
       "Do not copy another person's tone or private examples.",

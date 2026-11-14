@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-14 CV writing-review routing
+
+- Application writing packets now identify CV/resume versus cover letter, so CVs are not judged by cover-letter story and paragraph rules.
+- The one-loop CV and three-loop cover-letter SOP policies remain unchanged.
+
 ## 2026-11-14 SOP baseline recovery
 
 - Strict boot now accepts normal candidate CV, JD, profile, and generated-output changes instead of freezing the workspace after first setup.
