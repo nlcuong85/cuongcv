@@ -9,6 +9,7 @@ checker only for selected text that the student intentionally submits.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
 import re
@@ -40,9 +41,8 @@ PARAGRAPH_LIMITS = {
 REQUIRED_TEMPLATE_MARKERS = [
     r"\documentclass[9pt,a4paper]{article}",
     r"\usepackage[a4paper,left=25mm,right=20mm,top=36mm,bottom=18mm]{geometry}",
-    r"\usepackage[T1]{fontenc}",
-    r"\usepackage[utf8]{inputenc}",
-    r"\usepackage{lmodern}",
+    r"\usepackage{fontspec}",
+    r"\setmainfont{lmroman10-regular.otf}[BoldFont=lmroman10-bold.otf]",
     r"\pagestyle{empty}",
     "@@SENDER_BLOCK@@",
     "@@RECIPIENT_BLOCK@@",
@@ -400,7 +400,7 @@ def compile_pdf(tex_path: Path, output_dir: Path, draft: dict[str, Any]) -> tupl
         return None, warnings
     cmd = [
         compiler,
-        "-pdf",
+        "-xelatex",
         "-interaction=nonstopmode",
         "-halt-on-error",
         tex_path.name,
@@ -432,7 +432,7 @@ def pdf_page_count(pdf_path: Path) -> int | None:
         return None
 
 
-def validate_pdf(pdf_path: Path | None) -> Validation:
+def validate_pdf(pdf_path: Path | None, draft: dict[str, Any] | None = None) -> Validation:
     errors: list[str] = []
     warnings: list[str] = []
     if not pdf_path:
@@ -448,8 +448,13 @@ def validate_pdf(pdf_path: Path | None) -> Validation:
         errors.append("Hard typography gate cannot run: install Poppler pdffonts to verify Latin Modern Roman is embedded.")
     else:
         output = subprocess.run([pdffonts, str(pdf_path)], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True, check=False).stdout
-        if "LMRoman10-Regular" not in output or "LMRoman10-Bold" not in output:
+        font_rows = [line.split()[0] for line in output.splitlines()[2:] if line.strip()]
+        allowed = {"LMRoman10-Regular", "LMRoman10-Bold"}
+        actual = {re.sub(r"-Identity-H$", "", re.sub(r"^[A-Z]{6}\+", "", name)) for name in font_rows}
+        if not allowed.issubset(actual):
             errors.append("Hard typography gate failed: cover-letter PDF does not embed Latin Modern Roman regular and bold.")
+        if actual - allowed:
+            errors.append("Hard typography gate failed: unexpected PDF fonts: " + ", ".join(sorted(actual - allowed)))
     data = pdf_path.read_bytes()
     for token in [b"/OpenAction", b"/JavaScript", b"/JS"]:
         if token in data:
@@ -458,6 +463,8 @@ def validate_pdf(pdf_path: Path | None) -> Validation:
     if pdftotext:
         proc = subprocess.run([pdftotext, str(pdf_path), "-"], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
         visible_text = proc.stdout
+        if draft and str(draft.get("signature_name") or "") not in visible_text:
+            errors.append("PDF text does not preserve the candidate name exactly; check Unicode/font coverage.")
         for token in [
             r"\begin{",
             r"\end{",
@@ -568,6 +575,23 @@ def main() -> int:
     args = parser.parse_args()
 
     script_root = Path(__file__).resolve().parents[1]
+    workspace_root = script_root.parent
+    if (workspace_root / "AGENTS.md").is_file():
+        state_path = workspace_root / ".application-sop" / "state.json"
+        if not state_path.is_file():
+            raise SystemExit("Application SOP has not started. Complete workspace audit and ask the user to confirm this JD's employment type before drafting.")
+        state = read_json(state_path)
+        active = state.get("active") or {}
+        confirmation = active.get("employment_confirmation") or {}
+        job_rel = active.get("job_description")
+        safe_job_rel = isinstance(job_rel, str) and not Path(job_rel).is_absolute() and ".." not in Path(job_rel).parts
+        job_path = workspace_root / job_rel if safe_job_rel else None
+        if (state.get("manifest_audit") or {}).get("status") != "workspace_current":
+            raise SystemExit("Current MCP workspace audit is required before drafting.")
+        if (confirmation.get("source") != "user" or confirmation.get("employment_type") != active.get("employment_type")
+                or not job_path or not job_path.is_file() or not job_path.resolve().is_relative_to(workspace_root)
+                or hashlib.sha256(job_path.read_bytes()).hexdigest() != confirmation.get("job_description_sha256")):
+            raise SystemExit("Ask the user to confirm the current job description's employment type before drafting.")
     template_path = args.template or script_root / "templates" / "cover_letter.tex"
     html_template_path = script_root / "templates" / "cover_letter.html"
     output_dir = args.output_dir
@@ -591,7 +615,7 @@ def main() -> int:
 
     pdf_path, compile_warnings = compile_pdf(tex_path, output_dir, draft) if tex_path.exists() else (None, [])
     compile_validation = Validation([], compile_warnings)
-    pdf_validation = validate_pdf(pdf_path)
+    pdf_validation = validate_pdf(pdf_path, draft)
 
     cv_validation = Validation([], ["No CV input provided; skipped cv-tailored.md."])
     if args.cv_input and args.cv_input.exists():

@@ -1,5 +1,6 @@
 import http, { IncomingMessage, ServerResponse } from "node:http";
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { URL } from "node:url";
 import process from "node:process";
@@ -16,10 +17,12 @@ import {
   readResource,
   readResourceBinary,
   readTemplateDirectory,
+  listApplicationKitFiles,
+  resourcesDir,
   samplePromptsDocument
 } from "./resources.js";
 
-const VERSION = "0.2.23";
+const VERSION = "0.2.25";
 const PORT = Number(process.env.PORT ?? "5920");
 const HOST = process.env.HOST ?? "127.0.0.1";
 const TOKEN = process.env.APPLICATION_MCP_TOKEN;
@@ -29,6 +32,15 @@ const ANALYTICS_HASH_SALT = process.env.APPLICATION_MCP_ANALYTICS_SALT
 const PUBLIC_SITE_URL = "https://jobmcp.pmlecuong.com/";
 const PUBLIC_MCP_ENDPOINT = "https://jobmcp.pmlecuong.com/mcp";
 const MAX_HTTP_BODY_BYTES = 64 * 1024;
+let completeKitArchive: Buffer | undefined;
+function getCompleteKitArchive(): Buffer {
+  if (!completeKitArchive) {
+    completeKitArchive = execFileSync("tar", ["-czf", "-", "-C", resourcesDir(), "workspace-template", "application-kit"], {
+      maxBuffer: 16 * 1024 * 1024
+    });
+  }
+  return completeKitArchive;
+}
 const PUBLIC_USAGE_SNAPSHOT_PATH = process.env.PUBLIC_USAGE_SNAPSHOT_PATH ?? "/app/public-data/jobmcp-usage.json";
 const BRAND_FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
   <title id="title">Job MCP pink suitcase</title>
@@ -137,6 +149,7 @@ const PUBLIC_TOOLS = [
   "get_onboarding_instructions",
   "get_client_skill",
   "get_workspace_template",
+  "get_complete_bootstrap",
   "get_application_kit_manifest",
   "get_application_kit_bundle",
   "audit_workspace_manifest",
@@ -146,7 +159,7 @@ const PUBLIC_TOOLS = [
   "suggest_writing_revision"
 ];
 
-const WORKSPACE_KIT_VERSION = "2026.10.22-onboarding.2";
+const WORKSPACE_KIT_VERSION = "2026.11.13-bootstrap.1";
 const REQUIRED_WORKSPACE_PATHS = [
   "AGENTS.md",
   "CLAUDE.md",
@@ -183,6 +196,7 @@ const REQUIRED_WORKSPACE_PATHS = [
   "application-kit/scripts/ats_text_extract.py",
   "application-kit/scripts/writing_review_loop.py",
   "application-kit/scripts/local_application_generator.py",
+  "application-kit/scripts/job_type.py",
   "application-kit/scripts/build_interview_prep.py",
   "application-kit/scripts/build_cv_html.py"
 ];
@@ -213,21 +227,23 @@ const MANAGED_HASHED_PATHS = [
   "application-kit/scripts/ats_text_extract.py",
   "application-kit/scripts/writing_review_loop.py",
   "application-kit/scripts/local_application_generator.py",
+  "application-kit/scripts/job_type.py",
   "application-kit/scripts/build_interview_prep.py",
   "application-kit/scripts/build_cv_html.py"
 ];
 
-function sha256(value: string): string {
-  return createHash("sha256").update(value, "utf8").digest("hex");
+function sha256(value: string | Buffer): string {
+  return createHash("sha256").update(value).digest("hex");
 }
 
 async function expectedManagedHashes(): Promise<Record<string, string>> {
+  const kitFiles = await listApplicationKitFiles();
   const entries = await Promise.all(
-    MANAGED_HASHED_PATHS.map(async (path) => {
+    [...new Set([...MANAGED_HASHED_PATHS, ...kitFiles])].map(async (path) => {
       const resourcePath = path.startsWith("application-kit/")
         ? path
         : `workspace-template/${path}`;
-      return [path, sha256(await readResource(resourcePath))] as const;
+      return [path, sha256(await readResourceBinary(resourcePath))] as const;
     })
   );
   return Object.fromEntries(entries);
@@ -255,7 +271,7 @@ function workspaceUpdateDirective(status: "verify_or_update" | "action_required"
     },
     next_actions: [
       "On every MCP contact, check managed agent instructions against mandatory_agent_policy. Fetch get_workspace_template and replace/update stale or weakened managed policy blocks even when the workspace kit version is current; change only the marked Job MCP sections.",
-      "Fetch get_application_kit_bundle and update MCP-managed files only.",
+      "Call get_complete_bootstrap; run its reviewed local bootstrap command in the user-selected folder, then verify every managed kit file. The text-only legacy bundle is not a complete install.",
       "Preserve profile, source documents, voice samples, assets, jobs, applications, outputs, and user-written material.",
       "Run scripts/workspace_audit.py locally and send only the privacy-safe .mcp/workspace-manifest.json to audit_workspace_manifest.",
       "Run python3 scripts/application_sop.py --root . boot --strict before material application work.",
@@ -301,7 +317,8 @@ async function auditWorkspaceManifest(manifest: {
   candidate_asset_status?: { photo_question_answered?: boolean; signature_question_answered?: boolean };
 }): Promise<Record<string, unknown>> {
   const paths = new Set(manifest.paths);
-  const missing = REQUIRED_WORKSPACE_PATHS.filter((required) => !paths.has(required) && ![...paths].some((path) => path.startsWith(`${required}/`)));
+  const requiredPaths = [...new Set([...REQUIRED_WORKSPACE_PATHS, ...await listApplicationKitFiles()])];
+  const missing = requiredPaths.filter((required) => !paths.has(required) && ![...paths].some((path) => path.startsWith(`${required}/`)));
   const updateRequired = manifest.kit_version !== WORKSPACE_KIT_VERSION;
   const expectedHashes = await expectedManagedHashes();
   const managedHashes = manifest.managed_file_hashes ?? {};
@@ -472,6 +489,27 @@ async function createServer(): Promise<McpServer> {
         root: "student-application-workspace",
         files: await readTemplateDirectory("workspace-template")
       })
+  );
+
+  server.registerTool(
+    "get_complete_bootstrap",
+    {
+      title: "Get Complete Workspace Bootstrap",
+      description: "Give the local agent one complete, versioned bootstrap path. The server cannot install files on the caller's computer. The user must select and approve a writable folder."
+    },
+    async () => jsonText({
+      status: "local_action_required",
+      kit_version: WORKSPACE_KIT_VERSION,
+      installer_url: `${PUBLIC_SITE_URL}bootstrap-workspace.py`,
+      archive_url: `${PUBLIC_SITE_URL}complete-workspace-kit.tar.gz`,
+      archive_sha256: sha256(getCompleteKitArchive()),
+      instructions: [
+        "Ask the user to select or approve a dedicated local workspace before writing files.",
+        "Download and inspect bootstrap-workspace.py, then run it against that selected folder with --expected-sha256 set to archive_sha256.",
+        "The installer must preserve student data and unrelated agent instructions. It installs both the starter and complete binary-inclusive application kit.",
+        "Call audit_workspace_manifest with the privacy-safe manifest; require workspace_current before drafting."
+      ]
+    })
   );
 
   server.registerTool(
@@ -1713,7 +1751,7 @@ function renderDocsPage(): string {
       <p>This service gives local AI agents a workspace kit, prompt rules, folder-audit guidance, selected-text writing review, and ATS-style resume/job-description matching. It is designed for students and early-career candidates who need practical help preparing job documents without turning their private career folder into a server-side profile.</p>
       <div class="doc-callout"><strong>Core model</strong><p>The local agent does the private work. The MCP supplies generic structure, public instructions, version checks, and selected-text feedback. The MCP cannot browse the user's machine.</p></div>
       <h2 id="latest-updates">Latest product updates</h2>
-      <p><strong>Current local build:</strong> MCP 0.2.23 · workspace kit 2026.10.22-onboarding.2.</p>
+      <p><strong>Current local build:</strong> MCP 0.2.25 · workspace kit 2026.11.13-bootstrap.1.</p>
       <ul><li><strong>Agent-led first setup:</strong> open one private folder, paste one setup request, and let the agent read the setup guide and configure the MCP where the client permits. Approve client prompts yourself. Manual settings are a fallback, not the first step.</li><li><strong>Safer folder access:</strong> the agent should work inside the folder you opened, preserve existing files, and request only the access needed there. Job MCP cannot grant operating-system permissions or silently enable full-disk access.</li><li><strong>Task-specific recovery:</strong> connecting the remote MCP is separate from tools needed for local PDF, DOCX, or LaTeX work. The kit checks the capability needed for the selected task and explains missing tools instead of treating every optional converter as a setup prerequisite.</li></ul>
       <h2 id="setup">Start with your folder; the agent handles connection</h2>
       <ol><li>On a computer, create or choose one private, writable job-application folder and open it in an AI app that can access local files and connect to remote MCP.</li><li>Paste the <a href="/start#run-setup">setup prompt from the Start page</a>. It points the agent to <a href="/agent-setup.md">the automatic setup guide</a> and asks it to configure Job MCP and prepare the workspace.</li><li>Review and approve client permission prompts. The agent should report whether tools are available and ask for your CV or confirmed work/education facts.</li></ol>
@@ -2131,6 +2169,25 @@ async function handleHttp(req: IncomingMessage, res: ServerResponse): Promise<vo
       workspace_update_required: workspaceUpdateDirective(),
       tools: PUBLIC_TOOLS
     });
+    return;
+  }
+
+  if (url.pathname === "/bootstrap-workspace.py") {
+    res.writeHead(200, { "content-type": "text/x-python; charset=utf-8", "cache-control": "public, max-age=300" });
+    res.end(await readResource("bootstrap_workspace.py"));
+    return;
+  }
+
+  if (url.pathname === "/complete-workspace-kit.tar.gz") {
+    const archive = getCompleteKitArchive();
+    res.writeHead(200, {
+      "content-type": "application/gzip",
+      "content-disposition": "attachment; filename=job-mcp-workspace-kit.tar.gz",
+      "content-length": archive.length,
+      "x-jobmcp-kit-sha256": sha256(archive),
+      "cache-control": "public, max-age=300"
+    });
+    res.end(archive);
     return;
   }
 

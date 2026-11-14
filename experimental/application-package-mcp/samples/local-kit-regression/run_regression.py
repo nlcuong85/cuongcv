@@ -18,7 +18,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 CUONGCV = Path("/Users/pmlecuong/Documents/CuongProjects/CuongCV")
 KIT = REPO / "resources" / "application-kit"
-WORKSPACE = REPO / "samples" / "local-kit-regression" / "workspace"
+WORKSPACE = Path(os.environ.get("APPLICATION_MCP_REGRESSION_WORKSPACE", REPO / "samples" / "local-kit-regression" / "workspace")).resolve()
 GENERATOR = KIT / "scripts" / "local_application_generator.py"
 INTERVIEW_PREP_BUILDER = KIT / "scripts" / "build_interview_prep.py"
 CUONG_GENERATOR = CUONGCV / "application-system/scripts/generate_application.py"
@@ -47,6 +47,9 @@ CASES = [
 
 
 def clean() -> None:
+    if os.environ.get("APPLICATION_MCP_REGRESSION_WORKSPACE"):
+        if not WORKSPACE.is_relative_to(Path("/private/tmp")) and not WORKSPACE.is_relative_to(Path("/tmp")):
+            raise RuntimeError("Regression override must be an isolated temporary folder")
     if WORKSPACE.exists():
         shutil.rmtree(WORKSPACE)
     (WORKSPACE / "candidate").mkdir(parents=True)

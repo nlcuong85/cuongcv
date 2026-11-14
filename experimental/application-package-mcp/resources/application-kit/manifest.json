@@ -1,6 +1,6 @@
 {
   "kit_id": "application-kit",
-  "version": "2026.10.22-onboarding.2",
+  "version": "2026.11.13-bootstrap.1",
   "mode": "local-only",
   "privacy": {
     "remote_processing": "selected writing checks and ATS CV/JD text checks only through MCP tools",
@@ -15,7 +15,7 @@
     },
     {
       "path": "templates/cover_letter.tex",
-      "description": "Canonical strict one-page pdfTeX template matching the historical Latin Modern Roman application style."
+      "description": "Canonical strict one-page XeLaTeX template using Latin Modern Roman OpenType, including Unicode names."
     },
     {
       "path": "templates/cover_letter.html",
@@ -72,6 +72,10 @@
     {
       "path": "scripts/local_application_generator.py",
       "description": "Local renderer and basic validator for cover-letter PDF and CV Markdown helper."
+    },
+    {
+      "path": "scripts/job_type.py",
+      "description": "Conservative per-job employment-type extraction with ambiguity prompting."
     },
     {
       "path": "scripts/application_quality_loop.py",

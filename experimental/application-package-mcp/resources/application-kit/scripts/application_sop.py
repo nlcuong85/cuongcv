@@ -188,8 +188,22 @@ def receipt(state: dict[str, Any], command: str, inputs: list[str], outputs: lis
     state["command_receipts"] = state["command_receipts"][-100:]
 
 
-def decision_gate(state: dict[str, Any], document: str) -> list[str]:
+def decision_gate(state: dict[str, Any], document: str, root: Path) -> list[str]:
     missing = []
+    active = state.get("active") or {}
+    if document in {"cv", "cover-letter", "interview-prep"}:
+        confirmation = active.get("employment_confirmation") or {}
+        if (active.get("employment_type") not in {"full-time", "part-time", "working-student", "internship", "other"}
+                or confirmation.get("source") != "user"
+                or confirmation.get("employment_type") != active.get("employment_type")
+                or confirmation.get("job_description_sha256") != active.get("job_description_sha256")):
+            missing.append("ask the user to confirm this job's employment type before drafting or release")
+    if document in {"cv", "cover-letter", "interview-prep"} and state.get("active", {}).get("job_description"):
+        job_path = Path(state["active"]["job_description"])
+        if not job_path.is_absolute():
+            source = root / job_path
+            if source.is_file() and sha256(source) != state["active"].get("job_description_sha256"):
+                missing.append("job description changed after employment type confirmation")
     if document in {"cv", "cover-letter"} and state.get("decisions", {}).get("photo") not in {"provided", "declined", "not_available"}:
         missing.append("photo question has not been answered")
     if document == "cover-letter" and state.get("decisions", {}).get("signature") not in {"provided", "declined", "not_available", "not_answered_after_request"}:
@@ -251,12 +265,71 @@ def cmd_start(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_ask_employment_type(args: argparse.Namespace) -> int:
+    root = Path(args.root).resolve()
+    jd_rel = safe_rel(args.job_description)
+    jd_path = root / jd_rel
+    if not jd_path.is_file():
+        raise SystemExit("Job description file is missing")
+    from job_type import classify
+    prediction = classify(jd_path.read_text(encoding="utf-8"))
+    suggested = prediction["employment_type"]
+    evidence = prediction["evidence"][0]["evidence"] if prediction["evidence"] else "No explicit employment type found."
+    question = (f"I read this posting as {suggested} based on: {evidence} Is that the type of job you want to apply for? "
+                "Please confirm, or choose full-time, working-student, part-time, internship, or other."
+                if suggested else "I could not identify one clear employment type in this posting. "
+                "Are you applying for a full-time, working-student, part-time, internship, or other role?")
+    _, _, lock_path, _ = paths(root)
+    with state_lock(lock_path):
+        state = load(root); active = require_active(state)
+        active["employment_question"] = {"job_description": jd_rel, "job_description_sha256": sha256(jd_path),
+                                         "suggested": suggested, "question": question, "asked_at": now()}
+        active.pop("employment_confirmation", None)
+        receipt(state, "ask-employment-type", [jd_rel], [], detail="Question prepared; wait for the user's answer")
+        save(root, state)
+    print(json.dumps({"status": "ask_user", "question": question, "prediction": prediction}, indent=2))
+    return 0
+
+
 def cmd_decision(args: argparse.Namespace) -> int:
     root = Path(args.root).resolve()
     _, _, lock_path, _ = paths(root)
     with state_lock(lock_path):
         state = load(root); require_active(state)
-        state.setdefault("decisions", {})[args.name] = args.value
+        if args.name == "employment_type":
+            if args.value not in {"full-time", "part-time", "working-student", "internship", "other"}:
+                raise SystemExit("Invalid employment type")
+            if not args.job_description:
+                raise SystemExit("Record the job description path with employment type")
+            jd_rel = safe_rel(args.job_description)
+            jd_path = root / jd_rel
+            if not jd_path.is_file():
+                raise SystemExit("Job description file is missing")
+            pending = state["active"].get("employment_question") or {}
+            jd_hash = sha256(jd_path)
+            if pending.get("job_description") != jd_rel or pending.get("job_description_sha256") != jd_hash:
+                raise SystemExit("Ask the employment-type question for the current job description first")
+            if not args.user_answer or not args.user_answer.strip() or len(args.user_answer) > 1000:
+                raise SystemExit("Record the user's actual answer with --user-answer")
+            answer = args.user_answer.strip().lower()
+            if answer in {"yes", "confirmed", "correct", "that is right"} and pending.get("suggested") != args.value:
+                raise SystemExit("A generic confirmation can only accept the suggested employment type")
+            mentioned_types = {kind for kind in ("full-time", "part-time", "working-student", "internship") if kind in answer}
+            if mentioned_types and args.value not in mentioned_types:
+                raise SystemExit("Recorded employment type conflicts with the user's answer")
+            from job_type import classify
+            prediction = classify(jd_path.read_text(encoding="utf-8"))
+            if prediction["status"] == "confirmed" and prediction["employment_type"] != args.value:
+                raise SystemExit("Employment type contradicts the explicit job description")
+            state["active"]["employment_type"] = args.value
+            state["active"]["job_description"] = jd_rel
+            state["active"]["job_description_sha256"] = jd_hash
+            state["active"]["employment_confirmation"] = {"source": "user", "employment_type": args.value,
+                                                          "job_description_sha256": jd_hash,
+                                                          "answer": args.user_answer.strip(), "confirmed_at": now()}
+            state["active"].pop("employment_question", None)
+        else:
+            state.setdefault("decisions", {})[args.name] = args.value
         receipt(state, "record-decision", [], [], detail=f"{args.name}={args.value}")
         save(root, state)
     print(f"Recorded {args.name}: {args.value}")
@@ -330,7 +403,7 @@ def cmd_review(args: argparse.Namespace) -> int:
     _, _, lock_path, _ = paths(root)
     with state_lock(lock_path):
         state = load(root); require_active(state)
-        missing = decision_gate(state, args.document)
+        missing = decision_gate(state, args.document, root)
         if missing: raise SystemExit("Review blocked: " + "; ".join(missing))
         digest = sha256(artifact); prior = current_reviews(state, artifact_rel)
         if args.document == "cover-letter" and any(item.get("loop") == args.loop for item in prior):
@@ -408,8 +481,18 @@ def cmd_finalize(args: argparse.Namespace) -> int:
     if not artifact.exists(): raise SystemExit(f"Artifact not found: {artifact_rel}")
     _, _, lock_path, _ = paths(root)
     with state_lock(lock_path):
-        state = load(root); active = require_active(state); missing = decision_gate(state, args.document)
+        state = load(root); active = require_active(state); missing = decision_gate(state, args.document, root)
         reviews = current_reviews(state, artifact_rel); digest = sha256(artifact)
+        if args.document == "cover-letter" and active.get("employment_type"):
+            letter = artifact.read_text(encoding="utf-8", errors="replace").lower()
+            role = active["employment_type"]
+            forbidden = {
+                "full-time": ("working student role", "working-student role", "werkstudent position", "20 hours per week alongside my studies"),
+                "working-student": ("full-time position", "full-time role", "available for full-time work"),
+                "internship": ("full-time permanent role", "working student role"),
+            }.get(role, ())
+            if any(phrase in letter for phrase in forbidden):
+                missing.append(f"cover letter contradicts confirmed {role} job type")
         matching = [item for item in reviews if item.get("artifact_sha256") == digest]
         if args.document == "cv":
             required_reviews = matching
@@ -483,7 +566,8 @@ def parser() -> argparse.ArgumentParser:
     commands = value.add_subparsers(dest="command", required=True)
     boot = commands.add_parser("boot"); boot.add_argument("--strict", action="store_true"); boot.set_defaults(func=cmd_boot)
     start = commands.add_parser("start"); start.add_argument("--task-id", required=True); start.add_argument("--job", required=True); start.add_argument("--goal", required=True); start.set_defaults(func=cmd_start)
-    decision = commands.add_parser("record-decision"); decision.add_argument("--name", choices=["photo", "signature", "voice", "enclosures"], required=True); decision.add_argument("--value", required=True); decision.set_defaults(func=cmd_decision)
+    question = commands.add_parser("ask-employment-type"); question.add_argument("--job-description", required=True); question.set_defaults(func=cmd_ask_employment_type)
+    decision = commands.add_parser("record-decision"); decision.add_argument("--name", choices=["photo", "signature", "voice", "enclosures", "employment_type"], required=True); decision.add_argument("--value", required=True); decision.add_argument("--job-description"); decision.add_argument("--user-answer"); decision.set_defaults(func=cmd_decision)
     voice_status = commands.add_parser("voice-intake-status"); voice_status.set_defaults(func=cmd_voice_intake_status)
     voice_record = commands.add_parser("record-voice-intake"); voice_record.add_argument("--status", choices=["pending", "collecting", "revisit_later", "enough", "declined"], required=True); voice_record.add_argument("--source-count", type=int, default=0); voice_record.add_argument("--remind-after-days", type=int, default=45); voice_record.add_argument("--note", default=""); voice_record.set_defaults(func=cmd_record_voice_intake)
     manifest = commands.add_parser("record-manifest-audit"); manifest.add_argument("--report", required=True); manifest.set_defaults(func=cmd_record_manifest)

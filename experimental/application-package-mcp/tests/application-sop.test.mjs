@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { readdirSync } from "node:fs";
 import { copyFile, cp, mkdtemp, mkdir, readFile, writeFile } from "node:fs/promises";
 import os from "node:os";
@@ -34,6 +34,17 @@ test("local Application SOP requires decisions, current audit, and distinct cove
   sop(workspace, "record-decision", "--name", "photo", "--value", "declined");
   sop(workspace, "record-decision", "--name", "signature", "--value", "declined");
   sop(workspace, "record-decision", "--name", "enclosures", "--value", "cv_plus_diploma");
+  await writeFile(path.join(workspace, "jobs/test-role.md"), "Full-time role requiring documentation and communication.");
+  const skippedQuestion = spawnSync("python3", [path.join(workspace, "application-kit/scripts/application_sop.py"), "--root", workspace,
+    "record-decision", "--name", "employment_type", "--value", "full-time", "--job-description", "jobs/test-role.md", "--user-answer", "Yes"], { encoding: "utf8" });
+  assert.notEqual(skippedQuestion.status, 0);
+  assert.match(skippedQuestion.stderr, /Ask the employment-type question/);
+  assert.match(sop(workspace, "ask-employment-type", "--job-description", "jobs/test-role.md"), /Is that the type of job/);
+  const missingAnswer = spawnSync("python3", [path.join(workspace, "application-kit/scripts/application_sop.py"), "--root", workspace,
+    "record-decision", "--name", "employment_type", "--value", "full-time", "--job-description", "jobs/test-role.md"], { encoding: "utf8" });
+  assert.notEqual(missingAnswer.status, 0);
+  assert.match(missingAnswer.stderr, /--user-answer/);
+  sop(workspace, "record-decision", "--name", "employment_type", "--value", "full-time", "--job-description", "jobs/test-role.md", "--user-answer", "Yes, this is the full-time role I want.");
   await writeFile(path.join(workspace, "audit.json"), JSON.stringify({ status: "workspace_current" }));
   sop(workspace, "record-manifest-audit", "--report", "audit.json");
 
@@ -82,7 +93,7 @@ test("local Application SOP requires decisions, current audit, and distinct cove
   assert.match(noAtsCv, /NOT READY/);
   assert.match(noAtsCv, /current ATS CV\/JD report required/);
   await mkdir(path.join(workspace, "applications/test-role/validation"), { recursive: true });
-  await writeFile(path.join(workspace, "jobs/test-role.md"), "Job description requiring documentation and communication.");
+  await writeFile(path.join(workspace, "jobs/test-role.md"), "Full-time role requiring documentation and communication.");
   await writeFile(
     path.join(workspace, "applications/test-role/validation/ats-report.json"),
     JSON.stringify({
@@ -170,6 +181,38 @@ test("local generator resolves a workspace-relative signature when compilation r
   assert.equal(generated.length, 1);
   const pdfInfo = execFileSync("pdfinfo", [path.join(outputDir, generated[0])], { encoding: "utf8" });
   assert.match(pdfInfo, /^Pages:\s+1$/m);
+});
+
+test("cover-letter PDF keeps a Vietnamese candidate name in one Latin Modern font family", async () => {
+  const workspace = await mkdtemp(path.join(os.tmpdir(), "application-unicode-"));
+  await mkdir(path.join(workspace, "application-kit"));
+  await cp(path.join(root, "resources/application-kit"), path.join(workspace, "application-kit"), { recursive: true });
+  const draft = JSON.parse(await readFile(path.join(root, "resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json"), "utf8"));
+  draft.signature_name = "Nguyễn Thị Ánh";
+  draft.enclosures = ["Curriculum Vitae"];
+  draft.signature_path = "";
+  const draftPath = path.join(workspace, "draft.json");
+  await writeFile(draftPath, JSON.stringify(draft));
+  const outputDir = path.join(workspace, "output");
+  execFileSync("python3", [path.join(workspace, "application-kit/scripts/local_application_generator.py"), "--draft", draftPath, "--output-dir", outputDir], { encoding: "utf8" });
+  const pdf = readdirSync(outputDir).find((name) => name.endsWith(".pdf"));
+  assert.ok(pdf);
+  assert.match(execFileSync("pdftotext", [path.join(outputDir, pdf), "-"], { encoding: "utf8" }), /Nguyễn Thị Ánh/);
+  assert.match(await readFile(path.join(outputDir, "validation.md"), "utf8"), /Overall: PASS/);
+});
+
+test("installed workspace renderer refuses to draft before user job-type confirmation", async () => {
+  const workspace = await mkdtemp(path.join(os.tmpdir(), "application-render-gate-"));
+  await mkdir(path.join(workspace, "application-kit"));
+  await cp(path.join(root, "resources/application-kit"), path.join(workspace, "application-kit"), { recursive: true });
+  await writeFile(path.join(workspace, "AGENTS.md"), "Job MCP workspace\n");
+  const draftPath = path.join(workspace, "draft.json");
+  await writeFile(draftPath, await readFile(path.join(root, "resources/application-kit/examples/german-cover-letter-demo/cover-letter-draft.json")));
+  const outputDir = path.join(workspace, "output");
+  const run = spawnSync("python3", [path.join(workspace, "application-kit/scripts/local_application_generator.py"),
+    "--draft", draftPath, "--output-dir", outputDir], { encoding: "utf8" });
+  assert.notEqual(run.status, 0);
+  assert.match(run.stderr, /confirm this JD's employment type/);
 });
 
 test("CV HTML builder strips raw-template preview sample from generated output", async () => {

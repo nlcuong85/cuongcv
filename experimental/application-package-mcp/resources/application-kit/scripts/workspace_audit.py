@@ -13,7 +13,7 @@ import os
 import time
 from pathlib import Path
 
-KIT_VERSION = "2026.10.22-onboarding.2"
+KIT_VERSION = "2026.11.13-bootstrap.1"
 MANAGED = [
     "AGENTS.md", "CLAUDE.md", "COPILOT.md", "GEMINI.md",
     "scripts/application_sop.py", "scripts/mcp_check_client.mjs", "scripts/ats_text_extract.py",
@@ -28,9 +28,15 @@ MANAGED = [
     "application-kit/scripts/application_sop.py", "application-kit/scripts/application_quality_loop.py",
     "application-kit/scripts/mcp_check_client.mjs", "application-kit/scripts/ats_text_extract.py",
     "application-kit/scripts/writing_review_loop.py",
-    "application-kit/scripts/local_application_generator.py", "application-kit/scripts/build_interview_prep.py",
+    "application-kit/scripts/local_application_generator.py", "application-kit/scripts/job_type.py", "application-kit/scripts/build_interview_prep.py",
     "application-kit/scripts/build_cv_html.py",
 ]
+PUBLIC_KIT_SUFFIXES = {".md", ".json", ".py", ".mjs", ".html", ".tex", ".ttf", ".png", ".svg", ".pdf"}
+KIT_ROOT = Path(__file__).resolve().parents[1]
+MANAGED = sorted(set(MANAGED) | {
+    "application-kit/" + item.relative_to(KIT_ROOT).as_posix()
+    for item in KIT_ROOT.rglob("*") if item.is_file() and item.suffix.lower() in PUBLIC_KIT_SUFFIXES
+})
 REQUIRED = ["profile", "voice", "candidate/source", "jobs", "applications", ".mcp"]
 EXCLUDED = {".git", "node_modules", "__pycache__", ".application-sop", ".DS_Store"}
 

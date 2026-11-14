@@ -53,15 +53,15 @@ Start with https://jobmcp.pmlecuong.com/agent-setup.md using ordinary web/HTTP t
 
 Before any local write, require a selected writable dedicated workspace, such as Job Applications inside the OS Documents location (including redirected/OneDrive Documents), or another user-chosen folder. Guide the user to create/open it when absent. Grant only required folder/command capabilities; never demand full-disk access just for setup. Reuse existing workspaces, preserve original sources/outputs and unrelated user instructions, update only managed sections, reject symlink escapes, and stop writes on permission denial. The remote MCP cannot create local folders.
 
-Fetch the public template/kit only after these prerequisites, scaffold the selected root so the SOP executable exists, then run its strict boot/audit and existing safe-update policy. Report connection status, workspace readiness, blockers and one next action separately. Start with CV or confirmed education/work-history notes; ask for the JD when tailoring/ATS is requested. Optional evidence/photo/signature choices and all existing review/release gates remain binding.
+After these prerequisites, call `get_complete_bootstrap`, inspect the installer, and install its complete archive in the approved folder with the returned SHA-256. The older text-only template and kit calls are not complete installation proof. Run local audit, require `workspace_current` from `audit_workspace_manifest`, then strict SOP boot. Report connection status, workspace readiness, blockers and one next action separately. Start with CV or confirmed education/work-history notes; ask for the JD when tailoring/ATS is requested. Optional evidence/photo/signature choices and all existing review/release gates remain binding.
 
 Before a local task, run python3 application-kit/scripts/check_capabilities.py --operation bootstrap (or the relevant operation: mcp-wrapper, pdf-text, pdf-reference, docx-ats, latex-pdf). Native MCP connection has client-specific prerequisites and does not universally need Node/Python. Ask before installing anything; explain the affected task, OS-specific help at https://jobmcp.pmlecuong.com/start#dependencies and an available text/draft alternative. Missing required rendering evidence blocks that output's release. Preserve sources and retry only the affected stage; never fake extraction or gate receipts. Your AI client's processing policy is separate from the selected-text/manifest MCP boundary.
 
 ## First Run
 
-1. Fetch `get_workspace_template`.
-2. Fetch `get_application_kit_bundle`.
-3. Create missing folders and files.
+1. Ask the student to approve the exact dedicated workspace folder.
+2. Call `get_complete_bootstrap`, inspect its installer, and install its complete binary-inclusive archive with the returned SHA-256.
+3. Run local workspace audit, send only the safe manifest to `audit_workspace_manifest`, and record the returned `workspace_current` report in the local SOP before drafting.
 4. If old `candidate/`, `jobs/`, or `outputs/` folders already exist, preserve them.
 5. Run `python3 scripts/migrate_legacy_workspace.py .`.
 6. Require a CV source. If the student has no old resume, ask for a current draft, LinkedIn export, profile notes, or structured education/work history before building the first local CV source.
@@ -71,8 +71,7 @@ Before a local task, run python3 application-kit/scripts/check_capabilities.py -
 10. For cover letters, ask and record which enclosures the student can actually attach. CV/Lebenslauf is mandatory; ask about Bachelor diploma/transcript and previous-employer reference/employer certificate. Warn if fewer than two attachments are available.
 11. Offer optional interview prep once per job package. If accepted, ask for interview details, interviewer/recruiter context, expected language, concerns, 3 to 5 actual past incident stories for STAR answers, and a healthy outside-work/culture-fit answer before running `python3 application-kit/scripts/build_interview_prep.py --root . --job <target>`.
 12. Run `python3 scripts/build_context_pack.py . --out context_pack.md` when the profile has useful content.
-13. Run `python3 application-kit/scripts/application_sop.py --root . boot --strict` before any material application action.
-14. Run `python3 application-kit/scripts/workspace_audit.py --root .`, then send only `.mcp/workspace-manifest.json` to `audit_workspace_manifest`.
+13. Run `python3 application-kit/scripts/application_sop.py --root . boot --strict` before any material application action; repeat the manifest audit if the managed kit changes.
 
 ## Intake Sources
 

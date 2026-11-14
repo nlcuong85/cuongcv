@@ -18,7 +18,7 @@ OPERATIONS = {
     "pdf-text": ("pdftotext",),
     "pdf-reference": ("pdftoppm",),
     "docx-ats": ("python-docx",),
-    "latex-pdf": ("latexmk", "pdflatex"),
+    "latex-pdf": ("latexmk", "xelatex", "pdffonts", "pdftotext"),
 }
 
 

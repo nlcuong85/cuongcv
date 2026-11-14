@@ -118,7 +118,7 @@ def likely_question_blocks(company: str, clusters: list[str], concerns: list[str
         (f"What experience do you already have with {clusters[0]}?", "This maps directly to the strongest role signal from the job description."),
         ("How do you work with developers, business stakeholders, or teammates when requirements are unclear?", "Likely for product, BA, PO, process, and technical-support roles where alignment matters."),
         ("Tell me about a time you turned messy information into a clear next step.", "This checks practical structure, judgment, and communication under ambiguity."),
-        ("How do you handle feedback on your work?", "Working-student roles often check coachability, maturity, and whether the candidate can improve through team feedback."),
+        ("How do you handle feedback on your work?", "Interviewers may check how you receive feedback, clarify expectations, and apply it in this role."),
         ("What is one area where you are still improving?", "A safe weakness answer is needed; avoid fake humble-brag answers."),
         ("Who are you outside work or study, and how do you recharge?", "Important for German-style culture fit: they may check balance, self-awareness, and whether the candidate is healthy to work with."),
     ]
@@ -576,7 +576,7 @@ def build_sections(root: Path, job: str, job_data: dict[str, Any], profile: dict
                 "What would success look like in the first two or three months?",
                 f"Which part of the role takes the most time day to day: {', '.join(clusters[:4])}?",
                 "What makes someone successful in this team beyond technical skills?",
-                "How would this working student interact with the main team members or stakeholders?",
+                "How would you collaborate with the main team members or stakeholders in this role?",
                 "What should I prepare or learn before starting if I move forward?",
             ]
         ),

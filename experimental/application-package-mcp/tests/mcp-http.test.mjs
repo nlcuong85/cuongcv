@@ -15,6 +15,7 @@ const expectedTools = [
   "get_application_kit_bundle",
   "get_application_kit_manifest",
   "get_client_skill",
+  "get_complete_bootstrap",
   "get_onboarding_instructions",
   "get_sample_prompts",
   "get_workspace_template",
@@ -192,7 +193,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.match(docsPage, /href="\/favicon\.svg"/);
     assert.match(docsPage, /Latest product updates/);
     assert.match(docsPage, /Agent-led first setup/);
-    assert.match(docsPage, /Current local build:[\s\S]*2026\.10\.22-onboarding\.2/);
+    assert.match(docsPage, /Current local build:[\s\S]*2026\.11\.13-bootstrap\.1/);
     assert.match(docsPage, /Start with your folder; the agent handles connection/);
     assert.match(docsPage, /What the local application kit prepares/);
     assert.match(docsPage, /Available MCP tools/);
@@ -241,6 +242,16 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.ok(!toolNames.includes("save_candidate_profile"));
       assert.ok(!toolNames.includes("generate_application_package"));
       assert.ok(!toolNames.includes("validate_application_package"));
+
+      const bootstrapResult = await client.callTool({ name: "get_complete_bootstrap", arguments: {} });
+      const bootstrap = JSON.parse(bootstrapResult.content[0].text);
+      assert.equal(bootstrap.status, "local_action_required");
+      assert.match(bootstrap.archive_sha256, /^[a-f0-9]{64}$/);
+      const archiveResponse = await fetch(`http://127.0.0.1:${port}/complete-workspace-kit.tar.gz`);
+      assert.equal(archiveResponse.status, 200);
+      assert.equal(archiveResponse.headers.get("x-jobmcp-kit-sha256"), bootstrap.archive_sha256);
+      assert.ok((await archiveResponse.arrayBuffer()).byteLength > 500_000);
+      assert.equal((await fetch(`http://127.0.0.1:${port}/bootstrap-workspace.py`)).status, 200);
 
       const workspaceAuditResult = await client.callTool({
         name: "audit_workspace_manifest",
@@ -361,8 +372,8 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       assert.ok(!kit.files.some((file) => file.path.endsWith(".pyc")));
       assert.ok(!kit.files.some((file) => file.content.includes("validate_human_writing")));
       const coverLetterTemplate = kit.files.find((file) => file.path === "templates/cover_letter.tex");
-      assert.match(coverLetterTemplate.content, /usepackage\[T1\]\{fontenc\}/);
-      assert.match(coverLetterTemplate.content, /usepackage\{lmodern\}/);
+      assert.match(coverLetterTemplate.content, /usepackage\{fontspec\}/);
+      assert.match(coverLetterTemplate.content, /lmroman10-regular\.otf/);
       assert.match(coverLetterTemplate.content, /@@ENCLOSURE_ITEMS@@/);
       const coverLetterHtmlTemplate = kit.files.find((file) => file.path === "templates/cover_letter.html");
       assert.match(coverLetterHtmlTemplate.content, /Georgia/);
@@ -537,7 +548,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       const healthResult = await client.callTool({ name: "health", arguments: {} });
       const health = JSON.parse(healthResult.content[0].text);
       assert.equal(health.ok, true);
-      assert.equal(health.version, "0.2.23");
+      assert.equal(health.version, "0.2.25");
     }, "auto");
 
     const promptsPage = await fetch(`http://127.0.0.1:${port}/sample-prompts`, { redirect: "manual" });

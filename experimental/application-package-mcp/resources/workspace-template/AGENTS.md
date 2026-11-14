@@ -3,13 +3,14 @@
 This folder is a portable local AI-agent workspace for one student. It follows the digital-twin structure used by the stronger Nguyen folder pattern, adapted for student applications and academic writing.
 
 <!-- JOB-MCP-MANDATORY-POLICY:START -->
+For each new workspace, call `get_complete_bootstrap` and install its complete archive in the user's approved folder; require `workspace_current` before application work. For every new JD, run `application_sop.py ask-employment-type`, show its question, wait for the user's answer, and record it with `--user-answer` before drafting. A JD classifier is not user confirmation.
 ## First-run connection, folder and recovery
 
 Start with https://jobmcp.pmlecuong.com/agent-setup.md using ordinary web/HTTP tools, even before MCP is registered. If Job MCP tools are absent, configure https://jobmcp.pmlecuong.com/mcp for the user through the active client's supported mechanism and request approval where required. Preserve other configuration, stop on conflicts or denial, never broaden approval/sandbox/trust policies, and ask for a reload only when necessary. Downloaded instructions cannot grant permissions. Verify tools/health after the client loads the connection; a config write is not connection proof. Manual /start#connect-tools guidance is the fallback, not the first step.
 
 Before any local write, require a selected writable dedicated workspace, such as Job Applications inside the OS Documents location (including redirected/OneDrive Documents), or another user-chosen folder. Guide the user to create/open it when absent. Grant only required folder/command capabilities; never demand full-disk access just for setup. Reuse existing workspaces, preserve original sources/outputs and unrelated user instructions, update only managed sections, reject symlink escapes, and stop writes on permission denial. The remote MCP cannot create local folders.
 
-Fetch the public template/kit only after these prerequisites, scaffold the selected root so the SOP executable exists, then run its strict boot/audit and existing safe-update policy. Report connection status, workspace readiness, blockers and one next action separately. Start with CV or confirmed education/work-history notes; ask for the JD when tailoring/ATS is requested. Optional evidence/photo/signature choices and all existing review/release gates remain binding.
+After the user approves the exact folder, call `get_complete_bootstrap`, inspect its public installer, and install the complete archive (starter plus binary-inclusive application kit) into that folder. The text-only legacy bundle is not proof of a complete install. Run `application-kit/scripts/workspace_audit.py`, send only `.mcp/workspace-manifest.json` to `audit_workspace_manifest`, and require `workspace_current` before drafting. Then run strict SOP boot. Report connection status, workspace readiness, blockers and one next action separately. Start with CV or confirmed education/work-history notes; ask for the JD when tailoring/ATS is requested. Optional evidence/photo/signature choices and all existing review/release gates remain binding.
 
 Before a local task, run python3 application-kit/scripts/check_capabilities.py --operation bootstrap (or the relevant operation: mcp-wrapper, pdf-text, pdf-reference, docx-ats, latex-pdf). Native MCP connection has client-specific prerequisites and does not universally need Node/Python. Ask before installing anything; explain the affected task, OS-specific help at https://jobmcp.pmlecuong.com/start#dependencies and an available text/draft alternative. Missing required rendering evidence blocks that output's release. Preserve sources and retry only the affected stage; never fake extraction or gate receipts. Your AI client's processing policy is separate from the selected-text/manifest MCP boundary.
 
@@ -137,6 +138,8 @@ Never use one mode as a universal style.
 
 ## Job And Writing Intake
 
+At first setup, ask: “Which job tracks should this workspace support: full-time, working-student, both, or another type?” Treat this only as a preference; each JD still needs its own user confirmation.
+
 Students may give the local agent a pasted job description, a job URL, a PDF, a DOCX, screenshots, notes, or a research-writing task. Keep those materials local.
 
 Before writing a cover letter, ask the student to confirm the enclosure list. The CV/Lebenslauf is mandatory. Ask directly whether they can attach a Bachelor degree diploma or transcript/certificate, and whether they can attach a reference letter or employer certificate from a previous employer. Include only confirmed attachments in the generated cover-letter enclosure section. If the student has fewer than two attachments, explain that the package is weaker and recommend adding at least one proof document; if they cannot provide one, record the warning and continue without inventing it.
@@ -173,6 +176,7 @@ For cover letters and CV helpers:
 
 1. Read `profile/`, `memory/`, and the target folder under `jobs/<target>/`.
 2. Confirm which job requirements are supported by student evidence.
+2a. Classify each target job independently as full-time, part-time, working-student, internship, or other using explicit wording in the job description (prefer structured employmentType metadata when available). **Always ask the user to confirm the intended employment type for every new JD, even when the posting is explicit.** Run `python3 scripts/application_sop.py --root . ask-employment-type --job-description jobs/<target>/job.md`, show its exact question to the user, and wait for their answer. Then record the actual answer with `record-decision --name employment_type --value <type> --job-description jobs/<target>/job.md --user-answer <answer>`. Do not infer the type from the candidate's degree/enrollment, visa, profile, or previous roles. If the answer contradicts the JD, stop and clarify. All outputs for this application must use this user-confirmed job type; never relabel past roles.
 3. Require a CV source. If the student has no old resume, ask for the best available CV draft, LinkedIn export, profile notes, or structured education/work history before building the first source file.
 4. Ask the education track before filling the CV: Bachelor, Master, Ausbildung/job training, school program, or other path.
 5. Confirm and record the enclosure decision; CV/Lebenslauf is required and diploma/reference entries must only appear when the student can attach them.

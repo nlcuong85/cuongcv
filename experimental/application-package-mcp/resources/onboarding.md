@@ -32,8 +32,8 @@ Whenever a local AI agent connects to this MCP, it must treat the first contact 
 
 Before drafting, editing, reviewing, or finalizing application documents, the local agent must:
 
-1. Fetch or refresh `get_workspace_template` when starter files are missing.
-2. Fetch `get_application_kit_bundle` and update MCP-managed files only.
+1. Call `get_complete_bootstrap`, ask the student to approve the exact dedicated folder, inspect its public installer, and install the complete binary-inclusive starter/kit archive using the returned SHA-256.
+2. Treat `get_workspace_template` and `get_application_kit_bundle` as legacy text-only inspection tools, not complete installation proof.
 3. Preserve all student-owned content: profile, memory, voice samples, candidate files, jobs, applications, outputs, photos, signatures, and source documents.
 4. Run `scripts/workspace_audit.py` locally.
 5. Send only the privacy-safe `.mcp/workspace-manifest.json` to `audit_workspace_manifest`.
@@ -83,7 +83,9 @@ student-application-workspace/
 
 ## Resilient Application Mode
 
-For CV and cover-letter work, use the local `application_sop.py` from the public application kit. It is a client-side hard gate: strict boot checks local workspace drift, work is recorded locally, and final documents need a local release receipt. The MCP does not read the workspace; it receives selected text or a privacy-safe structure manifest only.
+At setup, ask: “Which job tracks should this workspace support: full-time, working-student, both, or another type?” This is only a workspace preference. For every new JD, ask again to confirm that posting's employment type before drafting.
+
+For CV and cover-letter work, use the local `application_sop.py` from the public application kit. It is a client-side hard gate: strict boot checks local workspace drift, work is recorded locally, and final documents need a local release receipt. For every new JD, run `ask-employment-type`, ask the user its displayed question, wait for the answer, then record the actual answer with `record-decision --name employment_type --value <type> --job-description <path> --user-answer <answer>` before drafting. The classifier alone is not confirmation. The MCP does not read the workspace; it receives selected text or a privacy-safe structure manifest only.
 
 Ask the student for their target role/JD, current CV, education track, preferred CV language/format, optional supporting/voice material, photo decision, optional signature, and confirmed cover-letter enclosures. The CV source is mandatory: if they do not have an old resume, ask them to provide the best available CV draft, profile notes, LinkedIn export, or structured education/work history so the local agent can build the first CV source locally. Also ask whether they are currently doing a Bachelor, Master, Ausbildung/job training, school program, or another path; use that answer to populate the education section accurately. Recommend that they write 10 authentic bullets per employer (15 is better); use four or five verified bullets per employer for a tailored CV. A CV gets one review loop; a cover letter gets three distinct review loops; interview prep gets two review loops.
 
@@ -134,9 +136,9 @@ Do not upload full CV folders, source documents, identity documents, passwords, 
 
 ## Local Workflow
 
-1. Fetch `get_workspace_template`.
-2. Fetch `get_application_kit_bundle`.
-3. Create or update the local digital-twin structure.
+1. Call `get_complete_bootstrap` and install the complete archive in the student's approved folder.
+2. Run local workspace audit and require `workspace_current` from `audit_workspace_manifest`.
+3. Create or update student-owned profile data only from their confirmed facts.
 4. If old files exist, run the migration script.
 5. Read `AGENTS.md`, `profile/`, and `memory/`.
 6. Read the target job or writing goal under `jobs/<target>/`.

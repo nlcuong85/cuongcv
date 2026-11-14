@@ -64,6 +64,26 @@ export async function readTemplateDirectory(relativePath: string): Promise<Templ
   return files.sort((a, b) => a.path.localeCompare(b.path));
 }
 
+// This inventory is deliberately broader than the legacy text-only MCP bundle:
+// fonts, reference images, and PDFs must be present for a complete local kit.
+export async function listApplicationKitFiles(): Promise<string[]> {
+  const root = path.join(resourcesDir(), "application-kit");
+  const allowed = new Set([".md", ".json", ".py", ".mjs", ".html", ".tex", ".ttf", ".png", ".svg", ".pdf"]);
+  const files: string[] = [];
+  async function walk(current: string): Promise<void> {
+    for (const entry of await fs.readdir(current, { withFileTypes: true })) {
+      if (entry.name === "__pycache__") continue;
+      const full = path.join(current, entry.name);
+      if (entry.isDirectory()) await walk(full);
+      else if (entry.isFile() && allowed.has(path.extname(entry.name).toLowerCase())) {
+        files.push(`application-kit/${path.relative(root, full)}`);
+      }
+    }
+  }
+  await walk(root);
+  return files.sort();
+}
+
 export async function onboardingInstructions(): Promise<string> {
   return readResource("onboarding.md");
 }

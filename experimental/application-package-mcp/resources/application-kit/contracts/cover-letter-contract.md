@@ -32,8 +32,7 @@ The generated `cover-letter.tex` must use the provided `templates/cover_letter.t
 - signature area
 - enclosure list
 - `\pagestyle{empty}`
-- typography: `\usepackage[T1]{fontenc}`, `\usepackage[utf8]{inputenc}`, and
-  `\usepackage{lmodern}`. This is the required historical LaTeX/pdfTeX profile
+- typography: `\usepackage{fontspec}` and explicit Latin Modern Roman OpenType regular/bold files. This preserves the historical font family while allowing Unicode candidate names through XeLaTeX
   used by existing application output folders. Do not switch to Inter,
   Chrome/Skia, Helvetica, Arial, TeX Gyre Heros, or an unbundled system font
   unless the user explicitly changes the visual baseline.
