@@ -16,6 +16,12 @@ const jobs = [
   ['Working student or junior product analyst.', 'working-student'],
   ['Vollzeit Product Owner, remote in Germany.', 'full-time'],
 ];
+const existingIntakes = [
+  ['lio-it-administration-automation-manager', 'full-time'],
+  ['mercedes-benz-insurance-services-working-student-product-owner-support-insurance-platform-of-services', 'working-student'],
+  ['sap-working-student-threat-modelling-service-operation-and-automation', 'working-student'],
+  ['acteno-energy-ai-meets-energy-hybrid-systems', 'internship'],
+];
 
 for (const [name, profile] of profiles) {
   for (const [jd, expected] of jobs) {
@@ -23,6 +29,19 @@ for (const [name, profile] of profiles) {
       assert.ok(profile && typeof profile === 'object');
       const py = `import json,sys; sys.path.insert(0,'resources/application-kit/scripts'); from job_type import classify; print(json.dumps(classify(sys.argv[1])))`;
       const run = spawnSync('python3', ['-c', py, jd], { encoding: 'utf8' });
+      assert.equal(run.status, 0, run.stderr);
+      assert.equal(JSON.parse(run.stdout).employment_type, expected);
+    });
+  }
+}
+
+for (const [name, profile] of profiles) {
+  for (const [slug, expected] of existingIntakes) {
+    test(`${name}: existing JD ${slug}`, () => {
+      assert.ok(profile && typeof profile === 'object');
+      const intake = JSON.parse(readFileSync(`../../application-system/intakes/${slug}.json`, 'utf8'));
+      const py = `import json,sys; sys.path.insert(0,'resources/application-kit/scripts'); from job_type import classify; print(json.dumps(classify(sys.argv[1])))`;
+      const run = spawnSync('python3', ['-c', py, intake.job_description], { encoding: 'utf8' });
       assert.equal(run.status, 0, run.stderr);
       assert.equal(JSON.parse(run.stdout).employment_type, expected);
     });
