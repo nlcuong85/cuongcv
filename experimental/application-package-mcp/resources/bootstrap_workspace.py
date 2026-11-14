@@ -38,7 +38,7 @@ def fetch(url: str) -> bytes:
     parsed = urlparse(url)
     if parsed.scheme != "https" and not (parsed.scheme == "http" and parsed.hostname in {"127.0.0.1", "localhost"}):
         die("Bootstrap download requires HTTPS or loopback HTTP for local tests")
-    request = Request(url, headers={"User-Agent": "JobMCP-WorkspaceBootstrap/0.2.26", "Accept": "application/gzip"})
+    request = Request(url, headers={"User-Agent": "JobMCP-WorkspaceBootstrap/0.2.27", "Accept": "application/gzip"})
     with urlopen(request, timeout=30) as response:
         length = response.headers.get("Content-Length")
         if length and int(length) > MAX_ARCHIVE_BYTES:

@@ -548,7 +548,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       const healthResult = await client.callTool({ name: "health", arguments: {} });
       const health = JSON.parse(healthResult.content[0].text);
       assert.equal(health.ok, true);
-      assert.equal(health.version, "0.2.26");
+      assert.equal(health.version, "0.2.27");
     }, "auto");
 
     const promptsPage = await fetch(`http://127.0.0.1:${port}/sample-prompts`, { redirect: "manual" });

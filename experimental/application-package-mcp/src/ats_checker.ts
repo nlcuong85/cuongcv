@@ -442,10 +442,8 @@ function hasTerm(text: string, item: AtsTerm): boolean {
   const normalized = ` ${normalize(text)} `;
   const candidates = [item.term, ...(item.variants ?? [])].map(normalize).filter(Boolean);
   return candidates.some((candidate) => {
-    if (candidate.length === 1) {
-      return new RegExp(`(^|[^a-z0-9])${candidate}($|[^a-z0-9])`, "i").test(normalized);
-    }
-    return normalized.includes(` ${candidate} `);
+    const escaped = candidate.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp(`(?:^|[^a-z0-9])${escaped}(?=$|[^a-z0-9])`, "i").test(normalized);
   });
 }
 

@@ -44,6 +44,7 @@ test('a real-profile gap statement is not treated as specialist experience', () 
     resume_text: 'I improved supplier onboarding workflows and documentation. Not an IT administrator; no claim of hands-on IAM, Python scripting, cloud administration, firewall, or device management.',
   });
   assert.ok(result.matched_keywords.some((item) => item.term === 'Onboarding'));
+  assert.ok(result.matched_keywords.some((item) => item.term === 'Documentation'), 'sentence-final evidence must count');
   for (const key of ['Python', 'Scripting', 'Identity and Access Management', 'Cloud', 'Device Provisioning']) {
     assert.ok(!result.matched_keywords.some((item) => item.term === key), `negated ${key} counted as match`);
   }
