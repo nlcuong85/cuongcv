@@ -13,7 +13,7 @@ import os
 import time
 from pathlib import Path
 
-KIT_VERSION = "2026.11.14-policy.1"
+KIT_VERSION = "2026.11.14-review.1"
 MANAGED = [
     "AGENTS.md", "CLAUDE.md", "COPILOT.md", "GEMINI.md",
     "scripts/application_sop.py", "scripts/mcp_check_client.mjs", "scripts/ats_text_extract.py",

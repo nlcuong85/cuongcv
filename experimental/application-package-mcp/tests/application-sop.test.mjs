@@ -121,7 +121,9 @@ test("local Application SOP requires decisions, current audit, and distinct cove
   await mkdir(path.dirname(cv), { recursive: true });
   await writeFile(cv, "CV with requirements analysis, documentation, stakeholder communication, and product support.");
   const cvResult = path.join(workspace, "cv-review.json");
-  await writeFile(cvResult, JSON.stringify({ riskLevel: "low", issues: [], privacy: { stored: false } }));
+  await writeFile(cvResult, JSON.stringify({ riskLevel: "medium", issues: ["Needs a clearer work example"], privacy: { stored: false } }));
+  sop(workspace, "review-cv", "--loop", "1", "--artifact", "applications/test-role/cv/cv-tailored.md", "--result", "cv-review.json");
+  await writeFile(cvResult, JSON.stringify({ riskLevel: "low", issues: [], privacy: { stored: false }, documentKind: "cv" }));
   sop(workspace, "review-cv", "--loop", "1", "--artifact", "applications/test-role/cv/cv-tailored.md", "--result", "cv-review.json");
   const noAtsCv = (() => { try { sop(workspace, "finalize-cv", "--artifact", "applications/test-role/cv/cv-tailored.md"); } catch (error) { return error.stdout; } })();
   assert.match(noAtsCv, /NOT READY/);
@@ -154,8 +156,14 @@ test("local Application SOP requires decisions, current audit, and distinct cove
   const cvReceipt = JSON.parse(await readFile(path.join(workspace, cvReceiptOutput), "utf8"));
   assert.equal(cvReceipt.status, "ready");
   assert.equal(cvReceipt.document, "cv");
+  assert.equal(cvReceipt.reviews.length, 1);
+  assert.equal(cvReceipt.reviews[0].result.riskLevel, "low");
   assert.equal(cvReceipt.ats_records.length, 1);
   assert.equal(cvReceipt.ats_records[0].score, 57);
+  await writeFile(cvResult, JSON.stringify({ riskLevel: "medium", issues: ["New concern"], privacy: { stored: false } }));
+  sop(workspace, "review-cv", "--loop", "1", "--artifact", "applications/test-role/cv/cv-tailored.md", "--result", "cv-review.json");
+  const latestCvRisk = (() => { try { sop(workspace, "finalize-cv", "--artifact", "applications/test-role/cv/cv-tailored.md"); } catch (error) { return error.stdout; } })();
+  assert.match(latestCvRisk, /unresolved cv review risk in loop 1/);
   await writeFile(cv, "CV changed after ATS report.");
   const staleAtsCv = (() => { try { sop(workspace, "finalize-cv", "--artifact", "applications/test-role/cv/cv-tailored.md"); } catch (error) { return error.stdout; } })();
   assert.match(staleAtsCv, /NOT READY/);

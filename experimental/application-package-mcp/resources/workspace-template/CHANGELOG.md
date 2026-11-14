@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-14 Latest CV review wins
+
+- Finalizing a CV now uses the latest loop-1 review for the unchanged artifact. A newer low-risk result supersedes an earlier medium-risk result, while a newer medium/high result blocks release.
+- The one CV review-loop requirement, current ATS report, and all other release gates remain in force.
+
 ## 2026-11-14 Safe agent-file updates
 
 - Workspace audits and the local SOP now hash only the mandatory Job MCP policy block in `AGENTS.md`, `CLAUDE.md`, `COPILOT.md`, and `GEMINI.md`.

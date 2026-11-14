@@ -193,7 +193,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
     assert.match(docsPage, /href="\/favicon\.svg"/);
     assert.match(docsPage, /Latest product updates/);
     assert.match(docsPage, /Agent-led first setup/);
-    assert.match(docsPage, /Current local build:[\s\S]*2026\.11\.14-policy\.1/);
+    assert.match(docsPage, /Current local build:[\s\S]*2026\.11\.14-review\.1/);
     assert.match(docsPage, /Start with your folder; the agent handles connection/);
     assert.match(docsPage, /What the local application kit prepares/);
     assert.match(docsPage, /Available MCP tools/);
@@ -561,7 +561,7 @@ test("HTTP MCP exposes student helper tools and keeps private checker rules out 
       const healthResult = await client.callTool({ name: "health", arguments: {} });
       const health = JSON.parse(healthResult.content[0].text);
       assert.equal(health.ok, true);
-      assert.equal(health.version, "0.2.30");
+      assert.equal(health.version, "0.2.31");
     }, "auto");
 
     const promptsPage = await fetch(`http://127.0.0.1:${port}/sample-prompts`, { redirect: "manual" });

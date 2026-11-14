@@ -448,6 +448,8 @@ def cmd_review(args: argparse.Namespace) -> int:
         missing = decision_gate(state, args.document, root)
         if missing: raise SystemExit("Review blocked: " + "; ".join(missing))
         digest = sha256(artifact); prior = current_reviews(state, artifact_rel)
+        if args.document == "cv" and args.loop != 1:
+            raise SystemExit("CV review uses exactly one loop: 1.")
         if args.document == "cover-letter":
             if args.loop not in {1, 2, 3}:
                 raise SystemExit("Cover-letter review loops must be 1, 2, or 3.")
@@ -545,8 +547,9 @@ def cmd_finalize(args: argparse.Namespace) -> int:
                 missing.append(f"cover letter contradicts confirmed {role} job type")
         matching = [item for item in reviews if item.get("artifact_sha256") == digest]
         if args.document == "cv":
-            required_reviews = matching
-            if len(required_reviews) < 1: missing.append("1 current CV review record required")
+            current_cv_reviews = [item for item in matching if item.get("document") == "cv" and item.get("loop") == 1]
+            required_reviews = current_cv_reviews[-1:]
+            if not required_reviews: missing.append("1 current CV review record required")
             ats_records = [item for item in current_ats_records(state, artifact_rel) if item.get("artifact_sha256") == digest]
             if not ats_records:
                 missing.append("current ATS CV/JD report required; run MCP ATS check and record-ats-cv after the latest CV edit")
