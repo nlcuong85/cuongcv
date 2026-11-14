@@ -47,6 +47,7 @@ export type AtsRisk = {
     | "education_mismatch"
     | "language_mismatch"
     | "format_parse_risk"
+    | "calibration_limited"
     | "keyword_stuffing_risk";
   severity: "high" | "medium" | "low";
   message: string;
@@ -448,6 +449,27 @@ function hasTerm(text: string, item: AtsTerm): boolean {
   });
 }
 
+function visibleResumeEvidence(text: string): string {
+  // A local helper may send its Markdown working file instead of the final CV.
+  // Target-role labels and reviewer notes must never count as candidate proof.
+  let excluded = false;
+  return text.split(/\r?\n/).filter((line) => {
+    const heading = /^#{1,6}\s+(.+?)\s*$/.exec(line);
+    if (heading) excluded = /^(target role|review notes|missing information|gaps to confirm)$/i.test(heading[1]);
+    return !excluded;
+  }).join("\n");
+}
+
+function hasAffirmativeTerm(text: string, item: AtsTerm): boolean {
+  return text.split(/(?<=[.!?;])\s+|\n+/).some((clause) => {
+    if (!hasTerm(clause, item)) return false;
+    // Explicit caveats are gaps, not ATS matches. Be conservative for mixed
+    // clauses; the candidate can restate supported experience separately.
+    if (/\b(?:no (?:claim(?:ed)?(?: of)?|direct|professional)(?: experience| background)?|no (?:experience|background)|do not (?:have|claim|add)|not an? |not (?:part of|among|in) (?:my |the )?experience|lack(?:ing|s)? (?:of |in )?|without (?:experience|background)|real gaps?|not (?:yet )?experienced)\b/i.test(clause)) return false;
+    return true;
+  });
+}
+
 function detectProfile(input: AtsCheckInput): RoleProfile {
   const haystack = `${input.company_name ?? ""}\n${input.job_title ?? ""}\n${input.job_description}`;
   const matches = ROLE_PROFILES
@@ -462,31 +484,33 @@ function detectProfile(input: AtsCheckInput): RoleProfile {
 
 function buildGenericProfile(input: AtsCheckInput): RoleProfile {
   const source = input.job_description;
-  const candidates = [
-    "MS Office",
-    "SAP",
-    "Excel",
-    "Communication",
-    "Communication Skills",
-    "Documentation",
-    "Stakeholders",
-    "Analysis",
-    "Analytical",
-    "Project Management",
-    "Product",
-    "Software",
-    "Technical",
-    "Business Administration",
-    "Computer Science",
-    "Teamwork",
-    "E-commerce",
-    "Customer Journey",
-    "Digital Marketing",
-    "Business Models",
-    "Writing",
-    "Written"
-  ].filter((candidate) => hasTerm(source, { term: candidate }));
-  const terms = candidates.length ? candidates.map((candidate) => term(candidate, 1)) : [term("Communication"), term("Documentation"), term("Analysis")];
+  const vocabulary = [
+    term("MS Office"), term("SAP"), term("Excel"), term("Communication"),
+    term("Communication Skills"), term("Documentation", 1, ["documenting", "documented"]), term("Stakeholders"),
+    term("Analysis"), term("Analytical"), term("Project Management"),
+    term("Product"), term("Software"), term("Technical"),
+    term("Business Administration"), term("Computer Science"), term("Teamwork"),
+    term("E-commerce"), term("Customer Journey"), term("Digital Marketing"),
+    term("Business Models"), term("Writing"), term("Written"),
+    term("IT Administration", 2, ["IT administrator"], "high", "experience"),
+    term("Automation", 1.5, ["automating", "automated", "automates"], "high", "experience"),
+    term("Onboarding", 1.2), term("Offboarding", 1.2),
+    term("Access Management", 2, ["access-control", "access control"], "high", "experience"),
+    term("Device Provisioning", 1.6, ["device management"], "high", "experience"),
+    term("Internal Tools", 1.4, ["internal tooling"], "medium", "projects"),
+    term("Low-Code", 1.1, ["low code"]), term("Python", 1.6, [], "high", "skills"),
+    term("API", 1.4, ["APIs"], "high", "skills"),
+    term("Scripting", 1.5, ["scripts", "script"], "high", "skills"),
+    term("Identity and Access Management", 2, ["IAM"], "high", "experience"),
+    term("Cloud", 1.4, [], "high", "skills"),
+    term("IT Security", 1.6, ["security fundamentals"], "high", "experience"),
+    term("Systems Engineering", 1.5, [], "high", "experience"),
+    term("IT Operations", 1.5, [], "high", "experience"),
+    term("SaaS", 1.1), term("Firewall", 1.2, ["firewall setup"]),
+    term("Process Improvement", 1.1, ["improves processes"])
+  ];
+  const terms = vocabulary.filter((candidate) => hasTerm(source, candidate));
+  if (!terms.length) return { id: "generic", match: [], terms: [term("Communication"), term("Documentation"), term("Analysis")] };
   return { id: "generic", match: [], terms };
 }
 
@@ -511,7 +535,7 @@ export function checkAtsResumeFit(input: AtsCheckInput): AtsResult {
   const targetScore = input.target_score ?? 70;
   const maxNewTerms = Math.max(1, Math.min(input.max_new_terms ?? 12, 20));
   const profile = detectProfile(input);
-  const resumeText = `${input.resume_text}\n${Object.values(input.resume_sections ?? {}).join("\n")}`;
+  const resumeText = visibleResumeEvidence(`${input.resume_text}\n${Object.values(input.resume_sections ?? {}).join("\n")}`);
   const matched: AtsKeyword[] = [];
   const missing: AtsMissingKeyword[] = [];
   const risks: AtsRisk[] = [];
@@ -522,7 +546,7 @@ export function checkAtsResumeFit(input: AtsCheckInput): AtsResult {
   for (const item of profile.terms) {
     const weight = item.weight ?? 1;
     totalWeight += weight;
-    if (hasTerm(resumeText, item)) {
+    if (hasAffirmativeTerm(resumeText, item)) {
       matchedWeight += weight;
       matched.push({ term: item.term, source: "jd_normalized", confidence: item.variants?.length ? 0.82 : 0.9 });
       continue;
@@ -557,11 +581,24 @@ export function checkAtsResumeFit(input: AtsCheckInput): AtsResult {
   }
 
   const rawScore = totalWeight ? Math.round((matchedWeight / totalWeight) * 100) : 0;
-  const score = Math.max(0, Math.min(100, Math.round(rawScore * (profile.calibrationScale ?? 1))));
-  const readiness = scoreToLabel(score, targetScore);
+  // A generic vocabulary cannot establish complete role fit for an unknown
+  // occupation, even when every recognized word appears in the CV.
+  const genericCeiling = profile.id === "generic" ? Math.min(74, Math.max(0, targetScore - 1)) : 100;
+  const score = Math.max(0, Math.min(genericCeiling, Math.round(rawScore * (profile.calibrationScale ?? 1))));
+  const readiness = profile.id === "generic" && score >= targetScore
+    ? "needs_revision"
+    : scoreToLabel(score, targetScore);
   const prioritizedMissing = missing
     .sort((a, b) => priorityValue(b.priority) - priorityValue(a.priority))
     .slice(0, maxNewTerms);
+
+  if (profile.id === "generic") {
+    risks.push({
+      type: "calibration_limited",
+      severity: "medium",
+      message: "This job uses the generic ATS vocabulary. The score covers recognized terms only and cannot establish overall role fit; review the full JD with the candidate."
+    });
+  }
 
   for (const item of prioritizedMissing) {
     const lower = item.term.toLowerCase();
@@ -597,6 +634,7 @@ export function checkAtsResumeFit(input: AtsCheckInput): AtsResult {
       : "Keep the ATS report with the release evidence; rerun if the CV or JD changes.",
     "Do not add unsupported skills, tools, credentials, language levels, or domain experience."
   ];
+  if (profile.id === "generic") localActions.push("Treat generic ATS coverage as a limited keyword check, not a readiness verdict for this occupation.");
 
   return {
     ok: true,

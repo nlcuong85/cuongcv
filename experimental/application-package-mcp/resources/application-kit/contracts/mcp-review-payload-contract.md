@@ -43,4 +43,6 @@ Document loop policy:
 - interview prep: 2 loops
 - general writing: user-selected 1, 2, or 3 loops, never more than 3
 
+For cover letters, a `medium` or `high` result does not consume the loop number. Revise the saved draft, obtain a new MCP result for that revision, and record the same loop number again. The SOP rejects an identical draft hash and does not allow loop 2 or 3 until the preceding loop has a `low` result. If the evidence available cannot support a low-risk revision, stop and ask the user for specific real examples; never invent details just to pass the gate.
+
 The MCP result is not an authorship verdict and is not a detector-bypass guarantee. It is a quality gate for generic rhythm, unsupported claims, missing evidence texture, and artificial structure. The local agent must still preserve facts, sources, and user intent.

@@ -51,6 +51,13 @@ test("local Application SOP requires decisions, current audit, and distinct cove
   const letter = path.join(workspace, "applications/test-role/cover-letter/cover-letter.md");
   await mkdir(path.dirname(letter), { recursive: true });
   const result = path.join(workspace, "review.json");
+  await writeFile(letter, "Initial version with a medium-risk phrase.");
+  await writeFile(result, JSON.stringify({ riskLevel: "medium", issues: [{ code: "generic_phrase" }] }));
+  sop(workspace, "review-cover", "--loop", "1", "--artifact", "applications/test-role/cover-letter/cover-letter.md", "--result", "review.json");
+  const prematureLoopTwo = spawnSync("python3", [path.join(workspace, "application-kit/scripts/application_sop.py"), "--root", workspace,
+    "review-cover", "--loop", "2", "--artifact", "applications/test-role/cover-letter/cover-letter.md", "--result", "review.json"], { encoding: "utf8" });
+  assert.notEqual(prematureLoopTwo.status, 0);
+  assert.match(prematureLoopTwo.stderr, /loop 1 must pass at low risk/);
   await writeFile(result, JSON.stringify({ riskLevel: "low", issues: [] }));
   for (const [loop, text] of [[1, "First version."], [2, "Second version revised."], [3, "Third version ready."]]) {
     await writeFile(letter, text);
@@ -60,6 +67,7 @@ test("local Application SOP requires decisions, current audit, and distinct cove
   const receipt = JSON.parse(await readFile(path.join(workspace, output), "utf8"));
   assert.equal(receipt.status, "ready");
   assert.equal(receipt.reviews.length, 3);
+  assert.ok(receipt.reviews.every((review) => review.result.riskLevel === "low"));
 
   await writeFile(letter, "Changed after receipt.");
   const blocked = (() => { try { sop(workspace, "finalize-cover-letter", "--artifact", "applications/test-role/cover-letter/cover-letter.md"); } catch (error) { return error.stdout; } })();
@@ -270,6 +278,8 @@ test("CV HTML builder strips raw-template preview sample from generated output",
   assert.match(generated, /Real Candidate/);
   assert.match(generated, /Professional Experience/);
   assert.match(generated, /Education/);
+  assert.match(generated, /href="https:\/\/linkedin\.com\/in\/real-candidate">linkedin\.com\/in\/real-candidate<\/a>/);
+  assert.match(generated, /\.skills-list \{ columns: 2;/);
   assert.doesNotMatch(generated, /@@NAME@@/);
   assert.doesNotMatch(generated, /Jane Schneider/);
   assert.doesNotMatch(generated, /TEMPLATE_PREVIEW_START/);

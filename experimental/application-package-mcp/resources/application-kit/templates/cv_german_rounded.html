@@ -15,17 +15,19 @@
       .summary strong { font-weight: 700; }
       .photo-frame { width: 31mm; height: 31mm; border: 1.1mm solid #fff; border-radius: 50%; overflow: hidden; background: #d4d4d4; margin: 0; }
       .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
-      .contact-bar { width: 168mm; min-height: 10.5mm; margin: -4.4mm auto 9mm; padding: 2.6mm 7mm; border-radius: 2mm; display: grid; grid-template-columns: .9fr 1.45fr 1.45fr; gap: 4mm; background: var(--bar); color: #fff; text-align: center; font-size: 9.8pt; line-height: 1.15; }
-      .contact-bar span { min-width: 0; overflow-wrap: normal; word-break: keep-all; }
+      .contact-bar { width: 168mm; min-height: 10.5mm; margin: -4.4mm auto 7mm; padding: 2.6mm 5mm; border-radius: 2mm; display: grid; grid-template-columns: .9fr 1.45fr 1.45fr; gap: 3mm; background: var(--bar); color: #fff; text-align: center; font-size: 9pt; line-height: 1.15; }
+      .contact-bar span { min-width: 0; overflow-wrap: anywhere; }
       .contact-bar a { color: #fff; text-decoration: underline; text-underline-offset: 1.5px; }
-      .section { margin-top: 4.5mm; }
-      .section-title { margin: 0 0 3.8mm; padding-bottom: 1.3mm; border-bottom: 0.35mm solid var(--ink); text-align: center; font-size: 21pt; line-height: 1; font-weight: 400; }
+      .section { margin-top: 3.5mm; }
+      .section-title { margin: 0 0 2.8mm; padding-bottom: 1.3mm; border-bottom: 0.35mm solid var(--ink); text-align: center; font-size: 21pt; line-height: 1; font-weight: 400; }
       .entry { margin: 0 0 2.6mm; }
       .entry-title { margin: 0; font-size: 11.7pt; line-height: 1.15; font-weight: 700; text-transform: uppercase; }
       .entry-subtitle { margin: 0.4mm 0 0.8mm; font-size: 11.7pt; line-height: 1.15; font-weight: 700; text-transform: uppercase; }
       ul { margin: 0 0 0 9mm; padding: 0; }
       li { margin: 0.45mm 0; padding-left: 3mm; font-size: 10.4pt; line-height: 1.2; }
       .skills-list, .language-list { margin-left: 0; list-style-position: inside; }
+      .skills-list { columns: 2; column-gap: 9mm; }
+      .skills-list li { break-inside: avoid; }
       .education-line { margin: 0; font-size: 11.5pt; line-height: 1.25; }
       .template-preview-note { display: none; position: fixed; right: 16px; bottom: 16px; max-width: 260px; padding: 10px 12px; border-radius: 9px; background: rgba(36,36,36,.88); color: #fff; font: 12px/1.35 system-ui, sans-serif; box-shadow: 0 10px 30px rgba(0,0,0,.2); }
       body.template-preview .template-preview-note { display: block; }

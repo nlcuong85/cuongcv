@@ -12,7 +12,7 @@ When the student gives a job description, the local AI agent should:
 2. Draft or update the CV/resume locally.
 3. Draft or update the cover letter locally when requested.
 4. Render or export the CV/resume locally.
-5. Extract the current CV/resume text locally.
+5. Extract the current reader-facing CV/resume text locally. Do not include a target-role label, review notes, gap checklist, prompt, or internal plan as candidate evidence.
 6. Call the MCP ATS checker tool `check_ats_resume_fit` with:
    - the job description text
    - the current extracted CV/resume text
@@ -71,6 +71,9 @@ Before saying the CV/resume is strong for this JD:
 - any unsupported missing keyword must be shown to the student
 - any confirmed keyword addition must be recorded locally
 - if the score remains below the target threshold, the local agent must say what is weak
+- when `calibration.profile` is `generic` or `ats_risks` includes `calibration_limited`, explain that the vocabulary does not establish complete role fit; review the JD requirements with the student even if recognized terms match
+
+Explicit statements such as “I do not have Python experience” are gaps, not keyword matches. The server also ignores target-role and review-note sections in a Markdown working CV, but the local agent should send only the final reader-facing text in the first place.
 
 Default threshold:
 
@@ -84,6 +87,8 @@ Readiness labels:
 - `needs_revision`: score 45-64
 - `near_ready`: score 65-74
 - `ready`: score 75+
+
+The generic fallback is capped below `ready` because its vocabulary cannot cover every occupation. A generic score is a limited keyword approximation, never proof that the candidate meets mandatory experience, degree, work-authorization, or language requirements.
 
 ## Rerun Rule
 

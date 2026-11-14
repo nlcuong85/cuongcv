@@ -118,6 +118,15 @@ def render_education(items: list[str]) -> str:
     return "\n".join(f'<p class="education-line" contenteditable="true">{escape(item)}</p>' for item in items if item.strip())
 
 
+def render_linkedin(value: str) -> str:
+    address = value.strip()
+    display = re.sub(r"^https?://(?:www\.)?", "", address, flags=re.IGNORECASE).rstrip("/")
+    if not display:
+        return ""
+    href = address if re.match(r"^https?://", address, flags=re.IGNORECASE) else f"https://{address}"
+    return f'<a href="{escape(href)}">{escape(display)}</a>'
+
+
 def read_profile_defaults(root: Path) -> dict[str, str]:
     profile_path = root / "profile/master_profile.json"
     if not profile_path.exists():
@@ -159,7 +168,7 @@ def build_html(args: argparse.Namespace) -> tuple[str, dict[str, Any]]:
     fallback_education = "Ausbildung ergänzen" if is_german else "Add education"
     fallback_languages = "Sprachen ergänzen" if is_german else "Add languages"
     mapping = {
-        "NAME": escape(name), "SUMMARY": escape(summary), "PHONE": escape(phone), "EMAIL": escape(email), "LINKEDIN": escape(linkedin), "PHOTO_HTML": photo_html,
+        "NAME": escape(name), "SUMMARY": escape(summary), "PHONE": escape(phone), "EMAIL": escape(email), "LINKEDIN": render_linkedin(linkedin), "PHOTO_HTML": photo_html,
         "EXPERIENCE_HTML": render_experience(source_data["experience"]) or f'<article class="entry"><h3 class="entry-title" contenteditable="true">{fallback_experience}</h3></article>',
         "SKILLS_HTML": render_items(source_data["skills"]) or f'<li contenteditable="true">{fallback_skills}</li>',
         "EDUCATION_HTML": render_education(source_data["education"]) or f'<p class="education-line" contenteditable="true">{fallback_education}</p>',

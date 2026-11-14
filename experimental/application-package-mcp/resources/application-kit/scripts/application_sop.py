@@ -406,8 +406,16 @@ def cmd_review(args: argparse.Namespace) -> int:
         missing = decision_gate(state, args.document, root)
         if missing: raise SystemExit("Review blocked: " + "; ".join(missing))
         digest = sha256(artifact); prior = current_reviews(state, artifact_rel)
-        if args.document == "cover-letter" and any(item.get("loop") == args.loop for item in prior):
-            raise SystemExit(f"Cover-letter loop {args.loop} already recorded for this artifact.")
+        if args.document == "cover-letter":
+            if args.loop not in {1, 2, 3}:
+                raise SystemExit("Cover-letter review loops must be 1, 2, or 3.")
+            same_loop = [item for item in prior if item.get("loop") == args.loop]
+            if same_loop and same_loop[-1].get("result", {}).get("riskLevel") == "low":
+                raise SystemExit(f"Cover-letter loop {args.loop} already passed; continue to the next loop.")
+            if args.loop > 1:
+                previous = [item for item in prior if item.get("loop") == args.loop - 1]
+                if not previous or previous[-1].get("result", {}).get("riskLevel") != "low":
+                    raise SystemExit(f"Cover-letter loop {args.loop - 1} must pass at low risk before loop {args.loop}.")
         if args.document == "interview-prep" and args.loop not in {1, 2}:
             raise SystemExit("Interview-prep review loops must be 1 or 2.")
         if args.document == "interview-prep" and any(item.get("loop") == args.loop and item.get("artifact_sha256") == digest for item in prior):
@@ -517,7 +525,7 @@ def cmd_finalize(args: argparse.Namespace) -> int:
         else:
             raise SystemExit(f"Unsupported document type: {args.document}")
         for item in required_reviews:
-            if item.get("result", {}).get("riskLevel") not in {None, "low"}:
+            if item.get("result", {}).get("riskLevel") != "low":
                 missing.append(f"unresolved {item.get('document')} review risk in loop {item.get('loop')}")
         if missing:
             print(json.dumps({"status": "NOT READY", "artifact": artifact_rel, "missing": missing}, indent=2)); return 1
