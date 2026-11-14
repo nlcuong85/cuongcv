@@ -47,6 +47,24 @@ test("local Application SOP requires decisions, current audit, and distinct cove
   sop(workspace, "record-decision", "--name", "employment_type", "--value", "full-time", "--job-description", "jobs/test-role.md", "--user-answer", "Yes, this is the full-time role I want.");
   await writeFile(path.join(workspace, "audit.json"), JSON.stringify({ status: "workspace_current" }));
   sop(workspace, "record-manifest-audit", "--report", "audit.json");
+  await mkdir(path.join(workspace, "candidate"), { recursive: true });
+  await writeFile(path.join(workspace, "candidate/notes.txt"), "Candidate-added evidence after setup.");
+  assert.match(sop(workspace, "boot", "--strict"), /"status": "ready"/);
+  const template = path.join(workspace, "application-kit/templates/cv_english_modern.html");
+  await writeFile(template, `${await readFile(template, "utf8")}\n<!-- verified kit update -->\n`);
+  const staleManagedBoot = spawnSync("python3", [path.join(workspace, "application-kit/scripts/application_sop.py"), "--root", workspace, "boot", "--strict"], { encoding: "utf8" });
+  assert.notEqual(staleManagedBoot.status, 0);
+  assert.match(staleManagedBoot.stdout, /managed workspace drift needs a current MCP audit/);
+  execFileSync("python3", [path.join(workspace, "application-kit/scripts/workspace_audit.py"), "--root", workspace], { encoding: "utf8" });
+  await writeFile(path.join(workspace, "audit-managed.json"), JSON.stringify({ status: "workspace_current", missing_paths: [], managed_hash_mismatches: [] }));
+  sop(workspace, "record-manifest-audit", "--report", "audit-managed.json");
+  assert.match(sop(workspace, "boot", "--strict"), /"managed_audit_verified": true/);
+  const verifiedTemplate = await readFile(template, "utf8");
+  await writeFile(template, `${verifiedTemplate}\n<!-- unverified edit -->\n`);
+  const staleAuditBoot = spawnSync("python3", [path.join(workspace, "application-kit/scripts/application_sop.py"), "--root", workspace, "boot", "--strict"], { encoding: "utf8" });
+  assert.notEqual(staleAuditBoot.status, 0);
+  assert.match(staleAuditBoot.stdout, /managed workspace drift needs a current MCP audit/);
+  await writeFile(template, verifiedTemplate);
 
   const letter = path.join(workspace, "applications/test-role/cover-letter/cover-letter.md");
   await mkdir(path.dirname(letter), { recursive: true });

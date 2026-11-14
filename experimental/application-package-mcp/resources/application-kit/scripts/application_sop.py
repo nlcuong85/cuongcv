@@ -29,7 +29,7 @@ else:
 STATE_SCHEMA = 1
 STATE_DIR = ".application-sop"
 PROTECTED_PREFIXES = ("candidate/", "profile/", "voice/", "jobs/", "applications/")
-ALLOWED_SUFFIXES = {".md", ".html", ".pdf", ".json", ".txt", ".jpg", ".jpeg", ".png", ".docx", ".py", ".mjs"}
+ALLOWED_SUFFIXES = {".md", ".html", ".pdf", ".json", ".txt", ".jpg", ".jpeg", ".png", ".docx", ".py", ".mjs", ".tex", ".ttf", ".svg"}
 
 
 def now() -> str:
@@ -171,6 +171,10 @@ def audit_diff(old: dict[str, Any], new: dict[str, Any]) -> dict[str, list[str]]
     }
 
 
+def managed_path(relative: str) -> bool:
+    return relative in {"AGENTS.md", "CLAUDE.md", "COPILOT.md", "GEMINI.md"} or relative.startswith(("application-kit/", "scripts/"))
+
+
 def require_active(state: dict[str, Any]) -> dict[str, Any]:
     if not state.get("last_strict_boot_at"):
         raise SystemExit("Strict preflight is missing. Run application_sop.py boot --strict first.")
@@ -237,14 +241,25 @@ def cmd_boot(args: argparse.Namespace) -> int:
             print("Application SOP initialized local baseline.")
             return 0
         diff = audit_diff(baseline, current)
-        changed = sum(len(value) for value in diff.values())
-        if changed and args.strict:
-            print(json.dumps({"status": "blocked", "reason": "workspace drift", "diff": diff}, indent=2))
-            return 1
+        managed_diff = {kind: [path for path in values if managed_path(path)] for kind, values in diff.items()}
+        managed_changed = any(managed_diff.values())
+        if args.strict and managed_changed:
+            verified = state.get("manifest_audit") or {}
+            recorded_hashes = verified.get("managed_file_hashes") or {}
+            changed_paths = {path for values in managed_diff.values() for path in values}
+            if verified.get("status") != "workspace_current" or any(
+                path not in recorded_hashes or recorded_hashes[path] != current.get(path, {}).get("sha256")
+                for path in changed_paths
+            ):
+                print(json.dumps({"status": "blocked", "reason": "managed workspace drift needs a current MCP audit", "diff": managed_diff}, indent=2))
+                return 1
         if args.strict:
             state["last_strict_boot_at"] = now()
+            # CV, JD, voice, and generated-output changes are expected user work.
+            # Once managed files are verified, refresh their shared baseline too.
+            state["snapshot"] = {"at": now(), "files": current}
             save(root, state)
-        print(json.dumps({"status": "ready", "active": state.get("active"), "drift": diff}, indent=2))
+        print(json.dumps({"status": "ready", "active": state.get("active"), "drift": diff, "managed_audit_verified": bool(managed_changed)}, indent=2))
         return 0
 
 
@@ -258,7 +273,7 @@ def cmd_start(args: argparse.Namespace) -> int:
         if state.get("active") and state["active"].get("task_id") != args.task_id:
             raise SystemExit("Another application task is active; handoff/postflight it first.")
         state["active"] = {"task_id": args.task_id, "job_slug": args.job, "phase": "intake", "started_at": now()}
-        state["handoff"] = {"current": "Application task started.", "next_command": "python3 application_sop.py intake-status", "risk": "Do not generate final documents before decisions and evidence are recorded."}
+        state["handoff"] = {"current": "Application task started.", "next_command": "python3 scripts/application_sop.py --root . ask-employment-type --job-description <job-file>", "risk": "Do not generate final documents before decisions and evidence are recorded."}
         receipt(state, "start", [], [], detail=args.goal)
         save(root, state)
         print(f"Started {args.task_id} for {args.job}")
@@ -387,10 +402,23 @@ def cmd_record_manifest(args: argparse.Namespace) -> int:
     root = Path(args.root).resolve(); report = root / safe_rel(args.report)
     if not report.exists(): raise SystemExit(f"Manifest audit report not found: {report}")
     value = json.loads(report.read_text(encoding="utf-8"))
+    recorded_hashes: dict[str, str] | None = None
+    manifest_path = root / ".mcp" / "workspace-manifest.json"
+    if value.get("status") == "workspace_current" and manifest_path.is_file():
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        expected = manifest.get("managed_file_hashes")
+        if not isinstance(expected, dict) or not all(isinstance(path, str) and isinstance(digest, str) for path, digest in expected.items()):
+            raise SystemExit("Current workspace manifest has invalid managed-file hashes.")
+        recorded_hashes = {}
+        for relative, digest in expected.items():
+            path = root / safe_rel(relative)
+            if not managed_path(relative) or not path.is_file() or path.is_symlink() or sha256(path) != digest:
+                raise SystemExit("Managed files changed since the workspace manifest was built; audit again.")
+            recorded_hashes[relative] = digest
     _, _, lock_path, _ = paths(root)
     with state_lock(lock_path):
         state = load(root); require_active(state)
-        state["manifest_audit"] = {"status": value.get("status"), "at": now(), "report": report.relative_to(root).as_posix()}
+        state["manifest_audit"] = {"status": value.get("status"), "at": now(), "report": report.relative_to(root).as_posix(), "managed_file_hashes": recorded_hashes}
         receipt(state, "record-manifest-audit", [report.relative_to(root).as_posix()], [])
         save(root, state)
     print(value.get("status", "unknown"))

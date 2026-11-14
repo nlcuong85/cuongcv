@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-14 SOP baseline recovery
+
+- Strict boot now accepts normal candidate CV, JD, profile, and generated-output changes instead of freezing the workspace after first setup.
+- Managed-file updates still require a current MCP workspace audit before strict boot refreshes the baseline.
+- The task handoff now points to the supported employment-type question command.
+
 ## First Setup
 
 - Created the student application digital-twin workspace.
