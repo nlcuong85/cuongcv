@@ -20,7 +20,7 @@ import tempfile
 from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
 from urllib.parse import urlparse
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 
 MAX_ARCHIVE_BYTES = 16 * 1024 * 1024
 AGENT_FILES = {"AGENTS.md", "CLAUDE.md", "COPILOT.md", "GEMINI.md"}
@@ -38,7 +38,8 @@ def fetch(url: str) -> bytes:
     parsed = urlparse(url)
     if parsed.scheme != "https" and not (parsed.scheme == "http" and parsed.hostname in {"127.0.0.1", "localhost"}):
         die("Bootstrap download requires HTTPS or loopback HTTP for local tests")
-    with urlopen(url, timeout=30) as response:
+    request = Request(url, headers={"User-Agent": "JobMCP-WorkspaceBootstrap/0.2.25", "Accept": "application/gzip"})
+    with urlopen(request, timeout=30) as response:
         length = response.headers.get("Content-Length")
         if length and int(length) > MAX_ARCHIVE_BYTES:
             die("Public kit archive exceeds size limit")

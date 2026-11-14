@@ -1,6 +1,6 @@
 // T03/T04/T17/T18: SDK-to-local-kit integration. Not a desktop UI/account test.
 import { Client, StreamableHTTPClientTransport } from '@modelcontextprotocol/client';
-import { mkdtemp, readFile } from 'node:fs/promises';
+import { mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -14,7 +14,11 @@ try {
   if (!tools.tools.some(x=>x.name==='get_complete_bootstrap')) throw new Error('Complete bootstrap tool missing');
   const bootstrap=JSON.parse((await client.callTool({name:'get_complete_bootstrap',arguments:{}})).content[0].text);
   const baseUrl=new URL(endpoint); baseUrl.pathname='/';
-  const install=spawnSync('python3',[path.resolve('resources/bootstrap_workspace.py'),'--root',root,'--base-url',baseUrl.href,'--expected-sha256',bootstrap.archive_sha256,'--approve-workspace'],{encoding:'utf8'});
+  const installerResponse=await fetch(new URL('/bootstrap-workspace.py',baseUrl));
+  if(!installerResponse.ok) throw new Error(`Public installer download failed: ${installerResponse.status}`);
+  const installer=path.join(root,'bootstrap-workspace.py');
+  await writeFile(installer,await installerResponse.text());
+  const install=spawnSync('python3',[installer,'--root',root,'--base-url',baseUrl.href,'--expected-sha256',bootstrap.archive_sha256,'--approve-workspace'],{encoding:'utf8'});
   if(install.status!==0) throw new Error(`Complete bootstrap failed: ${install.stderr}\n${install.stdout}`);
   const run=(args)=>{
     const r=spawnSync('python3',args,{cwd:root,encoding:'utf8'});

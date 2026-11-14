@@ -11,6 +11,7 @@ const expectedTools = [
   "get_application_kit_bundle",
   "get_application_kit_manifest",
   "get_client_skill",
+  "get_complete_bootstrap",
   "get_onboarding_instructions",
   "get_sample_prompts",
   "get_workspace_template",
@@ -66,6 +67,11 @@ try {
   assert.equal(kit.workspace_update_required.required_before_application_work, true);
   assert.equal(kit.manifest.mode, "local-only");
   assert.equal(kit.manifest.privacy.advanced_checker_rules_in_bundle, false);
+
+  const bootstrapResult = await client.callTool({ name: "get_complete_bootstrap", arguments: {} });
+  const bootstrap = JSON.parse(bootstrapResult.content[0].text);
+  assert.match(bootstrap.archive_sha256, /^[a-f0-9]{64}$/);
+  assert.match(bootstrap.archive_url, /complete-workspace-kit\.tar\.gz$/);
 
   const checkResult = await client.callTool({
     name: "check_writing_human_fit",
